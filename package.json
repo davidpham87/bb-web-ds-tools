@@ -1,0 +1,18 @@
+{
+  "name": "bb-web-ds-tools",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "17.0.1",
+    "react-dom": "17.0.1"
+  },
+  "devDependencies": {
+    "karma": "^6.4.4",
+    "karma-chrome-launcher": "^3.2.0",
+    "karma-cljs-test": "^0.1.0",
+    "shadow-cljs": "2.16.8"
+  },
+  "scripts": {
+    "test": "npx shadow-cljs compile test && karma start --single-run"
+  }
+}
