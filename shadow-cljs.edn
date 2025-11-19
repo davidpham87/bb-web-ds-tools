@@ -1,0 +1,27 @@
+;; shadow-cljs configuration
+{:source-paths
+ ["src" "test"]
+
+ :deps true
+
+ :dev-http {8080 "public"}
+
+ :builds
+ {:app
+  {:target :browser
+   :output-dir "public/js/compiled"
+   :asset-path "/js/compiled"
+   :modules {:main {:init-fn bb-web-ds-tools.core/init}}
+   :devtools {:after-load bb-web-ds-tools.core/init}}
+  :reader
+  {:target :browser
+    :output-dir "public/js/compiled"
+    :asset-path "/js/compiled"
+    :modules {:reader {:init-fn bb-web-ds-tools.reader.core/init}}}
+   :test
+   {:target :browser-test
+    :ns-regexp "-test$"
+    :output-to "target/test/core.js"
+    :test-dir "target/test"
+    :compiler-options {:pretty-print true}
+    :devtools {:autotest true}}}}
