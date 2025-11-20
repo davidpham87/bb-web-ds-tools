@@ -1,8 +1,7 @@
 (ns bb-web-ds-tools.core
   (:require [reagent.dom :as rdom]
             [re-frame.core :as rf]
-            [bb-web-ds-tools.ui.core :as ui]
-            ["codemirror/lib/codemirror.css"]))
+            [bb-web-ds-tools.ui.core :as ui]))
 
 (rf/reg-sub
  ::active-tab

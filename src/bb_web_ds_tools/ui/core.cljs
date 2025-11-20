@@ -1,5 +1,6 @@
 (ns bb-web-ds-tools.ui.core
   (:require [reagent.core :as r]
+            [reagent.dom :as rdom]
             [re-frame.core :as rf]
             [fork.core :as fork]
             ["codemirror" :as CodeMirror]))
@@ -12,16 +13,16 @@
 
 (defn codemirror-editor []
   (let [editor-instance (r/atom nil)
-        code-sub (rf/subscribe [::code])]
+        code-sub (rf/subscribe [:bb-web-ds-tools.core/code])]
     (r/create-class
      {:component-did-mount
       (fn [this]
-        (let [editor (js/CodeMirror. (r/dom-node this)
+        (let [editor (CodeMirror. (rdom/dom-node this)
                                      #js{:lineNumbers true
                                          :value @code-sub})]
           (.on editor "change"
                (fn [cm]
-                 (rf/dispatch [::code-changed (.getValue cm)])))
+                 (rf/dispatch [:bb-web-ds-tools.core/code-changed (.getValue cm)])))
           (reset! editor-instance editor)))
       :component-did-update
       (fn [this _]
@@ -37,4 +38,4 @@
 (defn codemirror []
   [:div
    [codemirror-editor]
-   [:button {:on-click (fork/event-handler #(rf/dispatch [::save-code]))} "Save"]])
+   [:button {:on-click #(rf/dispatch [::save-code])} "Save"]])
