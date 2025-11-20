@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "codemirror": "^5.65.20",
-    "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
     "karma": "^6.4.4",

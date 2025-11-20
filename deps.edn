@@ -1,5 +1,5 @@
 {:deps {re-frame/re-frame {:mvn/version "1.4.3"}
-        reagent/reagent {:mvn/version "1.2.0"}
+        reagent/reagent {:mvn/version "2.0.1"}
         metosin/malli {:mvn/version "0.20.0"}
         com.github.seancorfield/honeysql {:mvn/version "2.7.1350"}
         fork/fork {:mvn/version "2.4.3"}

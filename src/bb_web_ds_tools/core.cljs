@@ -1,5 +1,5 @@
 (ns bb-web-ds-tools.core
-  (:require [reagent.dom :as rdom]
+  (:require [reagent.dom.client :as rdom]
             [re-frame.core :as rf]
             [bb-web-ds-tools.ui.core :as ui]))
 
@@ -51,4 +51,5 @@
 (defn ^:export init []
   (rf/dispatch-sync [::initialize-db])
   (rf/dispatch [::set-active-tab :editor])
-  (rdom/render [app] (.getElementById js/document "app")))
+  (let [root (rdom/create-root (.getElementById js/document "app"))]
+    (rdom/render root [app])))
