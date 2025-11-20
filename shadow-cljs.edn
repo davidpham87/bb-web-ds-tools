@@ -4,18 +4,18 @@
 
  :deps true
 
- :dev-http {8080 "public"}
+ :dev-http {8080 "docs"}
 
  :builds
  {:app
   {:target :browser
-   :output-dir "public/js/compiled"
+   :output-dir "docs/js/compiled"
    :asset-path "/js/compiled"
    :modules {:main {:init-fn bb-web-ds-tools.core/init}}
    :devtools {:after-load bb-web-ds-tools.core/init}}
   :reader
   {:target :browser
-    :output-dir "public/js/compiled"
+    :output-dir "docs/js/compiled"
     :asset-path "/js/compiled"
     :modules {:reader {:init-fn bb-web-ds-tools.reader.core/init}}}
    :test
