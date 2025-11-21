@@ -1,8 +1,11 @@
 (ns bb-web-ds-tools.core
   (:require [reagent.dom :as rdom]
             [re-frame.core :as rf]
+            [bb-web-ds-tools.malli-tools :as malli-tools]
+            [bb-web-ds-tools.honeysql-tools :as honeysql-tools]
             [bb-web-ds-tools.ui.core :as ui]
-            [bb-web-ds-tools.vega-lite :as vega]))
+            [bb-web-ds-tools.vega-lite :as vega]
+            [bb-web-ds-tools.gemma :as gemma]))
 
 (rf/reg-sub
  ::active-tab
@@ -35,12 +38,11 @@
     [:div
      (case active-tab
        :reader [:div "Reader Tool"]
-       :editor [:div
-                [ui/codemirror-editor
-                 {:value code
-                  :on-change #(rf/dispatch [::code-changed %])}]
-                [:button {:on-click #(js/alert (str "Saving code: " code))} "Save"]]
        :vega-lite [vega/view]
+       :editor [ui/codemirror]
+       :malli [malli-tools/malli-tools-panel]
+       :honeysql [honeysql-tools/honeysql-tools-panel]
+       :gemma [gemma/gemma-page]
        [:div "Select a tool"])]))
 
 (defn nav-bar []
@@ -49,6 +51,9 @@
     [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :reader])} "Reader Tool"]]
     [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :editor])} "Editor"]]
     [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :vega-lite])} "Vega Lite"]]]])
+    [:button {:on-click #(rf/dispatch [:set-active-tab :malli])} "Malli Tools"]
+    [:button {:on-click #(rf/dispatch [:set-active-tab :honeysql])} "Honeysql Tools"]]
+    [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :gemma])} "Gemma"]]]])
 
 (defn app []
   [:div
@@ -61,3 +66,4 @@
   (rf/dispatch-sync [::vega/initialize])
   (rf/dispatch [::set-active-tab :editor])
   (rdom/render [app] (.getElementById js/document "app")))
+
