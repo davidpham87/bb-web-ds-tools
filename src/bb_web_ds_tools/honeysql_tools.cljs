@@ -1,7 +1,6 @@
 (ns bb-web-ds-tools.honeysql-tools
   (:require [re-frame.core :as rf]
-            [honeysql.core :as h]
-            [honeysql.format :as hf]
+            [honey.sql :as h]
             [cljs.reader :as reader]))
 
 ;; Event handlers
