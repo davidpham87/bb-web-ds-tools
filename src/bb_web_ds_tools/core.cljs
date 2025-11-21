@@ -70,5 +70,6 @@
 (defn ^:export init []
   (rf/dispatch-sync [::initialize-db])
   (rf/dispatch-sync [::vega/initialize])
+  (rf/dispatch-sync [::gemma/initialize])
   (rf/dispatch [::set-active-tab :editor])
   (rdom/render [app] (.getElementById js/document "app")))
