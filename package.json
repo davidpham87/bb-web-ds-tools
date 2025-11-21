@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mediapipe/tasks-genai": "^0.10.25",
     "codemirror": "^5.65.20",
     "react": "17.0.1",
     "react-dom": "17.0.1"
