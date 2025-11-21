@@ -2,41 +2,67 @@
   (:require [reagent.core :as r]
             [reagent.dom :as rdom]
             [re-frame.core :as rf]
-            [fork.core :as fork]
+            [fork.re-frame :as fork]
             ["codemirror" :as CodeMirror]
             ["react-dom" :as react-dom]))
 
 (rf/reg-event-db
  ::save-code
  (fn [db _]
-   (js/alert (str "Saving code: " (:code db)))
+   (js/alert (str "Saved code successfully!"))
    db))
 
-(defn codemirror-editor []
-  (let [editor-instance (r/atom nil)
-        code-sub (rf/subscribe [:bb-web-ds-tools.core/code])]
+(defn codemirror-editor-inner []
+  (let [editor-instance (r/atom nil)]
     (r/create-class
-     {:component-did-mount
+     {:displayName "codemirror-editor"
+      :component-did-mount
       (fn [this]
-        (let [editor (CodeMirror. (react-dom/findDOMNode this)
-                                     #js{:lineNumbers true
-                                         :value @code-sub})]
+        (let [{:keys [value on-change]} (r/props this)
+              editor (CodeMirror. (react-dom/findDOMNode this)
+                                  #js{:lineNumbers true
+                                      :value (or value "")})]
           (.on editor "change"
                (fn [cm]
-                 (rf/dispatch [:bb-web-ds-tools.core/code-changed (.getValue cm)])))
+                 (let [new-val (.getValue cm)]
+                   (when on-change
+                     (on-change new-val)))))
           (reset! editor-instance editor)))
       :component-did-update
       (fn [this _]
-        (let [editor @editor-instance
-              current-code (.getValue editor)
-              new-code @code-sub]
-          (when (not= current-code new-code)
-            (.setValue editor new-code))))
+        (let [{:keys [value]} (r/props this)
+              editor @editor-instance]
+          (when (and editor (not= (.getValue editor) value))
+             (let [cursor (.getCursor editor)]
+               (.setValue editor (or value ""))
+               (.setCursor editor cursor)))))
       :render
       (fn []
-        [:div.editor-wrapper])})))
+        [:div.editor-wrapper.border.border-gray-300])})))
+
+(defn codemirror-editor [props]
+  [codemirror-editor-inner props])
+
+(defn codemirror-form []
+  (let [initial-code @(rf/subscribe [:bb-web-ds-tools.core/code])]
+    [fork/form {:initial-values {"code" initial-code}
+                :keywordize-keys true
+                :path [:editor-form]
+                :prevent-default? true
+                :clean-on-unmount? true
+                :on-submit (fn [{:keys [values]}]
+                             (rf/dispatch [:bb-web-ds-tools.core/code-changed (:code values)])
+                             (rf/dispatch [::save-code]))}
+     (fn [{:keys [values set-values handle-submit]}]
+       [:form {:on-submit handle-submit :class "space-y-4"}
+        [:div.bg-white.rounded.shadow-sm.overflow-hidden
+         [codemirror-editor {:value (:code values)
+                             :on-change #(set-values {:code %})}]]
+        [:div.flex.justify-end
+         [:button {:type "submit"
+                   :class "bg-red-600 text-white px-6 py-2 rounded shadow hover:bg-red-700 transition focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"}
+          "Save Code"]]])]))
 
 (defn codemirror []
-  [:div
-   [codemirror-editor]
-   [:button {:on-click #(rf/dispatch [::save-code])} "Save"]])
+  [:div.p-4
+   [codemirror-form]])

@@ -1,7 +1,6 @@
 (ns bb-web-ds-tools.honeysql-tools
   (:require [re-frame.core :as rf]
-            [honeysql.core :as h]
-            [honeysql.format :as hf]
+            [honey.sql :as h]
             [cljs.reader :as reader]))
 
 ;; Event handlers
@@ -23,7 +22,7 @@
           input-data (try (reader/read-string input-text) (catch js/Error e nil))]
       (if input-data
         (try
-          {:db (assoc db :honeysql-output (h/format input-data))}
+          {:db (assoc db :honeysql-output (first (h/format input-data)))} ;; h/format returns [sql params], take first for sql string if no params
           (catch js/Error e
             {:db (assoc db :honeysql-output (str "Error: " (.-message e)))}))
         {:db (assoc db :honeysql-output "Invalid Honeysql data.")}))))
