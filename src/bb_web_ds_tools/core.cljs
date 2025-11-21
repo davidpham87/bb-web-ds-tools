@@ -2,7 +2,7 @@
   (:require [reagent.dom :as rdom]
             [re-frame.core :as rf]
             [bb-web-ds-tools.ui.core :as ui]
-            ["codemirror/lib/codemirror.css"]))
+            [bb-web-ds-tools.gemma :as gemma]))
 
 (rf/reg-sub
  ::active-tab
@@ -20,13 +20,15 @@
      (case active-tab
        :reader [:div "Reader Tool"]
        :editor [ui/codemirror]
+       :gemma [gemma/gemma-page]
        [:div "Select a tool"])]))
 
 (defn nav-bar []
   [:nav
    [:ul
     [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :reader])} "Reader Tool"]]
-    [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :editor])} "Editor"]]]])
+    [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :editor])} "Editor"]]
+    [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :gemma])} "Gemma"]]]])
 
 (defn app []
   [:div
