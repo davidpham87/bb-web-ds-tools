@@ -32,10 +32,27 @@
  (fn [db [_ new-code]]
    (assoc db :code new-code)))
 
+(defn nav-item [label tab-id]
+  [:button
+   {:class "text-white hover:bg-red-700 px-3 py-2 rounded font-medium transition-colors duration-200 focus:outline-none"
+    :on-click #(rf/dispatch [::set-active-tab tab-id])}
+   label])
+
+(defn nav-bar []
+  [:nav {:class "bg-red-600 shadow-lg p-4 mb-4"}
+   [:div {:class "container mx-auto flex items-center justify-between flex-wrap"}
+    [:div {:class "text-white text-2xl font-bold mr-6"} "BB Web DS Tools"]
+    [:div {:class "flex flex-wrap gap-2"}
+     [nav-item "Reader Tool" :reader]
+     [nav-item "Editor" :editor]
+     [nav-item "Vega Lite" :vega-lite]
+     [nav-item "Malli Tools" :malli]
+     [nav-item "Honeysql Tools" :honeysql]
+     [nav-item "Gemma" :gemma]]]])
+
 (defn main-panel []
-  (let [active-tab @(rf/subscribe [::active-tab])
-        code @(rf/subscribe [::code])]
-    [:div
+  (let [active-tab @(rf/subscribe [::active-tab])]
+    [:div.container.mx-auto.p-4
      (case active-tab
        :reader [:div "Reader Tool"]
        :vega-lite [vega/view]
@@ -45,19 +62,8 @@
        :gemma [gemma/gemma-page]
        [:div "Select a tool"])]))
 
-(defn nav-bar []
-  [:nav
-   [:ul
-    [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :reader])} "Reader Tool"]]
-    [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :editor])} "Editor"]]
-    [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :vega-lite])} "Vega Lite"]]]])
-    [:button {:on-click #(rf/dispatch [:set-active-tab :malli])} "Malli Tools"]
-    [:button {:on-click #(rf/dispatch [:set-active-tab :honeysql])} "Honeysql Tools"]]
-    [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :gemma])} "Gemma"]]]])
-
 (defn app []
-  [:div
-   [:h1 "BB Web DS Tools"]
+  [:div.min-h-screen.bg-gray-50
    [nav-bar]
    [main-panel]])
 
@@ -66,4 +72,3 @@
   (rf/dispatch-sync [::vega/initialize])
   (rf/dispatch [::set-active-tab :editor])
   (rdom/render [app] (.getElementById js/document "app")))
-
