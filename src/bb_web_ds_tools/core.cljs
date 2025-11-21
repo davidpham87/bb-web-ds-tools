@@ -50,9 +50,9 @@
    [:ul
     [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :reader])} "Reader Tool"]]
     [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :editor])} "Editor"]]
-    [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :vega-lite])} "Vega Lite"]]]])
-    [:button {:on-click #(rf/dispatch [:set-active-tab :malli])} "Malli Tools"]
-    [:button {:on-click #(rf/dispatch [:set-active-tab :honeysql])} "Honeysql Tools"]]
+    [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :vega-lite])} "Vega Lite"]]
+    [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :malli])} "Malli Tools"]]
+    [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :honeysql])} "Honeysql Tools"]]
     [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :gemma])} "Gemma"]]]])
 
 (defn app []
@@ -64,6 +64,6 @@
 (defn ^:export init []
   (rf/dispatch-sync [::initialize-db])
   (rf/dispatch-sync [::vega/initialize])
+  (rf/dispatch-sync [::gemma/initialize])
   (rf/dispatch [::set-active-tab :editor])
   (rdom/render [app] (.getElementById js/document "app")))
-
