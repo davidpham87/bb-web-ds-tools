@@ -1,10 +1,37 @@
 (ns bb-web-ds-tools.gemma
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
+            [fork.core :as fork]
             ["@mediapipe/tasks-genai" :as genai]))
 
 ;; State for the LLM instance
 (defonce llm-instance (r/atom nil))
+
+;; Re-frame effects
+
+(rf/reg-fx
+ ::load-model-fx
+ (fn [model-url]
+   (-> (genai/FilesetResolver.forGenAiTasks
+        "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-genai/wasm")
+       (.then (fn [genai-fileset]
+                (genai/LlmInference.createFromOptions genai-fileset
+                                                      #js {:baseOptions #js {:modelAssetPath model-url}})))
+       (.then (fn [llm]
+                (reset! llm-instance llm)
+                (rf/dispatch [::model-loaded])))
+       (.catch (fn [err]
+                 (rf/dispatch [::set-error (str "Failed to load model: " err)]))))))
+
+(rf/reg-fx
+ ::generate-response-fx
+ (fn [text]
+   (try
+     (let [response (.generateResponse @llm-instance text)]
+       (rf/dispatch [::add-message :model response])
+       (rf/dispatch [::set-loading false]))
+     (catch js/Error e
+       (rf/dispatch [::set-error (str "Generation failed: " e)])))))
 
 ;; Re-frame events and subscriptions
 
@@ -39,6 +66,22 @@
  (fn [db [_ role text]]
    (update db :gemma/messages conj {:role role :content text})))
 
+(rf/reg-event-fx
+ ::load-model
+ (fn [{:keys [db]} [_ model-url]]
+   {:db (assoc db :gemma/loading? true)
+    :fx [[::load-model-fx model-url]]}))
+
+(rf/reg-event-fx
+ ::send-message
+ (fn [{:keys [db]} [_ text]]
+   (if @llm-instance
+     {:db (-> db
+              (update :gemma/messages conj {:role :user :content text})
+              (assoc :gemma/loading? true))
+      :fx [[::generate-response-fx text]]}
+     {})))
+
 (rf/reg-sub
  ::messages
  (fn [db]
@@ -59,80 +102,75 @@
  (fn [db]
    (:gemma/model-loaded? db)))
 
-;; Logic
-
-(defn load-model [model-url]
-  (rf/dispatch [::set-loading true])
-  (-> (genai/FilesetResolver.forGenAiTasks
-        "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-genai/wasm")
-      (.then (fn [genai-fileset]
-               (genai/LlmInference.createFromOptions genai-fileset
-                                               #js {:baseOptions #js {:modelAssetPath model-url}})))
-      (.then (fn [llm]
-               (reset! llm-instance llm)
-               (rf/dispatch [::model-loaded])))
-      (.catch (fn [err]
-                (rf/dispatch [::set-error (str "Failed to load model: " err)])))))
-
-(defn send-message [text]
-  (when @llm-instance
-    (rf/dispatch [::add-message :user text])
-    (rf/dispatch [::set-loading true])
-    (try
-      (let [response (.generateResponse @llm-instance text)]
-        (rf/dispatch [::add-message :model response])
-        (rf/dispatch [::set-loading false]))
-      (catch js/Error e
-        (rf/dispatch [::set-error (str "Generation failed: " e)])))))
-
 ;; UI Components
 
 (defn model-loader []
-  (let [url (r/atom "")] ;; User enters the URL or path to the model
+  (let [loading?-sub (rf/subscribe [::loading?])
+        error-sub (rf/subscribe [::error])]
     (fn []
-      [:div.model-loader
-       [:h3 "Load Gemma Model"]
-       [:p "Enter the URL to the .bin model file (e.g., from Kaggle or HuggingFace, if CORS allows, or a local file served via http)."]
-       [:input {:type "text"
-                :placeholder "Model URL (e.g. /gemma-2b-it-gpu-int4.bin)"
-                :value @url
-                :on-change #(reset! url (-> % .-target .-value))
-                :style {:width "100%" :padding "8px"}}]
-       [:button {:on-click #(load-model @url)
-                 :disabled @(rf/subscribe [::loading?])
-                 :style {:margin-top "10px"}}
-        (if @(rf/subscribe [::loading?]) "Loading..." "Load Model")]
-       (when-let [err @(rf/subscribe [::error])]
-         [:div.error {:style {:color "red" :margin-top "10px"}} err])])))
+      (let [loading? @loading?-sub
+            error @error-sub]
+        [fork/form {:initial-values {"url" ""}
+                    :prevent-default? true
+                    :on-submit (fn [{:keys [values]}]
+                                 (rf/dispatch [::load-model (get values "url")]))}
+         (fn [{:keys [values handle-change handle-blur handle-submit]}]
+           [:form {:on-submit handle-submit}
+            [:div.model-loader
+             [:h3 "Load Gemma Model"]
+             [:p "Enter the URL to the .bin model file (e.g., from Kaggle or HuggingFace, if CORS allows, or a local file served via http)."]
+             [:input {:type "text"
+                      :name "url"
+                      :placeholder "Model URL (e.g. /gemma-2b-it-gpu-int4.bin)"
+                      :value (get values "url")
+                      :on-change handle-change
+                      :on-blur handle-blur
+                      :style {:width "100%" :padding "8px"}}]
+             [:button {:type "submit"
+                       :disabled loading?
+                       :style {:margin-top "10px"}}
+              (if loading? "Loading..." "Load Model")]
+             (when error
+               [:div.error {:style {:color "red" :margin-top "10px"}} error])]])]))))
 
 (defn chat-interface []
-  (let [input-text (r/atom "")]
+  (let [messages-sub (rf/subscribe [::messages])
+        loading?-sub (rf/subscribe [::loading?])]
     (fn []
-      (let [messages @(rf/subscribe [::messages])
-            loading? @(rf/subscribe [::loading?])]
-        [:div.chat-interface
-         [:div.messages {:style {:border "1px solid #ccc" :padding "10px" :height "400px" :overflow-y "scroll" :margin-bottom "10px"}}
-          (for [[idx msg] (map-indexed vector messages)]
-            [:div {:key idx :style {:margin-bottom "10px" :text-align (if (= (:role msg) :user) "right" "left")}}
-             [:strong (if (= (:role msg) :user) "You: " "Gemma: ")]
-             [:span (:content msg)]])]
-         [:div.input-area
-          [:textarea {:value @input-text
-                      :on-change #(reset! input-text (-> % .-target .-value))
-                      :style {:width "100%" :height "60px"}
-                      :placeholder "Type your message..."
-                      :disabled loading?}]
-          [:button {:on-click (fn []
-                                (send-message @input-text)
-                                (reset! input-text ""))
-                    :disabled (or loading? (empty? @input-text))
-                    :style {:margin-top "5px"}}
-           "Send"]]]))))
+      (let [messages @messages-sub
+            loading? @loading?-sub]
+        [fork/form {:initial-values {"text" ""}
+                    :prevent-default? true
+                    :on-submit (fn [{:keys [values reset]}]
+                                 (rf/dispatch [::send-message (get values "text")])
+                                 (reset))}
+         (fn [{:keys [values handle-change handle-blur handle-submit]}]
+           [:form {:on-submit handle-submit}
+            [:div.chat-interface
+             [:div.messages {:style {:border "1px solid #ccc" :padding "10px" :height "400px" :overflow-y "scroll" :margin-bottom "10px"}}
+              (for [[idx msg] (map-indexed vector messages)]
+                [:div {:key idx :style {:margin-bottom "10px" :text-align (if (= (:role msg) :user) "right" "left")}}
+                 [:strong (if (= (:role msg) :user) "You: " "Gemma: ")]
+                 [:span (:content msg)]])]
+             [:div.input-area
+              [:textarea {:name "text"
+                          :value (get values "text")
+                          :on-change handle-change
+                          :on-blur handle-blur
+                          :style {:width "100%" :height "60px"}
+                          :placeholder "Type your message..."
+                          :disabled loading?}]
+              [:button {:type "submit"
+                        :disabled (or loading? (empty? (get values "text")))
+                        :style {:margin-top "5px"}}
+               "Send"]]]])]))))
 
 (defn gemma-page []
-  (let [loaded? @(rf/subscribe [::model-loaded?])]
-    [:div.gemma-page {:style {:padding "20px"}}
-     [:h2 "Gemma E4B Interaction"]
-     (if loaded?
-       [chat-interface]
-       [model-loader])]))
+  (let [loaded?-sub (rf/subscribe [::model-loaded?])]
+    (fn []
+      (let [loaded? @loaded?-sub]
+        [:div.gemma-page {:style {:padding "20px"}}
+         [:h2 "Gemma E4B Interaction"]
+         (if loaded?
+           [chat-interface]
+           [model-loader])]))))
