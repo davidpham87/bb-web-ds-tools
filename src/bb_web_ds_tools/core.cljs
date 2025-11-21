@@ -1,6 +1,8 @@
 (ns bb-web-ds-tools.core
   (:require [reagent.dom :as rdom]
             [re-frame.core :as rf]
+            [bb-web-ds-tools.malli-tools :as malli-tools]
+            [bb-web-ds-tools.honeysql-tools :as honeysql-tools]
             [bb-web-ds-tools.ui.core :as ui]
             [bb-web-ds-tools.gemma :as gemma]))
 
@@ -13,28 +15,6 @@
  ::set-active-tab
  (fn [db [_ tab]]
    (assoc db :active-tab tab)))
-
-(defn main-panel []
-  (let [active-tab @(rf/subscribe [::active-tab])]
-    [:div
-     (case active-tab
-       :reader [:div "Reader Tool"]
-       :editor [ui/codemirror]
-       :gemma [gemma/gemma-page]
-       [:div "Select a tool"])]))
-
-(defn nav-bar []
-  [:nav
-   [:ul
-    [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :reader])} "Reader Tool"]]
-    [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :editor])} "Editor"]]
-    [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :gemma])} "Gemma"]]]])
-
-(defn app []
-  [:div
-   [:h1 "BB Web DS Tools"]
-   [nav-bar]
-   [main-panel]])
 
 (rf/reg-event-db
  ::initialize-db
@@ -51,7 +31,34 @@
  (fn [db [_ new-code]]
    (assoc db :code new-code)))
 
+(defn main-panel []
+  (let [active-tab @(rf/subscribe [::active-tab])]
+    [:div
+     (case active-tab
+       :reader [:div "Reader Tool"]
+       :editor [ui/codemirror]
+       :malli [malli-tools/malli-tools-panel]
+       :honeysql [honeysql-tools/honeysql-tools-panel]
+       :gemma [gemma/gemma-page]
+       [:div "Select a tool"])]))
+
+(defn nav-bar []
+  [:nav
+   [:ul
+    [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :reader])} "Reader Tool"]]
+    [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :editor])} "Editor"]]
+    [:button {:on-click #(rf/dispatch [:set-active-panel :malli])} "Malli Tools"]
+    [:button {:on-click #(rf/dispatch [:set-active-panel :honeysql])} "Honeysql Tools"]]
+    [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :gemma])} "Gemma"]]]])
+
+(defn app []
+  [:div
+   [:h1 "BB Web DS Tools"]
+   [nav-bar]
+   [main-panel]])
+
 (defn ^:export init []
   (rf/dispatch-sync [::initialize-db])
   (rf/dispatch [::set-active-tab :editor])
   (rdom/render [app] (.getElementById js/document "app")))
+
