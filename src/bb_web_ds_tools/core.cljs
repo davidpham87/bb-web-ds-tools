@@ -2,7 +2,7 @@
   (:require [reagent.dom :as rdom]
             [re-frame.core :as rf]
             [bb-web-ds-tools.ui.core :as ui]
-            ["codemirror/lib/codemirror.css"]))
+            [bb-web-ds-tools.vega-lite :as vega]))
 
 (rf/reg-sub
  ::active-tab
@@ -13,26 +13,6 @@
  ::set-active-tab
  (fn [db [_ tab]]
    (assoc db :active-tab tab)))
-
-(defn main-panel []
-  (let [active-tab @(rf/subscribe [::active-tab])]
-    [:div
-     (case active-tab
-       :reader [:div "Reader Tool"]
-       :editor [ui/codemirror]
-       [:div "Select a tool"])]))
-
-(defn nav-bar []
-  [:nav
-   [:ul
-    [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :reader])} "Reader Tool"]]
-    [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :editor])} "Editor"]]]])
-
-(defn app []
-  [:div
-   [:h1 "BB Web DS Tools"]
-   [nav-bar]
-   [main-panel]])
 
 (rf/reg-event-db
  ::initialize-db
@@ -49,7 +29,35 @@
  (fn [db [_ new-code]]
    (assoc db :code new-code)))
 
+(defn main-panel []
+  (let [active-tab @(rf/subscribe [::active-tab])
+        code @(rf/subscribe [::code])]
+    [:div
+     (case active-tab
+       :reader [:div "Reader Tool"]
+       :editor [:div
+                [ui/codemirror-editor
+                 {:value code
+                  :on-change #(rf/dispatch [::code-changed %])}]
+                [:button {:on-click #(js/alert (str "Saving code: " code))} "Save"]]
+       :vega-lite [vega/view]
+       [:div "Select a tool"])]))
+
+(defn nav-bar []
+  [:nav
+   [:ul
+    [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :reader])} "Reader Tool"]]
+    [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :editor])} "Editor"]]
+    [:li [:a {:href "#" :on-click #(rf/dispatch [::set-active-tab :vega-lite])} "Vega Lite"]]]])
+
+(defn app []
+  [:div
+   [:h1 "BB Web DS Tools"]
+   [nav-bar]
+   [main-panel]])
+
 (defn ^:export init []
   (rf/dispatch-sync [::initialize-db])
+  (rf/dispatch-sync [::vega/initialize])
   (rf/dispatch [::set-active-tab :editor])
   (rdom/render [app] (.getElementById js/document "app")))
