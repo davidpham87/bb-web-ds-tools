@@ -1,5 +1,6 @@
 (ns bb-web-ds-tools.core
-  (:require [reagent.dom :as rdom]
+  (:require [reagent.core :as r]
+            [reagent.dom :as rdom]
             [re-frame.core :as rf]
             [reitit.frontend :as rf-router]
             [reitit.frontend.easy :as rfe]
@@ -126,47 +127,52 @@
 (defmethod view :reader [_] [:div.p-4 "Reader Tool"])
 (defmethod view :default [_] [landing/landing-page])
 
-(defn nav-item [label route-name current-route-name]
-  (let [active? (= route-name current-route-name)]
-    [:a
-     {:href (rfe/href route-name)
-      :class (str "px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 focus:outline-none inline-block decoration-transparent "
-                  (if active?
-                    "bg-gray-800 text-blue-400 shadow-inner"
-                    "text-gray-300 hover:text-white hover:bg-gray-700"))}
-     label]))
-
 (defn nav-bar []
-  (let [current-route @(rf/subscribe [::current-route])
-        current-route-name (:name (:data current-route))]
-    [:nav {:class "bg-gray-900 border-b border-gray-800 sticky top-0 z-50"}
-     [:div {:class "container mx-auto px-4"}
-      [:div {:class "flex items-center justify-between h-16"}
-       [:div {:class "flex-shrink-0 cursor-pointer"
-              :on-click #(rf/dispatch [::navigate :landing])}
-        [:span {:class "text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500"}
-         "BB Web DS Tools"]]
-       [:div {:class "hidden md:flex space-x-2"}
-        [nav-item "Home" :landing current-route-name]
-        [nav-item "Malli" :malli current-route-name]
-        [nav-item "HoneySQL" :honeysql current-route-name]
-        [nav-item "Vega-Lite" :vega-lite current-route-name]
-        [nav-item "Gemma" :gemma current-route-name]
-        [nav-item "Pyodide" :pyodide current-route-name]
-        [nav-item "Editor" :editor current-route-name]
-        [nav-item "Repl" :repl current-route-name]
-        [nav-item "R" :r-repl current-route-name]
-        [nav-item "Changelog" :changelog current-route-name]]]]]))
+  (let [menu-open? (r/atom false)]
+    (fn []
+      (let [current-route @(rf/subscribe [::current-route])
+            route-name (:name (:data current-route))]
+        [:nav {:class "bg-[#3f3f3f] border-b border-[#5f5f5f] sticky top-0 z-50 h-10 flex items-center px-4 shadow-md"}
+         [:div {:class "flex items-center space-x-2 text-sm text-[#dcdccc]"}
+          [:span {:class "cursor-pointer hover:text-[#f0dfaf] font-bold"
+                  :on-click #(rf/dispatch [::navigate :landing])}
+           "Home"]
+          (when (and route-name (not= route-name :landing))
+            [:<>
+             [:span {:class "text-[#7f9f7f]"} "/"]
+             [:span {:class "font-medium text-[#f0dfaf]"}
+              (clojure.string/capitalize (name route-name))]])]
+         ;; Menu Toggle
+         [:div {:class "ml-auto relative"}
+          [:button {:class "text-[#dcdccc] hover:text-[#f0dfaf] focus:outline-none text-xs font-bold uppercase tracking-wider"
+                    :on-click #(swap! menu-open? not)}
+           "Menu ▾"]
+          (when @menu-open?
+            [:div {:class "absolute right-0 mt-2 w-48 bg-[#3f3f3f] border border-[#5f5f5f] rounded shadow-lg py-1 z-50"}
+             (for [item [{:label "Malli" :route :malli}
+                         {:label "HoneySQL" :route :honeysql}
+                         {:label "Vega-Lite" :route :vega-lite}
+                         {:label "Gemma" :route :gemma}
+                         {:label "Pyodide" :route :pyodide}
+                         {:label "Editor" :route :editor}
+                         {:label "Repl" :route :repl}
+                         {:label "R" :route :r-repl}
+                         {:label "Changelog" :route :changelog}]]
+               ^{:key (:route item)}
+               [:a {:href (rfe/href (:route item))
+                    :class "block px-4 py-2 text-sm text-[#dcdccc] hover:bg-[#4f4f4f] hover:text-[#f0dfaf]"
+                    :on-click #(reset! menu-open? false)}
+                (:label item)])])]]))))
 
 (defn main-panel []
   (let [current-route @(rf/subscribe [::current-route])]
-    [:div {:class "min-h-screen bg-gray-950 text-gray-200"}
+    [:div {:class "min-h-screen bg-[#3f3f3f] text-[#dcdccc]"}
      (if current-route
        (view current-route)
        [landing/landing-page])]))
 
 (defn app []
-  [:div.min-h-screen.bg-gray-950
+  [:div {:class "min-h-screen bg-[#3f3f3f]"}
    [nav-bar]
    [main-panel]])
 
