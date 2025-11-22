@@ -3,16 +3,17 @@
             [malli.provider :as mp]
             [malli.generator :as mg]
             [cljs.reader :as reader]
-            [bb-web-ds-tools.components.common :as c]))
+            [bb-web-ds-tools.components.common :as c]
+            [bb-web-ds-tools.components.editor :as editor]))
 
 ;; Event handlers
 (rf/reg-event-db
   :malli/initialize
   (fn [db _]
     (assoc-in db [:user-input :malli :default]
-              {:schema-text ""
+              {:schema-text "[:map\n [:name string?]\n [:age int?]\n [:tags [:set keyword?]]]"
                :generated-data ""
-               :inference-input ""
+               :inference-input "{:user/id 1\n :user/name \"Alice\"\n :user/email \"alice@example.com\"\n :user/active? true\n :user/roles #{:admin :editor}}"
                :inferred-schema ""})))
 
 (rf/reg-event-db
@@ -85,15 +86,15 @@
      ;; Schema Inference Section
      [c/card {}
       [:div
-       [:h3 {:class "text-xl font-semibold text-white mb-4 flex items-center gap-2"}
+       [:h3 {:class "text-xl font-semibold text-[#dcdccc] mb-4 flex items-center gap-2"}
         [:span "🧩"] "Schema Inference"]
        [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-6"}
         [:div
          [c/label "Input Data (EDN)"]
-         [c/textarea {:value inference-input
-                      :placeholder "{:user/name \"Alice\" :user/age 30}"
-                      :on-change #(rf/dispatch [:malli/update-inference-input (-> % .-target .-value)])
-                      :class "h-64"}]
+         [:div.h-64.border.border-gray-700.rounded
+          [editor/monaco-editor {:value inference-input
+                                 :language "clojure"
+                                 :on-change #(rf/dispatch [:malli/update-inference-input %])}]]
          [:div {:class "mt-4"}
           [c/button {:on-click #(rf/dispatch [:malli/infer-schema])} "Infer Schema"]]]
         [:div
@@ -103,15 +104,15 @@
      ;; Data Generation Section
      [c/card {}
       [:div
-       [:h3 {:class "text-xl font-semibold text-white mb-4 flex items-center gap-2"}
+       [:h3 {:class "text-xl font-semibold text-[#dcdccc] mb-4 flex items-center gap-2"}
         [:span "🎲"] "Data Generation"]
        [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-6"}
         [:div
          [c/label "Schema (EDN)"]
-         [c/textarea {:value schema-text
-                      :placeholder "[:map [:x int?] [:y int?]]"
-                      :on-change #(rf/dispatch [:malli/update-schema-text (-> % .-target .-value)])
-                      :class "h-64"}]
+         [:div.h-64.border.border-gray-700.rounded
+          [editor/monaco-editor {:value schema-text
+                                 :language "clojure"
+                                 :on-change #(rf/dispatch [:malli/update-schema-text %])}]]
          [:div {:class "mt-4"}
           [c/button {:on-click #(rf/dispatch [:malli/generate-data])} "Generate Data"]]]
         [:div
