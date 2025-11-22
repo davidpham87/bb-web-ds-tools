@@ -3,32 +3,22 @@
             [malli.provider :as mp]
             [malli.generator :as mg]
             [cljs.reader :as reader]
-            [bb-web-ds-tools.components.common :as c]))
+            [fork.re-frame :as fork]
+            [bb-web-ds-tools.components.common :as c]
+            [bb-web-ds-tools.components.malli :as view]))
 
 ;; Event handlers
 (rf/reg-event-db
   :malli/initialize
   (fn [db _]
     (assoc-in db [:user-input :malli :default]
-              {:schema-text ""
-               :generated-data ""
-               :inference-input ""
+              {:generated-data ""
                :inferred-schema ""})))
-
-(rf/reg-event-db
-  :malli/update-schema-text
-  (fn [db [_ text]]
-    (assoc-in db [:user-input :malli :default :schema-text] text)))
-
-(rf/reg-event-db
-  :malli/update-inference-input
-  (fn [db [_ text]]
-    (assoc-in db [:user-input :malli :default :inference-input] text)))
 
 (rf/reg-event-fx
   :malli/generate-data
-  (fn [{:keys [db]} _]
-    (let [schema-text (get-in db [:user-input :malli :default :schema-text])
+  (fn [{:keys [db]} [_ values]]
+    (let [schema-text (get values "schema-text")
           schema (try (reader/read-string schema-text) (catch js/Error e nil))]
       (if schema
         {:db (assoc-in db [:user-input :malli :default :generated-data] (pr-str (mg/generate schema)))}
@@ -36,8 +26,8 @@
 
 (rf/reg-event-fx
   :malli/infer-schema
-  (fn [{:keys [db]} _]
-    (let [input-text (get-in db [:user-input :malli :default :inference-input])
+  (fn [{:keys [db]} [_ values]]
+    (let [input-text (get values "inference-input")
           input-data (try (reader/read-string input-text) (catch js/Error e nil))]
       (if (and (coll? input-data) (seq input-data))
         {:db (assoc-in db [:user-input :malli :default :inferred-schema] (pr-str (mp/provide input-data)))}
@@ -50,22 +40,10 @@
     (get-in db [:user-input :malli :default])))
 
 (rf/reg-sub
-  :malli/schema-text
-  :<- [:malli/root]
-  (fn [root _]
-    (:schema-text root)))
-
-(rf/reg-sub
   :malli/generated-data
   :<- [:malli/root]
   (fn [root _]
     (:generated-data root)))
-
-(rf/reg-sub
-  :malli/inference-input
-  :<- [:malli/root]
-  (fn [root _]
-    (:inference-input root)))
 
 (rf/reg-sub
   :malli/inferred-schema
@@ -75,45 +53,30 @@
 
 ;; UI components
 (defn panel []
-  (let [schema-text @(rf/subscribe [:malli/schema-text])
-        generated-data @(rf/subscribe [:malli/generated-data])
-        inference-input @(rf/subscribe [:malli/inference-input])
+  (let [generated-data @(rf/subscribe [:malli/generated-data])
         inferred-schema @(rf/subscribe [:malli/inferred-schema])]
     [:div {:class "space-y-8 container mx-auto max-w-6xl"}
      [c/page-header "Malli Tools"]
 
      ;; Schema Inference Section
-     [c/card
-      [:div
-       [:h3 {:class "text-xl font-semibold text-white mb-4 flex items-center gap-2"}
-        [:span "🧩"] "Schema Inference"]
-       [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-6"}
-        [:div
-         [c/label "Input Data (EDN)"]
-         [c/textarea {:value inference-input
-                      :placeholder "{:user/name \"Alice\" :user/age 30}"
-                      :on-change #(rf/dispatch [:malli/update-inference-input (-> % .-target .-value)])
-                      :class "h-64"}]
-         [:div {:class "mt-4"}
-          [c/button {:on-click #(rf/dispatch [:malli/infer-schema])} "Infer Schema"]]]
-        [:div
-         [c/label "Inferred Schema"]
-         [c/pre-block {:content inferred-schema :class "h-64"}]]]]]
+     [fork/form {:path [:user-input :malli :default :inference-form]
+                 :form-id "inference-form"
+                 :initial-values {"inference-input" ""}
+                 :on-submit #(rf/dispatch [:malli/infer-schema (:values %)])}
+      (fn [{:keys [values handle-change handle-submit]}]
+        [view/inference-panel {:values values
+                               :handle-change handle-change
+                               :on-infer handle-submit
+                               :inferred-schema inferred-schema}])]
 
      ;; Data Generation Section
-     [c/card
-      [:div
-       [:h3 {:class "text-xl font-semibold text-white mb-4 flex items-center gap-2"}
-        [:span "🎲"] "Data Generation"]
-       [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-6"}
-        [:div
-         [c/label "Schema (EDN)"]
-         [c/textarea {:value schema-text
-                      :placeholder "[:map [:x int?] [:y int?]]"
-                      :on-change #(rf/dispatch [:malli/update-schema-text (-> % .-target .-value)])
-                      :class "h-64"}]
-         [:div {:class "mt-4"}
-          [c/button {:on-click #(rf/dispatch [:malli/generate-data])} "Generate Data"]]]
-        [:div
-         [c/label "Generated Data"]
-         [c/pre-block {:content generated-data :class "h-64"}]]]]]]))
+     [fork/form {:path [:user-input :malli :default :generation-form]
+                 :form-id "generation-form"
+                 :initial-values {"schema-text" ""}
+                 :on-submit #(rf/dispatch [:malli/generate-data (:values %)])}
+      (fn [{:keys [values handle-change handle-submit]}]
+        [view/generation-panel {:values values
+                                :handle-change handle-change
+                                :on-generate handle-submit
+                                :generated-data generated-data}])]
+     ]))
