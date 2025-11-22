@@ -15,7 +15,7 @@
    [:p {:class "text-xl text-gray-300 max-w-2xl mx-auto mb-10"}
     "A comprehensive suite of data science tools running entirely in your browser. Leverage the power of ClojureScript, Malli, HoneySQL, and local LLMs."]
    [:div {:class "flex justify-center gap-4"}
-    [c/button {:on-click #(rf/dispatch [:bb-web-ds-tools.core/set-active-tab :malli])
+    [c/button {:on-click #(rf/dispatch [:bb-web-ds-tools.core/navigate :malli])
                :class "rounded-full px-8 py-3"}
      "Get Started"]
     [:a {:href "https://github.com/google/gemini-cli-tools"
