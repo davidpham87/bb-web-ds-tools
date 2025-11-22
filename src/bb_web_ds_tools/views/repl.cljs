@@ -3,6 +3,8 @@
             [sci.core :as sci]
             [re-frame.core :as rf]
             [fork.re-frame :as fork]
+            [cljs.pprint :as pprint]
+            ["monaco-editor/esm/vs/editor/editor.api.js" :refer [KeyChord KeyMod KeyCode]]
             [bb-web-ds-tools.components.editor :as editor-comp]
             [bb-web-ds-tools.components.repl :as repl-comp]))
 
@@ -28,8 +30,9 @@
  ::eval-code
  (fn [{:keys [db]} [_ instance-id code]]
    {:db (try
-          (let [result (sci/eval-string code sci-ctx)]
-            (update-in db [:user-input :repl instance-id :output] conj {:type :result :text (pr-str result)}))
+          (let [result (sci/eval-string code sci-ctx)
+                pretty-result (with-out-str (pprint/pprint result))]
+            (update-in db [:user-input :repl instance-id :output] conj {:type :result :text pretty-result}))
           (catch :default e
             (update-in db [:user-input :repl instance-id :output] conj {:type :error :text (str e)})))}))
 
@@ -75,6 +78,94 @@
           "Evaluate"]]] )]))
 
 
+(defn find-last-sexpr [text cursor-pos]
+  (let [substr (subs text 0 cursor-pos)
+        trimmed (clojure.string/trimr substr)
+        end-idx (count trimmed)]
+    (if (zero? end-idx)
+      ""
+      (let [last-char (get trimmed (dec end-idx))
+            delims {\) \( \] \[ \} \{}
+            openers (set (vals delims))]
+        (cond
+          ;; Closers: scan back balanced
+          (contains? delims last-char)
+          (loop [i (dec end-idx)
+                 stack []
+                 in-string? false]
+            (if (< i 0)
+              trimmed
+              (let [c (get trimmed i)]
+                (cond
+                  (and in-string? (= c \") (not= (get trimmed (dec i)) \\))
+                  (recur (dec i) stack false)
+
+                  in-string?
+                  (recur (dec i) stack true)
+
+                  (= c \")
+                  (recur (dec i) stack true)
+
+                  (contains? delims c)
+                  (recur (dec i) (conj stack (delims c)) false)
+
+                  (contains? openers c)
+                  (let [expected (peek stack)]
+                    (if (= c expected)
+                      (let [new-stack (pop stack)]
+                        (if (empty? new-stack)
+                          (subs trimmed i)
+                          (recur (dec i) new-stack false)))
+                      (recur (dec i) stack false)))
+
+                  :else
+                  (recur (dec i) stack false)))))
+
+          ;; String literal: scan back
+          (= last-char \")
+          (loop [i (- end-idx 2)]
+            (if (< i 0)
+              trimmed
+              (let [c (get trimmed i)]
+                (if (and (= c \") (not= (get trimmed (dec i)) \\))
+                  (subs trimmed i)
+                  (recur (dec i))))))
+
+          ;; Token
+          :else
+          (let [match (re-find #"[^\s\(\)\[\]\{\}\"]+$" trimmed)]
+            (or match trimmed)))))))
+
+(defn key-chord [first-part second-part]
+  (bit-or first-part (bit-shift-left second-part 16)))
+
+(defn setup-editor-actions [editor instance-id]
+  (let [eval-action (fn [code]
+                      (rf/dispatch [::eval-code instance-id code]))]
+    ;; Ctrl+Enter or Cmd+Enter to eval all
+    (.addAction editor
+                (clj->js {:id "eval-buffer"
+                          :label "Evaluate Buffer"
+                          :keybindings [
+                                        (bit-or KeyMod.CtrlCmd KeyCode.Enter)]
+                          :run (fn [ed]
+                                 (eval-action (.getValue ed)))}))
+    ;; C-x C-e to eval form before cursor
+    (.addAction editor
+                (clj->js {:id "eval-sexpr"
+                          :label "Evaluate Expression"
+                          :keybindings [
+                                        (key-chord
+                                         (bit-or KeyMod.WinCtrl KeyCode.KeyX)
+                                         (bit-or KeyMod.WinCtrl KeyCode.KeyE))]
+                          :run (fn [ed]
+                                 (let [pos (.getPosition ed)
+                                       offset (.getOffsetAt (.getModel ed) pos)
+                                       code (.getValue ed)
+                                       sexpr (find-last-sexpr code offset)]
+                                   (when (not (empty? sexpr))
+                                     (eval-action sexpr))))}))))
+
 (defn- repl-instance [{:keys [instance-id]}]
   (let [code @(rf/subscribe [::code instance-id])
         output @(rf/subscribe [::output instance-id])]
@@ -85,28 +176,16 @@
       :on-eval (fn [code] (rf/dispatch [::eval-code instance-id code]))
       :on-focus #(reset! active-instance-id instance-id)
       :on-blur #(reset! active-instance-id nil)
+      :on-editor-mount (fn [editor] (setup-editor-actions editor instance-id))
       :path [:user-input :repl instance-id :form]}]))
 
 (defn panel []
   (r/create-class
     {:component-did-mount
-     (fn [this]
-       (let [listener (fn [e]
-                        (when (and @active-instance-id
-                                   (or (.-ctrlKey e) (.-metaKey e))
-                                   (= (.-key e) "Enter"))
-                          ;; Need to deref the subscribe inside the event listener.
-                          (let [form-values @(rf/subscribe [::fork/form-values [:user-input :repl @active-instance-id :form]])]
-                            (rf/dispatch [::eval-code @active-instance-id (:code form-values)]))
-                          (.preventDefault e)))]
-         (reset! keydown-listener-atom listener)
-         (js/document.addEventListener "keydown" listener)))
+     (fn [this])
 
      :component-will-unmount
-     (fn [this]
-       (when @keydown-listener-atom
-         (js/document.removeEventListener "keydown" @keydown-listener-atom)
-         (reset! keydown-listener-atom nil)))
+     (fn [this])
 
      :reagent-render
      (fn []
