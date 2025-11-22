@@ -14,24 +14,24 @@
 (rf/reg-sub
  ::instances
  (fn [db _]
-   (-> db :repl :instances)))
+   (get-in db [:user-input :repl])))
 
 (rf/reg-event-db
  ::add-instance
  (fn [db _]
    (let [new-id (str (random-uuid))]
-     (assoc-in db [:repl :instances new-id] {:id new-id
-                                             :code ""
-                                             :output []}))))
+     (assoc-in db [:user-input :repl new-id] {:id new-id
+                                              :code ""
+                                              :output []}))))
 
 (rf/reg-event-fx
  ::eval-code
  (fn [{:keys [db]} [_ instance-id code]]
    {:db (try
           (let [result (sci/eval-string code sci-ctx)]
-            (update-in db [:repl :instances instance-id :output] conj {:type :result :text (pr-str result)}))
+            (update-in db [:user-input :repl instance-id :output] conj {:type :result :text (pr-str result)}))
           (catch :default e
-            (update-in db [:repl :instances instance-id :output] conj {:type :error :text (str e)})))}))
+            (update-in db [:user-input :repl instance-id :output] conj {:type :error :text (str e)})))}))
 
 (rf/reg-sub
   ::output
@@ -53,7 +53,7 @@
 
 
 (defn- code-editor [{:keys [instance-id]}]
-  (let [path [:repl :instances instance-id :form]
+  (let [path [:user-input :repl instance-id :form]
         code @(rf/subscribe [::code instance-id])]
     [fork/form {:initial-values {"code" code}
                 :keywordize-keys true
@@ -85,7 +85,7 @@
       :on-eval (fn [code] (rf/dispatch [::eval-code instance-id code]))
       :on-focus #(reset! active-instance-id instance-id)
       :on-blur #(reset! active-instance-id nil)
-      :path [:repl :instances instance-id :form]}]))
+      :path [:user-input :repl instance-id :form]}]))
 
 (defn panel []
   (r/create-class
@@ -96,7 +96,7 @@
                                    (or (.-ctrlKey e) (.-metaKey e))
                                    (= (.-key e) "Enter"))
                           ;; Need to deref the subscribe inside the event listener.
-                          (let [form-values @(rf/subscribe [::fork/form-values [:repl :instances @active-instance-id :form]])]
+                          (let [form-values @(rf/subscribe [::fork/form-values [:user-input :repl @active-instance-id :form]])]
                             (rf/dispatch [::eval-code @active-instance-id (:code form-values)]))
                           (.preventDefault e)))]
          (reset! keydown-listener-atom listener)
