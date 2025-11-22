@@ -54,7 +54,7 @@
     [:div {:class "space-y-8 container mx-auto max-w-6xl"}
      [c/page-header "HoneySQL Tools"]
 
-     [c/card
+      [c/card {}
       [:div
        [:h3 {:class "text-xl font-semibold text-white mb-4 flex items-center gap-2"}
         [:span "🍯"] "Convert to SQL"]

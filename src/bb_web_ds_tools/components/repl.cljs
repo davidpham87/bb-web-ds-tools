@@ -2,7 +2,7 @@
   (:require [fork.re-frame :as fork]
             [bb-web-ds-tools.components.editor :as editor-comp]))
 
-(defn input-panel [{:keys [path code on-submit on-focus on-blur]}]
+(defn input-panel [{:keys [path code on-submit on-focus on-blur on-editor-mount]}]
   [fork/form {:initial-values {"code" code}
               :keywordize-keys true
               :path path
@@ -16,7 +16,8 @@
        [editor-comp/monaco-editor {:value (:code values)
                                    :on-change #(set-values {:code %})
                                    :on-focus on-focus
-                                   :on-blur on-blur}]]
+                                   :on-blur on-blur
+                                   :on-mount on-editor-mount}]]
       [:div.flex.justify-end.mt-2
        [:button.bg-blue-600.text-white.px-6.py-2.rounded.shadow.hover:bg-blue-700.transition
         {:on-click handle-submit}
@@ -34,7 +35,7 @@
          [:span.font-bold.mr-2 (if (= (:type entry) :error) "ERR:" "=>")]
          (:text entry)]))]])
 
-(defn repl-card [{:keys [code output on-eval on-focus on-blur path]}]
+(defn repl-card [{:keys [code output on-eval on-focus on-blur path on-editor-mount]}]
   [:div.grid.grid-cols-1.md:grid-cols-2.gap-4.mb-4
    [:div.flex.flex-col.border.rounded.shadow-sm
     [:div.bg-gray-100.p-2.border-b.font-semibold "Code Input"]
@@ -43,5 +44,6 @@
                    :code code
                    :on-submit on-eval
                    :on-focus on-focus
-                   :on-blur on-blur}]]]
+                   :on-blur on-blur
+                   :on-editor-mount on-editor-mount}]]]
    [output-panel {:output output}]])

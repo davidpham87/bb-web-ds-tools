@@ -126,7 +126,7 @@
                                  (rf/dispatch [::load-model (get values "url")]))}
          (fn [{:keys [values handle-change handle-blur handle-submit]}]
            [:form {:on-submit handle-submit :class "max-w-2xl mx-auto"}
-            [c/card
+            [c/card {}
              [:div
               [:h3 {:class "text-xl font-bold text-white mb-2"} "Load Gemma Model"]
               [:p {:class "text-gray-400 mb-4 text-sm"} "Enter the URL to the .bin model file (e.g., from Kaggle or HuggingFace)."]
@@ -157,7 +157,7 @@
                                  (reset))}
          (fn [{:keys [values handle-change handle-blur handle-submit]}]
            [:form {:on-submit handle-submit :class "max-w-4xl mx-auto"}
-            [c/card
+            [c/card {}
              [:div
               [:div.messages {:class "bg-gray-900 border border-gray-700 rounded-lg p-4 h-[500px] overflow-y-auto mb-4 custom-scrollbar"}
                (for [[idx msg] (map-indexed vector messages)]
