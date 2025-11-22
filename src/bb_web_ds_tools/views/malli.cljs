@@ -9,59 +9,69 @@
 (rf/reg-event-db
   :malli/initialize
   (fn [db _]
-    (merge db {:malli-schema-text ""
-               :malli-generated-data ""
-               :malli-inference-input ""
-               :malli-inferred-schema ""})))
+    (assoc-in db [:user-input :malli :default]
+              {:schema-text ""
+               :generated-data ""
+               :inference-input ""
+               :inferred-schema ""})))
 
 (rf/reg-event-db
   :malli/update-schema-text
   (fn [db [_ text]]
-    (assoc db :malli-schema-text text)))
+    (assoc-in db [:user-input :malli :default :schema-text] text)))
 
 (rf/reg-event-db
   :malli/update-inference-input
   (fn [db [_ text]]
-    (assoc db :malli-inference-input text)))
+    (assoc-in db [:user-input :malli :default :inference-input] text)))
 
 (rf/reg-event-fx
   :malli/generate-data
   (fn [{:keys [db]} _]
-    (let [schema-text (:malli-schema-text db)
+    (let [schema-text (get-in db [:user-input :malli :default :schema-text])
           schema (try (reader/read-string schema-text) (catch js/Error e nil))]
       (if schema
-        {:db (assoc db :malli-generated-data (pr-str (mg/generate schema)))}
-        {:db (assoc db :malli-generated-data "Invalid schema.")}))))
+        {:db (assoc-in db [:user-input :malli :default :generated-data] (pr-str (mg/generate schema)))}
+        {:db (assoc-in db [:user-input :malli :default :generated-data] "Invalid schema.")}))))
 
 (rf/reg-event-fx
   :malli/infer-schema
   (fn [{:keys [db]} _]
-    (let [input-text (:malli-inference-input db)
+    (let [input-text (get-in db [:user-input :malli :default :inference-input])
           input-data (try (reader/read-string input-text) (catch js/Error e nil))]
       (if (and (coll? input-data) (seq input-data))
-        {:db (assoc db :malli-inferred-schema (pr-str (mp/provide input-data)))}
-        {:db (assoc db :malli-inferred-schema "Invalid input data.")}))))
+        {:db (assoc-in db [:user-input :malli :default :inferred-schema] (pr-str (mp/provide input-data)))}
+        {:db (assoc-in db [:user-input :malli :default :inferred-schema] "Invalid input data.")}))))
 
 ;; Subscriptions
 (rf/reg-sub
-  :malli/schema-text
+  :malli/root
   (fn [db _]
-    (:malli-schema-text db)))
+    (get-in db [:user-input :malli :default])))
+
+(rf/reg-sub
+  :malli/schema-text
+  :<- [:malli/root]
+  (fn [root _]
+    (:schema-text root)))
 
 (rf/reg-sub
   :malli/generated-data
-  (fn [db _]
-    (:malli-generated-data db)))
+  :<- [:malli/root]
+  (fn [root _]
+    (:generated-data root)))
 
 (rf/reg-sub
   :malli/inference-input
-  (fn [db _]
-    (:malli-inference-input db)))
+  :<- [:malli/root]
+  (fn [root _]
+    (:inference-input root)))
 
 (rf/reg-sub
   :malli/inferred-schema
-  (fn [db _]
-    (:malli-inferred-schema db)))
+  :<- [:malli/root]
+  (fn [root _]
+    (:inferred-schema root)))
 
 ;; UI components
 (defn panel []

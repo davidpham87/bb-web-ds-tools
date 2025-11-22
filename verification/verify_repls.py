@@ -12,7 +12,6 @@ def run(playwright):
         # 1. Visit Home
         print("Visiting home...")
         page.goto("http://localhost:8080")
-        # Wait for nav bar
         expect(page.get_by_role("navigation")).to_be_visible()
 
         # 2. Visit R REPL

@@ -12,21 +12,14 @@
                                           'dispatch rf/dispatch}
                           'clojure.core {'println println}}}))
 
-(rf/reg-sub
- ::instances
- (fn [db _]
-   (-> db :repl :instances)))
+(rf/reg-sub ::instances (fn [db _] (-> db :repl :instances)))
 
-(rf/reg-event-db
- ::add-instance
+(rf/reg-event-db ::add-instance
  (fn [db _]
    (let [new-id (str (random-uuid))]
-     (assoc-in db [:repl :instances new-id] {:id new-id
-                                             :code ""
-                                             :output []}))))
+     (assoc-in db [:repl :instances new-id] {:id new-id :code "" :output []}))))
 
-(rf/reg-event-fx
- ::eval-code
+(rf/reg-event-fx ::eval-code
  (fn [{:keys [db]} [_ instance-id code]]
    {:db (try
           (let [result (sci/eval-string code sci-ctx)]
@@ -34,24 +27,11 @@
           (catch :default e
             (update-in db [:repl :instances instance-id :output] conj {:type :error :text (str e)})))}))
 
-(rf/reg-sub
-  ::output
-  :<- [::instances]
-  (fn [instances [_ instance-id]]
-    (get-in instances [instance-id :output])))
+(rf/reg-sub ::output :<- [::instances] (fn [instances [_ instance-id]] (get-in instances [instance-id :output])))
+(rf/reg-sub ::code :<- [::instances] (fn [instances [_ instance-id]] (get-in instances [instance-id :code])))
 
-(rf/reg-sub
-  ::code
-  :<- [::instances]
-  (fn [instances [_ instance-id]]
-    (get-in instances [instance-id :code])))
-
-;; Atom to track the currently focused REPL instance
 (def active-instance-id (r/atom nil))
-
-;; Atom to store the keydown listener function for proper removal
 (defonce keydown-listener-atom (r/atom nil))
-
 
 (defn- repl-instance [{:keys [instance-id]}]
   (let [code @(rf/subscribe [::code instance-id])
@@ -73,7 +53,6 @@
                         (when (and @active-instance-id
                                    (or (.-ctrlKey e) (.-metaKey e))
                                    (= (.-key e) "Enter"))
-                          ;; Need to deref the subscribe inside the event listener.
                           (let [form-values @(rf/subscribe [::fork/form-values [:repl :instances @active-instance-id :form]])]
                             (rf/dispatch [::eval-code @active-instance-id (:code form-values)]))
                           (.preventDefault e)))]
@@ -136,7 +115,7 @@
              (.onData term (fn [data]
                              (let [code (.charCodeAt data 0)]
                                (cond
-                                 (= code 13) ;; Enter
+                                 (= code 13)
                                  (let [cmd @input-buffer]
                                    (.write term "\r\n")
                                    (when-not (empty? cmd)
@@ -152,7 +131,7 @@
                                        (catch :default e
                                          (.write term (str "\u001b[31mError: " e "\u001b[0m\r\n" prompt))))))
 
-                                 (= code 127) ;; Backspace
+                                 (= code 127)
                                  (when (> (count @input-buffer) 0)
                                    (.write term "\b \b")
                                    (swap! input-buffer pop-last-char))
