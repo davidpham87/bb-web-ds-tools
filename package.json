@@ -4,13 +4,15 @@
   "private": true,
   "dependencies": {
     "@mediapipe/tasks-genai": "^0.10.25",
-    "codemirror": "^5.65.20",
+    "@xterm/addon-fit": "^0.10.0",
+    "@xterm/xterm": "^5.5.0",
     "papaparse": "^5.5.3",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "vega": "^6.2.0",
     "vega-embed": "^7.1.0",
-    "vega-lite": "^6.4.1"
+    "vega-lite": "^6.4.1",
+    "webr": "^0.5.7"
   },
   "devDependencies": {
     "karma": "^6.4.4",
@@ -19,6 +21,7 @@
     "shadow-cljs": "2.16.8"
   },
   "scripts": {
-    "test": "npx shadow-cljs compile test && karma start --single-run"
+    "test": "npx shadow-cljs compile test && karma start --single-run",
+    "postinstall": "mkdir -p docs/js/libs/webr docs/css && cp -r node_modules/webr/dist/* docs/js/libs/webr/ && cp node_modules/@xterm/xterm/css/xterm.css docs/css/xterm.css && node scripts/patch_webr.js"
   }
 }

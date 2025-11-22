@@ -1,6 +1,9 @@
 (ns bb-web-ds-tools.core
   (:require [reagent.dom :as rdom]
             [re-frame.core :as rf]
+            [reitit.frontend :as rf-router]
+            [reitit.frontend.easy :as rfe]
+            [reitit.coercion.spec :as rss]
             [bb-web-ds-tools.views.malli :as malli]
             [bb-web-ds-tools.views.honeysql :as honeysql]
             [bb-web-ds-tools.views.vega-lite :as vega]
@@ -8,24 +11,74 @@
             [bb-web-ds-tools.views.landing :as landing]
             [bb-web-ds-tools.views.changelog :as changelog]
             [bb-web-ds-tools.views.editor :as editor]
-            [bb-web-ds-tools.views.repl :as repl]))
+            [bb-web-ds-tools.views.repl :as repl]
+            [bb-web-ds-tools.views.r-repl :as r-repl]
+            [bb-web-ds-tools.views.pyodide :as pyodide]))
 
 (rf/reg-sub
- ::active-tab
+ ::current-route
  (fn [db]
-   (:active-tab db)))
+   (:current-route db)))
+
+(rf/reg-event-fx
+ ::navigate
+ (fn [_ [_ route-name params query]]
+   {:navigate [route-name params query]}))
+
+(rf/reg-fx
+ :navigate
+ (fn [[route-name params query]]
+   (rfe/push-state route-name params query)))
 
 (rf/reg-event-db
- ::set-active-tab
- (fn [db [_ tab]]
-   (assoc db :active-tab tab)))
+ ::navigated
+ (fn [db [_ match]]
+   (assoc db :current-route match)))
+
+(def routes
+  ["/"
+   [""
+    {:name :landing}]
+   ["malli"
+    {:name :malli}]
+   ["honeysql"
+    {:name :honeysql}]
+   ["vega-lite"
+    {:name :vega-lite}]
+   ["gemma"
+    {:name :gemma}]
+   ["pyodide"
+    {:name :pyodide}]
+   ["editor"
+    {:name :editor}]
+   ["repl"
+    {:name :repl}]
+   ["r-repl"
+    {:name :r-repl}]
+   ["changelog"
+    {:name :changelog}]
+   ["reader"
+    {:name :reader}]])
+
+(def router
+  (rf-router/router
+   routes
+   {:data {:coercion rss/coercion}}))
+
+(defn on-navigate [match _]
+  (rf/dispatch [::navigated match]))
+
+(defn init-routes! []
+  (rfe/start!
+   router
+   on-navigate
+   {:use-fragment true}))
 
 (rf/reg-event-db
  ::initialize-db
  (fn [_ _]
    (let [repl-id (str (random-uuid))]
      {:code "initial code"
-      :active-tab :landing
       :repl {:instances {repl-id {:id repl-id
                                   :code ""
                                   :output []}}}})))
@@ -40,51 +93,58 @@
  (fn [db [_ new-code]]
    (assoc db :code new-code)))
 
-(defn nav-item [label tab-id current-tab]
-  (let [active? (= tab-id current-tab)]
-    [:button
-     {:class (str "px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 focus:outline-none "
+(defmulti view (fn [match] (:name (:data match))))
+
+(defmethod view :landing [_] [landing/landing-page])
+(defmethod view :malli [_] [:div.p-4 [malli/panel]])
+(defmethod view :honeysql [_] [:div.p-4 [honeysql/panel]])
+(defmethod view :vega-lite [_] [:div.p-4 [vega/panel]])
+(defmethod view :gemma [_] [:div.p-4 [gemma/panel]])
+(defmethod view :pyodide [_] [:div.p-4 [pyodide/panel]])
+(defmethod view :editor [_] [:div.p-4 [editor/panel]])
+(defmethod view :repl [_] [:div.p-4 [repl/panel]])
+(defmethod view :r-repl [_] [:div.p-4.h-screen [r-repl/r-repl]])
+(defmethod view :changelog [_] [changelog/changelog-page])
+(defmethod view :reader [_] [:div.p-4 "Reader Tool"])
+(defmethod view :default [_] [landing/landing-page])
+
+(defn nav-item [label route-name current-route-name]
+  (let [active? (= route-name current-route-name)]
+    [:a
+     {:href (rfe/href route-name)
+      :class (str "px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 focus:outline-none inline-block decoration-transparent "
                   (if active?
                     "bg-gray-800 text-blue-400 shadow-inner"
-                    "text-gray-300 hover:text-white hover:bg-gray-700"))
-      :on-click #(rf/dispatch [::set-active-tab tab-id])}
+                    "text-gray-300 hover:text-white hover:bg-gray-700"))}
      label]))
 
 (defn nav-bar []
-  (let [active-tab @(rf/subscribe [::active-tab])]
+  (let [current-route @(rf/subscribe [::current-route])
+        current-route-name (:name (:data current-route))]
     [:nav {:class "bg-gray-900 border-b border-gray-800 sticky top-0 z-50"}
      [:div {:class "container mx-auto px-4"}
       [:div {:class "flex items-center justify-between h-16"}
-       ;; Logo / Brand
        [:div {:class "flex-shrink-0 cursor-pointer"
-              :on-click #(rf/dispatch [::set-active-tab :landing])}
+              :on-click #(rf/dispatch [::navigate :landing])}
         [:span {:class "text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500"}
          "BB Web DS Tools"]]
-       ;; Desktop Menu
        [:div {:class "hidden md:flex space-x-2"}
-        [nav-item "Home" :landing active-tab]
-        [nav-item "Malli" :malli active-tab]
-        [nav-item "HoneySQL" :honeysql active-tab]
-        [nav-item "Vega-Lite" :vega-lite active-tab]
-        [nav-item "Gemma" :gemma active-tab]
-        [nav-item "Editor" :editor active-tab]
-        [nav-item "Repl" :repl active-tab]
-        [nav-item "Changelog" :changelog active-tab]]]]]))
-
+        [nav-item "Home" :landing current-route-name]
+        [nav-item "Malli" :malli current-route-name]
+        [nav-item "HoneySQL" :honeysql current-route-name]
+        [nav-item "Vega-Lite" :vega-lite current-route-name]
+        [nav-item "Gemma" :gemma current-route-name]
+        [nav-item "Pyodide" :pyodide current-route-name]
+        [nav-item "Editor" :editor current-route-name]
+        [nav-item "Repl" :repl current-route-name]
+        [nav-item "R" :r-repl current-route-name]
+        [nav-item "Changelog" :changelog current-route-name]]]]]))
 
 (defn main-panel []
-  (let [active-tab @(rf/subscribe [::active-tab])]
+  (let [current-route @(rf/subscribe [::current-route])]
     [:div {:class "min-h-screen bg-gray-950 text-gray-200"}
-     (case active-tab
-       :landing [landing/landing-page]
-       :changelog [changelog/changelog-page]
-       :reader [:div.p-4 "Reader Tool"]
-       :vega-lite [:div.p-4 [vega/panel]]
-       :editor [:div.p-4 [editor/panel]]
-       :malli [:div.p-4 [malli/panel]]
-       :honeysql [:div.p-4 [honeysql/panel]]
-       :gemma [:div.p-4 [gemma/panel]]
-       :repl [:div.p-4 [repl/panel]]
+     (if current-route
+       (view current-route)
        [landing/landing-page])]))
 
 (defn app []
@@ -96,5 +156,6 @@
   (rf/dispatch-sync [::initialize-db])
   (rf/dispatch-sync [::vega/initialize])
   (rf/dispatch-sync [::gemma/initialize])
-  (rf/dispatch [::set-active-tab :landing])
+  (rf/dispatch-sync [::pyodide/initialize])
+  (init-routes!)
   (rdom/render [app] (.getElementById js/document "app")))
