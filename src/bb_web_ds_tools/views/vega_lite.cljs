@@ -10,6 +10,7 @@
             [malli.provider :as mp]
             [malli.core :as m]))
 
+
 ;; --- State ---
 
 (rf/reg-event-db
@@ -229,7 +230,7 @@
                                      (rf/dispatch [::update-builder-state :ops (disj (:ops state) :facet)]))}] " Facet (Dummy) "]]
      [:button {:on-click #(rf/dispatch [::apply-builder])} "Apply to Config"]]))
 
-(defn view []
+(defn panel []
   (let [data-input @(rf/subscribe [::data-input])
         config-input @(rf/subscribe [::config-input])
         parsed-data @(rf/subscribe [::parsed-data])
