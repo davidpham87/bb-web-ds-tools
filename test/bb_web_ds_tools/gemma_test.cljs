@@ -2,7 +2,7 @@
   (:require [cljs.test :refer [deftest is testing]]
             [re-frame.core :as rf]
             [re-frame.db :as rf-db]
-            [bb-web-ds-tools.gemma :as gemma]))
+            [bb-web-ds-tools.views.gemma :as gemma]))
 
 (deftest test-gemma-handlers
   (testing "initial state"
