@@ -18,3 +18,4 @@ target/
 *.log
 .m2/
 public/js/
+*gemini_chat.md
