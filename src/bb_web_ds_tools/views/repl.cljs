@@ -3,6 +3,7 @@
             [sci.core :as sci]
             [re-frame.core :as rf]
             [fork.re-frame :as fork]
+            [bb-web-ds-tools.components.editor :as editor-comp]
             [bb-web-ds-tools.components.repl :as repl-comp]))
 
 (def sci-ctx
