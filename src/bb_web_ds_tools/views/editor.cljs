@@ -10,15 +10,18 @@
    (js/alert (str "Saved code successfully!"))
    db))
 
-(defn codemirror-form []
+(defn codemirror-form [{:keys [path initial-code]
+                        :or {path [:editor-form]
+                             initial-code @(rf/subscribe [:bb-web-ds-tools.core/code])}}]
   (let [initial-code @(rf/subscribe [:bb-web-ds-tools.core/code])]
     [fork/form {:initial-values {"code" initial-code}
                 :keywordize-keys true
-                :path [:editor-form]
+                :path path
                 :prevent-default? true
                 :clean-on-unmount? true
                 :on-submit (fn [{:keys [values]}]
-                             (rf/dispatch [:bb-web-ds-tools.core/code-changed (:code values)])
+                             (rf/dispatch [:bb-web-ds-tools.core/code-changed
+                                           (:code values)])
                              (rf/dispatch [::save-code]))}
      (fn [{:keys [values set-values handle-submit]}]
        [:form {:on-submit handle-submit :class "space-y-4"}
@@ -32,4 +35,4 @@
   [:div.container.mx-auto.max-w-6xl
    [c/page-header "Code Editor"]
    [c/card
-    [codemirror-form]]])
+    [codemirror-form {}]]])

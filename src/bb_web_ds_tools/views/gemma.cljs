@@ -172,7 +172,7 @@
                           :class "h-20 px-8"}
                 "Send"]]]]])]))))
 
-(defn gemma-page []
+(defn panel []
   (let [loaded?-sub (rf/subscribe [::model-loaded?])]
     (fn []
       (let [loaded? @loaded?-sub]

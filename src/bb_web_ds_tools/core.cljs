@@ -7,9 +7,8 @@
             [bb-web-ds-tools.views.gemma :as gemma]
             [bb-web-ds-tools.views.landing :as landing]
             [bb-web-ds-tools.views.changelog :as changelog]
-            [bb-web-ds-tools.views.editor :as editor]))
-
-
+            [bb-web-ds-tools.views.editor :as editor]
+            [bb-web-ds-tools.views.repl :as repl]))
 
 (rf/reg-sub
  ::active-tab
@@ -24,8 +23,12 @@
 (rf/reg-event-db
  ::initialize-db
  (fn [_ _]
-   {:code "initial code"
-    :active-tab :landing}))
+   (let [repl-id (str (random-uuid))]
+     {:code "initial code"
+      :active-tab :landing
+      :repl {:instances {repl-id {:id repl-id
+                                  :code ""
+                                  :output []}}}})))
 
 (rf/reg-sub
  ::code
@@ -65,6 +68,7 @@
         [nav-item "Vega-Lite" :vega-lite active-tab]
         [nav-item "Gemma" :gemma active-tab]
         [nav-item "Editor" :editor active-tab]
+        [nav-item "Repl" :repl active-tab]
         [nav-item "Changelog" :changelog active-tab]]]]]))
 
 
@@ -75,11 +79,12 @@
        :landing [landing/landing-page]
        :changelog [changelog/changelog-page]
        :reader [:div.p-4 "Reader Tool"]
-       :vega-lite [:div.p-4 [vega/view]]
+       :vega-lite [:div.p-4 [vega/panel]]
        :editor [:div.p-4 [editor/panel]]
        :malli [:div.p-4 [malli/panel]]
        :honeysql [:div.p-4 [honeysql/panel]]
-       :gemma [:div.p-4 [gemma/gemma-page]]
+       :gemma [:div.p-4 [gemma/panel]]
+       :repl [:div.p-4 [repl/panel]]
        [landing/landing-page])]))
 
 (defn app []
