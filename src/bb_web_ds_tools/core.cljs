@@ -12,6 +12,7 @@
             [bb-web-ds-tools.views.changelog :as changelog]
             [bb-web-ds-tools.views.editor :as editor]
             [bb-web-ds-tools.views.repl :as repl]
+            [bb-web-ds-tools.views.r-repl :as r-repl]
             [bb-web-ds-tools.views.pyodide :as pyodide]))
 
 ;; --- Routing & Navigation ---
@@ -54,6 +55,8 @@
     {:name :editor}]
    ["repl"
     {:name :repl}]
+   ["r-repl"
+    {:name :r-repl}]
    ["changelog"
     {:name :changelog}]
    ["reader"
@@ -115,9 +118,10 @@
 (defmethod view :honeysql [_] [:div.p-4 [honeysql/panel]])
 (defmethod view :vega-lite [_] [:div.p-4 [vega/panel]])
 (defmethod view :gemma [_] [:div.p-4 [gemma/panel]])
+(defmethod view :pyodide [_] [:div.p-4 [pyodide/panel]])
 (defmethod view :editor [_] [:div.p-4 [editor/panel]])
 (defmethod view :repl [_] [:div.p-4 [repl/panel]])
-(defmethod view :pyodide [_] [:div.p-4 [pyodide/panel]])
+(defmethod view :r-repl [_] [:div.p-4.h-screen [r-repl/r-repl]])
 (defmethod view :changelog [_] [changelog/changelog-page])
 (defmethod view :reader [_] [:div.p-4 "Reader Tool"])
 (defmethod view :default [_] [landing/landing-page])
@@ -138,12 +142,10 @@
     [:nav {:class "bg-gray-900 border-b border-gray-800 sticky top-0 z-50"}
      [:div {:class "container mx-auto px-4"}
       [:div {:class "flex items-center justify-between h-16"}
-       ;; Logo / Brand
        [:div {:class "flex-shrink-0 cursor-pointer"
               :on-click #(rf/dispatch [::navigate :landing])}
         [:span {:class "text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500"}
          "BB Web DS Tools"]]
-       ;; Desktop Menu
        [:div {:class "hidden md:flex space-x-2"}
         [nav-item "Home" :landing current-route-name]
         [nav-item "Malli" :malli current-route-name]
@@ -153,8 +155,8 @@
         [nav-item "Pyodide" :pyodide current-route-name]
         [nav-item "Editor" :editor current-route-name]
         [nav-item "Repl" :repl current-route-name]
+        [nav-item "R" :r-repl current-route-name]
         [nav-item "Changelog" :changelog current-route-name]]]]]))
-
 
 (defn main-panel []
   (let [current-route @(rf/subscribe [::current-route])]
