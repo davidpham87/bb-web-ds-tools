@@ -64,10 +64,10 @@
      (fn [{:keys [values set-values handle-submit]}]
        [:div
         [:div.flex-grow.relative.h-64
-         [editor-comp/codemirror-editor {:value (:code values)
-                                         :on-change #(set-values {:code %})
-                                         :on-focus #(reset! active-instance-id instance-id)
-                                         :on-blur #(reset! active-instance-id nil)}]]
+         [editor-comp/monaco-editor {:value (:code values)
+                                     :on-change #(set-values {:code %})
+                                     :on-focus #(reset! active-instance-id instance-id)
+                                     :on-blur #(reset! active-instance-id nil)}]]
         [:div.flex.justify-end.mt-2
          [:button.bg-blue-600.text-white.px-6.py-2.rounded.shadow.hover:bg-blue-700.transition
           {:on-click handle-submit}

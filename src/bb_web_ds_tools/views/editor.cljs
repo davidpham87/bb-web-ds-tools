@@ -10,9 +10,9 @@
    (js/alert (str "Saved code successfully!"))
    db))
 
-(defn codemirror-form [{:keys [path initial-code]
-                        :or {path [:editor-form]
-                             initial-code @(rf/subscribe [:bb-web-ds-tools.core/code])}}]
+(defn editor-form [{:keys [path initial-code]
+                    :or {path [:editor-form]
+                         initial-code @(rf/subscribe [:bb-web-ds-tools.core/code])}}]
   (let [initial-code @(rf/subscribe [:bb-web-ds-tools.core/code])]
     [fork/form {:initial-values {"code" initial-code}
                 :keywordize-keys true
@@ -26,13 +26,14 @@
      (fn [{:keys [values set-values handle-submit]}]
        [:form {:on-submit handle-submit :class "space-y-4"}
         [:div.bg-white.rounded.shadow-sm.overflow-hidden
-         [editor/codemirror-editor {:value (:code values)
-                                    :on-change #(set-values {:code %})}]]
+         [editor/monaco-editor {:value (:code values)
+                                :style {:height "600px"}
+                                :on-change #(set-values {:code %})}]]
         [:div.flex.justify-end
          [c/button {:type "submit"} "Save Code"]]])]))
 
 (defn panel []
   [:div.container.mx-auto.max-w-6xl
    [c/page-header "Code Editor"]
-   [c/card
-    [codemirror-form {}]]])
+   [:div.bg-gray-800.rounded-lg.p-6.border.border-gray-700.shadow-lg
+    [editor-form {}]]])
