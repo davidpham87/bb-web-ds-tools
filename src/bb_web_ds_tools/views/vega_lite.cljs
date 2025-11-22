@@ -245,7 +245,7 @@
      [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-8"}
       ;; Input Column
       [:div {:class "space-y-6"}
-       [c/card
+       [c/card {}
         [:div
          [:div {:class "flex items-center justify-between mb-4"}
           [:h3 {:class "text-lg font-semibold text-white"} "Data Input"]
@@ -265,7 +265,7 @@
                          (rf/dispatch [::set-data-input val])
                          (rf/dispatch [::parse-data]))}]]]]
 
-       [c/card
+       [c/card {}
         [:div
          [:h3 {:class "text-lg font-semibold text-white mb-4"} "Config (Vega-Lite JSON)"]
          [:div {:class "bg-white rounded overflow-hidden"}
