@@ -11,7 +11,8 @@
             [bb-web-ds-tools.views.landing :as landing]
             [bb-web-ds-tools.views.changelog :as changelog]
             [bb-web-ds-tools.views.editor :as editor]
-            [bb-web-ds-tools.views.repl :as repl]))
+            [bb-web-ds-tools.views.repl :as repl]
+            [bb-web-ds-tools.views.pyodide :as pyodide]))
 
 ;; --- Routing & Navigation ---
 
@@ -102,6 +103,7 @@
 (defmethod view :gemma [_] [:div.p-4 [gemma/panel]])
 (defmethod view :editor [_] [:div.p-4 [editor/panel]])
 (defmethod view :repl [_] [:div.p-4 [repl/panel]])
+(defmethod view :pyodide [_] [:div.p-4 [pyodide/panel]])
 (defmethod view :changelog [_] [changelog/changelog-page])
 (defmethod view :reader [_] [:div.p-4 "Reader Tool"])
 (defmethod view :default [_] [landing/landing-page])
@@ -129,14 +131,16 @@
          "BB Web DS Tools"]]
        ;; Desktop Menu
        [:div {:class "hidden md:flex space-x-2"}
-        [nav-item "Home" :landing current-route-name]
-        [nav-item "Malli" :malli current-route-name]
-        [nav-item "HoneySQL" :honeysql current-route-name]
-        [nav-item "Vega-Lite" :vega-lite current-route-name]
-        [nav-item "Gemma" :gemma current-route-name]
-        [nav-item "Editor" :editor current-route-name]
-        [nav-item "Repl" :repl current-route-name]
-        [nav-item "Changelog" :changelog current-route-name]]]]]))
+        [nav-item "Home" :landing active-tab]
+        [nav-item "Malli" :malli active-tab]
+        [nav-item "HoneySQL" :honeysql active-tab]
+        [nav-item "Vega-Lite" :vega-lite active-tab]
+        [nav-item "Gemma" :gemma active-tab]
+        [nav-item "Pyodide" :pyodide active-tab]
+        [nav-item "Editor" :editor active-tab]
+        [nav-item "Repl" :repl active-tab]
+        [nav-item "Changelog" :changelog active-tab]]]]]))
+
 
 (defn main-panel []
   (let [current-route @(rf/subscribe [::current-route])]
@@ -154,5 +158,6 @@
   (rf/dispatch-sync [::initialize-db])
   (rf/dispatch-sync [::vega/initialize])
   (rf/dispatch-sync [::gemma/initialize])
+  (rf/dispatch-sync [::pyodide/initialize])
   (init-routes!)
   (rdom/render [app] (.getElementById js/document "app")))
