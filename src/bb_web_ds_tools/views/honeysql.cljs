@@ -1,7 +1,8 @@
-(ns bb-web-ds-tools.honeysql-tools
+(ns bb-web-ds-tools.views.honeysql
   (:require [re-frame.core :as rf]
             [honey.sql :as h]
-            [cljs.reader :as reader]))
+            [cljs.reader :as reader]
+            [bb-web-ds-tools.components.common :as c]))
 
 ;; Event handlers
 (rf/reg-event-db
@@ -39,15 +40,25 @@
     (:honeysql-output db)))
 
 ;; UI components
-(defn honeysql-tools-panel []
+(defn panel []
   (let [honeysql-input @(rf/subscribe [:honeysql/input])
         honeysql-output @(rf/subscribe [:honeysql/output])]
-    [:div
-     [:h2 "Honeysql to SQL"]
-     [:textarea {:rows 20 :cols 80
-                 :value honeysql-input
-                 :on-change #(rf/dispatch [:honeysql/update-input (-> % .-target .-value)])}]
-     [:br]
-     [:button {:on-click #(rf/dispatch [:honeysql/convert-to-sql])} "Convert to SQL"]
-     [:h3 "SQL Output"]
-     [:pre honeysql-output]]))
+    [:div {:class "space-y-8 container mx-auto max-w-6xl"}
+     [c/page-header "HoneySQL Tools"]
+
+     [c/card
+      [:div
+       [:h3 {:class "text-xl font-semibold text-white mb-4 flex items-center gap-2"}
+        [:span "🍯"] "Convert to SQL"]
+       [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-6"}
+        [:div
+         [c/label "HoneySQL Map (EDN)"]
+         [c/textarea {:value honeysql-input
+                      :placeholder "{:select [:a :b] :from [:table]}"
+                      :on-change #(rf/dispatch [:honeysql/update-input (-> % .-target .-value)])
+                      :class "h-96"}]
+         [:div {:class "mt-4"}
+          [c/button {:on-click #(rf/dispatch [:honeysql/convert-to-sql])} "Convert"]]]
+        [:div
+         [c/label "SQL Output"]
+         [c/pre-block {:content honeysql-output :class "h-96"}]]]]]]))

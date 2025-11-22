@@ -1,8 +1,9 @@
-(ns bb-web-ds-tools.malli-tools
+(ns bb-web-ds-tools.views.malli
   (:require [re-frame.core :as rf]
             [malli.provider :as mp]
             [malli.generator :as mg]
-            [cljs.reader :as reader]))
+            [cljs.reader :as reader]
+            [bb-web-ds-tools.components.common :as c]))
 
 ;; Event handlers
 (rf/reg-event-db
@@ -63,28 +64,46 @@
     (:malli-inferred-schema db)))
 
 ;; UI components
-(defn malli-tools-panel []
+(defn panel []
   (let [schema-text @(rf/subscribe [:malli/schema-text])
         generated-data @(rf/subscribe [:malli/generated-data])
         inference-input @(rf/subscribe [:malli/inference-input])
         inferred-schema @(rf/subscribe [:malli/inferred-schema])]
-    [:div
-     [:h2 "Malli Tools"]
-     [:div
-      [:h3 "Schema Inference"]
-      [:textarea {:rows 20 :cols 80
-                  :value inference-input
-                  :on-change #(rf/dispatch [:malli/update-inference-input (-> % .-target .-value)])}]
-      [:br]
-      [:button {:on-click #(rf/dispatch [:malli/infer-schema])} "Infer Schema"]
-      [:h4 "Inferred Schema"]
-      [:pre inferred-schema]]
-     [:div
-      [:h3 "Data Generation"]
-      [:textarea {:rows 10 :cols 80
-                  :value schema-text
-                  :on-change #(rf/dispatch [:malli/update-schema-text (-> % .-target .-value)])}]
-      [:br]
-      [:button {:on-click #(rf/dispatch [:malli/generate-data])} "Generate Data"]
-      [:h4 "Generated Data"]
-      [:pre generated-data]]]))
+    [:div {:class "space-y-8 container mx-auto max-w-6xl"}
+     [c/page-header "Malli Tools"]
+
+     ;; Schema Inference Section
+     [c/card
+      [:div
+       [:h3 {:class "text-xl font-semibold text-white mb-4 flex items-center gap-2"}
+        [:span "🧩"] "Schema Inference"]
+       [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-6"}
+        [:div
+         [c/label "Input Data (EDN)"]
+         [c/textarea {:value inference-input
+                      :placeholder "{:user/name \"Alice\" :user/age 30}"
+                      :on-change #(rf/dispatch [:malli/update-inference-input (-> % .-target .-value)])
+                      :class "h-64"}]
+         [:div {:class "mt-4"}
+          [c/button {:on-click #(rf/dispatch [:malli/infer-schema])} "Infer Schema"]]]
+        [:div
+         [c/label "Inferred Schema"]
+         [c/pre-block {:content inferred-schema :class "h-64"}]]]]]
+
+     ;; Data Generation Section
+     [c/card
+      [:div
+       [:h3 {:class "text-xl font-semibold text-white mb-4 flex items-center gap-2"}
+        [:span "🎲"] "Data Generation"]
+       [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-6"}
+        [:div
+         [c/label "Schema (EDN)"]
+         [c/textarea {:value schema-text
+                      :placeholder "[:map [:x int?] [:y int?]]"
+                      :on-change #(rf/dispatch [:malli/update-schema-text (-> % .-target .-value)])
+                      :class "h-64"}]
+         [:div {:class "mt-4"}
+          [c/button {:on-click #(rf/dispatch [:malli/generate-data])} "Generate Data"]]]
+        [:div
+         [c/label "Generated Data"]
+         [c/pre-block {:content generated-data :class "h-64"}]]]]]]))

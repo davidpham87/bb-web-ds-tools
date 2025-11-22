@@ -1,11 +1,13 @@
 (ns bb-web-ds-tools.core
   (:require [reagent.dom :as rdom]
             [re-frame.core :as rf]
-            [bb-web-ds-tools.malli-tools :as malli-tools]
-            [bb-web-ds-tools.honeysql-tools :as honeysql-tools]
-            [bb-web-ds-tools.ui.core :as ui]
-            [bb-web-ds-tools.vega-lite :as vega]
-            [bb-web-ds-tools.gemma :as gemma]))
+            [bb-web-ds-tools.views.malli :as malli]
+            [bb-web-ds-tools.views.honeysql :as honeysql]
+            [bb-web-ds-tools.views.vega-lite :as vega]
+            [bb-web-ds-tools.views.gemma :as gemma]
+            [bb-web-ds-tools.views.landing :as landing]
+            [bb-web-ds-tools.views.changelog :as changelog]
+            [bb-web-ds-tools.views.editor :as editor]))
 
 (rf/reg-sub
  ::active-tab
@@ -20,7 +22,8 @@
 (rf/reg-event-db
  ::initialize-db
  (fn [_ _]
-   {:code "initial code"}))
+   {:code "initial code"
+    :active-tab :landing}))
 
 (rf/reg-sub
  ::code
@@ -32,38 +35,53 @@
  (fn [db [_ new-code]]
    (assoc db :code new-code)))
 
-(defn nav-item [label tab-id]
-  [:button
-   {:class "text-white hover:bg-red-700 px-3 py-2 rounded font-medium transition-colors duration-200 focus:outline-none"
-    :on-click #(rf/dispatch [::set-active-tab tab-id])}
-   label])
+(defn nav-item [label tab-id current-tab]
+  (let [active? (= tab-id current-tab)]
+    [:button
+     {:class (str "px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 focus:outline-none "
+                  (if active?
+                    "bg-gray-800 text-blue-400 shadow-inner"
+                    "text-gray-300 hover:text-white hover:bg-gray-700"))
+      :on-click #(rf/dispatch [::set-active-tab tab-id])}
+     label]))
 
 (defn nav-bar []
-  [:nav {:class "bg-red-600 shadow-lg p-4 mb-4"}
-   [:div {:class "container mx-auto flex items-center justify-between flex-wrap"}
-    [:div {:class "text-white text-2xl font-bold mr-6"} "BB Web DS Tools"]
-    [:div {:class "flex flex-wrap gap-2"}
-     [nav-item "Reader Tool" :reader]
-     [nav-item "Editor" :editor]
-     [nav-item "Vega Lite" :vega-lite]
-     [nav-item "Malli Tools" :malli]
-     [nav-item "Honeysql Tools" :honeysql]
-     [nav-item "Gemma" :gemma]]]])
+  (let [active-tab @(rf/subscribe [::active-tab])]
+    [:nav {:class "bg-gray-900 border-b border-gray-800 sticky top-0 z-50"}
+     [:div {:class "container mx-auto px-4"}
+      [:div {:class "flex items-center justify-between h-16"}
+       ;; Logo / Brand
+       [:div {:class "flex-shrink-0 cursor-pointer"
+              :on-click #(rf/dispatch [::set-active-tab :landing])}
+        [:span {:class "text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500"}
+         "BB Web DS Tools"]]
+
+       ;; Desktop Menu
+       [:div {:class "hidden md:flex space-x-2"}
+        [nav-item "Home" :landing active-tab]
+        [nav-item "Malli" :malli active-tab]
+        [nav-item "HoneySQL" :honeysql active-tab]
+        [nav-item "Vega-Lite" :vega-lite active-tab]
+        [nav-item "Gemma" :gemma active-tab]
+        [nav-item "Editor" :editor active-tab]
+        [nav-item "Changelog" :changelog active-tab]]]]]))
 
 (defn main-panel []
   (let [active-tab @(rf/subscribe [::active-tab])]
-    [:div.container.mx-auto.p-4
+    [:div {:class "min-h-screen bg-gray-950 text-gray-200"}
      (case active-tab
-       :reader [:div "Reader Tool"]
-       :vega-lite [vega/view]
-       :editor [ui/codemirror]
-       :malli [malli-tools/malli-tools-panel]
-       :honeysql [honeysql-tools/honeysql-tools-panel]
-       :gemma [gemma/gemma-page]
-       [:div "Select a tool"])]))
+       :landing [landing/landing-page]
+       :changelog [changelog/changelog-page]
+       :reader [:div.p-4 "Reader Tool"]
+       :vega-lite [:div.p-4 [vega/view]]
+       :editor [:div.p-4 [editor/panel]]
+       :malli [:div.p-4 [malli/panel]]
+       :honeysql [:div.p-4 [honeysql/panel]]
+       :gemma [:div.p-4 [gemma/gemma-page]]
+       [landing/landing-page])]))
 
 (defn app []
-  [:div.min-h-screen.bg-gray-50
+  [:div.min-h-screen.bg-gray-950
    [nav-bar]
    [main-panel]])
 
@@ -71,5 +89,5 @@
   (rf/dispatch-sync [::initialize-db])
   (rf/dispatch-sync [::vega/initialize])
   (rf/dispatch-sync [::gemma/initialize])
-  (rf/dispatch [::set-active-tab :editor])
+  (rf/dispatch [::set-active-tab :landing])
   (rdom/render [app] (.getElementById js/document "app")))
