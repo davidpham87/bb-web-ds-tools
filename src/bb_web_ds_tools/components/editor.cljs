@@ -1,7 +1,8 @@
 (ns bb-web-ds-tools.components.editor
   (:require [reagent.core :as r]
             ["react-dom" :as react-dom]
-            ["monaco-editor/esm/vs/editor/editor.api.js" :as monaco]))
+            ["monaco-editor/esm/vs/editor/editor.api.js" :as monaco]
+            ["monaco-editor/esm/vs/basic-languages/clojure/clojure.contribution.js"]))
 
 (defn monaco-editor-inner [_]
   (let [editor-instance (r/atom nil)
@@ -12,7 +13,7 @@
       :component-did-mount
       (fn [this]
         (try
-          (let [{:keys [value on-change mode language options on-focus on-blur]} (r/props this)
+          (let [{:keys [value on-change mode language options on-focus on-blur on-mount]} (r/props this)
                 node (react-dom/findDOMNode this)
                 lang (or language
                          (case mode
@@ -31,6 +32,9 @@
                                   options)))]
 
             (reset! editor-instance editor)
+
+            (when on-mount
+              (on-mount editor))
 
             (let [sub (.onDidChangeModelContent
                        editor

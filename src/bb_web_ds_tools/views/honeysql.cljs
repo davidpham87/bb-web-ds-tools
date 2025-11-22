@@ -2,14 +2,15 @@
   (:require [re-frame.core :as rf]
             [honey.sql :as h]
             [cljs.reader :as reader]
-            [bb-web-ds-tools.components.common :as c]))
+            [bb-web-ds-tools.components.common :as c]
+            [bb-web-ds-tools.components.editor :as editor]))
 
 ;; Event handlers
 (rf/reg-event-db
   :honeysql/initialize
   (fn [db _]
     (assoc-in db [:user-input :honeysql :default]
-              {:input ""
+              {:input "{:select [:id :username :email]\n :from [:users]\n :where [:and\n         [:= :active true]\n         [:> :created_at \"2023-01-01\"]]}"
                :output ""})))
 
 (rf/reg-event-db
@@ -56,15 +57,15 @@
 
       [c/card {}
       [:div
-       [:h3 {:class "text-xl font-semibold text-white mb-4 flex items-center gap-2"}
+       [:h3 {:class "text-xl font-semibold text-[#dcdccc] mb-4 flex items-center gap-2"}
         [:span "🍯"] "Convert to SQL"]
        [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-6"}
         [:div
          [c/label "HoneySQL Map (EDN)"]
-         [c/textarea {:value honeysql-input
-                      :placeholder "{:select [:a :b] :from [:table]}"
-                      :on-change #(rf/dispatch [:honeysql/update-input (-> % .-target .-value)])
-                      :class "h-96"}]
+         [:div.h-96.border.border-gray-700.rounded
+          [editor/monaco-editor {:value honeysql-input
+                                 :language "clojure"
+                                 :on-change #(rf/dispatch [:honeysql/update-input %])}]]
          [:div {:class "mt-4"}
           [c/button {:on-click #(rf/dispatch [:honeysql/convert-to-sql])} "Convert"]]]
         [:div

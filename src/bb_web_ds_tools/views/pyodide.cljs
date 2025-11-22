@@ -111,9 +111,9 @@
      (when ready?
        [:div.grid.grid-cols-1.lg:grid-cols-2.gap-6
         [:div.space-y-4
-         [:div.bg-gray-800.rounded-lg.p-6.border.border-gray-700.shadow-lg
-          [:h3.text-lg.font-bold.text-white.mb-4 "Code"]
-          [:div.bg-white.rounded.overflow-hidden.h-64
+         [c/card {}
+          [:h3 {:class "text-lg font-bold text-[#dcdccc] mb-4"} "Code"]
+          [:div {:class "rounded overflow-hidden h-64 border border-[#5f5f5f]"}
            [editor/monaco-editor {:value code
                                   :language "python"
                                   :on-change #(rf/dispatch [::set-code %])}]]
@@ -121,8 +121,8 @@
            [c/button {:on-click #(rf/dispatch [::run-code])} "Run"]]]]
 
         [:div.space-y-4
-         [:div.bg-gray-800.rounded-lg.p-6.border.border-gray-700.shadow-lg
+         [c/card {}
           [:div.flex.justify-between.items-center.mb-4
-           [:h3.text-lg.font-bold.text-white "Output"]
+           [:h3 {:class "text-lg font-bold text-[#dcdccc]"} "Output"]
            [c/button-xs {:on-click #(rf/dispatch [::clear-output])} "Clear"]]
           [c/pre-block {:content output :class "h-96"}]]]])]))
