@@ -3,7 +3,7 @@
             [sci.core :as sci]
             [re-frame.core :as rf]
             [fork.re-frame :as fork]
-            [bb-web-ds-tools.components.editor :as editor-comp]))
+            [bb-web-ds-tools.components.repl :as repl-comp]))
 
 (def sci-ctx
   (sci/init {:namespaces {'re-frame.core {'subscribe rf/subscribe
@@ -75,22 +75,16 @@
 
 
 (defn- repl-instance [{:keys [instance-id]}]
-  (let [output-log (rf/subscribe [::output instance-id])]
-    [:div.grid.grid-cols-1.md:grid-cols-2.gap-4.mb-4
-     [:div.flex.flex-col.border.rounded.shadow-sm
-      [:div.bg-gray-100.p-2.border-b.font-semibold "Code Input"]
-      [:div.p-2
-       [code-editor {:instance-id instance-id}]]]
-     [:div.flex.flex-col.border.rounded.shadow-sm
-      [:div.bg-gray-100.p-2.border-b.font-semibold "Output Log"]
-      [:div.flex-grow.p-2.overflow-auto.bg-white.font-mono.text-sm.h-64.border-t
-       (if (empty? @output-log)
-         [:div.text-gray-400.italic "No output yet..."]
-         (for [[i entry] (map-indexed vector (reverse @output-log))]
-           ^{:key i}
-           [:div.mb-1.border-b.pb-1 {:class (if (= (:type entry) :error) "text-red-600" "text-green-700")}
-            [:span.font-bold.mr-2 (if (= (:type entry) :error) "ERR:" "=>")]
-            (:text entry)]))]]]))
+  (let [code @(rf/subscribe [::code instance-id])
+        output @(rf/subscribe [::output instance-id])]
+    [repl-comp/repl-card
+     {:instance-id instance-id
+      :code code
+      :output output
+      :on-eval (fn [code] (rf/dispatch [::eval-code instance-id code]))
+      :on-focus #(reset! active-instance-id instance-id)
+      :on-blur #(reset! active-instance-id nil)
+      :path [:repl :instances instance-id :form]}]))
 
 (defn panel []
   (r/create-class
