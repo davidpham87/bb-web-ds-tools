@@ -13,7 +13,8 @@
             [bb-web-ds-tools.views.editor :as editor]
             [bb-web-ds-tools.views.repl :as repl]
             [bb-web-ds-tools.views.r-repl :as r-repl]
-            [bb-web-ds-tools.views.pyodide :as pyodide]))
+            [bb-web-ds-tools.views.pyodide :as pyodide]
+            [bb-web-ds-tools.views.datasets :as datasets]))
 
 ;; --- Routing & Navigation ---
 
@@ -57,6 +58,8 @@
     {:name :repl}]
    ["r-repl"
     {:name :r-repl}]
+   ["datasets"
+    {:name :datasets}]
    ["changelog"
     {:name :changelog}]
    ["reader"
@@ -122,6 +125,7 @@
 (defmethod view :editor [_] [:div.p-4 [editor/panel]])
 (defmethod view :repl [_] [:div.p-4 [repl/panel]])
 (defmethod view :r-repl [_] [:div.p-4.h-screen [r-repl/r-repl]])
+(defmethod view :datasets [_] [datasets/panel])
 (defmethod view :changelog [_] [changelog/changelog-page])
 (defmethod view :reader [_] [:div.p-4 "Reader Tool"])
 (defmethod view :default [_] [landing/landing-page])
@@ -156,6 +160,7 @@
         [nav-item "Editor" :editor current-route-name]
         [nav-item "Repl" :repl current-route-name]
         [nav-item "R" :r-repl current-route-name]
+        [nav-item "Datasets" :datasets current-route-name]
         [nav-item "Changelog" :changelog current-route-name]]]]]))
 
 (defn main-panel []
@@ -175,5 +180,6 @@
   (rf/dispatch-sync [::vega/initialize])
   (rf/dispatch-sync [::gemma/initialize])
   (rf/dispatch-sync [::pyodide/initialize])
+  (rf/dispatch-sync [::datasets/initialize])
   (init-routes!)
   (rdom/render [app] (.getElementById js/document "app")))
