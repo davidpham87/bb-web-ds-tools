@@ -6,7 +6,9 @@
             ["papaparse" :as Papa]
             ["react-dom" :as ReactDOM]
             [clojure.string :as str]
-            [cljs.pprint :refer [pprint]]))
+            [cljs.pprint :refer [pprint]]
+            [malli.provider :as mp]
+            [malli.core :as m]))
 
 ;; --- State ---
 
@@ -18,18 +20,24 @@
           ::config-input "{\n  \"$schema\": \"https://vega.github.io/schema/vega-lite/v5.json\",\n  \"mark\": \"bar\",\n  \"encoding\": {\n    \"x\": {\"field\": \"col1\", \"type\": \"ordinal\"},\n    \"y\": {\"field\": \"col2\", \"type\": \"quantitative\"}\n  }\n}"
           ::format :csv
           ::parsed-data nil
-          ::active-sub-tab :plot)))
+          ::inferred-schema nil
+          ::active-sub-tab :plot
+          ::builder-state {:x nil :y nil :color nil :mark "bar" :ops #{}})))
 
 (rf/reg-sub ::data-input (fn [db] (::data-input db)))
 (rf/reg-sub ::config-input (fn [db] (::config-input db)))
 (rf/reg-sub ::format (fn [db] (::format db)))
 (rf/reg-sub ::parsed-data (fn [db] (::parsed-data db)))
+(rf/reg-sub ::inferred-schema (fn [db] (::inferred-schema db)))
 (rf/reg-sub ::active-sub-tab (fn [db] (::active-sub-tab db)))
+(rf/reg-sub ::builder-state (fn [db] (::builder-state db)))
 
 (rf/reg-event-db ::set-data-input (fn [db [_ val]] (assoc db ::data-input val)))
 (rf/reg-event-db ::set-config-input (fn [db [_ val]] (assoc db ::config-input val)))
 (rf/reg-event-db ::set-format (fn [db [_ fmt]] (assoc db ::format fmt)))
 (rf/reg-event-db ::set-active-sub-tab (fn [db [_ tab]] (assoc db ::active-sub-tab tab)))
+(rf/reg-event-db ::set-inferred-schema (fn [db [_ schema]] (assoc db ::inferred-schema schema)))
+(rf/reg-event-db ::update-builder-state (fn [db [_ k v]] (assoc-in db [::builder-state k] v)))
 
 ;; --- Parsing ---
 
@@ -76,10 +84,18 @@
                   :tsv (parse-tsv text)
                   :json (parse-json text)
                   :markdown (parse-markdown text)
-                  [])]
-     (assoc db ::parsed-data parsed))))
+                  [])
+         schema (try (mp/provide parsed) (catch js/Error e (str "Error inferring schema: " (.-message e))))]
+     (assoc db ::parsed-data parsed ::inferred-schema schema))))
 
 ;; --- Components ---
+
+(def examples
+  [{:label "Example CSV" :fmt :csv :key :csv}
+   {:label "Example TSV" :fmt :tsv :key :tsv}
+   {:label "Example MD" :fmt :markdown :key :markdown}
+   {:label "Example JSON (Maps)" :fmt :json :key :json-maps}
+   {:label "Example JSON (Arrays)" :fmt :json :key :json-arrays}])
 
 (defn example-data [fmt]
   (case fmt
@@ -121,10 +137,103 @@
     :render
     (fn [] [:div {:style {:width "100%" :height "400px"}}])}))
 
+;; --- Builder & Schema Helpers ---
+
+(defn extract-map-schema [schema]
+  (cond
+    (and (vector? schema) (= :map (first schema))) schema
+    (and (vector? schema) (#{ :vector :sequential :set :list } (first schema))) (extract-map-schema (second schema))
+    :else nil))
+
+(defn infer-type [schema field]
+  (let [map-schema (extract-map-schema schema)
+        props (if map-schema (rest map-schema) [])
+        prop (first (filter #(= field (first %)) props))
+        type-def (second prop)]
+    (cond
+      (= type-def :int) "quantitative"
+      (= type-def :double) "quantitative"
+      (= type-def :string) "nominal"
+      (= type-def :boolean) "nominal"
+      :else "nominal")))
+
+(defn generate-config [state schema]
+  (let [{:keys [x y color mark ops]} state
+        encoding (cond-> {}
+                   (not-empty x) (assoc :x {:field x :type (infer-type schema (keyword x))})
+                   (not-empty y) (assoc :y {:field y :type (infer-type schema (keyword y))})
+                   (not-empty color) (assoc :color {:field color :type (infer-type schema (keyword color))}))
+        spec {:mark mark
+              :encoding encoding}]
+     ;; Apply ops (Repeat, Fold, Facet) - simplified
+     (cond-> spec
+       (contains? ops :repeat) (assoc :repeat {:layer [x y]}) ;; Simplified logic
+       (contains? ops :facet) (assoc :facet {:row {:field (or color x) :type "nominal"}}) ;; Simplified
+       true (js/JSON.stringify nil 2))))
+
+(rf/reg-event-fx
+ ::apply-builder
+ (fn [{:keys [db]} _]
+   (let [state (::builder-state db)
+         schema (::inferred-schema db)
+         config (generate-config state schema)]
+     {:db (assoc db ::config-input config)})))
+
+(defn builder-panel []
+  (let [schema @(rf/subscribe [::inferred-schema])
+        state @(rf/subscribe [::builder-state])
+        map-schema (extract-map-schema schema)
+        fields (if map-schema
+                 (map name (keys (into {} (rest map-schema))))
+                 [])]
+    [:div {:style {:padding "10px" :border "1px solid #eee"}}
+     [:h4 "Visual Builder"]
+     [:div {:style {:display "flex" :gap "10px" :margin-bottom "10px"}}
+      [:div
+       [:label "X Axis "]
+       [:select {:value (:x state)
+                 :on-change #(rf/dispatch [::update-builder-state :x (-> % .-target .-value)])}
+        [:option {:value ""} "Select..."]
+        (for [f fields] [:option {:key f :value f} f])]]
+      [:div
+       [:label "Y Axis "]
+       [:select {:value (:y state)
+                 :on-change #(rf/dispatch [::update-builder-state :y (-> % .-target .-value)])}
+        [:option {:value ""} "Select..."]
+        (for [f fields] [:option {:key f :value f} f])]]
+      [:div
+       [:label "Color "]
+       [:select {:value (:color state)
+                 :on-change #(rf/dispatch [::update-builder-state :color (-> % .-target .-value)])}
+        [:option {:value ""} "Select..."]
+        (for [f fields] [:option {:key f :value f} f])]]]
+     [:div {:style {:margin-bottom "10px"}}
+       [:label "Mark "]
+       [:select {:value (:mark state)
+                 :on-change #(rf/dispatch [::update-builder-state :mark (-> % .-target .-value)])}
+        [:option {:value "bar"} "Bar"]
+        [:option {:value "point"} "Point"]
+        [:option {:value "line"} "Line"]
+        [:option {:value "area"} "Area"]]]
+     [:div {:style {:margin-bottom "10px"}}
+      [:label "Operations: "]
+      [:label [:input {:type "checkbox"
+                       :checked (contains? (:ops state) :repeat)
+                       :on-change #(if (-> % .-target .-checked)
+                                     (rf/dispatch [::update-builder-state :ops (conj (:ops state) :repeat)])
+                                     (rf/dispatch [::update-builder-state :ops (disj (:ops state) :repeat)]))}] " Repeat (Dummy) "]
+      [:label [:input {:type "checkbox"
+                       :checked (contains? (:ops state) :facet)
+                       :on-change #(if (-> % .-target .-checked)
+                                     (rf/dispatch [::update-builder-state :ops (conj (:ops state) :facet)])
+                                     (rf/dispatch [::update-builder-state :ops (disj (:ops state) :facet)]))}] " Facet (Dummy) "]]
+     [:button {:on-click #(rf/dispatch [::apply-builder])} "Apply to Config"]]))
+
 (defn view []
   (let [data-input @(rf/subscribe [::data-input])
         config-input @(rf/subscribe [::config-input])
         parsed-data @(rf/subscribe [::parsed-data])
+        inferred-schema @(rf/subscribe [::inferred-schema])
         active-sub-tab @(rf/subscribe [::active-sub-tab])]
     [:div {:class "space-y-8 container mx-auto max-w-6xl"}
      [c/page-header "Vega-Lite Visualization"]

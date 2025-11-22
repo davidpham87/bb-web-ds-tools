@@ -9,6 +9,8 @@
             [bb-web-ds-tools.views.changelog :as changelog]
             [bb-web-ds-tools.views.editor :as editor]))
 
+
+
 (rf/reg-sub
  ::active-tab
  (fn [db]
@@ -55,7 +57,6 @@
               :on-click #(rf/dispatch [::set-active-tab :landing])}
         [:span {:class "text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500"}
          "BB Web DS Tools"]]
-
        ;; Desktop Menu
        [:div {:class "hidden md:flex space-x-2"}
         [nav-item "Home" :landing active-tab]
@@ -65,6 +66,7 @@
         [nav-item "Gemma" :gemma active-tab]
         [nav-item "Editor" :editor active-tab]
         [nav-item "Changelog" :changelog active-tab]]]]]))
+
 
 (defn main-panel []
   (let [active-tab @(rf/subscribe [::active-tab])]
