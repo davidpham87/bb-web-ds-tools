@@ -1,7 +1,7 @@
 (ns bb-web-ds-tools.gemma
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
-            [fork.core :as fork]
+            [fork.reagent :as fork]
             ["@mediapipe/tasks-genai" :as genai]))
 
 ;; State for the LLM instance
@@ -115,23 +115,23 @@
                     :on-submit (fn [{:keys [values]}]
                                  (rf/dispatch [::load-model (get values "url")]))}
          (fn [{:keys [values handle-change handle-blur handle-submit]}]
-           [:form {:on-submit handle-submit}
+           [:form {:on-submit handle-submit :class "bg-gray-800 p-6 rounded-lg border border-gray-700 shadow-lg max-w-2xl mx-auto"}
             [:div.model-loader
-             [:h3 "Load Gemma Model"]
-             [:p "Enter the URL to the .bin model file (e.g., from Kaggle or HuggingFace, if CORS allows, or a local file served via http)."]
+             [:h3 {:class "text-xl font-bold text-white mb-2"} "Load Gemma Model"]
+             [:p {:class "text-gray-400 mb-4 text-sm"} "Enter the URL to the .bin model file (e.g., from Kaggle or HuggingFace)."]
              [:input {:type "text"
                       :name "url"
                       :placeholder "Model URL (e.g. /gemma-2b-it-gpu-int4.bin)"
                       :value (get values "url")
                       :on-change handle-change
                       :on-blur handle-blur
-                      :style {:width "100%" :padding "8px"}}]
+                      :class "w-full bg-gray-900 text-white border border-gray-600 rounded p-3 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none"}]
              [:button {:type "submit"
                        :disabled loading?
-                       :style {:margin-top "10px"}}
+                       :class "w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 text-white font-bold py-3 px-4 rounded transition-colors"}
               (if loading? "Loading..." "Load Model")]
              (when error
-               [:div.error {:style {:color "red" :margin-top "10px"}} error])]])]))))
+               [:div {:class "text-red-400 mt-4 p-3 bg-red-900/30 border border-red-800 rounded"} error])]])]))))
 
 (defn chat-interface []
   (let [messages-sub (rf/subscribe [::messages])
@@ -145,32 +145,36 @@
                                  (rf/dispatch [::send-message (get values "text")])
                                  (reset))}
          (fn [{:keys [values handle-change handle-blur handle-submit]}]
-           [:form {:on-submit handle-submit}
+           [:form {:on-submit handle-submit :class "max-w-4xl mx-auto"}
             [:div.chat-interface
-             [:div.messages {:style {:border "1px solid #ccc" :padding "10px" :height "400px" :overflow-y "scroll" :margin-bottom "10px"}}
+             [:div.messages {:class "bg-gray-900 border border-gray-700 rounded-lg p-4 h-[500px] overflow-y-auto mb-4 custom-scrollbar"}
               (for [[idx msg] (map-indexed vector messages)]
-                [:div {:key idx :style {:margin-bottom "10px" :text-align (if (= (:role msg) :user) "right" "left")}}
-                 [:strong (if (= (:role msg) :user) "You: " "Gemma: ")]
-                 [:span (:content msg)]])]
-             [:div.input-area
+                [:div {:key idx :class (str "mb-4 " (if (= (:role msg) :user) "text-right" "text-left"))}
+                 [:div {:class (str "inline-block px-4 py-2 rounded-lg max-w-[80%] "
+                                    (if (= (:role msg) :user)
+                                      "bg-blue-600 text-white"
+                                      "bg-gray-800 text-gray-200 border border-gray-700"))}
+                  [:div {:class "text-xs opacity-75 mb-1 font-bold"} (if (= (:role msg) :user) "You" "Gemma")]
+                  [:span (:content msg)]]])]
+             [:div.input-area {:class "flex gap-4"}
               [:textarea {:name "text"
                           :value (get values "text")
                           :on-change handle-change
                           :on-blur handle-blur
-                          :style {:width "100%" :height "60px"}
+                          :class "flex-1 bg-gray-800 text-white border border-gray-700 rounded p-3 h-20 focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none"
                           :placeholder "Type your message..."
                           :disabled loading?}]
               [:button {:type "submit"
                         :disabled (or loading? (empty? (get values "text")))
-                        :style {:margin-top "5px"}}
+                        :class "bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 text-white font-bold px-8 rounded transition-colors h-20"}
                "Send"]]]])]))))
 
 (defn gemma-page []
   (let [loaded?-sub (rf/subscribe [::model-loaded?])]
     (fn []
       (let [loaded? @loaded?-sub]
-        [:div.gemma-page {:style {:padding "20px"}}
-         [:h2 "Gemma E4B Interaction"]
+        [:div.gemma-page {:class "container mx-auto px-4 py-8"}
+         [:h2 {:class "text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-8"} "Gemma Local LLM"]
          (if loaded?
            [chat-interface]
            [model-loader])]))))

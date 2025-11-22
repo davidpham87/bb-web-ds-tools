@@ -68,23 +68,46 @@
         generated-data @(rf/subscribe [:malli/generated-data])
         inference-input @(rf/subscribe [:malli/inference-input])
         inferred-schema @(rf/subscribe [:malli/inferred-schema])]
-    [:div
-     [:h2 "Malli Tools"]
-     [:div
-      [:h3 "Schema Inference"]
-      [:textarea {:rows 20 :cols 80
-                  :value inference-input
-                  :on-change #(rf/dispatch [:malli/update-inference-input (-> % .-target .-value)])}]
-      [:br]
-      [:button {:on-click #(rf/dispatch [:malli/infer-schema])} "Infer Schema"]
-      [:h4 "Inferred Schema"]
-      [:pre inferred-schema]]
-     [:div
-      [:h3 "Data Generation"]
-      [:textarea {:rows 10 :cols 80
-                  :value schema-text
-                  :on-change #(rf/dispatch [:malli/update-schema-text (-> % .-target .-value)])}]
-      [:br]
-      [:button {:on-click #(rf/dispatch [:malli/generate-data])} "Generate Data"]
-      [:h4 "Generated Data"]
-      [:pre generated-data]]]))
+    [:div {:class "space-y-8 container mx-auto max-w-6xl"}
+     [:div {:class "text-center mb-8"}
+      [:h2 {:class "text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500"} "Malli Tools"]]
+
+     ;; Schema Inference Section
+     [:div {:class "bg-gray-800 rounded-lg p-6 border border-gray-700 shadow-lg"}
+      [:h3 {:class "text-xl font-semibold text-white mb-4 flex items-center gap-2"}
+       [:span "🧩"] "Schema Inference"]
+      [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-6"}
+       [:div
+        [:label {:class "block text-sm font-medium text-gray-400 mb-2"} "Input Data (EDN)"]
+        [:textarea {:class "w-full h-64 bg-gray-900 text-gray-200 border border-gray-700 rounded p-4 font-mono text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors"
+                    :value inference-input
+                    :placeholder "{:user/name \"Alice\" :user/age 30}"
+                    :on-change #(rf/dispatch [:malli/update-inference-input (-> % .-target .-value)])}]
+        [:div {:class "mt-4"}
+         [:button {:class "bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded transition-all duration-200 transform hover:scale-105"
+                   :on-click #(rf/dispatch [:malli/infer-schema])}
+          "Infer Schema"]]]
+       [:div
+        [:label {:class "block text-sm font-medium text-gray-400 mb-2"} "Inferred Schema"]
+        [:pre {:class "w-full h-64 bg-gray-950 text-green-400 border border-gray-800 rounded p-4 font-mono text-sm overflow-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900"}
+         inferred-schema]]]]
+
+     ;; Data Generation Section
+     [:div {:class "bg-gray-800 rounded-lg p-6 border border-gray-700 shadow-lg"}
+      [:h3 {:class "text-xl font-semibold text-white mb-4 flex items-center gap-2"}
+       [:span "🎲"] "Data Generation"]
+      [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-6"}
+       [:div
+        [:label {:class "block text-sm font-medium text-gray-400 mb-2"} "Schema (EDN)"]
+        [:textarea {:class "w-full h-64 bg-gray-900 text-gray-200 border border-gray-700 rounded p-4 font-mono text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors"
+                    :value schema-text
+                    :placeholder "[:map [:x int?] [:y int?]]"
+                    :on-change #(rf/dispatch [:malli/update-schema-text (-> % .-target .-value)])}]
+        [:div {:class "mt-4"}
+         [:button {:class "bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded transition-all duration-200 transform hover:scale-105"
+                   :on-click #(rf/dispatch [:malli/generate-data])}
+          "Generate Data"]]]
+       [:div
+        [:label {:class "block text-sm font-medium text-gray-400 mb-2"} "Generated Data"]
+        [:pre {:class "w-full h-64 bg-gray-950 text-green-400 border border-gray-800 rounded p-4 font-mono text-sm overflow-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900"}
+         generated-data]]]]]))

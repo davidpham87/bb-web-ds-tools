@@ -38,7 +38,7 @@
                (.setCursor editor cursor)))))
       :render
       (fn []
-        [:div.editor-wrapper.border.border-gray-300])})))
+        [:div.editor-wrapper.border.border-gray-700])})))
 
 (defn codemirror-editor [props]
   [codemirror-editor-inner props])
@@ -55,14 +55,17 @@
                              (rf/dispatch [::save-code]))}
      (fn [{:keys [values set-values handle-submit]}]
        [:form {:on-submit handle-submit :class "space-y-4"}
-        [:div.bg-white.rounded.shadow-sm.overflow-hidden
+        [:div.bg-white.rounded.shadow-sm.overflow-hidden ;; Keep white bg for codemirror
          [codemirror-editor {:value (:code values)
                              :on-change #(set-values {:code %})}]]
         [:div.flex.justify-end
          [:button {:type "submit"
-                   :class "bg-red-600 text-white px-6 py-2 rounded shadow hover:bg-red-700 transition focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"}
+                   :class "bg-blue-600 text-white px-6 py-2 rounded shadow hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"}
           "Save Code"]]])]))
 
 (defn codemirror []
-  [:div.p-4
-   [codemirror-form]])
+  [:div.container.mx-auto.max-w-6xl
+   [:div {:class "text-center mb-8"}
+      [:h2 {:class "text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500"} "Code Editor"]]
+   [:div.bg-gray-800.p-6.rounded-lg.border.border-gray-700
+    [codemirror-form]]])

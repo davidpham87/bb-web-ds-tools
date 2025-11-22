@@ -125,34 +125,50 @@
         config-input @(rf/subscribe [::config-input])
         parsed-data @(rf/subscribe [::parsed-data])
         active-sub-tab @(rf/subscribe [::active-sub-tab])]
-    [:div
-     [:h2 "Vega Lite Tool"]
-     [:div {:style {:display "flex" :gap "20px"}}
-      [:div {:style {:flex "1"}}
-       [:h3 "Data Input"]
-       [:div
-        [:button {:on-click #(load-example :csv :csv)} "Example CSV"]
-        [:button {:on-click #(load-example :tsv :tsv)} "Example TSV"]
-        [:button {:on-click #(load-example :markdown :markdown)} "Example MD"]
-        [:button {:on-click #(load-example :json :json-maps)} "Example JSON (Maps)"]
-        [:button {:on-click #(load-example :json :json-arrays)} "Example JSON (Arrays)"]]
-       [ui/codemirror-editor
-        {:value data-input
-         :on-change (fn [val]
-                      (rf/dispatch [::set-data-input val])
-                      (rf/dispatch [::parse-data]))}]
-       [:h3 "Config Input (Vega Lite JSON)"]
-       [ui/codemirror-editor
-        {:value config-input
-         :mode "application/json"
-         :on-change #(rf/dispatch [::set-config-input %])}]]
-      [:div {:style {:flex "1"}}
-       [:div {:style {:margin-bottom "10px"}}
-        [:button {:disabled (= active-sub-tab :plot)
+    [:div {:class "space-y-8 container mx-auto max-w-6xl"}
+     [:div {:class "text-center mb-8"}
+      [:h2 {:class "text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500"} "Vega-Lite Visualization"]]
+
+     [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-8"}
+      ;; Input Column
+      [:div {:class "space-y-6"}
+       [:div {:class "bg-gray-800 rounded-lg p-6 border border-gray-700 shadow-lg"}
+        [:div {:class "flex items-center justify-between mb-4"}
+         [:h3 {:class "text-lg font-semibold text-white"} "Data Input"]
+         [:div {:class "flex flex-wrap gap-2"}
+          [:button {:class "text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 px-2 py-1 rounded transition-colors" :on-click #(load-example :csv :csv)} "CSV"]
+          [:button {:class "text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 px-2 py-1 rounded transition-colors" :on-click #(load-example :tsv :tsv)} "TSV"]
+          [:button {:class "text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 px-2 py-1 rounded transition-colors" :on-click #(load-example :markdown :markdown)} "MD"]
+          [:button {:class "text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 px-2 py-1 rounded transition-colors" :on-click #(load-example :json :json-maps)} "JSON Maps"]
+          [:button {:class "text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 px-2 py-1 rounded transition-colors" :on-click #(load-example :json :json-arrays)} "JSON Arrays"]]]
+
+        [:div {:class "bg-white rounded overflow-hidden"} ;; CodeMirror needs white usually
+         [ui/codemirror-editor
+          {:value data-input
+           :on-change (fn [val]
+                        (rf/dispatch [::set-data-input val])
+                        (rf/dispatch [::parse-data]))}]]]
+
+       [:div {:class "bg-gray-800 rounded-lg p-6 border border-gray-700 shadow-lg"}
+        [:h3 {:class "text-lg font-semibold text-white mb-4"} "Config (Vega-Lite JSON)"]
+        [:div {:class "bg-white rounded overflow-hidden"}
+         [ui/codemirror-editor
+          {:value config-input
+           :mode "application/json"
+           :on-change #(rf/dispatch [::set-config-input %])}]]]]
+
+      ;; Output Column
+      [:div {:class "bg-gray-800 rounded-lg p-6 border border-gray-700 shadow-lg h-full flex flex-col"}
+       [:div {:class "flex space-x-4 mb-4 border-b border-gray-700 pb-2"}
+        [:button {:class (str "px-4 py-2 font-medium transition-colors "
+                              (if (= active-sub-tab :plot) "text-blue-400 border-b-2 border-blue-400" "text-gray-400 hover:text-white"))
                   :on-click #(rf/dispatch [::set-active-sub-tab :plot])} "Plot"]
-        [:button {:disabled (= active-sub-tab :parsed)
-                  :on-click #(rf/dispatch [::set-active-sub-tab :parsed])} "Parsed Data (EDN)"]]
-       (case active-sub-tab
-         :plot [vega-viz {:spec config-input :data parsed-data}]
-         :parsed [:pre (with-out-str (pprint parsed-data))]
-         nil)]]]))
+        [:button {:class (str "px-4 py-2 font-medium transition-colors "
+                              (if (= active-sub-tab :parsed) "text-blue-400 border-b-2 border-blue-400" "text-gray-400 hover:text-white"))
+                  :on-click #(rf/dispatch [::set-active-sub-tab :parsed])} "Parsed Data"]]
+
+       [:div {:class "flex-grow bg-white rounded p-4 overflow-auto min-h-[400px]"}
+        (case active-sub-tab
+          :plot [vega-viz {:spec config-input :data parsed-data}]
+          :parsed [:pre {:class "text-gray-800 text-sm"} (with-out-str (pprint parsed-data))]
+          nil)]]]]))
