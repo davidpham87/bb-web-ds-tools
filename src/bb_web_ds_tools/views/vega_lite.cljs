@@ -254,8 +254,10 @@
            [c/button-xs {:on-click #(load-example :json :json-arrays)} "JSON Arrays"]]]
 
          [:div {:class "bg-white rounded overflow-hidden"}
-          [editor/codemirror-editor
+          [editor/monaco-editor
            {:value data-input
+            :language "plaintext"
+            :style {:height "300px"}
             :on-change (fn [val]
                          (rf/dispatch [::set-data-input val])
                          (rf/dispatch [::parse-data]))}]]]]
@@ -264,9 +266,10 @@
         [:div
          [:h3 {:class "text-lg font-semibold text-white mb-4"} "Config (Vega-Lite JSON)"]
          [:div {:class "bg-white rounded overflow-hidden"}
-          [editor/codemirror-editor
+          [editor/monaco-editor
            {:value config-input
-            :mode "application/json"
+            :language "json"
+            :style {:height "300px"}
             :on-change #(rf/dispatch [::set-config-input %])}]]]]]
 
       ;; Output Column
