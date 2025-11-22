@@ -16,9 +16,21 @@
                                       :value (or value "")})]
           (.on editor "change"
                (fn [cm]
-                 (let [new-val (.getValue cm)]
+                 (let [new-val (.getValue cm)
+                       {:keys [on-change]} (r/props this)]
                    (when on-change
                      (on-change new-val)))))
+
+          (.on editor "focus"
+               (fn [cm]
+                 (let [{:keys [on-focus]} (r/props this)]
+                   (when on-focus (on-focus)))))
+
+          (.on editor "blur"
+               (fn [cm]
+                 (let [{:keys [on-blur]} (r/props this)]
+                   (when on-blur (on-blur)))))
+
           (reset! editor-instance editor)))
       :component-did-update
       (fn [this _]

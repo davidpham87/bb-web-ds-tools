@@ -3,7 +3,7 @@
             [sci.core :as sci]
             [re-frame.core :as rf]
             [fork.re-frame :as fork]
-            [bb-web-ds-tools.components.editor :as editor-comp]))
+            [bb-web-ds-tools.components.repl :as repl-comp]))
 
 (def sci-ctx
   (sci/init {:namespaces {'re-frame.core {'subscribe rf/subscribe
@@ -50,47 +50,17 @@
 ;; Atom to store the keydown listener function for proper removal
 (defonce keydown-listener-atom (r/atom nil))
 
-
-(defn- code-editor [{:keys [instance-id]}]
-  (let [path [:repl :instances instance-id :form]
-        code @(rf/subscribe [::code instance-id])]
-    [fork/form {:initial-values {"code" code}
-                :keywordize-keys true
-                :path path
-                :prevent-default? true
-                :clean-on-unmount? true
-                :on-submit (fn [{:keys [values]}]
-                             (rf/dispatch [::eval-code instance-id (:code values)]))}
-     (fn [{:keys [values set-values handle-submit]}]
-       [:div
-        [:div.flex-grow.relative.h-64
-         [editor-comp/codemirror-editor {:value (:code values)
-                                         :on-change #(set-values {:code %})
-                                         :on-focus #(reset! active-instance-id instance-id)
-                                         :on-blur #(reset! active-instance-id nil)}]]
-        [:div.flex.justify-end.mt-2
-         [:button.bg-blue-600.text-white.px-6.py-2.rounded.shadow.hover:bg-blue-700.transition
-          {:on-click handle-submit}
-          "Evaluate"]]] )]))
-
-
 (defn- repl-instance [{:keys [instance-id]}]
-  (let [output-log (rf/subscribe [::output instance-id])]
-    [:div.grid.grid-cols-1.md:grid-cols-2.gap-4.mb-4
-     [:div.flex.flex-col.border.rounded.shadow-sm
-      [:div.bg-gray-100.p-2.border-b.font-semibold "Code Input"]
-      [:div.p-2
-       [code-editor {:instance-id instance-id}]]]
-     [:div.flex.flex-col.border.rounded.shadow-sm
-      [:div.bg-gray-100.p-2.border-b.font-semibold "Output Log"]
-      [:div.flex-grow.p-2.overflow-auto.bg-white.font-mono.text-sm.h-64.border-t
-       (if (empty? @output-log)
-         [:div.text-gray-400.italic "No output yet..."]
-         (for [[i entry] (map-indexed vector (reverse @output-log))]
-           ^{:key i}
-           [:div.mb-1.border-b.pb-1 {:class (if (= (:type entry) :error) "text-red-600" "text-green-700")}
-            [:span.font-bold.mr-2 (if (= (:type entry) :error) "ERR:" "=>")]
-            (:text entry)]))]]]))
+  (let [code @(rf/subscribe [::code instance-id])
+        output @(rf/subscribe [::output instance-id])]
+    [repl-comp/repl-card
+     {:instance-id instance-id
+      :code code
+      :output output
+      :on-eval (fn [code] (rf/dispatch [::eval-code instance-id code]))
+      :on-focus #(reset! active-instance-id instance-id)
+      :on-blur #(reset! active-instance-id nil)
+      :path [:repl :instances instance-id :form]}]))
 
 (defn panel []
   (r/create-class
