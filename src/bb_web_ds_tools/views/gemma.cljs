@@ -39,38 +39,38 @@
 (rf/reg-event-db
  ::initialize
  (fn [db _]
-   (assoc db :gemma/messages []
-             :gemma/loading? false
-             :gemma/error nil
-             :gemma/model-loaded? false)))
+   (assoc-in db [:user-input :gemma :default]
+             {:messages []
+              :loading? false
+              :error nil
+              :model-loaded? false})))
 
 (rf/reg-event-db
  ::set-loading
  (fn [db [_ loading?]]
-   (assoc db :gemma/loading? loading?)))
+   (assoc-in db [:user-input :gemma :default :loading?] loading?)))
 
 (rf/reg-event-db
  ::set-error
  (fn [db [_ error]]
-   (assoc db :gemma/error error
-             :gemma/loading? false)))
+   (update-in db [:user-input :gemma :default]
+              assoc :error error :loading? false)))
 
 (rf/reg-event-db
  ::model-loaded
  (fn [db _]
-   (assoc db :gemma/model-loaded? true
-             :gemma/loading? false
-             :gemma/error nil)))
+   (update-in db [:user-input :gemma :default]
+              assoc :model-loaded? true :loading? false :error nil)))
 
 (rf/reg-event-db
  ::add-message
  (fn [db [_ role text]]
-   (update db :gemma/messages conj {:role role :content text})))
+   (update-in db [:user-input :gemma :default :messages] conj {:role role :content text})))
 
 (rf/reg-event-fx
  ::load-model
  (fn [{:keys [db]} [_ model-url]]
-   {:db (assoc db :gemma/loading? true)
+   {:db (assoc-in db [:user-input :gemma :default :loading?] true)
     :fx [[::load-model-fx model-url]]}))
 
 (rf/reg-event-fx
@@ -78,30 +78,39 @@
  (fn [{:keys [db]} [_ text]]
    (if @llm-instance
      {:db (-> db
-              (update :gemma/messages conj {:role :user :content text})
-              (assoc :gemma/loading? true))
+              (update-in [:user-input :gemma :default :messages] conj {:role :user :content text})
+              (assoc-in [:user-input :gemma :default :loading?] true))
       :fx [[::generate-response-fx text]]}
      {})))
 
 (rf/reg-sub
+ ::root
+ (fn [db _]
+   (get-in db [:user-input :gemma :default])))
+
+(rf/reg-sub
  ::messages
- (fn [db]
-   (:gemma/messages db)))
+ :<- [::root]
+ (fn [root]
+   (:messages root)))
 
 (rf/reg-sub
  ::loading?
- (fn [db]
-   (:gemma/loading? db)))
+ :<- [::root]
+ (fn [root]
+   (:loading? root)))
 
 (rf/reg-sub
  ::error
- (fn [db]
-   (:gemma/error db)))
+ :<- [::root]
+ (fn [root]
+   (:error root)))
 
 (rf/reg-sub
  ::model-loaded?
- (fn [db]
-   (:gemma/model-loaded? db)))
+ :<- [::root]
+ (fn [root]
+   (:model-loaded? root)))
 
 ;; UI Components
 
