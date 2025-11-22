@@ -17,4 +17,4 @@ node_modules/
 target/
 *.log
 .m2/
-public/js/compiled/
+public/js/
