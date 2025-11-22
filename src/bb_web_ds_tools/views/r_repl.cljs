@@ -77,8 +77,11 @@
 
                                                                 (if (empty? cmd)
                                                                   (.write term prompt)
-                                                                  (-> (.eval webr cmd)
-                                                                      (.then (fn [_]
+                                                                  (-> (.evalR webr cmd (clj->js {:env js/undefined :autoprint true}))
+                                                                      (.then (fn [res]
+                                                                               (try
+                                                                                 (.destroy res)
+                                                                                 (catch js/Error _))
                                                                                (.write term prompt)))
                                                                       (.catch (fn [err]
                                                                                 (.write term (str "\u001b[31mError: " err "\u001b[0m\r\n" prompt)))))))
