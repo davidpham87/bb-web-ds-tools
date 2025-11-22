@@ -8,7 +8,8 @@
             [bb-web-ds-tools.views.landing :as landing]
             [bb-web-ds-tools.views.changelog :as changelog]
             [bb-web-ds-tools.views.editor :as editor]
-            [bb-web-ds-tools.views.repl :as repl]))
+            [bb-web-ds-tools.views.repl :as repl]
+            [bb-web-ds-tools.views.pyodide :as pyodide]))
 
 (rf/reg-sub
  ::active-tab
@@ -67,6 +68,7 @@
         [nav-item "HoneySQL" :honeysql active-tab]
         [nav-item "Vega-Lite" :vega-lite active-tab]
         [nav-item "Gemma" :gemma active-tab]
+        [nav-item "Pyodide" :pyodide active-tab]
         [nav-item "Editor" :editor active-tab]
         [nav-item "Repl" :repl active-tab]
         [nav-item "Changelog" :changelog active-tab]]]]]))
@@ -84,6 +86,7 @@
        :malli [:div.p-4 [malli/panel]]
        :honeysql [:div.p-4 [honeysql/panel]]
        :gemma [:div.p-4 [gemma/panel]]
+       :pyodide [:div.p-4 [pyodide/panel]]
        :repl [:div.p-4 [repl/panel]]
        [landing/landing-page])]))
 
@@ -96,5 +99,6 @@
   (rf/dispatch-sync [::initialize-db])
   (rf/dispatch-sync [::vega/initialize])
   (rf/dispatch-sync [::gemma/initialize])
+  (rf/dispatch-sync [::pyodide/initialize])
   (rf/dispatch [::set-active-tab :landing])
   (rdom/render [app] (.getElementById js/document "app")))
