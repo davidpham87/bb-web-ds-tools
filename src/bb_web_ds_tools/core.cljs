@@ -15,6 +15,8 @@
             [bb-web-ds-tools.views.r-repl :as r-repl]
             [bb-web-ds-tools.views.pyodide :as pyodide]))
 
+;; --- Routing & Navigation ---
+
 (rf/reg-sub
  ::current-route
  (fn [db]
@@ -74,6 +76,8 @@
    on-navigate
    {:use-fragment true}))
 
+;; --- DB & Logic ---
+
 (rf/reg-event-db
  ::initialize-db
  (fn [_ _]
@@ -92,6 +96,8 @@
  ::code-changed
  (fn [db [_ new-code]]
    (assoc db :code new-code)))
+
+;; --- Views ---
 
 (defmulti view (fn [match] (:name (:data match))))
 
