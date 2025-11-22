@@ -5,5 +5,6 @@
         org.clojure/test.check {:mvn/version "1.1.1"}
         com.github.seancorfield/honeysql {:mvn/version "2.7.1350"}
         fork/fork {:mvn/version "2.4.3"}
-        thheller/shadow-cljs {:mvn/version "3.2.1"}}
+        thheller/shadow-cljs {:mvn/version "3.2.1"}
+        org.babashka/sci {:mvn/version "0.8.41"}}
  :mvn/repos {"clojars" {:url "https://repo.clojars.org/"}}}
