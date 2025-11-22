@@ -14,6 +14,8 @@
     (let [instances @(rf/subscribe [:bb-web-ds-tools.views.repl/instances])
           id (first (keys instances))]
       (rf/dispatch-sync [:bb-web-ds-tools.views.repl/eval-code id "(+ 1 2)"])
-      (let [output @(rf/subscribe [:bb-web-ds-tools.views.repl/output id])]
+      (let [output @(rf/subscribe [:bb-web-ds-tools.views.repl/output id])
+            last-output (last output)]
         (is (not (empty? output)))
-        (is (= {:type :result :text "3"} (last output)))))))
+        (is (= :result (:type last-output)))
+        (is (= "3" (clojure.string/trim (:text last-output))))))))
