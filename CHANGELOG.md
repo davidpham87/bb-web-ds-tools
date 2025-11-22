@@ -11,3 +11,7 @@ All notable changes to this project will be documented in this file.
 - **Vega-Lite**: Client-side data visualization.
 - **Gemma**: Local LLM integration using MediaPipe.
 - **Editor**: CodeMirror scratchpad.
+
+### Changed
+- Refactored project structure: moved tool panels to `src/bb_web_ds_tools/views/` and shared components to `src/bb_web_ds_tools/components/`.
+- Updated application layout to a dark "Gemini CLI" theme.
