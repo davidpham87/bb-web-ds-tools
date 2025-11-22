@@ -113,7 +113,7 @@
         [:div.space-y-4
          [:div.bg-gray-800.rounded-lg.p-6.border.border-gray-700.shadow-lg
           [:h3.text-lg.font-bold.text-white.mb-4 "Code"]
-          [:div.bg-white.rounded.overflow-hidden.h-96
+          [:div.bg-white.rounded.overflow-hidden.h-64
            [editor/monaco-editor {:value code
                                   :language "python"
                                   :on-change #(rf/dispatch [::set-code %])}]]
