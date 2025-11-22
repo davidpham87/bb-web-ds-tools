@@ -139,7 +139,7 @@
 (defn key-chord [first-part second-part]
   (bit-or first-part (bit-shift-left second-part 16)))
 
-(defn setup-editor-actions [editor instance-id]
+(defn setup-editor-actions [^js editor instance-id]
   (let [eval-action (fn [code]
                       (rf/dispatch [::eval-code instance-id code]))]
     ;; Ctrl+Enter or Cmd+Enter to eval all
@@ -148,7 +148,7 @@
                           :label "Evaluate Buffer"
                           :keybindings [
                                         (bit-or KeyMod.CtrlCmd KeyCode.Enter)]
-                          :run (fn [ed]
+                          :run (fn [^js ed]
                                  (eval-action (.getValue ed)))}))
     ;; C-x C-e to eval form before cursor
     (.addAction editor
@@ -158,7 +158,7 @@
                                         (key-chord
                                          (bit-or KeyMod.WinCtrl KeyCode.KeyX)
                                          (bit-or KeyMod.WinCtrl KeyCode.KeyE))]
-                          :run (fn [ed]
+                          :run (fn [^js ed]
                                  (let [pos (.getPosition ed)
                                        offset (.getOffsetAt (.getModel ed) pos)
                                        code (.getValue ed)
