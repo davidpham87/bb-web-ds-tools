@@ -90,7 +90,7 @@
 (rf/reg-event-fx
  ::run-code
  (fn [{:keys [db]} _]
-   {:fx [[::execute-python (::code db)]]}))
+   {:fx [[::execute-python (get-in db [:user-input :pyodide :default ::code])]]}))
 
 ;; View
 (defn panel []
