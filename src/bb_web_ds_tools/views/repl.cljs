@@ -50,6 +50,30 @@
 ;; Atom to store the keydown listener function for proper removal
 (defonce keydown-listener-atom (r/atom nil))
 
+
+(defn- code-editor [{:keys [instance-id]}]
+  (let [path [:repl :instances instance-id :form]
+        code @(rf/subscribe [::code instance-id])]
+    [fork/form {:initial-values {"code" code}
+                :keywordize-keys true
+                :path path
+                :prevent-default? true
+                :clean-on-unmount? true
+                :on-submit (fn [{:keys [values]}]
+                             (rf/dispatch [::eval-code instance-id (:code values)]))}
+     (fn [{:keys [values set-values handle-submit]}]
+       [:div
+        [:div.flex-grow.relative.h-64
+         [editor-comp/monaco-editor {:value (:code values)
+                                     :on-change #(set-values {:code %})
+                                     :on-focus #(reset! active-instance-id instance-id)
+                                     :on-blur #(reset! active-instance-id nil)}]]
+        [:div.flex.justify-end.mt-2
+         [:button.bg-blue-600.text-white.px-6.py-2.rounded.shadow.hover:bg-blue-700.transition
+          {:on-click handle-submit}
+          "Evaluate"]]] )]))
+
+
 (defn- repl-instance [{:keys [instance-id]}]
   (let [code @(rf/subscribe [::code instance-id])
         output @(rf/subscribe [::output instance-id])]
