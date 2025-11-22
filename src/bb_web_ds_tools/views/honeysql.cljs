@@ -8,36 +8,44 @@
 (rf/reg-event-db
   :honeysql/initialize
   (fn [db _]
-    (merge db {:honeysql-input ""
-               :honeysql-output ""})))
+    (assoc-in db [:user-input :honeysql :default]
+              {:input ""
+               :output ""})))
 
 (rf/reg-event-db
   :honeysql/update-input
   (fn [db [_ text]]
-    (assoc db :honeysql-input text)))
+    (assoc-in db [:user-input :honeysql :default :input] text)))
 
 (rf/reg-event-fx
   :honeysql/convert-to-sql
   (fn [{:keys [db]} _]
-    (let [input-text (:honeysql-input db)
+    (let [input-text (get-in db [:user-input :honeysql :default :input])
           input-data (try (reader/read-string input-text) (catch js/Error e nil))]
       (if input-data
         (try
-          {:db (assoc db :honeysql-output (first (h/format input-data)))} ;; h/format returns [sql params], take first for sql string if no params
+          {:db (assoc-in db [:user-input :honeysql :default :output] (first (h/format input-data)))} ;; h/format returns [sql params], take first for sql string if no params
           (catch js/Error e
-            {:db (assoc db :honeysql-output (str "Error: " (.-message e)))}))
-        {:db (assoc db :honeysql-output "Invalid Honeysql data.")}))))
+            {:db (assoc-in db [:user-input :honeysql :default :output] (str "Error: " (.-message e)))}))
+        {:db (assoc-in db [:user-input :honeysql :default :output] "Invalid Honeysql data.")}))))
 
 ;; Subscriptions
 (rf/reg-sub
-  :honeysql/input
+  :honeysql/root
   (fn [db _]
-    (:honeysql-input db)))
+    (get-in db [:user-input :honeysql :default])))
+
+(rf/reg-sub
+  :honeysql/input
+  :<- [:honeysql/root]
+  (fn [root _]
+    (:input root)))
 
 (rf/reg-sub
   :honeysql/output
-  (fn [db _]
-    (:honeysql-output db)))
+  :<- [:honeysql/root]
+  (fn [root _]
+    (:output root)))
 
 ;; UI components
 (defn panel []
