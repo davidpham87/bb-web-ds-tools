@@ -3,8 +3,7 @@
             [re-frame.core :as rf]
             [goog.object :as gobj]
             [bb-web-ds-tools.components.common :as c]
-            [bb-web-ds-tools.components.editor :as editor]
-            ["codemirror/mode/python/python"])) ;; Load python mode
+            [bb-web-ds-tools.components.editor :as editor]))
 
 ;; State initialization
 (rf/reg-event-db
@@ -109,10 +108,10 @@
         [:div.space-y-4
          [:div.bg-gray-800.rounded-lg.p-6.border.border-gray-700.shadow-lg
           [:h3.text-lg.font-bold.text-white.mb-4 "Code"]
-          [:div.bg-white.rounded.overflow-hidden
-           [editor/codemirror-editor {:value code
-                                      :mode "python"
-                                      :on-change #(rf/dispatch [::set-code %])}]]
+          [:div.bg-white.rounded.overflow-hidden.h-96
+           [editor/monaco-editor {:value code
+                                  :language "python"
+                                  :on-change #(rf/dispatch [::set-code %])}]]
           [:div.mt-4.flex.justify-end
            [c/button {:on-click #(rf/dispatch [::run-code])} "Run"]]]]
 

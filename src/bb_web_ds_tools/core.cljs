@@ -48,6 +48,8 @@
     {:name :vega-lite}]
    ["gemma"
     {:name :gemma}]
+   ["pyodide"
+    {:name :pyodide}]
    ["editor"
     {:name :editor}]
    ["repl"
@@ -131,15 +133,15 @@
          "BB Web DS Tools"]]
        ;; Desktop Menu
        [:div {:class "hidden md:flex space-x-2"}
-        [nav-item "Home" :landing active-tab]
-        [nav-item "Malli" :malli active-tab]
-        [nav-item "HoneySQL" :honeysql active-tab]
-        [nav-item "Vega-Lite" :vega-lite active-tab]
-        [nav-item "Gemma" :gemma active-tab]
-        [nav-item "Pyodide" :pyodide active-tab]
-        [nav-item "Editor" :editor active-tab]
-        [nav-item "Repl" :repl active-tab]
-        [nav-item "Changelog" :changelog active-tab]]]]]))
+        [nav-item "Home" :landing current-route-name]
+        [nav-item "Malli" :malli current-route-name]
+        [nav-item "HoneySQL" :honeysql current-route-name]
+        [nav-item "Vega-Lite" :vega-lite current-route-name]
+        [nav-item "Gemma" :gemma current-route-name]
+        [nav-item "Pyodide" :pyodide current-route-name]
+        [nav-item "Editor" :editor current-route-name]
+        [nav-item "Repl" :repl current-route-name]
+        [nav-item "Changelog" :changelog current-route-name]]]]]))
 
 
 (defn main-panel []
