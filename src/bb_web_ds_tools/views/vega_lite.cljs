@@ -16,29 +16,30 @@
 (rf/reg-event-db
  ::initialize
  (fn [db _]
-   (assoc db
-          ::data-input ""
-          ::config-input "{\n  \"$schema\": \"https://vega.github.io/schema/vega-lite/v5.json\",\n  \"mark\": \"bar\",\n  \"encoding\": {\n    \"x\": {\"field\": \"col1\", \"type\": \"ordinal\"},\n    \"y\": {\"field\": \"col2\", \"type\": \"quantitative\"}\n  }\n}"
-          ::format :csv
-          ::parsed-data nil
-          ::inferred-schema nil
-          ::active-sub-tab :plot
-          ::builder-state {:x nil :y nil :color nil :mark "bar" :ops #{}})))
+   (assoc-in db [:user-input :vega-lite :default]
+             {::data-input ""
+              ::config-input "{\n  \"$schema\": \"https://vega.github.io/schema/vega-lite/v5.json\",\n  \"mark\": \"bar\",\n  \"encoding\": {\n    \"x\": {\"field\": \"col1\", \"type\": \"ordinal\"},\n    \"y\": {\"field\": \"col2\", \"type\": \"quantitative\"}\n  }\n}"
+              ::format :csv
+              ::parsed-data nil
+              ::inferred-schema nil
+              ::active-sub-tab :plot
+              ::builder-state {:x nil :y nil :color nil :mark "bar" :ops #{}}})))
 
-(rf/reg-sub ::data-input (fn [db] (::data-input db)))
-(rf/reg-sub ::config-input (fn [db] (::config-input db)))
-(rf/reg-sub ::format (fn [db] (::format db)))
-(rf/reg-sub ::parsed-data (fn [db] (::parsed-data db)))
-(rf/reg-sub ::inferred-schema (fn [db] (::inferred-schema db)))
-(rf/reg-sub ::active-sub-tab (fn [db] (::active-sub-tab db)))
-(rf/reg-sub ::builder-state (fn [db] (::builder-state db)))
+(rf/reg-sub ::root (fn [db] (get-in db [:user-input :vega-lite :default])))
+(rf/reg-sub ::data-input :<- [::root] (fn [root] (::data-input root)))
+(rf/reg-sub ::config-input :<- [::root] (fn [root] (::config-input root)))
+(rf/reg-sub ::format :<- [::root] (fn [root] (::format root)))
+(rf/reg-sub ::parsed-data :<- [::root] (fn [root] (::parsed-data root)))
+(rf/reg-sub ::inferred-schema :<- [::root] (fn [root] (::inferred-schema root)))
+(rf/reg-sub ::active-sub-tab :<- [::root] (fn [root] (::active-sub-tab root)))
+(rf/reg-sub ::builder-state :<- [::root] (fn [root] (::builder-state root)))
 
-(rf/reg-event-db ::set-data-input (fn [db [_ val]] (assoc db ::data-input val)))
-(rf/reg-event-db ::set-config-input (fn [db [_ val]] (assoc db ::config-input val)))
-(rf/reg-event-db ::set-format (fn [db [_ fmt]] (assoc db ::format fmt)))
-(rf/reg-event-db ::set-active-sub-tab (fn [db [_ tab]] (assoc db ::active-sub-tab tab)))
-(rf/reg-event-db ::set-inferred-schema (fn [db [_ schema]] (assoc db ::inferred-schema schema)))
-(rf/reg-event-db ::update-builder-state (fn [db [_ k v]] (assoc-in db [::builder-state k] v)))
+(rf/reg-event-db ::set-data-input (fn [db [_ val]] (assoc-in db [:user-input :vega-lite :default ::data-input] val)))
+(rf/reg-event-db ::set-config-input (fn [db [_ val]] (assoc-in db [:user-input :vega-lite :default ::config-input] val)))
+(rf/reg-event-db ::set-format (fn [db [_ fmt]] (assoc-in db [:user-input :vega-lite :default ::format] fmt)))
+(rf/reg-event-db ::set-active-sub-tab (fn [db [_ tab]] (assoc-in db [:user-input :vega-lite :default ::active-sub-tab] tab)))
+(rf/reg-event-db ::set-inferred-schema (fn [db [_ schema]] (assoc-in db [:user-input :vega-lite :default ::inferred-schema] schema)))
+(rf/reg-event-db ::update-builder-state (fn [db [_ k v]] (assoc-in db [:user-input :vega-lite :default ::builder-state k] v)))
 
 ;; --- Parsing ---
 
@@ -78,8 +79,9 @@
 (rf/reg-event-db
  ::parse-data
  (fn [db _]
-   (let [text (::data-input db)
-         fmt (::format db)
+   (let [root (get-in db [:user-input :vega-lite :default])
+         text (::data-input root)
+         fmt (::format root)
          parsed (case fmt
                   :csv (parse-csv text)
                   :tsv (parse-tsv text)
@@ -87,7 +89,7 @@
                   :markdown (parse-markdown text)
                   [])
          schema (try (mp/provide parsed) (catch js/Error e (str "Error inferring schema: " (.-message e))))]
-     (assoc db ::parsed-data parsed ::inferred-schema schema))))
+     (update-in db [:user-input :vega-lite :default] assoc ::parsed-data parsed ::inferred-schema schema))))
 
 ;; --- Components ---
 
@@ -175,10 +177,11 @@
 (rf/reg-event-fx
  ::apply-builder
  (fn [{:keys [db]} _]
-   (let [state (::builder-state db)
-         schema (::inferred-schema db)
+   (let [root (get-in db [:user-input :vega-lite :default])
+         state (::builder-state root)
+         schema (::inferred-schema root)
          config (generate-config state schema)]
-     {:db (assoc db ::config-input config)})))
+     {:db (assoc-in db [:user-input :vega-lite :default ::config-input] config)})))
 
 (defn builder-panel []
   (let [schema @(rf/subscribe [::inferred-schema])

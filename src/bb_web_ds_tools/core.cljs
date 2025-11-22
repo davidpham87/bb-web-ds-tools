@@ -79,20 +79,32 @@
  ::initialize-db
  (fn [_ _]
    (let [repl-id (str (random-uuid))]
-     {:code "initial code"
-      :repl {:instances {repl-id {:id repl-id
-                                  :code ""
-                                  :output []}}}})))
+     {:user-input {:editor {:default {:code "initial code"}}
+                   :repl {repl-id {:id repl-id
+                                   :code ""
+                                   :output []}}}})))
+
+(rf/reg-sub
+ ::user-input
+ (fn [db]
+   (:user-input db)))
+
+(rf/reg-sub
+ ::editor
+ :<- [::user-input]
+ (fn [user-input]
+   (get-in user-input [:editor :default])))
 
 (rf/reg-sub
  ::code
- (fn [db]
-   (:code db)))
+ :<- [::editor]
+ (fn [editor]
+   (:code editor)))
 
 (rf/reg-event-db
  ::code-changed
  (fn [db [_ new-code]]
-   (assoc db :code new-code)))
+   (assoc-in db [:user-input :editor :default :code] new-code)))
 
 ;; --- Views ---
 

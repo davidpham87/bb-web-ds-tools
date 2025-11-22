@@ -9,27 +9,32 @@
 (rf/reg-event-db
  ::initialize
  (fn [db _]
-   (assoc db
-          ::loading? false
-          ::ready? false
-          ::error nil
-          ::code "print('Hello from Pyodide!')\nimport sys\nprint(sys.version)"
-          ::output "")))
+   (assoc-in db [:user-input :pyodide :default]
+             {::loading? false
+              ::ready? false
+              ::error nil
+              ::code "print('Hello from Pyodide!')\nimport sys\nprint(sys.version)"
+              ::output ""})))
 
 ;; Subscriptions
-(rf/reg-sub ::loading? (fn [db] (::loading? db)))
-(rf/reg-sub ::ready? (fn [db] (::ready? db)))
-(rf/reg-sub ::error (fn [db] (::error db)))
-(rf/reg-sub ::code (fn [db] (::code db)))
-(rf/reg-sub ::output (fn [db] (::output db)))
+(rf/reg-sub
+ ::root
+ (fn [db _]
+   (get-in db [:user-input :pyodide :default])))
+
+(rf/reg-sub ::loading? :<- [::root] (fn [root] (::loading? root)))
+(rf/reg-sub ::ready? :<- [::root] (fn [root] (::ready? root)))
+(rf/reg-sub ::error :<- [::root] (fn [root] (::error root)))
+(rf/reg-sub ::code :<- [::root] (fn [root] (::code root)))
+(rf/reg-sub ::output :<- [::root] (fn [root] (::output root)))
 
 ;; Events
-(rf/reg-event-db ::set-loading (fn [db [_ v]] (assoc db ::loading? v)))
-(rf/reg-event-db ::set-ready (fn [db [_ v]] (assoc db ::ready? v)))
-(rf/reg-event-db ::set-error (fn [db [_ v]] (assoc db ::error v ::loading? false)))
-(rf/reg-event-db ::set-code (fn [db [_ v]] (assoc db ::code v)))
-(rf/reg-event-db ::append-output (fn [db [_ v]] (update db ::output str v "\n")))
-(rf/reg-event-db ::clear-output (fn [db _] (assoc db ::output "")))
+(rf/reg-event-db ::set-loading (fn [db [_ v]] (assoc-in db [:user-input :pyodide :default ::loading?] v)))
+(rf/reg-event-db ::set-ready (fn [db [_ v]] (assoc-in db [:user-input :pyodide :default ::ready?] v)))
+(rf/reg-event-db ::set-error (fn [db [_ v]] (update-in db [:user-input :pyodide :default] assoc ::error v ::loading? false)))
+(rf/reg-event-db ::set-code (fn [db [_ v]] (assoc-in db [:user-input :pyodide :default ::code] v)))
+(rf/reg-event-db ::append-output (fn [db [_ v]] (update-in db [:user-input :pyodide :default ::output] str v "\n")))
+(rf/reg-event-db ::clear-output (fn [db _] (assoc-in db [:user-input :pyodide :default ::output] "")))
 
 ;; Pyodide Loader
 (defn load-script [src on-load on-error]
@@ -63,7 +68,7 @@
 (rf/reg-event-fx
  ::initialize-runtime
  (fn [{:keys [db]} _]
-   {:db (assoc db ::loading? true ::error nil)
+   {:db (update-in db [:user-input :pyodide :default] assoc ::loading? true ::error nil)
     :fx [[::load-runtime]]}))
 
 ;; Execution
