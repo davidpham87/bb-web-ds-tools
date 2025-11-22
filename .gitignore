@@ -19,3 +19,5 @@ target/
 .m2/
 public/js/
 *gemini_chat.md
+.lsp/
+.clj-kondo/
