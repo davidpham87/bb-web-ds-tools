@@ -5,7 +5,8 @@
 
 (defn monaco-editor-inner [_]
   (let [editor-instance (r/atom nil)
-        subscription (r/atom nil)]
+        subscription (r/atom nil)
+        retry-timer (r/atom nil)]
     (r/create-class
      {:displayName "monaco-editor"
       :component-did-mount
@@ -57,6 +58,8 @@
 
       :component-will-unmount
       (fn [this]
+        (when-let [timer @retry-timer]
+          (js/clearTimeout timer))
         (when-let [sub @subscription]
           (.dispose sub))
         (when-let [editor @editor-instance]

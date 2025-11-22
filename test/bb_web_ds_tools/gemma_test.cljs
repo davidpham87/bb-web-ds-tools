@@ -8,9 +8,9 @@
   (testing "initial state"
     (rf/dispatch-sync [::gemma/initialize])
     (let [db @rf-db/app-db]
-      (is (= [] (:gemma/messages db)))
-      (is (= false (:gemma/loading? db)))
-      (is (= nil (:gemma/error db)))))
+      (is (= [] (::gemma/messages db)))
+      (is (= false (::gemma/loading? db)))
+      (is (= nil (::gemma/error db)))))
 
   (testing "add message"
     (rf/dispatch-sync [::gemma/add-message :user "Hello"])
