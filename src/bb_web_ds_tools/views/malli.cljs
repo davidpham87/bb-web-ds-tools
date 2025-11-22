@@ -83,7 +83,7 @@
      [c/page-header "Malli Tools"]
 
      ;; Schema Inference Section
-     [c/card
+     [c/card {}
       [:div
        [:h3 {:class "text-xl font-semibold text-white mb-4 flex items-center gap-2"}
         [:span "🧩"] "Schema Inference"]
@@ -101,7 +101,7 @@
          [c/pre-block {:content inferred-schema :class "h-64"}]]]]]
 
      ;; Data Generation Section
-     [c/card
+     [c/card {}
       [:div
        [:h3 {:class "text-xl font-semibold text-white mb-4 flex items-center gap-2"}
         [:span "🎲"] "Data Generation"]
