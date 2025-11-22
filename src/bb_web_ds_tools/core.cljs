@@ -5,7 +5,8 @@
             [bb-web-ds-tools.honeysql-tools :as honeysql-tools]
             [bb-web-ds-tools.ui.core :as ui]
             [bb-web-ds-tools.vega-lite :as vega]
-            [bb-web-ds-tools.gemma :as gemma]))
+            [bb-web-ds-tools.gemma :as gemma]
+            [bb-web-ds-tools.repl :as repl]))
 
 (rf/reg-sub
  ::active-tab
@@ -48,7 +49,8 @@
      [nav-item "Vega Lite" :vega-lite]
      [nav-item "Malli Tools" :malli]
      [nav-item "Honeysql Tools" :honeysql]
-     [nav-item "Gemma" :gemma]]]])
+     [nav-item "Gemma" :gemma]
+     [nav-item "REPL" :repl]]]])
 
 (defn main-panel []
   (let [active-tab @(rf/subscribe [::active-tab])]
@@ -60,6 +62,7 @@
        :malli [malli-tools/malli-tools-panel]
        :honeysql [honeysql-tools/honeysql-tools-panel]
        :gemma [gemma/gemma-page]
+       :repl [repl/repl-panel]
        [:div "Select a tool"])]))
 
 (defn app []
