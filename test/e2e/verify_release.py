@@ -44,6 +44,11 @@ def verify():
 
             for label, expected_text in nav_checks.items():
                 print(f"Navigating to {label}...")
+
+                # Open the menu first if it's closed (simple check or always click)
+                # Since navigation closes the menu, we should click it every time
+                page.click("text=Menu ▾")
+
                 # Click the navigation link.
                 # The nav items are <a> tags with the text.
                 page.click(f"nav a:has-text('{label}')")
