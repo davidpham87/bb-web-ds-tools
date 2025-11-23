@@ -191,9 +191,8 @@
      [l/flex-row {:class (str "flex-wrap gap-4 items-end " t/bg-toolbar " p-4 rounded shadow-sm")}
       [:div
        [c/label "Rows"]
-       [:select {:class (str t/bg-input " " t/text-primary " p-2 rounded border " t/border-default)
-                 :value rows-per-page
-                 :on-change #(rf/dispatch [::update-view-state id :rows-per-page (js/parseInt (.. % -target -value))])}
+       [c/select {:value rows-per-page
+                  :on-change #(rf/dispatch [::update-view-state id :rows-per-page (js/parseInt (.. % -target -value))])}
         [:option {:value 5} "5"]
         [:option {:value 10} "10"]
         [:option {:value 25} "25"]
@@ -205,9 +204,10 @@
         [:div {:class (str "absolute hidden group-hover:block " t/bg-input " border " t/border-default " p-2 rounded shadow-lg z-10 w-48 max-h-60 overflow-y-auto")}
          (for [col columns]
            [:div {:key col :class (str "flex items-center space-x-2 p-1 " t/bg-item-hover)}
-            [:input {:type "checkbox"
-                     :checked (not (contains? hidden-columns col))
-                     :on-change #(if (contains? hidden-columns col)
+            [c/input {:type "checkbox"
+                      :class "w-auto"
+                      :checked (not (contains? hidden-columns col))
+                      :on-change #(if (contains? hidden-columns col)
                                    (rf/dispatch [::update-view-state id :hidden-columns (disj hidden-columns col)])
                                    (rf/dispatch [::update-view-state id :hidden-columns (conj hidden-columns col)]))}]
             [:span {:class t/text-primary} (name col)]])]]]
@@ -221,36 +221,36 @@
                      :disabled (>= end-idx total-rows)} "Next"]]]
 
      ;; Table
-     [:div {:class (str "overflow-x-auto " t/bg-table-body " rounded shadow-md border " t/border-subtle)}
-      [:table {:class (str "min-w-full divide-y " t/border-subtle)}
-       [:thead {:class t/bg-table-head}
-        [:tr
+     [c/table-container {}
+      [c/table {}
+       [c/thead {}
+        [c/tr {}
          (for [col visible-columns]
-           [:th {:key col
-                 :class (str "px-6 py-3 text-left text-xs font-medium " t/text-accent " uppercase tracking-wider cursor-pointer " t/bg-item-hover)
-                 :on-click #(let [new-dir (if (and (= sort-col col) (= sort-dir :asc)) :desc :asc)]
+           [c/th {:key col
+                  :class (str "cursor-pointer " t/bg-item-hover)
+                  :on-click #(let [new-dir (if (and (= sort-col col) (= sort-dir :asc)) :desc :asc)]
                               (rf/dispatch [::update-view-state id :sort-col col])
                               (rf/dispatch [::update-view-state id :sort-dir new-dir]))}
             [:div {:class "flex items-center space-x-1"}
              [:span (name col)]
              (when (= sort-col col)
                [:span (if (= sort-dir :asc) "▲" "▼")])]])]]
-       [:tbody {:class (str t/bg-table-body " divide-y " t/border-subtle)}
+       [c/tbody {}
         ;; Filter Row
-        [:tr
+        [c/tr {}
          (for [col visible-columns]
-           [:td {:key (str "filter-" col) :class "px-6 py-2"}
-            [:input {:class (str "w-full text-sm " t/bg-input " " t/text-primary " " t/border-default " rounded px-2 py-1 border " t/border-focus " " t/outline-none)
-                     :placeholder (str "Filter " (name col))
-                     :value (get filters col "")
-                     :on-change #(rf/dispatch [::update-view-state id :filters (assoc filters col (.. % -target -value))])}]])]
+           [c/td {:key (str "filter-" col) :class "px-6 py-2"}
+            [c/input {:class "text-sm"
+                      :placeholder (str "Filter " (name col))
+                      :value (get filters col "")
+                      :on-change #(rf/dispatch [::update-view-state id :filters (assoc filters col (.. % -target -value))])}]])]
         ;; Data Rows
         (for [row page-data]
           (let [row-uuid (:_uuid row)]
-            [:tr {:key row-uuid :class (str t/bg-table-row-hover " transition-colors")}
+            [c/tr {:key row-uuid}
              (for [col visible-columns]
-               [:td {:key col :class (str "px-6 py-4 whitespace-nowrap text-sm " t/text-primary)}
-                [:input {:class (str "w-full bg-transparent focus:" t/bg-input " focus:ring-1 " t/ring-focus " rounded px-1 outline-none")
+               [c/td {:key col}
+                [c/input {:class (str "bg-transparent focus:" t/bg-input " focus:ring-1 " t/ring-focus " rounded px-1 outline-none border-0")
                          :value (get row col "")
                          :on-change #(rf/dispatch [::update-cell id row-uuid col (.. % -target -value)])}]])]))]]]
      ]))
