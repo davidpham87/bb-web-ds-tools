@@ -9,29 +9,17 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/${{ github.repository }}:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
     - uses: actions/checkout@v3
 
-    - name: Set up Java
-      uses: actions/setup-java@v3
-      with:
-        distribution: 'temurin'
-        java-version: '21'
-
-    - name: Setup Clojure and Babashka
-      uses: DeLaGuardo/setup-clojure@master
-      with:
-        cli: 'latest'
-        bb: 'latest'
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-
-    - name: Install dependencies
-      run: npm install
+    - name: Link node_modules
+      run: ln -s /opt/app/node_modules .
 
     - name: Run functional tests
       run: npm test
