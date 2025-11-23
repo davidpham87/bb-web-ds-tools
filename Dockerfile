@@ -42,11 +42,17 @@ RUN apt-get update && apt-get install -y chromium-browser \
     && rm -rf /var/lib/apt/lists/*
 ENV CHROME_BIN=/usr/bin/chromium-browser
 
-# Pre-install npm dependencies to /opt/app
+# Pre-install npm dependencies and Clojure dependencies to /opt/app
 # We use /opt/app so it doesn't conflict with /github/workspace mount but can be referenced
 RUN mkdir -p /opt/app
-COPY package.json /opt/app/package.json
 WORKDIR /opt/app
+
+# Cache Clojure deps
+COPY deps.edn /opt/app/deps.edn
+RUN clojure -P
+
+# Cache npm deps
+COPY package.json /opt/app/package.json
 RUN npm install
 
 # Set environment variables to use the pre-installed modules
