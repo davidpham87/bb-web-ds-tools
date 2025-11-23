@@ -13,6 +13,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         super().__init__(*args, directory=DIRECTORY, **kwargs)
 
 def serve():
+    # Allow reuse address to avoid "Address already in use" errors on restart
+    socketserver.TCPServer.allow_reuse_address = True
     with socketserver.TCPServer(("", PORT), Handler) as httpd:
         print(f"Serving {DIRECTORY} at http://localhost:{PORT}")
         httpd.serve_forever()
@@ -29,8 +31,6 @@ def verify():
             print("Landing page loaded.")
 
             # Navigation items to check
-            # Key is the text in the navbar to click
-            # Value is the text expected to be found on the resulting page
             nav_checks = {
                 "Malli": "Malli Tools",
                 "HoneySQL": "HoneySQL Tools",
@@ -45,13 +45,18 @@ def verify():
             for label, expected_text in nav_checks.items():
                 print(f"Navigating to {label}...")
 
-                # Open the menu first if it's closed (simple check or always click)
-                # Since navigation closes the menu, we should click it every time
-                page.click("text=Menu ▾")
+                # Open the menu. It might be "Menu ▾" or "≡" or just a button in nav.
+                # We try to click the button in the nav bar that isn't the Home link.
+                try:
+                    page.click("text=Menu ▾", timeout=1000)
+                except:
+                    # Fallback to hamburger "≡" or generic nav button
+                    page.click("nav button")
 
                 # Click the navigation link.
                 # The nav items are <a> tags with the text.
-                page.click(f"nav a:has-text('{label}')")
+                page.click(f"nav a:has-text('{label}'), .fixed a:has-text('{label}')")
+                # Note: .fixed selector is for the drawer if it's outside nav
 
                 # Wait for the expected text to appear
                 try:
@@ -59,7 +64,6 @@ def verify():
                     print(f"Verified {label} page.")
                 except Exception as e:
                     print(f"Failed to verify {label} page. Content '{expected_text}' not found.")
-                    # Capture screenshot if verification fails
                     page.screenshot(path=f"error_{label}.png")
                     raise e
 
@@ -72,11 +76,9 @@ def verify():
             browser.close()
 
 if __name__ == "__main__":
-    # Start server in background thread
     server_thread = threading.Thread(target=serve, daemon=True)
     server_thread.start()
 
-    # Give server a second to start
     time.sleep(2)
 
     verify()

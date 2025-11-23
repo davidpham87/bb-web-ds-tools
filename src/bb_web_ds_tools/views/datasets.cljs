@@ -133,6 +133,16 @@
  (fn [db [_ id key value]]
    (assoc-in db [:user-input :datasets :items id :view-state key] value)))
 
+;; --- UI Helpers ---
+
+(defn get-data-class [val]
+  (cond
+    (string? val) "text-data-string"
+    (number? val) "text-data-int"
+    (boolean? val) (if val "text-data-bool-true" "text-data-bool-false")
+    (nil? val) "text-data-null italic"
+    :else "text-gray-300"))
+
 ;; --- UI Components ---
 
 (defn file-importer []
@@ -141,7 +151,7 @@
     (fn []
       [:div {:class "space-y-4"}
        [:div {:class "flex space-x-2"}
-        [:select {:class "bg-gray-700 text-white p-2 rounded"
+        [:select {:class "bg-surface text-gray-200 p-2 rounded border border-subtle focus:border-focus-blue focus:outline-none"
                   :value @fmt
                   :on-change #(reset! fmt (keyword (.. % -target -value)))}
          [:option {:value :csv} "CSV"]
@@ -156,10 +166,10 @@
        [c/textarea {:value @text
                     :on-change #(reset! text (.. % -target -value))
                     :placeholder "Paste data here..."
-                    :class "h-32"}]
+                    :class "h-32 font-code"}]
        [:div
         [:input {:type "file"
-                 :class "text-gray-400"
+                 :class "text-gray-400 font-ui text-sm file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-floating file:text-gray-200 hover:file:bg-surface"
                  :on-change (fn [e]
                               (let [file (-> e .-target .-files (aget 0))
                                     reader (js/FileReader.)]
@@ -195,12 +205,12 @@
         page-data (subvec (vec sorted-data) start-idx end-idx)
         visible-columns (remove hidden-columns columns)]
 
-    [:div {:class "space-y-4"}
+    [:div {:class "space-y-4 font-code"}
      ;; Toolbar
-     [:div {:class "flex flex-wrap gap-4 items-end bg-gray-900 p-4 rounded"}
+     [:div {:class "flex flex-wrap gap-4 items-end bg-surface p-4 rounded border border-subtle"}
       [:div
        [c/label "Rows per page"]
-       [:select {:class "bg-gray-800 text-white p-2 rounded border border-gray-700"
+       [:select {:class "bg-canvas text-gray-200 p-2 rounded border border-subtle focus:border-focus-blue focus:outline-none"
                  :value rows-per-page
                  :on-change #(rf/dispatch [::update-view-state id :rows-per-page (js/parseInt (.. % -target -value))])}
         [:option {:value 5} "5"]
@@ -211,18 +221,18 @@
       [:div
        [c/label "Columns"]
        [:div {:class "relative group"}
-        [:button {:class "bg-gray-800 text-white px-4 py-2 rounded border border-gray-700"} "Select Columns"]
-        [:div {:class "absolute hidden group-hover:block bg-gray-800 border border-gray-700 p-2 rounded shadow-lg z-10 w-48 max-h-60 overflow-y-auto"}
+        [:button {:class "bg-canvas text-gray-200 px-4 py-2 rounded border border-subtle hover:bg-floating"} "Select Columns"]
+        [:div {:class "absolute hidden group-hover:block bg-floating border border-subtle p-2 rounded shadow-floating z-10 w-48 max-h-60 overflow-y-auto"}
          (for [col columns]
-           [:div {:key col :class "flex items-center space-x-2 p-1 hover:bg-gray-700"}
+           [:div {:key col :class "flex items-center space-x-2 p-1 hover:bg-surface"}
             [:input {:type "checkbox"
                      :checked (not (contains? hidden-columns col))
                      :on-change #(if (contains? hidden-columns col)
                                    (rf/dispatch [::update-view-state id :hidden-columns (disj hidden-columns col)])
                                    (rf/dispatch [::update-view-state id :hidden-columns (conj hidden-columns col)]))}]
-            [:span (name col)]])]]]
+            [:span {:class "text-gray-200"} (name col)]])]]]
       [:div {:class "flex-grow"}]
-      [:div {:class "text-sm text-gray-400"}
+      [:div {:class "text-sm text-gray-400 font-ui"}
        (str "Showing " (inc start-idx) "-" end-idx " of " total-rows)]
       [:div {:class "flex space-x-2"}
        [c/button-xs {:on-click #(rf/dispatch [::update-view-state id :page (dec page)])
@@ -231,76 +241,78 @@
                      :disabled (>= end-idx total-rows)} "Next"]]]
 
      ;; Table
-     [:div {:class "overflow-x-auto bg-white rounded shadow"}
-      [:table {:class "min-w-full divide-y divide-gray-200"}
-       [:thead {:class "bg-gray-50"}
+     [:div {:class "overflow-x-auto bg-surface rounded shadow-md border border-subtle"}
+      [:table {:class "min-w-full text-left border-collapse"}
+       [:thead {:class "bg-canvas"}
         [:tr
          (for [col visible-columns]
            [:th {:key col
-                 :class "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
+                 :class "px-3 py-2 text-left text-xs font-ui font-bold text-data-key uppercase tracking-wider cursor-pointer hover:bg-surface border-b border-subtle"
                  :on-click #(let [new-dir (if (and (= sort-col col) (= sort-dir :asc)) :desc :asc)]
                               (rf/dispatch [::update-view-state id :sort-col col])
                               (rf/dispatch [::update-view-state id :sort-dir new-dir]))}
             [:div {:class "flex items-center space-x-1"}
              [:span (name col)]
              (when (= sort-col col)
-               [:span (if (= sort-dir :asc) "▲" "▼")])]])]]
-       [:tbody {:class "bg-white divide-y divide-gray-200"}
+               [:span {:class "text-gray-400"} (if (= sort-dir :asc) "▲" "▼")])]])]]
+       [:tbody {:class "bg-surface divide-y divide-[#30363D]"}
         ;; Filter Row
         [:tr
          (for [col visible-columns]
-           [:td {:key (str "filter-" col) :class "px-6 py-2"}
-            [:input {:class "w-full text-sm border-gray-300 rounded px-2 py-1 border"
+           [:td {:key (str "filter-" col) :class "px-3 py-2 border-b border-subtle"}
+            [:input {:class "w-full text-sm bg-canvas text-gray-200 border border-subtle rounded px-2 py-1 focus:border-focus-blue focus:outline-none"
                      :placeholder (str "Filter " (name col))
                      :value (get filters col "")
                      :on-change #(rf/dispatch [::update-view-state id :filters (assoc filters col (.. % -target -value))])}]])]
         ;; Data Rows
         (for [row page-data]
           (let [row-uuid (:_uuid row)]
-            [:tr {:key row-uuid :class "hover:bg-gray-50"}
+            [:tr {:key row-uuid :class "hover:bg-white/5 transition-colors h-8"}
              (for [col visible-columns]
-               [:td {:key col :class "px-6 py-4 whitespace-nowrap text-sm text-gray-900"}
-                [:input {:class "w-full bg-transparent focus:bg-white focus:ring-1 focus:ring-blue-500 rounded px-1"
-                         :value (get row col "")
-                         :on-change #(rf/dispatch [::update-cell id row-uuid col (.. % -target -value)])}]])]))]]]
+               (let [val (get row col "")
+                     data-class (get-data-class val)]
+                 [:td {:key col :class "px-3 py-0 whitespace-nowrap text-sm border-b border-subtle"}
+                  [:input {:class (str "w-full bg-transparent focus:bg-canvas focus:ring-1 focus:ring-focus-blue rounded px-1 " data-class)
+                           :value val
+                           :on-change #(rf/dispatch [::update-cell id row-uuid col (.. % -target -value)])}]]))]))]]]
      ]))
 
 (defn dataset-view []
   (let [active-dataset @(rf/subscribe [::active-dataset])]
     (if active-dataset
       [:div {:class "space-y-6"}
-       [:div {:class "flex items-center justify-between bg-gray-800 p-4 rounded"}
+       [:div {:class "flex items-center justify-between bg-surface p-4 rounded border border-subtle"}
         [:div {:class "flex items-center space-x-4"}
-         [:input {:class "text-xl font-bold bg-transparent text-white border-b border-transparent focus:border-blue-500 focus:outline-none"
+         [:input {:class "text-xl font-bold bg-transparent text-gray-100 border-b border-transparent focus:border-focus-blue focus:outline-none font-ui"
                   :value (:name active-dataset)
                   :on-change #(rf/dispatch [::update-dataset-name (:id active-dataset) (.. % -target -value)])}]
-         [:span {:class "text-gray-400 text-sm"} (str (count (:data active-dataset)) " rows")]]
-        [c/button {:class "bg-red-600 hover:bg-red-700"
+         [:span {:class "text-gray-400 text-sm font-ui"} (str (count (:data active-dataset)) " rows")]]
+        [c/button {:class "bg-red-900/50 hover:bg-red-900 text-red-200 border-red-800"
                    :on-click #(rf/dispatch [::delete-dataset (:id active-dataset)])}
          "Delete Dataset"]]
        [data-table active-dataset]]
-      [:div {:class "text-center text-gray-500 mt-20"}
+      [:div {:class "text-center text-gray-500 mt-20 font-ui"}
        "Select or create a dataset to get started."])))
 
 (defn sidebar []
   (let [items @(rf/subscribe [::items])
         active-id @(rf/subscribe [::active-dataset-id])]
-    [:div {:class "w-64 bg-gray-900 border-r border-gray-800 flex flex-col h-[calc(100vh-4rem)] sticky top-16"}
-     [:div {:class "p-4 border-b border-gray-800"}
-      [:h3 {:class "text-lg font-semibold text-white mb-4"} "Datasets"]
+    [:div {:class "w-64 bg-surface border-r border-subtle flex flex-col h-[calc(100vh-4rem)] sticky top-16 font-ui"}
+     [:div {:class "p-4 border-b border-subtle"}
+      [:h3 {:class "text-lg font-semibold text-gray-100 mb-4"} "Datasets"]
       [file-importer]]
      [:div {:class "flex-grow overflow-y-auto p-4 space-y-2"}
       (if (seq items)
         (for [[id ds] items]
           [:div {:key id
-                 :class (str "p-3 rounded cursor-pointer transition-colors "
-                             (if (= id active-id) "bg-blue-900 text-white" "text-gray-400 hover:bg-gray-800 hover:text-white"))
+                 :class (str "p-3 rounded cursor-pointer transition-colors border border-transparent "
+                             (if (= id active-id) "bg-floating border-focus-blue text-gray-100 shadow-md" "text-gray-400 hover:bg-floating hover:text-gray-200"))
                  :on-click #(rf/dispatch [::set-active-dataset-id id])}
            (:name ds)])
         [:div {:class "text-sm text-gray-600 italic"} "No datasets"])]]))
 
 (defn panel []
-  [:div {:class "flex min-h-screen bg-gray-950"}
+  [:div {:class "flex min-h-screen bg-canvas"}
    [sidebar]
    [:div {:class "flex-grow p-8 overflow-x-hidden"}
     [dataset-view]]])

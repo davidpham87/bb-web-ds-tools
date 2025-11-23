@@ -25,7 +25,7 @@
                              (rf/dispatch [::save-code]))}
      (fn [{:keys [values set-values handle-submit]}]
        [:form {:on-submit handle-submit :class "space-y-4"}
-        [:div.bg-white.rounded.shadow-sm.overflow-hidden
+        [:div {:class "bg-canvas rounded border border-subtle overflow-hidden"}
          [editor/monaco-editor {:value (:code values)
                                 :style {:height "600px"}
                                 :on-change #(set-values {:code %})}]]
@@ -35,5 +35,5 @@
 (defn panel []
   [:div.container.mx-auto.max-w-6xl
    [c/page-header "Code Editor"]
-   [:div.bg-gray-800.rounded-lg.p-6.border.border-gray-700.shadow-lg
+   [:div {:class "bg-surface rounded-lg p-6 border border-subtle shadow-md"}
     [editor-form {}]]])

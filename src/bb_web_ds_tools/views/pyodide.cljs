@@ -17,11 +17,7 @@
               ::output ""})))
 
 ;; Subscriptions
-(rf/reg-sub
- ::root
- (fn [db _]
-   (get-in db [:user-input :pyodide :default])))
-
+(rf/reg-sub ::root (fn [db _] (get-in db [:user-input :pyodide :default])))
 (rf/reg-sub ::loading? :<- [::root] (fn [root] (::loading? root)))
 (rf/reg-sub ::ready? :<- [::root] (fn [root] (::ready? root)))
 (rf/reg-sub ::error :<- [::root] (fn [root] (::error root)))
@@ -99,30 +95,32 @@
         error @(rf/subscribe [::error])
         code @(rf/subscribe [::code])
         output @(rf/subscribe [::output])]
-    [:div.container.mx-auto.max-w-6xl.space-y-6
+    [:div {:class "container mx-auto max-w-6xl space-y-6"}
      [c/page-header "Pyodide Python Environment"]
 
      (cond
-       loading? [:div.text-center.text-blue-400 "Loading Pyodide..."]
-       error [:div.text-center.text-red-400 error]
-       (not ready?) [:div.text-center
+       loading? [:div {:class "max-w-md mx-auto space-y-2"}
+                  [:div {:class "text-center text-gray-400 font-ui text-sm"} "Loading Pyodide..."]
+                  [c/progress-bar]]
+       error [:div {:class "text-center text-red-400 font-ui"} error]
+       (not ready?) [:div {:class "text-center"}
                      [c/button {:on-click #(rf/dispatch [::initialize-runtime])} "Load Python Environment"]])
 
      (when ready?
-       [:div.grid.grid-cols-1.lg:grid-cols-2.gap-6
-        [:div.space-y-4
+       [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-6"}
+        [:div {:class "space-y-4"}
          [c/card {}
-          [:h3 {:class "text-lg font-bold text-[#dcdccc] mb-4"} "Code"]
-          [:div {:class "rounded overflow-hidden h-64 border border-[#5f5f5f]"}
+          [:h3 {:class "text-lg font-bold font-ui text-gray-100 mb-4"} "Code"]
+          [:div {:class "rounded overflow-hidden h-64 border border-subtle"}
            [editor/monaco-editor {:value code
                                   :language "python"
                                   :on-change #(rf/dispatch [::set-code %])}]]
-          [:div.mt-4.flex.justify-end
+          [:div {:class "mt-4 flex justify-end"}
            [c/button {:on-click #(rf/dispatch [::run-code])} "Run"]]]]
 
-        [:div.space-y-4
+        [:div {:class "space-y-4"}
          [c/card {}
-          [:div.flex.justify-between.items-center.mb-4
-           [:h3 {:class "text-lg font-bold text-[#dcdccc]"} "Output"]
+          [:div {:class "flex justify-between items-center mb-4"}
+           [:h3 {:class "text-lg font-bold font-ui text-gray-100"} "Output"]
            [c/button-xs {:on-click #(rf/dispatch [::clear-output])} "Clear"]]
           [c/pre-block {:content output :class "h-96"}]]]])]))

@@ -57,12 +57,12 @@
 
       [c/card {}
       [:div
-       [:h3 {:class "text-xl font-semibold text-[#dcdccc] mb-4 flex items-center gap-2"}
+       [:h3 {:class "text-xl font-semibold font-ui text-gray-100 mb-4 flex items-center gap-2"}
         [:span "🍯"] "Convert to SQL"]
        [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-6"}
         [:div
          [c/label "HoneySQL Map (EDN)"]
-         [:div.h-96.border.border-gray-700.rounded
+         [:div {:class "h-96 border border-subtle rounded overflow-hidden"}
           [editor/monaco-editor {:value honeysql-input
                                  :language "clojure"
                                  :on-change #(rf/dispatch [:honeysql/update-input %])}]]

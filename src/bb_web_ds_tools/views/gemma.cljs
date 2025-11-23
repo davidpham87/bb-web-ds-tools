@@ -83,34 +83,11 @@
       :fx [[::generate-response-fx text]]}
      {})))
 
-(rf/reg-sub
- ::root
- (fn [db _]
-   (get-in db [:user-input :gemma :default])))
-
-(rf/reg-sub
- ::messages
- :<- [::root]
- (fn [root]
-   (:messages root)))
-
-(rf/reg-sub
- ::loading?
- :<- [::root]
- (fn [root]
-   (:loading? root)))
-
-(rf/reg-sub
- ::error
- :<- [::root]
- (fn [root]
-   (:error root)))
-
-(rf/reg-sub
- ::model-loaded?
- :<- [::root]
- (fn [root]
-   (:model-loaded? root)))
+(rf/reg-sub ::root (fn [db _] (get-in db [:user-input :gemma :default])))
+(rf/reg-sub ::messages :<- [::root] (fn [root] (:messages root)))
+(rf/reg-sub ::loading? :<- [::root] (fn [root] (:loading? root)))
+(rf/reg-sub ::error :<- [::root] (fn [root] (:error root)))
+(rf/reg-sub ::model-loaded? :<- [::root] (fn [root] (:model-loaded? root)))
 
 ;; UI Components
 
@@ -125,24 +102,25 @@
                     :on-submit (fn [{:keys [values]}]
                                  (rf/dispatch [::load-model (get values "url")]))}
          (fn [{:keys [values handle-change handle-blur handle-submit]}]
-           [:form {:on-submit handle-submit :class "max-w-2xl mx-auto"}
+           [:form {:on-submit handle-submit :class "max-w-2xl mx-auto space-y-4"}
+            (when loading? [c/progress-bar])
             [c/card {}
              [:div
-              [:h3 {:class "text-xl font-bold text-white mb-2"} "Load Gemma Model"]
-              [:p {:class "text-gray-400 mb-4 text-sm"} "Enter the URL to the .bin model file (e.g., from Kaggle or HuggingFace)."]
+              [:h3 {:class "text-xl font-bold font-ui text-gray-100 mb-2"} "Load Gemma Model"]
+              [:p {:class "text-gray-400 mb-4 text-sm font-ui"} "Enter the URL to the .bin model file (e.g., from Kaggle or HuggingFace)."]
               [:input {:type "text"
                        :name "url"
                        :placeholder "Model URL (e.g. /gemma-2b-it-gpu-int4.bin)"
                        :value (get values "url")
                        :on-change handle-change
                        :on-blur handle-blur
-                       :class "w-full bg-gray-900 text-white border border-gray-600 rounded p-3 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none"}]
+                       :class "w-full bg-canvas text-gray-200 border border-subtle rounded p-3 mb-4 focus:ring-2 focus:ring-focus-blue focus:outline-none font-code text-sm"}]
               [c/button {:type "submit"
                          :disabled loading?
                          :class "w-full"}
                (if loading? "Loading..." "Load Model")]
               (when error
-                [:div {:class "text-red-400 mt-4 p-3 bg-red-900/30 border border-red-800 rounded"} error])]]])]))))
+                [:div {:class "text-red-200 mt-4 p-3 bg-surface border border-red-800 rounded font-ui"} error])]]])]))))
 
 (defn chat-interface []
   (let [messages-sub (rf/subscribe [::messages])
@@ -156,16 +134,17 @@
                                  (rf/dispatch [::send-message (get values "text")])
                                  (reset))}
          (fn [{:keys [values handle-change handle-blur handle-submit]}]
-           [:form {:on-submit handle-submit :class "max-w-4xl mx-auto"}
+           [:form {:on-submit handle-submit :class "max-w-4xl mx-auto space-y-4"}
+            (when loading? [c/progress-bar])
             [c/card {}
              [:div
-              [:div.messages {:class "bg-gray-900 border border-gray-700 rounded-lg p-4 h-[500px] overflow-y-auto mb-4 custom-scrollbar"}
+              [:div.messages {:class "bg-canvas border border-subtle rounded-lg p-4 h-[500px] overflow-y-auto mb-4 custom-scrollbar font-ui"}
                (for [[idx msg] (map-indexed vector messages)]
                  [:div {:key idx :class (str "mb-4 " (if (= (:role msg) :user) "text-right" "text-left"))}
-                  [:div {:class (str "inline-block px-4 py-2 rounded-lg max-w-[80%] "
+                  [:div {:class (str "inline-block px-4 py-2 rounded-lg max-w-[80%] text-sm "
                                      (if (= (:role msg) :user)
-                                       "bg-blue-600 text-white"
-                                       "bg-gray-800 text-gray-200 border border-gray-700"))}
+                                       "bg-focus-blue text-white"
+                                       "bg-floating text-gray-200 border border-subtle"))}
                    [:div {:class "text-xs opacity-75 mb-1 font-bold"} (if (= (:role msg) :user) "You" "Gemma")]
                    [:span (:content msg)]]])]
               [:div.input-area {:class "flex gap-4"}
@@ -173,7 +152,7 @@
                            :value (get values "text")
                            :on-change handle-change
                            :on-blur handle-blur
-                           :class "flex-1 bg-gray-800 text-white border border-gray-700 rounded p-3 h-20 focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none"
+                           :class "flex-1 bg-canvas text-gray-200 border border-subtle rounded p-3 h-20 focus:ring-2 focus:ring-focus-blue focus:outline-none resize-none font-ui"
                            :placeholder "Type your message..."
                            :disabled loading?}]
                [c/button {:type "submit"
@@ -185,7 +164,7 @@
   (let [loaded?-sub (rf/subscribe [::model-loaded?])]
     (fn []
       (let [loaded? @loaded?-sub]
-        [:div.gemma-page {:class "container mx-auto px-4 py-8"}
+        [:div.gemma-page {:class "container mx-auto px-4 py-8 space-y-6"}
          [c/page-header "Gemma Local LLM"]
          (if loaded?
            [chat-interface]

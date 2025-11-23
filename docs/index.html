@@ -3,10 +3,41 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link href="css/xterm.css" rel="stylesheet" type="text/css">
     <link href="js/libs/vs/editor/editor.main.css" rel="stylesheet" type="text/css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              canvas: '#0D1117',
+              surface: '#161B22',
+              floating: '#21262D',
+              'border-subtle': '#30363D',
+              'data-string': '#A5D6FF',
+              'data-int': '#79C0FF',
+              'data-bool-false': '#FF7B72',
+              'data-bool-true': '#7EE787',
+              'data-null': '#484F58',
+              'data-key': '#D2A8FF',
+              'focus-blue': '#1F6FEB'
+            },
+            fontFamily: {
+              ui: ['Inter', 'system-ui', 'sans-serif'],
+              code: ['JetBrains Mono', 'monospace'],
+            },
+            boxShadow: {
+              floating: '0 8px 24px rgba(0,0,0,0.5)',
+            }
+          }
+        }
+      }
+    </script>
     <script>
       self.MonacoEnvironment = {
         getWorkerUrl: function (moduleId, label) {
