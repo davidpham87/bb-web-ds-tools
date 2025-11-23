@@ -105,6 +105,8 @@
   (let [active-tab (or @(rf/subscribe [:malli/active-tab]) :inference)]
     [:div {:class "space-y-6 container mx-auto max-w-6xl p-6"}
 
+     [:h2 {:class "text-2xl font-bold text-white mb-6"} "Malli Tools"]
+
      ;; Tabs Navigation
      [:div {:class "flex space-x-6 border-b border-[#5f5f5f]"}
       [:button {:class (str "pb-2 font-medium transition-colors border-b-2 "

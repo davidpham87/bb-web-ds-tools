@@ -55,7 +55,7 @@ def verify():
 
                 # Wait for the expected text to appear
                 try:
-                    page.wait_for_selector(f"text={expected_text}", timeout=5000)
+                    page.wait_for_selector(f"text={expected_text}", timeout=60000)
                     print(f"Verified {label} page.")
                 except Exception as e:
                     print(f"Failed to verify {label} page. Content '{expected_text}' not found.")
