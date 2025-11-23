@@ -5,9 +5,7 @@
             [cljs.reader :as reader]
             [fork.re-frame :as fork]
             [bb-web-ds-tools.components.common :as c]
-            [bb-web-ds-tools.components.editor :as editor]
-            [bb-web-ds-tools.components.layout :as l]
-            [bb-web-ds-tools.theme :as t]))
+            [bb-web-ds-tools.components.malli :as view]))
 
 ;; Event handlers
 (rf/reg-event-db
@@ -67,18 +65,19 @@
   (let [inference-input @(rf/subscribe [:malli/inference-input])
         inferred-schema @(rf/subscribe [:malli/inferred-schema])]
     [c/card {}
-     [l/flex-col {:class "space-y-4"}
-      [:h3 {:class (str "text-xl font-semibold " t/text-accent " flex items-center gap-2")}
+     [:div
+      [:h3 {:class "text-xl font-semibold text-[#f0dfaf] mb-4 flex items-center gap-2"}
        [:span "🧩"] "Schema Inference"]
-      [l/grid {:class "grid-cols-1 lg:grid-cols-2 gap-6"}
-       [l/flex-col {:class "space-y-2"}
+      [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-6"}
+       [:div
         [c/label "Input Data (EDN)"]
-        [:div {:class (str "h-64 rounded overflow-hidden border " t/border-default)}
+        [:div {:class "h-64 rounded overflow-hidden border border-[#5f5f5f]"}
          [editor/monaco-editor {:value inference-input
                                 :language "clojure"
                                 :on-change #(rf/dispatch [:malli/update-inference-input %])}]]
-        [c/button {:on-click #(rf/dispatch [:malli/infer-schema])} "Infer Schema"]]
-       [l/flex-col {:class "space-y-2"}
+        [:div {:class "mt-4"}
+         [c/button {:on-click #(rf/dispatch [:malli/infer-schema])} "Infer Schema"]]]
+       [:div
         [c/label "Inferred Schema"]
         [c/pre-block {:content inferred-schema :class "h-64"}]]]]]))
 
@@ -86,35 +85,36 @@
   (let [schema-text @(rf/subscribe [:malli/schema-text])
         generated-data @(rf/subscribe [:malli/generated-data])]
     [c/card {}
-     [l/flex-col {:class "space-y-4"}
-      [:h3 {:class (str "text-xl font-semibold " t/text-accent " flex items-center gap-2")}
+     [:div
+      [:h3 {:class "text-xl font-semibold text-[#f0dfaf] mb-4 flex items-center gap-2"}
        [:span "🎲"] "Data Generation"]
-      [l/grid {:class "grid-cols-1 lg:grid-cols-2 gap-6"}
-       [l/flex-col {:class "space-y-2"}
+      [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-6"}
+       [:div
         [c/label "Schema (EDN)"]
-        [:div {:class (str "h-64 rounded overflow-hidden border " t/border-default)}
+        [:div {:class "h-64 rounded overflow-hidden border border-[#5f5f5f]"}
          [editor/monaco-editor {:value schema-text
                                 :language "clojure"
                                 :on-change #(rf/dispatch [:malli/update-schema-text %])}]]
-        [c/button {:on-click #(rf/dispatch [:malli/generate-data])} "Generate Data"]]
-       [l/flex-col {:class "space-y-2"}
+        [:div {:class "mt-4"}
+         [c/button {:on-click #(rf/dispatch [:malli/generate-data])} "Generate Data"]]]
+       [:div
         [c/label "Generated Data"]
         [c/pre-block {:content generated-data :class "h-64"}]]]]]))
 
 (defn panel []
   (let [active-tab (or @(rf/subscribe [:malli/active-tab]) :inference)]
-    [l/container {:class "max-w-6xl p-6 space-y-6"}
+    [:div {:class "space-y-6 container mx-auto max-w-6xl p-6"}
 
      [:h2 {:class "text-2xl font-bold text-white mb-6"} "Malli Tools"]
 
      ;; Tabs Navigation
-     [l/flex-row {:class (str "space-x-6 border-b " t/border-default)}
+     [:div {:class "flex space-x-6 border-b border-[#5f5f5f]"}
       [:button {:class (str "pb-2 font-medium transition-colors border-b-2 "
-                            (if (= active-tab :inference) (str "border-[#f0dfaf] " t/text-accent) (str "border-transparent " t/text-secondary " hover:text-[#dcdccc]")))
+                            (if (= active-tab :inference) "border-[#f0dfaf] text-[#f0dfaf]" "border-transparent text-[#9f9f9f] hover:text-[#dcdccc]"))
                 :on-click #(rf/dispatch [:malli/set-active-tab :inference])}
        "Inference"]
       [:button {:class (str "pb-2 font-medium transition-colors border-b-2 "
-                            (if (= active-tab :generation) (str "border-[#f0dfaf] " t/text-accent) (str "border-transparent " t/text-secondary " hover:text-[#dcdccc]")))
+                            (if (= active-tab :generation) "border-[#f0dfaf] text-[#f0dfaf]" "border-transparent text-[#9f9f9f] hover:text-[#dcdccc]"))
                 :on-click #(rf/dispatch [:malli/set-active-tab :generation])}
        "Generation"]]
 

@@ -17,8 +17,7 @@
             [bb-web-ds-tools.views.pyodide :as pyodide]
             [bb-web-ds-tools.views.datasets :as datasets]
             [bb-web-ds-tools.views.settings :as settings]
-            [day8.re-frame-10x.preload]
-            [bb-web-ds-tools.theme :as t]))
+            [day8.re-frame-10x.preload]))
 
 ;; --- Routing & Navigation ---
 
@@ -137,35 +136,32 @@
 (defmethod view :settings [_] [settings/panel])
 (defmethod view :default [_] [landing/landing-page])
 
-(def nav-items
-  [{:label "Home" :route :landing}
-   {:label "Datasets" :route :datasets}
-   {:label "Malli" :route :malli}
-   {:label "HoneySQL" :route :honeysql}
-   {:label "Vega-Lite" :route :vega-lite}
-   {:label "Gemma" :route :gemma}
-   {:label "Pyodide" :route :pyodide}
-   {:label "Editor" :route :editor}
-   {:label "Repl" :route :repl}
-   {:label "R" :route :r-repl}
-   {:label "Settings" :route :settings}
-   {:label "Changelog" :route :changelog}])
-
-(defn drawer [open? on-close items]
+(defn drawer [open? on-close]
   [:<>
    (when @open?
      [:div {:class "fixed inset-0 bg-black/50 z-40"
             :on-click on-close}])
-   [:div {:class (str "fixed top-0 left-0 h-full w-64 " t/bg-sidebar " shadow-lg transform transition-transform duration-300 z-50 overflow-y-auto "
+   [:div {:class (str "fixed top-0 left-0 h-full w-64 bg-[#2f2f2f] shadow-lg transform transition-transform duration-300 z-50 overflow-y-auto "
                       (if @open? "translate-x-0" "-translate-x-full"))}
-    [:div {:class (str "p-4 border-b " t/border-main " flex justify-between items-center " t/bg-toolbar)}
-     [:span {:class (str "text-xl font-bold " t/text-accent)} "Menu"]
-     [:button {:class (str t/text-primary " hover:text-white font-bold") :on-click on-close} "✕"]]
+    [:div {:class "p-4 border-b border-[#3f3f3f] flex justify-between items-center bg-[#282828]"}
+     [:span {:class "text-xl font-bold text-[#f0dfaf]"} "Menu"]
+     [:button {:class "text-[#dcdccc] hover:text-white font-bold" :on-click on-close} "✕"]]
     [:div {:class "py-2"}
-     (for [item items]
+     (for [item [{:label "Home" :route :landing}
+                 {:label "Datasets" :route :datasets}
+                 {:label "Malli" :route :malli}
+                 {:label "HoneySQL" :route :honeysql}
+                 {:label "Vega-Lite" :route :vega-lite}
+                 {:label "Gemma" :route :gemma}
+                 {:label "Pyodide" :route :pyodide}
+                 {:label "Editor" :route :editor}
+                 {:label "Repl" :route :repl}
+                 {:label "R" :route :r-repl}
+                 {:label "Changelog" :route :changelog}
+                 {:label "Settings" :route :settings}]]
        ^{:key (:route item)}
        [:a {:href (rfe/href (:route item))
-            :class (str "block px-4 py-3 text-sm " t/text-primary " " t/bg-item-hover " transition-colors")
+            :class "block px-4 py-3 text-sm text-[#dcdccc] hover:bg-[#3f3f3f] hover:text-[#f0dfaf] transition-colors"
             :on-click on-close}
         (:label item)])]]])
 
@@ -174,34 +170,34 @@
     (fn []
       (let [current-route @(rf/subscribe [::current-route])
             route-name (:name (:data current-route))]
-        [:nav {:class (str t/bg-page " border-b " t/border-default " sticky top-0 z-40 h-12 flex items-center px-4 shadow-md")}
+        [:nav {:class "bg-[#3f3f3f] border-b border-[#5f5f5f] sticky top-0 z-40 h-12 flex items-center px-4 shadow-md"}
          ;; Hamburger Menu
-         [:button {:class (str "mr-4 " t/text-primary " hover:" t/text-accent " focus:outline-none text-2xl leading-none")
+         [:button {:class "mr-4 text-[#dcdccc] hover:text-[#f0dfaf] focus:outline-none text-2xl leading-none"
                    :on-click #(swap! menu-open? not)}
           "≡"]
 
          ;; Breadcrumbs / Title
-         [:div {:class (str "flex items-center space-x-2 text-sm " t/text-primary)}
-          [:span {:class (str "cursor-pointer hover:" t/text-accent " font-bold")
+         [:div {:class "flex items-center space-x-2 text-sm text-[#dcdccc]"}
+          [:span {:class "cursor-pointer hover:text-[#f0dfaf] font-bold"
                   :on-click #(rf/dispatch [::navigate :landing])}
            "Home"]
           (when (and route-name (not= route-name :landing))
             [:<>
-             [:span {:class t/text-muted} "/"]
-             [:span {:class (str "font-medium " t/text-accent)}
+             [:span {:class "text-[#7f9f7f]"} "/"]
+             [:span {:class "font-medium text-[#f0dfaf]"}
               (clojure.string/capitalize (name route-name))]])]
 
-         [drawer menu-open? #(reset! menu-open? false) nav-items]]))))
+         [drawer menu-open? #(reset! menu-open? false)]]))))
 
 (defn main-panel []
   (let [current-route @(rf/subscribe [::current-route])]
-    [:div {:class (str "min-h-screen " t/bg-page " " t/text-primary)}
+    [:div {:class "min-h-screen bg-[#3f3f3f] text-[#dcdccc]"}
      (if current-route
        (view current-route)
        [landing/landing-page])]))
 
 (defn app []
-  [:div {:class (str "min-h-screen " t/bg-page)}
+  [:div {:class "min-h-screen bg-[#3f3f3f]"}
    [nav-bar]
    [main-panel]])
 

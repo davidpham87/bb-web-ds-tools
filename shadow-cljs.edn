@@ -32,5 +32,4 @@
     :output-dir "docs/js/stories"
     :entries [bb-web-ds-tools.stories.common-stories
               bb-web-ds-tools.stories.editor-stories
-              bb-web-ds-tools.stories.view-stories
-              bb-web-ds-tools.stories.layout-stories]}}}
+              bb-web-ds-tools.stories.view-stories]}}}
