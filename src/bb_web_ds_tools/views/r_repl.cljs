@@ -42,9 +42,8 @@
                                                               :convertEol true
                                                               :fontFamily "Menlo, Monaco, 'Courier New', monospace"
                                                               :fontSize 14
-                                                              :theme {:background "#3f3f3f"
-                                                                      :foreground "#dcdccc"
-                                                                      :cursor "#737373"}}))
+                                                              :theme {:background "#111827"
+                                                                      :foreground "#e5e7eb"}}))
                                  fit-addon (new FitAddon)
                                  webr (new js/WebR (clj->js {}))]
 
@@ -108,7 +107,7 @@
 
        :reagent-render
        (fn []
-         [:div {:class "flex flex-col h-full w-full p-4"}
-          [:div {:class "flex-grow bg-[#3f3f3f] rounded overflow-hidden border border-[#5f5f5f] shadow-md"
-                 :ref #(reset! container-ref %)
-                 :style {:height "100%" :width "100%"}}]])})))
+         [:div.flex.flex-col.h-full.w-full
+          [:div.flex-grow.bg-gray-900.rounded.overflow-hidden.p-2
+           {:ref #(reset! container-ref %)
+            :style {:height "100%" :width "100%"}}]])})))

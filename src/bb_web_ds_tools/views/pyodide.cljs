@@ -17,7 +17,11 @@
               ::output ""})))
 
 ;; Subscriptions
-(rf/reg-sub ::root (fn [db _] (get-in db [:user-input :pyodide :default])))
+(rf/reg-sub
+ ::root
+ (fn [db _]
+   (get-in db [:user-input :pyodide :default])))
+
 (rf/reg-sub ::loading? :<- [::root] (fn [root] (::loading? root)))
 (rf/reg-sub ::ready? :<- [::root] (fn [root] (::ready? root)))
 (rf/reg-sub ::error :<- [::root] (fn [root] (::error root)))
@@ -95,29 +99,30 @@
         error @(rf/subscribe [::error])
         code @(rf/subscribe [::code])
         output @(rf/subscribe [::output])]
-    [:div {:class "container mx-auto max-w-6xl space-y-6 p-6"}
+    [:div.container.mx-auto.max-w-6xl.space-y-6
+     [c/page-header "Pyodide Python Environment"]
 
      (cond
-       loading? [:div {:class "text-center text-[#8cd0d3]"} "Loading Pyodide..."]
-       error [:div {:class "text-center text-[#cc9393]"} error]
-       (not ready?) [:div {:class "text-center"}
+       loading? [:div.text-center.text-blue-400 "Loading Pyodide..."]
+       error [:div.text-center.text-red-400 error]
+       (not ready?) [:div.text-center
                      [c/button {:on-click #(rf/dispatch [::initialize-runtime])} "Load Python Environment"]])
 
      (when ready?
-       [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-6"}
-        [:div {:class "space-y-4"}
+       [:div.grid.grid-cols-1.lg:grid-cols-2.gap-6
+        [:div.space-y-4
          [c/card {}
           [:h3 {:class "text-lg font-bold text-[#dcdccc] mb-4"} "Code"]
           [:div {:class "rounded overflow-hidden h-64 border border-[#5f5f5f]"}
            [editor/monaco-editor {:value code
                                   :language "python"
                                   :on-change #(rf/dispatch [::set-code %])}]]
-          [:div {:class "mt-4 flex justify-end"}
+          [:div.mt-4.flex.justify-end
            [c/button {:on-click #(rf/dispatch [::run-code])} "Run"]]]]
 
-        [:div {:class "space-y-4"}
+        [:div.space-y-4
          [c/card {}
-          [:div {:class "flex justify-between items-center mb-4"}
+          [:div.flex.justify-between.items-center.mb-4
            [:h3 {:class "text-lg font-bold text-[#dcdccc]"} "Output"]
            [c/button-xs {:on-click #(rf/dispatch [::clear-output])} "Clear"]]
           [c/pre-block {:content output :class "h-96"}]]]])]))
