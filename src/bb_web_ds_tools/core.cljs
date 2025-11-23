@@ -17,7 +17,7 @@
             [bb-web-ds-tools.views.pyodide :as pyodide]
             [bb-web-ds-tools.views.datasets :as datasets]
             [bb-web-ds-tools.views.settings :as settings]
-            [day8.re-frame-10x.preload]
+            [bb-web-ds-tools.views.app-db :as app-db]
             [bb-web-ds-tools.theme :as t]))
 
 ;; --- Routing & Navigation ---
@@ -69,7 +69,9 @@
    ["reader"
     {:name :reader}]
    ["settings"
-    {:name :settings}]])
+    {:name :settings}]
+   ["app-db"
+    {:name :app-db}]])
 
 (def router
   (rf-router/router
@@ -135,10 +137,12 @@
 (defmethod view :changelog [_] [changelog/changelog-page])
 (defmethod view :reader [_] [:div.p-4 "Reader Tool"])
 (defmethod view :settings [_] [settings/panel])
+(defmethod view :app-db [_] [app-db/panel])
 (defmethod view :default [_] [landing/landing-page])
 
 (def nav-items
   [{:label "Home" :route :landing}
+   {:label "App DB" :route :app-db}
    {:label "Datasets" :route :datasets}
    {:label "Malli" :route :malli}
    {:label "HoneySQL" :route :honeysql}
