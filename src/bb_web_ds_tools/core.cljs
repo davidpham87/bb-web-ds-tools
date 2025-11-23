@@ -131,12 +131,46 @@
 (defmethod view :reader [_] [:div.p-4 "Reader Tool"])
 (defmethod view :default [_] [landing/landing-page])
 
+(defn drawer [open? on-close]
+  [:<>
+   (when @open?
+     [:div {:class "fixed inset-0 bg-black/50 z-40"
+            :on-click on-close}])
+   [:div {:class (str "fixed top-0 left-0 h-full w-64 bg-[#2f2f2f] shadow-lg transform transition-transform duration-300 z-50 overflow-y-auto "
+                      (if @open? "translate-x-0" "-translate-x-full"))}
+    [:div {:class "p-4 border-b border-[#3f3f3f] flex justify-between items-center bg-[#282828]"}
+     [:span {:class "text-xl font-bold text-[#f0dfaf]"} "Menu"]
+     [:button {:class "text-[#dcdccc] hover:text-white font-bold" :on-click on-close} "✕"]]
+    [:div {:class "py-2"}
+     (for [item [{:label "Home" :route :landing}
+                 {:label "Datasets" :route :datasets}
+                 {:label "Malli" :route :malli}
+                 {:label "HoneySQL" :route :honeysql}
+                 {:label "Vega-Lite" :route :vega-lite}
+                 {:label "Gemma" :route :gemma}
+                 {:label "Pyodide" :route :pyodide}
+                 {:label "Editor" :route :editor}
+                 {:label "Repl" :route :repl}
+                 {:label "R" :route :r-repl}
+                 {:label "Changelog" :route :changelog}]]
+       ^{:key (:route item)}
+       [:a {:href (rfe/href (:route item))
+            :class "block px-4 py-3 text-sm text-[#dcdccc] hover:bg-[#3f3f3f] hover:text-[#f0dfaf] transition-colors"
+            :on-click on-close}
+        (:label item)])]]])
+
 (defn nav-bar []
   (let [menu-open? (r/atom false)]
     (fn []
       (let [current-route @(rf/subscribe [::current-route])
             route-name (:name (:data current-route))]
-        [:nav {:class "bg-[#3f3f3f] border-b border-[#5f5f5f] sticky top-0 z-50 h-10 flex items-center px-4 shadow-md"}
+        [:nav {:class "bg-[#3f3f3f] border-b border-[#5f5f5f] sticky top-0 z-40 h-12 flex items-center px-4 shadow-md"}
+         ;; Hamburger Menu
+         [:button {:class "mr-4 text-[#dcdccc] hover:text-[#f0dfaf] focus:outline-none text-2xl leading-none"
+                   :on-click #(swap! menu-open? not)}
+          "≡"]
+
+         ;; Breadcrumbs / Title
          [:div {:class "flex items-center space-x-2 text-sm text-[#dcdccc]"}
           [:span {:class "cursor-pointer hover:text-[#f0dfaf] font-bold"
                   :on-click #(rf/dispatch [::navigate :landing])}
@@ -146,28 +180,8 @@
              [:span {:class "text-[#7f9f7f]"} "/"]
              [:span {:class "font-medium text-[#f0dfaf]"}
               (clojure.string/capitalize (name route-name))]])]
-         ;; Menu Toggle
-         [:div {:class "ml-auto relative"}
-          [:button {:class "text-[#dcdccc] hover:text-[#f0dfaf] focus:outline-none text-xs font-bold uppercase tracking-wider"
-                    :on-click #(swap! menu-open? not)}
-           "Menu ▾"]
-          (when @menu-open?
-            [:div {:class "absolute right-0 mt-2 w-48 bg-[#3f3f3f] border border-[#5f5f5f] rounded shadow-lg py-1 z-50"}
-             (for [item [{:label "Datasets" :route :datasets}
-                         {:label "Malli" :route :malli}
-                         {:label "HoneySQL" :route :honeysql}
-                         {:label "Vega-Lite" :route :vega-lite}
-                         {:label "Gemma" :route :gemma}
-                         {:label "Pyodide" :route :pyodide}
-                         {:label "Editor" :route :editor}
-                         {:label "Repl" :route :repl}
-                         {:label "R" :route :r-repl}
-                         {:label "Changelog" :route :changelog}]]
-               ^{:key (:route item)}
-               [:a {:href (rfe/href (:route item))
-                    :class "block px-4 py-2 text-sm text-[#dcdccc] hover:bg-[#4f4f4f] hover:text-[#f0dfaf]"
-                    :on-click #(reset! menu-open? false)}
-                (:label item)])])]]))))
+
+         [drawer menu-open? #(reset! menu-open? false)]]))))
 
 (defn main-panel []
   (let [current-route @(rf/subscribe [::current-route])]
