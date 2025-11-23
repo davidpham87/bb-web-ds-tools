@@ -12,20 +12,19 @@
               "Added CodeMirror editor"]}])
 
 (defn changelog-item [{:keys [version date changes]}]
-  [:div {:class "bg-[#4f4f4f] border-l-4 border-[#8cd0d3] p-6 mb-6 rounded-r-lg shadow-md"}
+  [:div {:class "bg-gray-800 border-l-4 border-blue-500 p-6 mb-6 rounded-r-lg shadow-lg"}
    [:div {:class "flex items-center justify-between mb-4"}
-    [:h3 {:class "text-2xl font-bold text-[#f0dfaf]"} (str "v" version)]
-    [:span {:class "text-[#9f9f9f] text-sm"} date]]
-   [:ul {:class "list-disc list-inside text-[#dcdccc] space-y-2"}
+    [:h3 {:class "text-2xl font-bold text-white"} (str "v" version)]
+    [:span {:class "text-gray-400 text-sm"} date]]
+   [:ul {:class "list-disc list-inside text-gray-300 space-y-2"}
     (for [change changes]
       ^{:key change}
       [:li change])]])
 
 (defn changelog-page []
-  [:div {:class "min-h-screen bg-[#3f3f3f] py-12 px-4"}
+  [:div {:class "min-h-screen bg-gray-900 py-12 px-4"}
    [:div {:class "container mx-auto max-w-3xl"}
-    ;; [c/page-header "Changelog"] ;; Removed as per request
-    [:h2 {:class "text-3xl font-bold text-[#f0dfaf] text-center mb-8"} "Changelog"]
+    [c/page-header "Changelog"]
     [:div
      (for [item changelog-data]
        ^{:key (:version item)}

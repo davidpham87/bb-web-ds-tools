@@ -1,6 +1,6 @@
 ;; shadow-cljs configuration
 {:source-paths
- ["src" "test" "src/stories"]
+ ["src" "test"]
 
  :deps true
 
@@ -24,10 +24,4 @@
     :output-to "target/test/core.js"
     :test-dir "target/test"
     :compiler-options {:pretty-print true}
-    :devtools {:autotest true}}
-   :stories
-   {:target :npm-module
-    :output-dir "docs/js/stories"
-    :entries [bb-web-ds-tools.stories.common-stories
-              bb-web-ds-tools.stories.editor-stories
-              bb-web-ds-tools.stories.view-stories]}}}
+    :devtools {:autotest true}}}}
