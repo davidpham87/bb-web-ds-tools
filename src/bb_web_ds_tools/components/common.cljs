@@ -1,5 +1,6 @@
 (ns bb-web-ds-tools.components.common
-  (:require [bb-web-ds-tools.theme :as t]))
+  (:require [bb-web-ds-tools.theme :as t]
+            [re-frame.core :as rf]))
 
 (defn button [props & children]
   (into [:button
@@ -16,29 +17,45 @@
                 (dissoc props :class :on-click))]
         children))
 
-(defn input [{:keys [value on-change placeholder class type checked] :as props}]
-  [:input (merge {:class (str "w-full " t/bg-input " " t/text-primary " border " t/border-default " rounded px-2 py-1 " t/border-focus " " t/outline-none " " t/ring-focus " transition-colors " class)
-                  :type (or type "text")
-                  :value value
-                  :checked checked
-                  :on-change on-change
-                  :placeholder placeholder}
-                 (dissoc props :class :value :on-change :placeholder :type :checked))])
+(defn input [{:keys [value on-change on-change-event placeholder class type checked] :as props}]
+  (let [handle-change (fn [e]
+                        (when on-change (on-change e))
+                        (when on-change-event
+                          (let [new-val (if (= type "checkbox")
+                                          (.. e -target -checked)
+                                          (.. e -target -value))]
+                            (rf/dispatch (conj on-change-event new-val)))))]
+    [:input (merge {:class (str "w-full " t/bg-input " " t/text-primary " border " t/border-default " rounded px-2 py-1 " t/border-focus " " t/outline-none " " t/ring-focus " transition-colors " class)
+                    :type (or type "text")
+                    :value value
+                    :checked checked
+                    :on-change handle-change
+                    :placeholder placeholder}
+                   (dissoc props :class :value :on-change :on-change-event :placeholder :type :checked))]))
 
 (defn select [props & children]
-  (into [:select (merge {:class (str t/bg-input " " t/text-primary " p-2 rounded border " t/border-default " " (:class props))
-                         :value (:value props)
-                         :on-change (:on-change props)}
-                        (dissoc props :class :value :on-change))]
-        children))
+  (let [{:keys [on-change on-change-event]} props
+        handle-change (fn [e]
+                        (when on-change (on-change e))
+                        (when on-change-event
+                          (rf/dispatch (conj on-change-event (.. e -target -value)))))]
+    (into [:select (merge {:class (str t/bg-input " " t/text-primary " p-2 rounded border " t/border-default " " (:class props))
+                           :value (:value props)
+                           :on-change handle-change}
+                          (dissoc props :class :value :on-change :on-change-event))]
+          children)))
 
-(defn textarea [{:keys [value on-change placeholder class] :as props}]
-  [:textarea
-   (merge {:class (str "w-full " t/bg-input " " t/text-primary " border " t/border-default " rounded p-4 font-mono text-sm " t/border-focus " " t/outline-none " focus:ring-1 " t/ring-focus " transition-colors " class)
-           :value value
-           :placeholder placeholder
-           :on-change on-change}
-          (dissoc props :class :value :placeholder :on-change))])
+(defn textarea [{:keys [value on-change on-change-event placeholder class] :as props}]
+  (let [handle-change (fn [e]
+                        (when on-change (on-change e))
+                        (when on-change-event
+                          (rf/dispatch (conj on-change-event (.. e -target -value)))))]
+    [:textarea
+     (merge {:class (str "w-full " t/bg-input " " t/text-primary " border " t/border-default " rounded p-4 font-mono text-sm " t/border-focus " " t/outline-none " focus:ring-1 " t/ring-focus " transition-colors " class)
+             :value value
+             :placeholder placeholder
+             :on-change handle-change}
+            (dissoc props :class :value :placeholder :on-change :on-change-event))]))
 
 (defn pre-block [{:keys [content class]}]
   [:pre {:class (str "w-full " t/bg-input " " t/text-code " border " t/border-subtle " rounded p-4 font-mono text-sm overflow-auto scrollbar-thin " class)}
