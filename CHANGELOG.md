@@ -2,22 +2,6 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.2.0] - 2025-11-22
-
-### Added
-- **Datasets Manager**: New full-featured CSV/TSV/JSON dataset management.
-  - Import data from files or text paste.
-  - Editable table view with sorting, filtering, and pagination.
-  - Column visibility toggles.
-  - Support for multiple datasets stored in local state.
-- **Pyodide Integration**: Python runtime environment in the browser.
-  - Run Python code directly.
-  - Monaco editor for code input.
-  - Standard output/error capture.
-- **WebR REPL**: R runtime environment via WebAssembly.
-  - Interactive terminal using xterm.js.
-  - Full R evaluation loop.
-
 ## [0.1.0] - 2024-05-21
 
 ### Added
