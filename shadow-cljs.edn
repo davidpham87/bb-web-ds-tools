@@ -12,9 +12,7 @@
    :output-dir "docs/js/compiled"
    :asset-path "/js/compiled"
    :modules {:main {:init-fn bb-web-ds-tools.core/init}}
-   :devtools {:after-load bb-web-ds-tools.core/init
-              :preloads [day8.re-frame-10x.preload]}
-   :closure-defines {re-frame.trace.trace-enabled? true}}
+   :devtools {:after-load bb-web-ds-tools.core/init}}
   :reader
   {:target :browser
    :output-dir "docs/js/compiled"
