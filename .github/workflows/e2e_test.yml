@@ -19,6 +19,12 @@ jobs:
         distribution: 'temurin'
         java-version: '21'
 
+    - name: Setup Clojure and Babashka
+      uses: DeLaGuardo/setup-clojure@master
+      with:
+        cli: 'latest'
+        bb: 'latest'
+
     - name: Set up Python
       uses: actions/setup-python@v4
       with:

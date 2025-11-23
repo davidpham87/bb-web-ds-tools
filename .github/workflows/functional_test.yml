@@ -19,6 +19,12 @@ jobs:
         distribution: 'temurin'
         java-version: '21'
 
+    - name: Setup Clojure and Babashka
+      uses: DeLaGuardo/setup-clojure@master
+      with:
+        cli: 'latest'
+        bb: 'latest'
+
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
