@@ -31,38 +31,23 @@
         {:db (assoc-in db [:user-input :honeysql :default :output] "Invalid Honeysql data.")}))))
 
 ;; Subscriptions
-(rf/reg-sub
-  :honeysql/root
-  (fn [db _]
-    (get-in db [:user-input :honeysql :default])))
-
-(rf/reg-sub
-  :honeysql/input
-  :<- [:honeysql/root]
-  (fn [root _]
-    (:input root)))
-
-(rf/reg-sub
-  :honeysql/output
-  :<- [:honeysql/root]
-  (fn [root _]
-    (:output root)))
+(rf/reg-sub :honeysql/root (fn [db _] (get-in db [:user-input :honeysql :default])))
+(rf/reg-sub :honeysql/input :<- [:honeysql/root] (fn [root _] (:input root)))
+(rf/reg-sub :honeysql/output :<- [:honeysql/root] (fn [root _] (:output root)))
 
 ;; UI components
 (defn panel []
   (let [honeysql-input @(rf/subscribe [:honeysql/input])
         honeysql-output @(rf/subscribe [:honeysql/output])]
-    [:div {:class "space-y-8 container mx-auto max-w-6xl"}
-     [c/page-header "HoneySQL Tools"]
-
+    [:div {:class "space-y-6 container mx-auto max-w-6xl p-6"}
       [c/card {}
       [:div
-       [:h3 {:class "text-xl font-semibold text-[#dcdccc] mb-4 flex items-center gap-2"}
+       [:h3 {:class "text-xl font-semibold text-[#f0dfaf] mb-4 flex items-center gap-2"}
         [:span "🍯"] "Convert to SQL"]
        [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-6"}
         [:div
          [c/label "HoneySQL Map (EDN)"]
-         [:div.h-96.border.border-gray-700.rounded
+         [:div {:class "h-96 rounded overflow-hidden border border-[#5f5f5f]"}
           [editor/monaco-editor {:value honeysql-input
                                  :language "clojure"
                                  :on-change #(rf/dispatch [:honeysql/update-input %])}]]
