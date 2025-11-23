@@ -8,7 +8,6 @@ RUN apt-get update && apt-get install -y \
     git \
     wget \
     unzip \
-    gnupg \
     python3 \
     python3-pip \
     && rm -rf /var/lib/apt/lists/*
@@ -35,17 +34,13 @@ RUN curl -L -O https://github.com/clojure/brew-install/releases/latest/download/
     && rm linux-install.sh
 
 # Install Playwright and Browsers
-ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
-RUN mkdir -p /ms-playwright
 RUN pip3 install playwright
 RUN playwright install --with-deps chromium
 
-# Install Google Chrome for Karma
-RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-    && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list \
-    && apt-get update && apt-get install -y google-chrome-stable \
+# Install Chromium for Karma
+RUN apt-get update && apt-get install -y chromium-browser \
     && rm -rf /var/lib/apt/lists/*
-ENV CHROME_BIN=/usr/bin/google-chrome
+ENV CHROME_BIN=/usr/bin/chromium-browser
 
 # Pre-install npm dependencies and Clojure dependencies to /opt/app
 # We use /opt/app so it doesn't conflict with /github/workspace mount but can be referenced
