@@ -2,7 +2,7 @@
 
 (defn button [props & children]
   (into [:button
-         (merge {:class (str "bg-[#5f5f5f] hover:bg-[#6f6f6f] text-[#dcdccc] font-bold py-2 px-6 rounded transition-all duration-200 transform hover:scale-105 disabled:bg-gray-700 disabled:cursor-not-allowed shadow-md " (:class props))
+         (merge {:class (str "bg-[#5f5f5f] hover:bg-[#6f6f6f] text-[#dcdccc] font-bold py-2 px-6 rounded shadow-sm transition-all duration-200 disabled:bg-[#3f3f3f] disabled:text-[#7f7f7f] disabled:cursor-not-allowed " (:class props))
                  :on-click (:on-click props)
                  :disabled (:disabled props)}
                 (dissoc props :class :on-click :disabled))]
@@ -28,12 +28,11 @@
    content])
 
 (defn card [props & children]
-  (into [:div {:class (str "bg-[#3f3f3f]/90 backdrop-blur-sm rounded-lg p-6 border border-[#5f5f5f] shadow-lg text-[#dcdccc] " (:class props))}]
+  (into [:div {:class (str "bg-[#4f4f4f] rounded shadow-md text-[#dcdccc] " (:class props))}]
         children))
 
-(defn page-header [title]
-  [:div {:class "text-center mb-8"}
-   [:h2 {:class "text-3xl font-bold text-[#f0dfaf] drop-shadow-sm"} title]])
+(defn page-header [_]
+  nil)
 
 (defn label [text]
   [:label {:class "block text-sm font-medium text-[#9f9f9f] mb-2"} text])
