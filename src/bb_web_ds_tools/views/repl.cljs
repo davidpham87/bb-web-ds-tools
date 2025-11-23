@@ -67,9 +67,16 @@
 (defn key-chord [first-part second-part]
   (bit-or first-part (bit-shift-left second-part 16)))
 
+(defn get-code-to-eval [^js editor]
+  (let [selection (.getSelection editor)
+        model (.getModel editor)]
+    (if (and selection (not (.isEmpty selection)))
+      (.getValueInRange model selection)
+      (.getValue editor))))
+
 (defn setup-editor-actions [^js editor instance-id]
   (let [eval-action (fn [code] (rf/dispatch [::eval-code instance-id code]))]
-    (.addAction editor (clj->js {:id "eval-buffer" :label "Evaluate Buffer" :keybindings [(bit-or KeyMod.CtrlCmd KeyCode.Enter)] :run (fn [^js ed] (eval-action (.getValue ed)))}))
+    (.addAction editor (clj->js {:id "eval-buffer" :label "Evaluate Buffer" :keybindings [(bit-or KeyMod.CtrlCmd KeyCode.Enter)] :run (fn [^js ed] (eval-action (get-code-to-eval ed)))}))
     (.addAction editor (clj->js {:id "eval-sexpr" :label "Evaluate Expression" :keybindings [(key-chord (bit-or KeyMod.WinCtrl KeyCode.KeyX) (bit-or KeyMod.WinCtrl KeyCode.KeyE))] :run (fn [^js ed] (let [pos (.getPosition ed) offset (.getOffsetAt (.getModel ed) pos) code (.getValue ed) sexpr (find-last-sexpr code offset)] (when (not (empty? sexpr)) (eval-action sexpr))))}))))
 
 (defn- repl-instance [{:keys [instance-id]}]
