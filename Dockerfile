@@ -36,6 +36,7 @@ RUN curl -L -O https://github.com/clojure/brew-install/releases/latest/download/
 # Install Playwright and Browsers
 RUN pip3 install playwright
 RUN playwright install --with-deps chromium
+RUN snap install chromium
 
 # Install Chromium for Karma
 RUN apt-get update && apt-get install -y chromium-browser \
