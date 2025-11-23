@@ -16,6 +16,8 @@
             [bb-web-ds-tools.views.r-repl :as r-repl]
             [bb-web-ds-tools.views.pyodide :as pyodide]
             [bb-web-ds-tools.views.datasets :as datasets]
+            [bb-web-ds-tools.views.settings :as settings]
+            [day8.re-frame-10x.preload]
             [bb-web-ds-tools.theme :as t]))
 
 ;; --- Routing & Navigation ---
@@ -65,7 +67,9 @@
    ["changelog"
     {:name :changelog}]
    ["reader"
-    {:name :reader}]])
+    {:name :reader}]
+   ["settings"
+    {:name :settings}]])
 
 (def router
   (rf-router/router
@@ -130,6 +134,7 @@
 (defmethod view :datasets [_] [datasets/panel])
 (defmethod view :changelog [_] [changelog/changelog-page])
 (defmethod view :reader [_] [:div.p-4 "Reader Tool"])
+(defmethod view :settings [_] [settings/panel])
 (defmethod view :default [_] [landing/landing-page])
 
 (def nav-items
@@ -143,6 +148,7 @@
    {:label "Editor" :route :editor}
    {:label "Repl" :route :repl}
    {:label "R" :route :r-repl}
+   {:label "Settings" :route :settings}
    {:label "Changelog" :route :changelog}])
 
 (defn drawer [open? on-close items]
