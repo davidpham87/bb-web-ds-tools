@@ -1,6 +1,6 @@
 ;; shadow-cljs configuration
 {:source-paths
- []
+ ["src" "test" "src/stories"]
 
  :deps true
 
@@ -27,5 +27,7 @@
     :devtools {:autotest true}}
    :stories
    {:target :npm-module
-    :entries [bb-web-ds-tools.stories.malli-stories]
-    :output-dir "docs/js/stories"}}}
+    :output-dir "docs/js/stories"
+    :entries [bb-web-ds-tools.stories.common-stories
+              bb-web-ds-tools.stories.editor-stories
+              bb-web-ds-tools.stories.view-stories]}}}

@@ -4,6 +4,23 @@
             ["monaco-editor/esm/vs/editor/editor.api.js" :as monaco]
             ["monaco-editor/esm/vs/basic-languages/clojure/clojure.contribution.js"]))
 
+(defonce theme-initialized
+  (try
+    (monaco/editor.defineTheme "zenburn"
+      (clj->js {:base "vs-dark"
+                :inherit true
+                :rules [{:background "3f3f3f" :foreground "dcdccc"}]
+                :colors {:editor.background "#3f3f3f"
+                         :editor.foreground "#dcdccc"
+                         :editorCursor.foreground "#737373"
+                         :editor.lineHighlightBackground "#4f4f4f"
+                         :editor.selectionBackground "#5f5f5f"
+                         :editor.inactiveSelectionBackground "#4f4f4f"}}))
+    true
+    (catch js/Error e
+      (js/console.warn "Failed to define Zenburn theme" e)
+      false)))
+
 (defn monaco-editor-inner [_]
   (let [editor-instance (r/atom nil)
         subscription (r/atom nil)
@@ -25,10 +42,12 @@
                         (clj->js (merge
                                   {:value (or value "")
                                    :language lang
-                                   :theme "vs-dark"
+                                   :theme "zenburn"
                                    :automaticLayout true
                                    :minimap {:enabled false}
-                                   :scrollBeyondLastLine false}
+                                   :scrollBeyondLastLine false
+                                   :fontFamily "Menlo, Monaco, 'Courier New', monospace"
+                                   :fontSize 14}
                                   options)))]
 
             (reset! editor-instance editor)
@@ -72,7 +91,7 @@
       :reagent-render
       (fn [props]
         (let [{:keys [style class]} props]
-           [:div.editor-wrapper.border.border-gray-700
+           [:div.editor-wrapper
             {:class class
              :style (merge {:width "100%" :height "100%"} style)}]))})))
 
