@@ -183,20 +183,72 @@
          config (generate-config state schema)]
      {:db (assoc-in db [:user-input :vega-lite :default ::config-input] config)})))
 
+(defn builder-panel []
+  (let [schema @(rf/subscribe [::inferred-schema])
+        state @(rf/subscribe [::builder-state])
+        map-schema (extract-map-schema schema)
+        fields (if map-schema
+                 (map name (keys (into {} (rest map-schema))))
+                 [])]
+    [:div {:style {:padding "10px" :border "1px solid #eee"}}
+     [:h4 "Visual Builder"]
+     [:div {:style {:display "flex" :gap "10px" :margin-bottom "10px"}}
+      [:div
+       [:label "X Axis "]
+       [:select {:value (:x state)
+                 :on-change #(rf/dispatch [::update-builder-state :x (-> % .-target .-value)])}
+        [:option {:value ""} "Select..."]
+        (for [f fields] [:option {:key f :value f} f])]]
+      [:div
+       [:label "Y Axis "]
+       [:select {:value (:y state)
+                 :on-change #(rf/dispatch [::update-builder-state :y (-> % .-target .-value)])}
+        [:option {:value ""} "Select..."]
+        (for [f fields] [:option {:key f :value f} f])]]
+      [:div
+       [:label "Color "]
+       [:select {:value (:color state)
+                 :on-change #(rf/dispatch [::update-builder-state :color (-> % .-target .-value)])}
+        [:option {:value ""} "Select..."]
+        (for [f fields] [:option {:key f :value f} f])]]]
+     [:div {:style {:margin-bottom "10px"}}
+       [:label "Mark "]
+       [:select {:value (:mark state)
+                 :on-change #(rf/dispatch [::update-builder-state :mark (-> % .-target .-value)])}
+        [:option {:value "bar"} "Bar"]
+        [:option {:value "point"} "Point"]
+        [:option {:value "line"} "Line"]
+        [:option {:value "area"} "Area"]]]
+     [:div {:style {:margin-bottom "10px"}}
+      [:label "Operations: "]
+      [:label [:input {:type "checkbox"
+                       :checked (contains? (:ops state) :repeat)
+                       :on-change #(if (-> % .-target .-checked)
+                                     (rf/dispatch [::update-builder-state :ops (conj (:ops state) :repeat)])
+                                     (rf/dispatch [::update-builder-state :ops (disj (:ops state) :repeat)]))}] " Repeat (Dummy) "]
+      [:label [:input {:type "checkbox"
+                       :checked (contains? (:ops state) :facet)
+                       :on-change #(if (-> % .-target .-checked)
+                                     (rf/dispatch [::update-builder-state :ops (conj (:ops state) :facet)])
+                                     (rf/dispatch [::update-builder-state :ops (disj (:ops state) :facet)]))}] " Facet (Dummy) "]]
+     [:button {:on-click #(rf/dispatch [::apply-builder])} "Apply to Config"]]))
+
 (defn panel []
   (let [data-input @(rf/subscribe [::data-input])
         config-input @(rf/subscribe [::config-input])
         parsed-data @(rf/subscribe [::parsed-data])
         inferred-schema @(rf/subscribe [::inferred-schema])
         active-sub-tab @(rf/subscribe [::active-sub-tab])]
-    [:div {:class "space-y-8 container mx-auto max-w-6xl p-6"}
+    [:div {:class "space-y-8 container mx-auto max-w-6xl"}
+     [c/page-header "Vega-Lite Visualization"]
+
      [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-8"}
       ;; Input Column
       [:div {:class "space-y-6"}
        [c/card {}
         [:div
          [:div {:class "flex items-center justify-between mb-4"}
-          [:h3 {:class "text-lg font-semibold text-[#f0dfaf]"} "Data Input"]
+          [:h3 {:class "text-lg font-semibold text-white"} "Data Input"]
           [:div {:class "flex flex-wrap gap-2"}
            [c/button-xs {:on-click #(load-example :csv :csv)} "CSV"]
            [c/button-xs {:on-click #(load-example :tsv :tsv)} "TSV"]
@@ -204,7 +256,7 @@
            [c/button-xs {:on-click #(load-example :json :json-maps)} "JSON Maps"]
            [c/button-xs {:on-click #(load-example :json :json-arrays)} "JSON Arrays"]]]
 
-         [:div {:class "bg-[#2f2f2f] rounded overflow-hidden border border-[#5f5f5f]"}
+         [:div {:class "bg-white rounded overflow-hidden"}
           [editor/monaco-editor
            {:value data-input
             :language "plaintext"
@@ -215,8 +267,8 @@
 
        [c/card {}
         [:div
-         [:h3 {:class "text-lg font-semibold text-[#f0dfaf] mb-4"} "Config (Vega-Lite JSON)"]
-         [:div {:class "bg-[#2f2f2f] rounded overflow-hidden border border-[#5f5f5f]"}
+         [:h3 {:class "text-lg font-semibold text-white mb-4"} "Config (Vega-Lite JSON)"]
+         [:div {:class "bg-white rounded overflow-hidden"}
           [editor/monaco-editor
            {:value config-input
             :language "json"
@@ -226,12 +278,12 @@
       ;; Output Column
       [c/card {:class "h-full flex flex-col"}
        [:div
-        [:div {:class "flex space-x-4 mb-4 border-b border-[#5f5f5f] pb-2"}
-         [:button {:class (str "px-4 py-2 font-medium transition-colors border-b-2 "
-                               (if (= active-sub-tab :plot) "text-[#f0dfaf] border-[#f0dfaf]" "text-[#9f9f9f] border-transparent hover:text-white"))
+        [:div {:class "flex space-x-4 mb-4 border-b border-gray-700 pb-2"}
+         [:button {:class (str "px-4 py-2 font-medium transition-colors "
+                               (if (= active-sub-tab :plot) "text-blue-400 border-b-2 border-blue-400" "text-gray-400 hover:text-white"))
                    :on-click #(rf/dispatch [::set-active-sub-tab :plot])} "Plot"]
-         [:button {:class (str "px-4 py-2 font-medium transition-colors border-b-2 "
-                               (if (= active-sub-tab :parsed) "text-[#f0dfaf] border-[#f0dfaf]" "text-[#9f9f9f] border-transparent hover:text-white"))
+         [:button {:class (str "px-4 py-2 font-medium transition-colors "
+                               (if (= active-sub-tab :parsed) "text-blue-400 border-b-2 border-blue-400" "text-gray-400 hover:text-white"))
                    :on-click #(rf/dispatch [::set-active-sub-tab :parsed])} "Parsed Data"]]
 
         [:div {:class "flex-grow bg-white rounded p-4 overflow-auto min-h-[400px]"}

@@ -1,4 +1,4 @@
-{:paths ["src" "test" "src/stories"]
+{:paths ["src" "test"]
  :deps {re-frame/re-frame {:mvn/version "1.4.3"}
         reagent/reagent {:mvn/version "2.0.1"}
         metosin/reitit {:mvn/version "0.7.2"}
