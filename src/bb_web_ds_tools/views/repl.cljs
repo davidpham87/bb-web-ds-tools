@@ -139,6 +139,16 @@
 (defn key-chord [first-part second-part]
   (bit-or first-part (bit-shift-left second-part 16)))
 
+(def is-mac
+  (and (exists? js/navigator)
+       (.-platform js/navigator)
+       (re-find #"(Mac|iPhone|iPod|iPad)" (.-platform js/navigator))))
+
+(def ctrl-key
+  (if is-mac
+    KeyMod.WinCtrl
+    KeyMod.CtrlCmd))
+
 (defn setup-editor-actions [^js editor instance-id]
   (let [eval-action (fn [code]
                       (rf/dispatch [::eval-code instance-id code]))]
@@ -156,8 +166,8 @@
                           :label "Evaluate Expression"
                           :keybindings [
                                         (key-chord
-                                         (bit-or KeyMod.WinCtrl KeyCode.KeyX)
-                                         (bit-or KeyMod.WinCtrl KeyCode.KeyE))]
+                                         (bit-or ctrl-key KeyCode.KeyX)
+                                         (bit-or ctrl-key KeyCode.KeyE))]
                           :run (fn [^js ed]
                                  (let [pos (.getPosition ed)
                                        offset (.getOffsetAt (.getModel ed) pos)
