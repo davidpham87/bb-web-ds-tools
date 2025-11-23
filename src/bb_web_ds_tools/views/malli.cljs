@@ -3,8 +3,10 @@
             [malli.provider :as mp]
             [malli.generator :as mg]
             [cljs.reader :as reader]
+            [fork.re-frame :as fork]
             [bb-web-ds-tools.components.common :as c]
-            [bb-web-ds-tools.components.editor :as editor]))
+            [bb-web-ds-tools.components.editor :as editor]
+            [bb-web-ds-tools.components.malli :as view]))
 
 ;; Event handlers
 (rf/reg-event-db
@@ -34,8 +36,8 @@
 
 (rf/reg-event-fx
   :malli/generate-data
-  (fn [{:keys [db]} _]
-    (let [schema-text (get-in db [:user-input :malli :default :schema-text])
+  (fn [{:keys [db]} [_ values]]
+    (let [schema-text (get values "schema-text" (get-in db [:user-input :malli :default :schema-text]))
           schema (try (reader/read-string schema-text) (catch js/Error e nil))]
       (if schema
         {:db (assoc-in db [:user-input :malli :default :generated-data] (pr-str (mg/generate schema)))}
@@ -43,8 +45,8 @@
 
 (rf/reg-event-fx
   :malli/infer-schema
-  (fn [{:keys [db]} _]
-    (let [input-text (get-in db [:user-input :malli :default :inference-input])
+  (fn [{:keys [db]} [_ values]]
+    (let [input-text (get values "inference-input" (get-in db [:user-input :malli :default :inference-input]))
           input-data (try (reader/read-string input-text) (catch js/Error e nil))]
       (if (and (coll? input-data) (seq input-data))
         {:db (assoc-in db [:user-input :malli :default :inferred-schema] (pr-str (mp/provide input-data)))}

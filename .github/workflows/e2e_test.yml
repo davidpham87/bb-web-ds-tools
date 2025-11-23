@@ -1,0 +1,28 @@
+name: E2E Tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  e2e-test:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/${{ github.repository }}:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Link node_modules
+      run: ln -s /opt/app/node_modules .
+
+    - name: Build app
+      run: npx shadow-cljs release app
+
+    - name: Run E2E tests
+      run: python3 test/e2e/verify_release.py
