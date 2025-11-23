@@ -1,7 +1,8 @@
-(ns bb-web-ds-tools.components.layout)
+(ns bb-web-ds-tools.components.layout
+  (:require [bb-web-ds-tools.theme :as t]))
 
 (defn page-container [props & children]
-  (into [:div (merge {:class (str "min-h-screen bg-[#3f3f3f] text-[#dcdccc] " (:class props))}
+  (into [:div (merge {:class (str "min-h-screen " t/bg-page " " t/text-primary " " (:class props))}
                      (dissoc props :class))]
         children))
 
@@ -31,7 +32,7 @@
         children))
 
 (defn sidebar [props & children]
-  (into [:aside (merge {:class (str "w-64 bg-[#2f2f2f] border-r border-[#3f3f3f] flex flex-col h-full sticky top-12 " (:class props))}
+  (into [:aside (merge {:class (str "w-64 " t/bg-sidebar " border-r " t/border-main " flex flex-col h-full sticky top-12 " (:class props))}
                        (dissoc props :class))]
         children))
 

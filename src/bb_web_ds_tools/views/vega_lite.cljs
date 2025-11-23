@@ -4,6 +4,7 @@
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.editor :as editor]
             [bb-web-ds-tools.components.layout :as l]
+            [bb-web-ds-tools.theme :as t]
             ["papaparse" :as Papa]
             ["react-dom" :as ReactDOM]
             [clojure.string :as str]
@@ -197,7 +198,7 @@
        [c/card {}
         [:div
          [l/flex-row {:class "justify-between mb-4"}
-          [:h3 {:class "text-lg font-semibold text-[#f0dfaf]"} "Data Input"]
+          [:h3 {:class (str "text-lg font-semibold " t/text-accent)} "Data Input"]
           [l/flex-row {:class "flex-wrap gap-2"}
            [c/button-xs {:on-click #(load-example :csv :csv)} "CSV"]
            [c/button-xs {:on-click #(load-example :tsv :tsv)} "TSV"]
@@ -205,7 +206,7 @@
            [c/button-xs {:on-click #(load-example :json :json-maps)} "JSON Maps"]
            [c/button-xs {:on-click #(load-example :json :json-arrays)} "JSON Arrays"]]]
 
-         [:div {:class "bg-[#2f2f2f] rounded overflow-hidden border border-[#5f5f5f]"}
+         [:div {:class (str t/bg-input " rounded overflow-hidden border " t/border-default)}
           [editor/monaco-editor
            {:value data-input
             :language "plaintext"
@@ -216,8 +217,8 @@
 
        [c/card {}
         [:div
-         [:h3 {:class "text-lg font-semibold text-[#f0dfaf] mb-4"} "Config (Vega-Lite JSON)"]
-         [:div {:class "bg-[#2f2f2f] rounded overflow-hidden border border-[#5f5f5f]"}
+         [:h3 {:class (str "text-lg font-semibold " t/text-accent " mb-4")} "Config (Vega-Lite JSON)"]
+         [:div {:class (str t/bg-input " rounded overflow-hidden border " t/border-default)}
           [editor/monaco-editor
            {:value config-input
             :language "json"
@@ -227,12 +228,12 @@
       ;; Output Column
       [c/card {:class "h-full flex flex-col"}
        [:div
-        [l/flex-row {:class "space-x-4 mb-4 border-b border-[#5f5f5f] pb-2"}
+        [l/flex-row {:class (str "space-x-4 mb-4 border-b " t/border-default " pb-2")}
          [:button {:class (str "px-4 py-2 font-medium transition-colors border-b-2 "
-                               (if (= active-sub-tab :plot) "text-[#f0dfaf] border-[#f0dfaf]" "text-[#9f9f9f] border-transparent hover:text-white"))
+                               (if (= active-sub-tab :plot) (str t/text-accent " border-[#f0dfaf]") (str t/text-secondary " border-transparent hover:text-white")))
                    :on-click #(rf/dispatch [::set-active-sub-tab :plot])} "Plot"]
          [:button {:class (str "px-4 py-2 font-medium transition-colors border-b-2 "
-                               (if (= active-sub-tab :parsed) "text-[#f0dfaf] border-[#f0dfaf]" "text-[#9f9f9f] border-transparent hover:text-white"))
+                               (if (= active-sub-tab :parsed) (str t/text-accent " border-[#f0dfaf]") (str t/text-secondary " border-transparent hover:text-white")))
                    :on-click #(rf/dispatch [::set-active-sub-tab :parsed])} "Parsed Data"]]
 
         [:div {:class "flex-grow bg-white rounded p-4 overflow-auto min-h-[400px]"}
