@@ -16,6 +16,22 @@
                 (dissoc props :class :on-click))]
         children))
 
+(defn input [{:keys [value on-change placeholder class type checked] :as props}]
+  [:input (merge {:class (str "w-full " t/bg-input " " t/text-primary " border " t/border-default " rounded px-2 py-1 " t/border-focus " " t/outline-none " " t/ring-focus " transition-colors " class)
+                  :type (or type "text")
+                  :value value
+                  :checked checked
+                  :on-change on-change
+                  :placeholder placeholder}
+                 (dissoc props :class :value :on-change :placeholder :type :checked))])
+
+(defn select [props & children]
+  (into [:select (merge {:class (str t/bg-input " " t/text-primary " p-2 rounded border " t/border-default " " (:class props))
+                         :value (:value props)
+                         :on-change (:on-change props)}
+                        (dissoc props :class :value :on-change))]
+        children))
+
 (defn textarea [{:keys [value on-change placeholder class] :as props}]
   [:textarea
    (merge {:class (str "w-full " t/bg-input " " t/text-primary " border " t/border-default " rounded p-4 font-mono text-sm " t/border-focus " " t/outline-none " focus:ring-1 " t/ring-focus " transition-colors " class)
@@ -30,6 +46,41 @@
 
 (defn card [props & children]
   (into [:div {:class (str t/bg-card " rounded shadow-md " t/text-primary " " (:class props))}]
+        children))
+
+;; Table Components
+(defn table-container [props & children]
+  (into [:div {:class (str "overflow-x-auto " t/bg-table-body " rounded shadow-md border " t/border-subtle " " (:class props))}]
+        children))
+
+(defn table [props & children]
+  (into [:table (merge {:class (str "min-w-full divide-y " t/border-subtle " " (:class props))}
+                       (dissoc props :class))]
+        children))
+
+(defn thead [props & children]
+  (into [:thead (merge {:class (str t/bg-table-head " " (:class props))}
+                       (dissoc props :class))]
+        children))
+
+(defn tbody [props & children]
+  (into [:tbody (merge {:class (str t/bg-table-body " divide-y " t/border-subtle " " (:class props))}
+                       (dissoc props :class))]
+        children))
+
+(defn tr [props & children]
+  (into [:tr (merge {:class (str t/bg-table-row-hover " transition-colors " (:class props))}
+                    (dissoc props :class))]
+        children))
+
+(defn th [props & children]
+  (into [:th (merge {:class (str "px-6 py-3 text-left text-xs font-medium " t/text-accent " uppercase tracking-wider " (:class props))}
+                    (dissoc props :class))]
+        children))
+
+(defn td [props & children]
+  (into [:td (merge {:class (str "px-6 py-4 whitespace-nowrap text-sm " t/text-primary " " (:class props))}
+                    (dissoc props :class))]
         children))
 
 (defn page-header [_]
