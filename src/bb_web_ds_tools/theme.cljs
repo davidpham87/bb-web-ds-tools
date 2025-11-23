@@ -30,7 +30,7 @@
 (def text-muted "text-[#7f7f7f]")
 (def text-disabled "disabled:text-[#7f7f7f]")
 (def text-button "text-[#dcdccc]")
-(def text-button-primary "text-[#3f3f3f]")
+(def text-button-primary "!text-[#3f3f3f]")
 
 ;; Borders
 (def border-main "border-[#3f3f3f]")
@@ -38,6 +38,7 @@
 (def border-default "border-[#5f5f5f]")
 (def border-hover "hover:border-[#7f7f7f]")
 (def border-focus "focus:border-[#8cd0d3]")
+(def border-focus-accent "focus:border-[#f0dfaf]")
 
 ;; Rings/Focus
 (def ring-focus "focus:ring-[#8cd0d3]")
