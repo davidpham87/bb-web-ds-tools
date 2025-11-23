@@ -22,3 +22,4 @@ docs/js/
 *gemini_chat.md
 .lsp/
 .clj-kondo/
+storybook-static/

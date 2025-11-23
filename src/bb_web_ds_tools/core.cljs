@@ -82,14 +82,21 @@
 
 ;; --- DB & Logic ---
 
+(defn detect-is-mac []
+  (and (exists? js/navigator)
+       (.-platform js/navigator)
+       (boolean (re-find #"(Mac|iPhone|iPod|iPad)" (.-platform js/navigator)))))
+
 (rf/reg-event-db
  ::initialize-db
  (fn [_ _]
-   (let [repl-id (str (random-uuid))]
+   (let [repl-id (str (random-uuid))
+         is-mac? (detect-is-mac)]
      {:user-input {:editor {:default {:code "initial code"}}
                    :repl {repl-id {:id repl-id
                                    :code ""
-                                   :output []}}}})))
+                                   :output []}}}
+      :platform {:is-mac? is-mac?}})))
 
 (rf/reg-sub
  ::user-input

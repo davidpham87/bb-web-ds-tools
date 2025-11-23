@@ -139,9 +139,15 @@
 (defn key-chord [first-part second-part]
   (bit-or first-part (bit-shift-left second-part 16)))
 
-(defn setup-editor-actions [^js editor instance-id]
+(rf/reg-sub
+ ::is-mac?
+ (fn [db _]
+   (get-in db [:platform :is-mac?])))
+
+(defn setup-editor-actions [^js editor instance-id is-mac?]
   (let [eval-action (fn [code]
-                      (rf/dispatch [::eval-code instance-id code]))]
+                      (rf/dispatch [::eval-code instance-id code]))
+        ctrl-key (if is-mac? KeyMod.WinCtrl KeyMod.CtrlCmd)]
     ;; Ctrl+Enter or Cmd+Enter to eval all
     (.addAction editor
                 (clj->js {:id "eval-buffer"
@@ -156,8 +162,8 @@
                           :label "Evaluate Expression"
                           :keybindings [
                                         (key-chord
-                                         (bit-or KeyMod.WinCtrl KeyCode.KeyX)
-                                         (bit-or KeyMod.WinCtrl KeyCode.KeyE))]
+                                         (bit-or ctrl-key KeyCode.KeyX)
+                                         (bit-or ctrl-key KeyCode.KeyE))]
                           :run (fn [^js ed]
                                  (let [pos (.getPosition ed)
                                        offset (.getOffsetAt (.getModel ed) pos)
@@ -168,7 +174,8 @@
 
 (defn- repl-instance [{:keys [instance-id]}]
   (let [code @(rf/subscribe [::code instance-id])
-        output @(rf/subscribe [::output instance-id])]
+        output @(rf/subscribe [::output instance-id])
+        is-mac? @(rf/subscribe [::is-mac?])]
     [repl-comp/repl-card
      {:instance-id instance-id
       :code code
@@ -176,7 +183,7 @@
       :on-eval (fn [code] (rf/dispatch [::eval-code instance-id code]))
       :on-focus #(reset! active-instance-id instance-id)
       :on-blur #(reset! active-instance-id nil)
-      :on-editor-mount (fn [editor] (setup-editor-actions editor instance-id))
+      :on-editor-mount (fn [editor] (setup-editor-actions editor instance-id is-mac?))
       :path [:user-input :repl instance-id :form]}]))
 
 (defn panel []

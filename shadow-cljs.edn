@@ -13,6 +13,10 @@
    :asset-path "/js/compiled"
    :modules {:main {:init-fn bb-web-ds-tools.core/init}}
    :devtools {:after-load bb-web-ds-tools.core/init}}
+  :stories
+  {:target :npm-module
+   :output-dir "docs/js/stories"
+   :entries [bb-web-ds-tools.stories.core]}
   :reader
   {:target :browser
    :output-dir "docs/js/compiled"
