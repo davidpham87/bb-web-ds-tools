@@ -3,6 +3,7 @@
             [re-frame.core :as rf]
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.editor :as editor]
+            [bb-web-ds-tools.components.layout :as l]
             ["papaparse" :as Papa]
             ["react-dom" :as ReactDOM]
             [clojure.string :as str]
@@ -189,15 +190,15 @@
         parsed-data @(rf/subscribe [::parsed-data])
         inferred-schema @(rf/subscribe [::inferred-schema])
         active-sub-tab @(rf/subscribe [::active-sub-tab])]
-    [:div {:class "space-y-8 container mx-auto max-w-6xl p-6"}
-     [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-8"}
+    [l/container {:class "space-y-8 max-w-6xl p-6"}
+     [l/grid {:class "grid-cols-1 lg:grid-cols-2 gap-8"}
       ;; Input Column
-      [:div {:class "space-y-6"}
+      [l/flex-col {:class "space-y-6"}
        [c/card {}
         [:div
-         [:div {:class "flex items-center justify-between mb-4"}
+         [l/flex-row {:class "justify-between mb-4"}
           [:h3 {:class "text-lg font-semibold text-[#f0dfaf]"} "Data Input"]
-          [:div {:class "flex flex-wrap gap-2"}
+          [l/flex-row {:class "flex-wrap gap-2"}
            [c/button-xs {:on-click #(load-example :csv :csv)} "CSV"]
            [c/button-xs {:on-click #(load-example :tsv :tsv)} "TSV"]
            [c/button-xs {:on-click #(load-example :markdown :markdown)} "MD"]
@@ -226,7 +227,7 @@
       ;; Output Column
       [c/card {:class "h-full flex flex-col"}
        [:div
-        [:div {:class "flex space-x-4 mb-4 border-b border-[#5f5f5f] pb-2"}
+        [l/flex-row {:class "space-x-4 mb-4 border-b border-[#5f5f5f] pb-2"}
          [:button {:class (str "px-4 py-2 font-medium transition-colors border-b-2 "
                                (if (= active-sub-tab :plot) "text-[#f0dfaf] border-[#f0dfaf]" "text-[#9f9f9f] border-transparent hover:text-white"))
                    :on-click #(rf/dispatch [::set-active-sub-tab :plot])} "Plot"]
