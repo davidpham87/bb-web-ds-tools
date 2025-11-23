@@ -3,6 +3,7 @@
             [re-frame.core :as rf]
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.editor :as editor]
+            [bb-web-ds-tools.components.layout :as l]
             ["papaparse" :as Papa]
             [clojure.string :as str]
             [cljs.pprint :refer [pprint]]
@@ -128,10 +129,10 @@
 (defn importer-view []
   (let [state @(rf/subscribe [::new-dataset-state])
         {:keys [text format]} state]
-    [:div {:class "flex flex-col h-full space-y-4"}
-     [:div {:class "flex items-center justify-between"}
+    [l/flex-col {:class "h-full space-y-4"}
+     [l/flex-row {:class "justify-between"}
       [:h3 {:class "text-xl font-bold text-[#f0dfaf]"} "Create New Dataset"]
-      [:div {:class "flex space-x-2"}
+      [l/flex-row {:class "space-x-2"}
        [c/button-xs {:class (if (= format :csv) "bg-[#7f9f7f] text-white" "")
                      :on-click #(rf/dispatch [::update-new-dataset-state :format :csv])} "CSV"]
        [c/button-xs {:class (if (= format :tsv) "bg-[#7f9f7f] text-white" "")
@@ -139,7 +140,7 @@
        [c/button-xs {:class (if (= format :json) "bg-[#7f9f7f] text-white" "")
                      :on-click #(rf/dispatch [::update-new-dataset-state :format :json])} "JSON"]]]
 
-     [:div {:class "flex space-x-2 items-center text-sm text-[#dcdccc]"}
+     [l/flex-row {:class "space-x-2 text-sm text-[#dcdccc]"}
       [:span "Load Example:"]
       [c/button-xs {:on-click #(do (rf/dispatch [::update-new-dataset-state :format :csv])
                                    (rf/dispatch [::update-new-dataset-state :text (example-data :csv)]))} "CSV"]
@@ -156,7 +157,7 @@
         :language (case format :json "json" "plaintext")
         :on-change #(rf/dispatch [::update-new-dataset-state :text %])}]]
 
-     [:div {:class "flex justify-end"}
+     [l/flex-row {:class "justify-end"}
       [c/button {:class "bg-[#7f9f7f] hover:bg-[#8fb28f]"
                  :on-click #(let [parsed (case format
                                            :csv (parse-csv text)
@@ -184,9 +185,9 @@
         page-data (subvec (vec sorted-data) start-idx end-idx)
         visible-columns (remove hidden-columns columns)]
 
-    [:div {:class "space-y-4"}
+    [l/flex-col {:class "space-y-4"}
      ;; Toolbar
-     [:div {:class "flex flex-wrap gap-4 items-end bg-[#2f2f2f] p-4 rounded shadow-sm"}
+     [l/flex-row {:class "flex-wrap gap-4 items-end bg-[#2f2f2f] p-4 rounded shadow-sm"}
       [:div
        [c/label "Rows"]
        [:select {:class "bg-[#3f3f3f] text-[#dcdccc] p-2 rounded border border-[#5f5f5f]"
@@ -212,7 +213,7 @@
       [:div {:class "flex-grow"}]
       [:div {:class "text-sm text-[#9f9f9f]"}
        (str (inc start-idx) "-" end-idx " of " total-rows)]
-      [:div {:class "flex space-x-2"}
+      [l/flex-row {:class "space-x-2"}
        [c/button-xs {:on-click #(rf/dispatch [::update-view-state id :page (dec page)])
                      :disabled (zero? page)} "Prev"]
        [c/button-xs {:on-click #(rf/dispatch [::update-view-state id :page (inc page)])
@@ -254,9 +255,9 @@
      ]))
 
 (defn dataset-view [dataset]
-  [:div {:class "space-y-6"}
-   [:div {:class "flex items-center justify-between bg-[#2f2f2f] p-4 rounded shadow-sm"}
-    [:div {:class "flex items-center space-x-4"}
+  [l/flex-col {:class "space-y-6"}
+   [l/flex-row {:class "justify-between bg-[#2f2f2f] p-4 rounded shadow-sm"}
+    [l/flex-row {:class "space-x-4"}
      [:input {:class "text-xl font-bold bg-transparent text-[#f0dfaf] border-b border-transparent focus:border-[#f0dfaf] focus:outline-none"
               :value (:name dataset)
               :on-change #(rf/dispatch [::update-dataset-name (:id dataset) (.. % -target -value)])}]
@@ -269,7 +270,7 @@
 (defn sidebar []
   (let [items @(rf/subscribe [::items])
         active-id @(rf/subscribe [::active-dataset-id])]
-    [:div {:class "w-64 bg-[#2f2f2f] border-r border-[#3f3f3f] flex flex-col h-[calc(100vh-3rem)] sticky top-12"}
+    [l/sidebar {:class "h-[calc(100vh-3rem)]"}
      [:div {:class "p-4 border-b border-[#3f3f3f]"}
       [:h3 {:class "text-lg font-semibold text-[#f0dfaf] mb-4"} "Datasets"]
       [c/button {:class "w-full bg-[#5f5f5f] hover:bg-[#6f6f6f]"
@@ -288,9 +289,9 @@
 (defn panel []
   (let [active-id @(rf/subscribe [::active-dataset-id])
         active-dataset @(rf/subscribe [::active-dataset])]
-    [:div {:class "flex min-h-screen bg-[#3f3f3f]"}
+    [l/page-container {:class "flex"}
      [sidebar]
-     [:div {:class "flex-grow p-6 overflow-x-hidden flex flex-col"}
+     [l/main {}
       (if (= active-id :new)
         [importer-view]
         (if active-dataset
