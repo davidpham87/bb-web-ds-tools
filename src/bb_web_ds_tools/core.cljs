@@ -15,7 +15,9 @@
             [bb-web-ds-tools.views.repl :as repl]
             [bb-web-ds-tools.views.r-repl :as r-repl]
             [bb-web-ds-tools.views.pyodide :as pyodide]
-            [bb-web-ds-tools.views.datasets :as datasets]))
+            [bb-web-ds-tools.views.datasets :as datasets]
+            [bb-web-ds-tools.views.settings :as settings]
+            [day8.re-frame-10x.preload]))
 
 ;; --- Routing & Navigation ---
 
@@ -64,7 +66,9 @@
    ["changelog"
     {:name :changelog}]
    ["reader"
-    {:name :reader}]])
+    {:name :reader}]
+   ["settings"
+    {:name :settings}]])
 
 (def router
   (rf-router/router
@@ -129,6 +133,7 @@
 (defmethod view :datasets [_] [datasets/panel])
 (defmethod view :changelog [_] [changelog/changelog-page])
 (defmethod view :reader [_] [:div.p-4 "Reader Tool"])
+(defmethod view :settings [_] [settings/panel])
 (defmethod view :default [_] [landing/landing-page])
 
 (defn drawer [open? on-close]
@@ -152,7 +157,8 @@
                  {:label "Editor" :route :editor}
                  {:label "Repl" :route :repl}
                  {:label "R" :route :r-repl}
-                 {:label "Changelog" :route :changelog}]]
+                 {:label "Changelog" :route :changelog}
+                 {:label "Settings" :route :settings}]]
        ^{:key (:route item)}
        [:a {:href (rfe/href (:route item))
             :class "block px-4 py-3 text-sm text-[#dcdccc] hover:bg-[#3f3f3f] hover:text-[#f0dfaf] transition-colors"
