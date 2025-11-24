@@ -28,6 +28,7 @@
              {:schema-text "[:map\n [:name string?]\n [:age int?]\n [:tags [:set keyword?]]]"
               :generated-data ""
               :inference-input "{:user/id 1\n :user/name \"Alice\"\n :user/email \"alice@example.com\"\n :user/active? true\n :user/roles #{:admin :editor}}"
+              :input-format :edn
               :inferred-schema ""
               :active-tab :inference})))
 
@@ -46,6 +47,11 @@
  (fn [db [_ tab]]
    (assoc-in db [:user-input :malli :default :active-tab] tab)))
 
+(rf/reg-event-db
+ :malli/set-input-format
+ (fn [db [_ fmt]]
+   (assoc-in db [:user-input :malli :default :input-format] fmt)))
+
 (rf/reg-event-fx
  :malli/generate-data
  (fn [{:keys [db]} [_ values]]
@@ -57,12 +63,16 @@
 
 (rf/reg-event-fx
  :malli/infer-schema
- (fn [{:keys [db]} [_ values]]
-   (let [input-text (get values "inference-input")
-         input-data (detect-and-parse input-text)]
+ (fn [{:keys [db]} _]
+   (let [defaults (get-in db [:user-input :malli :default])
+         input-text (:inference-input defaults)
+         format (:input-format defaults)
+         input-data (case format
+                      :edn (detect-and-parse input-text)
+                      (datasets/parse-dataset format input-text))]
      (if (and (coll? input-data) (seq input-data))
        {:db (assoc-in db [:user-input :malli :default :inferred-schema] (pr-str (mp/provide input-data)))}
-       {:db (assoc-in db [:user-input :malli :default :inferred-schema] "Invalid input data. Must be valid EDN or JSON collection.")}))))
+       {:db (assoc-in db [:user-input :malli :default :inferred-schema] (str "Invalid input data for format " (name format) ".")) }))))
 
 (rf/reg-event-db
  :malli/load-dataset
@@ -70,7 +80,9 @@
    (let [dataset (get-in db [:user-input :datasets :items dataset-id])
          data (:data dataset)]
      (if data
-       (assoc-in db [:user-input :malli :default :inference-input] (with-out-str (cljs.pprint/pprint data)))
+       (-> db
+           (assoc-in [:user-input :malli :default :inference-input] (with-out-str (cljs.pprint/pprint data)))
+           (assoc-in [:user-input :malli :default :input-format] :edn))
        db))))
 
 ;; Subscriptions
@@ -80,19 +92,30 @@
 (rf/reg-sub :malli/inference-input :<- [:malli/root] (fn [root _] (:inference-input root)))
 (rf/reg-sub :malli/inferred-schema :<- [:malli/root] (fn [root _] (:inferred-schema root)))
 (rf/reg-sub :malli/active-tab :<- [:malli/root] (fn [root _] (:active-tab root)))
+(rf/reg-sub :malli/input-format :<- [:malli/root] (fn [root _] (get root :input-format :edn)))
 
 ;; UI components
 
 (defn inference-view []
   (let [inference-input @(rf/subscribe [:malli/inference-input])
         inferred-schema @(rf/subscribe [:malli/inferred-schema])
-        datasets @(rf/subscribe [::datasets/items])]
+        datasets @(rf/subscribe [::datasets/items])
+        input-format @(rf/subscribe [:malli/input-format])]
     [c/card {}
      [l/flex-col {:class "space-y-4"}
       [l/grid {:class "grid-cols-1 lg:grid-cols-2 gap-6"}
        [l/flex-col {:class "space-y-2"}
         [l/flex-row {:class "justify-between items-center"}
-         [c/label "Input Data (EDN/JSON)"]
+         [c/label "Input Data"]
+         [l/flex-row {:class "space-x-2"}
+          [c/button-xs {:class (if (= input-format :edn) (str t/bg-button-primary " text-white") "")
+                        :on-click #(rf/dispatch [:malli/set-input-format :edn])} "EDN"]
+          [c/button-xs {:class (if (= input-format :csv) (str t/bg-button-primary " text-white") "")
+                        :on-click #(rf/dispatch [:malli/set-input-format :csv])} "CSV"]
+          [c/button-xs {:class (if (= input-format :tsv) (str t/bg-button-primary " text-white") "")
+                        :on-click #(rf/dispatch [:malli/set-input-format :tsv])} "TSV"]
+          [c/button-xs {:class (if (= input-format :json) (str t/bg-button-primary " text-white") "")
+                        :on-click #(rf/dispatch [:malli/set-input-format :json])} "JSON"]]
          (when (seq datasets)
            [:div {:class "flex items-center space-x-2"}
             [:span {:class (str "text-xs " t/text-secondary)} "Load:"]
@@ -105,7 +128,7 @@
 
         [:div {:class (str "h-64 rounded overflow-hidden border " t/border-default)}
          [editor/monaco-editor {:value inference-input
-                                :language "clojure"
+                                :language (if (= input-format :edn) "clojure" "plaintext")
                                 :on-change #(rf/dispatch [:malli/update-inference-input %])}]]
         [c/button {:on-click #(rf/dispatch [:malli/infer-schema])} "Infer Schema"]]
        [l/flex-col {:class "space-y-2"}
