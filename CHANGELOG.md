@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.0] - 2025-11-24
+
+### Added
+- **App DB Inspector**: Real-time inspection and modification of the re-frame
+  application database.
+  - Watch specific paths in the `app-db`.
+  - Edit values using EDN syntax.
+  - View data with formatting.
+- **ClojureScript REPL**: Interactive ClojureScript environment powered by SCI.
+  - Evaluate code in the browser.
+  - Interaction with re-frame `subscribe` and `dispatch`.
+  - Multiple REPL instances.
+- **Changelog Viewer**: In-app viewer for the project changelog.
+
 ## [0.2.0] - 2025-11-22
 
 ### Added
@@ -29,5 +43,6 @@ All notable changes to this project will be documented in this file.
 - **Editor**: CodeMirror scratchpad.
 
 ### Changed
-- Refactored project structure: moved tool panels to `src/bb_web_ds_tools/views/` and shared components to `src/bb_web_ds_tools/components/`.
+- Refactored project structure: moved tool panels to `src/bb_web_ds_tools/views/`
+  and shared components to `src/bb_web_ds_tools/components/`.
 - Updated application layout to a dark "Gemini CLI" theme.
