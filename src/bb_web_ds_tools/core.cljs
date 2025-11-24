@@ -93,8 +93,8 @@
  ::initialize-db
  (fn [_ _]
    (let [repl-id (str (random-uuid))
-         is-mac? (boolean (re-find #"(Mac|iPhone|iPod|iPad)" (.-platform js/navigator)))]
-     {:platform {:is-mac? is-mac?}
+         mac-os? (boolean (re-find #"(Mac|iPhone|iPod|iPad)" (.-platform js/navigator)))]
+     {:platform {:mac-os? mac-os?}
       :user-input {:editor {:default {:code "initial code"}}
                    :repl {repl-id {:id repl-id
                                    :code ""
