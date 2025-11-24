@@ -90,8 +90,10 @@
 (rf/reg-event-db
  ::initialize-db
  (fn [_ _]
-   (let [repl-id (str (random-uuid))]
-     {:user-input {:editor {:default {:code "initial code"}}
+   (let [repl-id (str (random-uuid))
+         mac-os? (boolean (re-find #"(Mac|iPhone|iPod|iPad)" (.-platform js/navigator)))]
+     {:platform {:mac-os? mac-os?}
+      :user-input {:editor {:default {:code "initial code"}}
                    :repl {repl-id {:id repl-id
                                    :code ""
                                    :output []}}}})))
