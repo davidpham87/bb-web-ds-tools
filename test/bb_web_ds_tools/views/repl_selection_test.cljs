@@ -1,0 +1,20 @@
+(ns bb-web-ds-tools.views.repl-selection-test
+  (:require [cljs.test :refer [deftest is testing]]
+            [bb-web-ds-tools.views.repl :as sut]))
+
+(deftest get-code-to-eval-test
+  (testing "returns full buffer when no selection"
+    (let [mock-editor #js {:getSelection (fn [] #js {:isEmpty (fn [] true)})
+                           :getValue (fn [] "full code")}]
+      (is (= "full code" (sut/get-code-to-eval mock-editor)))))
+
+  (testing "returns selected text when selection exists"
+    (let [mock-editor #js {:getSelection (fn [] #js {:isEmpty (fn [] false)})
+                           :getModel (fn [] #js {:getValueInRange (fn [sel] "selected code")})
+                           :getValue (fn [] "full code")}]
+      (is (= "selected code" (sut/get-code-to-eval mock-editor)))))
+
+  (testing "returns full buffer when selection is null"
+    (let [mock-editor #js {:getSelection (fn [] nil)
+                           :getValue (fn [] "full code")}]
+      (is (= "full code" (sut/get-code-to-eval mock-editor))))))
