@@ -21,7 +21,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        ref: gh-pages
+        ref: releases
 
     - name: Link node_modules
       run: ln -s /opt/app/node_modules .
