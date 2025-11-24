@@ -25,3 +25,4 @@ docs/js/**/*.ts
 .clj-kondo/
 storybook-static/
 package-lock.json
+docs/js/libs/
