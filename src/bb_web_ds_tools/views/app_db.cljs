@@ -6,6 +6,7 @@
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.editor :refer [monaco-editor]]
             [bb-web-ds-tools.components.layout :as l]
+            [bb-web-ds-tools.portal :as portal]
             [bb-web-ds-tools.theme :as t]))
 
 ;; Subscriptions
@@ -49,6 +50,11 @@
      (catch :default e
        (js/console.error "Failed to update path:" e)
        db))))
+
+(rf/reg-event-fx
+ ::open-in-portal
+ (fn [{:keys [db]} _]
+   {:dispatch [::portal/submit db]}))
 
 ;; Components
 
@@ -99,7 +105,10 @@
   (let [watched-paths @(rf/subscribe [::watched-paths])]
     (r/with-let [new-path (r/atom "")]
       [l/container {:class "space-y-6"}
-       [:h2 {:class "text-2xl font-bold"} "App DB Editor"]
+       [l/flex-row {:class "justify-between items-center"}
+        [:h2 {:class "text-2xl font-bold"} "App DB Editor"]
+        [c/button {:on-click #(rf/dispatch [::open-in-portal])}
+         "Inspect DB in Portal"]]
 
        ;; Add Path Control
        [c/card {}
