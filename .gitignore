@@ -18,9 +18,12 @@ target/
 *.log
 .m2/
 public/js/**/*.js
-docs/js/
+public/js/**/*.ts
+docs/js/**/*.js
+docs/js/**/*.ts
 *gemini_chat.md
 .lsp/
 .clj-kondo/
 storybook-static/
 package-lock.json
+docs/js/libs/
