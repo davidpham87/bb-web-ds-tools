@@ -19,6 +19,7 @@
             [bb-web-ds-tools.views.settings :as settings]
             [bb-web-ds-tools.views.app-db :as app-db]
             [bb-web-ds-tools.components.layout :as layout]
+            [bb-web-ds-tools.portal :as portal]
             [bb-web-ds-tools.theme :as t]))
 
 ;; --- Routing & Navigation ---
