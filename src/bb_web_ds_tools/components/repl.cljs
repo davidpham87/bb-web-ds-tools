@@ -24,7 +24,7 @@
         "Evaluate"]]])])
 
 (defn output-panel [{:keys [output]}]
-  [:div {:class "flex flex-col rounded shadow-sm bg-[#2f2f2f]"}
+  [:div {:class "flex flex-col rounded shadow-sm bg-[#2f2f2f] h-full"}
    [:div {:class "bg-[#3f3f3f] p-2 border-b border-[#5f5f5f] font-semibold text-[#f0dfaf]"} "Output Log"]
    [:div {:class "flex-grow p-2 overflow-auto font-mono text-sm h-64 text-[#dcdccc]"}
     (if (empty? output)
@@ -36,8 +36,8 @@
          (:text entry)]))]])
 
 (defn repl-card [{:keys [code output on-eval on-focus on-blur path on-editor-mount]}]
-  [:div {:class "grid grid-cols-1 md:grid-cols-2 gap-4 mb-4"}
-   [:div {:class "flex flex-col rounded shadow-sm bg-[#4f4f4f]"}
+  [:div {:class "grid grid-cols-1 md:grid-cols-3 gap-4 mb-4"}
+   [:div {:class "flex flex-col md:col-span-2 rounded shadow-sm bg-[#4f4f4f]"}
     [:div {:class "bg-[#3f3f3f] p-2 border-b border-[#5f5f5f] font-semibold text-[#f0dfaf]"} "Code Input"]
     [:div {:class "p-2"}
      [input-panel {:path path
@@ -46,4 +46,5 @@
                    :on-focus on-focus
                    :on-blur on-blur
                    :on-editor-mount on-editor-mount}]]]
-   [output-panel {:output output}]])
+   [:div {:class "md:col-span-1"}
+    [output-panel {:output output}]]])

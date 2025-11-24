@@ -3,7 +3,9 @@
             [honey.sql :as h]
             [cljs.reader :as reader]
             [bb-web-ds-tools.components.common :as c]
-            [bb-web-ds-tools.components.editor :as editor]))
+            [bb-web-ds-tools.components.editor :as editor]
+            [bb-web-ds-tools.components.layout :as l]
+            [bb-web-ds-tools.theme :as t]))
 
 ;; Event handlers
 (rf/reg-event-db
@@ -39,20 +41,19 @@
 (defn panel []
   (let [honeysql-input @(rf/subscribe [:honeysql/input])
         honeysql-output @(rf/subscribe [:honeysql/output])]
-    [:div {:class "space-y-6 container mx-auto max-w-6xl py-6"}
-     [c/card {}
-      [:div
-       [:h3 {:class "text-xl font-semibold text-[#f0dfaf] mb-4 flex items-center gap-2"}
-        [:span "🍯"] "Convert to SQL"]
-       [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-6"}
-        [:div
-         [c/label "HoneySQL Map (EDN)"]
-         [:div {:class "h-96 rounded overflow-hidden border border-[#5f5f5f]"}
-          [editor/monaco-editor {:value honeysql-input
-                                 :language "clojure"
-                                 :on-change #(rf/dispatch [:honeysql/update-input %])}]]
-         [:div {:class "mt-4"}
-          [c/button {:on-click #(rf/dispatch [:honeysql/convert-to-sql])} "Convert"]]]
-        [:div
-         [c/label "SQL Output"]
-         [c/pre-block {:content honeysql-output :class "h-96"}]]]]]]))
+    [l/split-view {:ratio :2-1}
+     ;; LEFT: Input
+     [l/flex-col {:class "h-full p-4 space-y-4"}
+      [:h3 {:class (str "text-xl font-semibold " t/text-accent " flex items-center gap-2")}
+       [:span "🍯"] "Convert to SQL"]
+      [c/label "HoneySQL Map (EDN)"]
+      [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
+       [editor/monaco-editor {:value honeysql-input
+                              :language "clojure"
+                              :on-change #(rf/dispatch [:honeysql/update-input %])}]]
+      [c/button {:on-click #(rf/dispatch [:honeysql/convert-to-sql])} "Convert"]]
+
+     ;; RIGHT: Output
+     [l/flex-col {:class "h-full p-4 space-y-4"}
+      [c/label "SQL Output"]
+      [c/pre-block {:content honeysql-output :class "flex-grow"}]]]))
