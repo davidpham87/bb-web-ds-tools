@@ -1,39 +1,80 @@
 # bb-web-ds-tools
 
-A ClojureScript web application providing a suite of data science tools running entirely in the browser. This project leverages modern browser capabilities to bring tools like Malli, HoneySQL, Vega-Lite, and even LLMs (Gemma) directly to the client side.
+A ClojureScript web application providing a suite of data science tools running
+entirely in the browser. This project leverages modern browser capabilities to
+bring tools like Malli, HoneySQL, Vega-Lite, and even LLMs (Gemma) directly to
+the client side.
 
 ## Features
 
 ### 1. Malli Tools
 Leverage `metosin/malli` for schema management:
-*   **Schema Inference:** Provide EDN data (Clojure data structures) to automatically infer a Malli schema using `malli.provider`.
-*   **Data Generation:** Specify a Malli schema to generate random sample data using `malli.generator`.
+*   **Schema Inference:** Provide EDN data (Clojure data structures) to
+    automatically infer a Malli schema using `malli.provider`.
+*   **Data Generation:** Specify a Malli schema to generate random sample data
+    using `malli.generator`.
 
 ### 2. HoneySQL Tools
 Convert Clojure data structures to SQL:
-*   **HoneySQL Formatter:** Input HoneySQL maps (v1 syntax) and convert them to formatted SQL strings. This is useful for debugging queries or quick conversion tasks.
+*   **HoneySQL Formatter:** Input HoneySQL maps (v1 syntax) and convert them to
+    formatted SQL strings. This is useful for debugging queries or quick
+    conversion tasks.
 
 ### 3. Vega-Lite Visualization
 Visualize data instantly without a backend:
-*   **Data Parsing:** Supports parsing data from various formats including CSV, TSV, JSON (Maps & Arrays), and Markdown tables.
+*   **Data Parsing:** Supports parsing data from various formats including CSV,
+    TSV, JSON (Maps & Arrays), and Markdown tables.
 *   **Plotting:** Render interactive charts using Vega-Lite JSON specifications.
 *   **Example Data:** Includes built-in examples for quick testing.
 
 ### 4. Gemma LLM (Browser-side)
 Run Google's Gemma model locally in the browser:
-*   **Private & Local:** Uses MediaPipe to run the LLM on your device (GPU/CPU) via WebAssembly/WebGL without sending data to a server.
+*   **Private & Local:** Uses MediaPipe to run the LLM on your device (GPU/CPU)
+    via WebAssembly/WebGL without sending data to a server.
 *   **Chat Interface:** Interact with the model via a conversational UI.
-*   **Model Loading:** Load compatible `.bin` model files (e.g., Gemma 2B int4) from a URL.
+*   **Model Loading:** Load compatible `.bin` model files (e.g., Gemma 2B int4)
+    from a URL.
 
 ### 5. Code Editor
-*   A built-in scratchpad using CodeMirror for editing code or data with syntax highlighting.
+*   A built-in scratchpad using Monaco Editor for editing code or data with
+    syntax highlighting.
+
+### 6. Datasets Manager
+Manage and manipulate tabular data:
+*   **Import:** Load CSV, TSV, or JSON data from files or clipboard.
+*   **Edit:** View and edit data in a grid view with sorting and filtering.
+*   **State:** Persist multiple datasets in local application state.
+
+### 7. Pyodide Integration (Python)
+Run Python code in the browser:
+*   **Runtime:** Execute Python scripts using Pyodide (WASM).
+*   **Editor:** Monaco-based editor for Python code.
+*   **Output:** Capture stdout/stderr in real-time.
+
+### 8. WebR REPL (R)
+Run R code in the browser:
+*   **Runtime:** Execute R code using WebR (WASM).
+*   **Interactive Shell:** xterm.js-based terminal for R REPL.
+
+### 9. App DB Inspector
+Debug the re-frame application state:
+*   **Watch:** Monitor specific paths in the `app-db`.
+*   **Edit:** Modify state directly using EDN.
+
+### 10. ClojureScript REPL
+Interactive ClojureScript environment:
+*   **SCI:** Uses the Small Clojure Interpreter to evaluate code.
+*   **Integration:** Interact with re-frame subscriptions and events directly.
 
 ## Prerequisites
 
 *   **Node.js:** Required for package management and running the build tools.
 *   **Java:** Required for running Clojure and Shadow-CLJS.
-*   **Clojure CLI:** The project configuration (`shadow-cljs.edn`) uses `:deps true`, meaning the `clojure` command must be available on your system's PATH to resolve dependencies.
-    *   *Note:* If you are using Babashka, you can alias `bb clojure` to `clojure` if the official CLI is not installed.
+*   **Clojure CLI:** The project configuration (`shadow-cljs.edn`) uses `:deps
+    true`, meaning the `clojure` command must be available on your system's
+    PATH to resolve dependencies.
+    *   *Note:* If you are using Babashka, you can alias `bb clojure` to
+        `clojure` if the official CLI is not installed.
 
 ## Setup & Running
 
@@ -47,7 +88,8 @@ Run Google's Gemma model locally in the browser:
     ```bash
     npx shadow-cljs watch app
     ```
-    The application will be served at `http://localhost:8080`. The build tool handles hot-reloading of ClojureScript code.
+    The application will be served at `http://localhost:8080`. The build tool
+    handles hot-reloading of ClojureScript code.
 
 ## Testing
 
@@ -63,7 +105,8 @@ npm test
     *   `core.cljs`: Main entry point, routing, and navigation.
     *   `malli_tools.cljs`: Logic for Malli schema inference and generation.
     *   `honeysql_tools.cljs`: Logic for HoneySQL to SQL conversion.
-    *   `vega_lite.cljs`: Vega-Lite integration, data parsing (CSV, TSV, JSON, MD), and visualization components.
+    *   `vega_lite.cljs`: Vega-Lite integration, data parsing (CSV, TSV, JSON,
+        MD), and visualization components.
     *   `gemma.cljs`: Interface for MediaPipe GenAI (Gemma).
     *   `ui/`: Reusable UI components (CodeMirror, etc.).
 *   `public/`: Static assets.
