@@ -208,8 +208,8 @@
                       :class "w-auto"
                       :checked (not (contains? hidden-columns col))
                       :on-change #(if (contains? hidden-columns col)
-                                   (rf/dispatch [::update-view-state id :hidden-columns (disj hidden-columns col)])
-                                   (rf/dispatch [::update-view-state id :hidden-columns (conj hidden-columns col)]))}]
+                                    (rf/dispatch [::update-view-state id :hidden-columns (disj hidden-columns col)])
+                                    (rf/dispatch [::update-view-state id :hidden-columns (conj hidden-columns col)]))}]
             [:span {:class t/text-primary} (name col)]])]]]
       [:div {:class "flex-grow"}]
       [:div {:class (str "text-sm " t/text-secondary)}
@@ -229,8 +229,8 @@
            [c/th {:key col
                   :class (str "cursor-pointer " t/bg-item-hover)
                   :on-click #(let [new-dir (if (and (= sort-col col) (= sort-dir :asc)) :desc :asc)]
-                              (rf/dispatch [::update-view-state id :sort-col col])
-                              (rf/dispatch [::update-view-state id :sort-dir new-dir]))}
+                               (rf/dispatch [::update-view-state id :sort-col col])
+                               (rf/dispatch [::update-view-state id :sort-dir new-dir]))}
             [:div {:class "flex items-center space-x-1"}
              [:span (name col)]
              (when (= sort-col col)
@@ -251,9 +251,8 @@
              (for [col visible-columns]
                [c/td {:key col}
                 [c/input {:class (str "bg-transparent focus:" t/bg-input " focus:ring-1 " t/ring-focus " rounded px-1 outline-none border-0")
-                         :value (get row col "")
-                         :on-change #(rf/dispatch [::update-cell id row-uuid col (.. % -target -value)])}]])]))]]]
-     ]))
+                          :value (get row col "")
+                          :on-change #(rf/dispatch [::update-cell id row-uuid col (.. % -target -value)])}]])]))]]]]))
 
 (defn dataset-view [dataset]
   [l/flex-col {:class "space-y-6"}
