@@ -2,14 +2,18 @@
   (:require [cljs.test :refer [deftest is testing]]
             [bb-web-ds-tools.views.datasets :as d]))
 
-(deftest parse-csv-test
+(deftest parse-dataset-test
   (testing "CSV parsing"
     (let [csv "name,age\nAlice,30\nBob,25"
           expected [{:name "Alice" :age 30} {:name "Bob" :age 25}]]
-      (is (= expected (d/parse-csv csv))))))
+      (is (= expected (d/parse-dataset :csv csv)))))
 
-(deftest parse-json-test
+  (testing "TSV parsing"
+    (let [tsv "name\tage\nAlice\t30\nBob\t25"
+          expected [{:name "Alice" :age 30} {:name "Bob" :age 25}]]
+      (is (= expected (d/parse-dataset :tsv tsv)))))
+
   (testing "JSON parsing"
     (let [json "[{\"name\": \"Alice\", \"age\": 30}, {\"name\": \"Bob\", \"age\": 25}]"
           expected [{:name "Alice" :age 30} {:name "Bob" :age 25}]]
-      (is (= expected (d/parse-json json))))))
+      (is (= expected (d/parse-dataset :json json))))))
