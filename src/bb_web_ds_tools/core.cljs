@@ -92,8 +92,10 @@
 (rf/reg-event-db
  ::initialize-db
  (fn [_ _]
-   (let [repl-id (str (random-uuid))]
-     {:user-input {:editor {:default {:code "initial code"}}
+   (let [repl-id (str (random-uuid))
+         is-mac? (boolean (re-find #"(Mac|iPhone|iPod|iPad)" (.-platform js/navigator)))]
+     {:platform {:is-mac? is-mac?}
+      :user-input {:editor {:default {:code "initial code"}}
                    :repl {repl-id {:id repl-id
                                    :code ""
                                    :output []}}}})))
@@ -125,17 +127,17 @@
 (defmulti view (fn [match] (:name (:data match))))
 
 (defmethod view :landing [_] [landing/landing-page])
-(defmethod view :malli [_] [:div.p-4 [malli/panel]])
-(defmethod view :honeysql [_] [:div.p-4 [honeysql/panel]])
-(defmethod view :vega-lite [_] [:div.p-4 [vega/panel]])
-(defmethod view :gemma [_] [:div.p-4 [gemma/panel]])
-(defmethod view :pyodide [_] [:div.p-4 [pyodide/panel]])
-(defmethod view :editor [_] [:div.p-4 [editor/panel]])
-(defmethod view :repl [_] [:div.p-4 [repl/panel]])
-(defmethod view :r-repl [_] [:div.p-4.h-screen [r-repl/r-repl]])
+(defmethod view :malli [_] [malli/panel])
+(defmethod view :honeysql [_] [honeysql/panel])
+(defmethod view :vega-lite [_] [vega/panel])
+(defmethod view :gemma [_] [gemma/panel])
+(defmethod view :pyodide [_] [pyodide/panel])
+(defmethod view :editor [_] [editor/panel])
+(defmethod view :repl [_] [repl/panel])
+(defmethod view :r-repl [_] [:div.h-screen [r-repl/r-repl]])
 (defmethod view :datasets [_] [datasets/panel])
 (defmethod view :changelog [_] [changelog/changelog-page])
-(defmethod view :reader [_] [:div.p-4 "Reader Tool"])
+(defmethod view :reader [_] [:div "Reader Tool"])
 (defmethod view :settings [_] [settings/panel])
 (defmethod view :app-db [_] [app-db/panel])
 (defmethod view :default [_] [landing/landing-page])
@@ -180,26 +182,22 @@
             route-name (:name (:data current-route))]
         [:nav {:class (str t/bg-page " border-b " t/border-default " sticky top-0 z-40 h-12 flex items-center px-4 shadow-md")}
          ;; Hamburger Menu
-         [:button {:class (str "mr-4 " t/text-primary " hover:" t/text-accent " focus:outline-none text-2xl leading-none")
+         [:button {:class (str "mr-4 " t/text-primary " hover:" t/text-accent " focus:outline-none text-2xl leading-none transition-transform duration-200" (when @menu-open? " rotate-90"))
                    :on-click #(swap! menu-open? not)}
           "≡"]
 
-         ;; Breadcrumbs / Title
-         [:div {:class (str "flex items-center space-x-2 text-sm " t/text-primary)}
-          [:span {:class (str "cursor-pointer hover:" t/text-accent " font-bold")
-                  :on-click #(rf/dispatch [::navigate :landing])}
-           "Home"]
-          (when (and route-name (not= route-name :landing))
-            [:<>
-             [:span {:class t/text-muted} "/"]
-             [:span {:class (str "font-medium " t/text-accent)}
-              (clojure.string/capitalize (name route-name))]])]
+         ;; Title
+         [:div {:class (str "flex items-center space-x-2 text-lg font-bold " t/text-accent)}
+          [:span
+           (if route-name
+             (clojure.string/capitalize (name route-name))
+             "Home")]]
 
          [drawer menu-open? #(reset! menu-open? false) nav-items]]))))
 
 (defn main-panel []
   (let [current-route @(rf/subscribe [::current-route])]
-    [:div {:class (str "min-h-screen " t/bg-page " " t/text-primary)}
+    [:div {:class (str "min-h-screen " t/bg-page " " t/text-primary " text-sm")}
      (if current-route
        (view current-route)
        [landing/landing-page])]))
