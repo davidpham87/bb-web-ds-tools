@@ -25,20 +25,20 @@ def verify():
         try:
             print("Navigating to landing page...")
             page.goto(f"http://localhost:{PORT}")
-            page.wait_for_selector("text=BB Web DS Tools")
+            page.wait_for_selector("text=Data Science Workbench")
             print("Landing page loaded.")
 
             # Navigation items to check
             # Key is the text in the navbar to click
             # Value is the text expected to be found on the resulting page
             nav_checks = {
-                "Malli": "Malli Tools",
-                "HoneySQL": "HoneySQL Tools",
-                "Vega-Lite": "Vega-Lite Visualization",
-                "Gemma": "Gemma Local LLM",
-                "Pyodide": "Pyodide Python Environment",
-                "Editor": "Code Editor",
-                "Repl": "Clojure REPL",
+                "Malli": "Input Data",
+                "HoneySQL": "Convert to SQL",
+                "Vega-Lite": "Data Input",
+                "Gemma": "Load Gemma Model",
+                "Pyodide": "Load Python Environment",
+                "Editor": "Save Code",
+                "Repl": "Add REPL",
                 "Changelog": "Changelog"
             }
 
@@ -47,7 +47,7 @@ def verify():
 
                 # Open the menu first if it's closed (simple check or always click)
                 # Since navigation closes the menu, we should click it every time
-                page.click("text=Menu ▾")
+                page.click("button:has-text('≡')")
 
                 # Click the navigation link.
                 # The nav items are <a> tags with the text.
