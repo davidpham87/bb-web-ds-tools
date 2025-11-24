@@ -21,6 +21,7 @@
    :test
    {:target :browser-test
     :ns-regexp "-test$"
+    :runner-ns shadow.test.karma
     :output-to "target/test/core.js"
     :test-dir "target/test"
     :compiler-options {:pretty-print true}
