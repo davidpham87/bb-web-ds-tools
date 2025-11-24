@@ -18,6 +18,7 @@
             [bb-web-ds-tools.views.datasets :as datasets]
             [bb-web-ds-tools.views.settings :as settings]
             [bb-web-ds-tools.views.app-db :as app-db]
+            [bb-web-ds-tools.components.layout :as layout]
             [bb-web-ds-tools.theme :as t]))
 
 ;; --- Routing & Navigation ---
@@ -95,6 +96,7 @@
    (let [repl-id (str (random-uuid))
          mac-os? (boolean (re-find #"(Mac|iPhone|iPod|iPad)" (.-platform js/navigator)))]
      {:platform {:mac-os? mac-os?}
+      :sidebar {:expanded? true}
       :user-input {:editor {:default {:code "initial code"}}
                    :repl {repl-id {:id repl-id
                                    :code ""
@@ -122,6 +124,16 @@
  (fn [db [_ new-code]]
    (assoc-in db [:user-input :editor :default :code] new-code)))
 
+(rf/reg-sub
+ ::sidebar-expanded?
+ (fn [db]
+   (get-in db [:sidebar :expanded?])))
+
+(rf/reg-event-db
+ ::toggle-sidebar
+ (fn [db _]
+   (update-in db [:sidebar :expanded?] not)))
+
 ;; --- Views ---
 
 (defmulti view (fn [match] (:name (:data match))))
@@ -143,68 +155,67 @@
 (defmethod view :default [_] [landing/landing-page])
 
 (def nav-items
-  [{:label "Home" :route :landing}
-   {:label "App DB" :route :app-db}
-   {:label "Datasets" :route :datasets}
-   {:label "Malli" :route :malli}
-   {:label "HoneySQL" :route :honeysql}
-   {:label "Vega-Lite" :route :vega-lite}
-   {:label "Gemma" :route :gemma}
-   {:label "Pyodide" :route :pyodide}
-   {:label "Editor" :route :editor}
-   {:label "Repl" :route :repl}
-   {:label "R" :route :r-repl}
-   {:label "Settings" :route :settings}
-   {:label "Changelog" :route :changelog}])
+  [{:label "Home" :route :landing :icon "🏠"}
+   {:label "App DB" :route :app-db :icon "🗄️"}
+   {:label "Datasets" :route :datasets :icon "📊"}
+   {:label "Malli" :route :malli :icon "✅"}
+   {:label "HoneySQL" :route :honeysql :icon "🍯"}
+   {:label "Vega-Lite" :route :vega-lite :icon "📈"}
+   {:label "Gemma" :route :gemma :icon "🤖"}
+   {:label "Pyodide" :route :pyodide :icon "🐍"}
+   {:label "Editor" :route :editor :icon "📝"}
+   {:label "Repl" :route :repl :icon "💻"}
+   {:label "R" :route :r-repl :icon "🇷"}
+   {:label "Settings" :route :settings :icon "⚙️"}
+   {:label "Changelog" :route :changelog :icon "📜"}])
 
-(defn drawer [open? on-close items]
-  [:<>
-   (when @open?
-     [:div {:class "fixed inset-0 bg-black/50 z-40"
-            :on-click on-close}])
-   [:div {:class (str "fixed top-0 left-0 h-full w-64 " t/bg-sidebar " shadow-lg transform transition-transform duration-300 z-50 overflow-y-auto "
-                      (if @open? "translate-x-0" "-translate-x-full"))}
-    [:div {:class (str "p-4 border-b " t/border-main " flex justify-between items-center " t/bg-toolbar)}
-     [:span {:class (str "text-xl font-bold " t/text-accent)} "Menu"]
-     [:button {:class (str t/text-primary " hover:text-white font-bold") :on-click on-close} "✕"]]
-    [:div {:class "py-2"}
-     (for [item items]
-       ^{:key (:route item)}
-       [:a {:href (rfe/href (:route item))
-            :class (str "block px-4 py-3 text-sm " t/text-primary " " t/bg-item-hover " transition-colors")
-            :on-click on-close}
-        (:label item)])]]])
+(defn sidebar []
+  (let [expanded? @(rf/subscribe [::sidebar-expanded?])
+        current-route @(rf/subscribe [::current-route])
+        current-name (:name (:data current-route))]
+    [layout/sidebar {:class (if expanded? "w-64" "w-16")}
+     [:div {:class (str "p-4 flex items-center " (if expanded? "justify-between" "justify-center"))}
+      (when expanded?
+        [:span {:class (str "font-bold text-lg " t/text-accent)} "DS Tools"])
+      [:button {:on-click #(rf/dispatch [::toggle-sidebar])
+                :class (str t/text-primary " hover:text-white focus:outline-none")}
+       (if expanded? "◀" "▶")]]
+     [:nav {:class "flex-1 overflow-y-auto py-4"}
+      (for [item nav-items]
+        ^{:key (:route item)}
+        [:a {:href (rfe/href (:route item))
+             :class (str "flex items-center px-4 py-3 "
+                         (if (= current-name (:route item))
+                           (str t/bg-item-hover " " t/text-accent)
+                           (str t/text-primary " hover:" t/text-accent))
+                         " transition-colors duration-200")
+             :title (:label item)}
+         [:span {:class "text-xl"} (:icon item)]
+         (when expanded?
+           [:span {:class "ml-3 text-sm font-medium whitespace-nowrap"} (:label item)])])]]))
 
-(defn nav-bar []
-  (let [menu-open? (r/atom false)]
-    (fn []
-      (let [current-route @(rf/subscribe [::current-route])
-            route-name (:name (:data current-route))]
-        [:nav {:class (str t/bg-page " border-b " t/border-default " sticky top-0 z-40 h-12 flex items-center px-4 shadow-md")}
-         ;; Hamburger Menu
-         [:button {:class (str "mr-4 " t/text-primary " hover:" t/text-accent " focus:outline-none text-2xl leading-none transition-transform duration-200" (when @menu-open? " rotate-90"))
-                   :on-click #(swap! menu-open? not)}
-          "≡"]
-
-         ;; Title
-         [:div {:class (str "flex items-center space-x-2 text-lg font-bold " t/text-accent)}
-          [:span
-           (if route-name
-             (clojure.string/capitalize (name route-name))
-             "Home")]]
-
-         [drawer menu-open? #(reset! menu-open? false) nav-items]]))))
+(defn top-tab-bar []
+  (let [current-route @(rf/subscribe [::current-route])
+        current-name (:name (:data current-route))]
+    [:div {:class (str "h-10 " t/bg-toolbar " border-b " t/border-main " flex items-end px-2 space-x-1")}
+     [:div {:class (str "px-4 py-2 text-xs font-medium rounded-t-lg "
+                        t/bg-page " " t/text-accent " border-t border-l border-r " t/border-main)}
+      (if current-name
+        (clojure.string/capitalize (name current-name))
+        "Home")]]))
 
 (defn main-panel []
   (let [current-route @(rf/subscribe [::current-route])]
-    [:div {:class (str "min-h-screen " t/bg-page " " t/text-primary " text-sm")}
-     (if current-route
-       (view current-route)
-       [landing/landing-page])]))
+    [layout/main {}
+     [top-tab-bar]
+     [:div {:class "flex-grow overflow-auto relative"}
+      (if current-route
+        (view current-route)
+        [landing/landing-page])]]))
 
 (defn app []
-  [:div {:class (str "min-h-screen " t/bg-page)}
-   [nav-bar]
+  [layout/page-container {}
+   [sidebar]
    [main-panel]])
 
 (defn ^:export init []
