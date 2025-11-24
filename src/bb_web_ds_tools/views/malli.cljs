@@ -7,7 +7,18 @@
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.editor :as editor]
             [bb-web-ds-tools.components.layout :as l]
-            [bb-web-ds-tools.theme :as t]))
+            [bb-web-ds-tools.theme :as t]
+            [bb-web-ds-tools.views.datasets :as datasets]))
+
+(defn detect-and-parse [text]
+  (if (clojure.string/blank? text)
+    nil
+    (try
+      (reader/read-string text)
+      (catch :default _
+        (try
+          (js->clj (js/JSON.parse text) :keywordize-keys true)
+          (catch :default _ nil))))))
 
 ;; Event handlers
 (rf/reg-event-db
@@ -48,10 +59,19 @@
   :malli/infer-schema
   (fn [{:keys [db]} [_ values]]
     (let [input-text (get values "inference-input")
-          input-data (try (reader/read-string input-text) (catch js/Error e nil))]
+          input-data (detect-and-parse input-text)]
       (if (and (coll? input-data) (seq input-data))
         {:db (assoc-in db [:user-input :malli :default :inferred-schema] (pr-str (mp/provide input-data)))}
-        {:db (assoc-in db [:user-input :malli :default :inferred-schema] "Invalid input data.")}))))
+        {:db (assoc-in db [:user-input :malli :default :inferred-schema] "Invalid input data. Must be valid EDN or JSON collection.")}))))
+
+(rf/reg-event-db
+ :malli/load-dataset
+ (fn [db [_ dataset-id]]
+   (let [dataset (get-in db [:user-input :datasets :items dataset-id])
+         data (:data dataset)]
+     (if data
+       (assoc-in db [:user-input :malli :default :inference-input] (with-out-str (cljs.pprint/pprint data)))
+       db))))
 
 ;; Subscriptions
 (rf/reg-sub :malli/root (fn [db _] (get-in db [:user-input :malli :default])))
@@ -65,14 +85,24 @@
 
 (defn inference-view []
   (let [inference-input @(rf/subscribe [:malli/inference-input])
-        inferred-schema @(rf/subscribe [:malli/inferred-schema])]
+        inferred-schema @(rf/subscribe [:malli/inferred-schema])
+        datasets @(rf/subscribe [::datasets/items])]
     [c/card {}
      [l/flex-col {:class "space-y-4"}
-      [:h3 {:class (str "text-xl font-semibold " t/text-accent " flex items-center gap-2")}
-       [:span "🧩"] "Schema Inference"]
       [l/grid {:class "grid-cols-1 lg:grid-cols-2 gap-6"}
        [l/flex-col {:class "space-y-2"}
-        [c/label "Input Data (EDN)"]
+        [l/flex-row {:class "justify-between items-center"}
+         [c/label "Input Data (EDN/JSON)"]
+         (when (seq datasets)
+           [:div {:class "flex items-center space-x-2"}
+            [:span {:class (str "text-xs " t/text-secondary)} "Load:"]
+            [c/select {:class "py-1 px-2 text-xs"
+                       :on-change #(rf/dispatch [:malli/load-dataset (.. % -target -value)])
+                       :value ""}
+             [:option {:value ""} "Select Dataset..."]
+             (for [[id ds] datasets]
+               [:option {:key id :value id} (:name ds)])]])]
+
         [:div {:class (str "h-64 rounded overflow-hidden border " t/border-default)}
          [editor/monaco-editor {:value inference-input
                                 :language "clojure"
@@ -103,9 +133,7 @@
 
 (defn panel []
   (let [active-tab (or @(rf/subscribe [:malli/active-tab]) :inference)]
-    [l/container {:class "max-w-6xl p-6 space-y-6"}
-
-     [:h2 {:class "text-2xl font-bold text-white mb-6"} "Malli Tools"]
+    [l/container {:class "max-w-6xl space-y-6"}
 
      ;; Tabs Navigation
      [l/flex-row {:class (str "space-x-6 border-b " t/border-default)}
