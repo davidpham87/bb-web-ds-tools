@@ -162,7 +162,7 @@
   (let [loaded?-sub (rf/subscribe [::model-loaded?])]
     (fn []
       (let [loaded? @loaded?-sub]
-        [:div.gemma-page {:class "container mx-auto px-4 py-8"}
+        [:div.gemma-page {:class "container mx-auto px-4 py-4"}
          (if loaded?
            [chat-interface]
            [model-loader])]))))
