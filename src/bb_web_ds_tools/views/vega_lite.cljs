@@ -12,7 +12,6 @@
             [malli.provider :as mp]
             [malli.core :as m]))
 
-
 ;; --- State ---
 
 (rf/reg-event-db
@@ -131,7 +130,7 @@
             (catch js/Error e (js/console.warn "Vega render error" e))))))
     :component-did-update
     (fn [this _]
-       (let [{:keys [spec data]} (r/props this)]
+      (let [{:keys [spec data]} (r/props this)]
         (when (and spec data)
           (try
             (let [spec-obj (js/JSON.parse spec)
@@ -147,7 +146,7 @@
 (defn extract-map-schema [schema]
   (cond
     (and (vector? schema) (= :map (first schema))) schema
-    (and (vector? schema) (#{ :vector :sequential :set :list } (first schema))) (extract-map-schema (second schema))
+    (and (vector? schema) (#{:vector :sequential :set :list} (first schema))) (extract-map-schema (second schema))
     :else nil))
 
 (defn infer-type [schema field]
@@ -171,10 +170,10 @@
         spec {:mark mark
               :encoding encoding}]
      ;; Apply ops (Repeat, Fold, Facet) - simplified
-     (cond-> spec
-       (contains? ops :repeat) (assoc :repeat {:layer [x y]}) ;; Simplified logic
-       (contains? ops :facet) (assoc :facet {:row {:field (or color x) :type "nominal"}}) ;; Simplified
-       true (js/JSON.stringify nil 2))))
+    (cond-> spec
+      (contains? ops :repeat) (assoc :repeat {:layer [x y]}) ;; Simplified logic
+      (contains? ops :facet) (assoc :facet {:row {:field (or color x) :type "nominal"}}) ;; Simplified
+      true (js/JSON.stringify nil 2))))
 
 (rf/reg-event-fx
  ::apply-builder

@@ -34,81 +34,81 @@
         prompt "> "
         retry-timer (r/atom nil)]
     (r/create-class
-      {:component-did-mount
-       (fn []
-         (let [init-fn (fn init-fn []
-                         (if (and @container-ref (exists? js/WebR))
-                           (let [term (new Terminal (clj->js {:cursorBlink true
-                                                              :convertEol true
-                                                              :fontFamily "Menlo, Monaco, 'Courier New', monospace"
-                                                              :fontSize 14
-                                                              :theme {:background "#3f3f3f"
-                                                                      :foreground "#dcdccc"
-                                                                      :cursor "#737373"}}))
-                                 fit-addon (new FitAddon)
-                                 webr (new js/WebR (clj->js {}))]
+     {:component-did-mount
+      (fn []
+        (let [init-fn (fn init-fn []
+                        (if (and @container-ref (exists? js/WebR))
+                          (let [term (new Terminal (clj->js {:cursorBlink true
+                                                             :convertEol true
+                                                             :fontFamily "Menlo, Monaco, 'Courier New', monospace"
+                                                             :fontSize 14
+                                                             :theme {:background "#3f3f3f"
+                                                                     :foreground "#dcdccc"
+                                                                     :cursor "#737373"}}))
+                                fit-addon (new FitAddon)
+                                webr (new js/WebR (clj->js {}))]
 
-                             (.loadAddon term fit-addon)
-                             (.open term @container-ref)
-                             (.fit fit-addon)
+                            (.loadAddon term fit-addon)
+                            (.open term @container-ref)
+                            (.fit fit-addon)
 
-                             (reset! term-ref term)
-                             (reset! webr-ref webr)
+                            (reset! term-ref term)
+                            (reset! webr-ref webr)
 
-                             (js/window.addEventListener "resize" #(.fit fit-addon))
+                            (js/window.addEventListener "resize" #(.fit fit-addon))
 
-                             (.write term "Loading WebR (R for WebAssembly)... Please wait.\r\n")
+                            (.write term "Loading WebR (R for WebAssembly)... Please wait.\r\n")
 
-                             (-> (.init webr)
-                                 (.then (fn []
-                                          (start-read-loop webr term)
-                                          (.write term "\r\nWebR loaded successfully!\r\n")
-                                          (.write term prompt)
+                            (-> (.init webr)
+                                (.then (fn []
+                                         (start-read-loop webr term)
+                                         (.write term "\r\nWebR loaded successfully!\r\n")
+                                         (.write term prompt)
 
-                                          (.onData term (fn [data]
-                                                          (let [code (.charCodeAt data 0)]
-                                                            (cond
-                                                              (= code 13)
-                                                              (let [cmd @input-buffer]
-                                                                (.write term "\r\n")
-                                                                (when-not (empty? cmd)
-                                                                  (swap! history conj cmd)
-                                                                  (reset! history-index -1))
-                                                                (reset! input-buffer "")
+                                         (.onData term (fn [data]
+                                                         (let [code (.charCodeAt data 0)]
+                                                           (cond
+                                                             (= code 13)
+                                                             (let [cmd @input-buffer]
+                                                               (.write term "\r\n")
+                                                               (when-not (empty? cmd)
+                                                                 (swap! history conj cmd)
+                                                                 (reset! history-index -1))
+                                                               (reset! input-buffer "")
 
-                                                                (if (empty? cmd)
-                                                                  (.write term prompt)
-                                                                  (-> (.evalR webr cmd (clj->js {:env js/undefined :autoprint true}))
-                                                                      (.then (fn [res]
-                                                                               (try
-                                                                                 (.destroy res)
-                                                                                 (catch js/Error _))
-                                                                               (.write term prompt)))
-                                                                      (.catch (fn [err]
-                                                                                (.write term (str "\u001b[31mError: " err "\u001b[0m\r\n" prompt)))))))
+                                                               (if (empty? cmd)
+                                                                 (.write term prompt)
+                                                                 (-> (.evalR webr cmd (clj->js {:env js/undefined :autoprint true}))
+                                                                     (.then (fn [res]
+                                                                              (try
+                                                                                (.destroy res)
+                                                                                (catch js/Error _))
+                                                                              (.write term prompt)))
+                                                                     (.catch (fn [err]
+                                                                               (.write term (str "\u001b[31mError: " err "\u001b[0m\r\n" prompt)))))))
 
-                                                              (= code 127)
-                                                              (when (> (count @input-buffer) 0)
-                                                                (.write term "\b \b")
-                                                                (swap! input-buffer pop-last-char))
+                                                             (= code 127)
+                                                             (when (> (count @input-buffer) 0)
+                                                               (.write term "\b \b")
+                                                               (swap! input-buffer pop-last-char))
 
-                                                              :else
-                                                              (when (>= code 32)
-                                                                (.write term data)
-                                                                (swap! input-buffer str data))))))))
-                                 (.catch (fn [e]
-                                           (.write term (str "\u001b[31mFailed to load WebR: " e "\u001b[0m\r\n"))))))
-                           (reset! retry-timer (js/setTimeout init-fn 100))))]
-           (init-fn)))
+                                                             :else
+                                                             (when (>= code 32)
+                                                               (.write term data)
+                                                               (swap! input-buffer str data))))))))
+                                (.catch (fn [e]
+                                          (.write term (str "\u001b[31mFailed to load WebR: " e "\u001b[0m\r\n"))))))
+                          (reset! retry-timer (js/setTimeout init-fn 100))))]
+          (init-fn)))
 
-       :component-will-unmount
-       (fn []
-         (when @retry-timer (js/clearTimeout @retry-timer))
-         (when @term-ref (.dispose @term-ref)))
+      :component-will-unmount
+      (fn []
+        (when @retry-timer (js/clearTimeout @retry-timer))
+        (when @term-ref (.dispose @term-ref)))
 
-       :reagent-render
-       (fn []
-         [:div {:class "flex flex-col h-full w-full p-4"}
-          [:div {:class "flex-grow bg-[#3f3f3f] rounded overflow-hidden border border-[#5f5f5f] shadow-md"
-                 :ref #(reset! container-ref %)
-                 :style {:height "100%" :width "100%"}}]])})))
+      :reagent-render
+      (fn []
+        [:div {:class "flex flex-col h-full w-full p-4"}
+         [:div {:class "flex-grow bg-[#3f3f3f] rounded overflow-hidden border border-[#5f5f5f] shadow-md"
+                :ref #(reset! container-ref %)
+                :style {:height "100%" :width "100%"}}]])})))

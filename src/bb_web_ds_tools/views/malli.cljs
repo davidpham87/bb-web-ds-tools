@@ -22,47 +22,47 @@
 
 ;; Event handlers
 (rf/reg-event-db
-  :malli/initialize
-  (fn [db _]
-    (assoc-in db [:user-input :malli :default]
-              {:schema-text "[:map\n [:name string?]\n [:age int?]\n [:tags [:set keyword?]]]"
-               :generated-data ""
-               :inference-input "{:user/id 1\n :user/name \"Alice\"\n :user/email \"alice@example.com\"\n :user/active? true\n :user/roles #{:admin :editor}}"
-               :inferred-schema ""
-               :active-tab :inference})))
+ :malli/initialize
+ (fn [db _]
+   (assoc-in db [:user-input :malli :default]
+             {:schema-text "[:map\n [:name string?]\n [:age int?]\n [:tags [:set keyword?]]]"
+              :generated-data ""
+              :inference-input "{:user/id 1\n :user/name \"Alice\"\n :user/email \"alice@example.com\"\n :user/active? true\n :user/roles #{:admin :editor}}"
+              :inferred-schema ""
+              :active-tab :inference})))
 
 (rf/reg-event-db
-  :malli/update-schema-text
-  (fn [db [_ text]]
-    (assoc-in db [:user-input :malli :default :schema-text] text)))
+ :malli/update-schema-text
+ (fn [db [_ text]]
+   (assoc-in db [:user-input :malli :default :schema-text] text)))
 
 (rf/reg-event-db
-  :malli/update-inference-input
-  (fn [db [_ text]]
-    (assoc-in db [:user-input :malli :default :inference-input] text)))
+ :malli/update-inference-input
+ (fn [db [_ text]]
+   (assoc-in db [:user-input :malli :default :inference-input] text)))
 
 (rf/reg-event-db
-  :malli/set-active-tab
-  (fn [db [_ tab]]
-    (assoc-in db [:user-input :malli :default :active-tab] tab)))
+ :malli/set-active-tab
+ (fn [db [_ tab]]
+   (assoc-in db [:user-input :malli :default :active-tab] tab)))
 
 (rf/reg-event-fx
-  :malli/generate-data
-  (fn [{:keys [db]} [_ values]]
-    (let [schema-text (get values "schema-text")
-          schema (try (reader/read-string schema-text) (catch js/Error e nil))]
-      (if schema
-        {:db (assoc-in db [:user-input :malli :default :generated-data] (pr-str (mg/generate schema)))}
-        {:db (assoc-in db [:user-input :malli :default :generated-data] "Invalid schema.")}))))
+ :malli/generate-data
+ (fn [{:keys [db]} [_ values]]
+   (let [schema-text (get values "schema-text")
+         schema (try (reader/read-string schema-text) (catch js/Error e nil))]
+     (if schema
+       {:db (assoc-in db [:user-input :malli :default :generated-data] (pr-str (mg/generate schema)))}
+       {:db (assoc-in db [:user-input :malli :default :generated-data] "Invalid schema.")}))))
 
 (rf/reg-event-fx
-  :malli/infer-schema
-  (fn [{:keys [db]} [_ values]]
-    (let [input-text (get values "inference-input")
-          input-data (detect-and-parse input-text)]
-      (if (and (coll? input-data) (seq input-data))
-        {:db (assoc-in db [:user-input :malli :default :inferred-schema] (pr-str (mp/provide input-data)))}
-        {:db (assoc-in db [:user-input :malli :default :inferred-schema] "Invalid input data. Must be valid EDN or JSON collection.")}))))
+ :malli/infer-schema
+ (fn [{:keys [db]} [_ values]]
+   (let [input-text (get values "inference-input")
+         input-data (detect-and-parse input-text)]
+     (if (and (coll? input-data) (seq input-data))
+       {:db (assoc-in db [:user-input :malli :default :inferred-schema] (pr-str (mp/provide input-data)))}
+       {:db (assoc-in db [:user-input :malli :default :inferred-schema] "Invalid input data. Must be valid EDN or JSON collection.")}))))
 
 (rf/reg-event-db
  :malli/load-dataset
