@@ -101,74 +101,76 @@
         inferred-schema @(rf/subscribe [:malli/inferred-schema])
         datasets @(rf/subscribe [::datasets/items])
         input-format @(rf/subscribe [:malli/input-format])]
-    [c/card {}
-     [l/flex-col {:class "space-y-4"}
-      [l/grid {:class "grid-cols-1 lg:grid-cols-2 gap-6"}
-       [l/flex-col {:class "space-y-2"}
-        [l/flex-row {:class "justify-between items-center"}
-         [c/label "Input Data"]
-         [l/flex-row {:class "space-x-2"}
-          [c/button-xs {:class (if (= input-format :edn) (str t/bg-button-primary " text-white") "")
-                        :on-click #(rf/dispatch [:malli/set-input-format :edn])} "EDN"]
-          [c/button-xs {:class (if (= input-format :csv) (str t/bg-button-primary " text-white") "")
-                        :on-click #(rf/dispatch [:malli/set-input-format :csv])} "CSV"]
-          [c/button-xs {:class (if (= input-format :tsv) (str t/bg-button-primary " text-white") "")
-                        :on-click #(rf/dispatch [:malli/set-input-format :tsv])} "TSV"]
-          [c/button-xs {:class (if (= input-format :json) (str t/bg-button-primary " text-white") "")
-                        :on-click #(rf/dispatch [:malli/set-input-format :json])} "JSON"]]
-         (when (seq datasets)
-           [:div {:class "flex items-center space-x-2"}
-            [:span {:class (str "text-xs " t/text-secondary)} "Load:"]
-            [c/select {:class "py-1 px-2 text-xs"
-                       :on-change #(rf/dispatch [:malli/load-dataset (.. % -target -value)])
-                       :value ""}
-             [:option {:value ""} "Select Dataset..."]
-             (for [[id ds] datasets]
-               [:option {:key id :value id} (:name ds)])]])]
+    [l/split-view {:ratio :2-1}
+     ;; LEFT: Input
+     [l/flex-col {:class "h-full p-4 space-y-4"}
+      [l/flex-row {:class "justify-between items-center"}
+       [c/label "Input Data"]
+       [l/flex-row {:class "space-x-2"}
+        [c/button-xs {:class (if (= input-format :edn) (str t/bg-button-primary " text-white") "")
+                      :on-click #(rf/dispatch [:malli/set-input-format :edn])} "EDN"]
+        [c/button-xs {:class (if (= input-format :csv) (str t/bg-button-primary " text-white") "")
+                      :on-click #(rf/dispatch [:malli/set-input-format :csv])} "CSV"]
+        [c/button-xs {:class (if (= input-format :tsv) (str t/bg-button-primary " text-white") "")
+                      :on-click #(rf/dispatch [:malli/set-input-format :tsv])} "TSV"]
+        [c/button-xs {:class (if (= input-format :json) (str t/bg-button-primary " text-white") "")
+                      :on-click #(rf/dispatch [:malli/set-input-format :json])} "JSON"]]
+       (when (seq datasets)
+         [:div {:class "flex items-center space-x-2"}
+          [:span {:class (str "text-xs " t/text-secondary)} "Load:"]
+          [c/select {:class "py-1 px-2 text-xs"
+                     :on-change #(rf/dispatch [:malli/load-dataset (.. % -target -value)])
+                     :value ""}
+           [:option {:value ""} "Select Dataset..."]
+           (for [[id ds] datasets]
+             [:option {:key id :value id} (:name ds)])]])]
 
-        [:div {:class (str "h-64 rounded overflow-hidden border " t/border-default)}
-         [editor/monaco-editor {:value inference-input
-                                :language (if (= input-format :edn) "clojure" "plaintext")
-                                :on-change #(rf/dispatch [:malli/update-inference-input %])}]]
-        [c/button {:on-click #(rf/dispatch [:malli/infer-schema])} "Infer Schema"]]
-       [l/flex-col {:class "space-y-2"}
-        [c/label "Inferred Schema"]
-        [c/pre-block {:content inferred-schema :class "h-64"}]]]]]))
+      [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
+       [editor/monaco-editor {:value inference-input
+                              :language (if (= input-format :edn) "clojure" "plaintext")
+                              :on-change #(rf/dispatch [:malli/update-inference-input %])}]]
+      [c/button {:on-click #(rf/dispatch [:malli/infer-schema])} "Infer Schema"]]
+
+     ;; RIGHT: Output
+     [l/flex-col {:class "h-full p-4 space-y-4"}
+      [c/label "Inferred Schema"]
+      [c/pre-block {:content inferred-schema :class "flex-grow"}]]]))
 
 (defn generation-view []
   (let [schema-text @(rf/subscribe [:malli/schema-text])
         generated-data @(rf/subscribe [:malli/generated-data])]
-    [c/card {}
-     [l/flex-col {:class "space-y-4"}
+    [l/split-view {:ratio :2-1}
+     ;; LEFT: Schema
+     [l/flex-col {:class "h-full p-4 space-y-4"}
+      [c/label "Schema (EDN)"]
+      [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
+       [editor/monaco-editor {:value schema-text
+                              :language "clojure"
+                              :on-change #(rf/dispatch [:malli/update-schema-text %])}]]
+      [c/button {:on-click #(rf/dispatch [:malli/generate-data])} "Generate Data"]]
+
+     ;; RIGHT: Generated Data
+     [l/flex-col {:class "h-full p-4 space-y-4"}
       [:h3 {:class (str "text-xl font-semibold " t/text-accent " flex items-center gap-2")}
        [:span "🎲"] "Data Generation"]
-      [l/grid {:class "grid-cols-1 lg:grid-cols-2 gap-6"}
-       [l/flex-col {:class "space-y-2"}
-        [c/label "Schema (EDN)"]
-        [:div {:class (str "h-64 rounded overflow-hidden border " t/border-default)}
-         [editor/monaco-editor {:value schema-text
-                                :language "clojure"
-                                :on-change #(rf/dispatch [:malli/update-schema-text %])}]]
-        [c/button {:on-click #(rf/dispatch [:malli/generate-data])} "Generate Data"]]
-       [l/flex-col {:class "space-y-2"}
-        [c/label "Generated Data"]
-        [c/pre-block {:content generated-data :class "h-64"}]]]]]))
+      [c/label "Generated Data"]
+      [c/pre-block {:content generated-data :class "flex-grow"}]]]))
 
 (defn panel []
   (let [active-tab (or @(rf/subscribe [:malli/active-tab]) :inference)]
-    [l/container {:class "max-w-6xl space-y-6"}
-
+    [l/flex-col {:class "h-full w-full"}
      ;; Tabs Navigation
-     [l/flex-row {:class (str "space-x-6 border-b " t/border-default)}
-      [:button {:class (str "pb-2 font-medium transition-colors border-b-2 "
+     [l/flex-row {:class (str "space-x-6 border-b " t/border-default " px-4 " t/bg-toolbar " shrink-0")}
+      [:button {:class (str "py-3 font-medium transition-colors border-b-2 "
                             (if (= active-tab :inference) (str "border-[#f0dfaf] " t/text-accent) (str "border-transparent " t/text-secondary " hover:text-[#dcdccc]")))
                 :on-click #(rf/dispatch [:malli/set-active-tab :inference])}
        "Inference"]
-      [:button {:class (str "pb-2 font-medium transition-colors border-b-2 "
+      [:button {:class (str "py-3 font-medium transition-colors border-b-2 "
                             (if (= active-tab :generation) (str "border-[#f0dfaf] " t/text-accent) (str "border-transparent " t/text-secondary " hover:text-[#dcdccc]")))
                 :on-click #(rf/dispatch [:malli/set-active-tab :generation])}
        "Generation"]]
 
-     (case active-tab
-       :inference [inference-view]
-       :generation [generation-view])]))
+     [:div {:class "flex-grow overflow-hidden"}
+      (case active-tab
+        :inference [inference-view]
+        :generation [generation-view])]]))
