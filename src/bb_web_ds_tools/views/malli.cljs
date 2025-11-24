@@ -30,7 +30,9 @@
               :inference-input "{:user/id 1\n :user/name \"Alice\"\n :user/email \"alice@example.com\"\n :user/active? true\n :user/roles #{:admin :editor}}"
               :input-format :edn
               :inferred-schema ""
-              :active-tab :inference})))
+              :active-tab :inference
+              :generation-samples 1
+              :generation-format :edn})))
 
 (rf/reg-event-db
  :malli/update-schema-text
@@ -52,13 +54,33 @@
  (fn [db [_ fmt]]
    (assoc-in db [:user-input :malli :default :input-format] fmt)))
 
+(rf/reg-event-db
+ :malli/set-generation-samples
+ (fn [db [_ n]]
+   (assoc-in db [:user-input :malli :default :generation-samples] (js/parseInt n))))
+
+(rf/reg-event-db
+ :malli/set-generation-format
+ (fn [db [_ fmt]]
+   (assoc-in db [:user-input :malli :default :generation-format] fmt)))
+
 (rf/reg-event-fx
  :malli/generate-data
- (fn [{:keys [db]} [_ values]]
-   (let [schema-text (get values "schema-text")
+ (fn [{:keys [db]} _]
+   (let [defaults (get-in db [:user-input :malli :default])
+         schema-text (:schema-text defaults)
+         samples (get defaults :generation-samples 1)
+         format (get defaults :generation-format :edn)
          schema (try (reader/read-string schema-text) (catch js/Error e nil))]
      (if schema
-       {:db (assoc-in db [:user-input :malli :default :generated-data] (pr-str (mg/generate schema)))}
+       (let [data (if (> samples 1)
+                    (vec (repeatedly samples #(mg/generate schema)))
+                    (mg/generate schema))
+             output (case format
+                      :edn (with-out-str (cljs.pprint/pprint data))
+                      :json (js/JSON.stringify (clj->js data) nil 2)
+                      (pr-str data))]
+         {:db (assoc-in db [:user-input :malli :default :generated-data] output)})
        {:db (assoc-in db [:user-input :malli :default :generated-data] "Invalid schema.")}))))
 
 (rf/reg-event-fx
@@ -93,6 +115,8 @@
 (rf/reg-sub :malli/inferred-schema :<- [:malli/root] (fn [root _] (:inferred-schema root)))
 (rf/reg-sub :malli/active-tab :<- [:malli/root] (fn [root _] (:active-tab root)))
 (rf/reg-sub :malli/input-format :<- [:malli/root] (fn [root _] (get root :input-format :edn)))
+(rf/reg-sub :malli/generation-samples :<- [:malli/root] (fn [root _] (get root :generation-samples 1)))
+(rf/reg-sub :malli/generation-format :<- [:malli/root] (fn [root _] (get root :generation-format :edn)))
 
 ;; UI components
 
@@ -138,7 +162,9 @@
 
 (defn generation-view []
   (let [schema-text @(rf/subscribe [:malli/schema-text])
-        generated-data @(rf/subscribe [:malli/generated-data])]
+        generated-data @(rf/subscribe [:malli/generated-data])
+        samples @(rf/subscribe [:malli/generation-samples])
+        format @(rf/subscribe [:malli/generation-format])]
     [l/split-view {:ratio :2-1}
      ;; LEFT: Schema
      [l/flex-col {:class "h-full p-4 space-y-4"}
@@ -147,7 +173,29 @@
        [editor/monaco-editor {:value schema-text
                               :language "clojure"
                               :on-change #(rf/dispatch [:malli/update-schema-text %])}]]
-      [c/button {:on-click #(rf/dispatch [:malli/generate-data])} "Generate Data"]]
+
+      ;; Controls
+      [l/flex-row {:class "items-end gap-4"}
+       ;; Samples count
+       [:div {:class "w-24"}
+        [c/label "Samples"]
+        [c/input {:type "number"
+                  :min "1"
+                  :max "100"
+                  :value samples
+                  :on-change #(rf/dispatch [:malli/set-generation-samples (.. % -target -value)])}]]
+
+       ;; Format selection
+       [:div {:class "w-32"}
+        [c/label "Format"]
+        [c/select {:value format
+                   :on-change #(rf/dispatch [:malli/set-generation-format (keyword (.. % -target -value))])}
+         [:option {:value "edn"} "EDN"]
+         [:option {:value "json"} "JSON"]]]
+
+       ;; Generate Button
+       [c/button {:class "mb-[2px]"
+                  :on-click #(rf/dispatch [:malli/generate-data])} "Generate Data"]]]
 
      ;; RIGHT: Generated Data
      [l/flex-col {:class "h-full p-4 space-y-4"}

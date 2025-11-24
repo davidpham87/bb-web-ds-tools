@@ -18,7 +18,7 @@ target/
 *.log
 .m2/
 public/js/**/*.js
-docs/js/**/*.js
+docs/js/
 *gemini_chat.md
 .lsp/
 .clj-kondo/
