@@ -12,15 +12,17 @@
 
 ;; --- Parsing Logic ---
 
-(defn parse-csv [text]
+(defmulti parse-dataset (fn [format _text] format))
+
+(defmethod parse-dataset :csv [_ text]
   (let [res (.parse Papa text #js {:header true :dynamicTyping true :skipEmptyLines true})]
     (js->clj (.-data res) :keywordize-keys true)))
 
-(defn parse-tsv [text]
+(defmethod parse-dataset :tsv [_ text]
   (let [res (.parse Papa text #js {:delimiter "\t" :header true :dynamicTyping true :skipEmptyLines true})]
     (js->clj (.-data res) :keywordize-keys true)))
 
-(defn parse-json [text]
+(defmethod parse-dataset :json [_ text]
   (try
     (let [json (js/JSON.parse text)
           clj-json (js->clj json :keywordize-keys true)]
@@ -32,6 +34,9 @@
     (catch js/Error e
       (js/console.error "JSON Parse Error" e)
       [])))
+
+(defmethod parse-dataset :default [_ _]
+  [])
 
 ;; --- Examples ---
 
@@ -160,10 +165,7 @@
 
      [l/flex-row {:class "justify-end"}
       [c/button {:class (str t/bg-button-primary " " t/bg-button-primary-hover)
-                 :on-click #(let [parsed (case format
-                                           :csv (parse-csv text)
-                                           :tsv (parse-tsv text)
-                                           :json (parse-json text))]
+                 :on-click #(let [parsed (parse-dataset format text)]
                               (rf/dispatch [::add-dataset {:name (str "New " (name format)) :data parsed}]))}
        "Parse & Create Dataset"]]]))
 
