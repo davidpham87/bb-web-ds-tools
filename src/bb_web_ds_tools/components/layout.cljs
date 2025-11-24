@@ -42,7 +42,7 @@
         children))
 
 (defn main [props & children]
-  (into [:main (merge {:class (str "flex-grow p-6 overflow-x-hidden flex flex-col " (:class props))}
+  (into [:main (merge {:class (str "flex-grow overflow-x-hidden flex flex-col " (:class props))}
                       (dissoc props :class))]
         children))
 
