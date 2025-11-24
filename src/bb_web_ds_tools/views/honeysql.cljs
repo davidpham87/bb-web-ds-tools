@@ -39,7 +39,7 @@
 (defn panel []
   (let [honeysql-input @(rf/subscribe [:honeysql/input])
         honeysql-output @(rf/subscribe [:honeysql/output])]
-    [:div {:class "space-y-6 container mx-auto max-w-6xl p-6"}
+    [:div {:class "space-y-6 container mx-auto max-w-6xl py-6"}
       [c/card {}
       [:div
        [:h3 {:class "text-xl font-semibold text-[#f0dfaf] mb-4 flex items-center gap-2"}
