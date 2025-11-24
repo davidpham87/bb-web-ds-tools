@@ -9,20 +9,22 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       self.MonacoEnvironment = {
-        getWorkerUrl: function (moduleId, label) {
+        getWorker: function (moduleId, label) {
+          const basePath = './js/libs/monaco-esm/vs';
+          let url = basePath + '/editor/editor.worker.js';
           if (label === 'json') {
-            return './js/libs/vs/language/json/json.worker.js';
+            url = basePath + '/language/json/json.worker.js';
           }
           if (label === 'css' || label === 'scss' || label === 'less') {
-            return './js/libs/vs/language/css/css.worker.js';
+            url = basePath + '/language/css/css.worker.js';
           }
           if (label === 'html' || label === 'handlebars' || label === 'razor') {
-            return './js/libs/vs/language/html/html.worker.js';
+            url = basePath + '/language/html/html.worker.js';
           }
           if (label === 'typescript' || label === 'javascript') {
-            return './js/libs/vs/language/typescript/ts.worker.js';
+            url = basePath + '/language/typescript/ts.worker.js';
           }
-          return './js/libs/vs/editor/editor.worker.js';
+          return new Worker(url, { type: 'module', name: label });
         }
       };
     </script>
