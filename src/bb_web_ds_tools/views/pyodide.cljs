@@ -13,7 +13,7 @@
              {::loading? false
               ::ready? false
               ::error nil
-              ::code "print('Hello from Pyodide!')\nimport sys\nprint(sys.version)"
+              ::code "import micropip\n\nawait micropip.install(\"numpy\")\nawait micropip.install(\"pandas\")\nawait micropip.install(\"statsmodels\")\n\nimport numpy as np\nimport pandas as pd"
               ::output ""})))
 
 ;; Subscriptions
@@ -53,6 +53,9 @@
                                               :stderr (fn [t] (rf/dispatch [::append-output (str "ERR: " t)]))})
                          (.then (fn [p]
                                   (reset! pyodide-instance p)
+                                  (let [run-fn (gobj/get p "runPythonAsync")]
+                                    (run-fn "import pyodide_js\nawait pyodide_js.loadPackage('micropip')"))))
+                         (.then (fn [_]
                                   (rf/dispatch [::set-ready true])
                                   (rf/dispatch [::set-loading false])))
                          (.catch (fn [e]
