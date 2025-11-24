@@ -78,7 +78,7 @@
 
                                                                (if (empty? cmd)
                                                                  (.write term prompt)
-                                                                 (-> (.evalR webr cmd (clj->js {:env js/undefined :autoprint true}))
+                                                                 (-> (.evalR webr cmd (clj->js {:autoprint true}))
                                                                      (.then (fn [res]
                                                                               (try
                                                                                 (.destroy res)
