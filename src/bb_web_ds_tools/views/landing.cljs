@@ -4,37 +4,32 @@
             [bb-web-ds-tools.components.layout :as l]
             [bb-web-ds-tools.theme :as t]))
 
-(defn feature-card [title description icon]
-  [c/card {:class "p-6 hover:shadow-lg transition-all duration-300"}
-   [:div {:class "text-3xl mb-4"} icon]
-   [:h3 {:class (str "text-xl font-bold " t/text-accent " mb-2")} title]
-   [:p {:class t/text-primary} description]])
-
-(defn hero-section []
-  [l/section {:class "text-center py-20 px-4"}
-   [:h1 {:class (str "text-5xl md:text-6xl font-extrabold " t/text-primary " mb-6 drop-shadow-md")}
-    "BB Web DS Tools"]
-   [:p {:class (str "text-xl " t/text-secondary " max-w-2xl mx-auto mb-10")}
-    "A comprehensive suite of data science tools running entirely in your browser. Leverage the power of ClojureScript, Malli, HoneySQL, and local LLMs."]
-   [l/flex-row {:class "justify-center gap-4"}
-    [c/button {:on-click #(rf/dispatch [:bb-web-ds-tools.core/navigate :malli])
-               :class (str "rounded-full px-8 py-3 " t/bg-button-primary " " t/bg-button-primary-hover " " t/text-button-primary " font-bold")}
-     "Get Started"]
-    [:a {:href "https://github.com/google/gemini-cli-tools"
-         :target "_blank"
-         :class (str "border " t/border-default " hover:border-[#7f7f7f] " t/text-primary " font-bold py-3 px-8 rounded-full transition-all duration-200")}
-     "View on GitHub"]]])
-
-(defn features-section []
-  [l/container {:class "py-16"}
-   [:h2 {:class (str "text-3xl font-bold text-center " t/text-accent " mb-12")} "Key Features"]
-   [l/grid {:class "grid-cols-1 md:grid-cols-2 lg:grid-cols-4"}
-    [feature-card "Malli Tools" "Schema inference and data generation using metosin/malli." "🧩"]
-    [feature-card "HoneySQL" "Convert Clojure data structures to SQL with HoneySQL v2." "🍯"]
-    [feature-card "Vega-Lite" "Instant data visualization and plotting without a backend." "📊"]
-    [feature-card "Gemma LLM" "Run Google's Gemma model locally in your browser via MediaPipe." "🤖"]]])
+(defn tool-card [{:keys [title desc icon route]}]
+  [c/card {:class "p-6 hover:border-[#7f7f7f] transition-all cursor-pointer group h-full flex flex-col"
+           :on-click #(rf/dispatch [:bb-web-ds-tools.core/navigate route])}
+   [l/flex-row {:class "items-start justify-between mb-4"}
+    [:span {:class "text-2xl bg-[#2f2f2f] p-2 rounded-lg"} icon]
+    [:span {:class (str "text-xs px-2 py-1 rounded bg-[#2f2f2f] " t/text-muted " group-hover:text-white transition-colors")} "Launch →"]]
+   [:h3 {:class (str "text-lg font-bold " t/text-primary " mb-2")} title]
+   [:p {:class (str "text-sm " t/text-secondary " flex-grow")} desc]])
 
 (defn landing-page []
-  [l/page-container {}
-   [hero-section]
-   [features-section]])
+  [l/page-container {:class "p-8"}
+   [l/flex-col {:class "space-y-12 max-w-7xl mx-auto"}
+    ;; Header
+    [l/flex-col {:class "items-center text-center space-y-4 mt-8"}
+     [:h1 {:class (str "text-4xl font-extrabold " t/text-primary " tracking-tight")} "Data Science Workbench"]
+     [:p {:class (str "text-lg " t/text-secondary " max-w-2xl")}
+      "Local-first environment for data analysis, schema validation, and visualization."]]
+
+    ;; Tools Grid
+    [l/grid {:class "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"}
+     [tool-card {:title "Malli Schema" :desc "Infer and generate data schemas from EDN/JSON." :icon "🧩" :route :malli}]
+     [tool-card {:title "Datasets" :desc "Import, view, and edit CSV/JSON datasets." :icon "💾" :route :datasets}]
+     [tool-card {:title "HoneySQL" :desc "Build SQL queries programmatically." :icon "🍯" :route :honeysql}]
+     [tool-card {:title "Vega-Lite" :desc "Create visualizations from your data." :icon "📊" :route :vega-lite}]
+     [tool-card {:title "Gemma LLM" :desc "Run local AI models in your browser." :icon "🤖" :route :gemma}]
+     [tool-card {:title "Python (Pyodide)" :desc "Run Python code and analyzing data." :icon "🐍" :route :pyodide}]
+     [tool-card {:title "R (WebR)" :desc "Statistical computing with R." :icon "📈" :route :r-repl}]
+     [tool-card {:title "Clojure REPL" :desc "Interactive ClojureScript environment." :icon "⚡" :route :repl}]
+     [tool-card {:title "Editor" :desc "Scratchpad for code and notes." :icon "📝" :route :editor}]]]])
