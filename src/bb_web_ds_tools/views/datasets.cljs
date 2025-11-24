@@ -135,7 +135,7 @@
 (defn importer-view []
   (let [state @(rf/subscribe [::new-dataset-state])
         {:keys [text format]} state]
-    [l/flex-col {:class "h-full space-y-4"}
+    [l/flex-col {:class "h-full space-y-4 p-4"}
      [l/flex-row {:class "justify-between"}
       [:h3 {:class (str "text-xl font-bold " t/text-accent)} "Create New Dataset"]
       [l/flex-row {:class "space-x-2"}
@@ -188,7 +188,7 @@
         page-data (subvec (vec sorted-data) start-idx end-idx)
         visible-columns (remove hidden-columns columns)]
 
-    [l/flex-col {:class "space-y-4"}
+    [l/flex-col {:class "space-y-4 p-4"}
      ;; Toolbar
      [l/flex-row {:class (str "flex-wrap gap-4 items-end " t/bg-toolbar " p-4 rounded shadow-sm")}
       [:div
@@ -257,8 +257,8 @@
                           :on-change #(rf/dispatch [::update-cell id row-uuid col (.. % -target -value)])}]])]))]]]]))
 
 (defn dataset-view [dataset]
-  [l/flex-col {:class "space-y-6"}
-   [l/flex-row {:class (str "justify-between " t/bg-toolbar " p-4 rounded shadow-sm")}
+  [l/flex-col {:class "h-full"}
+   [l/flex-row {:class (str "justify-between " t/bg-toolbar " p-4 rounded shadow-sm m-4 mb-0")}
     [l/flex-row {:class "space-x-4"}
      [:input {:class (str "text-xl font-bold bg-transparent " t/text-accent " border-b border-transparent " t/border-focus-accent " " t/outline-none)
               :value (:name dataset)
@@ -269,10 +269,10 @@
      "Delete"]]
    [data-table dataset]])
 
-(defn sidebar []
+(defn dataset-list []
   (let [items @(rf/subscribe [::items])
         active-id @(rf/subscribe [::active-dataset-id])]
-    [l/sidebar {:class "h-[calc(100vh-3rem)]"}
+    [:div {:class (str "h-full " t/bg-sidebar " flex flex-col")}
      [:div {:class (str "p-4 border-b " t/border-main)}
       [:h3 {:class (str "text-lg font-semibold " t/text-accent " mb-4")} "Datasets"]
       [c/button {:class (str "w-full " t/bg-button " " t/bg-button-hover)
@@ -291,11 +291,10 @@
 (defn panel []
   (let [active-id @(rf/subscribe [::active-dataset-id])
         active-dataset @(rf/subscribe [::active-dataset])]
-    [l/page-container {:class "flex"}
-     [sidebar]
-     [l/main {}
-      (if (= active-id :new)
-        [importer-view]
-        (if active-dataset
-          [dataset-view active-dataset]
-          [:div {:class (str "text-center " t/text-muted " mt-20")} "Select a dataset."]))]]))
+    [l/split-view {:ratio :1-2}
+     [dataset-list]
+     (if (= active-id :new)
+       [importer-view]
+       (if active-dataset
+         [dataset-view active-dataset]
+         [:div {:class (str "text-center " t/text-muted " mt-20")} "Select a dataset."]))]))

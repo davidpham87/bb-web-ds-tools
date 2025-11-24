@@ -2,7 +2,7 @@
   (:require [bb-web-ds-tools.theme :as t]))
 
 (defn page-container [props & children]
-  (into [:div (merge {:class (str "min-h-screen " t/bg-page " " t/text-primary " " (:class props))}
+  (into [:div (merge {:class (str "h-screen w-full flex overflow-hidden " t/bg-page " " t/text-primary " " (:class props))}
                      (dissoc props :class))]
         children))
 
@@ -32,7 +32,7 @@
         children))
 
 (defn sidebar [props & children]
-  (into [:aside (merge {:class (str "w-64 " t/bg-sidebar " border-r " t/border-main " flex flex-col h-full sticky top-12 " (:class props))}
+  (into [:aside (merge {:class (str "h-full " t/bg-sidebar " border-r " t/border-main " flex flex-col transition-all duration-300 " (:class props))}
                        (dissoc props :class))]
         children))
 
@@ -42,7 +42,7 @@
         children))
 
 (defn main [props & children]
-  (into [:main (merge {:class (str "flex-grow overflow-x-hidden flex flex-col " (:class props))}
+  (into [:main (merge {:class (str "flex-grow flex flex-col overflow-hidden relative " (:class props))}
                       (dissoc props :class))]
         children))
 
@@ -55,3 +55,12 @@
   (into [:div (merge {:class (str "px-4 " (:class props))}
                      (dissoc props :class))]
         children))
+
+(defn split-view [{:keys [ratio] :or {ratio :2-1} :as props} left right]
+  [:div {:class "flex flex-col md:flex-row h-full w-full overflow-hidden"}
+   [:div {:class (str "h-1/2 md:h-full overflow-auto border-b md:border-b-0 md:border-r border-[#3f3f3f] "
+                      (if (= ratio :2-1) "w-full md:w-2/3" "w-full md:w-1/3"))}
+    left]
+   [:div {:class (str "h-1/2 md:h-full overflow-auto "
+                      (if (= ratio :2-1) "w-full md:w-1/3" "w-full md:w-2/3"))}
+    right]])
