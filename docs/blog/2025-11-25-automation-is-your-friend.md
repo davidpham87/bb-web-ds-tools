@@ -4,6 +4,9 @@
 
 *By The "My Fingers Hurt" Team*
 
+CAVEAT: This is just satirical, the app is doing nothing like that, LLMs like
+to hallucinate a lot xD.
+
 Welcome back! Today we are talking about automation. Specifically, why you are
 still typing code like a medieval monk transcribing the Bible by candlelight.
 It is 2025! We have self-driving cars (mostly), we have robots that can do
@@ -33,6 +36,8 @@ Now, look at what our UI does. You click a few buttons—"Select", "From",
 "Where"—and the machine spits this out perfectly, every time. It’s like having a
 very smart, very quiet assistant who doesn't judge your variable naming
 conventions or your lack of unit tests.
+
+Human: Actually, writing code is much better haha.
 
 ## Datasets: Because "CSV" Stands for "Can't Stand Verification"
 
@@ -65,6 +70,8 @@ Let's say you have a list of 'Penguin Sizes'.
 It infers the schema. It detects the types. It generates the parsing code. It
 practically offers to pick up your dry cleaning.
 
+Author: Actually, the app is doing that.
+
 ## The "Code" Tab
 
 "But I want to see the code!" I hear you whine. "I need control!"
@@ -77,3 +84,5 @@ errors.
 So please, for the love of all that is holy, use the automation. Save your
 keystrokes for something that matters. Like arguing with strangers on the
 internet about which Batman movie was the "gritty" one.
+
+Author: Good idea of feature actually. Let's put it in the log.
