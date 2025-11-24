@@ -7,28 +7,28 @@
 
 ;; Event handlers
 (rf/reg-event-db
-  :honeysql/initialize
-  (fn [db _]
-    (assoc-in db [:user-input :honeysql :default]
-              {:input "{:select [:id :username :email]\n :from [:users]\n :where [:and\n         [:= :active true]\n         [:> :created_at \"2023-01-01\"]]}"
-               :output ""})))
+ :honeysql/initialize
+ (fn [db _]
+   (assoc-in db [:user-input :honeysql :default]
+             {:input "{:select [:id :username :email]\n :from [:users]\n :where [:and\n         [:= :active true]\n         [:> :created_at \"2023-01-01\"]]}"
+              :output ""})))
 
 (rf/reg-event-db
-  :honeysql/update-input
-  (fn [db [_ text]]
-    (assoc-in db [:user-input :honeysql :default :input] text)))
+ :honeysql/update-input
+ (fn [db [_ text]]
+   (assoc-in db [:user-input :honeysql :default :input] text)))
 
 (rf/reg-event-fx
-  :honeysql/convert-to-sql
-  (fn [{:keys [db]} _]
-    (let [input-text (get-in db [:user-input :honeysql :default :input])
-          input-data (try (reader/read-string input-text) (catch js/Error e nil))]
-      (if input-data
-        (try
-          {:db (assoc-in db [:user-input :honeysql :default :output] (first (h/format input-data)))} ;; h/format returns [sql params], take first for sql string if no params
-          (catch js/Error e
-            {:db (assoc-in db [:user-input :honeysql :default :output] (str "Error: " (.-message e)))}))
-        {:db (assoc-in db [:user-input :honeysql :default :output] "Invalid Honeysql data.")}))))
+ :honeysql/convert-to-sql
+ (fn [{:keys [db]} _]
+   (let [input-text (get-in db [:user-input :honeysql :default :input])
+         input-data (try (reader/read-string input-text) (catch js/Error e nil))]
+     (if input-data
+       (try
+         {:db (assoc-in db [:user-input :honeysql :default :output] (first (h/format input-data)))} ;; h/format returns [sql params], take first for sql string if no params
+         (catch js/Error e
+           {:db (assoc-in db [:user-input :honeysql :default :output] (str "Error: " (.-message e)))}))
+       {:db (assoc-in db [:user-input :honeysql :default :output] "Invalid Honeysql data.")}))))
 
 ;; Subscriptions
 (rf/reg-sub :honeysql/root (fn [db _] (get-in db [:user-input :honeysql :default])))
@@ -40,7 +40,7 @@
   (let [honeysql-input @(rf/subscribe [:honeysql/input])
         honeysql-output @(rf/subscribe [:honeysql/output])]
     [:div {:class "space-y-6 container mx-auto max-w-6xl py-6"}
-      [c/card {}
+     [c/card {}
       [:div
        [:h3 {:class "text-xl font-semibold text-[#f0dfaf] mb-4 flex items-center gap-2"}
         [:span "🍯"] "Convert to SQL"]

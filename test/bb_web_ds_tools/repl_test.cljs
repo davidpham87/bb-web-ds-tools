@@ -7,7 +7,7 @@
   (testing "add instance"
     (rf/dispatch-sync [:bb-web-ds-tools.views.repl/add-instance])
     (let [instances @(rf/subscribe [:bb-web-ds-tools.views.repl/instances])]
-       (is (pos? (count instances)))))
+      (is (pos? (count instances)))))
 
   (testing "eval code"
     (rf/dispatch-sync [:bb-web-ds-tools.views.repl/add-instance])
