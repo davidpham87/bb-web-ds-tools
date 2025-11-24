@@ -69,9 +69,10 @@
   (bit-or first-part (bit-shift-left second-part 16)))
 
 (defn get-code-to-eval [^js editor]
-  (let [selection (.getSelection editor)]
+  (let [selection (.getSelection editor)
+        model (.getModel editor)]
     (if (and selection (not (.isEmpty selection)))
-      (.getValueInRange (.getModel editor) selection)
+      (.getValueInRange model selection)
       (.getValue editor))))
 
 (defn get-ctrl-key [is-mac?]
