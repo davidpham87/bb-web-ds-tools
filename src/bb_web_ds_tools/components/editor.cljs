@@ -7,15 +7,15 @@
 (defonce theme-initialized
   (try
     (monaco/editor.defineTheme "zenburn"
-      (clj->js {:base "vs-dark"
-                :inherit true
-                :rules [{:background "3f3f3f" :foreground "dcdccc"}]
-                :colors {:editor.background "#3f3f3f"
-                         :editor.foreground "#dcdccc"
-                         :editorCursor.foreground "#737373"
-                         :editor.lineHighlightBackground "#4f4f4f"
-                         :editor.selectionBackground "#5f5f5f"
-                         :editor.inactiveSelectionBackground "#4f4f4f"}}))
+                               (clj->js {:base "vs-dark"
+                                         :inherit true
+                                         :rules [{:background "3f3f3f" :foreground "dcdccc"}]
+                                         :colors {:editor.background "#3f3f3f"
+                                                  :editor.foreground "#dcdccc"
+                                                  :editorCursor.foreground "#737373"
+                                                  :editor.lineHighlightBackground "#4f4f4f"
+                                                  :editor.selectionBackground "#5f5f5f"
+                                                  :editor.inactiveSelectionBackground "#4f4f4f"}}))
     true
     (catch js/Error e
       (js/console.warn "Failed to define Zenburn theme" e)
@@ -91,9 +91,9 @@
       :reagent-render
       (fn [props]
         (let [{:keys [style class]} props]
-           [:div.editor-wrapper
-            {:class class
-             :style (merge {:width "100%" :height "100%"} style)}]))})))
+          [:div.editor-wrapper
+           {:class class
+            :style (merge {:width "100%" :height "100%"} style)}]))})))
 
 (defn monaco-editor [props]
   [monaco-editor-inner props])

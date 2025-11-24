@@ -5,6 +5,7 @@
 (deftest get-code-to-eval-test
   (testing "returns full buffer when no selection"
     (let [mock-editor #js {:getSelection (fn [] #js {:isEmpty (fn [] true)})
+                           :getModel (fn [] nil)
                            :getValue (fn [] "full code")}]
       (is (= "full code" (sut/get-code-to-eval mock-editor)))))
 
@@ -16,5 +17,6 @@
 
   (testing "returns full buffer when selection is null"
     (let [mock-editor #js {:getSelection (fn [] nil)
+                           :getModel (fn [] nil)
                            :getValue (fn [] "full code")}]
       (is (= "full code" (sut/get-code-to-eval mock-editor))))))

@@ -46,23 +46,23 @@
           (contains? delims last-char)
           (loop [i (dec end-idx) stack [] in-string? false]
             (if (< i 0) trimmed
-              (let [c (get trimmed i)]
-                (cond
-                  (and in-string? (= c \") (not= (get trimmed (dec i)) \\)) (recur (dec i) stack false)
-                  in-string? (recur (dec i) stack true)
-                  (= c \") (recur (dec i) stack true)
-                  (contains? delims c) (recur (dec i) (conj stack (delims c)) false)
-                  (contains? openers c) (let [expected (peek stack)]
-                                          (if (= c expected)
-                                            (let [new-stack (pop stack)]
-                                              (if (empty? new-stack) (subs trimmed i) (recur (dec i) new-stack false)))
-                                            (recur (dec i) stack false)))
-                  :else (recur (dec i) stack false)))))
+                (let [c (get trimmed i)]
+                  (cond
+                    (and in-string? (= c \") (not= (get trimmed (dec i)) \\)) (recur (dec i) stack false)
+                    in-string? (recur (dec i) stack true)
+                    (= c \") (recur (dec i) stack true)
+                    (contains? delims c) (recur (dec i) (conj stack (delims c)) false)
+                    (contains? openers c) (let [expected (peek stack)]
+                                            (if (= c expected)
+                                              (let [new-stack (pop stack)]
+                                                (if (empty? new-stack) (subs trimmed i) (recur (dec i) new-stack false)))
+                                              (recur (dec i) stack false)))
+                    :else (recur (dec i) stack false)))))
           (= last-char \")
           (loop [i (- end-idx 2)]
             (if (< i 0) trimmed
-              (let [c (get trimmed i)]
-                (if (and (= c \") (not= (get trimmed (dec i)) \\)) (subs trimmed i) (recur (dec i))))))
+                (let [c (get trimmed i)]
+                  (if (and (= c \") (not= (get trimmed (dec i)) \\)) (subs trimmed i) (recur (dec i))))))
           :else (let [match (re-find #"[^\s\(\)\[\]\{\}\"]+$" trimmed)] (or match trimmed)))))))
 
 (defn key-chord [first-part second-part]
@@ -100,17 +100,17 @@
 
 (defn panel []
   (r/create-class
-    {:component-did-mount (fn [this])
-     :component-will-unmount (fn [this])
-     :reagent-render
-     (fn []
-       (let [instances (rf/subscribe [::instances])]
-         [:div {:class "flex flex-col h-full space-y-6 p-6"}
+   {:component-did-mount (fn [this])
+    :component-will-unmount (fn [this])
+    :reagent-render
+    (fn []
+      (let [instances (rf/subscribe [::instances])]
+        [:div {:class "flex flex-col h-full space-y-6 p-6"}
 
-          [:div {:class "text-sm text-[#9f9f9f]"} "Use (re-frame.core/subscribe ...) or (re-frame.core/dispatch ...) to interact with the app."]
-          (into [:div]
-                (for [[instance-id] @instances]
-                  ^{:key instance-id}
-                  [repl-instance {:instance-id instance-id}]))
-          [:div {:class "flex justify-end"}
-           [c/button {:on-click #(rf/dispatch [::add-instance])} "Add REPL"]]]))}))
+         [:div {:class "text-sm text-[#9f9f9f]"} "Use (re-frame.core/subscribe ...) or (re-frame.core/dispatch ...) to interact with the app."]
+         (into [:div]
+               (for [[instance-id] @instances]
+                 ^{:key instance-id}
+                 [repl-instance {:instance-id instance-id}]))
+         [:div {:class "flex justify-end"}
+          [c/button {:on-click #(rf/dispatch [::add-instance])} "Add REPL"]]]))}))
