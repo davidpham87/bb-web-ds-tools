@@ -17,8 +17,8 @@ node_modules/
 target/
 *.log
 .m2/
-public/js/
-docs/js/
+public/js/*.js
+docs/js/*.js
 *gemini_chat.md
 .lsp/
 .clj-kondo/
