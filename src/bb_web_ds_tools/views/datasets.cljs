@@ -259,11 +259,11 @@
   [l/flex-col {:class "space-y-6"}
    [l/flex-row {:class (str "justify-between " t/bg-toolbar " p-4 rounded shadow-sm")}
     [l/flex-row {:class "space-x-4"}
-     [:input {:class (str "text-xl font-bold bg-transparent " t/text-accent " border-b border-transparent focus:border-[#f0dfaf] " t/outline-none)
+     [:input {:class (str "text-xl font-bold bg-transparent " t/text-accent " border-b border-transparent " t/border-focus-accent " " t/outline-none)
               :value (:name dataset)
               :on-change #(rf/dispatch [::update-dataset-name (:id dataset) (.. % -target -value)])}]
      [:span {:class (str t/text-secondary " text-sm")} (str (count (:data dataset)) " rows")]]
-    [c/button {:class (str t/bg-button-danger " " t/bg-button-danger-hover " text-[#3f3f3f]")
+    [c/button {:class (str t/bg-button-danger " " t/bg-button-danger-hover " " t/text-button-primary)
                :on-click #(rf/dispatch [::delete-dataset (:id dataset)])}
      "Delete"]]
    [data-table dataset]])
