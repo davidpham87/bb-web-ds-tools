@@ -28,7 +28,10 @@ jobs:
 
     - name: Build app
       run: npx shadow-cljs release app
-    
+
+    - name: Run Postinstall
+      run: npm run postinstall
+
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
