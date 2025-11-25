@@ -11,7 +11,36 @@
   {:target :browser
    :output-dir "docs/js/compiled"
    :asset-path "/js/compiled"
-   :modules {:main {:init-fn bb-web-ds-tools.core/init}}
+   :module-loader true
+   :modules {:shared {:entries []}
+             :main {:init-fn bb-web-ds-tools.core/init
+                    :depends-on #{:shared}}
+             :app-db {:entries [bb-web-ds-tools.views.app-db]
+                      :depends-on #{:shared}}
+             :changelog {:entries [bb-web-ds-tools.views.changelog]
+                         :depends-on #{:shared}}
+             :datasets {:entries [bb-web-ds-tools.views.datasets]
+                        :depends-on #{:shared}}
+             :editor {:entries [bb-web-ds-tools.views.editor]
+                      :depends-on #{:shared}}
+             :gemma {:entries [bb-web-ds-tools.views.gemma]
+                     :depends-on #{:shared}}
+             :honeysql {:entries [bb-web-ds-tools.views.honeysql]
+                        :depends-on #{:shared}}
+             :landing {:entries [bb-web-ds-tools.views.landing]
+                       :depends-on #{:shared}}
+             :malli {:entries [bb-web-ds-tools.views.malli]
+                     :depends-on #{:shared}}
+             :pyodide {:entries [bb-web-ds-tools.views.pyodide]
+                       :depends-on #{:shared}}
+             :r-repl {:entries [bb-web-ds-tools.views.r-repl]
+                      :depends-on #{:shared}}
+             :repl {:entries [bb-web-ds-tools.views.repl]
+                    :depends-on #{:shared}}
+             :settings {:entries [bb-web-ds-tools.views.settings]
+                        :depends-on #{:shared}}
+             :vega-lite {:entries [bb-web-ds-tools.views.vega-lite]
+                         :depends-on #{:shared}}}
    :devtools {:after-load bb-web-ds-tools.core/init}}
   :reader
   {:target :browser
@@ -24,6 +53,7 @@
     :runner-ns shadow.test.karma
     :output-to "target/test/core.js"
     :test-dir "target/test"
+    :module-loader true
     :compiler-options {:pretty-print true}
     :devtools {:autotest true}}
    :stories

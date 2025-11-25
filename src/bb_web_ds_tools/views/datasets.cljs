@@ -289,6 +289,7 @@
         [:div {:class (str "text-sm " t/text-muted " italic p-2")} "No datasets"])]]))
 
 (defn panel []
+  (rf/dispatch-sync [::initialize])
   (let [active-id @(rf/subscribe [::active-dataset-id])
         active-dataset @(rf/subscribe [::active-dataset])]
     [l/split-view {:ratio :1-2}

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.4.0] - 2025-11-25
+
+### Changed
+- Implemented code splitting for application views, significantly reducing the
+  initial bundle size from ~1.5MB to ~228KB. This improves the initial
+  load time by loading view-specific code on demand.
+
 ## [0.3.0] - 2025-11-24
 
 ### Added
