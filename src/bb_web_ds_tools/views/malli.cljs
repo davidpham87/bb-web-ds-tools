@@ -24,15 +24,17 @@
 (rf/reg-event-db
  :malli/initialize
  (fn [db _]
-   (assoc-in db [:user-input :malli :default]
-             {:schema-text "[:map\n [:name string?]\n [:age int?]\n [:tags [:set keyword?]]]"
-              :generated-data ""
-              :inference-input "{:user/id 1\n :user/name \"Alice\"\n :user/email \"alice@example.com\"\n :user/active? true\n :user/roles #{:admin :editor}}"
-              :input-format :edn
-              :inferred-schema ""
-              :active-tab :inference
-              :generation-samples 1
-              :generation-format :edn})))
+   (-> db
+       (assoc-in [:user-input :malli :default]
+                 {:schema-text "[:map\n [:name string?]\n [:age int?]\n [:tags [:set keyword?]]]"
+                  :inference-input "{:user/id 1\n :user/name \"Alice\"\n :user/email \"alice@example.com\"\n :user/active? true\n :user/roles #{:admin :editor}}"})
+       (assoc ::malli
+              {:generated-data ""
+               :input-format :edn
+               :inferred-schema ""
+               :active-tab :inference
+               :generation-samples 1
+               :generation-format :edn}))))
 
 (rf/reg-event-db
  :malli/update-schema-text
@@ -47,30 +49,31 @@
 (rf/reg-event-db
  :malli/set-active-tab
  (fn [db [_ tab]]
-   (assoc-in db [:user-input :malli :default :active-tab] tab)))
+   (assoc-in db [::malli :active-tab] tab)))
 
 (rf/reg-event-db
  :malli/set-input-format
  (fn [db [_ fmt]]
-   (assoc-in db [:user-input :malli :default :input-format] fmt)))
+   (assoc-in db [::malli :input-format] fmt)))
 
 (rf/reg-event-db
  :malli/set-generation-samples
  (fn [db [_ n]]
-   (assoc-in db [:user-input :malli :default :generation-samples] (js/parseInt n))))
+   (assoc-in db [::malli :generation-samples] (js/parseInt n))))
 
 (rf/reg-event-db
  :malli/set-generation-format
  (fn [db [_ fmt]]
-   (assoc-in db [:user-input :malli :default :generation-format] fmt)))
+   (assoc-in db [::malli :generation-format] fmt)))
 
 (rf/reg-event-fx
  :malli/generate-data
  (fn [{:keys [db]} _]
-   (let [defaults (get-in db [:user-input :malli :default])
-         schema-text (:schema-text defaults)
-         samples (get defaults :generation-samples 1)
-         format (get defaults :generation-format :edn)
+   (let [user-input (get-in db [:user-input :malli :default])
+         component-state (::malli db)
+         schema-text (:schema-text user-input)
+         samples (get component-state :generation-samples 1)
+         format (get component-state :generation-format :edn)
          schema (try (reader/read-string schema-text) (catch js/Error e nil))]
      (if schema
        (let [data (if (> samples 1)
@@ -80,21 +83,22 @@
                       :edn (with-out-str (cljs.pprint/pprint data))
                       :json (js/JSON.stringify (clj->js data) nil 2)
                       (pr-str data))]
-         {:db (assoc-in db [:user-input :malli :default :generated-data] output)})
-       {:db (assoc-in db [:user-input :malli :default :generated-data] "Invalid schema.")}))))
+         {:db (assoc-in db [::malli :generated-data] output)})
+       {:db (assoc-in db [::malli :generated-data] "Invalid schema.")}))))
 
 (rf/reg-event-fx
  :malli/infer-schema
  (fn [{:keys [db]} _]
-   (let [defaults (get-in db [:user-input :malli :default])
-         input-text (:inference-input defaults)
-         format (:input-format defaults)
+   (let [user-input (get-in db [:user-input :malli :default])
+         component-state (::malli db)
+         input-text (:inference-input user-input)
+         format (:input-format component-state)
          input-data (case format
                       :edn (detect-and-parse input-text)
                       (datasets/parse-dataset format input-text))]
      (if (and (coll? input-data) (seq input-data))
-       {:db (assoc-in db [:user-input :malli :default :inferred-schema] (pr-str (mp/provide input-data)))}
-       {:db (assoc-in db [:user-input :malli :default :inferred-schema] (str "Invalid input data for format " (name format) ".")) }))))
+       {:db (assoc-in db [::malli :inferred-schema] (pr-str (mp/provide input-data)))}
+       {:db (assoc-in db [::malli :inferred-schema] (str "Invalid input data for format " (name format) ".")) }))))
 
 (rf/reg-event-db
  :malli/load-dataset
@@ -104,19 +108,20 @@
      (if data
        (-> db
            (assoc-in [:user-input :malli :default :inference-input] (with-out-str (cljs.pprint/pprint data)))
-           (assoc-in [:user-input :malli :default :input-format] :edn))
+           (assoc-in [::malli :input-format] :edn))
        db))))
 
 ;; Subscriptions
-(rf/reg-sub :malli/root (fn [db _] (get-in db [:user-input :malli :default])))
-(rf/reg-sub :malli/schema-text :<- [:malli/root] (fn [root _] (:schema-text root)))
-(rf/reg-sub :malli/generated-data :<- [:malli/root] (fn [root _] (:generated-data root)))
-(rf/reg-sub :malli/inference-input :<- [:malli/root] (fn [root _] (:inference-input root)))
-(rf/reg-sub :malli/inferred-schema :<- [:malli/root] (fn [root _] (:inferred-schema root)))
-(rf/reg-sub :malli/active-tab :<- [:malli/root] (fn [root _] (:active-tab root)))
-(rf/reg-sub :malli/input-format :<- [:malli/root] (fn [root _] (get root :input-format :edn)))
-(rf/reg-sub :malli/generation-samples :<- [:malli/root] (fn [root _] (get root :generation-samples 1)))
-(rf/reg-sub :malli/generation-format :<- [:malli/root] (fn [root _] (get root :generation-format :edn)))
+(rf/reg-sub :malli/user-input-root (fn [db _] (get-in db [:user-input :malli :default])))
+(rf/reg-sub :malli/component-root (fn [db _] (::malli db)))
+(rf/reg-sub :malli/schema-text :<- [:malli/user-input-root] (fn [root _] (:schema-text root)))
+(rf/reg-sub :malli/generated-data :<- [:malli/component-root] (fn [root _] (:generated-data root)))
+(rf/reg-sub :malli/inference-input :<- [:malli/user-input-root] (fn [root _] (:inference-input root)))
+(rf/reg-sub :malli/inferred-schema :<- [:malli/component-root] (fn [root _] (:inferred-schema root)))
+(rf/reg-sub :malli/active-tab :<- [:malli/component-root] (fn [root _] (:active-tab root)))
+(rf/reg-sub :malli/input-format :<- [:malli/component-root] (fn [root _] (get root :input-format :edn)))
+(rf/reg-sub :malli/generation-samples :<- [:malli/component-root] (fn [root _] (get root :generation-samples 1)))
+(rf/reg-sub :malli/generation-format :<- [:malli/component-root] (fn [root _] (get root :generation-format :edn)))
 
 ;; UI components
 
