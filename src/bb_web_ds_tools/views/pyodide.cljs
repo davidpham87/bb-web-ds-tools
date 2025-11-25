@@ -6,32 +6,35 @@
             [bb-web-ds-tools.components.editor :as editor]))
 
 ;; State initialization
-(rf/reg-event-db
+(rf/reg-event-fx
  ::initialize
- (fn [db _]
-   (assoc-in db [:user-input :pyodide :default]
-             {::loading? false
-              ::ready? false
-              ::error nil
-              ::code "import micropip\n\nawait micropip.install(\"numpy\")\nawait micropip.install(\"pandas\")\nawait micropip.install(\"statsmodels\")\n\nimport numpy as np\nimport pandas as pd"
-              ::output []})))
+ (fn [{:keys [db]} _]
+   {:db (-> db
+            (assoc-in [:user-input :pyodide :default]
+                      {::code "import micropip\n\nawait micropip.install(\"numpy\")\nawait micropip.install(\"pandas\")\nawait micropip.install(\"statsmodels\")\n\nimport numpy as np\nimport pandas as pd"})
+            (assoc ::pyodide {::loading? false
+                              ::ready? false
+                              ::error nil
+                              ::output ""}))
+    :fx [[:dispatch ::initialize-runtime]]}))
 
 ;; Subscriptions
-(rf/reg-sub ::root (fn [db _] (get-in db [:user-input :pyodide :default])))
-(rf/reg-sub ::loading? :<- [::root] (fn [root] (::loading? root)))
-(rf/reg-sub ::ready? :<- [::root] (fn [root] (::ready? root)))
-(rf/reg-sub ::error :<- [::root] (fn [root] (::error root)))
-(rf/reg-sub ::code :<- [::root] (fn [root] (::code root)))
-(rf/reg-sub ::output :<- [::root] (fn [root] (::output root)))
+(rf/reg-sub ::user-input-root (fn [db _] (get-in db [:user-input :pyodide :default])))
+(rf/reg-sub ::component-root (fn [db _] (::pyodide db)))
+(rf/reg-sub ::loading? :<- [::component-root] (fn [root] (::loading? root)))
+(rf/reg-sub ::ready? :<- [::component-root] (fn [root] (::ready? root)))
+(rf/reg-sub ::error :<- [::component-root] (fn [root] (::error root)))
+(rf/reg-sub ::code :<- [::user-input-root] (fn [root] (::code root)))
+(rf/reg-sub ::output :<- [::component-root] (fn [root] (::output root)))
 (rf/reg-sub ::mac-os? (fn [db _] (get-in db [:platform :mac-os?])))
 
 ;; Events
-(rf/reg-event-db ::set-loading (fn [db [_ v]] (assoc-in db [:user-input :pyodide :default ::loading?] v)))
-(rf/reg-event-db ::set-ready (fn [db [_ v]] (assoc-in db [:user-input :pyodide :default ::ready?] v)))
-(rf/reg-event-db ::set-error (fn [db [_ v]] (update-in db [:user-input :pyodide :default] assoc ::error v ::loading? false)))
+(rf/reg-event-db ::set-loading (fn [db [_ v]] (assoc-in db [::pyodide ::loading?] v)))
+(rf/reg-event-db ::set-ready (fn [db [_ v]] (assoc-in db [::pyodide ::ready?] v)))
+(rf/reg-event-db ::set-error (fn [db [_ v]] (update db ::pyodide assoc ::error v ::loading? false)))
 (rf/reg-event-db ::set-code (fn [db [_ v]] (assoc-in db [:user-input :pyodide :default ::code] v)))
-(rf/reg-event-db ::append-output (fn [db [_ type text]] (update-in db [:user-input :pyodide :default ::output] conj {:type type :text text})))
-(rf/reg-event-db ::clear-output (fn [db _] (assoc-in db [:user-input :pyodide :default ::output] [])))
+(rf/reg-event-db ::append-output (fn [db [_ v]] (update-in db [::pyodide ::output] str v "\n")))
+(rf/reg-event-db ::clear-output (fn [db _] (assoc-in db [::pyodide ::output] "")))
 
 ;; Pyodide Loader
 (defn load-script [src on-load on-error]
@@ -68,7 +71,7 @@
 (rf/reg-event-fx
  ::initialize-runtime
  (fn [{:keys [db]} _]
-   {:db (update-in db [:user-input :pyodide :default] assoc ::loading? true ::error nil)
+   {:db (update db ::pyodide assoc ::loading? true ::error nil)
     :fx [[::load-runtime]]}))
 
 ;; Execution
@@ -94,7 +97,10 @@
 
 ;; View
 (defn panel []
+  
   (rf/dispatch-sync [::initialize])
+  (rf/dispatch-sync [::initialize-runtime])
+  
   (let [loading? @(rf/subscribe [::loading?])
         ready? @(rf/subscribe [::ready?])
         error @(rf/subscribe [::error])
