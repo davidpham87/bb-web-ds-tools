@@ -150,7 +150,7 @@
       [:span "Load Example:"]
       [c/button-xs {:on-click #(do (rf/dispatch [::update-new-dataset-state :format :csv])
                                    (rf/dispatch [::update-new-dataset-state :text (example-data :csv)]))} "CSV"]
-      [c-button-xs {:on-click #(do (rf/dispatch [::update-new-dataset-state :format :tsv])
+      [c/button-xs {:on-click #(do (rf/dispatch [::update-new-dataset-state :format :tsv])
                                    (rf/dispatch [::update-new-dataset-state :text (example-data :tsv)]))} "TSV"]
       [c/button-xs {:on-click #(do (rf/dispatch [::update-new-dataset-state :format :json])
                                    (rf/dispatch [::update-new-dataset-state :text (example-data :json-maps)]))} "JSON Maps"]
