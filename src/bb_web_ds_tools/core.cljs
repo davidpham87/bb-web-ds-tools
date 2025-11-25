@@ -33,11 +33,9 @@
    (assoc db :current-route match)))
 
 (def routes
-  ["/"
-   [""
-    {:name :landing}]
-   ["malli"
-    {:name :malli}]
+  ["/"  
+   ["" {:name :landing-page}]
+   ["malli" {:name :malli}]
    ["honeysql"
     {:name :honeysql}]
    ["vega-lite"
@@ -117,35 +115,21 @@
 
 (defmulti view (fn [match] (:name (:data match))))
 
-(lazy/define-lazy-loadable
-  landing-page-lazy
-  [bb-web-ds-tools.views.landing/landing-page]
-  malli-panel-lazy
-  [bb-web-ds-tools.views.malli/panel]
-  honeysql-panel-lazy
-  [bb-web-ds-tools.views.honeysql/panel]
-  vega-panel-lazy
-  [bb-web-ds-tools.views.vega-lite/panel]
-  gemma-panel-lazy
-  [bb-web-ds-tools.views.gemma/panel]
-  pyodide-panel-lazy
-  [bb-web-ds-tools.views.pyodide/panel]
-  editor-panel-lazy
-  [bb-web-ds-tools.views.editor/panel]
-  repl-panel-lazy
-  [bb-web-ds-tools.views.repl/panel]
-  r-repl-lazy
-  [bb-web-ds-tools.views.r-repl/r-repl]
-  datasets-panel-lazy
-  [bb-web-ds-tools.views.datasets/panel]
-  changelog-page-lazy
-  [bb-web-ds-tools.views.changelog/changelog-page]
-  settings-panel-lazy
-  [bb-web-ds-tools.views.settings/panel]
-  app-db-panel-lazy
-  [bb-web-ds-tools.views.app-db/panel])
+(lazy/define-lazy-loadable landing-page-lazy [bb-web-ds-tools.views.landing/landing-page])
+(lazy/define-lazy-loadable malli-panel-lazy [bb-web-ds-tools.views.malli/panel])
+(lazy/define-lazy-loadable honeysql-panel-lazy [bb-web-ds-tools.views.honeysql/panel])
+(lazy/define-lazy-loadable vega-panel-lazy [bb-web-ds-tools.views.vega-lite/panel])
+(lazy/define-lazy-loadable gemma-panel-lazy [bb-web-ds-tools.views.gemma/panel])
+(lazy/define-lazy-loadable pyodide-panel-lazy [bb-web-ds-tools.views.pyodide/panel])
+(lazy/define-lazy-loadable editor-panel-lazy [bb-web-ds-tools.views.editor/panel])
+(lazy/define-lazy-loadable repl-panel-lazy [bb-web-ds-tools.views.repl/panel])
+(lazy/define-lazy-loadable r-repl-lazy [bb-web-ds-tools.views.r-repl/r-repl])
+(lazy/define-lazy-loadable datasets-panel-lazy [bb-web-ds-tools.views.datasets/panel])
+(lazy/define-lazy-loadable changelog-page-lazy [bb-web-ds-tools.views.changelog/changelog-page])
+(lazy/define-lazy-loadable settings-panel-lazy [bb-web-ds-tools.views.settings/panel])
+(lazy/define-lazy-loadable app-db-panel-lazy [bb-web-ds-tools.views.app-db/panel])
 
-(defmethod view :landing [_] [landing-page-lazy])
+(defmethod view :landing-page [_] [landing-page-lazy])
 (defmethod view :malli [_] [malli-panel-lazy])
 (defmethod view :honeysql [_] [honeysql-panel-lazy])
 (defmethod view :vega-lite [_] [vega-panel-lazy])
@@ -159,11 +143,9 @@
 (defmethod view :reader [_] [:div "Reader Tool"])
 (defmethod view :settings [_] [settings-panel-lazy])
 (defmethod view :app-db [_] [app-db-panel-lazy])
-(defmethod view :default [_] [landing-page-lazy])
 
 (def nav-items
-  [{:label "Home" :route :landing :icon "🏠"}
-   {:label "App DB" :route :app-db :icon "🗄️"}
+  [{:label "App DB" :route :app-db :icon "🗄️"}
    {:label "Datasets" :route :datasets :icon "📊"}
    {:label "Malli" :route :malli :icon "✅"}
    {:label "HoneySQL" :route :honeysql :icon "🍯"}
@@ -194,9 +176,8 @@
     [layout/main {}
      [top-tab-bar]
      [:div {:class "flex-grow overflow-auto relative"}
-      (if current-route
-        (view current-route)
-        [landing-page-lazy])]]))
+      (when current-route
+        (view current-route))]]))
 
 (defn app []
   [layout/page-container {}
