@@ -85,7 +85,6 @@
    (let [repl-id (str (random-uuid))
          mac-os? (boolean (re-find #"(Mac|iPhone|iPod|iPad)" (.-platform js/navigator)))]
      {:platform {:mac-os? mac-os?}
-      :sidebar {:expanded? true}
       :user-input {:editor {:default {:code "initial code"}}
                    :repl {repl-id {:id repl-id
                                    :code ""
@@ -113,15 +112,6 @@
  (fn [db [_ new-code]]
    (assoc-in db [:user-input :editor :default :code] new-code)))
 
-(rf/reg-sub
- ::sidebar-expanded?
- (fn [db]
-   (get-in db [:sidebar :expanded?])))
-
-(rf/reg-event-db
- ::toggle-sidebar
- (fn [db _]
-   (update-in db [:sidebar :expanded?] not)))
 
 ;; --- Views ---
 
@@ -186,40 +176,18 @@
    {:label "Settings" :route :settings :icon "⚙️"}
    {:label "Changelog" :route :changelog :icon "📜"}])
 
-(defn sidebar []
-  (let [expanded? @(rf/subscribe [::sidebar-expanded?])
-        current-route @(rf/subscribe [::current-route])
-        current-name (:name (:data current-route))]
-    [layout/sidebar {:class (if expanded? "w-64" "w-16")}
-     [:div {:class (str "p-4 flex items-center " (if expanded? "justify-between" "justify-center"))}
-      (when expanded?
-        [:span {:class (str "font-bold text-lg " t/text-accent)} "DS Tools"])
-      [:button {:on-click #(rf/dispatch [::toggle-sidebar])
-                :class (str t/text-primary " hover:text-white focus:outline-none")}
-       (if expanded? "◀" "▶")]]
-     [:nav {:class "flex-1 overflow-y-auto py-4"}
-      (for [item nav-items]
-        ^{:key (:route item)}
-        [:a {:href (rfe/href (:route item))
-             :class (str "flex items-center px-4 py-3 "
-                         (if (= current-name (:route item))
-                           (str t/bg-item-hover " " t/text-accent)
-                           (str t/text-primary " hover:" t/text-accent))
-                         " transition-colors duration-200")
-             :title (:label item)}
-         [:span {:class "text-xl"} (:icon item)]
-         (when expanded?
-           [:span {:class "ml-3 text-sm font-medium whitespace-nowrap"} (:label item)])])]]))
-
 (defn top-tab-bar []
   (let [current-route @(rf/subscribe [::current-route])
         current-name (:name (:data current-route))]
-    [:div {:class (str "h-10 " t/bg-toolbar " border-b " t/border-main " flex items-end px-2 space-x-1")}
-     [:div {:class (str "px-4 py-2 text-xs font-medium rounded-t-lg "
-                        t/bg-page " " t/text-accent " border-t border-l border-r " t/border-main)}
-      (if current-name
-        (clojure.string/capitalize (name current-name))
-        "Home")]]))
+    [:nav {:class (str "h-10 " t/bg-toolbar " border-b " t/border-main " flex items-end px-2 space-x-1")}
+     (for [item nav-items]
+       ^{:key (:route item)}
+       [:a {:href (rfe/href (:route item))
+            :class (str "px-4 py-2 text-xs font-medium rounded-t-lg "
+                        (if (= current-name (:route item))
+                          (str t/bg-page " " t/text-accent " border-t border-l border-r " t/border-main)
+                          (str t/text-primary " hover:" t/text-accent " border-transparent border-t border-l border-r")))}
+        (:label item)])]))
 
 (defn main-panel []
   (let [current-route @(rf/subscribe [::current-route])]
@@ -232,7 +200,6 @@
 
 (defn app []
   [layout/page-container {}
-   [sidebar]
    [main-panel]])
 
 (defn ^:export init []
