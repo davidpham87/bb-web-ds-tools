@@ -1,6 +1,16 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+All notable changes to a project will be documented in this file.
+
+## [0.5.0] - 2025-11-25
+
+### Changed
+- **Default View**: The application now defaults to the Malli view instead of a
+  dedicated landing page, streamlining the user experience.
+- **Sidebar State**: The navigation sidebar is now closed by default on initial
+  load.
+- **URL Structure**: Simplified routing by removing the dedicated `/landing`
+  route.
 
 ## [0.4.0] - 2025-11-25
 
