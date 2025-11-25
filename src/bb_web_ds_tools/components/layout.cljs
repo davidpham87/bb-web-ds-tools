@@ -31,11 +31,6 @@
                      (dissoc props :class))]
         children))
 
-(defn sidebar [props & children]
-  (into [:aside (merge {:class (str "h-full " t/bg-sidebar " border-r " t/border-main " flex flex-col transition-all duration-300 " (:class props))}
-                       (dissoc props :class))]
-        children))
-
 (defn header [props & children]
   (into [:header (merge {:class (str "mb-6 " (:class props))}
                         (dissoc props :class))]
