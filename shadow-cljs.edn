@@ -11,6 +11,7 @@
   {:target :browser
    :output-dir "docs/js/compiled"
    :asset-path "/js/compiled"
+   :compiler-options {:output-feature-set :es-next}
    :module-loader true
    :modules {:shared {:entries []}
              :main {:init-fn bb-web-ds-tools.core/init
