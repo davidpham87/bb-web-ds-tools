@@ -27,8 +27,6 @@
                      :depends-on #{:shared}}
              :honeysql {:entries [bb-web-ds-tools.views.honeysql]
                         :depends-on #{:shared}}
-             :landing {:entries [bb-web-ds-tools.views.landing]
-                       :depends-on #{:shared}}
              :malli {:entries [bb-web-ds-tools.views.malli]
                      :depends-on #{:shared}}
              :pyodide {:entries [bb-web-ds-tools.views.pyodide]

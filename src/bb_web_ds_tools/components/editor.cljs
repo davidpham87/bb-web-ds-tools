@@ -1,8 +1,9 @@
 (ns bb-web-ds-tools.components.editor
   (:require [reagent.core :as r]
             ["react-dom" :as react-dom]
-            ["monaco-editor/esm/vs/editor/editor.api.js" :as monaco]
-            ["monaco-editor/esm/vs/basic-languages/clojure/clojure.contribution.js"]))
+            ["monaco-editor/esm/vs/editor/editor.api.js" :as monaco :refer [KeyMod KeyCode]]
+            ["monaco-editor/esm/vs/basic-languages/clojure/clojure.contribution.js"]
+            ["monaco-editor/esm/vs/basic-languages/r/r.contribution.js"]))
 
 (defonce theme-initialized
   (try
@@ -97,3 +98,33 @@
 
 (defn monaco-editor [props]
   [monaco-editor-inner props])
+
+;; Shared Editor Utilities
+
+(defn get-code-to-eval [^js editor]
+  (let [selection (.getSelection editor)
+        model (.getModel editor)]
+    (if (and selection (not (.isEmpty selection)))
+      (.getValueInRange model selection)
+      (.getValue editor))))
+
+(defn get-ctrl-key [_]
+  KeyMod/CtrlCmd)
+
+(defn setup-editor-actions [^js editor mac-os? eval-action]
+  (let [ctrl-key (get-ctrl-key mac-os?)]
+    (.addAction editor (clj->js {:id "eval-buffer"
+                                 :label "Evaluate Buffer"
+                                 :keybindings [(bit-or ctrl-key KeyCode.Enter)]
+                                 :run (fn [^js ed] (eval-action (get-code-to-eval ed)))}))))
+
+(defn render-output [output]
+  (into [:div]
+        (for [{:keys [type text]} output]
+          ^{:key (random-uuid)}
+          [:pre {:class (case type
+                          :result "text-[#dcdccc]"
+                          :stdout "text-[#dcdccc]"
+                          :stderr "text-[#cc9393]"
+                          :error "text-[#cc9393]")}
+           text])))
