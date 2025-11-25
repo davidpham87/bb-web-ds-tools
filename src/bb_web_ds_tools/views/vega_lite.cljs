@@ -185,6 +185,7 @@
      {:db (assoc-in db [:user-input :vega-lite :default ::config-input] config)})))
 
 (defn panel []
+  (rf/dispatch-sync [::initialize])
   (let [data-input @(rf/subscribe [::data-input])
         config-input @(rf/subscribe [::config-input])
         parsed-data @(rf/subscribe [::parsed-data])

@@ -93,6 +93,7 @@
 
 ;; View
 (defn panel []
+  (rf/dispatch-sync [::initialize])
   (let [loading? @(rf/subscribe [::loading?])
         ready? @(rf/subscribe [::ready?])
         error @(rf/subscribe [::error])
