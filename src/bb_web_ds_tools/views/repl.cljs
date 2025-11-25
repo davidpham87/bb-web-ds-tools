@@ -5,7 +5,7 @@
             [fork.re-frame :as fork]
             [cljs.pprint :as pprint]
             ["monaco-editor/esm/vs/editor/editor.api.js" :refer [KeyChord KeyMod KeyCode]]
-            [bb-web-ds-tools.components.editor :as editor-comp]
+            [bb-web-ds-tools.components.editor :as editor]
             [bb-web-ds-tools.components.repl :as repl-comp]
             [bb-web-ds-tools.components.common :as c]))
 
@@ -68,21 +68,20 @@
 (defn key-chord [first-part second-part]
   (bit-or first-part (bit-shift-left second-part 16)))
 
-(defn get-code-to-eval [^js editor]
-  (let [selection (.getSelection editor)
-        model (.getModel editor)]
-    (if (and selection (not (.isEmpty selection)))
-      (.getValueInRange model selection)
-      (.getValue editor))))
-
-(defn get-ctrl-key [mac-os?]
-  (if mac-os? KeyMod.WinCtrl KeyMod.CtrlCmd))
-
 (defn setup-editor-actions [^js editor instance-id mac-os?]
   (let [eval-action (fn [code] (rf/dispatch [::eval-code instance-id code]))
-        ctrl-key (get-ctrl-key mac-os?)]
-    (.addAction editor (clj->js {:id "eval-buffer" :label "Evaluate Buffer" :keybindings [(bit-or ctrl-key KeyCode.Enter)] :run (fn [^js ed] (eval-action (get-code-to-eval ed)))}))
-    (.addAction editor (clj->js {:id "eval-sexpr" :label "Evaluate Expression" :keybindings [(key-chord (bit-or ctrl-key KeyCode.KeyX) (bit-or ctrl-key KeyCode.KeyE))] :run (fn [^js ed] (let [pos (.getPosition ed) offset (.getOffsetAt (.getModel ed) pos) code (.getValue ed) sexpr (find-last-sexpr code offset)] (when (not (empty? sexpr)) (eval-action sexpr))))}))))
+        ctrl-key (editor/get-ctrl-key mac-os?)]
+    (editor/setup-editor-actions editor mac-os? eval-action)
+    (.addAction editor (clj->js {:id "eval-sexpr"
+                                 :label "Evaluate Expression"
+                                 :keybindings [(key-chord (bit-or ctrl-key KeyCode/KeyX) (bit-or ctrl-key KeyCode/KeyE))]
+                                 :run (fn [^js ed]
+                                        (let [pos (.getPosition ed)
+                                              offset (.getOffsetAt (.getModel ed) pos)
+                                              code (.getValue ed)
+                                              sexpr (find-last-sexpr code offset)]
+                                          (when (not (empty? sexpr))
+                                            (eval-action sexpr))))}))))
 
 (defn- repl-instance [{:keys [instance-id]}]
   (let [code @(rf/subscribe [::code instance-id])
@@ -95,7 +94,7 @@
       :on-eval (fn [code] (rf/dispatch [::eval-code instance-id code]))
       :on-focus #(reset! active-instance-id instance-id)
       :on-blur #(reset! active-instance-id nil)
-      :on-editor-mount (fn [editor] (setup-editor-actions editor instance-id mac-os?))
+      :on-editor-mount #(setup-editor-actions % instance-id mac-os?)
       :path [:user-input :repl instance-id :form]}]))
 
 (defn panel []

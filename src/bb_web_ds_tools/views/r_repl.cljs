@@ -1,114 +1,131 @@
 (ns bb-web-ds-tools.views.r-repl
   (:require [reagent.core :as r]
-            ["@xterm/xterm" :refer [Terminal]]
-            ["@xterm/addon-fit" :refer [FitAddon]]))
+            [re-frame.core :as rf]
+            [bb-web-ds-tools.components.common :as c]
+            [bb-web-ds-tools.components.editor :as editor]))
 
-(defn- pop-last-char [s]
-  (if (> (count s) 0)
-    (subs s 0 (dec (count s)))
-    s))
+;; State initialization
+(rf/reg-event-db
+ ::initialize
+ (fn [db _]
+   (assoc-in db [:user-input :r-repl :default]
+             {::loading? false
+              ::ready? false
+              ::error nil
+              ::code "install.packages(c(\"ggplot2\", \"dplyr\"))\n\nlibrary(ggplot2)\nlibrary(dplyr)\n\nmtcars %>% \n  filter(mpg > 20) %>% \n  ggplot(aes(x = wt, y = mpg)) + \n  geom_point()"
+              ::output []})))
 
-(defn start-read-loop [webr term]
+;; Subscriptions
+(rf/reg-sub ::root (fn [db _] (get-in db [:user-input :r-repl :default])))
+(rf/reg-sub ::loading? :<- [::root] (fn [root] (::loading? root)))
+(rf/reg-sub ::ready? :<- [::root] (fn [root] (::ready? root)))
+(rf/reg-sub ::error :<- [::root] (fn [root] (::error root)))
+(rf/reg-sub ::code :<- [::root] (fn [root] (::code root)))
+(rf/reg-sub ::output :<- [::root] (fn [root] (::output root)))
+(rf/reg-sub ::mac-os? (fn [db _] (get-in db [:platform :mac-os?])))
+
+;; Events
+(rf/reg-event-db ::set-loading (fn [db [_ v]] (assoc-in db [:user-input :r-repl :default ::loading?] v)))
+(rf/reg-event-db ::set-ready (fn [db [_ v]] (assoc-in db [:user-input :r-repl :default ::ready?] v)))
+(rf/reg-event-db ::set-error (fn [db [_ v]] (update-in db [:user-input :r-repl :default] assoc ::error v ::loading? false)))
+(rf/reg-event-db ::set-code (fn [db [_ v]] (assoc-in db [:user-input :r-repl :default ::code] v)))
+(rf/reg-event-db ::append-output (fn [db [_ type text]] (update-in db [:user-input :r-repl :default ::output] conj {:type type :text text})))
+(rf/reg-event-db ::clear-output (fn [db _] (assoc-in db [:user-input :r-repl :default ::output] [])))
+
+;; WebR Loader
+(defonce webr-instance (atom nil))
+
+(defn start-read-loop [webr]
   (letfn [(loop-fn []
             (-> (.read webr)
                 (.then (fn [msg]
                          (let [type (.-type msg)
                                data (.-data msg)]
                            (cond
-                             (= type "stdout") (.write term (str data "\r\n"))
-                             (= type "stderr") (.write term (str "\u001b[31m" data "\u001b[0m\r\n"))
+                             (= type "stdout") (rf/dispatch [::append-output :stdout data])
+                             (= type "stderr") (rf/dispatch [::append-output :stderr data])
                              (= type "closed") nil
                              :else nil)
                            (when (not= type "closed")
                              (loop-fn)))))
-                (.catch #(js/console.error "WebR Read Error:" %))))]
+                (.catch #(rf/dispatch [::set-error (str "WebR Read Error:" %)]))))]
     (loop-fn)))
 
-(defn r-repl []
-  (let [container-ref (r/atom nil)
-        term-ref (r/atom nil)
-        webr-ref (r/atom nil)
-        input-buffer (r/atom "")
-        history (r/atom [])
-        history-index (r/atom -1)
-        prompt "> "
-        retry-timer (r/atom nil)]
-    (r/create-class
-     {:component-did-mount
-      (fn []
-        (let [init-fn (fn init-fn []
-                        (if (and @container-ref (exists? js/WebR))
-                          (let [term (new Terminal (clj->js {:cursorBlink true
-                                                             :convertEol true
-                                                             :fontFamily "Menlo, Monaco, 'Courier New', monospace"
-                                                             :fontSize 14
-                                                             :theme {:background "#3f3f3f"
-                                                                     :foreground "#dcdccc"
-                                                                     :cursor "#737373"}}))
-                                fit-addon (new FitAddon)
-                                webr (new js/WebR (clj->js {}))]
+(rf/reg-fx
+ ::load-runtime
+ (fn [_]
+   (if @webr-instance
+     (rf/dispatch [::set-ready true])
+     (let [init-fn (fn []
+                     (let [webr (new js/WebR (clj->js {}))]
+                       (reset! webr-instance webr)
+                       (-> (.init webr)
+                           (.then (fn []
+                                    (start-read-loop webr)
+                                    (rf/dispatch [::set-ready true])
+                                    (rf/dispatch [::set-loading false])))
+                           (.catch (fn [e]
+                                     (rf/dispatch [::set-error (str "WebR Init failed: " e)]))))))]
+       (if (exists? js/WebR)
+         (init-fn)
+         (rf/dispatch [::set-error "WebR script not loaded"]))))))
 
-                            (.loadAddon term fit-addon)
-                            (.open term @container-ref)
-                            (.fit fit-addon)
+(rf/reg-event-fx
+ ::initialize-runtime
+ (fn [{:keys [db]} _]
+   {:db (update-in db [:user-input :r-repl :default] assoc ::loading? true ::error nil)
+    :fx [[::load-runtime]]}))
 
-                            (reset! term-ref term)
-                            (reset! webr-ref webr)
+;; Execution
+(rf/reg-fx
+ ::execute-r
+ (fn [code]
+   (when @webr-instance
+     (try
+       (-> (.evalR @webr-instance code (clj->js {:autoprint true}))
+           (.then (fn [res] (try (.destroy res) (catch js/Error _))))
+           (.catch (fn [e] (rf/dispatch [::append-output :error (str e)]))))
+       (catch js/Error e
+         (rf/dispatch [::append-output :error (str e)]))))))
 
-                            (js/window.addEventListener "resize" #(.fit fit-addon))
+(rf/reg-event-fx
+ ::run-code
+ (fn [_ [_ code]]
+   {:fx [[::execute-r code]]}))
 
-                            (.write term "Loading WebR (R for WebAssembly)... Please wait.\r\n")
+;; View
+(defn panel []
+  (rf/dispatch-sync [::initialize])
+  (let [loading? @(rf/subscribe [::loading?])
+        ready? @(rf/subscribe [::ready?])
+        error @(rf/subscribe [::error])
+        code @(rf/subscribe [::code])
+        output @(rf/subscribe [::output])
+        mac-os? @(rf/subscribe [::mac-os?])]
+    [:div {:class "container mx-auto max-w-6xl space-y-6 p-6"}
 
-                            (-> (.init webr)
-                                (.then (fn []
-                                         (start-read-loop webr term)
-                                         (.write term "\r\nWebR loaded successfully!\r\n")
-                                         (.write term prompt)
+     (cond
+       loading? [:div {:class "text-center text-[#8cd0d3]"} "Loading WebR..."]
+       error [:div {:class "text-center text-[#cc9393]"} error]
+       (not ready?) [:div {:class "text-center"}
+                     [c/button {:on-click #(rf/dispatch [::initialize-runtime])} "Load R Environment"]])
 
-                                         (.onData term (fn [data]
-                                                         (let [code (.charCodeAt data 0)]
-                                                           (cond
-                                                             (= code 13)
-                                                             (let [cmd @input-buffer]
-                                                               (.write term "\r\n")
-                                                               (when-not (empty? cmd)
-                                                                 (swap! history conj cmd)
-                                                                 (reset! history-index -1))
-                                                               (reset! input-buffer "")
+     (when ready?
+       [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-6"}
+        [:div {:class "space-y-4"}
+         [c/card {}
+          [:h3 {:class "text-lg font-bold text-[#dcdccc] mb-4"} "Code"]
+          [:div {:class "rounded overflow-hidden h-64 border border-[#5f5f5f]"}
+           [editor/monaco-editor {:value code
+                                  :language "r"
+                                  :on-change #(rf/dispatch [::set-code %])
+                                  :on-editor-mount #(editor/setup-editor-actions % mac-os? (fn [code] (rf/dispatch [::run-code code])))}]]
+          [:div {:class "mt-4 flex justify-end"}
+           [c/button {:on-click #(rf/dispatch [::run-code code])} "Run"]]]]
 
-                                                               (if (empty? cmd)
-                                                                 (.write term prompt)
-                                                                 (-> (.evalR webr cmd (clj->js {:autoprint true}))
-                                                                     (.then (fn [res]
-                                                                              (try
-                                                                                (.destroy res)
-                                                                                (catch js/Error _))
-                                                                              (.write term prompt)))
-                                                                     (.catch (fn [err]
-                                                                               (.write term (str "\u001b[31mError: " err "\u001b[0m\r\n" prompt)))))))
-
-                                                             (= code 127)
-                                                             (when (> (count @input-buffer) 0)
-                                                               (.write term "\b \b")
-                                                               (swap! input-buffer pop-last-char))
-
-                                                             :else
-                                                             (when (>= code 32)
-                                                               (.write term data)
-                                                               (swap! input-buffer str data))))))))
-                                (.catch (fn [e]
-                                          (.write term (str "\u001b[31mFailed to load WebR: " e "\u001b[0m\r\n"))))))
-                          (reset! retry-timer (js/setTimeout init-fn 100))))]
-          (init-fn)))
-
-      :component-will-unmount
-      (fn []
-        (when @retry-timer (js/clearTimeout @retry-timer))
-        (when @term-ref (.dispose @term-ref)))
-
-      :reagent-render
-      (fn []
-        [:div {:class "flex flex-col h-full w-full p-4"}
-         [:div {:class "flex-grow bg-[#3f3f3f] rounded overflow-hidden border border-[#5f5f5f] shadow-md"
-                :ref #(reset! container-ref %)
-                :style {:height "100%" :width "100%"}}]])})))
+        [:div {:class "space-y-4"}
+         [c/card {}
+          [:div {:class "flex justify-between items-center mb-4"}
+           [:h3 {:class "text-lg font-bold text-[#dcdccc]"} "Output"]
+           [c/button-xs {:on-click #(rf/dispatch [::clear-output])} "Clear"]]
+          [c/pre-block {:content [editor/render-output output] :class "h-96"}]]]])]))
