@@ -12,7 +12,7 @@
    :output-dir "docs/js/compiled"
    :asset-path "/js/compiled"
    :module-loader true
-   :modules {:shared {:entries []}
+   :modules {:shared {:entries []]}
              :main {:init-fn bb-web-ds-tools.core/init
                     :depends-on #{:shared}}
              :app-db {:entries [bb-web-ds-tools.views.app-db]
@@ -28,7 +28,7 @@
              :honeysql {:entries [bb-web-ds-tools.views.honeysql]
                         :depends-on #{:shared}}
              :malli {:entries [bb-web-ds-tools.views.malli]
-                     :depends-on #{:shared}}
+                     :depends-on #{:shared :datasets}}
              :pyodide {:entries [bb-web-ds-tools.views.pyodide]
                        :depends-on #{:shared}}
              :r-repl {:entries [bb-web-ds-tools.views.r-repl]
