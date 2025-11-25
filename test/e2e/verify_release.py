@@ -29,7 +29,7 @@ def verify():
             print("Landing page loaded.")
 
             # Navigation items to check
-            # Key is the text in the navbar to click
+            # Key is the label in the navbar (used for title attribute)
             # Value is the text expected to be found on the resulting page
             nav_checks = {
                 "Malli": "Input Data",
@@ -39,23 +39,21 @@ def verify():
                 "Pyodide": "Load Python Environment",
                 "Editor": "Save Code",
                 "Repl": "Add REPL",
+                "Datasets": "Create New Dataset",
+                "Settings": "Settings",
                 "Changelog": "Changelog"
             }
 
             for label, expected_text in nav_checks.items():
                 print(f"Navigating to {label}...")
 
-                # Open the menu first if it's closed (simple check or always click)
-                # Since navigation closes the menu, we should click it every time
-                page.click("button:has-text('≡')")
-
-                # Click the navigation link.
-                # The nav items are <a> tags with the text.
-                page.click(f"nav a:has-text('{label}')")
+                # Click the navigation link using the title attribute
+                # The sidebar defaults to expanded but links work regardless
+                page.click(f"nav a[title='{label}']")
 
                 # Wait for the expected text to appear
                 try:
-                    page.wait_for_selector(f"text={expected_text}", timeout=60000)
+                    page.wait_for_selector(f"text={expected_text}", timeout=10000)
                     print(f"Verified {label} page.")
                 except Exception as e:
                     print(f"Failed to verify {label} page. Content '{expected_text}' not found.")
