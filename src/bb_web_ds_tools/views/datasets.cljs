@@ -53,15 +53,17 @@
 (rf/reg-event-db
  ::initialize
  (fn [db _]
-   (update-in db [:user-input :datasets] merge
-              {:active-dataset-id :new ;; Default to new
-               :items {}
-               :new-dataset-state {:text "" :format :csv}})))
+   (-> db
+       (update-in [:user-input :datasets] merge
+                  {:items {}
+                   :new-dataset-state {:text "" :format :csv}})
+       (assoc ::datasets {:active-dataset-id :new}))))
 
-(rf/reg-sub ::root (fn [db] (get-in db [:user-input :datasets])))
-(rf/reg-sub ::items :<- [::root] (fn [root] (:items root)))
-(rf/reg-sub ::active-dataset-id :<- [::root] (fn [root] (:active-dataset-id root)))
-(rf/reg-sub ::new-dataset-state :<- [::root] (fn [root] (:new-dataset-state root)))
+(rf/reg-sub ::user-input-root (fn [db] (get-in db [:user-input :datasets])))
+(rf/reg-sub ::component-root (fn [db] (::datasets db)))
+(rf/reg-sub ::items :<- [::user-input-root] (fn [root] (:items root)))
+(rf/reg-sub ::active-dataset-id :<- [::component-root] (fn [root] (:active-dataset-id root)))
+(rf/reg-sub ::new-dataset-state :<- [::user-input-root] (fn [root] (:new-dataset-state root)))
 
 (rf/reg-sub
  ::active-dataset
@@ -73,7 +75,7 @@
 (rf/reg-event-db
  ::set-active-dataset-id
  (fn [db [_ id]]
-   (assoc-in db [:user-input :datasets :active-dataset-id] id)))
+   (assoc-in db [::datasets :active-dataset-id] id)))
 
 (rf/reg-event-db
  ::update-new-dataset-state
@@ -100,14 +102,14 @@
                     :data data-with-ids
                     :columns columns
                     :view-state {:page 0 :rows-per-page 10 :filters {} :hidden-columns #{}}})
-         (assoc-in [:user-input :datasets :active-dataset-id] id)))))
+         (assoc-in [::datasets :active-dataset-id] id)))))
 
 (rf/reg-event-db
  ::delete-dataset
  (fn [db [_ id]]
    (-> db
        (update-in [:user-input :datasets :items] dissoc id)
-       (assoc-in [:user-input :datasets :active-dataset-id] :new))))
+       (assoc-in [::datasets :active-dataset-id] :new))))
 
 (rf/reg-event-db
  ::update-dataset-name
