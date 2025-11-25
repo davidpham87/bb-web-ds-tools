@@ -33,7 +33,7 @@
    (assoc db :current-route match)))
 
 (def routes
-  ["/"  
+  ["/"
    ["" {:name :landing-page}]
    ["malli" {:name :malli}]
    ["honeysql"
@@ -186,4 +186,5 @@
 (defn ^:export init []
   (rf/dispatch-sync [::initialize-db])
   (init-routes!)
+  (rf/dispatch [::navigate :landing-page nil nil])
   (rdom/render [app] (.getElementById js/document "app")))
