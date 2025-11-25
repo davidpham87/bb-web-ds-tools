@@ -27,3 +27,6 @@ docs/js/**/*.ts
 storybook-static/
 package-lock.json
 docs/js/libs/
+docs/js/compiled/
+
+
