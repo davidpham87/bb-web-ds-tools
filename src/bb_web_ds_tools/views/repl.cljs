@@ -15,7 +15,11 @@
                           'clojure.core {'println println}}}))
 
 (rf/reg-sub ::instances (fn [db _] (get-in db [:user-input :repl])))
-(rf/reg-event-db ::add-instance (fn [db _] (let [new-id (str (random-uuid))] (assoc-in db [:user-input :repl new-id] {:id new-id :code "" :output []}))))
+(rf/reg-event-db ::add-instance (fn [db _]
+                                 (let [new-id (str (random-uuid))]
+                                   (-> db
+                                       (assoc-in [:user-input :repl new-id] {:id new-id :code ""})
+                                       (assoc-in [::repl new-id] {:output []})))))
 
 (rf/reg-event-fx
  ::eval-code
@@ -23,11 +27,11 @@
    {:db (try
           (let [result (sci/eval-string code sci-ctx)
                 pretty-result (with-out-str (pprint/pprint result))]
-            (update-in db [:user-input :repl instance-id :output] conj {:type :result :text pretty-result}))
+            (update-in db [::repl instance-id :output] conj {:type :result :text pretty-result}))
           (catch :default e
-            (update-in db [:user-input :repl instance-id :output] conj {:type :error :text (str e)})))}))
+            (update-in db [::repl instance-id :output] conj {:type :error :text (str e)})))}))
 
-(rf/reg-sub ::output :<- [::instances] (fn [instances [_ instance-id]] (get-in instances [instance-id :output])))
+(rf/reg-sub ::output (fn [db [_ instance-id]] (get-in db [::repl instance-id :output])))
 (rf/reg-sub ::code :<- [::instances] (fn [instances [_ instance-id]] (get-in instances [instance-id :code])))
 (rf/reg-sub ::mac-os? (fn [db _] (get-in db [:platform :mac-os?])))
 
