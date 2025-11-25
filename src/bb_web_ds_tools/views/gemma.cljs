@@ -159,6 +159,7 @@
                 "Send"]]]]])]))))
 
 (defn panel []
+  (rf/dispatch-sync [::initialize])
   (let [loaded?-sub (rf/subscribe [::model-loaded?])]
     (fn []
       (let [loaded? @loaded?-sub]

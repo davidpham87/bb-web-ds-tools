@@ -5,19 +5,7 @@
             [reitit.frontend :as rf-router]
             [reitit.frontend.easy :as rfe]
             [reitit.coercion.spec :as rss]
-            [bb-web-ds-tools.views.malli :as malli]
-            [bb-web-ds-tools.views.honeysql :as honeysql]
-            [bb-web-ds-tools.views.vega-lite :as vega]
-            [bb-web-ds-tools.views.gemma :as gemma]
-            [bb-web-ds-tools.views.landing :as landing]
-            [bb-web-ds-tools.views.changelog :as changelog]
-            [bb-web-ds-tools.views.editor :as editor]
-            [bb-web-ds-tools.views.repl :as repl]
-            [bb-web-ds-tools.views.r-repl :as r-repl]
-            [bb-web-ds-tools.views.pyodide :as pyodide]
-            [bb-web-ds-tools.views.datasets :as datasets]
-            [bb-web-ds-tools.views.settings :as settings]
-            [bb-web-ds-tools.views.app-db :as app-db]
+            [shadow.lazy :as lazy]
             [bb-web-ds-tools.components.layout :as layout]
             [bb-web-ds-tools.portal :as portal]
             [bb-web-ds-tools.theme :as t]))
@@ -139,21 +127,49 @@
 
 (defmulti view (fn [match] (:name (:data match))))
 
-(defmethod view :landing [_] [landing/landing-page])
-(defmethod view :malli [_] [malli/panel])
-(defmethod view :honeysql [_] [honeysql/panel])
-(defmethod view :vega-lite [_] [vega/panel])
-(defmethod view :gemma [_] [gemma/panel])
-(defmethod view :pyodide [_] [pyodide/panel])
-(defmethod view :editor [_] [editor/panel])
-(defmethod view :repl [_] [repl/panel])
-(defmethod view :r-repl [_] [:div.h-screen [r-repl/r-repl]])
-(defmethod view :datasets [_] [datasets/panel])
-(defmethod view :changelog [_] [changelog/changelog-page])
+(lazy/define-lazy-loadable
+  landing-page-lazy
+  [bb-web-ds-tools.views.landing/landing-page]
+  malli-panel-lazy
+  [bb-web-ds-tools.views.malli/panel]
+  honeysql-panel-lazy
+  [bb-web-ds-tools.views.honeysql/panel]
+  vega-panel-lazy
+  [bb-web-ds-tools.views.vega-lite/panel]
+  gemma-panel-lazy
+  [bb-web-ds-tools.views.gemma/panel]
+  pyodide-panel-lazy
+  [bb-web-ds-tools.views.pyodide/panel]
+  editor-panel-lazy
+  [bb-web-ds-tools.views.editor/panel]
+  repl-panel-lazy
+  [bb-web-ds-tools.views.repl/panel]
+  r-repl-lazy
+  [bb-web-ds-tools.views.r-repl/r-repl]
+  datasets-panel-lazy
+  [bb-web-ds-tools.views.datasets/panel]
+  changelog-page-lazy
+  [bb-web-ds-tools.views.changelog/changelog-page]
+  settings-panel-lazy
+  [bb-web-ds-tools.views.settings/panel]
+  app-db-panel-lazy
+  [bb-web-ds-tools.views.app-db/panel])
+
+(defmethod view :landing [_] [landing-page-lazy])
+(defmethod view :malli [_] [malli-panel-lazy])
+(defmethod view :honeysql [_] [honeysql-panel-lazy])
+(defmethod view :vega-lite [_] [vega-panel-lazy])
+(defmethod view :gemma [_] [gemma-panel-lazy])
+(defmethod view :pyodide [_] [pyodide-panel-lazy])
+(defmethod view :editor [_] [editor-panel-lazy])
+(defmethod view :repl [_] [repl-panel-lazy])
+(defmethod view :r-repl [_] [:div.h-screen [r-repl-lazy]])
+(defmethod view :datasets [_] [datasets-panel-lazy])
+(defmethod view :changelog [_] [changelog-page-lazy])
 (defmethod view :reader [_] [:div "Reader Tool"])
-(defmethod view :settings [_] [settings/panel])
-(defmethod view :app-db [_] [app-db/panel])
-(defmethod view :default [_] [landing/landing-page])
+(defmethod view :settings [_] [settings-panel-lazy])
+(defmethod view :app-db [_] [app-db-panel-lazy])
+(defmethod view :default [_] [landing-page-lazy])
 
 (def nav-items
   [{:label "Home" :route :landing :icon "🏠"}
@@ -212,7 +228,7 @@
      [:div {:class "flex-grow overflow-auto relative"}
       (if current-route
         (view current-route)
-        [landing/landing-page])]]))
+        [landing-page-lazy])]]))
 
 (defn app []
   [layout/page-container {}
@@ -221,9 +237,5 @@
 
 (defn ^:export init []
   (rf/dispatch-sync [::initialize-db])
-  (rf/dispatch-sync [::vega/initialize])
-  (rf/dispatch-sync [::gemma/initialize])
-  (rf/dispatch-sync [::pyodide/initialize])
-  (rf/dispatch-sync [::datasets/initialize])
   (init-routes!)
   (rdom/render [app] (.getElementById js/document "app")))
