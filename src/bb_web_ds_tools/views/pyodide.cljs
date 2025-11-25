@@ -6,16 +6,17 @@
             [bb-web-ds-tools.components.editor :as editor]))
 
 ;; State initialization
-(rf/reg-event-db
+(rf/reg-event-fx
  ::initialize
- (fn [db _]
-   (-> db
-       (assoc-in [:user-input :pyodide :default]
-                 {::code "import micropip\n\nawait micropip.install(\"numpy\")\nawait micropip.install(\"pandas\")\nawait micropip.install(\"statsmodels\")\n\nimport numpy as np\nimport pandas as pd"})
-       (assoc ::pyodide {::loading? false
-                         ::ready? false
-                         ::error nil
-                         ::output ""}))))
+ (fn [{:keys [db]} _]
+   {:db (-> db
+            (assoc-in [:user-input :pyodide :default]
+                      {::code "import micropip\n\nawait micropip.install(\"numpy\")\nawait micropip.install(\"pandas\")\nawait micropip.install(\"statsmodels\")\n\nimport numpy as np\nimport pandas as pd"})
+            (assoc ::pyodide {::loading? false
+                              ::ready? false
+                              ::error nil
+                              ::output ""}))
+    :fx [[:dispatch ::initialize-runtime]]}))
 
 ;; Subscriptions
 (rf/reg-sub ::user-input-root (fn [db _] (get-in db [:user-input :pyodide :default])))
@@ -25,6 +26,7 @@
 (rf/reg-sub ::error :<- [::component-root] (fn [root] (::error root)))
 (rf/reg-sub ::code :<- [::user-input-root] (fn [root] (::code root)))
 (rf/reg-sub ::output :<- [::component-root] (fn [root] (::output root)))
+(rf/reg-sub ::mac-os? (fn [db _] (get-in db [:platform :mac-os?])))
 
 ;; Events
 (rf/reg-event-db ::set-loading (fn [db [_ v]] (assoc-in db [::pyodide ::loading?] v)))
@@ -51,8 +53,8 @@
    (if @pyodide-instance
      (rf/dispatch [::set-ready true])
      (let [init-fn (fn []
-                     (-> (js/loadPyodide #js {:stdout (fn [t] (rf/dispatch [::append-output t]))
-                                              :stderr (fn [t] (rf/dispatch [::append-output (str "ERR: " t)]))})
+                     (-> (js/loadPyodide #js {:stdout (fn [t] (rf/dispatch [::append-output :stdout t]))
+                                              :stderr (fn [t] (rf/dispatch [::append-output :stderr t]))})
                          (.then (fn [p]
                                   (reset! pyodide-instance p)
                                   (let [run-fn (gobj/get p "runPythonAsync")]
@@ -82,25 +84,29 @@
          (-> (run-fn code)
              (.then (fn [res]
                       (when res
-                        (rf/dispatch [::append-output (str "=> " res)]))))
+                        (rf/dispatch [::append-output :result (str res)]))))
              (.catch (fn [e]
-                       (rf/dispatch [::append-output (str "Error: " e)])))))
+                       (rf/dispatch [::append-output :error (str e)])))))
        (catch js/Error e
-         (rf/dispatch [::append-output (str "Sync Error: " e)]))))))
+         (rf/dispatch [::append-output :error (str e)]))))))
 
 (rf/reg-event-fx
  ::run-code
- (fn [{:keys [db]} _]
-   {:fx [[::execute-python (get-in db [:user-input :pyodide :default ::code])]]}))
+ (fn [_ [_ code]]
+   {:fx [[::execute-python code]]}))
 
 ;; View
 (defn panel []
+  
   (rf/dispatch-sync [::initialize])
+  (rf/dispatch-sync [::initialize-runtime])
+  
   (let [loading? @(rf/subscribe [::loading?])
         ready? @(rf/subscribe [::ready?])
         error @(rf/subscribe [::error])
         code @(rf/subscribe [::code])
-        output @(rf/subscribe [::output])]
+        output @(rf/subscribe [::output])
+        mac-os? @(rf/subscribe [::mac-os?])]
     [:div {:class "container mx-auto max-w-6xl space-y-6 p-6"}
 
      (cond
@@ -117,13 +123,14 @@
           [:div {:class "rounded overflow-hidden h-64 border border-[#5f5f5f]"}
            [editor/monaco-editor {:value code
                                   :language "python"
-                                  :on-change #(rf/dispatch [::set-code %])}]]
+                                  :on-change #(rf/dispatch [::set-code %])
+                                  :on-editor-mount #(editor/setup-editor-actions % mac-os? (fn [code] (rf/dispatch [::run-code code])))}]]
           [:div {:class "mt-4 flex justify-end"}
-           [c/button {:on-click #(rf/dispatch [::run-code])} "Run"]]]]
+           [c/button {:on-click #(rf/dispatch [::run-code code])} "Run"]]]]
 
         [:div {:class "space-y-4"}
          [c/card {}
           [:div {:class "flex justify-between items-center mb-4"}
            [:h3 {:class "text-lg font-bold text-[#dcdccc]"} "Output"]
            [c/button-xs {:on-click #(rf/dispatch [::clear-output])} "Clear"]]
-          [c/pre-block {:content output :class "h-96"}]]]])]))
+          [c/pre-block {:content [editor/render-output output] :class "h-96"}]]]])]))
