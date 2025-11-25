@@ -11,9 +11,10 @@
 (rf/reg-event-db
  :honeysql/initialize
  (fn [db _]
-   (assoc-in db [:user-input :honeysql :default]
-             {:input "{:select [:id :username :email]\n :from [:users]\n :where [:and\n         [:= :active true]\n         [:> :created_at \"2023-01-01\"]]}"
-              :output ""})))
+   (-> db
+       (assoc-in [:user-input :honeysql :default]
+                 {:input "{:select [:id :username :email]\n :from [:users]\n :where [:and\n         [:= :active true]\n         [:> :created_at \"2023-01-01\"]]}"})
+       (assoc ::honeysql {:output ""}))))
 
 (rf/reg-event-db
  :honeysql/update-input
@@ -27,15 +28,16 @@
          input-data (try (reader/read-string input-text) (catch js/Error e nil))]
      (if input-data
        (try
-         {:db (assoc-in db [:user-input :honeysql :default :output] (first (h/format input-data)))} ;; h/format returns [sql params], take first for sql string if no params
+         {:db (assoc-in db [::honeysql :output] (first (h/format input-data)))} ;; h/format returns [sql params], take first for sql string if no params
          (catch js/Error e
-           {:db (assoc-in db [:user-input :honeysql :default :output] (str "Error: " (.-message e)))}))
-       {:db (assoc-in db [:user-input :honeysql :default :output] "Invalid Honeysql data.")}))))
+           {:db (assoc-in db [::honeysql :output] (str "Error: " (.-message e)))}))
+       {:db (assoc-in db [::honeysql :output] "Invalid Honeysql data.")}))))
 
 ;; Subscriptions
-(rf/reg-sub :honeysql/root (fn [db _] (get-in db [:user-input :honeysql :default])))
-(rf/reg-sub :honeysql/input :<- [:honeysql/root] (fn [root _] (:input root)))
-(rf/reg-sub :honeysql/output :<- [:honeysql/root] (fn [root _] (:output root)))
+(rf/reg-sub :honeysql/user-input-root (fn [db _] (get-in db [:user-input :honeysql :default])))
+(rf/reg-sub :honeysql/component-root (fn [db _] (::honeysql db)))
+(rf/reg-sub :honeysql/input :<- [:honeysql/user-input-root] (fn [root _] (:input root)))
+(rf/reg-sub :honeysql/output :<- [:honeysql/component-root] (fn [root _] (:output root)))
 
 ;; UI components
 (defn panel []
