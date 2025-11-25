@@ -34,10 +34,7 @@
 
 (def routes
   ["/"
-   [""
-    {:name :landing}]
-   ["malli"
-    {:name :malli}]
+   ["" {:name :malli}]
    ["honeysql"
     {:name :honeysql}]
    ["vega-lite"
@@ -85,7 +82,7 @@
    (let [repl-id (str (random-uuid))
          mac-os? (boolean (re-find #"(Mac|iPhone|iPod|iPad)" (.-platform js/navigator)))]
      {:platform {:mac-os? mac-os?}
-      :sidebar {:expanded? true}
+      :sidebar {:expanded? false}
       :user-input {:editor {:default {:code "initial code"}}
                    :repl {repl-id {:id repl-id
                                    :code ""
@@ -128,8 +125,6 @@
 (defmulti view (fn [match] (:name (:data match))))
 
 (lazy/define-lazy-loadable
-  landing-page-lazy
-  [bb-web-ds-tools.views.landing/landing-page]
   malli-panel-lazy
   [bb-web-ds-tools.views.malli/panel]
   honeysql-panel-lazy
@@ -155,7 +150,6 @@
   app-db-panel-lazy
   [bb-web-ds-tools.views.app-db/panel])
 
-(defmethod view :landing [_] [landing-page-lazy])
 (defmethod view :malli [_] [malli-panel-lazy])
 (defmethod view :honeysql [_] [honeysql-panel-lazy])
 (defmethod view :vega-lite [_] [vega-panel-lazy])
@@ -169,11 +163,9 @@
 (defmethod view :reader [_] [:div "Reader Tool"])
 (defmethod view :settings [_] [settings-panel-lazy])
 (defmethod view :app-db [_] [app-db-panel-lazy])
-(defmethod view :default [_] [landing-page-lazy])
 
 (def nav-items
-  [{:label "Home" :route :landing :icon "🏠"}
-   {:label "App DB" :route :app-db :icon "🗄️"}
+  [{:label "App DB" :route :app-db :icon "🗄️"}
    {:label "Datasets" :route :datasets :icon "📊"}
    {:label "Malli" :route :malli :icon "✅"}
    {:label "HoneySQL" :route :honeysql :icon "🍯"}
@@ -226,9 +218,8 @@
     [layout/main {}
      [top-tab-bar]
      [:div {:class "flex-grow overflow-auto relative"}
-      (if current-route
-        (view current-route)
-        [landing-page-lazy])]]))
+      (when current-route
+        (view current-route))]]))
 
 (defn app []
   [layout/page-container {}
