@@ -111,14 +111,14 @@
 (defn get-ctrl-key [mac-os?]
   "Use Ctrl on all platforms for consistent keyboard shortcuts."
   (if mac-os?
-    KeyMod/WinCtrl
-    KeyMod/CtrlCmd))
+    (.-WinCtrl KeyMod)
+    (.-CtrlCmd KeyMod)))
 
 (defn setup-editor-actions [^js editor mac-os? eval-action]
   (let [ctrl-key (get-ctrl-key mac-os?)]
     (.addAction editor (clj->js {:id "eval-buffer"
                                  :label "Evaluate Buffer"
-                                 :keybindings [(bit-or ctrl-key KeyCode.Enter)]
+                                 :keybindings [(bit-or ctrl-key (.-Enter KeyCode))]
                                  :run (fn [^js ed] (eval-action (get-code-to-eval ed)))}))))
 
 (defn render-output [output]

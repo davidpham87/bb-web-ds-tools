@@ -78,7 +78,7 @@
     (editor/setup-editor-actions editor mac-os? eval-action)
     (.addAction editor (clj->js {:id "eval-sexpr"
                                  :label "Evaluate Expression"
-                                 :keybindings [(key-chord (bit-or ctrl-key KeyCode/KeyX) (bit-or ctrl-key KeyCode/KeyE))]
+                                 :keybindings [(key-chord (bit-or ctrl-key (.-KeyX KeyCode)) (bit-or ctrl-key (.-KeyE KeyCode)))]
                                  :run (fn [^js ed]
                                         (let [pos (.getPosition ed)
                                               offset (.getOffsetAt (.getModel ed) pos)
@@ -98,7 +98,7 @@
       :on-eval (fn [code] (rf/dispatch [::eval-code instance-id code]))
       :on-focus #(reset! active-instance-id instance-id)
       :on-blur #(reset! active-instance-id nil)
-      :on-editor-mount #(setup-editor-actions % instance-id mac-os?)
+      :on-mount #(setup-editor-actions % instance-id mac-os?)
       :path [:user-input :repl instance-id :form]}]))
 
 (defn panel []
