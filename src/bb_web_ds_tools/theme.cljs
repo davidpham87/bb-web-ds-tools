@@ -28,6 +28,7 @@
 (def text-accent "text-[#f0dfaf]")
 (def text-code "text-[#93e0e3]")
 (def text-muted "text-[#7f7f7f]")
+(def text-danger "text-[#cc9393]")
 (def text-disabled "disabled:text-[#7f7f7f]")
 (def text-button "text-[#dcdccc]")
 (def text-button-primary "!text-[#3f3f3f]")
