@@ -157,15 +157,20 @@
 
 (defn top-tab-bar []
   (let [current-route @(rf/subscribe [::current-route])
-        current-name (:name (:data current-route))]
-    [:nav {:class (str "h-10 " t/bg-toolbar " border-b " t/border-main " flex items-end px-2 space-x-1")}
+        current-name (:name (:data current-route))
+        tab-style (fn [route-name]
+                    (str "px-4 py-2 text-xs font-medium rounded-t-lg "
+                         (if (= current-name route-name)
+                           (str t/bg-page " " t/text-accent " border-t border-l border-r " t/border-main)
+                           (str t/text-primary " hover:" t/text-accent " border-transparent border-t border-l border-r"))))]
+    [:nav {:class (str "h-10 " t/bg-toolbar " border-b " t/border-main " flex items-end")}
+     [:a {:href (rfe/href :landing-page)
+          :class (str (tab-style :landing-page) " ml-2")}
+      "Home"]
      (for [item nav-items]
        ^{:key (:route item)}
        [:a {:href (rfe/href (:route item))
-            :class (str "px-4 py-2 text-xs font-medium rounded-t-lg "
-                        (if (= current-name (:route item))
-                          (str t/bg-page " " t/text-accent " border-t border-l border-r " t/border-main)
-                          (str t/text-primary " hover:" t/text-accent " border-transparent border-t border-l border-r")))}
+            :class (tab-style (:route item))}
         (:label item)])]))
 
 (defn main-panel []
