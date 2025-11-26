@@ -12,7 +12,7 @@
    (testing "Generate data with default settings (1 sample, EDN)"
      (rf/dispatch [:malli/update-schema-text "[:map [:a int?]]"])
      ;; Simulate UI click: no arguments passed.
-     (rf/dispatch [:malli/generate-data])
+     (rf/dispatch [:malli/parse-schema-and-generate])
      (let [res @(rf/subscribe [:malli/generated-data])]
        (is (string? res))
        (is (not= "Invalid schema." res))
@@ -22,7 +22,7 @@
 
    (testing "Generate multiple samples"
      (rf/dispatch [:malli/set-generation-samples 2])
-     (rf/dispatch [:malli/generate-data])
+     (rf/dispatch [:malli/parse-schema-and-generate])
      (let [res @(rf/subscribe [:malli/generated-data])
            data (reader/read-string res)]
        (is (sequential? data) "Should be a sequence/vector of samples")
@@ -31,7 +31,7 @@
    (testing "Generate JSON output"
      (rf/dispatch [:malli/set-generation-samples 1])
      (rf/dispatch [:malli/set-generation-format :json])
-     (rf/dispatch [:malli/generate-data])
+     (rf/dispatch [:malli/parse-schema-and-generate])
      (let [res @(rf/subscribe [:malli/generated-data])
            data (js->clj (js/JSON.parse res) :keywordize-keys true)]
        (is (map? data))
