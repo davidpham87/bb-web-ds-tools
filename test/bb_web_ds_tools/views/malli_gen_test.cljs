@@ -28,7 +28,7 @@
 
            :generate
            (do
-             (rf/dispatch [:malli/generate-data {"schema-text" @(rf/subscribe [:malli/schema-text])}])
+             (rf/dispatch [:malli/parse-schema-and-generate])
              (let [res @(rf/subscribe [:malli/generated-data])]
                (is (string? res) "Should produce string output (data or error)")))
 
