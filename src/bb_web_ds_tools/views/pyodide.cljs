@@ -16,7 +16,7 @@
                               ::ready? false
                               ::error nil
                               ::output ""}))
-    :fx [[:dispatch ::initialize-runtime]]}))
+    :fx [[:dispatch [::initialize-runtime]]]}))
 
 ;; Subscriptions
 (rf/reg-sub ::user-input-root (fn [db _] (get-in db [:user-input :pyodide :default])))
