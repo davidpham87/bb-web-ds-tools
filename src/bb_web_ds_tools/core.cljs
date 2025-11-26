@@ -134,7 +134,7 @@
 (defmethod view :pyodide [_] [pyodide/panel])
 (defmethod view :editor [_] [editor/panel])
 (defmethod view :repl [_] [repl/panel])
-(defmethod view :r-repl [_] [:div.h-screen [r-repl/r-repl]])
+(defmethod view :r-repl [_] [r-repl/panel])
 (defmethod view :datasets [_] [datasets/panel])
 (defmethod view :changelog [_] [changelog/changelog-page])
 (defmethod view :reader [_] [:div "Reader Tool"])

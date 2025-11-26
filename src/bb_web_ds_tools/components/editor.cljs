@@ -108,8 +108,11 @@
       (.getValueInRange model selection)
       (.getValue editor))))
 
-(defn get-ctrl-key [_]
-  KeyMod/CtrlCmd)
+(defn get-ctrl-key [mac-os?]
+  "Use Ctrl on all platforms for consistent keyboard shortcuts."
+  (if mac-os?
+    KeyMod/WinCtrl
+    KeyMod/CtrlCmd))
 
 (defn setup-editor-actions [^js editor mac-os? eval-action]
   (let [ctrl-key (get-ctrl-key mac-os?)]
