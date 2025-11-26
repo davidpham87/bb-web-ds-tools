@@ -3,7 +3,8 @@
             ["react-dom" :as react-dom]
             ["monaco-editor/esm/vs/editor/editor.api.js" :as monaco :refer [KeyMod KeyCode]]
             ["monaco-editor/esm/vs/basic-languages/clojure/clojure.contribution.js"]
-            ["monaco-editor/esm/vs/basic-languages/r/r.contribution.js"]))
+            ["monaco-editor/esm/vs/basic-languages/r/r.contribution.js"]
+            [bb-web-ds-tools.theme :as t]))
 
 (defonce theme-initialized
   (try
@@ -11,12 +12,12 @@
                                (clj->js {:base "vs-dark"
                                          :inherit true
                                          :rules [{:background "3f3f3f" :foreground "dcdccc"}]
-                                         :colors {:editor.background "#3f3f3f"
-                                                  :editor.foreground "#dcdccc"
-                                                  :editorCursor.foreground "#737373"
-                                                  :editor.lineHighlightBackground "#4f4f4f"
-                                                  :editor.selectionBackground "#5f5f5f"
-                                                  :editor.inactiveSelectionBackground "#4f4f4f"}}))
+                                         :colors {:editor.background (t/bg-page :bg)
+                                                  :editor.foreground (t/text-primary :text)
+                                                  :editorCursor.foreground (t/text-muted :text)
+                                                  :editor.lineHighlightBackground (t/bg-card :bg)
+                                                  :editor.selectionBackground (t/bg-button :bg)
+                                                  :editor.inactiveSelectionBackground (t/bg-card :bg)}}))
     true
     (catch js/Error e
       (js/console.warn "Failed to define Zenburn theme" e)
@@ -126,8 +127,8 @@
         (for [{:keys [type text]} output]
           ^{:key (random-uuid)}
           [:pre {:class (case type
-                          :result "text-[#dcdccc]"
-                          :stdout "text-[#dcdccc]"
-                          :stderr "text-[#cc9393]"
-                          :error "text-[#cc9393]")}
+                          :result t/text-primary
+                          :stdout t/text-primary
+                          :stderr t/text-danger
+                          :error t/text-danger)}
            text])))
