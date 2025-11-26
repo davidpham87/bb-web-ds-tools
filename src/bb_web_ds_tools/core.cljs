@@ -5,10 +5,22 @@
             [reitit.frontend :as rf-router]
             [reitit.frontend.easy :as rfe]
             [reitit.coercion.spec :as rss]
-            [shadow.lazy :as lazy]
             [bb-web-ds-tools.components.layout :as layout]
             [bb-web-ds-tools.portal :as portal]
-            [bb-web-ds-tools.theme :as t]))
+            [bb-web-ds-tools.theme :as t]
+            [bb-web-ds-tools.views.landing :as landing]
+            [bb-web-ds-tools.views.malli :as malli]
+            [bb-web-ds-tools.views.honeysql :as honeysql]
+            [bb-web-ds-tools.views.vega-lite :as vega-lite]
+            [bb-web-ds-tools.views.gemma :as gemma]
+            [bb-web-ds-tools.views.pyodide :as pyodide]
+            [bb-web-ds-tools.views.editor :as editor]
+            [bb-web-ds-tools.views.repl :as repl]
+            [bb-web-ds-tools.views.r-repl :as r-repl]
+            [bb-web-ds-tools.views.datasets :as datasets]
+            [bb-web-ds-tools.views.changelog :as changelog]
+            [bb-web-ds-tools.views.settings :as settings]
+            [bb-web-ds-tools.views.app-db :as app-db]))
 
 ;; --- Routing & Navigation ---
 
@@ -114,35 +126,20 @@
 ;; --- Views ---
 
 (defmulti view (fn [match] (:name (:data match))))
-
-(lazy/define-lazy-loadable landing-page-lazy [bb-web-ds-tools.views.landing/landing-page])
-(lazy/define-lazy-loadable malli-panel-lazy [bb-web-ds-tools.views.malli/panel])
-(lazy/define-lazy-loadable honeysql-panel-lazy [bb-web-ds-tools.views.honeysql/panel])
-(lazy/define-lazy-loadable vega-panel-lazy [bb-web-ds-tools.views.vega-lite/panel])
-(lazy/define-lazy-loadable gemma-panel-lazy [bb-web-ds-tools.views.gemma/panel])
-(lazy/define-lazy-loadable pyodide-panel-lazy [bb-web-ds-tools.views.pyodide/panel])
-(lazy/define-lazy-loadable editor-panel-lazy [bb-web-ds-tools.views.editor/panel])
-(lazy/define-lazy-loadable repl-panel-lazy [bb-web-ds-tools.views.repl/panel])
-(lazy/define-lazy-loadable r-repl-lazy [bb-web-ds-tools.views.r-repl/r-repl])
-(lazy/define-lazy-loadable datasets-panel-lazy [bb-web-ds-tools.views.datasets/panel])
-(lazy/define-lazy-loadable changelog-page-lazy [bb-web-ds-tools.views.changelog/changelog-page])
-(lazy/define-lazy-loadable settings-panel-lazy [bb-web-ds-tools.views.settings/panel])
-(lazy/define-lazy-loadable app-db-panel-lazy [bb-web-ds-tools.views.app-db/panel])
-
-(defmethod view :landing-page [_] [landing-page-lazy])
-(defmethod view :malli [_] [malli-panel-lazy])
-(defmethod view :honeysql [_] [honeysql-panel-lazy])
-(defmethod view :vega-lite [_] [vega-panel-lazy])
-(defmethod view :gemma [_] [gemma-panel-lazy])
-(defmethod view :pyodide [_] [pyodide-panel-lazy])
-(defmethod view :editor [_] [editor-panel-lazy])
-(defmethod view :repl [_] [repl-panel-lazy])
-(defmethod view :r-repl [_] [:div.h-screen [r-repl-lazy]])
-(defmethod view :datasets [_] [datasets-panel-lazy])
-(defmethod view :changelog [_] [changelog-page-lazy])
+(defmethod view :landing-page [_] [landing/landing-page])
+(defmethod view :malli [_] [malli/panel])
+(defmethod view :honeysql [_] [honeysql/panel])
+(defmethod view :vega-lite [_] [vega-lite/panel])
+(defmethod view :gemma [_] [gemma/panel])
+(defmethod view :pyodide [_] [pyodide/panel])
+(defmethod view :editor [_] [editor/panel])
+(defmethod view :repl [_] [repl/panel])
+(defmethod view :r-repl [_] [:div.h-screen [r-repl/r-repl]])
+(defmethod view :datasets [_] [datasets/panel])
+(defmethod view :changelog [_] [changelog/changelog-page])
 (defmethod view :reader [_] [:div "Reader Tool"])
-(defmethod view :settings [_] [settings-panel-lazy])
-(defmethod view :app-db [_] [app-db-panel-lazy])
+(defmethod view :settings [_] [settings/panel])
+(defmethod view :app-db [_] [app-db/panel])
 
 (def nav-items
   [{:label "App DB" :route :app-db :icon "🗄️"}
