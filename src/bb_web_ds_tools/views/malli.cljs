@@ -67,14 +67,21 @@
    (assoc-in db [::malli :generation-format] fmt)))
 
 (rf/reg-event-fx
+  :malli/parse-schema-and-generate
+  (fn [{:keys [db]} _]
+    (let [schema-text (get-in db [:user-input :malli :default :schema-text])]
+      (try
+        (let [schema (reader/read-string schema-text)]
+          {:dispatch [:malli/generate-data schema]})
+        (catch js/Error e
+          {:db (assoc-in db [::malli :generated-data] (str "Invalid schema EDN: " (.-message e)))})))))
+
+(rf/reg-event-fx
  :malli/generate-data
- (fn [{:keys [db]} _]
-   (let [user-input (get-in db [:user-input :malli :default])
-         component-state (::malli db)
-         schema-text (:schema-text user-input)
+ (fn [{:keys [db]} [_ schema]]
+   (let [component-state (::malli db)
          samples (get component-state :generation-samples 1)
-         format (get component-state :generation-format :edn)
-         schema (try (reader/read-string schema-text) (catch js/Error e nil))]
+         format (get component-state :generation-format :edn)]
      (if schema
        (let [data (if (> samples 1)
                     (vec (repeatedly samples #(mg/generate schema)))
@@ -199,13 +206,11 @@
          [:option {:value "json"} "JSON"]]]
 
        ;; Generate Button
-       [c/button {:class "mb-[2px]"
-                  :on-click #(rf/dispatch [:malli/generate-data])} "Generate Data"]]]
+       [c/button {:class "mb-[1px] flex-grow"
+                  :on-click #(rf/dispatch [:malli/parse-schema-and-generate])} "Parse and Generate"]]]
 
      ;; RIGHT: Generated Data
      [l/flex-col {:class "h-full p-4 space-y-4"}
-      [:h3 {:class (str "text-xl font-semibold " t/text-accent " flex items-center gap-2")}
-       [:span "🎲"] "Data Generation"]
       [c/label "Generated Data"]
       [c/pre-block {:content generated-data :class "flex-grow"}]]]))
 
