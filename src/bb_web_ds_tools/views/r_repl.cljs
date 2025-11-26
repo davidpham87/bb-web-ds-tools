@@ -119,7 +119,7 @@
            [editor/monaco-editor {:value code
                                   :language "r"
                                   :on-change #(rf/dispatch [::set-code %])
-                                  :on-editor-mount #(editor/setup-editor-actions % mac-os? (fn [code] (rf/dispatch [::run-code code])))}]]
+                                  :on-mount #(editor/setup-editor-actions % mac-os? (fn [code] (rf/dispatch [::run-code code])))}]]
           [:div {:class "mt-4 flex justify-end"}
            [c/button {:on-click #(rf/dispatch [::run-code code])} "Run"]]]]
 
