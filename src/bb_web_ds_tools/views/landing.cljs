@@ -22,7 +22,7 @@
    {:class (str "flex flex-col items-center justify-center p-6 text-center "
                 "cursor-pointer transition-transform transform hover:scale-105 "
                 t/bg-card-hover)
-    :on-click #(rf/dispatch [::navigate route nil nil])}
+    :on-click #(rf/dispatch [:bb-web-ds-tools.core/navigate route nil nil])}
    [:div {:class "text-4xl mb-2"} icon]
    [:span {:class "font-semibold"} label]])
 
