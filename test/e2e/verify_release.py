@@ -47,9 +47,8 @@ def verify():
             for label, expected_text in nav_checks.items():
                 print(f"Navigating to {label}...")
 
-                # Click the navigation link using the title attribute
-                # The sidebar defaults to expanded but links work regardless
-                page.click(f"nav a[title='{label}']")
+                # Click the navigation link using the text content
+                page.click(f"nav a:has-text('{label}')")
 
                 # Wait for the expected text to appear
                 try:

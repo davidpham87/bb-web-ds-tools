@@ -246,8 +246,7 @@
            (:name ds)])
         [:div {:class (str "text-sm " t/text-muted " italic p-2")} "No datasets"])]]))
 
-(defn panel []
-  (rf/dispatch-sync [::initialize])
+(defn panel-render []
   (let [active-id @(rf/subscribe [::active-dataset-id])
         active-dataset @(rf/subscribe [::active-dataset])]
     [l/split-view {:ratio :1-2}
@@ -257,3 +256,9 @@
        (if active-dataset
          [dataset-view active-dataset]
          [:div {:class (str "text-center " t/text-muted " mt-20")} "Select a dataset."]))]))
+
+(defn panel []
+  (r/create-class
+   {:display-name "datasets-panel"
+    :component-did-mount #(rf/dispatch [::initialize])
+    :reagent-render panel-render}))

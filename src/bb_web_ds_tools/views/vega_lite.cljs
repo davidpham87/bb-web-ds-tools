@@ -134,8 +134,7 @@
          config (generate-config state schema)]
      {:db (assoc-in db [:user-input :vega-lite :default ::config-input] config)})))
 
-(defn panel []
-  (rf/dispatch-sync [::initialize])
+(defn panel-render []
   (let [data-input @(rf/subscribe [::data-input])
         config-input @(rf/subscribe [::config-input])
         parsed-data @(rf/subscribe [::parsed-data])
@@ -191,3 +190,9 @@
            :plot [vega-viz {:spec config-input :data parsed-data}]
            :parsed [:pre {:class "text-gray-800 text-sm"} (with-out-str (pprint parsed-data))]
            nil)]]]]]))
+
+(defn panel []
+  (r/create-class
+   {:display-name "vega-lite-panel"
+    :component-did-mount #(rf/dispatch [::initialize])
+    :reagent-render panel-render}))
