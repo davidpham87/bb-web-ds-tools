@@ -9,16 +9,18 @@
 
 (defonce theme-initialized
   (try
-    (monaco/editor.defineTheme "zenburn"
-                               (clj->js {:base "vs-dark"
-                                         :inherit true
-                                         :rules [{:background (t/color :bg-page) :foreground (t/color :text-primary)}]
-                                         :colors {:editor.background (t/color :bg-page)
-                                                  :editor.foreground (t/color :text-primary)
-                                                  :editorCursor.foreground (t/color :text-muted)
-                                                  :editor.lineHighlightBackground (t/color :bg-card)
-                                                  :editor.selectionBackground (t/color :bg-button)
-                                                  :editor.inactiveSelectionBackground (t/color :bg-card)}}))
+    (monaco/editor.defineTheme
+     "zenburn"
+     (clj->js {:base "vs-dark"
+               :inherit true
+               :rules [{:background (t/color :bg-page)
+                        :foreground (t/color :text-primary)}]
+               :colors {:editor.background (t/color :bg-page)
+                        :editor.foreground (t/color :text-primary)
+                        :editorCursor.foreground (t/color :text-muted)
+                        :editor.lineHighlightBackground (t/color :bg-card)
+                        :editor.selectionBackground (t/color :bg-button)
+                        :editor.inactiveSelectionBackground (t/color :bg-card)}}))
     true
     (catch js/Error e
       (js/console.warn "Failed to define Zenburn theme" e)
@@ -33,7 +35,8 @@
       :component-did-mount
       (fn [this]
         (try
-          (let [{:keys [value on-change mode language options on-focus on-blur on-mount]} (r/props this)
+          (let [{:keys [value mode language options on-focus
+                        on-blur on-mount on-change]} (r/props this)
                 node (react-dom/findDOMNode this)
                 lang (or language
                          (case mode
@@ -42,16 +45,17 @@
                            "clojure"))
                 editor (monaco/editor.create
                         node
-                        (clj->js (merge
-                                  {:value (or value "")
-                                   :language lang
-                                   :theme "zenburn"
-                                   :automaticLayout true
-                                   :minimap {:enabled false}
-                                   :scrollBeyondLastLine false
-                                   :fontFamily "Menlo, Monaco, 'Courier New', monospace"
-                                   :fontSize 14}
-                                  options)))]
+                        (clj->js
+                         (merge
+                          {:value (or value "")
+                           :language lang
+                           :theme "zenburn"
+                           :automaticLayout true
+                           :minimap {:enabled false}
+                           :scrollBeyondLastLine false
+                           :fontFamily "Menlo, Monaco, 'Courier New', monospace"
+                           :fontSize 14}
+                          options)))]
 
             (reset! editor-instance editor)
             (reset! on-change-ref on-change)
