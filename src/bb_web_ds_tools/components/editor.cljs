@@ -29,7 +29,8 @@
 (defn monaco-editor [_]
   (let [editor-instance (r/atom nil)
         subscription (r/atom nil)
-        on-change-ref (atom nil)]
+        on-change-ref (atom nil)
+        ignore-change? (atom false)]
     (r/create-class
      {:displayName "monaco-editor"
       :component-did-mount
@@ -66,11 +67,13 @@
             (let [sub (.onDidChangeModelContent
                        editor
                        (fn []
+                         (reset! ignore-change? true)
                          (let [new-val (.getValue editor)]
                            (when-let [handler @on-change-ref]
                              (if (vector? handler)
                                (rf/dispatch (conj handler new-val))
-                               (handler new-val))))))]
+                               (handler new-val))))
+                         (reset! ignore-change? false)))]
               (reset! subscription sub))
 
             (when on-focus
@@ -86,10 +89,9 @@
               editor ^js @editor-instance]
           (reset! on-change-ref on-change)
           (when editor
-            (when (not= (.getValue editor) value)
-              (let [pos (.getPosition editor)]
-                (.setValue editor (or value ""))
-                (.setPosition editor pos)))
+            (when (and (not @ignore-change?)
+                       (not= (.getValue editor) value))
+              (.setValue editor (or value "")))
 
             (let [lang (or language
                            (case mode
