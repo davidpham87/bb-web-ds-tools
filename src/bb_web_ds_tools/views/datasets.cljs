@@ -136,34 +136,34 @@
 (defn importer-view []
   (let [state (rf/subscribe [::new-dataset-state])
         {:keys [text format]} @state]
-    (fn [] 
-    [l/flex-col {:class "h-full space-y-4 p-4"}
-     [l/flex-row {:class "justify-between"}
-      [:h3 {:class (str "text-xl font-bold " t/text-accent)} "Create New Dataset"]
-      [l/flex-row {:class "space-x-2"}
-       [c/button-xs {:class (if (= format :csv) (str t/bg-button-primary " text-white") "")
-                     :on-click #(rf/dispatch [::update-new-dataset-state :format :csv])} "CSV"]
-       [c/button-xs {:class (if (= format :tsv) (str t/bg-button-primary " text-white") "")
-                     :on-click #(rf/dispatch [::update-new-dataset-state :format :tsv])} "TSV"]
-       [c/button-xs {:class (if (= format :json) (str t/bg-button-primary " text-white") "")
-                     :on-click #(rf/dispatch [::update-new-dataset-state :format :json])} "JSON"]]]
+    (fn []
+      [l/flex-col {:class "h-full space-y-4 p-4"}
+       [l/flex-row {:class "justify-between"}
+        [:h3 {:class (str "text-xl font-bold " t/text-accent)} "Create New Dataset"]
+        [l/flex-row {:class "space-x-2"}
+         [c/button-xs {:class (if (= format :csv) (str t/bg-button-primary " text-white") "")
+                       :on-click #(rf/dispatch [::update-new-dataset-state :format :csv])} "CSV"]
+         [c/button-xs {:class (if (= format :tsv) (str t/bg-button-primary " text-white") "")
+                       :on-click #(rf/dispatch [::update-new-dataset-state :format :tsv])} "TSV"]
+         [c/button-xs {:class (if (= format :json) (str t/bg-button-primary " text-white") "")
+                       :on-click #(rf/dispatch [::update-new-dataset-state :format :json])} "JSON"]]]
 
-     [l/flex-row {:class (str "space-x-2 text-sm " t/text-primary)}
-      [:span "Load Example:"]
-      [c/button-xs {:on-click #(do (rf/dispatch [::update-new-dataset-state :format :csv])
-                                   (rf/dispatch [::update-new-dataset-state :text (example-data :csv)]))} "CSV"]
-      [c/button-xs {:on-click #(do (rf/dispatch [::update-new-dataset-state :format :tsv])
-                                   (rf/dispatch [::update-new-dataset-state :text (example-data :tsv)]))} "TSV"]
-      [c/button-xs {:on-click #(do (rf/dispatch [::update-new-dataset-state :format :json])
-                                   (rf/dispatch [::update-new-dataset-state :text (example-data :json-maps)]))} "JSON Maps"]
-      [c/button-xs {:on-click #(do (rf/dispatch [::update-new-dataset-state :format :json])
-                                   (rf/dispatch [::update-new-dataset-state :text (example-data :json-arrays)]))} "JSON Arrays"]]
+       [l/flex-row {:class (str "space-x-2 text-sm " t/text-primary)}
+        [:span "Load Example:"]
+        [c/button-xs {:on-click #(do (rf/dispatch [::update-new-dataset-state :format :csv])
+                                     (rf/dispatch [::update-new-dataset-state :text (example-data :csv)]))} "CSV"]
+        [c/button-xs {:on-click #(do (rf/dispatch [::update-new-dataset-state :format :tsv])
+                                     (rf/dispatch [::update-new-dataset-state :text (example-data :tsv)]))} "TSV"]
+        [c/button-xs {:on-click #(do (rf/dispatch [::update-new-dataset-state :format :json])
+                                     (rf/dispatch [::update-new-dataset-state :text (example-data :json-maps)]))} "JSON Maps"]
+        [c/button-xs {:on-click #(do (rf/dispatch [::update-new-dataset-state :format :json])
+                                     (rf/dispatch [::update-new-dataset-state :text (example-data :json-arrays)]))} "JSON Arrays"]]
 
-     [:div {:class (str "flex-grow " t/bg-input " rounded overflow-hidden shadow-inner border " t/border-default)}
-      [editor/monaco-editor
-       {:value text
-        :language (case format :json "json" "plaintext")
-        :on-change #(rf/dispatch [::update-new-dataset-state :text %])}]]
+       [:div {:class (str "flex-grow " t/bg-input " rounded overflow-hidden shadow-inner border " t/border-default)}
+        [editor/monaco-editor
+         {:value text
+          :language (case format :json "json" "plaintext")
+          :on-change #(rf/dispatch [::update-new-dataset-state :text %])}]]
 
      [l/flex-row {:class "justify-end"}
       [c/button {:class (str t/bg-button-primary " " t/bg-button-primary-hover)
