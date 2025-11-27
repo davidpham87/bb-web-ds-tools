@@ -1,36 +1,36 @@
 {
-  "name": "bb-web-ds-tools",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@mediapipe/tasks-genai": "^0.10.25",
-    "@xterm/addon-fit": "^0.10.0",
-    "@xterm/xterm": "^5.5.0",
-    "monaco-editor": "^0.55.1",
-    "papaparse": "^5.5.3",
-    "react": "17.0.1",
-    "react-dom": "17.0.1",
-    "vega": "^6.2.0",
-    "vega-embed": "^7.1.0",
-    "vega-lite": "^6.4.1"
-  },
-  "devDependencies": {
-    "@storybook/addon-essentials": "^8.6.14",
-    "@storybook/addon-interactions": "^8.6.14",
-    "@storybook/react": "^8.6.14",
-    "@storybook/react-webpack5": "^8.6.14",
-    "karma": "^6.4.4",
-    "karma-chrome-launcher": "^3.2.0",
-    "karma-cljs-test": "^0.1.0",
-    "prop-types": "^15.8.1",
-    "shadow-cljs": "3.2.1",
-    "storybook": "^8.6.14"
-  },
-  "scripts": {
-    "test": "npx shadow-cljs compile test && karma start --single-run",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "dev-stories": "npx shadow-cljs watch stories",
-    "postinstall": "mkdir -p docs/js/libs/vs docs/css docs/js/libs/monaco-esm && cp -r node_modules/monaco-editor/min/vs/* docs/js/libs/vs/ && cp -r node_modules/monaco-editor/esm/* docs/js/libs/monaco-esm/ && cp node_modules/@xterm/xterm/css/xterm.css docs/css/xterm.css"
-  }
+    "name": "bb-web-ds-tools",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@mediapipe/tasks-genai": "^0.10.25",
+        "@xterm/addon-fit": "^0.10.0",
+        "@xterm/xterm": "^5.5.0",
+        "monaco-editor": "^0.55.1",
+        "papaparse": "^5.5.3",
+        "react": "17.0.1",
+        "react-dom": "17.0.1",
+        "vega": "^5.23.0",
+        "vega-embed": "^6.19.1",
+        "vega-lite": "^5.1.1"
+    },
+    "devDependencies": {
+        "@storybook/addon-essentials": "^8.6.14",
+        "@storybook/addon-interactions": "^8.6.14",
+        "@storybook/react": "^8.6.14",
+        "@storybook/react-webpack5": "^8.6.14",
+        "karma": "^6.4.4",
+        "karma-chrome-launcher": "^3.2.0",
+        "karma-cljs-test": "^0.1.0",
+        "prop-types": "^15.8.1",
+        "shadow-cljs": "3.2.1",
+        "storybook": "^8.6.14"
+    },
+    "scripts": {
+        "test": "npx shadow-cljs compile test && karma start --single-run",
+        "storybook": "storybook dev -p 6006",
+        "build-storybook": "storybook build",
+        "dev-stories": "npx shadow-cljs watch stories",
+        "postinstall": "mkdir -p docs/js/libs/vs docs/css docs/js/libs/monaco-esm && cp -r node_modules/monaco-editor/min/vs/* docs/js/libs/vs/ && cp -r node_modules/monaco-editor/esm/* docs/js/libs/monaco-esm/ && cp node_modules/@xterm/xterm/css/xterm.css docs/css/xterm.css"
+    }
 }

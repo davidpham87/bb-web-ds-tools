@@ -6,10 +6,9 @@
             [bb-web-ds-tools.components.layout :as l]
             [bb-web-ds-tools.theme :as t]
             ["react-dom" :as ReactDOM]
-            [clojure.string :as str]
+            #_["vega-embed" :default vega-embed]
             [cljs.pprint :refer [pprint]]
             [malli.provider :as mp]
-            [malli.core :as m]
             [bb-web-ds-tools.utils.dataset-processing :as dp]))
 
 ;; --- State ---
@@ -76,7 +75,7 @@
             (let [spec-obj (js/JSON.parse spec)
                   spec-with-data (js/Object.assign #js{} spec-obj)]
               (set! (.-data spec-with-data) #js{:values (clj->js data)})
-              (js/vegaEmbed (ReactDOM/findDOMNode this) spec-with-data))
+              (vega-embed (ReactDOM/findDOMNode this) spec-with-data))
             (catch js/Error e (js/console.warn "Vega render error" e))))))
     :component-did-update
     (fn [this _]
@@ -86,7 +85,7 @@
             (let [spec-obj (js/JSON.parse spec)
                   spec-with-data (js/Object.assign #js{} spec-obj)]
               (set! (.-data spec-with-data) #js{:values (clj->js data)})
-              (js/vegaEmbed (ReactDOM/findDOMNode this) spec-with-data))
+              (vega-embed (ReactDOM/findDOMNode this) spec-with-data))
             (catch js/Error e (js/console.warn "Vega render error" e))))))
     :render
     (fn [] [:div {:style {:width "100%" :height "400px"}}])}))
@@ -139,7 +138,7 @@
   (let [data-input @(rf/subscribe [::data-input])
         config-input @(rf/subscribe [::config-input])
         parsed-data @(rf/subscribe [::parsed-data])
-        inferred-schema @(rf/subscribe [::inferred-schema])
+        ;; inferred-schema @(rf/subscribe [::inferred-schema])
         active-sub-tab @(rf/subscribe [::active-sub-tab])]
     [l/container {:class "space-y-8 max-w-6xl p-6"}
      [l/grid {:class "grid-cols-1 lg:grid-cols-2 gap-8"}

@@ -120,35 +120,35 @@
 ;; --- UI Components ---
 
 (defn importer-view []
-  (let [state (rf/subscribe [::new-dataset-state])
-        {:keys [text format]} @state]
+  (let [state (rf/subscribe [::new-dataset-state])]
     (fn []
-      [l/flex-col {:class "h-full space-y-4 p-4"}
-       [l/flex-row {:class "justify-between"}
-        [:h3 {:class (str "text-xl font-bold " t/text-accent)} "Create New Dataset"]
-        [l/flex-row {:class "space-x-2"}
-         [format-toggle-button "CSV" :csv format]
-         [format-toggle-button "TSV" :tsv format]
-         [format-toggle-button "JSON" :json format]]]
+      (let [{:keys [text format]} @state]
+        [l/flex-col {:class "h-full space-y-4 p-4"}
+         [l/flex-row {:class "justify-between"}
+          [:h3 {:class (str "text-xl font-bold " t/text-accent)} "Create New Dataset"]
+          [l/flex-row {:class "space-x-2"}
+           [format-toggle-button "CSV" :csv format]
+           [format-toggle-button "TSV" :tsv format]
+           [format-toggle-button "JSON" :json format]]]
 
-       [l/flex-row {:class (str "space-x-2 text-sm " t/text-primary)}
-        [:span "Load Example:"]
-        [example-loader-button "CSV" :csv :csv]
-        [example-loader-button "TSV" :tsv :tsv]
-        [example-loader-button "JSON Maps" :json :json-maps]
-        [example-loader-button "JSON Arrays" :json :json-arrays]]
+         [l/flex-row {:class (str "space-x-2 text-sm " t/text-primary)}
+          [:span "Load Example:"]
+          [example-loader-button "CSV" :csv :csv]
+          [example-loader-button "TSV" :tsv :tsv]
+          [example-loader-button "JSON Maps" :json :json-maps]
+          [example-loader-button "JSON Arrays" :json :json-arrays]]
 
-       [:div {:class (str "flex-grow " t/bg-input " rounded overflow-hidden shadow-inner border " t/border-default)}
-        [editor/monaco-editor
-         {:value text
-          :language (case format :json "json" "plaintext")
-          :on-change #(rf/dispatch [::update-new-dataset-state :text %])}]]
+         [:div {:class (str "flex-grow " t/bg-input " rounded overflow-hidden shadow-inner border " t/border-default)}
+          [editor/monaco-editor
+           {:value text
+            :language (case format :json "json" "plaintext")
+            :on-change #(rf/dispatch [::update-new-dataset-state :text text])}]]
 
-       [l/flex-row {:class "justify-end"}
-        [c/button {:class (str t/bg-button-primary " " t/bg-button-primary-hover)
-                   :on-click #(let [parsed (dp/parse-dataset format text)]
-                                (rf/dispatch [::add-dataset {:name (str "New " (name format)) :data parsed}]))}
-         "Parse & Create Dataset"]]])))
+         [l/flex-row {:class "justify-end"}
+          [c/button {:class (str t/bg-button-primary " " t/bg-button-primary-hover)
+                     :on-click #(let [parsed (dp/parse-dataset format text)]
+                                  (rf/dispatch [::add-dataset {:name (str "New " (name format)) :data parsed}]))}
+           "Parse & Create Dataset"]]]))))
 
 
 (defn data-table [dataset]
@@ -210,7 +210,8 @@
             [c/tr {:key row-uuid}
              (for [col visible-columns]
                [c/td {:key col}
-                [c/input {:class (str "bg-transparent focus:" t/bg-input " focus:ring-1 " t/ring-focus " rounded px-1 outline-none border-0")
+                [c/input {:class (str "bg-transparent focus:" t/bg-input " focus:ring-1 " t/ring-focus
+                                      " rounded px-1 outline-none border-0")
                           :value (get row col "")
                           :on-change #(rf/dispatch [::update-cell id row-uuid col (.. % -target -value)])}]])]))]]]]))
 
@@ -218,7 +219,8 @@
   [l/flex-col {:class "h-full"}
    [l/flex-row {:class (str "justify-between " t/bg-toolbar " p-4 rounded shadow-sm m-4 mb-0")}
     [l/flex-row {:class "space-x-4"}
-     [:input {:class (str "text-xl font-bold bg-transparent " t/text-accent " border-b border-transparent " t/border-focus-accent " " t/outline-none)
+     [:input {:class (str "text-xl font-bold bg-transparent " t/text-accent " border-b border-transparent "
+                          t/border-focus-accent " " t/outline-none)
               :value (:name dataset)
               :on-change #(rf/dispatch [::update-dataset-name (:id dataset) (.. % -target -value)])}]
      [:span {:class (str t/text-secondary " text-sm")} (str (count (:data dataset)) " rows")]]
@@ -241,7 +243,9 @@
         (for [[id ds] items]
           [:div {:key id
                  :class (str "p-3 rounded cursor-pointer transition-colors text-sm font-medium "
-                             (if (= id active-id) (str t/bg-card " " t/text-accent " shadow-sm") (str t/text-primary " " t/bg-item-hover)))
+                             (if (= id active-id)
+                               (str t/bg-card " " t/text-accent " shadow-sm")
+                               (str t/text-primary " " t/bg-item-hover)))
                  :on-click #(rf/dispatch [::set-active-dataset-id id])}
            (:name ds)])
         [:div {:class (str "text-sm " t/text-muted " italic p-2")} "No datasets"])]]))
