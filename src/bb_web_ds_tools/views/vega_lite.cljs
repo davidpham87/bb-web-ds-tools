@@ -5,12 +5,12 @@
             [bb-web-ds-tools.components.editor :as editor]
             [bb-web-ds-tools.components.layout :as l]
             [bb-web-ds-tools.theme :as t]
-            ["papaparse" :as Papa]
             ["react-dom" :as ReactDOM]
             [clojure.string :as str]
             [cljs.pprint :refer [pprint]]
             [malli.provider :as mp]
-            [malli.core :as m]))
+            [malli.core :as m]
+            [bb-web-ds-tools.utils.dataset-processing :as dp]))
 
 ;; --- State ---
 
@@ -47,39 +47,6 @@
 
 ;; --- Parsing ---
 
-(defn parse-csv [text]
-  (let [res (.parse Papa text #js {:header true :dynamicTyping true :skipEmptyLines true})]
-    (js->clj (.-data res) :keywordize-keys true)))
-
-(defn parse-tsv [text]
-  (let [res (.parse Papa text #js {:delimiter "\t" :header true :dynamicTyping true :skipEmptyLines true})]
-    (js->clj (.-data res) :keywordize-keys true)))
-
-(defn parse-json [text]
-  (try
-    (let [json (js/JSON.parse text)
-          clj-json (js->clj json :keywordize-keys true)]
-      (if (and (vector? clj-json) (vector? (first clj-json)))
-        (let [header (map keyword (first clj-json))
-              rows (rest clj-json)]
-          (mapv (fn [row] (zipmap header row)) rows))
-        clj-json))
-    (catch js/Error e
-      (js/console.error "JSON Parse Error" e)
-      [])))
-
-(defn parse-markdown [text]
-  (let [lines (->> (str/split-lines text)
-                   (map str/trim)
-                   (remove empty?))
-        parse-row (fn [line]
-                    (->> (str/split line #"\|")
-                         (map str/trim)
-                         (remove empty?)))
-        [header-line _ & data-lines] lines
-        header (map keyword (parse-row header-line))]
-    (mapv (fn [line] (zipmap header (parse-row line))) data-lines)))
-
 (rf/reg-event-db
  ::parse-data
  (fn [db _]
@@ -87,36 +54,15 @@
          component-state (::vega-lite db)
          text (::data-input user-input)
          fmt (::format component-state)
-         parsed (case fmt
-                  :csv (parse-csv text)
-                  :tsv (parse-tsv text)
-                  :json (parse-json text)
-                  :markdown (parse-markdown text)
-                  [])
+         parsed (dp/parse-dataset fmt text)
          schema (try (mp/provide parsed) (catch js/Error e (str "Error inferring schema: " (.-message e))))]
      (update db ::vega-lite assoc ::parsed-data parsed ::inferred-schema schema))))
 
 ;; --- Components ---
 
-(def examples
-  [{:label "Example CSV" :fmt :csv :key :csv}
-   {:label "Example TSV" :fmt :tsv :key :tsv}
-   {:label "Example MD" :fmt :markdown :key :markdown}
-   {:label "Example JSON (Maps)" :fmt :json :key :json-maps}
-   {:label "Example JSON (Arrays)" :fmt :json :key :json-arrays}])
-
-(defn example-data [fmt]
-  (case fmt
-    :csv "col1,col2,col3,col4\n1,2,3,4\n5,6,7,8\n9,10,11,12"
-    :tsv "col1\tcol2\tcol3\tcol4\n1\t2\t3\t4\n5\t6\t7\t8\n9\t10\t11\t12"
-    :markdown "| col1 | col2 | col3 | col4 |\n|---|---|---|---|\n| 1 | 2 | 3 | 4 |\n| 5 | 6 | 7 | 8 |\n| 9 | 10 | 11 | 12 |"
-    :json-maps "[\n  {\"col1\": 1, \"col2\": 2, \"col3\": 3, \"col4\": 4},\n  {\"col1\": 5, \"col2\": 6, \"col3\": 7, \"col4\": 8},\n  {\"col1\": 9, \"col2\": 10, \"col3\": 11, \"col4\": 12}\n]"
-    :json-arrays "[\n  [\"col1\", \"col2\", \"col3\", \"col4\"],\n  [1, 2, 3, 4],\n  [5, 6, 7, 8],\n  [9, 10, 11, 12]\n]"
-    ""))
-
 (defn load-example [fmt key]
   (rf/dispatch [::set-format fmt])
-  (rf/dispatch [::set-data-input (example-data key)])
+  (rf/dispatch [::set-data-input (dp/example-data key)])
   (rf/dispatch [::parse-data]))
 
 (defn vega-viz [spec-str data]
