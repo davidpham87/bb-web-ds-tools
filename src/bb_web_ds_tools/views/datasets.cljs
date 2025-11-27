@@ -169,7 +169,7 @@
       [c/button {:class (str t/bg-button-primary " " t/bg-button-primary-hover)
                  :on-click #(let [parsed (parse-dataset format text)]
                               (rf/dispatch [::add-dataset {:name (str "New " (name format)) :data parsed}]))}
-       "Parse & Create Dataset"]]]))
+       "Parse & Create Dataset"]]])))
 
 
 (defn data-table [dataset]
