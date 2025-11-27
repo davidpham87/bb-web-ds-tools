@@ -12,22 +12,21 @@
     (monaco/editor.defineTheme "zenburn"
                                (clj->js {:base "vs-dark"
                                          :inherit true
-                                         :rules [{:background "3f3f3f" :foreground "dcdccc"}]
-                                         :colors {:editor.background (t/bg-page :bg)
-                                                  :editor.foreground (t/text-primary :text)
-                                                  :editorCursor.foreground (t/text-muted :text)
-                                                  :editor.lineHighlightBackground (t/bg-card :bg)
-                                                  :editor.selectionBackground (t/bg-button :bg)
-                                                  :editor.inactiveSelectionBackground (t/bg-card :bg)}}))
+                                         :rules [{:background (t/color :bg-page) :foreground (t/color :text-primary)}]
+                                         :colors {:editor.background (t/color :bg-page)
+                                                  :editor.foreground (t/color :text-primary)
+                                                  :editorCursor.foreground (t/color :text-muted)
+                                                  :editor.lineHighlightBackground (t/color :bg-card)
+                                                  :editor.selectionBackground (t/color :bg-button)
+                                                  :editor.inactiveSelectionBackground (t/color :bg-card)}}))
     true
     (catch js/Error e
       (js/console.warn "Failed to define Zenburn theme" e)
       false)))
 
-(defn monaco-editor-inner [_]
+(defn monaco-editor [_]
   (let [editor-instance (r/atom nil)
         subscription (r/atom nil)
-        retry-timer (r/atom nil)
         on-change-ref (atom nil)]
     (r/create-class
      {:displayName "monaco-editor"
@@ -103,8 +102,6 @@
 
       :component-will-unmount
       (fn [this]
-        (when-let [timer @retry-timer]
-          (js/clearTimeout timer))
         (when-let [sub @subscription]
           (.dispose sub))
         (when-let [editor @editor-instance]
@@ -116,9 +113,6 @@
           [:div.editor-wrapper
            {:class class
             :style (merge {:width "100%" :height "100%"} style)}]))})))
-
-(defn monaco-editor [props]
-  [monaco-editor-inner props])
 
 ;; Shared Editor Utilities
 

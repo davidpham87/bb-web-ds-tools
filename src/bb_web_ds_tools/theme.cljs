@@ -1,46 +1,88 @@
 (ns bb-web-ds-tools.theme)
 
+(def colors
+  {:bg-page "#3f3f3f"
+   :bg-sidebar "#2f2f2f"
+   :bg-card "#4f4f4f"
+   :bg-input "#2f2f2f"
+   :bg-toolbar "#2f2f2f"
+   :bg-table-head "#3f3f3f"
+   :bg-table-body "#2f2f2f"
+   :bg-table-row-hover "#3f3f3f"
+   :bg-item-hover "#4f4f4f"
+
+   :bg-button "#5f5f5f"
+   :bg-button-hover "#6f6f6f"
+   :bg-button-primary "#7f9f7f"
+   :bg-button-primary-hover "#8fb28f"
+   :bg-button-danger "#cc9393"
+   :bg-button-danger-hover "#bc8383"
+   :bg-button-xs "#4f4f4f"
+   :bg-button-xs-hover "#5f5f5f"
+   :bg-button-disabled "#3f3f3f"
+
+   :text-primary "#dcdccc"
+   :text-secondary "#9f9f9f"
+   :text-accent "#f0dfaf"
+   :text-code "#93e0e3"
+   :text-muted "#7f7f7f"
+   :text-danger "#cc9393"
+   :text-disabled "#7f7f7f"
+   :text-button "#dcdccc"
+   :text-button-primary "#3f3f3f"
+
+   :border-main "#3f3f3f"
+   :border-subtle "#4f4f4f"
+   :border-default "#5f5f5f"
+   :border-hover "#7f7f7f"
+   :border-focus "#8cd0d3"
+   :border-focus-accent "#f0dfaf"
+
+   :ring-focus "#8cd0d3"})
+
+(defn color [k] (get colors k))
+
 ;; Backgrounds
-(def bg-page "bg-[#3f3f3f]")
-(def bg-sidebar "bg-[#2f2f2f]")
-(def bg-card "bg-[#4f4f4f]")
-(def bg-input "bg-[#2f2f2f]")
-(def bg-toolbar "bg-[#2f2f2f]")
-(def bg-table-head "bg-[#3f3f3f]")
-(def bg-table-body "bg-[#2f2f2f]")
-(def bg-table-row-hover "hover:bg-[#3f3f3f]")
-(def bg-item-hover "hover:bg-[#4f4f4f]")
+(def bg-page (str "bg-[" (:bg-page colors) "]"))
+(def bg-sidebar (str "bg-[" (:bg-sidebar colors) "]"))
+(def bg-card (str "bg-[" (:bg-card colors) "]"))
+(def bg-input (str "bg-[" (:bg-input colors) "]"))
+(def bg-toolbar (str "bg-[" (:bg-toolbar colors) "]"))
+(def bg-table-head (str "bg-[" (:bg-table-head colors) "]"))
+(def bg-table-body (str "bg-[" (:bg-table-body colors) "]"))
+(def bg-table-row-hover (str "hover:bg-[" (:bg-table-row-hover colors) "]"))
+(def bg-item-hover (str "hover:bg-[" (:bg-item-hover colors) "]"))
 
 ;; Buttons
-(def bg-button "bg-[#5f5f5f]")
-(def bg-button-hover "hover:bg-[#6f6f6f]")
-(def bg-button-primary "bg-[#7f9f7f]")
-(def bg-button-primary-hover "hover:bg-[#8fb28f]")
-(def bg-button-danger "bg-[#cc9393]")
-(def bg-button-danger-hover "hover:bg-[#bc8383]")
-(def bg-button-xs "bg-[#4f4f4f]")
-(def bg-button-xs-hover "hover:bg-[#5f5f5f]")
-(def bg-button-disabled "disabled:bg-[#3f3f3f]")
+(def bg-button (str "bg-[" (:bg-button colors) "]"))
+(def bg-button-hover (str "hover:bg-[" (:bg-button-hover colors) "]"))
+(def bg-button-primary (str "bg-[" (:bg-button-primary colors) "]"))
+(def bg-button-primary-hover (str "hover:bg-[" (:bg-button-primary-hover colors) "]"))
+(def bg-button-danger (str "bg-[" (:bg-button-danger colors) "]"))
+(def bg-button-danger-hover (str "hover:bg-[" (:bg-button-danger-hover colors) "]"))
+(def bg-button-xs (str "bg-[" (:bg-button-xs colors) "]"))
+(def bg-button-xs-hover (str "hover:bg-[" (:bg-button-xs-hover colors) "]"))
+(def bg-button-disabled (str "disabled:bg-[" (:bg-button-disabled colors) "]"))
 
 ;; Text
-(def text-primary "text-[#dcdccc]")
-(def text-secondary "text-[#9f9f9f]")
-(def text-accent "text-[#f0dfaf]")
-(def text-code "text-[#93e0e3]")
-(def text-muted "text-[#7f7f7f]")
-(def text-danger "text-[#cc9393]")
-(def text-disabled "disabled:text-[#7f7f7f]")
-(def text-button "text-[#dcdccc]")
-(def text-button-primary "!text-[#3f3f3f]")
+(def text-primary (str "text-[" (:text-primary colors) "]"))
+(def text-secondary (str "text-[" (:text-secondary colors) "]"))
+(def text-accent (str "text-[" (:text-accent colors) "]"))
+(def text-code (str "text-[" (:text-code colors) "]"))
+(def text-muted (str "text-[" (:text-muted colors) "]"))
+(def text-danger (str "text-[" (:text-danger colors) "]"))
+(def text-disabled (str "disabled:text-[" (:text-disabled colors) "]"))
+(def text-button (str "text-[" (:text-button colors) "]"))
+(def text-button-primary (str "!text-[" (:text-button-primary colors) "]"))
 
 ;; Borders
-(def border-main "border-[#3f3f3f]")
-(def border-subtle "border-[#4f4f4f]")
-(def border-default "border-[#5f5f5f]")
-(def border-hover "hover:border-[#7f7f7f]")
-(def border-focus "focus:border-[#8cd0d3]")
-(def border-focus-accent "focus:border-[#f0dfaf]")
+(def border-main (str "border-[" (:border-main colors) "]"))
+(def border-subtle (str "border-[" (:border-subtle colors) "]"))
+(def border-default (str "border-[" (:border-default colors) "]"))
+(def border-hover (str "hover:border-[" (:border-hover colors) "]"))
+(def border-focus (str "focus:border-[" (:border-focus colors) "]"))
+(def border-focus-accent (str "focus:border-[" (:border-focus-accent colors) "]"))
 
 ;; Rings/Focus
-(def ring-focus "focus:ring-[#8cd0d3]")
+(def ring-focus (str "focus:ring-[" (:ring-focus colors) "]"))
 (def outline-none "focus:outline-none")
