@@ -165,11 +165,11 @@
           :language (case format :json "json" "plaintext")
           :on-change #(rf/dispatch [::update-new-dataset-state :text %])}]]
 
-       [l/flex-row {:class "justify-end"}
-        [c/button {:class (str t/bg-button-primary " " t/bg-button-primary-hover)
-                   :on-click #(let [parsed (parse-dataset format text)]
-                                (rf/dispatch [::add-dataset {:name (str "New " (name format)) :data parsed}]))}
-         "Parse & Create Dataset"]]])))
+     [l/flex-row {:class "justify-end"}
+      [c/button {:class (str t/bg-button-primary " " t/bg-button-primary-hover)
+                 :on-click #(let [parsed (parse-dataset format text)]
+                              (rf/dispatch [::add-dataset {:name (str "New " (name format)) :data parsed}]))}
+       "Parse & Create Dataset"]]])))
 
 
 (defn data-table [dataset]
