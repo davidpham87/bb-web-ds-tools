@@ -189,4 +189,5 @@
   (rf/dispatch-sync [::initialize-db])
   (init-routes!)
   (rf/dispatch [::navigate :landing-page nil nil])
+  (rf/dispatch [::portal/open])
   (rdom/render [app] (.getElementById js/document "app")))
