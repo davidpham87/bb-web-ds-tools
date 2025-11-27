@@ -28,7 +28,7 @@
          input-data (try (reader/read-string input-text) (catch js/Error e nil))]
      (if input-data
        (try
-         {:db (assoc-in db [::honeysql :output] (first (h/format input-data)))} ;; h/format returns [sql params], take first for sql string if no params
+         {:db (assoc-in db [::honeysql :output] (first (h/format input-data {:inline true})))} ;; h/format returns [sql params], take first for sql string if no params
          (catch js/Error e
            {:db (assoc-in db [::honeysql :output] (str "Error: " (.-message e)))}))
        {:db (assoc-in db [::honeysql :output] "Invalid Honeysql data.")}))))
