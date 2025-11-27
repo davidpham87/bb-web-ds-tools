@@ -83,7 +83,7 @@
  (fn [code]
    (when @webr-instance
      (try
-       (-> (.evalR @webr-instance code (clj->js {:autoprint true}))
+       (-> (.evalR ^js @webr-instance code (clj->js {:autoprint true}))
            (.then (fn [res] (try (.destroy res) (catch js/Error _))))
            (.catch (fn [e] (rf/dispatch [::append-output :error (str e)]))))
        (catch js/Error e
