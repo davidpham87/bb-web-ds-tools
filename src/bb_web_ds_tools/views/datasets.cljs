@@ -133,10 +133,10 @@
    (assoc-in db [:user-input :datasets :items id :view-state key] value)))
 
 ;; --- UI Components ---
-
 (defn importer-view []
-  (let [state @(rf/subscribe [::new-dataset-state])
-        {:keys [text format]} state]
+  (let [state (rf/subscribe [::new-dataset-state])
+        {:keys [text format]} @state]
+    (fn [] 
     [l/flex-col {:class "h-full space-y-4 p-4"}
      [l/flex-row {:class "justify-between"}
       [:h3 {:class (str "text-xl font-bold " t/text-accent)} "Create New Dataset"]
@@ -170,6 +170,7 @@
                  :on-click #(let [parsed (parse-dataset format text)]
                               (rf/dispatch [::add-dataset {:name (str "New " (name format)) :data parsed}]))}
        "Parse & Create Dataset"]]]))
+
 
 (defn data-table [dataset]
   (let [{:keys [id data columns view-state]} dataset
