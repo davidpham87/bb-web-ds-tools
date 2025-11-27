@@ -8,7 +8,8 @@
             [bb-web-ds-tools.components.editor :as editor]
             [bb-web-ds-tools.components.layout :as l]
             [bb-web-ds-tools.theme :as t]
-            [bb-web-ds-tools.views.datasets :as datasets]))
+            [bb-web-ds-tools.views.datasets :as datasets]
+            [bb-web-ds-tools.utils.dataset-processing :as dp]))
 
 (defn detect-and-parse [text]
   (if (clojure.string/blank? text)
@@ -102,7 +103,7 @@
          format (:input-format component-state)
          input-data (case format
                       :edn (detect-and-parse input-text)
-                      (datasets/parse-dataset format input-text))]
+                      (dp/parse-dataset format input-text))]
      (if (and (coll? input-data) (seq input-data))
        {:db (assoc-in db [::malli :inferred-schema] (pr-str (mp/provide input-data)))}
        {:db (assoc-in db [::malli :inferred-schema] (str "Invalid input data for format " (name format) ".")) }))))
