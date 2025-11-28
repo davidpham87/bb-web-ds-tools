@@ -1,11 +1,13 @@
 (ns bb-web-ds-tools.views.honeysql
   (:require [re-frame.core :as rf]
             [honey.sql :as h]
-            [cljs.reader :as reader]
+            [sci.core :as sci]
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.editor :as editor]
             [bb-web-ds-tools.components.layout :as l]
             [bb-web-ds-tools.theme :as t]))
+
+(def sci-ctx (sci/init {}))
 
 ;; Event handlers
 (rf/reg-event-db
@@ -24,14 +26,17 @@
 (rf/reg-event-fx
  :honeysql/convert-to-sql
  (fn [{:keys [db]} _]
-   (let [input-text (get-in db [:user-input :honeysql :default :input])
-         input-data (try (reader/read-string input-text) (catch js/Error e nil))]
-     (if input-data
-       (try
-         {:db (assoc-in db [::honeysql :output] (first (h/format input-data {:inline true})))} ;; h/format returns [sql params], take first for sql string if no params
-         (catch js/Error e
-           {:db (assoc-in db [::honeysql :output] (str "Error: " (.-message e)))}))
-       {:db (assoc-in db [::honeysql :output] "Invalid Honeysql data.")}))))
+   (let [input-text (get-in db [:user-input :honeysql :default :input])]
+     (try
+       (let [input-data (sci/eval-string input-text sci-ctx)]
+         (if (map? input-data)
+           (try
+             {:db (assoc-in db [::honeysql :output] (first (h/format input-data {:inline true})))}
+             (catch :default e
+               {:db (assoc-in db [::honeysql :output] (str "Error formatting SQL: " (.-message e)))}))
+           {:db (assoc-in db [::honeysql :output] (str "Error: Last evaluated value must be a map. Got: " (type input-data)))}))
+       (catch :default e
+         {:db (assoc-in db [::honeysql :output] (str "Error evaluating code: " (.-message e)))})))))
 
 ;; Subscriptions
 (rf/reg-sub :honeysql/user-input-root (fn [db _] (get-in db [:user-input :honeysql :default])))
@@ -48,8 +53,8 @@
      [l/flex-col {:class "h-full p-4 space-y-4"}
       [:h3 {:class (str "text-xl font-semibold " t/text-accent " flex items-center gap-2")}
        [:span "🍯"] "Convert to SQL"]
-      [c/label "HoneySQL Map (EDN)"]
-      [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
+      [c/label "Clojure Code (Last value must be HoneySQL Map)"]
+      [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default " max-w-3xl")}
        [editor/monaco-editor {:value honeysql-input
                               :language "clojure"
                               :options {:rulers [80]}

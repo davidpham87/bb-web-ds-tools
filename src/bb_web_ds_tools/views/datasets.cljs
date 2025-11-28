@@ -22,7 +22,7 @@
  (fn [db _]
    (-> db
        (update-in [:user-input :datasets] #(deep-merge % {:items {}
-                                                          :new-dataset-state {:text "" :format :csv :structure :columnar}}))
+                                                          :new-dataset-state {:name "New Dataset" :text "" :format :csv :structure :columnar}}))
        (assoc ::datasets {:active-dataset-id :new}))))
 
 (rf/reg-sub ::user-input-root (fn [db] (get-in db [:user-input :datasets])))
@@ -119,8 +119,9 @@
 (defn importer-view []
   (let [state (rf/subscribe [::new-dataset-state])]
     (fn []
-      (let [{:keys [text format structure]} @state
+      (let [{:keys [text format structure] name-val :name} @state
             structure (or structure :columnar)
+            dataset-name (or name-val "New Dataset")
 
             set-state (fn [k v] (rf/dispatch [::update-new-dataset-state k v]))
 
@@ -128,9 +129,9 @@
                                    #{:columnar}
                                    #{:columnar :row-maps :row-arrays})
 
-            struct-labels {:columnar "Columnar (Map of Arrays)"
-                           :row-maps "Row (Array of Maps)"
-                           :row-arrays "Array (Array of Arrays)"}]
+            struct-labels {:columnar "Columnar"
+                           :row-maps "Row (Maps)"
+                           :row-arrays "Array (Arrays)"}]
 
         [l/flex-col {:class "h-full space-y-4 p-4"}
          [l/flex-row {:class "justify-between items-center"}
@@ -144,21 +145,32 @@
                                             (set-state :structure :columnar)))}
               (if (= fmt :markdown) "MD" (str/upper-case (name fmt)))])]]
 
-         [l/flex-row {:class "items-center space-x-2"}
-          [:span {:class (str "text-sm " t/text-primary)} "Structure:"]
-          (for [s [:columnar :row-maps :row-arrays]]
-            [c/button-xs {:key s
-                          :disabled (not (contains? supported-structures s))
-                          :class (if (= structure s)
-                                   (str t/bg-button-primary " text-white")
-                                   (if (not (contains? supported-structures s)) "opacity-50 cursor-not-allowed" ""))
-                          :on-click #(set-state :structure s)}
-             (get struct-labels s)])]
+         [c/input {:value dataset-name
+                   :placeholder "Dataset Name"
+                   :on-change #(set-state :name (.. % -target -value))}]
 
-         [l/flex-row {:class (str "space-x-2 text-sm " t/text-primary " items-center")}
-          [:span "Load Example:"]
-          [c/button-xs {:on-click #(set-state :text (dp/example-data format structure))}
-           "Load Example"]]
+         [l/flex-row {:class "items-center space-x-4 flex-wrap gap-y-2"}
+          [l/flex-row {:class "items-center space-x-2"}
+           [:span {:class (str "text-sm " t/text-primary)} "Structure:"]
+           (for [s [:columnar :row-maps :row-arrays]]
+             [c/button-xs {:key s
+                           :disabled (not (contains? supported-structures s))
+                           :class (if (= structure s)
+                                    (str t/bg-button-primary " text-white")
+                                    (if (not (contains? supported-structures s)) "opacity-50 cursor-not-allowed" ""))
+                           :on-click #(set-state :structure s)}
+              (get struct-labels s)])]
+
+          [l/flex-row {:class (str "space-x-2 text-sm " t/text-primary " items-center")}
+           [c/button-xs {:on-click #(set-state :text (dp/example-data format structure))}
+            "Load Example"]]
+
+          [:div {:class "flex-grow"}]
+
+          [c/button-xs {:class (str t/bg-button-primary " " t/bg-button-primary-hover " text-white px-4")
+                        :on-click #(let [parsed (dp/parse-dataset format structure text)]
+                                     (rf/dispatch [::add-dataset {:name dataset-name :data parsed}]))}
+           "Create"]]
 
          [:div {:class (str "flex-grow " t/bg-input " rounded overflow-hidden shadow-inner border " t/border-default)}
           [editor/monaco-editor
@@ -168,13 +180,7 @@
                         :edn "clojure"
                         :markdown "markdown"
                         "plaintext")
-            :on-change [::update-new-dataset-state :text]}]]
-
-         [l/flex-row {:class "justify-end"}
-          [c/button {:class (str t/bg-button-primary " " t/bg-button-primary-hover)
-                     :on-click #(let [parsed (dp/parse-dataset format structure text)]
-                                  (rf/dispatch [::add-dataset {:name (str "New " (name format)) :data parsed}]))}
-           "Parse & Create Dataset"]]]))))
+            :on-change [::update-new-dataset-state :text]}]]]))))
 
 
 (defn data-table [dataset]
@@ -185,10 +191,11 @@
 
     [l/flex-col {:class "space-y-4 p-4"}
      ;; Toolbar
-     [l/flex-row {:class (str "flex-wrap gap-4 items-end " t/bg-toolbar " p-4 rounded shadow-sm")}
+     [l/flex-row {:class (str "flex-wrap gap-4 items-end " t/bg-toolbar " p-2 rounded shadow-sm")}
       [:div
        [c/label "Rows"]
-       [c/select {:value rows-per-page
+       [c/select {:class "py-1"
+                  :value rows-per-page
                   :on-change #(rf/dispatch [::update-view-state id :rows-per-page (js/parseInt (.. % -target -value))])}
         [:option {:value 5} "5"]
         [:option {:value 10} "10"]
@@ -243,7 +250,7 @@
 
 (defn dataset-view [dataset]
   [l/flex-col {:class "h-full"}
-   [l/flex-row {:class (str "justify-between " t/bg-toolbar " p-4 rounded shadow-sm m-4 mb-0")}
+   [l/flex-row {:class (str "justify-between " t/bg-toolbar " p-2 rounded shadow-sm m-4 mt-0 mb-0")}
     [l/flex-row {:class "space-x-4"}
      [:input {:class (str "text-xl font-bold bg-transparent " t/text-accent " border-b border-transparent "
                           t/border-focus-accent " " t/outline-none)
@@ -261,8 +268,8 @@
     [:div {:class (str "h-full " t/bg-sidebar " flex flex-col")}
      [:div {:class (str "p-4 border-b " t/border-main)}
       [:h3 {:class (str "text-lg font-semibold " t/text-accent " mb-4")} "Datasets"]
-      [c/button {:class (str "w-full " t/bg-button " " t/bg-button-hover)
-                 :on-click #(rf/dispatch [::set-active-dataset-id :new])}
+      [c/button-xs {:class (str "w-full " t/bg-button " " t/bg-button-hover " justify-center")
+                    :on-click #(rf/dispatch [::set-active-dataset-id :new])}
        "+ New Dataset"]]
      [:div {:class "flex-grow overflow-y-auto p-2 space-y-1"}
       (if (seq items)
@@ -279,7 +286,7 @@
 (defn panel-render []
   (let [active-id @(rf/subscribe [::active-dataset-id])
         active-dataset @(rf/subscribe [::active-dataset])]
-    [l/split-view {:ratio :1-2}
+    [l/split-view {:ratio :1-3}
      [dataset-list]
      (if (= active-id :new)
        [importer-view]

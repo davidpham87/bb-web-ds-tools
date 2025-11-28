@@ -52,10 +52,18 @@
         children))
 
 (defn split-view [{:keys [ratio] :or {ratio :2-1} :as props} left right]
-  [:div {:class "flex flex-col md:flex-row h-full w-full overflow-hidden"}
-   [:div {:class (str "h-1/2 md:h-full overflow-auto border-b md:border-b-0 md:border-r border-[#3f3f3f] "
-                      (if (= ratio :2-1) "w-full md:w-2/3" "w-full md:w-1/3"))}
-    left]
-   [:div {:class (str "h-1/2 md:h-full overflow-auto "
-                      (if (= ratio :2-1) "w-full md:w-1/3" "w-full md:w-2/3"))}
-    right]])
+  (let [left-width (case ratio
+                     :2-1 "w-full md:w-2/3"
+                     :1-2 "w-full md:w-1/3"
+                     :1-3 "w-full md:w-1/4"
+                     "w-full md:w-1/3")
+        right-width (case ratio
+                      :2-1 "w-full md:w-1/3"
+                      :1-2 "w-full md:w-2/3"
+                      :1-3 "w-full md:w-3/4"
+                      "w-full md:w-2/3")]
+    [:div {:class "flex flex-col md:flex-row h-full w-full overflow-hidden"}
+     [:div {:class (str "h-1/2 md:h-full overflow-auto border-b md:border-b-0 md:border-r border-[#3f3f3f] " left-width)}
+      left]
+     [:div {:class (str "h-1/2 md:h-full overflow-auto " right-width)}
+      right]]))
