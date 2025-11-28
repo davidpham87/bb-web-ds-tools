@@ -2,6 +2,11 @@
 
 All notable changes to a project will be documented in this file.
 
+## [0.6.0] - 2025-11-28
+
+### Changed
+- **Changelog View**: Updated to support categorized entries (Added, Changed, etc.) and synced with `CHANGELOG.md`.
+
 ## [0.5.0] - 2025-11-25
 
 ### Changed

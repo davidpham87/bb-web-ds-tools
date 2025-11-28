@@ -175,6 +175,6 @@
 (defn ^:export init []
   (rf/dispatch-sync [::initialize-db])
   (init-routes!)
-  (rf/dispatch [::navigate :landing-page nil nil])
+  ;; (rf/dispatch [::navigate :landing-page nil nil]) ;; Removed to allow deep linking
   (rf/dispatch [::portal/open])
   (rdom/render [app] (.getElementById js/document "app")))

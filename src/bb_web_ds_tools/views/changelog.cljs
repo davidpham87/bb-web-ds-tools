@@ -2,24 +2,59 @@
   (:require [bb-web-ds-tools.components.common :as c]))
 
 (def changelog-data
-  [{:version "0.1.0"
+  [{:version "0.6.0"
+    :date "2025-11-28"
+    :sections [{:title "Changed"
+                :items ["Updated changelog view to support categorized entries (Added, Changed, etc.) matching CHANGELOG.md"
+                        "Synced in-app changelog with CHANGELOG.md"]}]}
+   {:version "0.5.0"
+    :date "2025-11-25"
+    :sections [{:title "Changed"
+                :items ["Default View: The application now defaults to the Malli view instead of a dedicated landing page, streamlining the user experience."
+                        "Sidebar State: The navigation sidebar is now closed by default on initial load."
+                        "URL Structure: Simplified routing by removing the dedicated `/landing` route."]}]}
+   {:version "0.4.0"
+    :date "2025-11-25"
+    :sections [{:title "Changed"
+                :items ["Implemented code splitting for application views, significantly reducing the initial bundle size from ~1.5MB to ~228KB. This improves the initial load time by loading view-specific code on demand."]}]}
+   {:version "0.3.0"
+    :date "2025-11-24"
+    :sections [{:title "Added"
+                :items ["App DB Inspector: Real-time inspection and modification of the re-frame application database. Includes watching paths, editing values, and viewing data."
+                        "ClojureScript REPL: Interactive ClojureScript environment powered by SCI. Features browser evaluation, re-frame interaction, and multiple instances."
+                        "Changelog Viewer: In-app viewer for the project changelog."]}]}
+   {:version "0.2.0"
+    :date "2025-11-22"
+    :sections [{:title "Added"
+                :items ["Datasets Manager: New full-featured CSV/TSV/JSON dataset management. Features import, editable table view, column visibility, and multiple datasets."
+                        "Pyodide Integration: Python runtime environment in the browser. Features direct code execution, Monaco editor, and stdout/stderr capture."
+                        "WebR REPL: R runtime environment via WebAssembly. Features interactive terminal and full R evaluation loop."]}]}
+   {:version "0.1.0"
     :date "2024-05-21"
-    :changes ["Initial release of BB Web DS Tools"
-              "Added Malli Schema Inference and Generator"
-              "Added HoneySQL Formatter"
-              "Added Vega-Lite Visualization"
-              "Added Gemma Local LLM integration"
-              "Added CodeMirror editor"]}])
+    :sections [{:title "Added"
+                :items ["Initial release of BB Web DS Tools."
+                        "Malli Tools: Schema inference and data generation."
+                        "HoneySQL Tools: SQL formatting from Clojure data structures."
+                        "Vega-Lite: Client-side data visualization."
+                        "Gemma: Local LLM integration using MediaPipe."
+                        "Editor: CodeMirror scratchpad."]}
+               {:title "Changed"
+                :items ["Refactored project structure: moved tool panels to `src/bb_web_ds_tools/views/` and shared components to `src/bb_web_ds_tools/components/`."
+                        "Updated application layout to a dark \"Gemini CLI\" theme."]}]}])
 
-(defn changelog-item [{:keys [version date changes]}]
+(defn changelog-item [{:keys [version date sections]}]
   [:div {:class "bg-[#4f4f4f] border-l-4 border-[#8cd0d3] p-6 mb-6 rounded-r-lg shadow-md"}
    [:div {:class "flex items-center justify-between mb-4"}
     [:h3 {:class "text-2xl font-bold text-[#f0dfaf]"} (str "v" version)]
     [:span {:class "text-[#9f9f9f] text-sm"} date]]
-   [:ul {:class "list-disc list-inside text-[#dcdccc] space-y-2"}
-    (for [change changes]
-      ^{:key change}
-      [:li change])]])
+   (for [{:keys [title items]} sections]
+     ^{:key title}
+     [:div {:class "mb-4 last:mb-0"}
+      [:h4 {:class "text-lg font-semibold text-[#8cd0d3] mb-2"} title]
+      [:ul {:class "list-disc list-inside text-[#dcdccc] space-y-1"}
+       (for [item items]
+         ^{:key item}
+         [:li {:class "leading-relaxed"} item])]])])
 
 (defn changelog-page []
   [:div {:class "min-h-screen bg-[#3f3f3f] py-12 px-4"}
