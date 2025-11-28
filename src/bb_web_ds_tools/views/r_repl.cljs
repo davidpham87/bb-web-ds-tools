@@ -3,6 +3,7 @@
             [re-frame.core :as rf]
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.editor :as editor]
+            [bb-web-ds-tools.components.layout :as l]
             [bb-web-ds-tools.theme :as t]))
 
 ;; State initialization
@@ -102,33 +103,35 @@
         code @(rf/subscribe [::code])
         output @(rf/subscribe [::output])
         mac-os? @(rf/subscribe [::mac-os?])]
-    [:div {:class "container mx-auto max-w-6xl space-y-6 p-6"}
-
+    [l/flex-col {:class "h-full w-full"}
      (cond
-       loading? [:div {:class (str "text-center " t/text-accent)} "Loading WebR..."]
-       error [:div {:class (str "text-center " t/text-danger)} error]
-       (not ready?) [:div {:class "text-center"}
+       loading? [:div {:class (str "text-center " t/text-accent " p-6")} "Loading WebR..."]
+       error [:div {:class (str "text-center " t/text-danger " p-6")} error]
+       (not ready?) [:div {:class "text-center p-6"}
                      [c/button {:on-click #(rf/dispatch [::initialize-runtime])} "Load R Environment"]])
 
      (when ready?
-       [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-6"}
-        [:div {:class "space-y-4"}
-         [c/card {}
-          [:h3 {:class (str "text-lg font-bold " t/text-primary " mb-4")} "Code"]
-          [:div {:class (str "rounded overflow-hidden h-64 border " t/border-default)}
-           [editor/monaco-editor {:value code
-                                  :language "r"
-                                  :on-change #(rf/dispatch [::set-code %])
-                                  :on-mount #(editor/setup-editor-actions % mac-os? (fn [code] (rf/dispatch [::run-code code])))}]]
-          [:div {:class "mt-4 flex justify-end"}
-           [c/button {:on-click #(rf/dispatch [::run-code code])} "Run"]]]]
+       [l/split-view {:ratio :1-1}
+        ;; LEFT: Code
+        [l/flex-col {:class "h-full p-4 space-y-4"}
+         [c/label "Code"]
+         [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
+          [editor/monaco-editor {:value code
+                                 :language "r"
+                                 :options {:rulers [80]}
+                                 :on-change #(rf/dispatch [::set-code %])
+                                 :on-mount #(editor/setup-editor-actions % mac-os? (fn [code] (rf/dispatch [::run-code code])))}]]
+         [c/button {:on-click #(rf/dispatch [::run-code code])} "Run"]]
 
-        [:div {:class "space-y-4"}
-         [c/card {}
-          [:div {:class "flex justify-between items-center mb-4"}
-           [:h3 {:class (str "text-lg font-bold " t/text-primary)} "Output"]
-           [c/button-xs {:on-click #(rf/dispatch [::clear-output])} "Clear"]]
-          [c/pre-block {:content [editor/render-output output] :class "h-96"}]]]])]))
+        ;; RIGHT: Output
+        [l/flex-col {:class "h-full p-4 space-y-4"}
+         [l/flex-row {:class "justify-between items-center"}
+          [c/label "Output"]
+          [c/button-xs {:on-click #(rf/dispatch [::clear-output])} "Clear"]]
+         [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
+          [editor/monaco-editor {:value (apply str (map :text output))
+                                 :language "plaintext"
+                                 :options {:readOnly true}}]]]])]))
 
 (defn panel []
   (r/create-class

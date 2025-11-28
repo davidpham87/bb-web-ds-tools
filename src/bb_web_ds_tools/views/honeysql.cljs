@@ -52,10 +52,14 @@
       [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
        [editor/monaco-editor {:value honeysql-input
                               :language "clojure"
+                              :options {:rulers [80]}
                               :on-change #(rf/dispatch [:honeysql/update-input %])}]]
       [c/button {:on-click #(rf/dispatch [:honeysql/convert-to-sql])} "Convert"]]
 
      ;; RIGHT: Output
      [l/flex-col {:class "h-full p-4 space-y-4"}
       [c/label "SQL Output"]
-      [c/pre-block {:content honeysql-output :class "flex-grow"}]]]))
+      [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
+       [editor/monaco-editor {:value honeysql-output
+                              :language "sql"
+                              :options {:readOnly true}}]]]]))
