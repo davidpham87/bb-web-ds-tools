@@ -108,6 +108,20 @@
        {:db (assoc-in db [::malli :inferred-schema] (pr-str (mp/provide input-data)))}
        {:db (assoc-in db [::malli :inferred-schema] (str "Invalid input data for format " (name format) ".")) }))))
 
+(rf/reg-event-fx
+ :malli/save-dataset
+ (fn [{:keys [db]} _]
+   (let [generated-data (get-in db [::malli :generated-data])
+         format (get-in db [::malli :generation-format] :edn)
+         parsed-data (case format
+                       :edn (try (reader/read-string generated-data) (catch :default _ nil))
+                       :json (try (js->clj (js/JSON.parse generated-data) :keywordize-keys true) (catch :default _ nil))
+                       nil)]
+     (if parsed-data
+       {:dispatch [::datasets/add-dataset {:name (str "Malli Generated " (rand-int 1000))
+                                           :data parsed-data}]}
+       {}))))
+
 (rf/reg-event-db
  :malli/load-dataset
  (fn [db [_ dataset-id]]
@@ -170,13 +184,17 @@
           [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
            [editor/monaco-editor {:value inference-input
                                   :language (if (= input-format :edn) "clojure" "plaintext")
+                                  :options {:rulers [80]}
                                   :on-change #(rf/dispatch [:malli/update-inference-input %])}]]
           [c/button {:on-click #(rf/dispatch [:malli/infer-schema])} "Infer Schema"]]
 
          ;; RIGHT: Output
          [l/flex-col {:class "h-full p-4 space-y-4"}
           [c/label "Inferred Schema"]
-          [c/pre-block {:content inferred-schema :class "flex-grow"}]]]))))
+          [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
+           [editor/monaco-editor {:value inferred-schema
+                                  :language "clojure"
+                                  :options {:readOnly true}}]]]]))))
 
 (defn generation-view []
   (let [schema-text @(rf/subscribe [:malli/schema-text])
@@ -190,6 +208,7 @@
       [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
        [editor/monaco-editor {:value schema-text
                               :language "clojure"
+                              :options {:rulers [80]}
                               :on-change #(rf/dispatch [:malli/update-schema-text %])}]]
 
       ;; Controls
@@ -217,8 +236,13 @@
 
      ;; RIGHT: Generated Data
      [l/flex-col {:class "h-full p-4 space-y-4"}
-      [c/label "Generated Data"]
-      [c/pre-block {:content generated-data :class "flex-grow"}]]]))
+      [l/flex-row {:class "justify-between items-center"}
+       [c/label "Generated Data"]
+       [c/button-xs {:on-click #(rf/dispatch [:malli/save-dataset])} "Save to Datasets"]]
+      [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
+       [editor/monaco-editor {:value generated-data
+                              :language (name format)
+                              :options {:readOnly true}}]]]]))
 
 (defn panel []
   (let [active-tab (or @(rf/subscribe [:malli/active-tab]) :inference)]

@@ -143,11 +143,22 @@
         config-input @(rf/subscribe [::config-input])
         parsed-data @(rf/subscribe [::parsed-data])
         ;; inferred-schema @(rf/subscribe [::inferred-schema])
-        active-sub-tab @(rf/subscribe [::active-sub-tab])]
-    [l/container {:class "space-y-8 max-w-6xl p-6"}
-     [l/grid {:class "grid-cols-1 lg:grid-cols-2 gap-8"}
+        active-sub-tab (or @(rf/subscribe [::active-sub-tab]) :plot)]
+    [l/flex-col {:class "h-full w-full"}
+     ;; Tabs Navigation (Malli style)
+     [l/flex-row {:class (str "space-x-6 border-b " t/border-default " px-4 " t/bg-toolbar " shrink-0")}
+      [:button {:class (str "py-3 font-medium transition-colors border-b-2 "
+                            (if (= active-sub-tab :plot) (str "border-[#f0dfaf] " t/text-accent) (str "border-transparent " t/text-secondary " hover:text-[#dcdccc]")))
+                :on-click #(rf/dispatch [::set-active-sub-tab :plot])}
+       "Plot"]
+      [:button {:class (str "py-3 font-medium transition-colors border-b-2 "
+                            (if (= active-sub-tab :parsed) (str "border-[#f0dfaf] " t/text-accent) (str "border-transparent " t/text-secondary " hover:text-[#dcdccc]")))
+                :on-click #(rf/dispatch [::set-active-sub-tab :parsed])}
+       "Parsed Data"]]
+
+     [l/split-view {:ratio :1-1}
       ;; Input Column
-      [l/flex-col {:class "space-y-6"}
+      [l/flex-col {:class "h-full p-4 space-y-4"}
        [c/card {}
         [:div
          [l/flex-row {:class "justify-between mb-4"}
@@ -157,13 +168,16 @@
            [c/button-xs {:on-click #(load-example :tsv :columnar)} "TSV"]
            [c/button-xs {:on-click #(load-example :markdown :columnar)} "MD"]
            [c/button-xs {:on-click #(load-example :json :row-maps)} "JSON Maps"]
-           [c/button-xs {:on-click #(load-example :json :row-arrays)} "JSON Arrays"]]]
+           [c/button-xs {:on-click #(load-example :json :row-arrays)} "JSON Arrays"]
+           [c/button-xs {:on-click #(load-example :edn :row-maps)} "EDN Maps"]
+           [c/button-xs {:on-click #(load-example :edn :columnar)} "EDN Col"]]]
 
          [:div {:class (str t/bg-input " rounded overflow-hidden border " t/border-default)}
           [editor/monaco-editor
            {:value data-input
             :language "plaintext"
             :style {:height "300px"}
+            :options {:rulers [80]}
             :on-change (fn [val]
                          (rf/dispatch [::set-data-input val])
                          (rf/dispatch [::parse-data]))}]]]]
@@ -176,24 +190,19 @@
            {:value config-input
             :language "json"
             :style {:height "300px"}
+            :options {:rulers [80]}
             :on-change #(rf/dispatch [::set-config-input %])}]]]]]
 
       ;; Output Column
-      [c/card {:class "h-full flex flex-col"}
-       [:div
-        [l/flex-row {:class (str "space-x-4 mb-4 border-b " t/border-default " pb-2")}
-         [:button {:class (str "px-4 py-2 font-medium transition-colors border-b-2 "
-                               (if (= active-sub-tab :plot) (str t/text-accent " border-[#f0dfaf]") (str t/text-secondary " border-transparent hover:text-white")))
-                   :on-click #(rf/dispatch [::set-active-sub-tab :plot])} "Plot"]
-         [:button {:class (str "px-4 py-2 font-medium transition-colors border-b-2 "
-                               (if (= active-sub-tab :parsed) (str t/text-accent " border-[#f0dfaf]") (str t/text-secondary " border-transparent hover:text-white")))
-                   :on-click #(rf/dispatch [::set-active-sub-tab :parsed])} "Parsed Data"]]
-
-        [:div {:class "flex-grow bg-white rounded p-4 overflow-auto min-h-[400px]"}
-         (case active-sub-tab
-           :plot [vega-viz {:spec config-input :data parsed-data}]
-           :parsed [:pre {:class "text-gray-800 text-sm"} (with-out-str (pprint parsed-data))]
-           nil)]]]]]))
+      [l/flex-col {:class "h-full p-4 overflow-hidden"}
+       (case active-sub-tab
+         :plot [:div {:class "bg-white rounded p-4 h-full overflow-auto"}
+                [vega-viz {:spec config-input :data parsed-data}]]
+         :parsed [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default " h-full")}
+                  [editor/monaco-editor {:value (with-out-str (pprint parsed-data))
+                                         :language "clojure"
+                                         :options {:readOnly true}}]]
+         nil)]]]))
 
 (defn panel []
   (r/create-class
