@@ -22,6 +22,7 @@
                   ::config-input "{\n  \"$schema\": \"https://vega.github.io/schema/vega-lite/v5.json\",\n  \"mark\": \"bar\",\n  \"encoding\": {\n    \"x\": {\"field\": \"col1\", \"type\": \"ordinal\"},\n    \"y\": {\"field\": \"col2\", \"type\": \"quantitative\"}\n  }\n}"})
        (assoc ::vega-lite
               {::format :csv
+               ::structure :columnar
                ::parsed-data nil
                ::inferred-schema nil
                ::active-sub-tab :plot
@@ -32,6 +33,7 @@
 (rf/reg-sub ::data-input :<- [::user-input-root] (fn [root] (::data-input root)))
 (rf/reg-sub ::config-input :<- [::user-input-root] (fn [root] (::config-input root)))
 (rf/reg-sub ::format :<- [::component-root] (fn [root] (::format root)))
+(rf/reg-sub ::structure :<- [::component-root] (fn [root] (::structure root)))
 (rf/reg-sub ::parsed-data :<- [::component-root] (fn [root] (::parsed-data root)))
 (rf/reg-sub ::inferred-schema :<- [::component-root] (fn [root] (::inferred-schema root)))
 (rf/reg-sub ::active-sub-tab :<- [::component-root] (fn [root] (::active-sub-tab root)))
@@ -40,6 +42,7 @@
 (rf/reg-event-db ::set-data-input (fn [db [_ val]] (assoc-in db [:user-input :vega-lite :default ::data-input] val)))
 (rf/reg-event-db ::set-config-input (fn [db [_ val]] (assoc-in db [:user-input :vega-lite :default ::config-input] val)))
 (rf/reg-event-db ::set-format (fn [db [_ fmt]] (assoc-in db [::vega-lite ::format] fmt)))
+(rf/reg-event-db ::set-structure (fn [db [_ s]] (assoc-in db [::vega-lite ::structure] s)))
 (rf/reg-event-db ::set-active-sub-tab (fn [db [_ tab]] (assoc-in db [::vega-lite ::active-sub-tab] tab)))
 (rf/reg-event-db ::set-inferred-schema (fn [db [_ schema]] (assoc-in db [::vega-lite ::inferred-schema] schema)))
 (rf/reg-event-db ::update-builder-state (fn [db [_ k v]] (assoc-in db [::vega-lite ::builder-state k] v)))
@@ -53,15 +56,17 @@
          component-state (::vega-lite db)
          text (::data-input user-input)
          fmt (::format component-state)
-         parsed (dp/parse-dataset fmt text)
+         structure (::structure component-state)
+         parsed (dp/parse-dataset fmt structure text)
          schema (try (mp/provide parsed) (catch js/Error e (str "Error inferring schema: " (.-message e))))]
      (update db ::vega-lite assoc ::parsed-data parsed ::inferred-schema schema))))
 
 ;; --- Components ---
 
-(defn load-example [fmt key]
+(defn load-example [fmt structure]
   (rf/dispatch [::set-format fmt])
-  (rf/dispatch [::set-data-input (dp/example-data key)])
+  (rf/dispatch [::set-structure structure])
+  (rf/dispatch [::set-data-input (dp/example-data fmt structure)])
   (rf/dispatch [::parse-data]))
 
 (defn vega-viz [spec-str data]
@@ -148,11 +153,10 @@
          [l/flex-row {:class "justify-between mb-4"}
           [:h3 {:class (str "text-lg font-semibold " t/text-accent)} "Data Input"]
           [l/flex-row {:class "flex-wrap gap-2"}
-           [c/button-xs {:on-click #(load-example :csv :csv)} "CSV"]
-           [c/button-xs {:on-click #(load-example :tsv :tsv)} "TSV"]
-           [c/button-xs {:on-click #(load-example :markdown :markdown)} "MD"]
-           [c/button-xs {:on-click #(load-example :json :json-maps)} "JSON Maps"]
-           [c/button-xs {:on-click #(load-example :json :json-arrays)} "JSON Arrays"]]]
+           [c/button-xs {:on-click #(load-example :csv :columnar)} "CSV"]
+           [c/button-xs {:on-click #(load-example :tsv :columnar)} "TSV"]
+           [c/button-xs {:on-click #(load-example :json :row-maps)} "JSON Maps"]
+           [c/button-xs {:on-click #(load-example :json :row-arrays)} "JSON Arrays"]]]
 
          [:div {:class (str t/bg-input " rounded overflow-hidden border " t/border-default)}
           [editor/monaco-editor
