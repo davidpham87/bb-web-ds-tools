@@ -1,52 +1,19 @@
 (ns bb-web-ds-tools.views.datasets
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
+            [clojure.string :as str]
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.editor :as editor]
             [bb-web-ds-tools.components.layout :as l]
             [bb-web-ds-tools.theme :as t]
-            ["papaparse" :as Papa]
-            [clojure.string :as str]
-            [cljs.pprint :refer [pprint]]
-            [malli.provider :as mp]))
+            [bb-web-ds-tools.utils.dataset-processing :as dp]))
 
-;; --- Parsing Logic ---
+;; --- Utilities ---
 
-(defmulti parse-dataset (fn [format _text] format))
-
-(defmethod parse-dataset :csv [_ text]
-  (let [res (.parse Papa text #js {:header true :dynamicTyping true :skipEmptyLines true})]
-    (js->clj (.-data res) :keywordize-keys true)))
-
-(defmethod parse-dataset :tsv [_ text]
-  (let [res (.parse Papa text #js {:delimiter "\t" :header true :dynamicTyping true :skipEmptyLines true})]
-    (js->clj (.-data res) :keywordize-keys true)))
-
-(defmethod parse-dataset :json [_ text]
-  (try
-    (let [json (js/JSON.parse text)
-          clj-json (js->clj json :keywordize-keys true)]
-      (if (and (vector? clj-json) (vector? (first clj-json)))
-        (let [header (map keyword (first clj-json))
-              rows (rest clj-json)]
-          (mapv (fn [row] (zipmap header row)) rows))
-        clj-json))
-    (catch js/Error e
-      (js/console.error "JSON Parse Error" e)
-      [])))
-
-(defmethod parse-dataset :default [_ _]
-  [])
-
-;; --- Examples ---
-
-(defn example-data [fmt]
-  (case fmt
-    :csv "col1,col2,col3,col4\n1,2,3,4\n5,6,7,8\n9,10,11,12"
-    :tsv "col1\tcol2\tcol3\tcol4\n1\t2\t3\t4\n5\t6\t7\t8\n9\t10\t11\t12"
-    :json-maps "[\n  {\"col1\": 1, \"col2\": 2, \"col3\": 3, \"col4\": 4},\n  {\"col1\": 5, \"col2\": 6, \"col3\": 7, \"col4\": 8},\n  {\"col1\": 9, \"col2\": 10, \"col3\": 11, \"col4\": 12}\n]"
-    :json-arrays "[\n  [\"col1\", \"col2\", \"col3\", \"col4\"],\n  [1, 2, 3, 4],\n  [5, 6, 7, 8],\n  [9, 10, 11, 12]\n]"
-    ""))
+(defn deep-merge [& maps]
+  (if (every? map? maps)
+    (apply merge-with deep-merge maps)
+    (last maps)))
 
 ;; --- State Management ---
 
@@ -54,9 +21,8 @@
  ::initialize
  (fn [db _]
    (-> db
-       (update-in [:user-input :datasets] merge
-                  {:items {}
-                   :new-dataset-state {:text "" :format :csv}})
+       (update-in [:user-input :datasets] #(deep-merge % {:items {}
+                                                          :new-dataset-state {:text "" :format :csv :structure :columnar}}))
        (assoc ::datasets {:active-dataset-id :new}))))
 
 (rf/reg-sub ::user-input-root (fn [db] (get-in db [:user-input :datasets])))
@@ -132,63 +98,89 @@
  (fn [db [_ id key value]]
    (assoc-in db [:user-input :datasets :items id :view-state key] value)))
 
+;; --- Helper Components ---
+
+(defn column-toggle-dropdown [id columns hidden-columns]
+  [:div {:class "relative group"}
+   [:button {:class (str t/bg-input " " t/text-primary " px-4 py-2 rounded border " t/border-default)} "Select Columns"]
+   [:div {:class (str "absolute hidden group-hover:block " t/bg-input " border " t/border-default " p-2 rounded shadow-lg z-10 w-48 max-h-60 overflow-y-auto")}
+    (for [col columns]
+      [:div {:key col :class (str "flex items-center space-x-2 p-1 " t/bg-item-hover)}
+       [c/input {:type "checkbox"
+                 :class "w-auto"
+                 :checked (not (contains? hidden-columns col))
+                 :on-change #(if (contains? hidden-columns col)
+                               (rf/dispatch [::update-view-state id :hidden-columns (disj hidden-columns col)])
+                               (rf/dispatch [::update-view-state id :hidden-columns (conj hidden-columns col)]))}]
+       [:span {:class t/text-primary} (name col)]])]])
+
 ;; --- UI Components ---
 
 (defn importer-view []
-  (let [state @(rf/subscribe [::new-dataset-state])
-        {:keys [text format]} state]
-    [l/flex-col {:class "h-full space-y-4 p-4"}
-     [l/flex-row {:class "justify-between"}
-      [:h3 {:class (str "text-xl font-bold " t/text-accent)} "Create New Dataset"]
-      [l/flex-row {:class "space-x-2"}
-       [c/button-xs {:class (if (= format :csv) (str t/bg-button-primary " text-white") "")
-                     :on-click #(rf/dispatch [::update-new-dataset-state :format :csv])} "CSV"]
-       [c/button-xs {:class (if (= format :tsv) (str t/bg-button-primary " text-white") "")
-                     :on-click #(rf/dispatch [::update-new-dataset-state :format :tsv])} "TSV"]
-       [c/button-xs {:class (if (= format :json) (str t/bg-button-primary " text-white") "")
-                     :on-click #(rf/dispatch [::update-new-dataset-state :format :json])} "JSON"]]]
+  (let [state (rf/subscribe [::new-dataset-state])]
+    (fn []
+      (let [{:keys [text format structure]} @state
+            structure (or structure :columnar)
 
-     [l/flex-row {:class (str "space-x-2 text-sm " t/text-primary)}
-      [:span "Load Example:"]
-      [c/button-xs {:on-click #(do (rf/dispatch [::update-new-dataset-state :format :csv])
-                                   (rf/dispatch [::update-new-dataset-state :text (example-data :csv)]))} "CSV"]
-      [c/button-xs {:on-click #(do (rf/dispatch [::update-new-dataset-state :format :tsv])
-                                   (rf/dispatch [::update-new-dataset-state :text (example-data :tsv)]))} "TSV"]
-      [c/button-xs {:on-click #(do (rf/dispatch [::update-new-dataset-state :format :json])
-                                   (rf/dispatch [::update-new-dataset-state :text (example-data :json-maps)]))} "JSON Maps"]
-      [c/button-xs {:on-click #(do (rf/dispatch [::update-new-dataset-state :format :json])
-                                   (rf/dispatch [::update-new-dataset-state :text (example-data :json-arrays)]))} "JSON Arrays"]]
+            set-state (fn [k v] (rf/dispatch [::update-new-dataset-state k v]))
 
-     [:div {:class (str "flex-grow " t/bg-input " rounded overflow-hidden shadow-inner border " t/border-default)}
-      [editor/monaco-editor
-       {:value text
-        :language (case format :json "json" "plaintext")
-        :on-change #(rf/dispatch [::update-new-dataset-state :text %])}]]
+            supported-structures (if (contains? #{:csv :tsv} format)
+                                   #{:columnar}
+                                   #{:columnar :row-maps :row-arrays})
 
-     [l/flex-row {:class "justify-end"}
-      [c/button {:class (str t/bg-button-primary " " t/bg-button-primary-hover)
-                 :on-click #(let [parsed (parse-dataset format text)]
-                              (rf/dispatch [::add-dataset {:name (str "New " (name format)) :data parsed}]))}
-       "Parse & Create Dataset"]]]))
+            struct-labels {:columnar "Columnar (Map of Arrays)"
+                           :row-maps "Row (Array of Maps)"
+                           :row-arrays "Array (Array of Arrays)"}]
+
+        [l/flex-col {:class "h-full space-y-4 p-4"}
+         [l/flex-row {:class "justify-between items-center"}
+          [:h3 {:class (str "text-xl font-bold " t/text-accent)} "Create New Dataset"]
+          [l/flex-row {:class "space-x-2"}
+           (for [fmt [:csv :tsv :json :edn]]
+             [c/button-xs {:key fmt
+                           :class (if (= format fmt) (str t/bg-button-primary " text-white") "")
+                           :on-click #(do (set-state :format fmt)
+                                          (when (#{:csv :tsv} fmt)
+                                            (set-state :structure :columnar)))}
+              (str/upper-case (name fmt))])]]
+
+         [l/flex-row {:class "items-center space-x-2"}
+          [:span {:class (str "text-sm " t/text-primary)} "Structure:"]
+          (for [s [:columnar :row-maps :row-arrays]]
+            [c/button-xs {:key s
+                          :disabled (not (contains? supported-structures s))
+                          :class (if (= structure s)
+                                   (str t/bg-button-primary " text-white")
+                                   (if (not (contains? supported-structures s)) "opacity-50 cursor-not-allowed" ""))
+                          :on-click #(set-state :structure s)}
+             (get struct-labels s)])]
+
+         [l/flex-row {:class (str "space-x-2 text-sm " t/text-primary " items-center")}
+          [:span "Load Example:"]
+          [c/button-xs {:on-click #(set-state :text (dp/example-data format structure))}
+           "Load Example"]]
+
+         [:div {:class (str "flex-grow " t/bg-input " rounded overflow-hidden shadow-inner border " t/border-default)}
+          [editor/monaco-editor
+           {:value text
+            :language (case format
+                        :json "json"
+                        :edn "clojure"
+                        "plaintext")
+            :on-change [::update-new-dataset-state :text]}]]
+
+         [l/flex-row {:class "justify-end"}
+          [c/button {:class (str t/bg-button-primary " " t/bg-button-primary-hover)
+                     :on-click #(let [parsed (dp/parse-dataset format structure text)]
+                                  (rf/dispatch [::add-dataset {:name (str "New " (name format)) :data parsed}]))}
+           "Parse & Create Dataset"]]]))))
+
 
 (defn data-table [dataset]
   (let [{:keys [id data columns view-state]} dataset
         {:keys [page rows-per-page filters hidden-columns sort-col sort-dir]} view-state
-        filtered-data (if (seq filters)
-                        (filter (fn [row]
-                                  (every? (fn [[k v]]
-                                            (str/includes? (str/lower-case (str (get row k))) (str/lower-case v)))
-                                          filters))
-                                data)
-                        data)
-        sorted-data (if sort-col
-                      (sort-by sort-col (if (= sort-dir :asc) compare #(compare %2 %1)) filtered-data)
-                      filtered-data)
-        total-rows (count sorted-data)
-        start-idx (* page rows-per-page)
-        end-idx (min (+ start-idx rows-per-page) total-rows)
-        page-data (subvec (vec sorted-data) start-idx end-idx)
-        visible-columns (remove hidden-columns columns)]
+        {:keys [page-data total-rows start-idx end-idx visible-columns]}
+        (dp/process-table-data data (assoc view-state :columns columns))]
 
     [l/flex-col {:class "space-y-4 p-4"}
      ;; Toolbar
@@ -203,18 +195,7 @@
         [:option {:value 50} "50"]]]
       [:div
        [c/label "Columns"]
-       [:div {:class "relative group"}
-        [:button {:class (str t/bg-input " " t/text-primary " px-4 py-2 rounded border " t/border-default)} "Select Columns"]
-        [:div {:class (str "absolute hidden group-hover:block " t/bg-input " border " t/border-default " p-2 rounded shadow-lg z-10 w-48 max-h-60 overflow-y-auto")}
-         (for [col columns]
-           [:div {:key col :class (str "flex items-center space-x-2 p-1 " t/bg-item-hover)}
-            [c/input {:type "checkbox"
-                      :class "w-auto"
-                      :checked (not (contains? hidden-columns col))
-                      :on-change #(if (contains? hidden-columns col)
-                                    (rf/dispatch [::update-view-state id :hidden-columns (disj hidden-columns col)])
-                                    (rf/dispatch [::update-view-state id :hidden-columns (conj hidden-columns col)]))}]
-            [:span {:class t/text-primary} (name col)]])]]]
+       [column-toggle-dropdown id columns hidden-columns]]
       [:div {:class "flex-grow"}]
       [:div {:class (str "text-sm " t/text-secondary)}
        (str (inc start-idx) "-" end-idx " of " total-rows)]
@@ -254,7 +235,8 @@
             [c/tr {:key row-uuid}
              (for [col visible-columns]
                [c/td {:key col}
-                [c/input {:class (str "bg-transparent focus:" t/bg-input " focus:ring-1 " t/ring-focus " rounded px-1 outline-none border-0")
+                [c/input {:class (str "bg-transparent focus:" t/bg-input " focus:ring-1 " t/ring-focus
+                                      " rounded px-1 outline-none border-0")
                           :value (get row col "")
                           :on-change #(rf/dispatch [::update-cell id row-uuid col (.. % -target -value)])}]])]))]]]]))
 
@@ -262,7 +244,8 @@
   [l/flex-col {:class "h-full"}
    [l/flex-row {:class (str "justify-between " t/bg-toolbar " p-4 rounded shadow-sm m-4 mb-0")}
     [l/flex-row {:class "space-x-4"}
-     [:input {:class (str "text-xl font-bold bg-transparent " t/text-accent " border-b border-transparent " t/border-focus-accent " " t/outline-none)
+     [:input {:class (str "text-xl font-bold bg-transparent " t/text-accent " border-b border-transparent "
+                          t/border-focus-accent " " t/outline-none)
               :value (:name dataset)
               :on-change #(rf/dispatch [::update-dataset-name (:id dataset) (.. % -target -value)])}]
      [:span {:class (str t/text-secondary " text-sm")} (str (count (:data dataset)) " rows")]]
@@ -285,13 +268,14 @@
         (for [[id ds] items]
           [:div {:key id
                  :class (str "p-3 rounded cursor-pointer transition-colors text-sm font-medium "
-                             (if (= id active-id) (str t/bg-card " " t/text-accent " shadow-sm") (str t/text-primary " " t/bg-item-hover)))
+                             (if (= id active-id)
+                               (str t/bg-card " " t/text-accent " shadow-sm")
+                               (str t/text-primary " " t/bg-item-hover)))
                  :on-click #(rf/dispatch [::set-active-dataset-id id])}
            (:name ds)])
         [:div {:class (str "text-sm " t/text-muted " italic p-2")} "No datasets"])]]))
 
-(defn panel []
-  (rf/dispatch-sync [::initialize])
+(defn panel-render []
   (let [active-id @(rf/subscribe [::active-dataset-id])
         active-dataset @(rf/subscribe [::active-dataset])]
     [l/split-view {:ratio :1-2}
@@ -301,3 +285,9 @@
        (if active-dataset
          [dataset-view active-dataset]
          [:div {:class (str "text-center " t/text-muted " mt-20")} "Select a dataset."]))]))
+
+(defn panel []
+  (r/create-class
+   {:display-name "datasets-panel"
+    :component-did-mount #(rf/dispatch [::initialize])
+    :reagent-render panel-render}))

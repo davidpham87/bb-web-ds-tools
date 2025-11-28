@@ -5,12 +5,11 @@
             [bb-web-ds-tools.components.editor :as editor]
             [bb-web-ds-tools.components.layout :as l]
             [bb-web-ds-tools.theme :as t]
-            ["papaparse" :as Papa]
             ["react-dom" :as ReactDOM]
-            [clojure.string :as str]
+            #_["vega-embed" :default vega-embed]
             [cljs.pprint :refer [pprint]]
             [malli.provider :as mp]
-            [malli.core :as m]))
+            [bb-web-ds-tools.utils.dataset-processing :as dp]))
 
 ;; --- State ---
 
@@ -23,6 +22,7 @@
                   ::config-input "{\n  \"$schema\": \"https://vega.github.io/schema/vega-lite/v5.json\",\n  \"mark\": \"bar\",\n  \"encoding\": {\n    \"x\": {\"field\": \"col1\", \"type\": \"ordinal\"},\n    \"y\": {\"field\": \"col2\", \"type\": \"quantitative\"}\n  }\n}"})
        (assoc ::vega-lite
               {::format :csv
+               ::structure :columnar
                ::parsed-data nil
                ::inferred-schema nil
                ::active-sub-tab :plot
@@ -33,6 +33,7 @@
 (rf/reg-sub ::data-input :<- [::user-input-root] (fn [root] (::data-input root)))
 (rf/reg-sub ::config-input :<- [::user-input-root] (fn [root] (::config-input root)))
 (rf/reg-sub ::format :<- [::component-root] (fn [root] (::format root)))
+(rf/reg-sub ::structure :<- [::component-root] (fn [root] (::structure root)))
 (rf/reg-sub ::parsed-data :<- [::component-root] (fn [root] (::parsed-data root)))
 (rf/reg-sub ::inferred-schema :<- [::component-root] (fn [root] (::inferred-schema root)))
 (rf/reg-sub ::active-sub-tab :<- [::component-root] (fn [root] (::active-sub-tab root)))
@@ -41,44 +42,12 @@
 (rf/reg-event-db ::set-data-input (fn [db [_ val]] (assoc-in db [:user-input :vega-lite :default ::data-input] val)))
 (rf/reg-event-db ::set-config-input (fn [db [_ val]] (assoc-in db [:user-input :vega-lite :default ::config-input] val)))
 (rf/reg-event-db ::set-format (fn [db [_ fmt]] (assoc-in db [::vega-lite ::format] fmt)))
+(rf/reg-event-db ::set-structure (fn [db [_ s]] (assoc-in db [::vega-lite ::structure] s)))
 (rf/reg-event-db ::set-active-sub-tab (fn [db [_ tab]] (assoc-in db [::vega-lite ::active-sub-tab] tab)))
 (rf/reg-event-db ::set-inferred-schema (fn [db [_ schema]] (assoc-in db [::vega-lite ::inferred-schema] schema)))
 (rf/reg-event-db ::update-builder-state (fn [db [_ k v]] (assoc-in db [::vega-lite ::builder-state k] v)))
 
 ;; --- Parsing ---
-
-(defn parse-csv [text]
-  (let [res (.parse Papa text #js {:header true :dynamicTyping true :skipEmptyLines true})]
-    (js->clj (.-data res) :keywordize-keys true)))
-
-(defn parse-tsv [text]
-  (let [res (.parse Papa text #js {:delimiter "\t" :header true :dynamicTyping true :skipEmptyLines true})]
-    (js->clj (.-data res) :keywordize-keys true)))
-
-(defn parse-json [text]
-  (try
-    (let [json (js/JSON.parse text)
-          clj-json (js->clj json :keywordize-keys true)]
-      (if (and (vector? clj-json) (vector? (first clj-json)))
-        (let [header (map keyword (first clj-json))
-              rows (rest clj-json)]
-          (mapv (fn [row] (zipmap header row)) rows))
-        clj-json))
-    (catch js/Error e
-      (js/console.error "JSON Parse Error" e)
-      [])))
-
-(defn parse-markdown [text]
-  (let [lines (->> (str/split-lines text)
-                   (map str/trim)
-                   (remove empty?))
-        parse-row (fn [line]
-                    (->> (str/split line #"\|")
-                         (map str/trim)
-                         (remove empty?)))
-        [header-line _ & data-lines] lines
-        header (map keyword (parse-row header-line))]
-    (mapv (fn [line] (zipmap header (parse-row line))) data-lines)))
 
 (rf/reg-event-db
  ::parse-data
@@ -87,36 +56,17 @@
          component-state (::vega-lite db)
          text (::data-input user-input)
          fmt (::format component-state)
-         parsed (case fmt
-                  :csv (parse-csv text)
-                  :tsv (parse-tsv text)
-                  :json (parse-json text)
-                  :markdown (parse-markdown text)
-                  [])
+         structure (::structure component-state)
+         parsed (dp/parse-dataset fmt structure text)
          schema (try (mp/provide parsed) (catch js/Error e (str "Error inferring schema: " (.-message e))))]
      (update db ::vega-lite assoc ::parsed-data parsed ::inferred-schema schema))))
 
 ;; --- Components ---
 
-(def examples
-  [{:label "Example CSV" :fmt :csv :key :csv}
-   {:label "Example TSV" :fmt :tsv :key :tsv}
-   {:label "Example MD" :fmt :markdown :key :markdown}
-   {:label "Example JSON (Maps)" :fmt :json :key :json-maps}
-   {:label "Example JSON (Arrays)" :fmt :json :key :json-arrays}])
-
-(defn example-data [fmt]
-  (case fmt
-    :csv "col1,col2,col3,col4\n1,2,3,4\n5,6,7,8\n9,10,11,12"
-    :tsv "col1\tcol2\tcol3\tcol4\n1\t2\t3\t4\n5\t6\t7\t8\n9\t10\t11\t12"
-    :markdown "| col1 | col2 | col3 | col4 |\n|---|---|---|---|\n| 1 | 2 | 3 | 4 |\n| 5 | 6 | 7 | 8 |\n| 9 | 10 | 11 | 12 |"
-    :json-maps "[\n  {\"col1\": 1, \"col2\": 2, \"col3\": 3, \"col4\": 4},\n  {\"col1\": 5, \"col2\": 6, \"col3\": 7, \"col4\": 8},\n  {\"col1\": 9, \"col2\": 10, \"col3\": 11, \"col4\": 12}\n]"
-    :json-arrays "[\n  [\"col1\", \"col2\", \"col3\", \"col4\"],\n  [1, 2, 3, 4],\n  [5, 6, 7, 8],\n  [9, 10, 11, 12]\n]"
-    ""))
-
-(defn load-example [fmt key]
+(defn load-example [fmt structure]
   (rf/dispatch [::set-format fmt])
-  (rf/dispatch [::set-data-input (example-data key)])
+  (rf/dispatch [::set-structure structure])
+  (rf/dispatch [::set-data-input (dp/example-data fmt structure)])
   (rf/dispatch [::parse-data]))
 
 (defn vega-viz [spec-str data]
@@ -130,7 +80,7 @@
             (let [spec-obj (js/JSON.parse spec)
                   spec-with-data (js/Object.assign #js{} spec-obj)]
               (set! (.-data spec-with-data) #js{:values (clj->js data)})
-              (js/vegaEmbed (ReactDOM/findDOMNode this) spec-with-data))
+              (vega-embed (ReactDOM/findDOMNode this) spec-with-data))
             (catch js/Error e (js/console.warn "Vega render error" e))))))
     :component-did-update
     (fn [this _]
@@ -140,7 +90,7 @@
             (let [spec-obj (js/JSON.parse spec)
                   spec-with-data (js/Object.assign #js{} spec-obj)]
               (set! (.-data spec-with-data) #js{:values (clj->js data)})
-              (js/vegaEmbed (ReactDOM/findDOMNode this) spec-with-data))
+              (vega-embed (ReactDOM/findDOMNode this) spec-with-data))
             (catch js/Error e (js/console.warn "Vega render error" e))))))
     :render
     (fn [] [:div {:style {:width "100%" :height "400px"}}])}))
@@ -188,12 +138,11 @@
          config (generate-config state schema)]
      {:db (assoc-in db [:user-input :vega-lite :default ::config-input] config)})))
 
-(defn panel []
-  (rf/dispatch-sync [::initialize])
+(defn panel-render []
   (let [data-input @(rf/subscribe [::data-input])
         config-input @(rf/subscribe [::config-input])
         parsed-data @(rf/subscribe [::parsed-data])
-        inferred-schema @(rf/subscribe [::inferred-schema])
+        ;; inferred-schema @(rf/subscribe [::inferred-schema])
         active-sub-tab @(rf/subscribe [::active-sub-tab])]
     [l/container {:class "space-y-8 max-w-6xl p-6"}
      [l/grid {:class "grid-cols-1 lg:grid-cols-2 gap-8"}
@@ -204,11 +153,11 @@
          [l/flex-row {:class "justify-between mb-4"}
           [:h3 {:class (str "text-lg font-semibold " t/text-accent)} "Data Input"]
           [l/flex-row {:class "flex-wrap gap-2"}
-           [c/button-xs {:on-click #(load-example :csv :csv)} "CSV"]
-           [c/button-xs {:on-click #(load-example :tsv :tsv)} "TSV"]
-           [c/button-xs {:on-click #(load-example :markdown :markdown)} "MD"]
-           [c/button-xs {:on-click #(load-example :json :json-maps)} "JSON Maps"]
-           [c/button-xs {:on-click #(load-example :json :json-arrays)} "JSON Arrays"]]]
+           [c/button-xs {:on-click #(load-example :csv :columnar)} "CSV"]
+           [c/button-xs {:on-click #(load-example :tsv :columnar)} "TSV"]
+           [c/button-xs {:on-click #(load-example :markdown :columnar)} "MD"]
+           [c/button-xs {:on-click #(load-example :json :row-maps)} "JSON Maps"]
+           [c/button-xs {:on-click #(load-example :json :row-arrays)} "JSON Arrays"]]]
 
          [:div {:class (str t/bg-input " rounded overflow-hidden border " t/border-default)}
           [editor/monaco-editor
@@ -245,3 +194,9 @@
            :plot [vega-viz {:spec config-input :data parsed-data}]
            :parsed [:pre {:class "text-gray-800 text-sm"} (with-out-str (pprint parsed-data))]
            nil)]]]]]))
+
+(defn panel []
+  (r/create-class
+   {:display-name "vega-lite-panel"
+    :component-did-mount #(rf/dispatch [::initialize])
+    :reagent-render panel-render}))

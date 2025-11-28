@@ -8,7 +8,8 @@
             [bb-web-ds-tools.components.editor :as editor]
             [bb-web-ds-tools.components.layout :as l]
             [bb-web-ds-tools.theme :as t]
-            [bb-web-ds-tools.views.datasets :as datasets]))
+            [bb-web-ds-tools.views.datasets :as datasets]
+            [bb-web-ds-tools.utils.dataset-processing :as dp]))
 
 (defn detect-and-parse [text]
   (if (clojure.string/blank? text)
@@ -67,14 +68,21 @@
    (assoc-in db [::malli :generation-format] fmt)))
 
 (rf/reg-event-fx
+  :malli/parse-schema-and-generate
+  (fn [{:keys [db]} _]
+    (let [schema-text (get-in db [:user-input :malli :default :schema-text])]
+      (try
+        (let [schema (reader/read-string schema-text)]
+          {:dispatch [:malli/generate-data schema]})
+        (catch js/Error e
+          {:db (assoc-in db [::malli :generated-data] (str "Invalid schema EDN: " (.-message e)))})))))
+
+(rf/reg-event-fx
  :malli/generate-data
- (fn [{:keys [db]} _]
-   (let [user-input (get-in db [:user-input :malli :default])
-         component-state (::malli db)
-         schema-text (:schema-text user-input)
+ (fn [{:keys [db]} [_ schema]]
+   (let [component-state (::malli db)
          samples (get component-state :generation-samples 1)
-         format (get component-state :generation-format :edn)
-         schema (try (reader/read-string schema-text) (catch js/Error e nil))]
+         format (get component-state :generation-format :edn)]
      (if schema
        (let [data (if (> samples 1)
                     (vec (repeatedly samples #(mg/generate schema)))
@@ -95,7 +103,7 @@
          format (:input-format component-state)
          input-data (case format
                       :edn (detect-and-parse input-text)
-                      (datasets/parse-dataset format input-text))]
+                      (dp/parse-dataset format input-text))]
      (if (and (coll? input-data) (seq input-data))
        {:db (assoc-in db [::malli :inferred-schema] (pr-str (mp/provide input-data)))}
        {:db (assoc-in db [::malli :inferred-schema] (str "Invalid input data for format " (name format) ".")) }))))
@@ -126,44 +134,49 @@
 ;; UI components
 
 (defn inference-view []
-  (let [inference-input @(rf/subscribe [:malli/inference-input])
-        inferred-schema @(rf/subscribe [:malli/inferred-schema])
-        datasets @(rf/subscribe [::datasets/items])
-        input-format @(rf/subscribe [:malli/input-format])]
-    [l/split-view {:ratio :2-1}
-     ;; LEFT: Input
-     [l/flex-col {:class "h-full p-4 space-y-4"}
-      [l/flex-row {:class "justify-between items-center"}
-       [c/label "Input Data"]
-       [l/flex-row {:class "space-x-2"}
-        [c/button-xs {:class (if (= input-format :edn) (str t/bg-button-primary " text-white") "")
-                      :on-click #(rf/dispatch [:malli/set-input-format :edn])} "EDN"]
-        [c/button-xs {:class (if (= input-format :csv) (str t/bg-button-primary " text-white") "")
-                      :on-click #(rf/dispatch [:malli/set-input-format :csv])} "CSV"]
-        [c/button-xs {:class (if (= input-format :tsv) (str t/bg-button-primary " text-white") "")
-                      :on-click #(rf/dispatch [:malli/set-input-format :tsv])} "TSV"]
-        [c/button-xs {:class (if (= input-format :json) (str t/bg-button-primary " text-white") "")
-                      :on-click #(rf/dispatch [:malli/set-input-format :json])} "JSON"]]
-       (when (seq datasets)
-         [:div {:class "flex items-center space-x-2"}
-          [:span {:class (str "text-xs " t/text-secondary)} "Load:"]
-          [c/select {:class "py-1 px-2 text-xs"
-                     :on-change #(rf/dispatch [:malli/load-dataset (.. % -target -value)])
-                     :value ""}
-           [:option {:value ""} "Select Dataset..."]
-           (for [[id ds] datasets]
-             [:option {:key id :value id} (:name ds)])]])]
+  (let [inference-input-sub (rf/subscribe [:malli/inference-input])
+        inferred-schema-sub (rf/subscribe [:malli/inferred-schema])
+        datasets-sub (rf/subscribe [::datasets/items])
+        input-format-sub (rf/subscribe [:malli/input-format])]
+    (fn []
+      (let [inference-input @inference-input-sub
+            inferred-schema @inferred-schema-sub
+            datasets @datasets-sub
+            input-format @input-format-sub]
+        [l/split-view {:ratio :2-1}
+         ;; LEFT: Input
+         [l/flex-col {:class "h-full p-4 space-y-4"}
+          [l/flex-row {:class "justify-between items-center"}
+           [c/label "Input Data"]
+           [l/flex-row {:class "space-x-2"}
+            [c/button-xs {:class (if (= input-format :edn) (str t/bg-button-primary " text-white") "")
+                          :on-click #(rf/dispatch [:malli/set-input-format :edn])} "EDN"]
+            [c/button-xs {:class (if (= input-format :csv) (str t/bg-button-primary " text-white") "")
+                          :on-click #(rf/dispatch [:malli/set-input-format :csv])} "CSV"]
+            [c/button-xs {:class (if (= input-format :tsv) (str t/bg-button-primary " text-white") "")
+                          :on-click #(rf/dispatch [:malli/set-input-format :tsv])} "TSV"]
+            [c/button-xs {:class (if (= input-format :json) (str t/bg-button-primary " text-white") "")
+                          :on-click #(rf/dispatch [:malli/set-input-format :json])} "JSON"]]
+           (when (seq datasets)
+             [:div {:class "flex items-center space-x-2"}
+              [:span {:class (str "text-xs " t/text-secondary)} "Load:"]
+              [c/select {:class "py-1 px-2 text-xs"
+                         :on-change #(rf/dispatch [:malli/load-dataset (.. % -target -value)])
+                         :value ""}
+               [:option {:value ""} "Select Dataset..."]
+               (for [[id ds] datasets]
+                 [:option {:key id :value id} (:name ds)])]])]
 
-      [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
-       [editor/monaco-editor {:value inference-input
-                              :language (if (= input-format :edn) "clojure" "plaintext")
-                              :on-change #(rf/dispatch [:malli/update-inference-input %])}]]
-      [c/button {:on-click #(rf/dispatch [:malli/infer-schema])} "Infer Schema"]]
+          [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
+           [editor/monaco-editor {:value inference-input
+                                  :language (if (= input-format :edn) "clojure" "plaintext")
+                                  :on-change #(rf/dispatch [:malli/update-inference-input %])}]]
+          [c/button {:on-click #(rf/dispatch [:malli/infer-schema])} "Infer Schema"]]
 
-     ;; RIGHT: Output
-     [l/flex-col {:class "h-full p-4 space-y-4"}
-      [c/label "Inferred Schema"]
-      [c/pre-block {:content inferred-schema :class "flex-grow"}]]]))
+         ;; RIGHT: Output
+         [l/flex-col {:class "h-full p-4 space-y-4"}
+          [c/label "Inferred Schema"]
+          [c/pre-block {:content inferred-schema :class "flex-grow"}]]]))))
 
 (defn generation-view []
   (let [schema-text @(rf/subscribe [:malli/schema-text])
@@ -199,13 +212,11 @@
          [:option {:value "json"} "JSON"]]]
 
        ;; Generate Button
-       [c/button {:class "mb-[2px]"
-                  :on-click #(rf/dispatch [:malli/generate-data])} "Generate Data"]]]
+       [c/button {:class "mb-[1px] flex-grow"
+                  :on-click #(rf/dispatch [:malli/parse-schema-and-generate])} "Parse and Generate"]]]
 
      ;; RIGHT: Generated Data
      [l/flex-col {:class "h-full p-4 space-y-4"}
-      [:h3 {:class (str "text-xl font-semibold " t/text-accent " flex items-center gap-2")}
-       [:span "🎲"] "Data Generation"]
       [c/label "Generated Data"]
       [c/pre-block {:content generated-data :class "flex-grow"}]]]))
 

@@ -6,6 +6,7 @@
             [reitit.frontend.easy :as rfe]
             [reitit.coercion.spec :as rss]
             [bb-web-ds-tools.components.layout :as layout]
+            [bb-web-ds-tools.components.common :refer (nav-items)]
             [bb-web-ds-tools.portal :as portal]
             [bb-web-ds-tools.theme :as t]
             [bb-web-ds-tools.views.landing :as landing]
@@ -141,20 +142,6 @@
 (defmethod view :settings [_] [settings/panel])
 (defmethod view :app-db [_] [app-db/panel])
 
-(def nav-items
-  [{:label "App DB" :route :app-db :icon "🗄️"}
-   {:label "Datasets" :route :datasets :icon "📊"}
-   {:label "Malli" :route :malli :icon "✅"}
-   {:label "HoneySQL" :route :honeysql :icon "🍯"}
-   {:label "Vega-Lite" :route :vega-lite :icon "📈"}
-   {:label "Gemma" :route :gemma :icon "🤖"}
-   {:label "Pyodide" :route :pyodide :icon "🐍"}
-   {:label "Editor" :route :editor :icon "📝"}
-   {:label "Repl" :route :repl :icon "💻"}
-   {:label "R" :route :r-repl :icon "🇷"}
-   {:label "Settings" :route :settings :icon "⚙️"}
-   {:label "Changelog" :route :changelog :icon "📜"}])
-
 (defn top-tab-bar []
   (let [current-route @(rf/subscribe [::current-route])
         current-name (:name (:data current-route))
@@ -189,4 +176,5 @@
   (rf/dispatch-sync [::initialize-db])
   (init-routes!)
   (rf/dispatch [::navigate :landing-page nil nil])
+  (rf/dispatch [::portal/open])
   (rdom/render [app] (.getElementById js/document "app")))
