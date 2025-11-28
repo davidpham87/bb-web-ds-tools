@@ -155,6 +155,7 @@
           [l/flex-row {:class "flex-wrap gap-2"}
            [c/button-xs {:on-click #(load-example :csv :columnar)} "CSV"]
            [c/button-xs {:on-click #(load-example :tsv :columnar)} "TSV"]
+           [c/button-xs {:on-click #(load-example :markdown :columnar)} "MD"]
            [c/button-xs {:on-click #(load-example :json :row-maps)} "JSON Maps"]
            [c/button-xs {:on-click #(load-example :json :row-arrays)} "JSON Arrays"]]]
 
