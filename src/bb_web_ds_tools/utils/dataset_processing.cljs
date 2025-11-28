@@ -1,7 +1,7 @@
 (ns bb-web-ds-tools.utils.dataset-processing
   (:require ["papaparse" :as Papa]
             [clojure.string :as str]
-            [cljs.reader :as reader]))
+            [clojure.edn :as edn]))
 
 ;; --- Normalization ---
 
@@ -48,21 +48,14 @@
 (defmethod parse-dataset [:json :row-arrays] [_ _ text]
   (some-> (parse-json text) normalize-row-arrays))
 
-(defn- parse-edn [text]
-  (try
-    (reader/read-string text)
-    (catch js/Error e
-      (js/console.error "EDN Parse Error" e)
-      nil)))
-
 (defmethod parse-dataset [:edn :columnar] [_ _ text]
-  (some-> (parse-edn text) normalize-columnar))
+  (some-> (edn/read text) normalize-columnar))
 
 (defmethod parse-dataset [:edn :row-maps] [_ _ text]
-  (parse-edn text))
+  (edn/read text))
 
 (defmethod parse-dataset [:edn :row-arrays] [_ _ text]
-  (some-> (parse-edn text) normalize-row-arrays))
+  (some-> (edn/read text) normalize-row-arrays))
 
 (defmethod parse-dataset :default [_ _ _]
   [])
