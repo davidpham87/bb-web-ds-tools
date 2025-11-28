@@ -11,7 +11,8 @@
   {:target :browser
    :output-dir "docs/js/compiled"
    :asset-path "/js/compiled"
-   :compiler-options {:output-feature-set :es-next
+   :compiler-options {:optimizations :simple
+                      :output-feature-set :es-next
                       :externs ["src/externs/webr.js"]}
    :devtools {:after-load bb-web-ds-tools.core/init}
    :modules {:main {:init-fn bb-web-ds-tools.core/init}}}
