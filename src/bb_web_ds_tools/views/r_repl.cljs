@@ -2,7 +2,8 @@
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             [bb-web-ds-tools.components.common :as c]
-            [bb-web-ds-tools.components.editor :as editor]))
+            [bb-web-ds-tools.components.editor :as editor]
+            [bb-web-ds-tools.theme :as t]))
 
 ;; State initialization
 (rf/reg-event-db
@@ -82,7 +83,7 @@
  (fn [code]
    (when @webr-instance
      (try
-       (-> (.evalR @webr-instance code (clj->js {:autoprint true}))
+       (-> (.evalR ^js @webr-instance code (clj->js {:autoprint true}))
            (.then (fn [res] (try (.destroy res) (catch js/Error _))))
            (.catch (fn [e] (rf/dispatch [::append-output :error (str e)]))))
        (catch js/Error e
@@ -94,8 +95,7 @@
    {:fx [[::execute-r code]]}))
 
 ;; View
-(defn panel []
-  (rf/dispatch-sync [::initialize])
+(defn panel-render []
   (let [loading? @(rf/subscribe [::loading?])
         ready? @(rf/subscribe [::ready?])
         error @(rf/subscribe [::error])
@@ -105,8 +105,8 @@
     [:div {:class "container mx-auto max-w-6xl space-y-6 p-6"}
 
      (cond
-       loading? [:div {:class "text-center text-[#8cd0d3]"} "Loading WebR..."]
-       error [:div {:class "text-center text-[#cc9393]"} error]
+       loading? [:div {:class (str "text-center " t/text-accent)} "Loading WebR..."]
+       error [:div {:class (str "text-center " t/text-danger)} error]
        (not ready?) [:div {:class "text-center"}
                      [c/button {:on-click #(rf/dispatch [::initialize-runtime])} "Load R Environment"]])
 
@@ -114,8 +114,8 @@
        [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-6"}
         [:div {:class "space-y-4"}
          [c/card {}
-          [:h3 {:class "text-lg font-bold text-[#dcdccc] mb-4"} "Code"]
-          [:div {:class "rounded overflow-hidden h-64 border border-[#5f5f5f]"}
+          [:h3 {:class (str "text-lg font-bold " t/text-primary " mb-4")} "Code"]
+          [:div {:class (str "rounded overflow-hidden h-64 border " t/border-default)}
            [editor/monaco-editor {:value code
                                   :language "r"
                                   :on-change #(rf/dispatch [::set-code %])
@@ -126,6 +126,12 @@
         [:div {:class "space-y-4"}
          [c/card {}
           [:div {:class "flex justify-between items-center mb-4"}
-           [:h3 {:class "text-lg font-bold text-[#dcdccc]"} "Output"]
+           [:h3 {:class (str "text-lg font-bold " t/text-primary)} "Output"]
            [c/button-xs {:on-click #(rf/dispatch [::clear-output])} "Clear"]]
           [c/pre-block {:content [editor/render-output output] :class "h-96"}]]]])]))
+
+(defn panel []
+  (r/create-class
+   {:display-name "r-repl-panel"
+    :component-did-mount (fn [] (rf/dispatch [::initialize]))
+    :reagent-render (fn [] [panel-render])}))

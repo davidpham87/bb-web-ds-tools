@@ -62,7 +62,7 @@
    content])
 
 (defn card [props & children]
-  (into [:div {:class (str t/bg-card " rounded shadow-md " t/text-primary " " (:class props))}]
+  (into [:div (merge {:class (str t/bg-card " rounded shadow-md " t/text-primary " " (:class props))} (dissoc props :class))]
         children))
 
 ;; Table Components
@@ -105,3 +105,17 @@
 
 (defn label [text]
   [:label {:class (str "block text-sm font-medium " t/text-secondary " mb-2")} text])
+
+(def nav-items
+  [{:label "App DB" :route :app-db :icon "🗄️"}
+   {:label "Datasets" :route :datasets :icon "📊"}
+   {:label "Malli" :route :malli :icon "✅"}
+   {:label "HoneySQL" :route :honeysql :icon "🍯"}
+   {:label "Vega-Lite" :route :vega-lite :icon "📈"}
+   {:label "Gemma" :route :gemma :icon "🤖"}
+   {:label "Pyodide" :route :pyodide :icon "🐍"}
+   {:label "Editor" :route :editor :icon "📝"}
+   {:label "Repl" :route :repl :icon "💻"}
+   {:label "R" :route :r-repl :icon "🇷"}
+   {:label "Settings" :route :settings :icon "⚙️"}
+   {:label "Changelog" :route :changelog :icon "📜"}])
