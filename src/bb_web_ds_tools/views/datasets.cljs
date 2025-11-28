@@ -124,7 +124,7 @@
 
             set-state (fn [k v] (rf/dispatch [::update-new-dataset-state k v]))
 
-            supported-structures (if (contains? #{:csv :tsv} format)
+            supported-structures (if (contains? #{:csv :tsv :markdown} format)
                                    #{:columnar}
                                    #{:columnar :row-maps :row-arrays})
 
@@ -136,13 +136,13 @@
          [l/flex-row {:class "justify-between items-center"}
           [:h3 {:class (str "text-xl font-bold " t/text-accent)} "Create New Dataset"]
           [l/flex-row {:class "space-x-2"}
-           (for [fmt [:csv :tsv :json :edn]]
+           (for [fmt [:csv :tsv :json :edn :markdown]]
              [c/button-xs {:key fmt
                            :class (if (= format fmt) (str t/bg-button-primary " text-white") "")
                            :on-click #(do (set-state :format fmt)
-                                          (when (#{:csv :tsv} fmt)
+                                          (when (#{:csv :tsv :markdown} fmt)
                                             (set-state :structure :columnar)))}
-              (str/upper-case (name fmt))])]]
+              (if (= fmt :markdown) "MD" (str/upper-case (name fmt)))])]]
 
          [l/flex-row {:class "items-center space-x-2"}
           [:span {:class (str "text-sm " t/text-primary)} "Structure:"]
@@ -166,6 +166,7 @@
             :language (case format
                         :json "json"
                         :edn "clojure"
+                        :markdown "markdown"
                         "plaintext")
             :on-change [::update-new-dataset-state :text]}]]
 

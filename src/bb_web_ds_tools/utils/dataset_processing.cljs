@@ -1,7 +1,8 @@
 (ns bb-web-ds-tools.utils.dataset-processing
   (:require ["papaparse" :as Papa]
             [clojure.string :as str]
-            [clojure.edn :as edn]))
+            [clojure.edn :as edn]
+            [cljs.pprint :as pprint]))
 
 ;; --- Normalization ---
 
@@ -74,17 +75,75 @@
 
 ;; --- Examples ---
 
-(defn example-data [fmt structure]
-  (case [fmt structure]
-    [:csv :columnar] "col1,col2,col3,col4\n1,2,3,4\n5,6,7,8\n9,10,11,12"
-    [:tsv :columnar] "col1\tcol2\tcol3\tcol4\n1\t2\t3\t4\n5\t6\t7\t8\n9\t10\t11\t12"
-    [:json :columnar] "{\n  \"col1\": [1, 5, 9],\n  \"col2\": [2, 6, 10],\n  \"col3\": [3, 7, 11],\n  \"col4\": [4, 8, 12]\n}"
-    [:json :row-maps] "[\n  {\"col1\": 1, \"col2\": 2, \"col3\": 3, \"col4\": 4},\n  {\"col1\": 5, \"col2\": 6, \"col3\": 7, \"col4\": 8},\n  {\"col1\": 9, \"col2\": 10, \"col3\": 11, \"col4\": 12}\n]"
-    [:json :row-arrays] "[\n  [\"col1\", \"col2\", \"col3\", \"col4\"],\n  [1, 2, 3, 4],\n  [5, 6, 7, 8],\n  [9, 10, 11, 12]\n]"
-    [:edn :columnar] "{:col1 [1 5 9]\n :col2 [2 6 10]\n :col3 [3 7 11]\n :col4 [4 8 12]}"
-    [:edn :row-maps] "[{:col1 1 :col2 2 :col3 3 :col4 4}\n {:col1 5 :col2 6 :col3 7 :col4 8}\n {:col1 9 :col2 10 :col3 11 :col4 12}]"
-    [:edn :row-arrays] "[[:col1 :col2 :col3 :col4]\n [1 2 3 4]\n [5 6 7 8]\n [9 10 11 12]]"
-    ""))
+(def example-rows
+  [{:id 1 :score 12.5 :category "a" :date "2023-01-01"}
+   {:id 2 :score 10.2 :category "b" :date "2023-01-02"}
+   {:id 3 :score 8.7  :category "c" :date "2023-01-03"}
+   {:id 4 :score 15.0 :category "a" :date "2023-01-04"}
+   {:id 5 :score 9.9  :category "b" :date "2023-01-05"}
+   {:id 6 :score 11.1 :category "c" :date "2023-01-06"}
+   {:id 7 :score 13.4 :category "a" :date "2023-01-07"}
+   {:id 8 :score 7.8  :category "b" :date "2023-01-08"}
+   {:id 9 :score 14.2 :category "c" :date "2023-01-09"}
+   {:id 10 :score 10.0 :category "a" :date "2023-01-10"}])
+
+(defn- to-columnar [rows]
+  (let [ks (keys (first rows))]
+    (reduce (fn [acc k]
+              (assoc acc k (mapv k rows)))
+            {}
+            ks)))
+
+(defn- to-row-arrays [rows]
+  (let [ks (keys (first rows))]
+    (vec (cons (vec ks)
+               (mapv (fn [row] (mapv #(get row %) ks)) rows)))))
+
+(defn- to-markdown-table [rows]
+  (let [ks (keys (first rows))
+        header (str "| " (str/join " | " (map name ks)) " |")
+        separator (str "| " (str/join " | " (repeat (count ks) "---")) " |")
+        data-lines (map (fn [row]
+                          (str "| " (str/join " | " (map #(get row %) ks)) " |"))
+                        rows)]
+    (str/join "\n" (cons header (cons separator data-lines)))))
+
+(defn- get-structured-data [structure]
+  (case structure
+    :row-maps example-rows
+    :columnar (to-columnar example-rows)
+    :row-arrays (to-row-arrays example-rows)))
+
+(defmulti example-data (fn [fmt structure] [fmt structure]))
+
+(defmethod example-data [:csv :columnar] [_ _]
+  (.unparse Papa (clj->js example-rows) #js {:header true}))
+
+(defmethod example-data [:tsv :columnar] [_ _]
+  (.unparse Papa (clj->js example-rows) #js {:delimiter "\t" :header true}))
+
+(defmethod example-data [:markdown :columnar] [_ _]
+  (to-markdown-table example-rows))
+
+(defmethod example-data [:json :columnar] [_ structure]
+  (js/JSON.stringify (clj->js (get-structured-data structure)) nil 2))
+
+(defmethod example-data [:json :row-maps] [_ structure]
+  (js/JSON.stringify (clj->js (get-structured-data structure)) nil 2))
+
+(defmethod example-data [:json :row-arrays] [_ structure]
+  (js/JSON.stringify (clj->js (get-structured-data structure)) nil 2))
+
+(defmethod example-data [:edn :columnar] [_ structure]
+  (with-out-str (pprint/pprint (get-structured-data structure))))
+
+(defmethod example-data [:edn :row-maps] [_ structure]
+  (with-out-str (pprint/pprint (get-structured-data structure))))
+
+(defmethod example-data [:edn :row-arrays] [_ structure]
+  (with-out-str (pprint/pprint (get-structured-data structure))))
+
+(defmethod example-data :default [_ _] "")
 
 ;; --- Table Processing ---
 
