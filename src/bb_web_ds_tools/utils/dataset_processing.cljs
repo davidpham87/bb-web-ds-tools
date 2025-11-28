@@ -32,6 +32,18 @@
   (let [res (.parse Papa text #js {:delimiter "\t" :header true :dynamicTyping true :skipEmptyLines true})]
     (js->clj (.-data res) :keywordize-keys true)))
 
+(defmethod parse-dataset [:markdown :columnar] [_ _ text]
+  (let [lines (->> (str/split-lines text)
+                   (map str/trim)
+                   (remove empty?))
+        parse-row (fn [line]
+                    (->> (str/split line #"\|")
+                         (map str/trim)
+                         (remove empty?)))
+        [header-line _ & data-lines] lines
+        header (map keyword (parse-row header-line))]
+    (mapv (fn [line] (zipmap header (parse-row line))) data-lines)))
+
 (defn- parse-json [text]
   (try
     (js->clj (js/JSON.parse text) :keywordize-keys true)
@@ -49,13 +61,13 @@
   (some-> (parse-json text) normalize-row-arrays))
 
 (defmethod parse-dataset [:edn :columnar] [_ _ text]
-  (some-> (edn/read text) normalize-columnar))
+  (some-> (edn/read-string text) normalize-columnar))
 
 (defmethod parse-dataset [:edn :row-maps] [_ _ text]
-  (edn/read text))
+  (edn/read-string text))
 
 (defmethod parse-dataset [:edn :row-arrays] [_ _ text]
-  (some-> (edn/read text) normalize-row-arrays))
+  (some-> (edn/read-string text) normalize-row-arrays))
 
 (defmethod parse-dataset :default [_ _ _]
   [])
