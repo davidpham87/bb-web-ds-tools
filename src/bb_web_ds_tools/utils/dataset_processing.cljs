@@ -1,7 +1,8 @@
 (ns bb-web-ds-tools.utils.dataset-processing
   (:require ["papaparse" :as Papa]
             [clojure.string :as str]
-            [clojure.edn :as edn]))
+            [clojure.edn :as edn]
+            [cljs.pprint :as pprint]))
 
 ;; --- Normalization ---
 
@@ -74,17 +75,41 @@
 
 ;; --- Examples ---
 
+(def example-rows
+  [{:score 12.5 :category "a" :date "2023-01-01"}
+   {:score 10.2 :category "b" :date "2023-01-02"}
+   {:score 8.7  :category "c" :date "2023-01-03"}
+   {:score 15.0 :category "a" :date "2023-01-04"}
+   {:score 9.9  :category "b" :date "2023-01-05"}
+   {:score 11.1 :category "c" :date "2023-01-06"}
+   {:score 13.4 :category "a" :date "2023-01-07"}
+   {:score 7.8  :category "b" :date "2023-01-08"}
+   {:score 14.2 :category "c" :date "2023-01-09"}
+   {:score 10.0 :category "a" :date "2023-01-10"}])
+
+(defn- to-columnar [rows]
+  (let [ks (keys (first rows))]
+    (reduce (fn [acc k]
+              (assoc acc k (mapv k rows)))
+            {}
+            ks)))
+
+(defn- to-row-arrays [rows]
+  (let [ks (keys (first rows))]
+    (vec (cons (vec ks)
+               (mapv (fn [row] (mapv #(get row %) ks)) rows)))))
+
 (defn example-data [fmt structure]
-  (case [fmt structure]
-    [:csv :columnar] "col1,col2,col3,col4\n1,2,3,4\n5,6,7,8\n9,10,11,12"
-    [:tsv :columnar] "col1\tcol2\tcol3\tcol4\n1\t2\t3\t4\n5\t6\t7\t8\n9\t10\t11\t12"
-    [:json :columnar] "{\n  \"col1\": [1, 5, 9],\n  \"col2\": [2, 6, 10],\n  \"col3\": [3, 7, 11],\n  \"col4\": [4, 8, 12]\n}"
-    [:json :row-maps] "[\n  {\"col1\": 1, \"col2\": 2, \"col3\": 3, \"col4\": 4},\n  {\"col1\": 5, \"col2\": 6, \"col3\": 7, \"col4\": 8},\n  {\"col1\": 9, \"col2\": 10, \"col3\": 11, \"col4\": 12}\n]"
-    [:json :row-arrays] "[\n  [\"col1\", \"col2\", \"col3\", \"col4\"],\n  [1, 2, 3, 4],\n  [5, 6, 7, 8],\n  [9, 10, 11, 12]\n]"
-    [:edn :columnar] "{:col1 [1 5 9]\n :col2 [2 6 10]\n :col3 [3 7 11]\n :col4 [4 8 12]}"
-    [:edn :row-maps] "[{:col1 1 :col2 2 :col3 3 :col4 4}\n {:col1 5 :col2 6 :col3 7 :col4 8}\n {:col1 9 :col2 10 :col3 11 :col4 12}]"
-    [:edn :row-arrays] "[[:col1 :col2 :col3 :col4]\n [1 2 3 4]\n [5 6 7 8]\n [9 10 11 12]]"
-    ""))
+  (let [data (case structure
+               :row-maps example-rows
+               :columnar (to-columnar example-rows)
+               :row-arrays (to-row-arrays example-rows))]
+    (case fmt
+      :csv (.unparse Papa (clj->js example-rows) #js {:header true})
+      :tsv (.unparse Papa (clj->js example-rows) #js {:delimiter "\t" :header true})
+      :json (js/JSON.stringify (clj->js data) nil 2)
+      :edn (with-out-str (pprint/pprint data))
+      "")))
 
 ;; --- Table Processing ---
 
