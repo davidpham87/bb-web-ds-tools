@@ -3,6 +3,7 @@
             ["react-dom" :as react-dom]
             ["monaco-editor/esm/vs/editor/editor.api.js" :as monaco :refer [KeyMod KeyCode]]
             ["monaco-editor/esm/vs/basic-languages/clojure/clojure.contribution.js"]
+            ["monaco-editor/esm/vs/basic-languages/python/python.contribution.js"]
             ["monaco-editor/esm/vs/basic-languages/r/r.contribution.js"]))
 
 (defonce theme-initialized

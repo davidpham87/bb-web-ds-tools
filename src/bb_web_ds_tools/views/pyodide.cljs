@@ -15,7 +15,7 @@
             (assoc ::pyodide {::loading? false
                               ::ready? false
                               ::error nil
-                              ::output ""}))
+                              ::output []}))
     :fx [[:dispatch [::initialize-runtime]]]}))
 
 ;; Subscriptions
@@ -33,8 +33,8 @@
 (rf/reg-event-db ::set-ready (fn [db [_ v]] (assoc-in db [::pyodide ::ready?] v)))
 (rf/reg-event-db ::set-error (fn [db [_ v]] (update db ::pyodide assoc ::error v ::loading? false)))
 (rf/reg-event-db ::set-code (fn [db [_ v]] (assoc-in db [:user-input :pyodide :default ::code] v)))
-(rf/reg-event-db ::append-output (fn [db [_ v]] (update-in db [::pyodide ::output] str v "\n")))
-(rf/reg-event-db ::clear-output (fn [db _] (assoc-in db [::pyodide ::output] "")))
+(rf/reg-event-db ::append-output (fn [db [_ type text]] (update-in db [::pyodide ::output] conj {:type type :text text})))
+(rf/reg-event-db ::clear-output (fn [db _] (assoc-in db [::pyodide ::output] [])))
 
 ;; Pyodide Loader
 (defn load-script [src on-load on-error]
@@ -77,7 +77,7 @@
 ;; Execution
 (rf/reg-fx
  ::execute-python
- (fn [code]
+ (fn [{:keys [code]}]
    (when @pyodide-instance
      (try
        (let [run-fn (gobj/get @pyodide-instance "runPythonAsync")]
@@ -93,7 +93,7 @@
 (rf/reg-event-fx
  ::run-code
  (fn [_ [_ code]]
-   {:fx [[::execute-python code]]}))
+   {:fx [[::execute-python {:code code}]]}))
 
 ;; View
 (defn panel []
@@ -135,4 +135,4 @@
               [:div {:class "flex justify-between items-center mb-4"}
                [:h3 {:class "text-lg font-bold text-[#dcdccc]"} "Output"]
                [c/button-xs {:on-click #(rf/dispatch [::clear-output])} "Clear"]]
-              [c/pre-block {:content [editor/render-output output] :class "h-96"}]]]])]))}))
+              [c/pre-block {:content (editor/render-output output) :class "h-96"}]]]])]))}))
