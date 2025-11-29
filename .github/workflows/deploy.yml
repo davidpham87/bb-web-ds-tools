@@ -27,7 +27,7 @@ jobs:
       run: ln -s /opt/app/node_modules .
 
     - name: Build app
-      run: npm run build
+      run: npx shadow-cljs release app
 
     - name: Run Postinstall
       run: npm run postinstall
