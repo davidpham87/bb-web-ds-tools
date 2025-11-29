@@ -21,7 +21,10 @@
             [bb-web-ds-tools.views.datasets :as datasets]
             [bb-web-ds-tools.views.changelog :as changelog]
             [bb-web-ds-tools.views.settings :as settings]
-            [bb-web-ds-tools.views.app-db :as app-db]))
+            [bb-web-ds-tools.views.app-db :as app-db]
+            [bb-web-ds-tools.views.workspaces :as workspaces]
+            [bb-web-ds-tools.workspaces.core :as ws]
+            [bb-web-ds-tools.workspaces.persistence :as wp]))
 
 ;; --- Routing & Navigation ---
 
@@ -48,6 +51,7 @@
 (def routes
   ["/"
    ["" {:name :landing-page}]
+   ["workspaces" {:name :workspaces}]
    ["malli" {:name :malli}]
    ["honeysql"
     {:name :honeysql}]
@@ -141,6 +145,7 @@
 (defmethod view :reader [_] [:div "Reader Tool"])
 (defmethod view :settings [_] [settings/panel])
 (defmethod view :app-db [_] [app-db/panel])
+(defmethod view :workspaces [_] [workspaces/main-panel])
 
 (defn top-tab-bar []
   (let [current-route @(rf/subscribe [::current-route])
@@ -174,6 +179,8 @@
 
 (defn ^:export init []
   (rf/dispatch-sync [::initialize-db])
+  (rf/dispatch [::ws/init])
+  (rf/dispatch [::wp/init-persistence])
   (init-routes!)
   ;; (rf/dispatch [::navigate :landing-page nil nil]) ;; Removed to allow deep linking
   (rf/dispatch [::portal/open])
