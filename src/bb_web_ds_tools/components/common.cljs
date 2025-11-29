@@ -17,6 +17,10 @@
                 (dissoc props :class :on-click))]
         children))
 
+(defn button-info [props & children]
+  (into [button-xs (merge props {:class (str "!bg-blue-600 hover:!bg-blue-700 !text-white " (:class props))})]
+        children))
+
 (defn input [{:keys [value on-change on-change-event placeholder class type checked] :as props}]
   (let [handle-change (fn [e]
                         (when on-change (on-change e))
