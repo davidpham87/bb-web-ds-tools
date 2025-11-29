@@ -107,7 +107,8 @@
   [:label {:class (str "block text-sm font-medium " t/text-secondary " mb-2")} text])
 
 (def nav-items
-  [{:label "App DB" :route :app-db :icon "🗄️"}
+  [{:label "Workspaces" :route :workspaces :icon "📂"}
+   {:label "App DB" :route :app-db :icon "🗄️"}
    {:label "Datasets" :route :datasets :icon "📊"}
    {:label "Malli" :route :malli :icon "✅"}
    {:label "HoneySQL" :route :honeysql :icon "🍯"}
