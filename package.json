@@ -12,6 +12,7 @@
         "papaparse": "^5.5.3",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "sql.js": "^1.13.0",
         "vega": "^5.23.0",
         "vega-embed": "^6.19.1",
         "vega-lite": "^5.1.1"
@@ -38,6 +39,6 @@
         "storybook": "storybook dev -p 6006",
         "build-storybook": "storybook build",
         "dev-stories": "npx shadow-cljs watch stories",
-        "postinstall": "mkdir -p docs/js/libs/vs docs/css docs/js/libs/monaco-esm && cp -r node_modules/monaco-editor/min/vs/* docs/js/libs/vs/ && cp -r node_modules/monaco-editor/esm/* docs/js/libs/monaco-esm/ && cp node_modules/@xterm/xterm/css/xterm.css docs/css/xterm.css"
+        "postinstall": "mkdir -p docs/js/libs/vs docs/css docs/js/libs/monaco-esm && cp -r node_modules/monaco-editor/min/vs/* docs/js/libs/vs/ && cp -r node_modules/monaco-editor/esm/* docs/js/libs/monaco-esm/ && cp node_modules/@xterm/xterm/css/xterm.css docs/css/xterm.css && cp node_modules/sql.js/dist/sql-wasm.wasm docs/js/libs/"
     }
 }

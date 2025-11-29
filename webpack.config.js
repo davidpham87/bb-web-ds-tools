@@ -9,6 +9,7 @@ const commonConfig = {
     },
     fallback: {
       "process": require.resolve("process/browser"),
+      "fs": false,
       "assert": false,
       "buffer": false,
       "console": false,
