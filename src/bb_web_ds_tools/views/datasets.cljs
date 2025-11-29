@@ -25,7 +25,7 @@
                                                           :new-dataset-state {:name "New Dataset" :text "" :format :csv :structure :columnar}}))
        (assoc ::datasets {:active-dataset-id :new}))))
 
-(rf/reg-sub ::user-input-root (fn [db] (get-in db [:user-input :datasets])))
+(rf/reg-sub ::user-input-root :<- [:bb-web-ds-tools.core/user-input] (fn [user-input] (get user-input :datasets)))
 (rf/reg-sub ::component-root (fn [db] (::datasets db)))
 (rf/reg-sub ::items :<- [::user-input-root] (fn [root] (:items root)))
 (rf/reg-sub ::active-dataset-id :<- [::component-root] (fn [root] (:active-dataset-id root)))

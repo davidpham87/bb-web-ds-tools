@@ -16,9 +16,16 @@
  (fn [db _] db))
 
 (rf/reg-sub
+ ::user-input-root
+ :<- [:bb-web-ds-tools.core/user-input]
+ (fn [user-input _]
+   (get user-input :app-db)))
+
+(rf/reg-sub
  ::watched-paths
- (fn [db _]
-   (get-in db [:user-input :app-db :watched-paths] [])))
+ :<- [::user-input-root]
+ (fn [root _]
+   (get root :watched-paths [])))
 
 (rf/reg-sub
  ::path-value

@@ -40,8 +40,8 @@
                ::active-left-tab :data
                ::active-right-tab :plot})))))
 
-(rf/reg-sub ::user-input-root (fn [db] (get-in db [:user-input :vega-lite :default])))
-(rf/reg-sub ::saved-configs (fn [db] (get-in db [:user-input :vega-lite :saved-configs])))
+(rf/reg-sub ::user-input-root :<- [:bb-web-ds-tools.core/user-input] (fn [user-input] (get-in user-input [:vega-lite :default])))
+(rf/reg-sub ::saved-configs :<- [:bb-web-ds-tools.core/user-input] (fn [user-input] (get-in user-input [:vega-lite :saved-configs])))
 (rf/reg-sub ::component-root (fn [db] (::vega-lite db)))
 
 (rf/reg-sub ::data-input :<- [::user-input-root] (fn [root] (::data-input root)))
