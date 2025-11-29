@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.views.malli
-  (:require [re-frame.core :as rf]
+  (:require [reagent.core :as r]
+            [re-frame.core :as rf]
+            [cljs.pprint :as pprint]
             [malli.provider :as mp]
             [malli.generator :as mg]
             [cljs.reader :as reader]
@@ -25,17 +27,22 @@
 (rf/reg-event-db
  :malli/initialize
  (fn [db _]
-   (-> db
+   (let [user-input-exists? (get-in db [:user-input :malli :default])
+         component-state-exists? (::malli db)]
+     (cond-> db
+       (not user-input-exists?)
        (assoc-in [:user-input :malli :default]
                  {:schema-text "[:map\n [:name string?]\n [:age int?]\n [:tags [:set keyword?]]]"
                   :inference-input "{:user/id 1\n :user/name \"Alice\"\n :user/email \"alice@example.com\"\n :user/active? true\n :user/roles #{:admin :editor}}"})
+
+       (not component-state-exists?)
        (assoc ::malli
               {:generated-data ""
                :input-format :edn
                :inferred-schema ""
                :active-tab :inference
                :generation-samples 1
-               :generation-format :edn}))))
+               :generation-format :edn})))))
 
 (rf/reg-event-db
  :malli/update-schema-text
@@ -105,7 +112,7 @@
                       :edn (detect-and-parse input-text)
                       (dp/parse-dataset format input-text))]
      (if (and (coll? input-data) (seq input-data))
-       {:db (assoc-in db [::malli :inferred-schema] (pr-str (mp/provide input-data)))}
+       {:db (assoc-in db [::malli :inferred-schema] (with-out-str (cljs.pprint/pprint (mp/provide input-data))))}
        {:db (assoc-in db [::malli :inferred-schema] (str "Invalid input data for format " (name format) ".")) }))))
 
 (rf/reg-event-fx
@@ -183,7 +190,10 @@
 
           [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
            [editor/monaco-editor {:value inference-input
-                                  :language (if (= input-format :edn) "clojure" "plaintext")
+                                  :language (case input-format
+                                              :edn "clojure"
+                                              :json "json"
+                                              "plaintext")
                                   :options {:rulers [80]}
                                   :on-change #(rf/dispatch [:malli/update-inference-input %])}]]
           [c/button {:on-click #(rf/dispatch [:malli/infer-schema])} "Infer Schema"]]
@@ -241,10 +251,10 @@
        [c/button-xs {:on-click #(rf/dispatch [:malli/save-dataset])} "Save to Datasets"]]
       [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
        [editor/monaco-editor {:value generated-data
-                              :language (name format)
+                              :language (if (= format :edn) "clojure" "json")
                               :options {:readOnly true}}]]]]))
 
-(defn panel []
+(defn panel-render []
   (let [active-tab (or @(rf/subscribe [:malli/active-tab]) :inference)]
     [l/flex-col {:class "h-full w-full"}
      ;; Tabs Navigation
@@ -262,3 +272,9 @@
       (case active-tab
         :inference [inference-view]
         :generation [generation-view])]]))
+
+(defn panel []
+  (r/create-class
+   {:display-name "malli-panel"
+    :component-did-mount #(rf/dispatch [:malli/initialize])
+    :reagent-render panel-render}))
