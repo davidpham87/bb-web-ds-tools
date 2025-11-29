@@ -25,7 +25,7 @@
                                                           :new-dataset-state {:name "New Dataset" :text "" :format :csv :structure :columnar}}))
        (assoc ::datasets {:active-dataset-id :new}))))
 
-(rf/reg-sub ::user-input-root :<- [:bb-web-ds-tools.core/user-input] (fn [user-input] (get user-input :datasets)))
+(rf/reg-sub ::user-input-root (fn [db] (get-in db [:user-input :datasets])))
 (rf/reg-sub ::component-root (fn [db] (::datasets db)))
 (rf/reg-sub ::items :<- [::user-input-root] (fn [root] (:items root)))
 (rf/reg-sub ::active-dataset-id :<- [::component-root] (fn [root] (:active-dataset-id root)))
@@ -162,7 +162,7 @@
               (get struct-labels s)])]
 
           [l/flex-row {:class (str "space-x-2 text-sm " t/text-primary " items-center")}
-           [c/button-info {:on-click #(set-state :text (dp/example-data format structure))}
+           [c/button-xs {:on-click #(set-state :text (dp/example-data format structure))}
             "Load Example"]]
 
           [:div {:class "flex-grow"}]
@@ -259,7 +259,7 @@
      [:span {:class (str t/text-secondary " text-sm")} (str (count (:data dataset)) " rows")]]
     [c/button {:class (str t/bg-button-danger " " t/bg-button-danger-hover " " t/text-button-primary)
                :on-click #(rf/dispatch [::delete-dataset (:id dataset)])}
-     [c/dustbin-icon {:class "w-5 h-5"}]]]
+     "Delete"]]
    [data-table dataset]])
 
 (defn dataset-list-item [id ds active-id]
@@ -304,7 +304,7 @@
                                   (.stopPropagation e)
                                   (when (js/confirm (str "Delete dataset '" (:name ds) "'?"))
                                     (rf/dispatch [::delete-dataset id])))}
-             [c/dustbin-icon]]]])))))
+             "✕"]]])))))
 
 (defn dataset-list []
   (let [items @(rf/subscribe [::items])

@@ -21,7 +21,7 @@
                   ::output []})))))
 
 ;; Subscriptions
-(rf/reg-sub ::root :<- [:bb-web-ds-tools.core/user-input] (fn [user-input _] (get-in user-input [:r-repl :default])))
+(rf/reg-sub ::root (fn [db _] (get-in db [:user-input :r-repl :default])))
 (rf/reg-sub ::loading? :<- [::root] (fn [root] (::loading? root)))
 (rf/reg-sub ::ready? :<- [::root] (fn [root] (::ready? root)))
 (rf/reg-sub ::error :<- [::root] (fn [root] (::error root)))
@@ -88,7 +88,7 @@
    (when @webr-instance
      (try
        (-> (.evalR ^js @webr-instance code (clj->js {:autoprint true}))
-           (.then (fn [res] (try (.destroy res) (catch js/Error _))))
+           (.then (fn [^js res] (try (.destroy res) (catch js/Error _))))
            (.catch (fn [e] (rf/dispatch [::append-output :error (str e)]))))
        (catch js/Error e
          (rf/dispatch [::append-output :error (str e)]))))))

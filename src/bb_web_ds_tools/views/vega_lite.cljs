@@ -40,8 +40,8 @@
                ::active-left-tab :data
                ::active-right-tab :plot})))))
 
-(rf/reg-sub ::user-input-root :<- [:bb-web-ds-tools.core/user-input] (fn [user-input] (get-in user-input [:vega-lite :default])))
-(rf/reg-sub ::saved-configs :<- [:bb-web-ds-tools.core/user-input] (fn [user-input] (get-in user-input [:vega-lite :saved-configs])))
+(rf/reg-sub ::user-input-root (fn [db] (get-in db [:user-input :vega-lite :default])))
+(rf/reg-sub ::saved-configs (fn [db] (get-in db [:user-input :vega-lite :saved-configs])))
 (rf/reg-sub ::component-root (fn [db] (::vega-lite db)))
 
 (rf/reg-sub ::data-input :<- [::user-input-root] (fn [root] (::data-input root)))
@@ -212,16 +212,16 @@
          :data
          [l/flex-col {:class "h-full"}
           [l/flex-row {:class "p-2 gap-2 flex-wrap border-b border-[#3f3f3f] bg-[#1c2128] items-center"}
-           [c/button-info {:on-click #(load-example :csv :columnar)} "CSV"]
-           [c/button-info {:on-click #(load-example :tsv :columnar)} "TSV"]
-           [c/button-info {:on-click #(load-example :markdown :columnar)} "MD"]
-           [c/button-info {:on-click #(load-example :json :row-maps)} "JSON Maps"]
-           [c/button-info {:on-click #(load-example :json :row-arrays)} "JSON Arrays"]
-           [c/button-info {:on-click #(load-example :edn :row-maps)} "EDN Maps"]
-           [c/button-info {:on-click #(load-example :edn :columnar)} "EDN Col"]
+           [c/button-xs {:on-click #(load-example :csv :columnar)} "CSV"]
+           [c/button-xs {:on-click #(load-example :tsv :columnar)} "TSV"]
+           [c/button-xs {:on-click #(load-example :markdown :columnar)} "MD"]
+           [c/button-xs {:on-click #(load-example :json :row-maps)} "JSON Maps"]
+           [c/button-xs {:on-click #(load-example :json :row-arrays)} "JSON Arrays"]
+           [c/button-xs {:on-click #(load-example :edn :row-maps)} "EDN Maps"]
+           [c/button-xs {:on-click #(load-example :edn :columnar)} "EDN Col"]
            ;; Dataset Import
            [:div {:class "relative group ml-auto"}
-            [c/button-info {:class "border-dashed border-white/50"} "Import Dataset ▼"]
+            [c/button-xs {:class "border-dashed border-gray-600"} "Import Dataset ▼"]
             [:div {:class (str "absolute hidden group-hover:block right-0 " t/bg-input " border " t/border-default " p-1 rounded shadow-lg z-10 w-48 max-h-60 overflow-y-auto")}
              (if (seq datasets)
                (for [[id ds] datasets]
@@ -267,7 +267,7 @@
             (when active-config-name
               [c/button-xs {:class "text-red-400"
                             :on-click #(rf/dispatch [::delete-config active-config-name])}
-               [c/dustbin-icon]])]]
+               "Delete"])]]
 
           [:div {:class "flex-grow relative"}
            [editor/monaco-editor

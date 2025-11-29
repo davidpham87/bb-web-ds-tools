@@ -69,7 +69,6 @@ def verify():
                     raise e
 
             print("All pages verified successfully!")
-            page.screenshot(path="success.png")
 
         except Exception as e:
             print(f"Verification failed: {e}")

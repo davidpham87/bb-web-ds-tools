@@ -29,7 +29,7 @@
      {:db (assoc-in db [::honeysql :output] output)})))
 
 ;; Subscriptions
-(rf/reg-sub :honeysql/user-input-root :<- [:bb-web-ds-tools.core/user-input] (fn [user-input _] (get-in user-input [:honeysql :default])))
+(rf/reg-sub :honeysql/user-input-root (fn [db _] (get-in db [:user-input :honeysql :default])))
 (rf/reg-sub :honeysql/component-root (fn [db _] (::honeysql db)))
 (rf/reg-sub :honeysql/input :<- [:honeysql/user-input-root] (fn [root _] (:input root)))
 (rf/reg-sub :honeysql/output :<- [:honeysql/component-root] (fn [root _] (:output root)))

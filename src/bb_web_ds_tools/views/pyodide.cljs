@@ -16,7 +16,7 @@
        (not exists?)
        (assoc-in [:user-input :pyodide :default ::code] "print('Hello Jupyter')")))))
 
-(rf/reg-sub ::user-input-root :<- [:bb-web-ds-tools.core/user-input] (fn [user-input _] (get-in user-input [:pyodide :default])))
+(rf/reg-sub ::user-input-root (fn [db _] (get-in db [:user-input :pyodide :default])))
 (rf/reg-sub ::code :<- [::user-input-root] (fn [root] (::code root)))
 (rf/reg-event-db ::set-code (fn [db [_ v]] (assoc-in db [:user-input :pyodide :default ::code] v)))
 (rf/reg-sub ::mac-os? (fn [db _] (get-in db [:platform :mac-os?])))
@@ -28,7 +28,7 @@
       (js/console.warn "Kernel not ready"))))
 
 (defn internal-view []
-  (let [^js jupyter (useJupyter)
+  (let [jupyter (useJupyter)
         jupyter-ref (react/useRef jupyter)
         code @(rf/subscribe [::code])
         mac-os? @(rf/subscribe [::mac-os?])]

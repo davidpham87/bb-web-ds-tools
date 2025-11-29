@@ -27,7 +27,8 @@
           (println "Inferred Schema:" schema)
           ;; Schema can be a vector or other valid schema form
           (is (or (vector? schema) (keyword? schema) (map? schema)) (str "Schema should be valid structure, got: " (type schema)))
-          (is (m/validate schema data)))))))
+          ;; mp/provide treats input collection as samples, returns schema for ONE element
+          (is (every? #(m/validate schema %) data)))))))
 
 (deftest generate-data-test
   (testing "Generates data from schema"
@@ -43,9 +44,10 @@
       (is (string? schema-str))
       (when (string? schema-str)
         (let [schema (edn/read-string schema-str)
-              ;; Use 1 sample to generate one instance of the schema (which is the dataset structure)
+              ;; Use 1 sample to generate one instance of the schema
               generated-str (sut/generate-data schema-str 1 :edn)
               generated-data (edn/read-string generated-str)]
           (println "Generated Data:" generated-data)
-          (is (vector? generated-data) (str "Generated data should be vector, got: " (type generated-data)))
+          ;; With 1 sample, result is the item (map), not a vector of items
+          (is (map? generated-data) (str "Generated data should be map, got: " (type generated-data)))
           (is (m/validate schema generated-data)))))))

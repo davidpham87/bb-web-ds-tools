@@ -26,7 +26,7 @@
              (rdom/unmount-component-at-node div)
              (.removeChild js/document.body div)
              (done))
-           (let [model (.getModel @editor-ref)]
+           (let [model (.getModel ^js @editor-ref)]
              (if (nil? model)
                (do
                  (is false "Editor model is nil")
@@ -34,7 +34,7 @@
                  (.removeChild js/document.body div)
                  (done))
                (do
-                 (is (= "clojure" (.getLanguageId model)) "Initial language should be clojure")
+                 (is (= "clojure" (.getLanguageId ^js model)) "Initial language should be clojure")
 
                  ;; Change language
                  (reset! language "r")
@@ -44,9 +44,9 @@
                  (js/setTimeout
                   (fn []
                      ;; Verification
-                     (let [model (.getModel @editor-ref)]
+                     (let [model (.getModel ^js @editor-ref)]
                        (if model
-                         (let [new-lang (.getLanguageId model)]
+                         (let [new-lang (.getLanguageId ^js model)]
                            (is (= "r" new-lang) (str "Language should update to r, but got " new-lang)))
                          (is false "Model disappeared?")))
 

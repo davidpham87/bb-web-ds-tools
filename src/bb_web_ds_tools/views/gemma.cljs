@@ -28,7 +28,7 @@
  ::generate-response-fx
  (fn [text]
    (try
-     (let [response (.generateResponse @llm-instance text)]
+     (let [response (.generateResponse ^js @llm-instance text)]
        (rf/dispatch [::add-message :model response])
        (rf/dispatch [::set-loading false]))
      (catch js/Error e
@@ -84,7 +84,7 @@
       :fx [[::generate-response-fx text]]}
      {})))
 
-(rf/reg-sub ::user-input-root :<- [:bb-web-ds-tools.core/user-input] (fn [user-input _] (get-in user-input [:gemma :default])))
+(rf/reg-sub ::user-input-root (fn [db _] (get-in db [:user-input :gemma :default])))
 (rf/reg-sub ::component-root (fn [db _] (::gemma db)))
 (rf/reg-sub ::messages :<- [::user-input-root] (fn [root] (:messages root)))
 (rf/reg-sub ::loading? :<- [::component-root] (fn [root] (:loading? root)))

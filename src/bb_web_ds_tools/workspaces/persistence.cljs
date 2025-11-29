@@ -73,7 +73,8 @@
 (defn export-db []
   (when-let [^js db @sql-db]
     (persist-all!)
-    (let [capi (.. ^js @sqlite-lib -capi)
+    (let [^js lib @sqlite-lib
+          capi (.-capi lib)
           p-db (.-pointer db)
           bytes (.sqlite3_js_db_export ^js capi p-db)
           blob (new js/Blob (clj->js [bytes]) (clj->js {:type "application/x-sqlite3"}))]
