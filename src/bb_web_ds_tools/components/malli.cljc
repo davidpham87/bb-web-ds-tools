@@ -33,7 +33,10 @@
 
 (defn infer-schema [data]
   (when (and (coll? data) (seq data))
-    (with-out-str (pprint/pprint (mp/provide data)))))
+    (try
+      (with-out-str (pprint/pprint (mp/provide data)))
+      (catch #?(:cljs :default :clj Exception) e
+        (str "Error: " (ex-message e))))))
 
 (defn generate-data [schema-text samples format]
   (try

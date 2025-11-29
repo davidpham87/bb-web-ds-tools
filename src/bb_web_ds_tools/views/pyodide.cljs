@@ -21,10 +21,10 @@
 (rf/reg-event-db ::set-code (fn [db [_ v]] (assoc-in db [:user-input :pyodide :default ::code] v)))
 (rf/reg-sub ::mac-os? (fn [db _] (get-in db [:platform :mac-os?])))
 
-(defn run-actions [jupyter code]
+(defn run-actions [^js jupyter code]
   (let [kernel (.-kernel jupyter)]
     (if kernel
-      (.requestExecute kernel (clj->js {:code code}))
+      (.requestExecute ^js kernel (clj->js {:code code}))
       (js/console.warn "Kernel not ready"))))
 
 (defn internal-view []

@@ -1,9 +1,12 @@
 (ns bb-web-ds-tools.views.malli-feature-test
-  (:require [cljs.test :refer-macros [deftest is testing]]
+  (:require [cljs.test :refer-macros [deftest is testing use-fixtures]]
             [re-frame.core :as rf]
             [day8.re-frame.test :as rf-test]
             [bb-web-ds-tools.views.malli :as malli]
-            [cljs.reader :as reader]))
+            [cljs.reader :as reader]
+            [bb-web-ds-tools.test-setup :as setup]))
+
+(use-fixtures :once (fn [f] (setup/suppress-re-frame-warnings) (f)))
 
 (deftest malli-generation-features-test
   (rf-test/run-test-sync
