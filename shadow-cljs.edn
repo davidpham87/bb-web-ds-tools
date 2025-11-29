@@ -11,6 +11,8 @@
   {:target :browser
    :output-dir "docs/js/compiled"
    :asset-path "/js/compiled"
+   :js-options {:js-provider :external
+                :external-index "target/index.js"}
    :compiler-options {:optimizations :simple
                       :output-feature-set :es-next
                       :externs ["src/externs/webr.js"]}
@@ -27,6 +29,8 @@
     :runner-ns shadow.test.karma
     :output-to "target/test/core.js"
     :test-dir "target/test"
+    :js-options {:js-provider :external
+                 :external-index "target/test/npm-index.js"}
     :module-loader true
     :compiler-options {:pretty-print true}
     :devtools {:autotest true}}
