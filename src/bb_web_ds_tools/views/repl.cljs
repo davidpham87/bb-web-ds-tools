@@ -2,7 +2,6 @@
   (:require [reagent.core :as r]
             [sci.core :as sci]
             [re-frame.core :as rf]
-            [fork.re-frame :as fork]
             [cljs.pprint :as pprint]
             ["monaco-editor/esm/vs/editor/editor.api.js" :refer [KeyChord KeyMod KeyCode]]
             [bb-web-ds-tools.components.editor :as editor]
@@ -34,6 +33,8 @@
 (rf/reg-sub ::output (fn [db [_ instance-id]] (get-in db [::repl instance-id :output])))
 (rf/reg-sub ::code :<- [::instances] (fn [instances [_ instance-id]] (get-in instances [instance-id :code])))
 (rf/reg-sub ::mac-os? (fn [db _] (get-in db [:platform :mac-os?])))
+
+(rf/reg-event-db ::update-code (fn [db [_ instance-id code]] (assoc-in db [:user-input :repl instance-id :code] code)))
 
 (def active-instance-id (r/atom nil))
 
@@ -95,6 +96,7 @@
      {:instance-id instance-id
       :code code
       :output output
+      :on-change #(rf/dispatch [::update-code instance-id %])
       :on-eval (fn [code] (rf/dispatch [::eval-code instance-id code]))
       :on-focus #(reset! active-instance-id instance-id)
       :on-blur #(reset! active-instance-id nil)
