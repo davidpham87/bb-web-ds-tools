@@ -28,6 +28,11 @@
    (get root :watched-paths [])))
 
 (rf/reg-sub
+ ::active-path
+ (fn [db _]
+   (get-in db [:user-input :app-db :active-path])))
+
+(rf/reg-sub
  ::path-value
  (fn [db [_ path-str]]
    (try
@@ -38,14 +43,29 @@
 ;; Events
 
 (rf/reg-event-db
+ ::set-active-path
+ (fn [db [_ path]]
+   (assoc-in db [:user-input :app-db :active-path] path)))
+
+(rf/reg-event-db
  ::add-watch-path
  (fn [db [_ path-str]]
-   (update-in db [:user-input :app-db :watched-paths] (fnil conj []) path-str)))
+   (if (some #{path-str} (get-in db [:user-input :app-db :watched-paths] []))
+     (assoc-in db [:user-input :app-db :active-path] path-str)
+     (-> db
+         (update-in [:user-input :app-db :watched-paths] (fnil conj []) path-str)
+         (assoc-in [:user-input :app-db :active-path] path-str)))))
 
 (rf/reg-event-db
  ::remove-watch-path
  (fn [db [_ path-str]]
-   (update-in db [:user-input :app-db :watched-paths] (fn [paths] (vec (remove #(= % path-str) paths))))))
+   (let [watched-paths (get-in db [:user-input :app-db :watched-paths] [])
+         new-paths (vec (remove #(= % path-str) watched-paths))
+         active-path (get-in db [:user-input :app-db :active-path])]
+     (-> db
+         (assoc-in [:user-input :app-db :watched-paths] new-paths)
+         (cond-> (= active-path path-str)
+           (assoc-in [:user-input :app-db :active-path] (first new-paths)))))))
 
 (rf/reg-event-db
  ::update-path-value
@@ -77,7 +97,7 @@
       :reagent-render
       (fn [path-str]
         (let [current-value @(rf/subscribe [::path-value path-str])]
-          [c/card {:class "flex flex-col space-y-2"}
+          [:div {:class "flex flex-col space-y-2"}
            [l/flex-row {:class "justify-between items-center"}
             [:h4 {:class (str "font-mono text-sm font-bold " t/text-accent)} path-str]
 
@@ -97,11 +117,7 @@
              ;; Update Path Button
              [c/button-xs {:on-click #(rf/dispatch [::update-path-value path-str @local-edn])
                            :class (str t/bg-button-primary " " t/text-button-primary)}
-              "Update Path"]
-
-             ;; Remove Button
-             [c/button-xs {:on-click #(rf/dispatch [::remove-watch-path path-str])
-                           :class t/bg-button-danger} "Remove"]]]
+              "Update Path"]]]
 
            [:div {:class (str "h-[500px] border " t/border-default)}
             [monaco-editor
@@ -113,30 +129,45 @@
                         :scrollBeyondLastLine false}
               :on-change #(reset! local-edn %)}]]]))})))
 
+(defn add-path-view []
+  (r/with-let [new-path (r/atom "")]
+    [c/card {:class "p-8 flex flex-col items-center justify-center space-y-4 bg-transparent shadow-none"}
+     [:h3 {:class "text-xl font-bold"} "Watch New Path"]
+     [:div {:class "w-full max-w-lg"}
+      [c/input {:value @new-path
+                :on-change #(reset! new-path (.. % -target -value))
+                :placeholder "Enter path e.g. [:user-input :datasets]"
+                :class "font-mono mb-4"}]
+      [c/button {:class "w-full"
+                 :on-click #(do (rf/dispatch [::add-watch-path @new-path])
+                                (reset! new-path ""))}
+       "Add Watch"]]]))
+
 (defn panel []
-  (let [watched-paths @(rf/subscribe [::watched-paths])]
-    (r/with-let [new-path (r/atom "")]
-      [l/container {:class "space-y-6"}
-       [l/flex-row {:class "justify-between items-center"}
-        [:h2 {:class "text-2xl font-bold"} "App DB Editor"]
-        [c/button {:on-click #(rf/dispatch [::open-in-portal])}
-         "Inspect DB in Portal"]]
+  (let [watched-paths @(rf/subscribe [::watched-paths])
+        active-path @(rf/subscribe [::active-path])
+        ;; Ensure active path is valid, default to first or :new
+        current-tab (or active-path
+                        (first watched-paths)
+                        :new)]
 
-       ;; Add Path Control
-       [c/card {}
-        [l/flex-row {:class "items-center space-x-4"}
-         [c/input {:value @new-path
-                   :on-change #(reset! new-path (.. % -target -value))
-                   :placeholder "Enter path e.g. [:user-input :datasets]"
-                   :class "flex-grow font-mono"}]
-         [c/button {:on-click #(do (rf/dispatch [::add-watch-path @new-path])
-                                   (reset! new-path ""))}
-          "Watch Path"]]]
+    [l/container {:class "space-y-6"}
+     [l/flex-row {:class "justify-between items-center"}
+      [:h2 {:class "text-2xl font-bold"} "App DB Editor"]
+      [c/button {:on-click #(rf/dispatch [::open-in-portal])}
+       "Inspect DB in Portal"]]
 
-       ;; List of Watched Paths
-       (if (seq watched-paths)
-         [l/grid {:class "grid-cols-1 gap-4"}
-          (for [path watched-paths]
-            ^{:key path}
-            [path-viewer path])]
-         [:div {:class (str "text-center " t/text-muted " italic")} "No paths watched. Add a path to start."])])))
+     [c/card {:class "flex flex-col min-h-[600px]"}
+      ;; Tabs
+      [c/tabs {:tabs (map (fn [p] {:id p :label p :on-close #(rf/dispatch [::remove-watch-path %])}) watched-paths)
+               :active-tab-id current-tab
+               :on-change #(rf/dispatch [::set-active-path %])
+               :on-add #(rf/dispatch [::set-active-path :new])
+               :class "px-2 pt-2"}]
+
+      ;; Content
+      [:div {:class "p-4 flex-grow"}
+       (if (= current-tab :new)
+         [add-path-view]
+         ^{:key current-tab}
+         [path-viewer current-tab])]]]))
