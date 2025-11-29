@@ -1,13 +1,11 @@
 (ns bb-web-ds-tools.views.honeysql
-  (:require [re-frame.core :as rf]
-            [honey.sql :as h]
-            [sci.core :as sci]
+  (:require [reagent.core :as r]
+            [re-frame.core :as rf]
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.editor :as editor]
+            [bb-web-ds-tools.components.honeysql :as h-comp]
             [bb-web-ds-tools.components.layout :as l]
             [bb-web-ds-tools.theme :as t]))
-
-(def sci-ctx (sci/init {}))
 
 ;; Event handlers
 (rf/reg-event-db
@@ -26,17 +24,9 @@
 (rf/reg-event-fx
  :honeysql/convert-to-sql
  (fn [{:keys [db]} _]
-   (let [input-text (get-in db [:user-input :honeysql :default :input])]
-     (try
-       (let [input-data (sci/eval-string input-text sci-ctx)]
-         (if (map? input-data)
-           (try
-             {:db (assoc-in db [::honeysql :output] (first (h/format input-data {:inline true})))}
-             (catch :default e
-               {:db (assoc-in db [::honeysql :output] (str "Error formatting SQL: " (.-message e)))}))
-           {:db (assoc-in db [::honeysql :output] (str "Error: Last evaluated value must be a map. Got: " (type input-data)))}))
-       (catch :default e
-         {:db (assoc-in db [::honeysql :output] (str "Error evaluating code: " (.-message e)))})))))
+   (let [input-text (get-in db [:user-input :honeysql :default :input])
+         output (h-comp/convert-to-sql input-text)]
+     {:db (assoc-in db [::honeysql :output] output)})))
 
 ;; Subscriptions
 (rf/reg-sub :honeysql/user-input-root (fn [db _] (get-in db [:user-input :honeysql :default])))
@@ -45,7 +35,7 @@
 (rf/reg-sub :honeysql/output :<- [:honeysql/component-root] (fn [root _] (:output root)))
 
 ;; UI components
-(defn panel []
+(defn panel-render []
   (let [honeysql-input @(rf/subscribe [:honeysql/input])
         honeysql-output @(rf/subscribe [:honeysql/output])]
     [l/split-view {:ratio :2-1}
@@ -68,3 +58,9 @@
        [editor/monaco-editor {:value honeysql-output
                               :language "sql"
                               :options {:readOnly true}}]]]]))
+
+(defn panel []
+  (r/create-class
+   {:display-name "honeysql-panel"
+    :component-did-mount #(rf/dispatch [:honeysql/initialize])
+    :reagent-render panel-render}))
