@@ -101,6 +101,7 @@ const commonConfig = {
 
 module.exports = [
   Object.assign({}, commonConfig, {
+    name: 'app',
     entry: './target/index.js',
     output: {
       path: path.resolve(__dirname, 'docs/js'),
@@ -110,6 +111,7 @@ module.exports = [
     },
   }),
   Object.assign({}, commonConfig, {
+    name: 'test',
     entry: './target/test/npm-index.js',
     output: {
       path: path.resolve(__dirname, 'target/test'),
