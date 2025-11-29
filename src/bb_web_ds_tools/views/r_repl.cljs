@@ -10,12 +10,15 @@
 (rf/reg-event-db
  ::initialize
  (fn [db _]
-   (assoc-in db [:user-input :r-repl :default]
-             {::loading? false
-              ::ready? false
-              ::error nil
-              ::code "install.packages(c(\"ggplot2\", \"dplyr\"))\n\nlibrary(ggplot2)\nlibrary(dplyr)\n\nmtcars %>% \n  filter(mpg > 20) %>% \n  ggplot(aes(x = wt, y = mpg)) + \n  geom_point()"
-              ::output []})))
+   (let [exists? (get-in db [:user-input :r-repl :default])]
+     (cond-> db
+       (not exists?)
+       (assoc-in [:user-input :r-repl :default]
+                 {::loading? false
+                  ::ready? false
+                  ::error nil
+                  ::code "install.packages(c(\"ggplot2\", \"dplyr\"))\n\nlibrary(ggplot2)\nlibrary(dplyr)\n\nmtcars %>% \n  filter(mpg > 20) %>% \n  ggplot(aes(x = wt, y = mpg)) + \n  geom_point()"
+                  ::output []})))))
 
 ;; Subscriptions
 (rf/reg-sub ::root (fn [db _] (get-in db [:user-input :r-repl :default])))

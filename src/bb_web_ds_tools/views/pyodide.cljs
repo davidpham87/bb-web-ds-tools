@@ -11,7 +11,10 @@
 (rf/reg-event-db
  ::initialize
  (fn [db _]
-   (assoc-in db [:user-input :pyodide :default ::code] "print('Hello Jupyter')")))
+   (let [exists? (get-in db [:user-input :pyodide :default ::code])]
+     (cond-> db
+       (not exists?)
+       (assoc-in [:user-input :pyodide :default ::code] "print('Hello Jupyter')")))))
 
 (rf/reg-sub ::user-input-root (fn [db _] (get-in db [:user-input :pyodide :default])))
 (rf/reg-sub ::code :<- [::user-input-root] (fn [root] (::code root)))
