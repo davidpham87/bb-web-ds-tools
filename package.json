@@ -6,6 +6,7 @@
         "@datalayer/icons-react": "^1.0.6",
         "@datalayer/jupyter-react": "^1.1.8",
         "@mediapipe/tasks-genai": "^0.10.25",
+        "@sqlite.org/sqlite-wasm": "^3.51.1-build1",
         "@xterm/addon-fit": "^0.10.0",
         "@xterm/xterm": "^5.5.0",
         "monaco-editor": "^0.55.1",
@@ -38,6 +39,6 @@
         "storybook": "storybook dev -p 6006",
         "build-storybook": "storybook build",
         "dev-stories": "npx shadow-cljs watch stories",
-        "postinstall": "mkdir -p docs/js/libs/vs docs/css docs/js/libs/monaco-esm && cp -r node_modules/monaco-editor/min/vs/* docs/js/libs/vs/ && cp -r node_modules/monaco-editor/esm/* docs/js/libs/monaco-esm/ && cp node_modules/@xterm/xterm/css/xterm.css docs/css/xterm.css"
+        "postinstall": "mkdir -p docs/js/libs/vs docs/css docs/js/libs/monaco-esm && cp -r node_modules/monaco-editor/min/vs/* docs/js/libs/vs/ && cp -r node_modules/monaco-editor/esm/* docs/js/libs/monaco-esm/ && cp node_modules/@xterm/xterm/css/xterm.css docs/css/xterm.css && cp node_modules/@sqlite.org/sqlite-wasm/sqlite-wasm/jswasm/sqlite3.js docs/js/libs/ && cp node_modules/@sqlite.org/sqlite-wasm/sqlite-wasm/jswasm/sqlite3.wasm docs/js/libs/"
     }
 }
