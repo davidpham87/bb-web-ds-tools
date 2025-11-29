@@ -6,33 +6,48 @@
             [bb-web-ds-tools.components.layout :as l]
             [bb-web-ds-tools.theme :as t]
             [bb-web-ds-tools.portal :as portal]
+            [bb-web-ds-tools.views.datasets :as datasets]
             ["react-dom" :as ReactDOM]
             [cljs.pprint :refer [pprint]]
+            [clojure.edn :as edn]
             [malli.provider :as mp]
             [bb-web-ds-tools.utils.dataset-processing :as dp]))
 
 ;; --- State ---
 
+(def default-config-json "{\n  \"$schema\": \"https://vega.github.io/schema/vega-lite/v5.json\",\n  \"mark\": \"bar\",\n  \"encoding\": {\n    \"x\": {\"field\": \"col1\", \"type\": \"ordinal\"},\n    \"y\": {\"field\": \"col2\", \"type\": \"quantitative\"}\n  }\n}")
+
 (rf/reg-event-db
  ::initialize
  (fn [db _]
-   (-> db
-       (assoc-in [:user-input :vega-lite :default]
-                 {::data-input ""
-                  ::config-input "{\n  \"$schema\": \"https://vega.github.io/schema/vega-lite/v5.json\",\n  \"mark\": \"bar\",\n  \"encoding\": {\n    \"x\": {\"field\": \"col1\", \"type\": \"ordinal\"},\n    \"y\": {\"field\": \"col2\", \"type\": \"quantitative\"}\n  }\n}"})
+   (let [user-input-exists? (get-in db [:user-input :vega-lite])
+         component-state-exists? (::vega-lite db)]
+     (cond-> db
+       (not user-input-exists?)
+       (assoc-in [:user-input :vega-lite]
+                 {:saved-configs {}
+                  :default {::data-input ""
+                            ::config-input default-config-json
+                            ::config-mode :json
+                            ::active-config-name nil}})
+
+       (not component-state-exists?)
        (assoc ::vega-lite
               {::format :csv
                ::structure :columnar
                ::parsed-data nil
                ::inferred-schema nil
                ::active-left-tab :data
-               ::active-right-tab :plot}))))
+               ::active-right-tab :plot})))))
 
 (rf/reg-sub ::user-input-root (fn [db] (get-in db [:user-input :vega-lite :default])))
+(rf/reg-sub ::saved-configs (fn [db] (get-in db [:user-input :vega-lite :saved-configs])))
 (rf/reg-sub ::component-root (fn [db] (::vega-lite db)))
 
 (rf/reg-sub ::data-input :<- [::user-input-root] (fn [root] (::data-input root)))
 (rf/reg-sub ::config-input :<- [::user-input-root] (fn [root] (::config-input root)))
+(rf/reg-sub ::config-mode :<- [::user-input-root] (fn [root] (::config-mode root)))
+(rf/reg-sub ::active-config-name :<- [::user-input-root] (fn [root] (::active-config-name root)))
 
 (rf/reg-sub ::format :<- [::component-root] (fn [root] (::format root)))
 (rf/reg-sub ::structure :<- [::component-root] (fn [root] (::structure root)))
@@ -42,10 +57,52 @@
 
 (rf/reg-event-db ::set-data-input (fn [db [_ val]] (assoc-in db [:user-input :vega-lite :default ::data-input] val)))
 (rf/reg-event-db ::set-config-input (fn [db [_ val]] (assoc-in db [:user-input :vega-lite :default ::config-input] val)))
+(rf/reg-event-db ::set-config-mode (fn [db [_ mode]] (assoc-in db [:user-input :vega-lite :default ::config-mode] mode)))
+(rf/reg-event-db ::set-active-config-name (fn [db [_ name]] (assoc-in db [:user-input :vega-lite :default ::active-config-name] name)))
+
 (rf/reg-event-db ::set-format (fn [db [_ fmt]] (assoc-in db [::vega-lite ::format] fmt)))
 (rf/reg-event-db ::set-structure (fn [db [_ s]] (assoc-in db [::vega-lite ::structure] s)))
 (rf/reg-event-db ::set-active-left-tab (fn [db [_ tab]] (assoc-in db [::vega-lite ::active-left-tab] tab)))
 (rf/reg-event-db ::set-active-right-tab (fn [db [_ tab]] (assoc-in db [::vega-lite ::active-right-tab] tab)))
+
+(rf/reg-event-db
+ ::save-config
+ (fn [db [_ name]]
+   (let [root (get-in db [:user-input :vega-lite :default])
+         config (select-keys root [::config-input ::config-mode])]
+     (-> db
+         (assoc-in [:user-input :vega-lite :saved-configs name] config)
+         (assoc-in [:user-input :vega-lite :default ::active-config-name] name)))))
+
+(rf/reg-event-db
+ ::load-config
+ (fn [db [_ name]]
+   (let [config (get-in db [:user-input :vega-lite :saved-configs name])]
+     (-> db
+         (update-in [:user-input :vega-lite :default] merge config)
+         (assoc-in [:user-input :vega-lite :default ::active-config-name] name)))))
+
+(rf/reg-event-db
+ ::delete-config
+ (fn [db [_ name]]
+   (let [active-name (get-in db [:user-input :vega-lite :default ::active-config-name])]
+     (cond-> db
+       true (update-in [:user-input :vega-lite :saved-configs] dissoc name)
+       (= active-name name) (assoc-in [:user-input :vega-lite :default ::active-config-name] nil)))))
+
+(rf/reg-event-fx
+ ::import-dataset
+ (fn [{:keys [db]} [_ dataset-id]]
+   (let [datasets (get-in db [:user-input :datasets :items])
+         dataset (get datasets dataset-id)
+         data (:data dataset)
+         clean-data (mapv #(dissoc % :_uuid) data)
+         data-str (with-out-str (pprint clean-data))]
+     {:db (-> db
+              (assoc-in [:user-input :vega-lite :default ::data-input] data-str)
+              (assoc-in [::vega-lite ::format] :edn)
+              (assoc-in [::vega-lite ::structure] :row-maps))
+      :dispatch [::parse-data]})))
 
 ;; --- Parsing ---
 
@@ -61,6 +118,17 @@
          schema (try (mp/provide parsed) (catch js/Error e (str "Error inferring schema: " (.-message e))))]
      (update db ::vega-lite assoc ::parsed-data parsed ::inferred-schema schema))))
 
+(rf/reg-sub
+ ::parsed-config-obj
+ :<- [::config-input]
+ :<- [::config-mode]
+ (fn [[input mode]]
+   (try
+     (case mode
+       :json (js/JSON.parse input)
+       :edn (clj->js (edn/read-string input)))
+     (catch js/Error _ nil))))
+
 ;; --- Components ---
 
 (defn load-example [fmt structure]
@@ -69,24 +137,23 @@
   (rf/dispatch [::set-data-input (dp/example-data fmt structure)])
   (rf/dispatch [::parse-data]))
 
-(defn render-vega [component spec data]
-  (when (and spec data)
+(defn render-vega [component spec-obj data]
+  (when (and spec-obj data)
     (try
-      (let [spec-obj (js/JSON.parse spec)
-            spec-with-data (js/Object.assign #js{} spec-obj)]
+      (let [spec-with-data (js/Object.assign #js{} spec-obj)]
         (set! (.-data spec-with-data) #js{:values (clj->js data)})
         (js/vegaEmbed (ReactDOM/findDOMNode component) spec-with-data))
       (catch js/Error e (js/console.warn "Vega render error" e)))))
 
-(defn vega-viz [{:keys [spec data]}]
+(defn vega-viz [{:keys [spec-obj data]}]
   (r/create-class
    {:display-name "vega-viz"
     :component-did-mount
     (fn [this]
-      (render-vega this (:spec (r/props this)) (:data (r/props this))))
+      (render-vega this (:spec-obj (r/props this)) (:data (r/props this))))
     :component-did-update
     (fn [this]
-      (render-vega this (:spec (r/props this)) (:data (r/props this))))
+      (render-vega this (:spec-obj (r/props this)) (:data (r/props this))))
     :render
     (fn [] [:div {:style {:width "100%" :height "100%"}}])}))
 
@@ -98,12 +165,38 @@
             :on-click on-click}
    label])
 
+(defn save-config-modal []
+  (let [open? (r/atom false)
+        name-input (r/atom "")]
+    (fn []
+      [:div {:class "relative inline-block"}
+       [c/button-xs {:on-click #(reset! open? true)} "Save"]
+       (when @open?
+         [:div {:class (str "absolute top-8 right-0 z-50 p-2 rounded shadow-lg border "
+                            t/bg-input " " t/border-default " flex items-center space-x-2")}
+          [c/input {:class "w-32 text-xs"
+                    :placeholder "Name"
+                    :value @name-input
+                    :on-change #(reset! name-input (.. % -target -value))}]
+          [c/button-xs {:class "text-green-400"
+                        :on-click #(do (rf/dispatch [::save-config @name-input])
+                                       (reset! open? false))}
+           "✓"]
+          [c/button-xs {:class "text-red-400"
+                        :on-click #(reset! open? false)}
+           "✗"]])])))
+
 (defn panel-render []
   (let [data-input @(rf/subscribe [::data-input])
         config-input @(rf/subscribe [::config-input])
         parsed-data @(rf/subscribe [::parsed-data])
         active-left-tab (or @(rf/subscribe [::active-left-tab]) :data)
-        active-right-tab (or @(rf/subscribe [::active-right-tab]) :plot)]
+        active-right-tab (or @(rf/subscribe [::active-right-tab]) :plot)
+        datasets @(rf/subscribe [::datasets/items])
+        config-mode @(rf/subscribe [::config-mode])
+        saved-configs @(rf/subscribe [::saved-configs])
+        active-config-name @(rf/subscribe [::active-config-name])
+        parsed-config-obj @(rf/subscribe [::parsed-config-obj])]
     [l/split-view {:ratio :1-1}
      ;; Left Column (Inputs)
      [l/flex-col {:class "h-full border-r border-[#3f3f3f]"}
@@ -111,25 +204,32 @@
       [l/flex-row {:class (str "justify-between border-b " t/border-default " px-2 " t/bg-toolbar)}
        [l/flex-row {:class "space-x-2"}
         [tab-button (= active-left-tab :data) "Data" #(rf/dispatch [::set-active-left-tab :data])]
-        [tab-button (= active-left-tab :config) "Config" #(rf/dispatch [::set-active-left-tab :config])]]
-       ;; Toolbar for Config
-       (when (= active-left-tab :config)
-         [c/button-xs {:on-click #(rf/dispatch [::portal/submit (try (js/JSON.parse config-input) (catch js/Error _ config-input))])}
-          "Send to Portal"])]
+        [tab-button (= active-left-tab :config) "Config" #(rf/dispatch [::set-active-left-tab :config])]]]
 
       ;; Left Content
       [:div {:class "flex-grow overflow-hidden relative"}
        (case active-left-tab
          :data
          [l/flex-col {:class "h-full"}
-          [l/flex-row {:class "p-2 gap-2 flex-wrap border-b border-[#3f3f3f] bg-[#1c2128]"}
+          [l/flex-row {:class "p-2 gap-2 flex-wrap border-b border-[#3f3f3f] bg-[#1c2128] items-center"}
            [c/button-xs {:on-click #(load-example :csv :columnar)} "CSV"]
            [c/button-xs {:on-click #(load-example :tsv :columnar)} "TSV"]
            [c/button-xs {:on-click #(load-example :markdown :columnar)} "MD"]
            [c/button-xs {:on-click #(load-example :json :row-maps)} "JSON Maps"]
            [c/button-xs {:on-click #(load-example :json :row-arrays)} "JSON Arrays"]
            [c/button-xs {:on-click #(load-example :edn :row-maps)} "EDN Maps"]
-           [c/button-xs {:on-click #(load-example :edn :columnar)} "EDN Col"]]
+           [c/button-xs {:on-click #(load-example :edn :columnar)} "EDN Col"]
+           ;; Dataset Import
+           [:div {:class "relative group ml-auto"}
+            [c/button-xs {:class "border-dashed border-gray-600"} "Import Dataset ▼"]
+            [:div {:class (str "absolute hidden group-hover:block right-0 " t/bg-input " border " t/border-default " p-1 rounded shadow-lg z-10 w-48 max-h-60 overflow-y-auto")}
+             (if (seq datasets)
+               (for [[id ds] datasets]
+                 [:div {:key id
+                        :class (str "cursor-pointer px-2 py-1 text-xs " t/bg-item-hover " truncate")
+                        :on-click #(rf/dispatch [::import-dataset id])}
+                  (:name ds)])
+               [:div {:class "text-xs text-gray-500 p-2"} "No datasets created."])]]]
           [:div {:class "flex-grow relative"}
            [editor/monaco-editor
             {:value data-input
@@ -140,27 +240,63 @@
                           (rf/dispatch [::parse-data]))}]]]
 
          :config
-         [:div {:class "h-full relative"}
-          [editor/monaco-editor
-           {:value config-input
-            :language "json"
-            :options {:rulers [80] :minimap {:enabled false}}
-            :on-change #(rf/dispatch [::set-config-input %])}]]
+         [l/flex-col {:class "h-full"}
+          [l/flex-row {:class "p-2 gap-2 border-b border-[#3f3f3f] bg-[#1c2128] items-center justify-between"}
+           ;; Mode Selection
+           [l/flex-row {:class "space-x-2 items-center text-xs text-gray-400"}
+            [:span "Mode:"]
+            [:label {:class "flex items-center space-x-1 cursor-pointer"}
+             [:input {:type "radio" :name "config-mode" :checked (= config-mode :json)
+                      :on-change #(rf/dispatch [::set-config-mode :json])}]
+             [:span "JSON"]]
+            [:label {:class "flex items-center space-x-1 cursor-pointer"}
+             [:input {:type "radio" :name "config-mode" :checked (= config-mode :edn)
+                      :on-change #(rf/dispatch [::set-config-mode :edn])}]
+             [:span "EDN"]]]
+
+           ;; Config Management
+           [l/flex-row {:class "space-x-2 items-center"}
+            (when (seq saved-configs)
+              [:select {:class (str "text-xs py-1 px-2 rounded " t/bg-input " " t/border-default)
+                        :value (or active-config-name "")
+                        :on-change #(rf/dispatch [::load-config (.. % -target -value)])}
+               [:option {:value ""} "Select Config..."]
+               (for [name (keys saved-configs)]
+                 [:option {:key name :value name} name])])
+            [save-config-modal]
+            (when active-config-name
+              [c/button-xs {:class "text-red-400"
+                            :on-click #(rf/dispatch [::delete-config active-config-name])}
+               "Delete"])]]
+
+          [:div {:class "flex-grow relative"}
+           [editor/monaco-editor
+            {:value config-input
+             :language (if (= config-mode :json) "json" "clojure")
+             :options {:rulers [80] :minimap {:enabled false}}
+             :on-change #(rf/dispatch [::set-config-input %])}]]]
          nil)]]
 
      ;; Right Column (Outputs)
      [l/flex-col {:class "h-full"}
       ;; Right Tabs
-      [l/flex-row {:class (str "border-b " t/border-default " px-2 " t/bg-toolbar)}
-       [tab-button (= active-right-tab :plot) "Plot" #(rf/dispatch [::set-active-right-tab :plot])]
-       [tab-button (= active-right-tab :parsed) "Parsed Data" #(rf/dispatch [::set-active-right-tab :parsed])]]
+      [l/flex-row {:class (str "justify-between border-b " t/border-default " px-2 " t/bg-toolbar)}
+       [l/flex-row {:class "space-x-2"}
+        [tab-button (= active-right-tab :plot) "Plot" #(rf/dispatch [::set-active-right-tab :plot])]
+        [tab-button (= active-right-tab :parsed) "Parsed Data" #(rf/dispatch [::set-active-right-tab :parsed])]]
+       ;; Send to Portal (Moved here)
+       (when (= active-right-tab :plot)
+         [c/button-xs {:on-click #(let [spec-with-data (js/Object.assign #js{} parsed-config-obj)]
+                                    (set! (.-data spec-with-data) #js{:values (clj->js parsed-data)})
+                                    (rf/dispatch [::portal/submit (js->clj spec-with-data)]))}
+          "Send to Portal"])]
 
       ;; Right Content
       [:div {:class "flex-grow overflow-hidden relative bg-white"}
        (case active-right-tab
          :plot
          [:div {:class "h-full w-full overflow-auto p-4"}
-          [vega-viz {:spec config-input :data parsed-data}]]
+          [vega-viz {:spec-obj parsed-config-obj :data parsed-data}]]
 
          :parsed
          [:div {:class (str "h-full w-full " t/bg-page)}
