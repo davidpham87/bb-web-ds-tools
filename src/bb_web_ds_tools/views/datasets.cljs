@@ -162,7 +162,7 @@
               (get struct-labels s)])]
 
           [l/flex-row {:class (str "space-x-2 text-sm " t/text-primary " items-center")}
-           [c/button-xs {:on-click #(set-state :text (dp/example-data format structure))}
+           [c/button-info {:on-click #(set-state :text (dp/example-data format structure))}
             "Load Example"]]
 
           [:div {:class "flex-grow"}]
@@ -259,7 +259,7 @@
      [:span {:class (str t/text-secondary " text-sm")} (str (count (:data dataset)) " rows")]]
     [c/button {:class (str t/bg-button-danger " " t/bg-button-danger-hover " " t/text-button-primary)
                :on-click #(rf/dispatch [::delete-dataset (:id dataset)])}
-     "Delete"]]
+     [c/dustbin-icon {:class "w-5 h-5"}]]]
    [data-table dataset]])
 
 (defn dataset-list-item [id ds active-id]
@@ -304,7 +304,7 @@
                                   (.stopPropagation e)
                                   (when (js/confirm (str "Delete dataset '" (:name ds) "'?"))
                                     (rf/dispatch [::delete-dataset id])))}
-             "✕"]]])))))
+             [c/dustbin-icon]]]])))))
 
 (defn dataset-list []
   (let [items @(rf/subscribe [::items])
