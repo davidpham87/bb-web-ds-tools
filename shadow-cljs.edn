@@ -11,6 +11,8 @@
   {:target :browser
    :output-dir "docs/js/compiled"
    :asset-path "/js/compiled"
+   :js-options {:js-provider :external
+                :external-index "target/index.js"}
    :compiler-options {:optimizations :simple
                       :output-feature-set :es-next
                       :externs ["src/externs/webr.js"]}
