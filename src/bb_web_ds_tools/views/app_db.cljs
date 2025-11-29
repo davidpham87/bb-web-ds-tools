@@ -16,9 +16,16 @@
  (fn [db _] db))
 
 (rf/reg-sub
+ ::user-input-root
+ :<- [:bb-web-ds-tools.core/user-input]
+ (fn [user-input _]
+   (get user-input :app-db)))
+
+(rf/reg-sub
  ::watched-paths
- (fn [db _]
-   (get-in db [:user-input :app-db :watched-paths] [])))
+ :<- [::user-input-root]
+ (fn [root _]
+   (get root :watched-paths [])))
 
 (rf/reg-sub
  ::path-value
@@ -73,33 +80,38 @@
           [c/card {:class "flex flex-col space-y-2"}
            [l/flex-row {:class "justify-between items-center"}
             [:h4 {:class (str "font-mono text-sm font-bold " t/text-accent)} path-str]
-            [l/flex-row {:class "space-x-2"}
+
+            [l/flex-row {:class "items-center space-x-2 text-xs"}
+             ;; Depth Control
+             [:span {:class (str "font-medium " t/text-secondary)} "Depth:"]
+             [:input {:type "number"
+                      :value @print-level
+                      :on-change #(do (reset! print-level (js/parseInt (.. % -target -value)))
+                                      (reset! local-edn (with-out-str (binding [*print-level* @print-level] (pprint current-value)))))
+                      :class (str "w-12 rounded px-1 " t/bg-input " " t/border-default " " t/text-primary)}]
+
+             ;; Refresh Button
+             [c/button-xs {:on-click #(reset! local-edn (with-out-str (binding [*print-level* @print-level] (pprint current-value))))}
+              "Refresh View"]
+
+             ;; Update Path Button
+             [c/button-xs {:on-click #(rf/dispatch [::update-path-value path-str @local-edn])
+                           :class (str t/bg-button-primary " " t/text-button-primary)}
+              "Update Path"]
+
+             ;; Remove Button
              [c/button-xs {:on-click #(rf/dispatch [::remove-watch-path path-str])
                            :class t/bg-button-danger} "Remove"]]]
 
-           [l/flex-row {:class "items-center space-x-2 text-xs"}
-            [c/label "Depth:"]
-            [:input {:type "number"
-                     :value @print-level
-                     :on-change #(do (reset! print-level (js/parseInt (.. % -target -value)))
-                                     (reset! local-edn (with-out-str (binding [*print-level* @print-level] (pprint current-value)))))
-                     :class (str "w-12 rounded px-1 " t/bg-input " " t/border-default " " t/text-primary)}]
-            [c/button-xs {:on-click #(reset! local-edn (with-out-str (binding [*print-level* @print-level] (pprint current-value))))}
-             "Refresh View"]]
-
-           [:div {:class (str "h-64 border " t/border-default)}
+           [:div {:class (str "h-[500px] border " t/border-default)}
             [monaco-editor
              {:value @local-edn
               :language "clojure"
               :theme "zenburn"
               :options {:minimap {:enabled false}
-                        :fontSize 12
+                        :fontSize 14
                         :scrollBeyondLastLine false}
-              :on-change #(reset! local-edn %)}]]
-
-           [c/button {:class "w-full"
-                      :on-click #(rf/dispatch [::update-path-value path-str @local-edn])}
-            "Update Path"]]))})))
+              :on-change #(reset! local-edn %)}]]]))})))
 
 (defn panel []
   (let [watched-paths @(rf/subscribe [::watched-paths])]

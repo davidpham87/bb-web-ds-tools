@@ -13,7 +13,7 @@
                                           'dispatch rf/dispatch}
                           'clojure.core {'println println}}}))
 
-(rf/reg-sub ::instances (fn [db _] (get-in db [:user-input :repl])))
+(rf/reg-sub ::instances :<- [:bb-web-ds-tools.core/user-input] (fn [user-input _] (get user-input :repl)))
 (rf/reg-event-db ::add-instance (fn [db _]
                                  (let [new-id (str (random-uuid))]
                                    (-> db
@@ -30,7 +30,8 @@
           (catch :default e
             (update-in db [::repl instance-id :output] conj {:type :error :text (str e)})))}))
 
-(rf/reg-sub ::output (fn [db [_ instance-id]] (get-in db [::repl instance-id :output])))
+(rf/reg-sub ::repl-root (fn [db _] (::repl db)))
+(rf/reg-sub ::output :<- [::repl-root] (fn [repl-root [_ instance-id]] (get-in repl-root [instance-id :output])))
 (rf/reg-sub ::code :<- [::instances] (fn [instances [_ instance-id]] (get-in instances [instance-id :code])))
 (rf/reg-sub ::mac-os? (fn [db _] (get-in db [:platform :mac-os?])))
 
