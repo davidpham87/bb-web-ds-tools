@@ -196,115 +196,118 @@
         config-mode @(rf/subscribe [::config-mode])
         saved-configs @(rf/subscribe [::saved-configs])
         active-config-name @(rf/subscribe [::active-config-name])
-        parsed-config-obj @(rf/subscribe [::parsed-config-obj])]
-    [l/split-view {:ratio :1-1}
+        parsed-config-obj @(rf/subscribe [::parsed-config-obj])
+        format @(rf/subscribe [::format])]
+    [:div {:class "flex flex-col 2xl:flex-row h-full w-full overflow-hidden"}
      ;; Left Column (Inputs)
-     [l/flex-col {:class "h-full border-r border-[#3f3f3f]"}
-      ;; Left Tabs
-      [l/flex-row {:class (str "justify-between border-b " t/border-default " px-2 " t/bg-toolbar)}
-       [l/flex-row {:class "space-x-2"}
-        [tab-button (= active-left-tab :data) "Data" #(rf/dispatch [::set-active-left-tab :data])]
-        [tab-button (= active-left-tab :config) "Config" #(rf/dispatch [::set-active-left-tab :config])]]]
+     [:div {:class "h-1/2 2xl:h-full overflow-auto border-b 2xl:border-b-0 2xl:border-r border-[#3f3f3f] w-full 2xl:w-1/2"}
+      [l/flex-col {:class "h-full"}
+       ;; Left Tabs
+       [l/flex-row {:class (str "justify-between border-b " t/border-default " px-2 " t/bg-toolbar)}
+        [l/flex-row {:class "space-x-2"}
+         [tab-button (= active-left-tab :data) "Data" #(rf/dispatch [::set-active-left-tab :data])]
+         [tab-button (= active-left-tab :config) "Config" #(rf/dispatch [::set-active-left-tab :config])]]]
 
-      ;; Left Content
-      [:div {:class "flex-grow overflow-hidden relative"}
-       (case active-left-tab
-         :data
-         [l/flex-col {:class "h-full"}
-          [l/flex-row {:class "p-2 gap-2 flex-wrap border-b border-[#3f3f3f] bg-[#1c2128] items-center"}
-           [c/button-info {:on-click #(load-example :csv :columnar)} "CSV"]
-           [c/button-info {:on-click #(load-example :tsv :columnar)} "TSV"]
-           [c/button-info {:on-click #(load-example :markdown :columnar)} "MD"]
-           [c/button-info {:on-click #(load-example :json :row-maps)} "JSON Maps"]
-           [c/button-info {:on-click #(load-example :json :row-arrays)} "JSON Arrays"]
-           [c/button-info {:on-click #(load-example :edn :row-maps)} "EDN Maps"]
-           [c/button-info {:on-click #(load-example :edn :columnar)} "EDN Col"]
-           ;; Dataset Import
-           [:div {:class "relative group ml-auto"}
-            [c/button-info {:class "border-dashed border-white/50"} "Import Dataset ▼"]
-            [:div {:class (str "absolute hidden group-hover:block right-0 " t/bg-input " border " t/border-default " p-1 rounded shadow-lg z-10 w-48 max-h-60 overflow-y-auto")}
-             (if (seq datasets)
-               (for [[id ds] datasets]
-                 [:div {:key id
-                        :class (str "cursor-pointer px-2 py-1 text-xs " t/bg-item-hover " truncate")
-                        :on-click #(rf/dispatch [::import-dataset id])}
-                  (:name ds)])
-               [:div {:class "text-xs text-gray-500 p-2"} "No datasets created."])]]]
-          [:div {:class "flex-grow relative"}
-           [editor/monaco-editor
-            {:value data-input
-             :language "plaintext"
-             :options {:rulers [80] :minimap {:enabled false}}
-             :on-change (fn [val]
-                          (rf/dispatch [::set-data-input val])
-                          (rf/dispatch [::parse-data]))}]]]
+       ;; Left Content
+       [:div {:class "flex-grow overflow-hidden relative"}
+        (case active-left-tab
+          :data
+          [l/flex-col {:class "h-full"}
+           [l/flex-row {:class "p-2 gap-2 flex-wrap border-b border-[#3f3f3f] bg-[#1c2128] items-center"}
+            [c/button-info {:on-click #(load-example :csv :columnar)} "CSV"]
+            [c/button-info {:on-click #(load-example :tsv :columnar)} "TSV"]
+            [c/button-info {:on-click #(load-example :markdown :columnar)} "MD"]
+            [c/button-info {:on-click #(load-example :json :row-maps)} "JSON Maps"]
+            [c/button-info {:on-click #(load-example :json :row-arrays)} "JSON Arrays"]
+            [c/button-info {:on-click #(load-example :edn :row-maps)} "EDN Maps"]
+            [c/button-info {:on-click #(load-example :edn :columnar)} "EDN Col"]
+            ;; Dataset Import
+            [:div {:class "relative group ml-auto"}
+             [c/button-info {:class "border-dashed border-white/50"} "Import Dataset ▼"]
+             [:div {:class (str "absolute hidden group-hover:block right-0 " t/bg-input " border " t/border-default " p-1 rounded shadow-lg z-10 w-48 max-h-60 overflow-y-auto")}
+              (if (seq datasets)
+                (for [[id ds] datasets]
+                  [:div {:key id
+                         :class (str "cursor-pointer px-2 py-1 text-xs " t/bg-item-hover " truncate")
+                         :on-click #(rf/dispatch [::import-dataset id])}
+                   (:name ds)])
+                [:div {:class "text-xs text-gray-500 p-2"} "No datasets created."])]]]
+           [:div {:class "flex-grow relative"}
+            [editor/monaco-editor
+             {:value data-input
+              :language (if (= format :json) "json" "clojure")
+              :options {:rulers [80] :minimap {:enabled false}}
+              :on-change (fn [val]
+                           (rf/dispatch [::set-data-input val])
+                           (rf/dispatch [::parse-data]))}]]]
 
-         :config
-         [l/flex-col {:class "h-full"}
-          [l/flex-row {:class "p-2 gap-2 border-b border-[#3f3f3f] bg-[#1c2128] items-center justify-between"}
-           ;; Mode Selection
-           [l/flex-row {:class "space-x-2 items-center text-xs text-gray-400"}
-            [:span "Mode:"]
-            [:label {:class "flex items-center space-x-1 cursor-pointer"}
-             [:input {:type "radio" :name "config-mode" :checked (= config-mode :json)
-                      :on-change #(rf/dispatch [::set-config-mode :json])}]
-             [:span "JSON"]]
-            [:label {:class "flex items-center space-x-1 cursor-pointer"}
-             [:input {:type "radio" :name "config-mode" :checked (= config-mode :edn)
-                      :on-change #(rf/dispatch [::set-config-mode :edn])}]
-             [:span "EDN"]]]
+          :config
+          [l/flex-col {:class "h-full"}
+           [l/flex-row {:class "p-2 gap-2 border-b border-[#3f3f3f] bg-[#1c2128] items-center justify-between"}
+            ;; Mode Selection
+            [l/flex-row {:class "space-x-2 items-center text-xs text-gray-400"}
+             [:span "Mode:"]
+             [:label {:class "flex items-center space-x-1 cursor-pointer"}
+              [:input {:type "radio" :name "config-mode" :checked (= config-mode :json)
+                       :on-change #(rf/dispatch [::set-config-mode :json])}]
+              [:span "JSON"]]
+             [:label {:class "flex items-center space-x-1 cursor-pointer"}
+              [:input {:type "radio" :name "config-mode" :checked (= config-mode :edn)
+                       :on-change #(rf/dispatch [::set-config-mode :edn])}]
+              [:span "EDN"]]]
 
-           ;; Config Management
-           [l/flex-row {:class "space-x-2 items-center"}
-            (when (seq saved-configs)
-              [:select {:class (str "text-xs py-1 px-2 rounded " t/bg-input " " t/border-default)
-                        :value (or active-config-name "")
-                        :on-change #(rf/dispatch [::load-config (.. % -target -value)])}
-               [:option {:value ""} "Select Config..."]
-               (for [name (keys saved-configs)]
-                 [:option {:key name :value name} name])])
-            [save-config-modal]
-            (when active-config-name
-              [c/button-xs {:class "text-red-400"
-                            :on-click #(rf/dispatch [::delete-config active-config-name])}
-               [c/dustbin-icon]])]]
+            ;; Config Management
+            [l/flex-row {:class "space-x-2 items-center"}
+             (when (seq saved-configs)
+               [:select {:class (str "text-xs py-1 px-2 rounded " t/bg-input " " t/border-default)
+                         :value (or active-config-name "")
+                         :on-change #(rf/dispatch [::load-config (.. % -target -value)])}
+                [:option {:value ""} "Select Config..."]
+                (for [name (keys saved-configs)]
+                  [:option {:key name :value name} name])])
+             [save-config-modal]
+             (when active-config-name
+               [c/button-xs {:class "text-red-400"
+                             :on-click #(rf/dispatch [::delete-config active-config-name])}
+                [c/dustbin-icon]])]]
 
-          [:div {:class "flex-grow relative"}
-           [editor/monaco-editor
-            {:value config-input
-             :language (if (= config-mode :json) "json" "clojure")
-             :options {:rulers [80] :minimap {:enabled false}}
-             :on-change #(rf/dispatch [::set-config-input %])}]]]
-         nil)]]
+           [:div {:class "flex-grow relative"}
+            [editor/monaco-editor
+             {:value config-input
+              :language (if (= config-mode :json) "json" "clojure")
+              :options {:rulers [80] :minimap {:enabled false}}
+              :on-change #(rf/dispatch [::set-config-input %])}]]]
+          nil)]]]
 
      ;; Right Column (Outputs)
-     [l/flex-col {:class "h-full"}
-      ;; Right Tabs
-      [l/flex-row {:class (str "justify-between border-b " t/border-default " px-2 " t/bg-toolbar)}
-       [l/flex-row {:class "space-x-2"}
-        [tab-button (= active-right-tab :plot) "Plot" #(rf/dispatch [::set-active-right-tab :plot])]
-        [tab-button (= active-right-tab :parsed) "Parsed Data" #(rf/dispatch [::set-active-right-tab :parsed])]]
-       ;; Send to Portal (Moved here)
-       (when (= active-right-tab :plot)
-         [c/button-xs {:on-click #(let [spec-with-data (js/Object.assign #js{} parsed-config-obj)]
-                                    (set! (.-data spec-with-data) #js{:values (clj->js parsed-data)})
-                                    (rf/dispatch [::portal/submit (js->clj spec-with-data)]))}
-          "Send to Portal"])]
+     [:div {:class "h-1/2 2xl:h-full overflow-auto w-full 2xl:w-1/2"}
+      [l/flex-col {:class "h-full"}
+       ;; Right Tabs
+       [l/flex-row {:class (str "justify-between border-b " t/border-default " px-2 " t/bg-toolbar)}
+        [l/flex-row {:class "space-x-2"}
+         [tab-button (= active-right-tab :plot) "Plot" #(rf/dispatch [::set-active-right-tab :plot])]
+         [tab-button (= active-right-tab :parsed) "Parsed Data" #(rf/dispatch [::set-active-right-tab :parsed])]]
+        ;; Send to Portal
+        (when (= active-right-tab :plot)
+          [c/button-xs {:on-click #(let [config-edn (js->clj parsed-config-obj :keywordize-keys true)
+                                     final-edn (assoc config-edn :data {:values parsed-data})]
+                                  (rf/dispatch [::portal/submit final-edn]))}
+           "Send to Portal"])]
 
-      ;; Right Content
-      [:div {:class "flex-grow overflow-hidden relative bg-white"}
-       (case active-right-tab
-         :plot
-         [:div {:class "h-full w-full overflow-auto p-4"}
-          [vega-viz {:spec-obj parsed-config-obj :data parsed-data}]]
+       ;; Right Content
+       [:div {:class "flex-grow overflow-hidden relative bg-white"}
+        (case active-right-tab
+          :plot
+          [:div {:class "h-full w-full overflow-auto p-4"}
+           [vega-viz {:spec-obj parsed-config-obj :data parsed-data}]]
 
-         :parsed
-         [:div {:class (str "h-full w-full " t/bg-page)}
-          [editor/monaco-editor
-           {:value (with-out-str (pprint parsed-data))
-            :language "clojure"
-            :options {:readOnly true :minimap {:enabled false}}}]]
-         nil)]]]))
+          :parsed
+          [:div {:class (str "h-full w-full " t/bg-page)}
+           [editor/monaco-editor
+            {:value (with-out-str (pprint parsed-data))
+             :language "clojure"
+             :options {:readOnly true :minimap {:enabled false}}}]]
+          nil)]]]]))
 
 (defn panel []
   (r/create-class
