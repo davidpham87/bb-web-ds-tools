@@ -1,27 +1,14 @@
 (ns bb-web-ds-tools.views.malli
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
-            [cljs.pprint :as pprint]
-            [malli.provider :as mp]
-            [malli.generator :as mg]
-            [cljs.reader :as reader]
             [fork.re-frame :as fork]
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.editor :as editor]
             [bb-web-ds-tools.components.layout :as l]
+            [bb-web-ds-tools.components.malli :as c-malli]
             [bb-web-ds-tools.theme :as t]
             [bb-web-ds-tools.views.datasets :as datasets]
             [bb-web-ds-tools.utils.dataset-processing :as dp]))
-
-(defn detect-and-parse [text]
-  (if (clojure.string/blank? text)
-    nil
-    (try
-      (reader/read-string text)
-      (catch :default _
-        (try
-          (js->clj (js/JSON.parse text) :keywordize-keys true)
-          (catch :default _ nil))))))
 
 ;; Event handlers
 (rf/reg-event-db
@@ -67,7 +54,7 @@
 (rf/reg-event-db
  :malli/set-generation-samples
  (fn [db [_ n]]
-   (assoc-in db [::malli :generation-samples] (js/parseInt n))))
+   (assoc-in db [::malli :generation-samples] (c-malli/parse-int n))))
 
 (rf/reg-event-db
  :malli/set-generation-format
@@ -77,29 +64,22 @@
 (rf/reg-event-fx
   :malli/parse-schema-and-generate
   (fn [{:keys [db]} _]
-    (let [schema-text (get-in db [:user-input :malli :default :schema-text])]
-      (try
-        (let [schema (reader/read-string schema-text)]
-          {:dispatch [:malli/generate-data schema]})
-        (catch js/Error e
-          {:db (assoc-in db [::malli :generated-data] (str "Invalid schema EDN: " (.-message e)))})))))
+    (let [schema-text (get-in db [:user-input :malli :default :schema-text])
+          result (c-malli/parse-schema-and-generate schema-text)]
+      (if (:success result)
+        {:dispatch [:malli/generate-data (:schema result)]}
+        {:db (assoc-in db [::malli :generated-data] (:error result))}))))
 
 (rf/reg-event-fx
  :malli/generate-data
  (fn [{:keys [db]} [_ schema]]
    (let [component-state (::malli db)
          samples (get component-state :generation-samples 1)
-         format (get component-state :generation-format :edn)]
-     (if schema
-       (let [data (if (> samples 1)
-                    (vec (repeatedly samples #(mg/generate schema)))
-                    (mg/generate schema))
-             output (case format
-                      :edn (with-out-str (cljs.pprint/pprint data))
-                      :json (js/JSON.stringify (clj->js data) nil 2)
-                      (pr-str data))]
-         {:db (assoc-in db [::malli :generated-data] output)})
-       {:db (assoc-in db [::malli :generated-data] "Invalid schema.")}))))
+         format (get component-state :generation-format :edn)
+         result (c-malli/generate-data schema samples format)]
+     (if (:success result)
+       {:db (assoc-in db [::malli :generated-data] (:output result))}
+       {:db (assoc-in db [::malli :generated-data] (:error result))}))))
 
 (rf/reg-event-fx
  :malli/infer-schema
@@ -109,10 +89,11 @@
          input-text (:inference-input user-input)
          format (:input-format component-state)
          input-data (case format
-                      :edn (detect-and-parse input-text)
-                      (dp/parse-dataset format input-text))]
-     (if (and (coll? input-data) (seq input-data))
-       {:db (assoc-in db [::malli :inferred-schema] (with-out-str (cljs.pprint/pprint (mp/provide input-data))))}
+                      :edn (c-malli/detect-and-parse input-text)
+                      (dp/parse-dataset format input-text))
+         result (c-malli/infer-schema input-data)]
+     (if (:success result)
+       {:db (assoc-in db [::malli :inferred-schema] (:schema-str result))}
        {:db (assoc-in db [::malli :inferred-schema] (str "Invalid input data for format " (name format) ".")) }))))
 
 (rf/reg-event-fx
@@ -120,10 +101,7 @@
  (fn [{:keys [db]} _]
    (let [generated-data (get-in db [::malli :generated-data])
          format (get-in db [::malli :generation-format] :edn)
-         parsed-data (case format
-                       :edn (try (reader/read-string generated-data) (catch :default _ nil))
-                       :json (try (js->clj (js/JSON.parse generated-data) :keywordize-keys true) (catch :default _ nil))
-                       nil)]
+         parsed-data (c-malli/save-dataset-data generated-data format)]
      (if parsed-data
        {:dispatch [::datasets/add-dataset {:name (str "Malli Generated " (rand-int 1000))
                                            :data parsed-data}]}
@@ -136,7 +114,7 @@
          data (:data dataset)]
      (if data
        (-> db
-           (assoc-in [:user-input :malli :default :inference-input] (with-out-str (cljs.pprint/pprint data)))
+           (assoc-in [:user-input :malli :default :inference-input] (c-malli/pretty-print-str data))
            (assoc-in [::malli :input-format] :edn))
        db))))
 

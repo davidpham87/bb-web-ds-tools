@@ -12,9 +12,9 @@
 (defn init-db! []
   (go
     (try
-      (let [init-fn (if (and (exists? sqlite3InitModule) (.-default sqlite3InitModule))
-                      (.-default sqlite3InitModule)
-                      sqlite3InitModule)
+      (let [^js init-fn (if (and (exists? sqlite3InitModule) (.-default sqlite3InitModule))
+                          (.-default sqlite3InitModule)
+                          sqlite3InitModule)
             ^js sqlite3 (<p! (init-fn (clj->js {:locateFile (fn [file] (str "js/libs/" file))
                                                 :print js/console.log
                                                 :printErr js/console.error})))]
@@ -59,11 +59,11 @@
       (.exec db "DELETE FROM workspaces;")
       (.exec db "DELETE FROM inputs;")
 
-      (doseq [[id name created updated] workspaces]
+      (doseq [[id name ^js created ^js updated] workspaces]
         (.exec db (clj->js {:sql "INSERT INTO workspaces VALUES (?, ?, ?, ?)"
                             :bind [id name (.getTime created) (.getTime updated)]})))
 
-      (doseq [[id ws-id type name content meta updated] inputs]
+      (doseq [[id ws-id type name content meta ^js updated] inputs]
         (.exec db (clj->js {:sql "INSERT INTO inputs VALUES (?, ?, ?, ?, ?, ?, ?)"
                             :bind [id ws-id (name type) name content (pr-str meta) (.getTime updated)]})))
 

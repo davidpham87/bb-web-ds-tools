@@ -28,7 +28,7 @@
  ::generate-response-fx
  (fn [text]
    (try
-     (let [response (.generateResponse @llm-instance text)]
+     (let [response (.generateResponse ^js @llm-instance text)]
        (rf/dispatch [::add-message :model response])
        (rf/dispatch [::set-loading false]))
      (catch js/Error e
