@@ -141,7 +141,7 @@
        db))))
 
 ;; Subscriptions
-(rf/reg-sub :malli/user-input-root (fn [db _] (get-in db [:user-input :malli :default])))
+(rf/reg-sub :malli/user-input-root :<- [:bb-web-ds-tools.core/user-input] (fn [user-input _] (get-in user-input [:malli :default])))
 (rf/reg-sub :malli/component-root (fn [db _] (::malli db)))
 (rf/reg-sub :malli/schema-text :<- [:malli/user-input-root] (fn [root _] (:schema-text root)))
 (rf/reg-sub :malli/generated-data :<- [:malli/component-root] (fn [root _] (:generated-data root)))

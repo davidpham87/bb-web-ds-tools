@@ -17,8 +17,9 @@
 
 (rf/reg-sub
  ::watched-paths
- (fn [db _]
-   (get-in db [:user-input :app-db :watched-paths] [])))
+ :<- [:bb-web-ds-tools.core/user-input]
+ (fn [user-input _]
+   (get-in user-input [:app-db :watched-paths] [])))
 
 (rf/reg-sub
  ::path-value

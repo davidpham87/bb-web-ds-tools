@@ -21,7 +21,7 @@
                   ::output []})))))
 
 ;; Subscriptions
-(rf/reg-sub ::root (fn [db _] (get-in db [:user-input :r-repl :default])))
+(rf/reg-sub ::root :<- [:bb-web-ds-tools.core/user-input] (fn [user-input _] (get-in user-input [:r-repl :default])))
 (rf/reg-sub ::loading? :<- [::root] (fn [root] (::loading? root)))
 (rf/reg-sub ::ready? :<- [::root] (fn [root] (::ready? root)))
 (rf/reg-sub ::error :<- [::root] (fn [root] (::error root)))
