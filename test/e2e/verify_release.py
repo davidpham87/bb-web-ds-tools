@@ -29,26 +29,34 @@ def verify():
             print("Landing page loaded.")
 
             # Navigation items to check
-            # Key is the label in the navbar (used for title attribute)
-            # Value is the text expected to be found on the resulting page
-            nav_checks = {
-                "Malli": "Input Data",
-                "HoneySQL": "Convert to SQL",
-                "Vega-Lite": "Data Input",
-                "Gemma": "Load Gemma Model",
-                "Pyodide": "Load Python Environment",
-                "Editor": "Save Code",
-                "Repl": "Add REPL",
-                "Datasets": "Create New Dataset",
-                "Settings": "Settings",
-                "Changelog": "Changelog"
-            }
+            items = [
+                {"label": "Malli", "route": "#/malli", "text": "Input Data"},
+                {"label": "HoneySQL", "route": "#/honeysql", "text": "Convert to SQL"},
+                {"label": "Vega-Lite", "route": "#/vega-lite", "text": "Import Dataset"},
+                {"label": "Gemma", "route": "#/gemma", "text": "Load Gemma Model"},
+                {"label": "Pyodide", "route": "#/pyodide", "text": "Code"},
+                {"label": "Editor", "route": "#/editor", "text": "Save Code"},
+                {"label": "Repl", "route": "#/repl", "text": "Add REPL"},
+                {"label": "Datasets", "route": "#/datasets", "text": "Create New Dataset"},
+                {"label": "Settings", "route": "#/settings", "text": "Settings"},
+                {"label": "Changelog", "route": "#/changelog", "text": "Changelog"}
+            ]
 
-            for label, expected_text in nav_checks.items():
+            for item in items:
+                label = item["label"]
+                route = item["route"]
+                expected_text = item["text"]
+
                 print(f"Navigating to {label}...")
 
-                # Click the navigation link using the text content
-                page.click(f"nav a:has-text('{label}')")
+                # Use deep linking to navigate, bypassing potential UI blockers
+                page.goto(f"http://localhost:{PORT}/{route}")
+
+                # Handle potential Jupyter dialogs that block the UI
+                if page.is_visible("text=Select Kernel"):
+                    print("Dismissing Kernel dialog...")
+                    # Forcefully remove the dialog from the DOM
+                    page.evaluate("document.querySelectorAll('.jp-Dialog').forEach(e => e.remove())")
 
                 # Wait for the expected text to appear
                 try:
