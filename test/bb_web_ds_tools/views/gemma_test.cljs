@@ -1,9 +1,12 @@
 (ns bb-web-ds-tools.views.gemma-test
-  (:require [cljs.test :refer-macros [deftest is testing]]
+  (:require [cljs.test :refer-macros [deftest is testing use-fixtures]]
             [re-frame.core :as rf]
             [day8.re-frame.test :as rf-test]
             [bb-web-ds-tools.views.gemma :as sut]
-            [malli.generator :as mg]))
+            [malli.generator :as mg]
+            [bb-web-ds-tools.test-setup :as setup]))
+
+(use-fixtures :each setup/suppress-re-frame-warnings)
 
 ;; Mock effects to avoid actual network/JS interop calls
 (rf/reg-fx
