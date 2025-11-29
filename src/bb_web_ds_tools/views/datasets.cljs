@@ -162,8 +162,7 @@
               (get struct-labels s)])]
 
           [l/flex-row {:class (str "space-x-2 text-sm " t/text-primary " items-center")}
-           [c/button-xs {:class "!bg-blue-600 hover:!bg-blue-700 !text-white"
-                         :on-click #(set-state :text (dp/example-data format structure))}
+           [c/button-info {:on-click #(set-state :text (dp/example-data format structure))}
             "Load Example"]]
 
           [:div {:class "flex-grow"}]
