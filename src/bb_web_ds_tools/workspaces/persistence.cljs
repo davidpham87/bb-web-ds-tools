@@ -15,9 +15,9 @@
       (let [init-fn (if (and (exists? sqlite3InitModule) (.-default sqlite3InitModule))
                       (.-default sqlite3InitModule)
                       sqlite3InitModule)
-            sqlite3 (<p! (init-fn (clj->js {:locateFile (fn [file] (str "js/libs/" file))
-                                            :print js/console.log
-                                            :printErr js/console.error})))]
+            ^js sqlite3 (<p! (init-fn (clj->js {:locateFile (fn [file] (str "js/libs/" file))
+                                                :print js/console.log
+                                                :printErr js/console.error})))]
         (reset! sqlite-lib sqlite3)
         (let [DB (.. sqlite3 -oo1 -DB)
               db (new DB ":memory:" "ct")]
@@ -73,9 +73,9 @@
 (defn export-db []
   (when-let [^js db @sql-db]
     (persist-all!)
-    (let [capi (.. @sqlite-lib -capi)
+    (let [capi (.. ^js @sqlite-lib -capi)
           p-db (.-pointer db)
-          bytes (.sqlite3_js_db_export capi p-db)
+          bytes (.sqlite3_js_db_export ^js capi p-db)
           blob (new js/Blob (clj->js [bytes]) (clj->js {:type "application/x-sqlite3"}))]
       blob)))
 
