@@ -9,6 +9,7 @@ module.exports = function (config) {
         },
         frameworks: ['cljs-test'],
         files: [
+            'target/test/libs.js',
             'target/test/js/test.js',
             {pattern: 'target/test/js/cljs-runtime/**/*.js', included: false, served: true, watched: true}
         ],
