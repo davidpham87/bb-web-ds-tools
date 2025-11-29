@@ -57,7 +57,33 @@
 
 (rf/reg-event-db ::set-data-input (fn [db [_ val]] (assoc-in db [:user-input :vega-lite :default ::data-input] val)))
 (rf/reg-event-db ::set-config-input (fn [db [_ val]] (assoc-in db [:user-input :vega-lite :default ::config-input] val)))
-(rf/reg-event-db ::set-config-mode (fn [db [_ mode]] (assoc-in db [:user-input :vega-lite :default ::config-mode] mode)))
+
+(rf/reg-event-db
+ ::set-config-mode
+ (fn [db [_ new-mode]]
+   (let [user-input (get-in db [:user-input :vega-lite :default])
+         current-mode (::config-mode user-input)
+         current-input (::config-input user-input)
+         new-input (cond
+                     (and (= current-mode :json) (= new-mode :edn))
+                     (try
+                       (let [obj (js/JSON.parse current-input)
+                             edn-data (js->clj obj :keywordize-keys true)]
+                         (with-out-str (pprint edn-data)))
+                       (catch js/Error _ current-input))
+
+                     (and (= current-mode :edn) (= new-mode :json))
+                     (try
+                       (let [edn-data (edn/read-string current-input)
+                             obj (clj->js edn-data)]
+                         (js/JSON.stringify obj nil 2))
+                       (catch js/Error _ current-input))
+
+                     :else current-input)]
+     (-> db
+         (assoc-in [:user-input :vega-lite :default ::config-mode] new-mode)
+         (assoc-in [:user-input :vega-lite :default ::config-input] new-input)))))
+
 (rf/reg-event-db ::set-active-config-name (fn [db [_ name]] (assoc-in db [:user-input :vega-lite :default ::active-config-name] name)))
 
 (rf/reg-event-db ::set-format (fn [db [_ fmt]] (assoc-in db [::vega-lite ::format] fmt)))
