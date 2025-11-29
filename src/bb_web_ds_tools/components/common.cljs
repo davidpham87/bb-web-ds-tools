@@ -120,3 +120,26 @@
    {:label "R" :route :r-repl :icon "🇷"}
    {:label "Settings" :route :settings :icon "⚙️"}
    {:label "Changelog" :route :changelog :icon "📜"}])
+
+(defn tabs [{:keys [tabs active-tab-id on-change on-add class]}]
+  [:div {:class (str "flex items-center space-x-2 border-b " t/border-default " " class)}
+   [:div {:class "flex-grow flex items-center space-x-1 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent px-1"}
+    (for [{:keys [id label on-close]} tabs]
+      ^{:key (str id)}
+      [:div {:class (str "flex items-center px-4 py-2 cursor-pointer border-t border-l border-r rounded-t-md min-w-fit "
+                         (if (= id active-tab-id)
+                           (str t/bg-card " " t/border-default " " t/text-accent " -mb-px pb-2.5 z-10")
+                           (str t/bg-input " border-transparent " t/text-secondary " hover:bg-opacity-80 pb-2 mb-0 opacity-70 hover:opacity-100")))
+             :on-click #(when on-change (on-change id))}
+       [:span {:class "whitespace-nowrap font-medium text-sm"} label]
+       (when on-close
+         [:button {:class (str "ml-2 p-0.5 rounded hover:bg-white/10 " t/text-muted " hover:text-red-400 transition-colors")
+                   :on-click (fn [e]
+                               (.stopPropagation e)
+                               (on-close id))}
+          [:span {:class "text-xs font-bold leading-none"} "✕"]])])]
+   (when on-add
+     [:button {:class (str "px-3 py-2 rounded-t-md " t/bg-button-xs " " t/bg-button-xs-hover " " t/text-button " font-bold text-lg leading-none mb-0.5")
+               :on-click on-add
+               :title "Add New"}
+      "+"])])
