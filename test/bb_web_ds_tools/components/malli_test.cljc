@@ -20,10 +20,12 @@
 (deftest infer-schema-test
   (testing "Infers schema from data"
     (let [data [{:a 1} {:a 2}]
-          schema-str (sut/infer-schema data)
-          schema (edn/read-string schema-str)]
-      (is (vector? schema))
-      (is (m/validate schema data)))))
+          schema-str (sut/infer-schema data)]
+      (is (string? schema-str) "infer-schema should return a string")
+      (when (string? schema-str)
+        (let [schema (edn/read-string schema-str)]
+          (is (vector? schema) (str "Schema should be a vector, got: " (type schema)))
+          (is (m/validate schema data)))))))
 
 (deftest generate-data-test
   (testing "Generates data from schema"
@@ -35,10 +37,12 @@
 
   (testing "Round trip: Infer -> Generate -> Validate"
     (let [original-data [{:a 1 :b "x"} {:a 2 :b "y"}]
-          schema-str (sut/infer-schema original-data)
-          schema (edn/read-string schema-str)
-          ;; Use 1 sample to generate one instance of the schema (which is the dataset structure)
-          generated-str (sut/generate-data schema-str 1 :edn)
-          generated-data (edn/read-string generated-str)]
-      (is (vector? generated-data))
-      (is (m/validate schema generated-data)))))
+          schema-str (sut/infer-schema original-data)]
+      (is (string? schema-str))
+      (when (string? schema-str)
+        (let [schema (edn/read-string schema-str)
+              ;; Use 1 sample to generate one instance of the schema (which is the dataset structure)
+              generated-str (sut/generate-data schema-str 1 :edn)
+              generated-data (edn/read-string generated-str)]
+          (is (vector? generated-data))
+          (is (m/validate schema generated-data)))))))

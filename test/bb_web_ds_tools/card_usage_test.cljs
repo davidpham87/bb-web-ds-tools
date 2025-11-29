@@ -30,7 +30,7 @@
 
 (deftest honeysql-layout-test
   (rf/dispatch-sync [:honeysql/initialize])
-  (let [hiccup (honeysql/panel)
+  (let [hiccup (honeysql/panel-render)
         splits (find-component-usages l/split-view hiccup)]
     (is (seq splits) "Should find split-view in honeysql")
     (doseq [split splits]
