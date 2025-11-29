@@ -150,7 +150,7 @@
                    :on-change #(set-state :name (.. % -target -value))}]
 
          [l/flex-row {:class "items-center space-x-4 flex-wrap gap-y-2"}
-          [l/flex-row {:class "items-center space-x-2"}
+          [l/flex-row {:class "items-baseline space-x-2"}
            [:span {:class (str "text-sm " t/text-primary)} "Structure:"]
            (for [s [:columnar :row-maps :row-arrays]]
              [c/button-xs {:key s
@@ -227,12 +227,12 @@
             [:div {:class "flex items-center space-x-1"}
              [:span (name col)]
              (when (= sort-col col)
-               [:span (if (= sort-dir :asc) "▲" "▼")])]])]]
+               [:span {:class "text-[10px] transform translate-y-px"} (if (= sort-dir :asc) "▲" "▼")])]])]]
        [c/tbody {}
         ;; Filter Row
         [c/tr {}
          (for [col visible-columns]
-           [c/td {:key (str "filter-" col) :class "px-6 py-2"}
+           [c/td {:key (str "filter-" col) :class "px-3 py-1.5"}
             [c/input {:class "text-sm"
                       :placeholder (str "Filter " (name col))
                       :value (get filters col "")
@@ -251,7 +251,7 @@
 (defn dataset-view [dataset]
   [l/flex-col {:class "h-full"}
    [l/flex-row {:class (str "justify-between " t/bg-toolbar " p-2 rounded shadow-sm m-4 mt-0 mb-0")}
-    [l/flex-row {:class "space-x-4"}
+    [l/flex-row {:class "items-baseline space-x-4"}
      [:input {:class (str "text-xl font-bold bg-transparent " t/text-accent " border-b border-transparent "
                           t/border-focus-accent " " t/outline-none)
               :value (:name dataset)
