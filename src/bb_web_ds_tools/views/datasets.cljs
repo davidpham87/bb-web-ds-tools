@@ -262,6 +262,50 @@
      "Delete"]]
    [data-table dataset]])
 
+(defn dataset-list-item [id ds active-id]
+  (let [editing? (r/atom false)
+        temp-name (r/atom (:name ds))]
+    (fn [id ds active-id]
+      (let [active? (= id active-id)]
+        (if @editing?
+          [:div {:class (str "p-2 rounded " t/bg-input " border " t/border-focus " flex items-center space-x-2")}
+           [c/input {:class "flex-grow h-6 text-sm py-0"
+                     :value @temp-name
+                     :auto-focus true
+                     :on-change #(reset! temp-name (.. % -target -value))
+                     :on-key-down #(case (.-key %)
+                                     "Enter" (do (rf/dispatch [::update-dataset-name id @temp-name])
+                                                 (reset! editing? false))
+                                     "Escape" (do (reset! temp-name (:name ds))
+                                                  (reset! editing? false))
+                                     nil)}]
+           [c/button-xs {:on-click #(do (rf/dispatch [::update-dataset-name id @temp-name])
+                                        (reset! editing? false))} "Save"]]
+          [:div {:class (str "group flex items-center justify-between p-3 rounded cursor-pointer transition-colors text-sm font-medium "
+                             (if active?
+                               (str t/bg-card " " t/text-accent " shadow-sm")
+                               (str t/text-primary " " t/bg-item-hover)))
+                 :on-click #(rf/dispatch [::set-active-dataset-id id])}
+           [:span {:class "truncate flex-grow"} (:name ds)]
+           [:div {:class (str "flex space-x-1 opacity-0 group-hover:opacity-100 transition-opacity "
+                              (when active? "opacity-100"))}
+            ;; Rename button
+            [:button {:class (str "p-1 rounded hover:" t/bg-button-hover " text-xs")
+                      :title "Rename"
+                      :on-click (fn [e]
+                                  (.stopPropagation e)
+                                  (reset! temp-name (:name ds))
+                                  (reset! editing? true))}
+             "✎"]
+            ;; Delete button
+            [:button {:class (str "p-1 rounded hover:" t/bg-button-danger-hover " hover:text-white text-xs")
+                      :title "Delete"
+                      :on-click (fn [e]
+                                  (.stopPropagation e)
+                                  (when (js/confirm (str "Delete dataset '" (:name ds) "'?"))
+                                    (rf/dispatch [::delete-dataset id])))}
+             "✕"]]])))))
+
 (defn dataset-list []
   (let [items @(rf/subscribe [::items])
         active-id @(rf/subscribe [::active-dataset-id])]
@@ -274,13 +318,7 @@
      [:div {:class "flex-grow overflow-y-auto p-2 space-y-1"}
       (if (seq items)
         (for [[id ds] items]
-          [:div {:key id
-                 :class (str "p-3 rounded cursor-pointer transition-colors text-sm font-medium "
-                             (if (= id active-id)
-                               (str t/bg-card " " t/text-accent " shadow-sm")
-                               (str t/text-primary " " t/bg-item-hover)))
-                 :on-click #(rf/dispatch [::set-active-dataset-id id])}
-           (:name ds)])
+          ^{:key id} [dataset-list-item id ds active-id])
         [:div {:class (str "text-sm " t/text-muted " italic p-2")} "No datasets"])]]))
 
 (defn panel-render []
