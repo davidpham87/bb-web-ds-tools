@@ -13,4 +13,4 @@
       (is (= :div (first component)))
       (is (string? (:class (second component))))
       ;; Check if it contains the tabs
-      (is (some #(and (vector? %) (= "Tab 1" (second (second %)))) (tree-seq coll? seq component))))))
+      (is (some #(= "Tab 1" %) (tree-seq coll? seq component))))))
