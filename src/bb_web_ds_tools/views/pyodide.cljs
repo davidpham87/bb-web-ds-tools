@@ -1,24 +1,60 @@
 (ns bb-web-ds-tools.views.pyodide
-  (:require [reagent.core :as r]
-            [re-frame.core :as rf]
-            [bb-web-ds-tools.components.common :as c]
-            [bb-web-ds-tools.components.editor :as editor]
-            [bb-web-ds-tools.components.layout :as l]
-            [bb-web-ds-tools.theme :as t]
-            [bb-web-ds-tools.portal :as portal]
-            ["pyodide" :refer [loadPyodide]]))
+  (:require
+   ["pyodide" :as pyodide :refer (loadPyodide)]
+   [bb-web-ds-tools.components.common :as c]
+   [bb-web-ds-tools.components.editor :as editor]
+   [bb-web-ds-tools.components.layout :as l]
+   [bb-web-ds-tools.portal :as portal]
+   [bb-web-ds-tools.theme :as t]
+   [clojure.string :as str]
+   [goog.object :as gobj]
+   [re-frame.core :as rf]
+   [reagent.core :as r]))
+
+
 
 (defonce pyodide-instance (atom nil))
+
+(def packages
+  ["numpy" "pandas" "altair" "cytoolz" "scikit-learn" "sqlite3" "protobuf"])
+
+(def initial-code
+  "initial code from the console"
+  (let [import-fn #(str "import " %1 (when %2 (str " as " %2)))
+        install-fn #(str "await micropip.install(\"" %1 "\")")]
+    (str/join
+     "\n"
+     ["import micropip"
+      ""
+      (str/join "\n" (mapv install-fn packages))
+      ""
+      (import-fn "numpy" "np")
+      (import-fn "pandas" "pd")
+      (import-fn "altair" "alt")
+      (import-fn "sklearn.linear_model" "lm")
+      (import-fn "cytoolz" "tz")])))
+
+(def setup-code
+  "Code run at start of pyodide"
+  (str "import pyodide_js\nawait pyodide_js.loadPackage('micropip')"
+       "\n"
+       initial-code))
+
+(defn run-code [^js pyodide-instance code]
+  (let [run-fn (gobj/get pyodide-instance "runPythonAsync")]
+    (run-fn code)))
 
 (rf/reg-event-fx
  ::initialize
  (fn [{:keys [db]} _]
    (let [exists? (get-in db [:user-input :pyodide :default ::code])
-         code "print('Hello Pyodide')\nimport sys\nprint(sys.version)"]
-     {:db (cond-> db
-            (not exists?)
-            (assoc-in [:user-input :pyodide :default ::code] code))
-      :fx [[::load-runtime]]})))
+         ready? (get-in db [:pyodide ::ready?])]
+     {:db (-> db
+              (cond->
+                  (not exists?)
+                (assoc-in [:user-input :pyodide :default ::code] initial-code))
+              (assoc-in [:pyodide ::loading?] true))
+      :fx [(when-not ready? [::load-runtime])]})))
 
 (rf/reg-sub
  ::user-input-root
@@ -41,12 +77,12 @@
 
 (rf/reg-sub
  ::ready?
- :<- [::user-input-root]
+ :<- [::pyodide]
  (fn [root] (::ready? root)))
 
 (rf/reg-sub
  ::error
- :<- [::user-input-root]
+ :<- [::pyodide]
  (fn [root] (::error root)))
 
 (rf/reg-sub
@@ -79,31 +115,29 @@
    (if @pyodide-instance
      (rf/dispatch [::set-ready true])
      (-> (loadPyodide
-          (clj->js {:indexURL "js/pyodide"
-                    :stdout (fn [text] (rf/dispatch [:bb-web-ds-tools.portal/submit {:type "stdout" :text text}]))
-                    :stderr (fn [text] (rf/dispatch [:bb-web-ds-tools.portal/submit {:type "stderr" :text text}]))}))
+          (clj->js {:indexURL #_"js/pyodide"
+                    (str "https://cdn.jsdelivr.net/pyodide/v" pyodide/version "/full/")
+                    :stdout (fn [text] (rf/dispatch [::portal/submit {:type "stdout" :text text}]))
+                    :stderr (fn [text] (rf/dispatch [::portal/submit {:type "stderr" :text text}]))}))
          (.then (fn [p]
                   (reset! pyodide-instance p)
                   (rf/dispatch [::set-ready true])
-                  (rf/dispatch [::set-loading false])))
+                  (rf/dispatch [::set-loading false])
+                  (rf/dispatch [::run-code setup-code])))
          (.catch (fn [e]
                    (rf/dispatch [::set-error (str e)])))))))
-
-(rf/reg-event-fx
- ::initialize-runtime
- (fn [{:keys [db]} _]
-   {:db (assoc-in db [:user-input :pyodide :default ::loading?] true)
-    :fx [[::load-runtime]]}))
 
 (rf/reg-fx
  ::execute-python
  (fn [code]
    (when @pyodide-instance
      (try
-       (let [res (.runPython ^js @pyodide-instance code)]
-         (rf/dispatch [:bb-web-ds-tools.portal/submit {:type "result" :value (str res)}]))
+       (let [res (run-code @pyodide-instance code)]
+         (.then res
+                (fn [x]
+                  (rf/dispatch [::portal/submit {:type "result" :value (str x)}]))))
        (catch js/Error e
-         (rf/dispatch [:bb-web-ds-tools.portal/submit {:type "error" :text (str e)}]))))))
+         (rf/dispatch [::portal/submit {:type "error" :text (str e)}]))))))
 
 (rf/reg-event-fx
  ::run-code
@@ -135,6 +169,10 @@
                           % mac-os?
                           (fn [c] (rf/dispatch [::run-code c])))}]]]
           (cond
+
+            ready?
+            [portal/portal-frame]
+
             loading?
             [l/flex-col {:class "h-full p-4 space-y-4"}
              [:div "Loading Pyodide..."]]
@@ -142,8 +180,6 @@
             error
             [l/flex-col {:class "h-full p-4 space-y-4"}
              [:div {:class "text-red-500"} (str "Error: " error)]]
-            ready?
-            [portal/portal-frame]
 
             :else
             [portal/portal-frame])]]))))
@@ -152,3 +188,8 @@
   (r/create-class
    {:component-did-mount #(rf/dispatch [::initialize])
     :reagent-render internal-view}))
+
+(comment
+  (.log js/console @pyodide-instance)
+  (.loadPackage @pyodide-instance "micropip")
+  )
