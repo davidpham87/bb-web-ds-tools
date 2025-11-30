@@ -1,30 +1,30 @@
 (ns bb-web-ds-tools.core
-  (:require [reagent.core :as r]
-            [reagent.dom :as rdom]
-            [re-frame.core :as rf]
-            [reitit.frontend :as rf-router]
-            [reitit.frontend.easy :as rfe]
-            [reitit.coercion.spec :as rss]
-            [bb-web-ds-tools.components.layout :as layout]
-            [bb-web-ds-tools.components.common :refer (nav-items)]
-            [bb-web-ds-tools.portal :as portal]
-            [bb-web-ds-tools.theme :as t]
-            [bb-web-ds-tools.views.landing :as landing]
-            [bb-web-ds-tools.views.malli :as malli]
-            [bb-web-ds-tools.views.honeysql :as honeysql]
-            [bb-web-ds-tools.views.vega-lite :as vega-lite]
-            [bb-web-ds-tools.views.gemma :as gemma]
-            [bb-web-ds-tools.views.pyodide :as pyodide]
-            [bb-web-ds-tools.views.editor :as editor]
-            [bb-web-ds-tools.views.repl :as repl]
-            [bb-web-ds-tools.views.r-repl :as r-repl]
-            [bb-web-ds-tools.views.datasets :as datasets]
-            [bb-web-ds-tools.views.changelog :as changelog]
-            [bb-web-ds-tools.views.settings :as settings]
-            [bb-web-ds-tools.views.app-db :as app-db]
-            [bb-web-ds-tools.views.workspaces :as workspaces]
-            [bb-web-ds-tools.workspaces.core :as ws]
-            [bb-web-ds-tools.workspaces.persistence :as wp]))
+  (:require
+   [bb-web-ds-tools.components.common :refer (nav-items)]
+   [bb-web-ds-tools.components.layout :as layout]
+   [bb-web-ds-tools.portal :as portal]
+   [bb-web-ds-tools.theme :as t]
+   [bb-web-ds-tools.views.app-db :as app-db]
+   [bb-web-ds-tools.views.changelog :as changelog]
+   ;; [bb-web-ds-tools.views.datasets :as datasets]
+   ;; [bb-web-ds-tools.views.editor :as editor]
+   ;; #_[bb-web-ds-tools.views.gemma :as gemma]
+   [bb-web-ds-tools.views.honeysql :as honeysql]
+   [bb-web-ds-tools.views.landing :as landing]
+   [bb-web-ds-tools.views.malli :as malli]
+   ;; [bb-web-ds-tools.views.pyodide :as pyodide]
+   ;; [bb-web-ds-tools.views.r-repl :as r-repl]
+   [bb-web-ds-tools.views.repl :as repl]
+   [bb-web-ds-tools.views.settings :as settings]
+   [bb-web-ds-tools.views.vega-lite :as vega-lite]
+   ;; [bb-web-ds-tools.views.workspaces :as workspaces]
+   ;; [bb-web-ds-tools.workspaces.core :as ws]
+   ;; [bb-web-ds-tools.workspaces.persistence :as wp]
+   [re-frame.core :as rf]
+   [reagent.dom :as rdom]
+   [reitit.coercion.spec :as rss]
+   [reitit.frontend :as rf-router]
+   [reitit.frontend.easy :as rfe]))
 
 ;; --- Routing & Navigation ---
 
@@ -71,8 +71,6 @@
     {:name :datasets}]
    ["changelog"
     {:name :changelog}]
-   ["reader"
-    {:name :reader}]
    ["settings"
     {:name :settings}]
    ["app-db"
@@ -92,7 +90,7 @@
    on-navigate
    {:use-fragment true}))
 
-;; --- DB & Logic ---
+;; ;; --- DB & Logic ---
 
 (rf/reg-event-db
  ::initialize-db
@@ -128,33 +126,34 @@
    (assoc-in db [:user-input :editor :default :code] new-code)))
 
 
-;; --- Views ---
+;; ;; --- Views ---
 
 (defmulti view (fn [match] (:name (:data match))))
+(defmethod view :default [_] [:div "404! Sorry"])
 (defmethod view :landing-page [_] [landing/landing-page])
 (defmethod view :malli [_] [malli/panel])
 (defmethod view :honeysql [_] [honeysql/panel])
 (defmethod view :vega-lite [_] [vega-lite/panel])
-(defmethod view :gemma [_] [gemma/panel])
-(defmethod view :pyodide [_] [pyodide/panel])
-(defmethod view :editor [_] [editor/panel])
+;; (defmethod view :gemma [_] [gemma/panel])
+;; (defmethod view :pyodide [_] [pyodide/panel])
+;; (defmethod view :editor [_] [editor/panel])
 (defmethod view :repl [_] [repl/panel])
-(defmethod view :r-repl [_] [r-repl/panel])
-(defmethod view :datasets [_] [datasets/panel])
+;; (defmethod view :r-repl [_] [r-repl/panel])
+;; (defmethod view :datasets [_] [datasets/panel])
 (defmethod view :changelog [_] [changelog/changelog-page])
-(defmethod view :reader [_] [:div "Reader Tool"])
-(defmethod view :settings [_] [settings/panel])
+;; (defmethod view :settings [_] [settings/panel])
 (defmethod view :app-db [_] [app-db/panel])
-(defmethod view :workspaces [_] [workspaces/main-panel])
+;; (defmethod view :workspaces [_] [workspaces/main-panel])
 
 (defn top-tab-bar []
   (let [current-route @(rf/subscribe [::current-route])
         current-name (:name (:data current-route))
-        tab-style (fn [route-name]
-                    (str "px-4 py-2 text-xs font-medium rounded-t-lg "
-                         (if (= current-name route-name)
-                           (str t/bg-page " " t/text-accent " border-t border-l border-r " t/border-main)
-                           (str t/text-primary " hover:" t/text-accent " border-transparent border-t border-l border-r"))))]
+        tab-style
+        (fn [route-name]
+          (str "px-4 py-2 text-xs font-medium rounded-t-lg "
+               (if (= current-name route-name)
+                 (str t/bg-page " " t/text-accent " border-t border-l border-r " t/border-main)
+                 (str t/text-primary " hover:" t/text-accent " border-transparent border-t border-l border-r"))))]
     [:nav {:class (str "h-10 " t/bg-toolbar " border-b " t/border-main " flex items-end")}
      [:a {:href (rfe/href :landing-page)
           :class (str (tab-style :landing-page) " ml-2")}
@@ -171,17 +170,26 @@
      [top-tab-bar]
      [:div {:class "flex-grow overflow-auto relative"}
       (when current-route
-        (view current-route))]]))
+        [view current-route])]]))
 
 (defn app []
   [layout/page-container {}
    [main-panel]])
 
+;; (defn app []
+;;   [:div {:style {:color :white}}
+;;    "Hello" " works!"])
+
+
 (defn ^:export init []
   (rf/dispatch-sync [::initialize-db])
-  (rf/dispatch [::ws/init])
-  (rf/dispatch [::wp/init-persistence])
+  ;; #_(rf/dispatch [::ws/init])
+  ;; #_(rf/dispatch [::wp/init-persistence])
   (init-routes!)
-  ;; (rf/dispatch [::navigate :landing-page nil nil]) ;; Removed to allow deep linking
-  (rf/dispatch [::portal/open])
+  (rf/dispatch [::navigate :landing-page nil nil]) ;; Removed to allow deep linking
+  (rdom/render [app] (.getElementById js/document "app")))
+
+(defn ^:dev/after-load reload!
+  []
+  (js/console.log "reload")
   (rdom/render [app] (.getElementById js/document "app")))

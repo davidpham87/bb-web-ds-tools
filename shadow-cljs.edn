@@ -6,17 +6,30 @@
 
  :dev-http {8080 "docs"}
 
+ :nrepl {:middleware
+         [cider.nrepl/cider-middleware
+          refactor-nrepl.middleware/wrap-refactor]}
+
  :builds
  {:app
   {:target :browser
    :output-dir "docs/js/compiled"
    :asset-path "/js/compiled"
+   :init-fn bb-web-ds-tools.core/init
+
    :js-options {:js-provider :external
-                :external-index "target/index.js"}
+                :external-index "target/index.js"
+                :keep-as-import #{"pyodide" "@sqlite.org/sqlite-wasm"}}
+
    :compiler-options {:optimizations :simple
                       :output-feature-set :es-next
                       :externs ["src/externs/webr.js"]}
-   :devtools {:after-load bb-web-ds-tools.core/init}
+
+   :devtools {:http-root   "docs"
+              :http-port   8080
+              :autobuild true
+              :reload-strategy :full}
+
    :modules {:main {:init-fn bb-web-ds-tools.core/init}}}
   :reader
   {:target :browser
