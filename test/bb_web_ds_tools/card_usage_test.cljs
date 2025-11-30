@@ -1,11 +1,14 @@
 (ns bb-web-ds-tools.card-usage-test
-  (:require [cljs.test :refer [deftest is testing]]
+  (:require [cljs.test :refer [deftest is testing use-fixtures]]
             [re-frame.core :as rf]
             [clojure.walk :as walk]
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.layout :as l]
             [bb-web-ds-tools.views.malli :as malli]
-            [bb-web-ds-tools.views.honeysql :as honeysql]))
+            [bb-web-ds-tools.views.honeysql :as honeysql]
+            [bb-web-ds-tools.test-setup :as setup]))
+
+(use-fixtures :each setup/suppress-re-frame-warnings)
 
 (defn find-component-usages [component hiccup]
   (let [usages (atom [])]

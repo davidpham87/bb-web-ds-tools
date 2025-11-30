@@ -1,7 +1,10 @@
 (ns bb-web-ds-tools.repl-test
-  (:require [cljs.test :refer [deftest is testing]]
+  (:require [cljs.test :refer [deftest is testing use-fixtures]]
             [re-frame.core :as rf]
-            [bb-web-ds-tools.views.repl :as repl]))
+            [bb-web-ds-tools.views.repl :as repl]
+            [bb-web-ds-tools.test-setup :as setup]))
+
+(use-fixtures :each setup/suppress-re-frame-warnings)
 
 (deftest test-repl
   (testing "add instance"

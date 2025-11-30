@@ -1,13 +1,10 @@
 (ns bb-web-ds-tools.views.honeysql
   (:require [re-frame.core :as rf]
-            [honey.sql :as h]
-            [sci.core :as sci]
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.editor :as editor]
+            [bb-web-ds-tools.components.honeysql :as c-honeysql]
             [bb-web-ds-tools.components.layout :as l]
             [bb-web-ds-tools.theme :as t]))
-
-(def sci-ctx (sci/init {}))
 
 ;; Event handlers
 (rf/reg-event-db
@@ -26,17 +23,11 @@
 (rf/reg-event-fx
  :honeysql/convert-to-sql
  (fn [{:keys [db]} _]
-   (let [input-text (get-in db [:user-input :honeysql :default :input])]
-     (try
-       (let [input-data (sci/eval-string input-text sci-ctx)]
-         (if (map? input-data)
-           (try
-             {:db (assoc-in db [::honeysql :output] (first (h/format input-data {:inline true})))}
-             (catch :default e
-               {:db (assoc-in db [::honeysql :output] (str "Error formatting SQL: " (.-message e)))}))
-           {:db (assoc-in db [::honeysql :output] (str "Error: Last evaluated value must be a map. Got: " (type input-data)))}))
-       (catch :default e
-         {:db (assoc-in db [::honeysql :output] (str "Error evaluating code: " (.-message e)))})))))
+   (let [input-text (get-in db [:user-input :honeysql :default :input])
+         result (c-honeysql/convert-to-sql input-text)]
+     (if (:success result)
+       {:db (assoc-in db [::honeysql :output] (:output result))}
+       {:db (assoc-in db [::honeysql :output] (:error result))}))))
 
 ;; Subscriptions
 (rf/reg-sub :honeysql/user-input-root :<- [:bb-web-ds-tools.core/user-input] (fn [user-input _] (get-in user-input [:honeysql :default])))

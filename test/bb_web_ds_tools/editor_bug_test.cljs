@@ -26,7 +26,7 @@
              (rdom/unmount-component-at-node div)
              (.removeChild js/document.body div)
              (done))
-           (let [model (.getModel @editor-ref)]
+           (let [^js model (.getModel ^js @editor-ref)]
              (if (nil? model)
                (do
                  (is false "Editor model is nil")
@@ -44,7 +44,7 @@
                  (js/setTimeout
                   (fn []
                      ;; Verification
-                     (let [model (.getModel @editor-ref)]
+                     (let [^js model (.getModel ^js @editor-ref)]
                        (if model
                          (let [new-lang (.getLanguageId model)]
                            (is (= "r" new-lang) (str "Language should update to r, but got " new-lang)))

@@ -1,9 +1,12 @@
 (ns bb-web-ds-tools.workspaces-test
-  (:require [cljs.test :refer [deftest is testing]]
+  (:require [cljs.test :refer [deftest is testing use-fixtures]]
             [re-frame.core :as rf]
             [datascript.core :as d]
             [bb-web-ds-tools.workspaces.core :as ws]
-            [day8.re-frame.test :as rf-test]))
+            [day8.re-frame.test :as rf-test]
+            [bb-web-ds-tools.test-setup :as setup]))
+
+(use-fixtures :each setup/suppress-re-frame-warnings)
 
 (deftest workspace-logic-test
   (rf-test/run-test-sync

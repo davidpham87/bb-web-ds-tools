@@ -41,7 +41,7 @@
                               :language "python"
                               :options {:rulers [80]}
                               :on-change #(rf/dispatch [::set-code %])
-                              :on-mount #(editor/setup-editor-actions % mac-os? (fn [c] (run-actions (.-current jupyter-ref) c)))}]]
+                              :on-mount #(editor/setup-editor-actions % mac-os? (fn [c] (run-actions ^js (.-current jupyter-ref) c)))}]]
       [c/button {:on-click #(run-actions jupyter code)} "Run"]]
      [:> Console]]))
 
