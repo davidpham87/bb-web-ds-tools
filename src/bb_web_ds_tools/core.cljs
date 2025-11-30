@@ -12,7 +12,7 @@
    [bb-web-ds-tools.views.honeysql :as honeysql]
    [bb-web-ds-tools.views.landing :as landing]
    [bb-web-ds-tools.views.malli :as malli]
-   ;; [bb-web-ds-tools.views.pyodide :as pyodide]
+   [bb-web-ds-tools.views.pyodide :as pyodide]
    ;; [bb-web-ds-tools.views.r-repl :as r-repl]
    [bb-web-ds-tools.views.repl :as repl]
    [bb-web-ds-tools.views.settings :as settings]
@@ -137,7 +137,7 @@
 (defmethod view :honeysql [_] [honeysql/panel])
 (defmethod view :vega-lite [_] [vega-lite/panel])
 ;; (defmethod view :gemma [_] [gemma/panel])
-;; (defmethod view :pyodide [_] [pyodide/panel])
+(defmethod view :pyodide [_] [pyodide/panel])
 (defmethod view :editor [_] [editor/panel])
 (defmethod view :repl [_] [repl/panel])
 ;; (defmethod view :r-repl [_] [r-repl/panel])
