@@ -1,8 +1,11 @@
 (ns bb-web-ds-tools.gemma-test
-  (:require [cljs.test :refer [deftest is testing]]
+  (:require [cljs.test :refer [deftest is testing use-fixtures]]
             [re-frame.core :as rf]
             [re-frame.db :as rf-db]
-            [bb-web-ds-tools.views.gemma :as gemma]))
+            [bb-web-ds-tools.views.gemma :as gemma]
+            [bb-web-ds-tools.test-setup :as setup]))
+
+(use-fixtures :each setup/suppress-re-frame-warnings)
 
 (deftest test-gemma-handlers
   (testing "initial state"
