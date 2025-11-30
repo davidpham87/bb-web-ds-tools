@@ -98,6 +98,8 @@
    (let [repl-id (str (random-uuid))
          mac-os? (boolean (re-find #"(Mac|iPhone|iPod|iPad)" (.-platform js/navigator)))]
      {:platform {:mac-os? mac-os?}
+      :repl {}
+      :portal {}
       :user-input {:editor {:default {:code "initial code"}}
                    :repl {repl-id {:id repl-id
                                    :code ""

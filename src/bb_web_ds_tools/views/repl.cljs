@@ -4,7 +4,7 @@
    [bb-web-ds-tools.components.common :as c]
    [bb-web-ds-tools.components.editor :as editor]
    [bb-web-ds-tools.components.layout :as l]
-   [bb-web-ds-tools.portal :refer (portal-frame)]
+   [bb-web-ds-tools.portal :as portal :refer (portal-frame)]
    [bb-web-ds-tools.theme :as t]
    [clojure.string :as str]
    [clojure.tools.reader :as tr]
@@ -44,9 +44,8 @@
                  (let [res (try (sci/eval-form sci-ctx form)
                                 (catch :default e {:error (str "Eval Error: " e)}))]
                    (recur (conj acc res)))))))]
-     {:db (update-in db [:repl ::count] (fnil inc 0))
-      :fx (conj (vec (map (fn [r] [:portal/submit r]) results))
-                [:portal/open "clojure-repl"])})))
+     {:fx (conj (vec (map (fn [r] [:portal/submit r]) results))
+                [:dispatch [::portal/update-portal-frame]])})))
 
 (rf/reg-sub
  ::code
@@ -57,10 +56,6 @@
 (rf/reg-sub
  ::mac-os?
  (fn [db _] (get-in db [:platform :mac-os?])))
-
-(rf/reg-sub
- ::eval-count
- (fn [db _] (get-in db [:repl ::count])))
 
 (rf/reg-event-db
  ::update-code
@@ -133,8 +128,7 @@
 
 (defn- repl-instance [{:keys [instance-id]}]
   (let [code-sub (rf/subscribe [::code instance-id])
-        mac-os?-sub (rf/subscribe [::mac-os?])
-        eval-count (rf/subscribe [::eval-count])]
+        mac-os?-sub (rf/subscribe [::mac-os?])]
     (fn []
       (let [code @code-sub
             mac-os? @mac-os?-sub]
@@ -155,16 +149,12 @@
               :on-mount #(setup-editor-actions % instance-id mac-os?)}]]]
 
           ;; RIGHT: Portal Info
-          ^{:key @eval-count}
-          [portal-frame]
-          #_[:div {:id "clojure-repl" :class "w-full"
-                 :style {:height "95vh" :margin-left 20}}]]]))))
+          [portal-frame]]]))))
 
 (defn panel []
   (r/create-class
    {:reagent-render
     (fn []
-      #_(rf/dispatch [:bb-web-ds-tools.portal/open {:node-id "clojure-repl"}])
       (let [instances (rf/subscribe [::instances])]
         [:div {:class "flex flex-col h-full overflow-y-clip"}
          (into [:div]
