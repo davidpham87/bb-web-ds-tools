@@ -6,8 +6,8 @@
    [bb-web-ds-tools.theme :as t]
    [bb-web-ds-tools.views.app-db :as app-db]
    [bb-web-ds-tools.views.changelog :as changelog]
-   ;; [bb-web-ds-tools.views.datasets :as datasets]
-   ;; [bb-web-ds-tools.views.editor :as editor]
+   [bb-web-ds-tools.views.datasets :as datasets]
+   [bb-web-ds-tools.views.editor :as editor]
    ;; #_[bb-web-ds-tools.views.gemma :as gemma]
    [bb-web-ds-tools.views.honeysql :as honeysql]
    [bb-web-ds-tools.views.landing :as landing]
@@ -136,12 +136,12 @@
 (defmethod view :vega-lite [_] [vega-lite/panel])
 ;; (defmethod view :gemma [_] [gemma/panel])
 ;; (defmethod view :pyodide [_] [pyodide/panel])
-;; (defmethod view :editor [_] [editor/panel])
+(defmethod view :editor [_] [editor/panel])
 (defmethod view :repl [_] [repl/panel])
 ;; (defmethod view :r-repl [_] [r-repl/panel])
-;; (defmethod view :datasets [_] [datasets/panel])
+(defmethod view :datasets [_] [datasets/panel])
 (defmethod view :changelog [_] [changelog/changelog-page])
-;; (defmethod view :settings [_] [settings/panel])
+(defmethod view :settings [_] [settings/panel])
 (defmethod view :app-db [_] [app-db/panel])
 ;; (defmethod view :workspaces [_] [workspaces/main-panel])
 
