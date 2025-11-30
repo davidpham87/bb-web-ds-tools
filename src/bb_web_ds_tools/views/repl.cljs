@@ -3,10 +3,14 @@
             [sci.core :as sci]
             [re-frame.core :as rf]
             [cljs.pprint :as pprint]
+            [clojure.tools.reader :as tr]
+            [clojure.tools.reader.reader-types :as rt]
             ["monaco-editor/esm/vs/editor/editor.api.js" :refer [KeyChord KeyMod KeyCode]]
             [bb-web-ds-tools.components.editor :as editor]
-            [bb-web-ds-tools.components.repl :as repl-comp]
-            [bb-web-ds-tools.components.common :as c]))
+            [bb-web-ds-tools.components.common :as c]
+            [bb-web-ds-tools.components.layout :as l]
+            [bb-web-ds-tools.theme :as t]
+            [bb-web-ds-tools.portal :as portal]))
 
 (def sci-ctx
   (sci/init {:namespaces {'re-frame.core {'subscribe rf/subscribe
@@ -16,22 +20,24 @@
 (rf/reg-sub ::instances :<- [:bb-web-ds-tools.core/user-input] (fn [user-input _] (get user-input :repl)))
 (rf/reg-event-db ::add-instance (fn [db _]
                                  (let [new-id (str (random-uuid))]
-                                   (-> db
-                                       (assoc-in [:user-input :repl new-id] {:id new-id :code ""})
-                                       (assoc-in [::repl new-id] {:output []})))))
+                                   (assoc-in db [:user-input :repl new-id] {:id new-id :code ""}))))
 
 (rf/reg-event-fx
  ::eval-code
- (fn [{:keys [db]} [_ instance-id code]]
-   {:db (try
-          (let [result (sci/eval-string code sci-ctx)
-                pretty-result (with-out-str (pprint/pprint result))]
-            (update-in db [::repl instance-id :output] conj {:type :result :text pretty-result}))
-          (catch :default e
-            (update-in db [::repl instance-id :output] conj {:type :error :text (str e)})))}))
+ (fn [_ [_ instance-id code]]
+   (let [rdr (rt/string-push-back-reader code)
+         results (loop [acc []]
+                   (let [form (try (tr/read rdr false :eof)
+                                   (catch :default e {:error (str "Read Error: " e)}))]
+                     (if (= form :eof)
+                       acc
+                       (if (and (map? form) (:error form))
+                         (conj acc form)
+                         (let [res (try (sci/eval-form sci-ctx form)
+                                        (catch :default e {:error (str "Eval Error: " e)}))]
+                           (recur (conj acc res)))))))]
+     {:fx (vec (map (fn [r] [:bb-web-ds-tools.portal/submit r]) results))})))
 
-(rf/reg-sub ::repl-root (fn [db _] (::repl db)))
-(rf/reg-sub ::output :<- [::repl-root] (fn [repl-root [_ instance-id]] (get-in repl-root [instance-id :output])))
 (rf/reg-sub ::code :<- [::instances] (fn [instances [_ instance-id]] (get-in instances [instance-id :code])))
 (rf/reg-sub ::mac-os? (fn [db _] (get-in db [:platform :mac-os?])))
 
@@ -91,28 +97,33 @@
 
 (defn- repl-instance [{:keys [instance-id]}]
   (let [code @(rf/subscribe [::code instance-id])
-        output @(rf/subscribe [::output instance-id])
         mac-os? @(rf/subscribe [::mac-os?])]
-    [repl-comp/repl-card
-     {:instance-id instance-id
-      :code code
-      :output output
-      :on-change #(rf/dispatch [::update-code instance-id %])
-      :on-eval (fn [code] (rf/dispatch [::eval-code instance-id code]))
-      :on-focus #(reset! active-instance-id instance-id)
-      :on-blur #(reset! active-instance-id nil)
-      :on-mount #(setup-editor-actions % instance-id mac-os?)
-      :path [:user-input :repl instance-id :form]}]))
+    [:div {:class "h-96 w-full border border-gray-700 rounded mb-4"}
+     [l/split-view {:ratio :1-1}
+      ;; LEFT: Editor
+      [l/flex-col {:class "h-full p-4 space-y-4"}
+       [c/label "Clojure Code"]
+       [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
+        [editor/monaco-editor {:value code
+                               :language "clojure"
+                               :options {:rulers [80]}
+                               :on-change #(rf/dispatch [::update-code instance-id %])
+                               :on-mount #(setup-editor-actions % instance-id mac-os?)}]]
+       [c/button {:on-click #(rf/dispatch [::eval-code instance-id code])} "Eval"]]
+
+      ;; RIGHT: Portal Info
+      [l/flex-col {:class "h-full p-4 space-y-4 items-center justify-center"}
+       [:div {:class "text-center space-y-4"}
+        [:div "REPL Ready"]
+        [:div "Results are sent to Portal."]
+        [c/button {:on-click #(rf/dispatch [:bb-web-ds-tools.portal/open])} "Open Portal"]]]]]))
 
 (defn panel []
   (r/create-class
-   {:component-did-mount (fn [this])
-    :component-will-unmount (fn [this])
-    :reagent-render
+   {:reagent-render
     (fn []
       (let [instances (rf/subscribe [::instances])]
-        [:div {:class "flex flex-col h-full space-y-6 p-6"}
-
+        [:div {:class "flex flex-col h-full space-y-6 p-6 overflow-y-auto"}
          [:div {:class "text-sm text-[#9f9f9f]"} "Use (re-frame.core/subscribe ...) or (re-frame.core/dispatch ...) to interact with the app."]
          (into [:div]
                (for [[instance-id] @instances]
