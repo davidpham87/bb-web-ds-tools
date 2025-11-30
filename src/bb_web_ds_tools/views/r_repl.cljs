@@ -40,10 +40,10 @@
 ;; WebR Loader
 (defonce webr-instance (atom nil))
 
-(defn start-read-loop [webr]
+(defn start-read-loop [^js webr]
   (letfn [(loop-fn []
             (-> (.read webr)
-                (.then (fn [msg]
+                (.then (fn [^js msg]
                          (let [type (.-type msg)
                                data (.-data msg)]
                            (cond
