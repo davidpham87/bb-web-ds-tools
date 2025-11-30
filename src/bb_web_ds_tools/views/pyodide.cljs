@@ -35,9 +35,10 @@
  (fn [_]
    (if @pyodide-instance
      (rf/dispatch [::set-ready true])
-     (-> (loadPyodide (clj->js {:indexURL "js/pyodide"
-                                :stdout (fn [text] (rf/dispatch [:bb-web-ds-tools.portal/submit {:type "stdout" :text text}]))
-                                :stderr (fn [text] (rf/dispatch [:bb-web-ds-tools.portal/submit {:type "stderr" :text text}]))}))
+     (-> (loadPyodide
+          (clj->js {:indexURL "js/pyodide"
+                    :stdout (fn [text] (rf/dispatch [:bb-web-ds-tools.portal/submit {:type "stdout" :text text}]))
+                    :stderr (fn [text] (rf/dispatch [:bb-web-ds-tools.portal/submit {:type "stderr" :text text}]))}))
          (.then (fn [p]
                   (reset! pyodide-instance p)
                   (rf/dispatch [::set-ready true])
@@ -91,10 +92,7 @@
         error [:div {:class "text-red-500"} (str "Error: " error)]
         (not ready?) [c/button {:on-click #(rf/dispatch [::initialize-runtime])} "Load Python"]
         :else
-        [:div {:class "text-center space-y-4"}
-         [:div "Pyodide Ready"]
-         [:div "Results and output are sent to Portal."]
-         [c/button {:on-click #(rf/dispatch [:bb-web-ds-tools.portal/open])} "Open Portal"]])]]))
+        [portal/portal-frame])]]))
 
 (defn panel []
   (r/create-class
