@@ -1,9 +1,11 @@
 (ns bb-web-ds-tools.views.honeysql
   (:require [re-frame.core :as rf]
+            [reagent.core :as r]
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.editor :as editor]
             [bb-web-ds-tools.components.honeysql :as c-honeysql]
             [bb-web-ds-tools.components.layout :as l]
+            [bb-web-ds-tools.portal :as portal :refer [portal-frame portal-viewer]]
             [bb-web-ds-tools.theme :as t]))
 
 ;; Event handlers
@@ -24,10 +26,9 @@
  :honeysql/convert-to-sql
  (fn [{:keys [db]} _]
    (let [input-text (get-in db [:user-input :honeysql :default :input])
-         result (c-honeysql/convert-to-sql input-text)]
-     (if (:success result)
-       {:db (assoc-in db [::honeysql :output] (:output result))}
-       {:db (assoc-in db [::honeysql :output] (:error result))}))))
+         result (c-honeysql/convert-to-sql input-text)
+         output (if (:success result) (:output result) (:error result))]
+     {:db (assoc-in db [::honeysql :output] output)})))
 
 ;; Subscriptions
 (rf/reg-sub :honeysql/user-input-root :<- [:bb-web-ds-tools.core/user-input] (fn [user-input _] (get-in user-input [:honeysql :default])))
@@ -36,6 +37,7 @@
 (rf/reg-sub :honeysql/output :<- [:honeysql/component-root] (fn [root _] (:output root)))
 
 ;; UI components
+
 (defn panel []
   (let [honeysql-input @(rf/subscribe [:honeysql/input])
         honeysql-output @(rf/subscribe [:honeysql/output])]
@@ -55,7 +57,4 @@
      ;; RIGHT: Output
      [l/flex-col {:class "h-full p-4 space-y-4"}
       [c/label "SQL Output"]
-      [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
-       [editor/monaco-editor {:value honeysql-output
-                              :language "sql"
-                              :options {:readOnly true}}]]]]))
+      [portal-viewer honeysql-output]]]))

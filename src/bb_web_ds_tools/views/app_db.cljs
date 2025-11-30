@@ -1,12 +1,10 @@
 (ns bb-web-ds-tools.views.app-db
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
-            [cljs.pprint :refer [pprint]]
             [cljs.reader :as reader]
             [bb-web-ds-tools.components.common :as c]
-            [bb-web-ds-tools.components.editor :refer [monaco-editor]]
             [bb-web-ds-tools.components.layout :as l]
-            [bb-web-ds-tools.portal :as portal]
+            [bb-web-ds-tools.portal :as portal :refer [portal-frame portal-viewer]]
             [bb-web-ds-tools.theme :as t]))
 
 ;; Subscriptions
@@ -40,11 +38,6 @@
        (get-in db path :bb-web-ds-tools.views.app-db/not-found))
      (catch :default _ :bb-web-ds-tools.views.app-db/error))))
 
-;; Utils
-
-(defn update-view [local-edn-atom print-level value]
-  (reset! local-edn-atom (with-out-str (binding [*print-level* print-level] (pprint value)))))
-
 ;; Events
 
 (rf/reg-event-db
@@ -70,18 +63,20 @@
      (-> db
          (assoc-in [:user-input :app-db :watched-paths] new-paths)
          (cond-> (= active-path path-str)
-           (assoc-in [:user-input :app-db :active-path] (first new-paths)))))))
+           (assoc-in [:user-input :app-db :active-path] (or (first new-paths) :new)))))))
 
 (rf/reg-event-db
- ::update-path-value
- (fn [db [_ path-str new-value-str]]
-   (try
-     (let [path (reader/read-string path-str)
-           new-value (reader/read-string new-value-str)]
-       (assoc-in db path new-value))
-     (catch :default e
-       (js/console.error "Failed to update path:" e)
-       db))))
+ ::update-watch-path
+ (fn [db [_ old-path new-path]]
+   (let [paths (get-in db [:user-input :app-db :watched-paths] [])
+         idx (.indexOf paths old-path)
+         active-path (get-in db [:user-input :app-db :active-path])]
+     (if (neg? idx)
+       db
+       (-> db
+           (assoc-in [:user-input :app-db :watched-paths] (assoc paths idx new-path))
+           (cond-> (= active-path old-path)
+             (assoc-in [:user-input :app-db :active-path] new-path)))))))
 
 (rf/reg-event-fx
  ::open-in-portal
@@ -90,53 +85,67 @@
 
 ;; Components
 
-(defn path-viewer [path-str]
-  (let [print-level (r/atom 5) ;; Default depth
-        local-edn (r/atom nil)]
-    (r/create-class
-     {:component-did-mount
-      (fn []
-        (let [val @(rf/subscribe [::path-value path-str])]
-          (update-view local-edn @print-level val)))
+(defn path-list-item [path active?]
+  (let [editing? (r/atom false)
+        temp-path (r/atom path)]
+    (fn [path active?]
+      (if @editing?
+        [:div {:class (str "p-2 rounded " t/bg-input " border " t/border-focus " flex items-center space-x-2")}
+         [c/input {:class "flex-grow h-6 text-sm py-0 font-mono"
+                   :value @temp-path
+                   :auto-focus true
+                   :on-change #(reset! temp-path (.. % -target -value))
+                   :on-key-down #(case (.-key %)
+                                   "Enter" (do (rf/dispatch [::update-watch-path path @temp-path])
+                                               (reset! editing? false))
+                                   "Escape" (do (reset! temp-path path)
+                                                (reset! editing? false))
+                                   nil)}]
+         [c/button-xs {:on-click #(do (rf/dispatch [::update-watch-path path @temp-path])
+                                      (reset! editing? false))} "Save"]]
+        [:div {:class (str "group flex items-center justify-between p-3 rounded cursor-pointer transition-colors text-sm font-medium "
+                           (if active?
+                             (str t/bg-card " " t/text-accent " shadow-sm")
+                             (str t/text-primary " " t/bg-item-hover)))
+               :on-click #(rf/dispatch [::set-active-path path])}
+         [:span {:class "truncate flex-grow font-mono"} path]
+         [:div {:class (str "flex space-x-1 opacity-0 group-hover:opacity-100 transition-opacity "
+                            (when active? "opacity-100"))}
+          ;; Rename button
+          [:button {:class (str "p-1 rounded hover:" t/bg-button-hover " text-xs")
+                    :title "Edit"
+                    :on-click (fn [e]
+                                (.stopPropagation e)
+                                (reset! temp-path path)
+                                (reset! editing? true))}
+           "✎"]
+          ;; Delete button
+          [:button {:class (str "p-1 rounded hover:" t/bg-button-danger-hover " hover:text-white text-xs")
+                    :title "Delete"
+                    :on-click (fn [e]
+                                (.stopPropagation e)
+                                (when (js/confirm (str "Remove watch '" path "'?"))
+                                  (rf/dispatch [::remove-watch-path path])))}
+           [c/dustbin-icon]]]]))))
 
-      :reagent-render
-      (fn [path-str]
-        (let [current-value @(rf/subscribe [::path-value path-str])]
-          [:div {:class "flex flex-col space-y-2"}
-           [l/flex-row {:class "justify-between items-center"}
-            [:h4 {:class (str "font-mono text-sm font-bold " t/text-accent)} path-str]
-
-            [l/flex-row {:class "items-center space-x-2 text-xs"}
-             ;; Depth Control
-             [:span {:class (str "font-medium " t/text-secondary)} "Depth:"]
-             [:input {:type "number"
-                      :value @print-level
-                      :on-change #(do (reset! print-level (js/parseInt (.. % -target -value)))
-                                      (update-view local-edn @print-level current-value))
-                      :class (str "w-12 rounded px-1 " t/bg-input " " t/border-default " " t/text-primary)}]
-
-             ;; Refresh Button
-             [c/button-xs {:on-click #(update-view local-edn @print-level current-value)}
-              "Refresh View"]
-
-             ;; Update Path Button
-             [c/button-xs {:on-click #(rf/dispatch [::update-path-value path-str @local-edn])
-                           :class (str t/bg-button-primary " " t/text-button-primary)}
-              "Update Path"]]]
-
-           [:div {:class (str "h-[500px] border " t/border-default)}
-            [monaco-editor
-             {:value @local-edn
-              :language "clojure"
-              :theme "zenburn"
-              :options {:minimap {:enabled false}
-                        :fontSize 14
-                        :scrollBeyondLastLine false}
-              :on-change #(reset! local-edn %)}]]]))})))
+(defn path-list []
+  (let [watched-paths @(rf/subscribe [::watched-paths])
+        active-path @(rf/subscribe [::active-path])]
+    [:div {:class (str "h-full " t/bg-sidebar " flex flex-col")}
+     [:div {:class (str "p-4 border-b " t/border-main)}
+      [:h3 {:class (str "text-lg font-semibold " t/text-accent " mb-4")} "App DB"]
+      [c/button-xs {:class (str "w-full " t/bg-button " " t/bg-button-hover " justify-center")
+                    :on-click #(rf/dispatch [::set-active-path :new])}
+       "+ New Watch"]]
+     [:div {:class "flex-grow overflow-y-auto p-2 space-y-1"}
+      (if (seq watched-paths)
+        (for [path watched-paths]
+          ^{:key path} [path-list-item path (= path active-path)])
+        [:div {:class (str "text-sm " t/text-muted " italic p-2")} "No watched paths"])]]))
 
 (defn add-path-view []
   (r/with-let [new-path (r/atom "")]
-    [c/card {:class "p-8 flex flex-col items-center justify-center space-y-4 bg-transparent shadow-none"}
+    [c/card {:class "p-8 flex flex-col items-center justify-center space-y-4 bg-transparent shadow-none h-full"}
      [:h3 {:class "text-xl font-bold"} "Watch New Path"]
      [:div {:class "w-full max-w-lg"}
       [c/input {:value @new-path
@@ -149,30 +158,13 @@
        "Add Watch"]]]))
 
 (defn panel []
-  (let [watched-paths @(rf/subscribe [::watched-paths])
-        active-path @(rf/subscribe [::active-path])
-        ;; Ensure active path is valid, default to first or :new
-        current-tab (or active-path
-                        (first watched-paths)
-                        :new)]
-
-    [l/container {:class "space-y-6"}
-     [l/flex-row {:class "justify-between items-center"}
-      [:h2 {:class "text-2xl font-bold"} "App DB Editor"]
-      [c/button {:on-click #(rf/dispatch [::open-in-portal])}
-       "Inspect DB in Portal"]]
-
-     [c/card {:class "flex flex-col min-h-[600px]"}
-      ;; Tabs
-      [c/tabs {:tabs (map (fn [p] {:id p :label p :on-close #(rf/dispatch [::remove-watch-path %])}) watched-paths)
-               :active-tab-id current-tab
-               :on-change #(rf/dispatch [::set-active-path %])
-               :on-add #(rf/dispatch [::set-active-path :new])
-               :class "px-2 pt-2"}]
-
-      ;; Content
-      [:div {:class "p-4 flex-grow"}
-       (if (= current-tab :new)
-         [add-path-view]
-         ^{:key current-tab}
-         [path-viewer current-tab])]]]))
+  (let [active-path @(rf/subscribe [::active-path])
+        ;; Subscribe to value if active path is valid and not :new
+        active-value (when (and active-path (not= active-path :new))
+                       @(rf/subscribe [::path-value active-path]))]
+    [l/split-view {:ratio :1-3}
+     [path-list]
+     (if (or (nil? active-path) (= active-path :new))
+       [add-path-view]
+       ^{:key active-path}
+       [portal-viewer active-value])]))
