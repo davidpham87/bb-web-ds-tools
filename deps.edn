@@ -16,5 +16,5 @@
  :mvn/repos {"clojars" {:url "https://repo.clojars.org/"}}
  :aliases {:test {:extra-paths ["test"]
                   :extra-deps {io.github.cognitect-labs/test-runner {:git/url "https://github.com/cognitect-labs/test-runner.git"
-                                                                     :sha "209b64504cb3bd3b99ecfdd79e533572d6a69c1f"}}
+                                                                     :sha "72a9557262dc4e49525c0e1215b248a39a047065"}}
                   :main-opts ["-m" "cognitect.test-runner"]}}}
