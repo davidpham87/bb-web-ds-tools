@@ -147,8 +147,6 @@
               :options {:rulers [80] :lineNumbers "off"}
               :on-change #(rf/dispatch [::update-code instance-id %])
               :on-mount #(setup-editor-actions % instance-id mac-os?)}]]]
-
-          ;; RIGHT: Portal Info
           [portal-frame]]]))))
 
 (defn panel []
