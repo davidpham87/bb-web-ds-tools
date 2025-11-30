@@ -14,14 +14,25 @@
      "zenburn"
      (clj->js {:base "vs-dark"
                :inherit true
-               :rules [{:background (t/color :bg-page)
-                        :foreground (t/color :text-primary)}]
-               :colors {:editor.background (t/color :bg-page)
-                        :editor.foreground (t/color :text-primary)
-                        :editorCursor.foreground (t/color :text-muted)
-                        :editor.lineHighlightBackground (t/color :bg-card)
-                        :editor.selectionBackground (t/color :bg-button)
-                        :editor.inactiveSelectionBackground (t/color :bg-card)}}))
+               :rules [{:background (:background t/zenburn)
+                        :foreground (:text t/zenburn)}
+                       {:token "comment" :foreground "#7f9f7f"}
+                       {:token "string" :foreground (:string t/zenburn)}
+                       {:token "keyword" :foreground (:keyword t/zenburn)}
+                       {:token "number" :foreground (:number t/zenburn)}
+                       {:token "tag" :foreground (:tag t/zenburn)}
+                       {:token "type" :foreground (:tag t/zenburn)}
+                       {:token "attribute.name" :foreground (:tag t/zenburn)}
+                       {:token "namespace" :foreground (:namespace t/zenburn)}
+                       {:token "variable" :foreground (:symbol t/zenburn)}
+                       {:token "identifier" :foreground (:symbol t/zenburn)}
+                       {:token "constant" :foreground (:boolean t/zenburn)}]
+               :colors {:editor.background (:background t/zenburn)
+                        :editor.foreground (:text t/zenburn)
+                        :editorCursor.foreground (:text t/zenburn)
+                        :editor.lineHighlightBackground (:background2 t/zenburn)
+                        :editor.selectionBackground (:border t/zenburn)
+                        :editor.inactiveSelectionBackground (:background2 t/zenburn)}}))
     true
     (catch js/Error e
       (js/console.warn "Failed to define Zenburn theme" e)
