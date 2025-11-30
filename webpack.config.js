@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const { PyodidePlugin } = require("@pyodide/webpack-plugin");
 
 const commonConfig = {
   mode: 'development',
@@ -38,6 +39,7 @@ const commonConfig = {
     new webpack.ProvidePlugin({
       process: 'process/browser',
     }),
+    new PyodidePlugin(),
   ],
   module: {
     rules: [

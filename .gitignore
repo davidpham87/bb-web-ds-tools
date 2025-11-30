@@ -37,3 +37,5 @@ storybook-static/
 target/
 docs/js/fonts/
 docs/js/images/
+verification/**/*.png
+docs/js/pyodide/

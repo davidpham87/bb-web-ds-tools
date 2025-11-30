@@ -40,6 +40,11 @@
        (get-in db path :bb-web-ds-tools.views.app-db/not-found))
      (catch :default _ :bb-web-ds-tools.views.app-db/error))))
 
+;; Utils
+
+(defn update-view [local-edn-atom print-level value]
+  (reset! local-edn-atom (with-out-str (binding [*print-level* print-level] (pprint value)))))
+
 ;; Events
 
 (rf/reg-event-db
@@ -92,7 +97,7 @@
      {:component-did-mount
       (fn []
         (let [val @(rf/subscribe [::path-value path-str])]
-          (reset! local-edn (with-out-str (binding [*print-level* @print-level] (pprint val))))))
+          (update-view local-edn @print-level val)))
 
       :reagent-render
       (fn [path-str]
@@ -107,11 +112,11 @@
              [:input {:type "number"
                       :value @print-level
                       :on-change #(do (reset! print-level (js/parseInt (.. % -target -value)))
-                                      (reset! local-edn (with-out-str (binding [*print-level* @print-level] (pprint current-value)))))
+                                      (update-view local-edn @print-level current-value))
                       :class (str "w-12 rounded px-1 " t/bg-input " " t/border-default " " t/text-primary)}]
 
              ;; Refresh Button
-             [c/button-xs {:on-click #(reset! local-edn (with-out-str (binding [*print-level* @print-level] (pprint current-value))))}
+             [c/button-xs {:on-click #(update-view local-edn @print-level current-value)}
               "Refresh View"]
 
              ;; Update Path Button
