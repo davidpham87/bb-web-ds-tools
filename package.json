@@ -13,9 +13,9 @@
         "papaparse": "^5.5.3",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "vega": "^5.23.0",
-        "vega-embed": "^6.19.1",
-        "vega-lite": "^5.1.1"
+        "vega": "^6.2.0",
+        "vega-embed": "^7.1.0",
+        "vega-lite": "^6.4.1"
     },
     "devDependencies": {
         "@storybook/addon-essentials": "^8.6.14",
