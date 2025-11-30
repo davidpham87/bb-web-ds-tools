@@ -7,16 +7,15 @@ def verify(page):
     page.goto("http://localhost:8080/#/pyodide")
     try:
         page.wait_for_selector("text=Python Code", timeout=10000)
-        # Check for "Open Portal" button
-        # It might require loading first?
-        # My code: (not ready?) -> "Load Python" button.
-        # :else -> "Pyodide Ready", "Open Portal".
 
-        # Check for Load button
-        load_btn = page.get_by_role("button", name="Load Python")
-        if load_btn.is_visible():
+        try:
+            load_btn = page.get_by_role("button", name="Load Python")
+            load_btn.wait_for(state="visible", timeout=2000)
             print("Pyodide: Loading runtime...")
             load_btn.click()
+            page.wait_for_selector("text=Pyodide Ready", timeout=30000)
+        except:
+            print("Pyodide: Already loaded or loading?")
             page.wait_for_selector("text=Pyodide Ready", timeout=30000)
 
         portal_btn = page.get_by_role("button", name="Open Portal")
@@ -33,16 +32,20 @@ def verify(page):
     print("Checking REPL...")
     page.goto("http://localhost:8080/#/repl")
     try:
-        # Might need to add instance if empty
-        add_btn = page.get_by_role("button", name="Add REPL")
-        if add_btn.is_visible():
+        try:
+            add_btn = page.get_by_role("button", name="Add REPL")
+            add_btn.wait_for(state="visible", timeout=2000)
             add_btn.click()
-            page.wait_for_selector("text=Clojure Code", timeout=5000)
-            portal_btn_repl = page.get_by_role("button", name="Open Portal")
-            if portal_btn_repl.is_visible():
-                print("REPL: Open Portal button found.")
-            else:
-                print("REPL: Open Portal button NOT found.")
+        except:
+            pass
+
+        page.wait_for_selector("text=Clojure Code", timeout=5000)
+
+        portal_btn_repl = page.get_by_role("button", name="Open Portal")
+        if portal_btn_repl.is_visible():
+            print("REPL: Open Portal button found.")
+        else:
+            print("REPL: Open Portal button NOT found.")
     except Exception as e:
         print(f"REPL check failed: {e}")
 
@@ -52,22 +55,29 @@ def verify(page):
     print("Checking R REPL...")
     page.goto("http://localhost:8080/#/r-repl")
     try:
-        page.wait_for_selector("text=Code", timeout=10000) # "Code" label
-        # "Load R Environment" button might be visible first
         load_btn = page.get_by_role("button", name="Load R Environment")
-        if load_btn.is_visible():
+        try:
+            load_btn.wait_for(state="visible", timeout=3000)
             print("R REPL: Loading runtime...")
             load_btn.click()
-            # Wait for "WebR Ready"
-            page.wait_for_selector("text=WebR Ready", timeout=60000)
-            print("R REPL: Loaded.")
+        except:
+            print("R REPL: Load button not visible (already loaded?)")
+
+        # Wait for "WebR Ready" - this confirms we are in ready state
+        page.wait_for_selector("text=WebR Ready", timeout=60000)
+        print("R REPL: Loaded.")
+
+        # Check for Code label
+        page.wait_for_selector("text=Code", timeout=5000)
 
         # Check for Open Portal button
         portal_btn_r = page.get_by_role("button", name="Open Portal")
-        if portal_btn_r.is_visible():
+        try:
+            portal_btn_r.wait_for(state="visible", timeout=5000)
             print("R REPL: Open Portal button found.")
-        else:
+        except:
             print("R REPL: Open Portal button NOT found.")
+
     except Exception as e:
         print(f"R REPL check failed: {e}")
 

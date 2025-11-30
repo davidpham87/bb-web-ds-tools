@@ -19,7 +19,8 @@
                                                 :print js/console.log
                                                 :printErr js/console.error})))]
         (reset! sqlite-lib sqlite3)
-        (let [DB (.. sqlite3 -oo1 -DB)
+        (let [^js oo1 (.-oo1 sqlite3)
+              DB (.-DB oo1)
               db (new DB ":memory:" "ct")]
            (reset! sql-db db))
         (println "SQLite3 initialized"))
