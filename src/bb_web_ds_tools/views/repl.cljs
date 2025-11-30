@@ -4,6 +4,7 @@
    [bb-web-ds-tools.components.common :as c]
    [bb-web-ds-tools.components.editor :as editor]
    [bb-web-ds-tools.components.layout :as l]
+   [bb-web-ds-tools.portal :refer (portal-frame)]
    [bb-web-ds-tools.theme :as t]
    [clojure.string :as str]
    [clojure.tools.reader :as tr]
@@ -129,15 +130,6 @@
                             sexpr (find-last-sexpr code offset)]
                         (when (not (empty? sexpr))
                           (eval-action sexpr))))}))))
-
-(defn portal-frame []
-  (r/create-class
-   {:component-did-mount
-    (fn [] (rf/dispatch [:bb-web-ds-tools.portal/open {:node-id "clojure-repl"}]))
-    :reagent-render
-    (fn []
-      [:div {:id "clojure-repl" :class "w-full"
-             :style {:height "95vh" :margin-left 20}}])}))
 
 (defn- repl-instance [{:keys [instance-id]}]
   (let [code-sub (rf/subscribe [::code instance-id])
