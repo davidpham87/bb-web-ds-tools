@@ -1,0 +1,9 @@
+{
+"version":3,
+"file":"shadow.js.shim.module$pyodide.js",
+"lineCount":5,
+"mappings":"AAAAA,IAAKC,CAAAA,OAAL,CAAa,+BAAb,CAAA;AACAD,IAAKC,CAAAA,OAAL,CAAa,sCAAb,CAAA;AACAC,MAAOC,CAAAA,EAAGC,CAAAA,IAAKC,CAAAA,cAAf,GAAgCH,MAAOC,CAAAA,EAAGG,CAAAA,cAAV,CAAyB,SAAzB,CAAhC,GAAsEC,aAAA,CAAc,SAAd,CAAtE;AACAC,oCAAqCC,CAAAA,OAArC,GAA+CP,MAAOC,CAAAA,EAAGC,CAAAA,IAAKC,CAAAA,cAA9D;;",
+"sources":["shadow.js.shim.module$pyodide.js"],
+"sourcesContent":["goog.provide(\"shadow.js.shim.module$pyodide\");\ngoog.provide(\"module$shadow_js_shim_module$pyodide\");\nshadow.js.shim.module$pyodide = shadow.js.nativeProvides[\"pyodide\"] = shadow$bridge(\"pyodide\");\nmodule$shadow_js_shim_module$pyodide.default = shadow.js.shim.module$pyodide;\n"],
+"names":["goog","provide","shadow","js","shim","module$pyodide","nativeProvides","shadow$bridge","module$shadow_js_shim_module$pyodide","default"]
+}
