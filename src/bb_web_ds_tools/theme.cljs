@@ -1,44 +1,62 @@
 (ns bb-web-ds-tools.theme)
 
+(def zenburn
+  {:text        "#dcdccc"
+   :background  "#383838"
+   :background2 "#303030"
+   :boolean     "#bfebbf"
+   :string      "#cc9393"
+   :keyword     "#afd8af"
+   :namespace   "#5c888b"
+   :tag         "#f0dfaf"
+   :symbol      "#dcdccc"
+   :number      "#8cd0d3"
+   :uri         "#dfaf8f"
+   :border      "#4f4f4f"
+   :package     "#8cd0d3"
+   :exception   "#cc9393"
+   :diff-add    "#9fc59f"
+   :diff-remove "#cc9393"})
+
 (def colors
-  {:bg-page "#3f3f3f"
-   :bg-sidebar "#2f2f2f"
-   :bg-card "#4f4f4f"
-   :bg-input "#2f2f2f"
-   :bg-toolbar "#2f2f2f"
-   :bg-table-head "#3f3f3f"
-   :bg-table-body "#2f2f2f"
-   :bg-table-row-hover "#3f3f3f"
-   :bg-item-hover "#4f4f4f"
+  {:bg-page (:background zenburn)
+   :bg-sidebar (:background2 zenburn)
+   :bg-card (:border zenburn)
+   :bg-input (:background2 zenburn)
+   :bg-toolbar (:background2 zenburn)
+   :bg-table-head (:background zenburn)
+   :bg-table-body (:background2 zenburn)
+   :bg-table-row-hover (:background zenburn)
+   :bg-item-hover (:border zenburn)
 
-   :bg-button "#5f5f5f"
+   :bg-button (:border zenburn)
    :bg-button-hover "#6f6f6f"
-   :bg-button-primary "#7f9f7f"
-   :bg-button-primary-hover "#8fb28f"
-   :bg-button-danger "#cc9393"
+   :bg-button-primary (:diff-add zenburn)
+   :bg-button-primary-hover (:keyword zenburn)
+   :bg-button-danger (:exception zenburn)
    :bg-button-danger-hover "#bc8383"
-   :bg-button-xs "#4f4f4f"
+   :bg-button-xs (:border zenburn)
    :bg-button-xs-hover "#5f5f5f"
-   :bg-button-disabled "#3f3f3f"
+   :bg-button-disabled (:background zenburn)
 
-   :text-primary "#dcdccc"
-   :text-secondary "#9f9f9f"
-   :text-accent "#f0dfaf"
-   :text-code "#93e0e3"
+   :text-primary (:text zenburn)
+   :text-secondary (:namespace zenburn)
+   :text-accent (:tag zenburn)
+   :text-code (:number zenburn)
    :text-muted "#7f7f7f"
-   :text-danger "#cc9393"
+   :text-danger (:exception zenburn)
    :text-disabled "#7f7f7f"
-   :text-button "#dcdccc"
-   :text-button-primary "#3f3f3f"
+   :text-button (:text zenburn)
+   :text-button-primary (:background2 zenburn)
 
-   :border-main "#3f3f3f"
-   :border-subtle "#4f4f4f"
+   :border-main (:background zenburn)
+   :border-subtle (:border zenburn)
    :border-default "#5f5f5f"
    :border-hover "#7f7f7f"
-   :border-focus "#8cd0d3"
-   :border-focus-accent "#f0dfaf"
+   :border-focus (:number zenburn)
+   :border-focus-accent (:tag zenburn)
 
-   :ring-focus "#8cd0d3"})
+   :ring-focus (:number zenburn)})
 
 (defn color [k] (get colors k))
 
