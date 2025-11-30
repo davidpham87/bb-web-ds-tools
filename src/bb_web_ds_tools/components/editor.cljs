@@ -51,12 +51,13 @@
                          (merge
                           {:value (or value "")
                            :language lang
+                           :linenumber "off"
                            :theme "zenburn"
                            :automaticLayout true
                            :minimap {:enabled false}
                            :scrollBeyondLastLine false
                            :fontFamily "Menlo, Monaco, 'Courier New', monospace"
-                           :fontSize 14}
+                           :fontSize 13}
                           options)))]
 
             (reset! editor-instance editor)

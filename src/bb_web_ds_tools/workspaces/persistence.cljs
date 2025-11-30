@@ -19,15 +19,15 @@
                                                 :print js/console.log
                                                 :printErr js/console.error})))]
         (reset! sqlite-lib sqlite3)
-        (let [^js oo1 (.-oo1 sqlite3)
-              DB (.-DB oo1)
-              db (new DB ":memory:" "ct")]
+        (let [^js oo1 (.-oo1 ^js sqlite3)
+              ^js DB (.-DB ^js oo1)
+              ^js db (new DB ":memory:" "ct")]
            (reset! sql-db db))
         (println "SQLite3 initialized"))
       (catch :default e
         (js/console.error "Failed to initialize SQLite3" e)))))
 
-;; --- Persistence Logic ---
+;; --- Persistence Logic --
 
 (defn create-tables! []
   (when-let [^js db @sql-db]

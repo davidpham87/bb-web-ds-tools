@@ -12,8 +12,13 @@
         fork/fork {:mvn/version "2.4.3"}
         datascript/datascript {:mvn/version "1.5.4"}
         thheller/shadow-cljs {:mvn/version "3.2.1"}
-        org.babashka/sci {:mvn/version "0.8.41"}}
+        org.babashka/sci {:mvn/version "0.8.41"}
+
+        cider/cider-nrepl {:mvn/version "0.58.0"}
+        refactor-nrepl/refactor-nrepl {:mvn/version "3.9.0"}}
+
  :mvn/repos {"clojars" {:url "https://repo.clojars.org/"}}
+
  :aliases {:test {:extra-paths ["test"]
                   :extra-deps {io.github.cognitect-labs/test-runner {:git/url "https://github.com/cognitect-labs/test-runner.git"
                                                                      :sha "72a9557262dc4e49525c0e1215b248a39a047065"}}

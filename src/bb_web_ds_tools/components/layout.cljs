@@ -53,11 +53,13 @@
 
 (defn split-view [{:keys [ratio] :or {ratio :2-1} :as props} left right]
   (let [left-width (case ratio
+                     :1-1 "w-full"
                      :2-1 "w-full md:w-2/3"
                      :1-2 "w-full md:w-1/3"
                      :1-3 "w-full md:w-1/4"
                      "w-full md:w-1/3")
         right-width (case ratio
+                      :1-1 "w-full md:w-1/2"
                       :2-1 "w-full md:w-1/3"
                       :1-2 "w-full md:w-2/3"
                       :1-3 "w-full md:w-3/4"
