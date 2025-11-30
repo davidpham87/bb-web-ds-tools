@@ -85,7 +85,7 @@
    (when @webr-instance
      (try
        (-> (.evalR ^js @webr-instance code (clj->js {:autoprint true}))
-           (.then (fn [res]
+           (.then (fn [^js res]
                     (try
                       ;; Convert R object to JS or use capture?
                       ;; WebR objects might need conversion.
