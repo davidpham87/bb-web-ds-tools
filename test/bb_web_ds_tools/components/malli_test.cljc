@@ -33,3 +33,34 @@
         (let [inferred-schema (sut/read-edn (:schema-str result))]
            (every? #(m/validate inferred-schema %) data))
         false))))
+
+(deftest validate-data-test
+  (testing "Valid data"
+    (let [schema [:map [:a int?]]
+          data {:a 1}
+          result (sut/validate-data schema data)]
+      (is (:success result))
+      (is (= "✅ Data is valid." (:result result)))))
+
+  (testing "Invalid data"
+    (let [schema [:map [:a int?]]
+          data {:a "string"}
+          result (sut/validate-data schema data)]
+      (is (not (:success result)))
+      (is (map? (:result result))))) ;; Returns explanation map
+
+  (testing "Missing schema/data"
+    (is (not (:success (sut/validate-data nil {:a 1}))))
+    (is (not (:success (sut/validate-data [:map [:a int?]] nil))))))
+
+(deftest transform-to-json-schema-test
+  (testing "Valid schema"
+    (let [schema [:map [:a int?]]
+          result (sut/transform-to-json-schema schema)]
+      (is (:success result))
+      (is (string? (:json-schema result)))
+      ;; Check if it's valid JSON
+      (is (sut/parse-json (:json-schema result)))))
+
+  (testing "Invalid schema"
+    (is (not (:success (sut/transform-to-json-schema nil))))))

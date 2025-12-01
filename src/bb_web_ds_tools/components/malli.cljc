@@ -1,6 +1,8 @@
 (ns bb-web-ds-tools.components.malli
   (:require [malli.provider :as mp]
             [malli.generator :as mg]
+            [malli.core :as m]
+            [malli.json-schema :as json-schema]
             [clojure.string :as str]
             #?(:cljs [cljs.pprint :as pprint]
                :clj [clojure.pprint :as pprint])
@@ -72,6 +74,21 @@
       :edn (try (read-edn generated-data) (catch #?(:cljs :default :clj Exception) _ nil))
       :json (try (parse-json generated-data) (catch #?(:cljs :default :clj Exception) _ nil))
       nil))
+
+(defn validate-data [schema data]
+  (if (and schema data)
+    (if (m/validate schema data)
+      {:success true :result "✅ Data is valid."}
+      {:success false :result (m/explain schema data)})
+    {:success false :error "Invalid schema or data."}))
+
+(defn transform-to-json-schema [schema]
+  (if schema
+    (try
+      {:success true :json-schema (generate-json (json-schema/transform schema))}
+      (catch #?(:cljs :default :clj Exception) e
+        {:success false :error (str "Transformation failed: " (ex-message e))}))
+    {:success false :error "Invalid schema."}))
 
 ;; Legacy UI Components (kept for stories compatibility)
 #?(:cljs
