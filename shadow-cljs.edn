@@ -21,14 +21,12 @@
                 :external-index "target/index.js"
                 :keep-as-import #{"pyodide" "@sqlite.org/sqlite-wasm"}}
 
-   :compiler-options {:optimizations :simple
+   :compiler-options {:optimizations :advanced
                       :output-feature-set :es-next
                       :externs ["src/externs/webr.js"]}
 
    :devtools {:http-root   "docs"
-              :http-port   8080
-              :autobuild true
-              :reload-strategy :full}
+              :http-port   8080}
 
    :modules {:shared {:entries []}
              :main {:init-fn bb-web-ds-tools.core/init

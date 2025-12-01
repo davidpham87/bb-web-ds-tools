@@ -36,7 +36,7 @@ def verify():
                 {"label": "Gemma", "route": "#/gemma", "text": "Load Gemma Model"},
                 {"label": "Pyodide", "route": "#/pyodide", "text": "Code"},
                 {"label": "Editor", "route": "#/editor", "text": "Save Code"},
-                {"label": "Repl", "route": "#/repl", "text": "Add REPL"},
+                {"label": "Repl", "route": "#/repl", "text": "Clojure Code"},
                 {"label": "Datasets", "route": "#/datasets", "text": "Create New Dataset"},
                 {"label": "Settings", "route": "#/settings", "text": "Settings"},
                 {"label": "Changelog", "route": "#/changelog", "text": "Changelog"}
@@ -65,11 +65,11 @@ def verify():
                 except Exception as e:
                     print(f"Failed to verify {label} page. Content '{expected_text}' not found.")
                     # Capture screenshot if verification fails
-                    page.screenshot(path=f"error_{label}.png")
+                    page.screenshot(path=f"verification/error_{label}.png")
                     raise e
 
             print("All pages verified successfully!")
-            page.screenshot(path="success.png")
+            page.screenshot(path="verification/success.png")
 
         except Exception as e:
             print(f"Verification failed: {e}")
@@ -78,6 +78,9 @@ def verify():
             browser.close()
 
 if __name__ == "__main__":
+    if not os.path.exists("verification"):
+        os.makedirs("verification")
+
     # Start server in background thread
     server_thread = threading.Thread(target=serve, daemon=True)
     server_thread.start()

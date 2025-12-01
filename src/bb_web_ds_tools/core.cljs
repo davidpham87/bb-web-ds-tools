@@ -8,7 +8,7 @@
    [bb-web-ds-tools.views.changelog :as changelog]
    [bb-web-ds-tools.views.datasets :as datasets]
    [bb-web-ds-tools.views.editor :as editor]
-   ;; #_[bb-web-ds-tools.views.gemma :as gemma]
+   [bb-web-ds-tools.views.gemma :as gemma]
    [bb-web-ds-tools.views.honeysql :as honeysql]
    [bb-web-ds-tools.views.landing :as landing]
    [bb-web-ds-tools.views.malli :as malli]
@@ -136,7 +136,7 @@
 (defmethod view :malli [_] [malli/panel])
 (defmethod view :honeysql [_] [honeysql/panel])
 (defmethod view :vega-lite [_] [vega-lite/panel])
-;; (defmethod view :gemma [_] [gemma/panel])
+(defmethod view :gemma [_] [gemma/panel])
 (defmethod view :pyodide [_] [pyodide/panel])
 (defmethod view :editor [_] [editor/panel])
 (defmethod view :repl [_] [repl/panel])
