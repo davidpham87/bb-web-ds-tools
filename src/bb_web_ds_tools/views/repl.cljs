@@ -26,7 +26,8 @@
 (rf/reg-sub
  ::instances
  :<- [:bb-web-ds-tools.core/user-input]
- (fn [user-input _] (get user-input :repl)))
+ (fn [user-input _]
+   (get user-input :repl)))
 
 (rf/reg-event-db
  ::add-instance
@@ -34,12 +35,16 @@
    (let [new-id (str (random-uuid))]
      (assoc-in db [:user-input :repl new-id] {:id new-id :code ""}))))
 
+(rf/reg-fx
+ ::eval-code
+ (fn [code]
+   (when @sci-worker
+     (worker/post-message @sci-worker {:type "eval" :code code}))))
+
 (rf/reg-event-fx
  ::eval-code
- (fn [{:keys [db]} [_ _ code]]
-   (when @sci-worker
-     (worker/post-message @sci-worker {:type "eval" :code code}))
-   {:fx [[:dispatch [::portal/update-portal-frame]]]}))
+ (fn [_ [_ _ code]]
+   {::eval-code code}))
 
 (rf/reg-sub
  ::code
@@ -49,7 +54,17 @@
 
 (rf/reg-sub
  ::mac-os?
- (fn [db _] (get-in db [:platform :mac-os?])))
+ (fn [db _]
+   (get-in db [:platform :mac-os?])))
+
+(rf/reg-sub
+ ::repl-instance-state
+ (fn [[_ instance-id] _]
+   [(rf/subscribe [::code instance-id])
+    (rf/subscribe [::mac-os?])])
+ (fn [[code mac-os?] _]
+   {:code code
+    :mac-os? mac-os?}))
 
 (rf/reg-event-db
  ::update-code
@@ -121,11 +136,9 @@
                           (eval-action sexpr))))}))))
 
 (defn- repl-instance [{:keys [instance-id]}]
-  (let [code-sub (rf/subscribe [::code instance-id])
-        mac-os?-sub (rf/subscribe [::mac-os?])]
+  (let [state-sub (rf/subscribe [::repl-instance-state instance-id])]
     (fn []
-      (let [code @code-sub
-            mac-os? @mac-os?-sub]
+      (let [{:keys [code mac-os?]} @state-sub]
         [:div {:class "w-full border border-gray-700 rounded mb-4"}
          [l/flex-row {:class "h-full w-screen"}
           [l/flex-col {:class "space-y-2 w-full max-w-3xl"}
