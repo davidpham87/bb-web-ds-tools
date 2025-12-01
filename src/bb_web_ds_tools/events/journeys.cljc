@@ -15,7 +15,9 @@
     :malli/generate-data
     :malli/infer-schema
     :malli/save-dataset
-    :malli/load-dataset]
+    :malli/load-dataset
+    :malli/validate
+    :malli/transform-json]
 
    :r-repl
    [:bb-web-ds-tools.views.r-repl/initialize

@@ -117,6 +117,32 @@
            (assoc-in [::malli :input-format] :edn))
        db))))
 
+(rf/reg-event-fx
+ :malli/validate
+ (fn [{:keys [db]} _]
+   (let [schema-text (get-in db [:user-input :malli :default :schema-text])
+         input-text (get-in db [:user-input :malli :default :inference-input])
+         format (get-in db [::malli :input-format] :edn)
+         schema-result (c-malli/parse-schema-and-generate schema-text)
+         input-data (case format
+                      :edn (c-malli/detect-and-parse input-text)
+                      (dp/parse-dataset format input-text))]
+     (if (:success schema-result)
+       (let [result (c-malli/validate-data (:schema schema-result) input-data)]
+         {:db (assoc-in db [::malli :validation-result] (:result result))})
+       {:db (assoc-in db [::malli :validation-result] (:error schema-result))}))))
+
+(rf/reg-event-fx
+ :malli/transform-json
+ (fn [{:keys [db]} _]
+   (let [schema-text (get-in db [:user-input :malli :default :schema-text])
+         schema-result (c-malli/parse-schema-and-generate schema-text)]
+     (if (:success schema-result)
+       (let [result (c-malli/transform-to-json-schema (:schema schema-result))
+             output (if (:success result) (:json-schema result) (:error result))]
+         {:db (assoc-in db [::malli :json-schema-result] output)})
+       {:db (assoc-in db [::malli :json-schema-result] (:error schema-result))}))))
+
 ;; Subscriptions
 (rf/reg-sub :malli/user-input-root :<- [:bb-web-ds-tools.core/user-input] (fn [user-input _] (get-in user-input [:malli :default])))
 (rf/reg-sub :malli/component-root (fn [db _] (::malli db)))
@@ -128,6 +154,8 @@
 (rf/reg-sub :malli/input-format :<- [:malli/component-root] (fn [root _] (get root :input-format :edn)))
 (rf/reg-sub :malli/generation-samples :<- [:malli/component-root] (fn [root _] (get root :generation-samples 1)))
 (rf/reg-sub :malli/generation-format :<- [:malli/component-root] (fn [root _] (get root :generation-format :edn)))
+(rf/reg-sub :malli/validation-result :<- [:malli/component-root] (fn [root _] (:validation-result root)))
+(rf/reg-sub :malli/json-schema-result :<- [:malli/component-root] (fn [root _] (:json-schema-result root)))
 
 ;; UI components
 
@@ -225,6 +253,54 @@
        [c/button-xs {:on-click #(rf/dispatch [:malli/save-dataset])} "Save to Datasets"]]
       [portal-viewer generated-data]]]))
 
+(defn validation-view []
+  (let [schema-text @(rf/subscribe [:malli/schema-text])
+        inference-input @(rf/subscribe [:malli/inference-input])
+        input-format @(rf/subscribe [:malli/input-format])
+        validation-result @(rf/subscribe [:malli/validation-result])]
+    [l/split-view {:ratio :2-1}
+     ;; LEFT: Schema
+     [l/flex-col {:class "h-full p-4 space-y-4"}
+      [c/label "Schema (EDN)"]
+      [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
+       [editor/monaco-editor {:value schema-text
+                              :language "clojure"
+                              :options {:rulers [80]}
+                              :on-change #(rf/dispatch [:malli/update-schema-text %])}]]]
+
+     ;; RIGHT: Data + Validation
+     [l/flex-col {:class "h-full p-4 space-y-4"}
+      [c/label "Data to Validate"]
+      [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
+       [editor/monaco-editor {:value inference-input
+                              :language (case input-format :edn "clojure" :json "json" "plaintext")
+                              :options {:rulers [80]}
+                              :on-change #(rf/dispatch [:malli/update-inference-input %])}]]
+
+      [c/button {:on-click #(rf/dispatch [:malli/validate])} "Validate"]
+
+      [c/label "Validation Result"]
+      [portal-viewer validation-result]]]))
+
+(defn json-schema-view []
+  (let [schema-text @(rf/subscribe [:malli/schema-text])
+        json-schema-result @(rf/subscribe [:malli/json-schema-result])]
+    [l/split-view {:ratio :2-1}
+     ;; LEFT: Schema
+     [l/flex-col {:class "h-full p-4 space-y-4"}
+      [c/label "Schema (EDN)"]
+      [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
+       [editor/monaco-editor {:value schema-text
+                              :language "clojure"
+                              :options {:rulers [80]}
+                              :on-change #(rf/dispatch [:malli/update-schema-text %])}]]
+      [c/button {:on-click #(rf/dispatch [:malli/transform-json])} "Transform to JSON Schema"]]
+
+     ;; RIGHT: JSON Schema Output
+     [l/flex-col {:class "h-full p-4 space-y-4"}
+      [c/label "JSON Schema"]
+      [portal-viewer json-schema-result]]]))
+
 (defn panel-render []
   (let [active-tab (or @(rf/subscribe [:malli/active-tab]) :inference)]
     [l/flex-col {:class "h-full w-full"}
@@ -237,12 +313,22 @@
       [:button {:class (str "py-3 font-medium transition-colors border-b-2 "
                             (if (= active-tab :generation) (str "border-[#f0dfaf] " t/text-accent) (str "border-transparent " t/text-secondary " hover:text-[#dcdccc]")))
                 :on-click #(rf/dispatch [:malli/set-active-tab :generation])}
-       "Generation"]]
+       "Generation"]
+      [:button {:class (str "py-3 font-medium transition-colors border-b-2 "
+                            (if (= active-tab :validation) (str "border-[#f0dfaf] " t/text-accent) (str "border-transparent " t/text-secondary " hover:text-[#dcdccc]")))
+                :on-click #(rf/dispatch [:malli/set-active-tab :validation])}
+       "Validation"]
+      [:button {:class (str "py-3 font-medium transition-colors border-b-2 "
+                            (if (= active-tab :json-schema) (str "border-[#f0dfaf] " t/text-accent) (str "border-transparent " t/text-secondary " hover:text-[#dcdccc]")))
+                :on-click #(rf/dispatch [:malli/set-active-tab :json-schema])}
+       "JSON Schema"]]
 
      [:div {:class "flex-grow overflow-hidden"}
       (case active-tab
         :inference [inference-view]
-        :generation [generation-view])]]))
+        :generation [generation-view]
+        :validation [validation-view]
+        :json-schema [json-schema-view])]]))
 
 (defn panel []
   (r/create-class
