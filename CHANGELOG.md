@@ -5,7 +5,10 @@ All notable changes to a project will be documented in this file.
 ## [0.7.0] - 2025-12-01
 
 ### Fixed
-- Corrected a typo in the Gemma view (`gemma.cljs`).
+- Corrected a typo in the Gemma view (`gemma.cljs`) (5736b98).
+
+### Added
+- Malli validation JSON schema (1560443).
 
 ## [0.6.0] - 2025-11-28
 

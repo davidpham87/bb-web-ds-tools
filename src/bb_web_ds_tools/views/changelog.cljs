@@ -5,7 +5,9 @@
   [{:version "0.7.0"
     :date "2025-12-01"
     :sections [{:title "Fixed"
-                :items ["Corrected a typo in the Gemma view (`gemma.cljs`)."]}]}
+                :items ["Corrected a typo in the Gemma view (`gemma.cljs`) (5736b98)."]}
+               {:title "Added"
+                :items ["Malli validation JSON schema (1560443)."]}]}
    {:version "0.6.0"
     :date "2025-11-28"
     :sections [{:title "Changed"
