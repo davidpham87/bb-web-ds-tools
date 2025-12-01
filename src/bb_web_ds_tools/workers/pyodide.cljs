@@ -12,7 +12,7 @@
     (let [run-fn (gobj/get @pyodide-instance "runPythonAsync")]
       (-> (run-fn code)
           (.then (fn [res]
-                   (post-msg {:type :result :value (str res)})))
+                   (post-msg {:type :result :value res})))
           (.catch (fn [err]
                     (post-msg {:type :error :text (str err)})))))))
 
