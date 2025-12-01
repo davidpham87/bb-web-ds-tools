@@ -2,7 +2,11 @@
   (:require [bb-web-ds-tools.components.common :as c]))
 
 (def changelog-data
-  [{:version "0.6.0"
+  [{:version "0.7.0"
+    :date "2025-12-01"
+    :sections [{:title "Fixed"
+                :items ["Corrected a typo in the Gemma view (`gemma.cljs`)."]}]}
+   {:version "0.6.0"
     :date "2025-11-28"
     :sections [{:title "Changed"
                 :items ["Updated changelog view to support categorized entries (Added, Changed, etc.) matching CHANGELOG.md"

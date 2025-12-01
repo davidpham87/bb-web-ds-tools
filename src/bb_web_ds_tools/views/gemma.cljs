@@ -136,7 +136,7 @@
             [c/card {}
              [:div
               [:h3 {:class "text-xl font-bold text-[#f0dfaf] mb-2"} "Load Gemma Model"]
-              [:p {:class "text-[#dcdccc] mb-4 text-sm"} "Enter the URL to the .bin model file (e.g., from Kaggle or HuggingFace)."]
+              [:p {:class "text-[#dcdccc] mb-4 text-sm"} "Enter the URL to the .bin model file (e.g., from Kaggle or Hugging Face)."]
               [:input {:type "text"
                        :name "url"
                        :placeholder "Model URL (e.g. /gemma-2b-it-gpu-int4.bin)"
