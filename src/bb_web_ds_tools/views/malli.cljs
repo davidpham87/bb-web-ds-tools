@@ -6,6 +6,7 @@
             [bb-web-ds-tools.components.editor :as editor]
             [bb-web-ds-tools.components.layout :as l]
             [bb-web-ds-tools.components.malli :as c-malli]
+            [bb-web-ds-tools.portal :as portal :refer [portal-frame portal-viewer]]
             [bb-web-ds-tools.theme :as t]
             [bb-web-ds-tools.views.datasets :as datasets]
             [bb-web-ds-tools.utils.dataset-processing :as dp]))
@@ -76,10 +77,9 @@
    (let [component-state (::malli db)
          samples (get component-state :generation-samples 1)
          format (get component-state :generation-format :edn)
-         result (c-malli/generate-data schema samples format)]
-     (if (:success result)
-       {:db (assoc-in db [::malli :generated-data] (:output result))}
-       {:db (assoc-in db [::malli :generated-data] (:error result))}))))
+         result (c-malli/generate-data schema samples format)
+         output (if (:success result) (:output result) (:error result))]
+     {:db (assoc-in db [::malli :generated-data] output)})))
 
 (rf/reg-event-fx
  :malli/infer-schema
@@ -91,10 +91,9 @@
          input-data (case format
                       :edn (c-malli/detect-and-parse input-text)
                       (dp/parse-dataset format input-text))
-         result (c-malli/infer-schema input-data)]
-     (if (:success result)
-       {:db (assoc-in db [::malli :inferred-schema] (:schema-str result))}
-       {:db (assoc-in db [::malli :inferred-schema] (str "Invalid input data for format " (name format) ".")) }))))
+         result (c-malli/infer-schema input-data)
+         output (if (:success result) (:schema-str result) (str "Invalid input data for format " (name format) "."))]
+     {:db (assoc-in db [::malli :inferred-schema] output)})))
 
 (rf/reg-event-fx
  :malli/save-dataset
@@ -179,10 +178,7 @@
          ;; RIGHT: Output
          [l/flex-col {:class "h-full p-4 space-y-4"}
           [c/label "Inferred Schema"]
-          [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
-           [editor/monaco-editor {:value inferred-schema
-                                  :language "clojure"
-                                  :options {:readOnly true}}]]]]))))
+          [portal-viewer inferred-schema]]]))))
 
 (defn generation-view []
   (let [schema-text @(rf/subscribe [:malli/schema-text])
@@ -227,10 +223,7 @@
       [l/flex-row {:class "justify-between items-center"}
        [c/label "Generated Data"]
        [c/button-xs {:on-click #(rf/dispatch [:malli/save-dataset])} "Save to Datasets"]]
-      [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
-       [editor/monaco-editor {:value generated-data
-                              :language (if (= format :edn) "clojure" "json")
-                              :options {:readOnly true}}]]]]))
+      [portal-viewer generated-data]]]))
 
 (defn panel-render []
   (let [active-tab (or @(rf/subscribe [:malli/active-tab]) :inference)]
