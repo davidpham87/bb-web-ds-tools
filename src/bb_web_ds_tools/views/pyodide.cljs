@@ -7,6 +7,7 @@
    [bb-web-ds-tools.theme :as t]
    [bb-web-ds-tools.utils.worker :as worker]
    [clojure.string :as str]
+   [portal.web :as p]
    [re-frame.core :as rf]
    [reagent.core :as r]))
 
@@ -41,10 +42,10 @@
   (let [{:keys [type value text]} msg]
     (case (keyword type)
       :ready (rf/dispatch [::on-ready])
-      :result (rf/dispatch [::portal/submit {:type "result" :value value}])
-      :stdout (rf/dispatch [::portal/submit {:type "stdout" :text text}])
-      :stderr (rf/dispatch [::portal/submit {:type "stderr" :text text}])
-      :error  (do (rf/dispatch [::portal/submit {:type "error" :text text}])
+      :result (p/submit {:type "result" :value value})
+      :stdout (p/submit {:type "stdout" :text text})
+      :stderr (p/submit {:type "stderr" :text text})
+      :error  (do (p/submit {:type "error" :text text})
                   (rf/dispatch [::set-error text]))
       (js/console.warn "Unknown worker msg:" msg))))
 
