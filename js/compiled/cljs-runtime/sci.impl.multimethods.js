@@ -5,14 +5,14 @@ goog.provide('sci.impl.multimethods');
  */
 sci.impl.multimethods.check_valid_options = (function sci$impl$multimethods$check_valid_options(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___31382 = arguments.length;
-var i__5750__auto___31383 = (0);
+var len__5749__auto___31378 = arguments.length;
+var i__5750__auto___31379 = (0);
 while(true){
-if((i__5750__auto___31383 < len__5749__auto___31382)){
-args__5755__auto__.push((arguments[i__5750__auto___31383]));
+if((i__5750__auto___31379 < len__5749__auto___31378)){
+args__5755__auto__.push((arguments[i__5750__auto___31379]));
 
-var G__31384 = (i__5750__auto___31383 + (1));
-i__5750__auto___31383 = G__31384;
+var G__31381 = (i__5750__auto___31379 + (1));
+i__5750__auto___31379 = G__31381;
 continue;
 } else {
 }
@@ -25,8 +25,8 @@ return sci.impl.multimethods.check_valid_options.cljs$core$IFn$_invoke$arity$var
 
 (sci.impl.multimethods.check_valid_options.cljs$core$IFn$_invoke$arity$variadic = (function (options,valid_keys){
 if(cljs.core.seq(cljs.core.apply.cljs$core$IFn$_invoke$arity$3(cljs.core.disj,cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_set,cljs.core.keys(options)),valid_keys))){
-var message = cljs.core.apply.cljs$core$IFn$_invoke$arity$4(cljs.core.str,"Only these options are valid: ",cljs.core.first(valid_keys),cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__31349_SHARP_){
-return [", ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(p1__31349_SHARP_)].join('');
+var message = cljs.core.apply.cljs$core$IFn$_invoke$arity$4(cljs.core.str,"Only these options are valid: ",cljs.core.first(valid_keys),cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__31348_SHARP_){
+return [", ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(p1__31348_SHARP_)].join('');
 }),cljs.core.rest(valid_keys)));
 throw (new Error(message));
 } else {
@@ -37,11 +37,11 @@ return null;
 (sci.impl.multimethods.check_valid_options.cljs$lang$maxFixedArity = (1));
 
 /** @this {Function} */
-(sci.impl.multimethods.check_valid_options.cljs$lang$applyTo = (function (seq31350){
-var G__31351 = cljs.core.first(seq31350);
-var seq31350__$1 = cljs.core.next(seq31350);
+(sci.impl.multimethods.check_valid_options.cljs$lang$applyTo = (function (seq31349){
+var G__31350 = cljs.core.first(seq31349);
+var seq31349__$1 = cljs.core.next(seq31349);
 var self__5734__auto__ = this;
-return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__31351,seq31350__$1);
+return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__31350,seq31349__$1);
 }));
 
 /**
@@ -70,14 +70,14 @@ return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__31351,seq31350
  */
 sci.impl.multimethods.defmulti = (function sci$impl$multimethods$defmulti(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___31386 = arguments.length;
-var i__5750__auto___31387 = (0);
+var len__5749__auto___31383 = arguments.length;
+var i__5750__auto___31384 = (0);
 while(true){
-if((i__5750__auto___31387 < len__5749__auto___31386)){
-args__5755__auto__.push((arguments[i__5750__auto___31387]));
+if((i__5750__auto___31384 < len__5749__auto___31383)){
+args__5755__auto__.push((arguments[i__5750__auto___31384]));
 
-var G__31388 = (i__5750__auto___31387 + (1));
-i__5750__auto___31387 = G__31388;
+var G__31385 = (i__5750__auto___31384 + (1));
+i__5750__auto___31384 = G__31385;
 continue;
 } else {
 }
@@ -108,23 +108,23 @@ var default$ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(options__$4,new cljs.
 var hierarchy = cljs.core.get.cljs$core$IFn$_invoke$arity$3(options__$4,new cljs.core.Keyword(null,"hierarchy","hierarchy",-1053470341),sci.impl.hierarchies.global_hierarchy(ctx));
 sci.impl.multimethods.check_valid_options.cljs$core$IFn$_invoke$arity$variadic(options__$4,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"default","default",-1987822328),new cljs.core.Keyword(null,"hierarchy","hierarchy",-1053470341)], 0));
 
-return cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","defonce","cljs.core/defonce",-1291833100,null),null,(1),null)),(new cljs.core.List(null,cljs.core.with_meta(mm_name__$1,m__$2),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","let","cljs.core/let",-308701135,null),null,(1),null)),(new cljs.core.List(null,cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol(null,"method-table__31355__auto__","method-table__31355__auto__",-334639088,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","atom","cljs.core/atom",1943839529,null),null,(1),null)),(new cljs.core.List(null,cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.array_map,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$0()))),null,(1),null))))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,new cljs.core.Symbol(null,"prefer-table__31356__auto__","prefer-table__31356__auto__",-19688057,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","atom","cljs.core/atom",1943839529,null),null,(1),null)),(new cljs.core.List(null,cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.array_map,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$0()))),null,(1),null))))),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol(null,"method-cache__31357__auto__","method-cache__31357__auto__",1960773002,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","atom","cljs.core/atom",1943839529,null),null,(1),null)),(new cljs.core.List(null,cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.array_map,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$0()))),null,(1),null))))),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol(null,"cached-hierarchy__31358__auto__","cached-hierarchy__31358__auto__",1338758797,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","atom","cljs.core/atom",1943839529,null),null,(1),null)),(new cljs.core.List(null,cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.array_map,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$0()))),null,(1),null))))),null,(1),null))], 0))))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","multi-fn-impl","cljs.core/multi-fn-impl",1399453884,null),null,(1),null)),(new cljs.core.List(null,cljs.core.symbol.cljs$core$IFn$_invoke$arity$1(cljs.core.name(mm_name__$1)),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,dispatch_fn,null,(1),null)),(new cljs.core.List(null,default$,null,(1),null)),(new cljs.core.List(null,hierarchy,null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol(null,"method-table__31355__auto__","method-table__31355__auto__",-334639088,null),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol(null,"prefer-table__31356__auto__","prefer-table__31356__auto__",-19688057,null),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol(null,"method-cache__31357__auto__","method-cache__31357__auto__",1960773002,null),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol(null,"cached-hierarchy__31358__auto__","cached-hierarchy__31358__auto__",1338758797,null),null,(1),null))], 0)))),null,(1),null))], 0)))),null,(1),null))], 0))));
+return cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","defonce","cljs.core/defonce",-1291833100,null),null,(1),null)),(new cljs.core.List(null,cljs.core.with_meta(mm_name__$1,m__$2),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","let","cljs.core/let",-308701135,null),null,(1),null)),(new cljs.core.List(null,cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol(null,"method-table__31354__auto__","method-table__31354__auto__",-1286151482,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","atom","cljs.core/atom",1943839529,null),null,(1),null)),(new cljs.core.List(null,cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.array_map,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$0()))),null,(1),null))))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,new cljs.core.Symbol(null,"prefer-table__31355__auto__","prefer-table__31355__auto__",-281037983,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","atom","cljs.core/atom",1943839529,null),null,(1),null)),(new cljs.core.List(null,cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.array_map,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$0()))),null,(1),null))))),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol(null,"method-cache__31356__auto__","method-cache__31356__auto__",30754012,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","atom","cljs.core/atom",1943839529,null),null,(1),null)),(new cljs.core.List(null,cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.array_map,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$0()))),null,(1),null))))),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol(null,"cached-hierarchy__31357__auto__","cached-hierarchy__31357__auto__",2031748143,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","atom","cljs.core/atom",1943839529,null),null,(1),null)),(new cljs.core.List(null,cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.array_map,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$0()))),null,(1),null))))),null,(1),null))], 0))))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","multi-fn-impl","cljs.core/multi-fn-impl",1399453884,null),null,(1),null)),(new cljs.core.List(null,cljs.core.symbol.cljs$core$IFn$_invoke$arity$1(cljs.core.name(mm_name__$1)),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,dispatch_fn,null,(1),null)),(new cljs.core.List(null,default$,null,(1),null)),(new cljs.core.List(null,hierarchy,null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol(null,"method-table__31354__auto__","method-table__31354__auto__",-1286151482,null),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol(null,"prefer-table__31355__auto__","prefer-table__31355__auto__",-281037983,null),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol(null,"method-cache__31356__auto__","method-cache__31356__auto__",30754012,null),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol(null,"cached-hierarchy__31357__auto__","cached-hierarchy__31357__auto__",2031748143,null),null,(1),null))], 0)))),null,(1),null))], 0)))),null,(1),null))], 0))));
 }));
 
 (sci.impl.multimethods.defmulti.cljs$lang$maxFixedArity = (4));
 
 /** @this {Function} */
-(sci.impl.multimethods.defmulti.cljs$lang$applyTo = (function (seq31360){
-var G__31361 = cljs.core.first(seq31360);
-var seq31360__$1 = cljs.core.next(seq31360);
-var G__31362 = cljs.core.first(seq31360__$1);
-var seq31360__$2 = cljs.core.next(seq31360__$1);
-var G__31363 = cljs.core.first(seq31360__$2);
-var seq31360__$3 = cljs.core.next(seq31360__$2);
-var G__31364 = cljs.core.first(seq31360__$3);
-var seq31360__$4 = cljs.core.next(seq31360__$3);
+(sci.impl.multimethods.defmulti.cljs$lang$applyTo = (function (seq31358){
+var G__31359 = cljs.core.first(seq31358);
+var seq31358__$1 = cljs.core.next(seq31358);
+var G__31360 = cljs.core.first(seq31358__$1);
+var seq31358__$2 = cljs.core.next(seq31358__$1);
+var G__31361 = cljs.core.first(seq31358__$2);
+var seq31358__$3 = cljs.core.next(seq31358__$2);
+var G__31362 = cljs.core.first(seq31358__$3);
+var seq31358__$4 = cljs.core.next(seq31358__$3);
 var self__5734__auto__ = this;
-return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__31361,G__31362,G__31363,G__31364,seq31360__$4);
+return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__31359,G__31360,G__31361,G__31362,seq31358__$4);
 }));
 
 sci.impl.multimethods.multi_fn_QMARK__impl = (function sci$impl$multimethods$multi_fn_QMARK__impl(x){
@@ -141,14 +141,14 @@ return cljs.core._add_method(multifn,dispatch_val,f);
  */
 sci.impl.multimethods.defmethod = (function sci$impl$multimethods$defmethod(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___31390 = arguments.length;
-var i__5750__auto___31391 = (0);
+var len__5749__auto___31388 = arguments.length;
+var i__5750__auto___31389 = (0);
 while(true){
-if((i__5750__auto___31391 < len__5749__auto___31390)){
-args__5755__auto__.push((arguments[i__5750__auto___31391]));
+if((i__5750__auto___31389 < len__5749__auto___31388)){
+args__5755__auto__.push((arguments[i__5750__auto___31389]));
 
-var G__31392 = (i__5750__auto___31391 + (1));
-i__5750__auto___31391 = G__31392;
+var G__31390 = (i__5750__auto___31389 + (1));
+i__5750__auto___31389 = G__31390;
 continue;
 } else {
 }
@@ -166,17 +166,17 @@ return (new cljs.core.List(null,new cljs.core.Symbol("clojure.core","multi-fn-ad
 (sci.impl.multimethods.defmethod.cljs$lang$maxFixedArity = (4));
 
 /** @this {Function} */
-(sci.impl.multimethods.defmethod.cljs$lang$applyTo = (function (seq31373){
-var G__31374 = cljs.core.first(seq31373);
-var seq31373__$1 = cljs.core.next(seq31373);
-var G__31375 = cljs.core.first(seq31373__$1);
-var seq31373__$2 = cljs.core.next(seq31373__$1);
-var G__31376 = cljs.core.first(seq31373__$2);
-var seq31373__$3 = cljs.core.next(seq31373__$2);
-var G__31377 = cljs.core.first(seq31373__$3);
-var seq31373__$4 = cljs.core.next(seq31373__$3);
+(sci.impl.multimethods.defmethod.cljs$lang$applyTo = (function (seq31371){
+var G__31372 = cljs.core.first(seq31371);
+var seq31371__$1 = cljs.core.next(seq31371);
+var G__31373 = cljs.core.first(seq31371__$1);
+var seq31371__$2 = cljs.core.next(seq31371__$1);
+var G__31374 = cljs.core.first(seq31371__$2);
+var seq31371__$3 = cljs.core.next(seq31371__$2);
+var G__31375 = cljs.core.first(seq31371__$3);
+var seq31371__$4 = cljs.core.next(seq31371__$3);
 var self__5734__auto__ = this;
-return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__31374,G__31375,G__31376,G__31377,seq31373__$4);
+return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__31372,G__31373,G__31374,G__31375,seq31371__$4);
 }));
 
 
