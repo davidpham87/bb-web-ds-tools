@@ -4,13 +4,11 @@
    [bb-web-ds-tools.components.editor :as editor]
    [bb-web-ds-tools.components.layout :as l]
    [bb-web-ds-tools.portal :as portal]
+   [bb-web-ds-tools.runtime.pyodide :as pyodide-runtime]
    [bb-web-ds-tools.theme :as t]
-   [bb-web-ds-tools.utils.worker :as worker]
    [clojure.string :as str]
    [re-frame.core :as rf]
    [reagent.core :as r]))
-
-(defonce pyodide-worker (atom nil))
 
 (def packages
   ["numpy" "pandas" "altair" "cytoolz" "scikit-learn" "sqlite3" "protobuf"])
@@ -43,10 +41,6 @@
       :ready (rf/dispatch [::on-ready])
       :error (rf/dispatch [::set-error text])
       (js/console.warn "Unknown worker msg:" msg))))
-
-(defn ensure-worker []
-  (when-not @pyodide-worker
-    (reset! pyodide-worker (worker/create-worker "js/compiled/pyodide-worker.js" on-worker-message))))
 
 (rf/reg-event-fx
  ::initialize
@@ -123,14 +117,13 @@
 (rf/reg-fx
  ::load-runtime
  (fn [_]
-   (ensure-worker)
-   (worker/post-message @pyodide-worker {:type "load"})))
+   (pyodide-runtime/init-worker! on-worker-message)
+   (pyodide-runtime/load-runtime-worker)))
 
 (rf/reg-fx
  ::execute-python
  (fn [code]
-   (ensure-worker)
-   (worker/post-message @pyodide-worker {:type "run" :code code})))
+   (pyodide-runtime/eval-in-worker code)))
 
 (rf/reg-event-fx
  ::run-code
@@ -181,7 +174,3 @@
   (r/create-class
    {:component-did-mount #(rf/dispatch [::initialize])
     :reagent-render internal-view}))
-
-(comment
-  (.log js/console @pyodide-worker)
-  )
