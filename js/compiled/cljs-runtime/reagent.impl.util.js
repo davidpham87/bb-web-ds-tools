@@ -50,12 +50,12 @@ return dashed;
 } else {
 var name_str = cljs.core.name(dashed);
 var name_str__$1 = clojure.string.replace(name_str,/(unsafe|UNSAFE)[-_]/,"UNSAFE_");
-var vec__35289 = clojure.string.split.cljs$core$IFn$_invoke$arity$2(name_str__$1,/-/);
-var seq__35290 = cljs.core.seq(vec__35289);
-var first__35291 = cljs.core.first(seq__35290);
-var seq__35290__$1 = cljs.core.next(seq__35290);
-var start = first__35291;
-var parts = seq__35290__$1;
+var vec__35282 = clojure.string.split.cljs$core$IFn$_invoke$arity$2(name_str__$1,/-/);
+var seq__35283 = cljs.core.seq(vec__35282);
+var first__35284 = cljs.core.first(seq__35283);
+var seq__35283__$1 = cljs.core.next(seq__35283);
+var start = first__35284;
+var parts = seq__35283__$1;
 return cljs.core.apply.cljs$core$IFn$_invoke$arity$3(cljs.core.str,start,cljs.core.map.cljs$core$IFn$_invoke$arity$2(reagent.impl.util.capitalize,parts));
 }
 });
@@ -695,14 +695,14 @@ return x;
 });
 reagent.impl.util.hiccup_err = (function reagent$impl$util$hiccup_err(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___35341 = arguments.length;
-var i__5750__auto___35342 = (0);
+var len__5749__auto___35345 = arguments.length;
+var i__5750__auto___35346 = (0);
 while(true){
-if((i__5750__auto___35342 < len__5749__auto___35341)){
-args__5755__auto__.push((arguments[i__5750__auto___35342]));
+if((i__5750__auto___35346 < len__5749__auto___35345)){
+args__5755__auto__.push((arguments[i__5750__auto___35346]));
 
-var G__35343 = (i__5750__auto___35342 + (1));
-i__5750__auto___35342 = G__35343;
+var G__35347 = (i__5750__auto___35346 + (1));
+i__5750__auto___35346 = G__35347;
 continue;
 } else {
 }

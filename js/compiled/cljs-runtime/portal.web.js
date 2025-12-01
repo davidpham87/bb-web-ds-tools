@@ -34,8 +34,8 @@ return cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$3(portal.runtime.default
  * Open a new inspector window.
  */
 portal.web.open = (function portal$web$open(var_args){
-var G__25704 = arguments.length;
-switch (G__25704) {
+var G__25705 = arguments.length;
+switch (G__25705) {
 case 0:
 return portal.web.open.cljs$core$IFn$_invoke$arity$0();
 
@@ -152,11 +152,11 @@ return portal.web.eval_str.cljs$core$IFn$_invoke$arity$3(new cljs.core.Keyword(n
 
 (portal.web.eval_str.cljs$core$IFn$_invoke$arity$3 = (function (_portal,code,opts){
 var result = portal.runtime.web.launcher.eval_str(cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(opts,new cljs.core.Keyword(null,"code","code",1586293142),code));
-var G__25715 = result;
+var G__25714 = result;
 if(cljs.core.not(new cljs.core.Keyword(null,"verbose","verbose",1694226060).cljs$core$IFn$_invoke$arity$1(opts))){
-return new cljs.core.Keyword(null,"value","value",305978217).cljs$core$IFn$_invoke$arity$1(G__25715);
+return new cljs.core.Keyword(null,"value","value",305978217).cljs$core$IFn$_invoke$arity$1(G__25714);
 } else {
-return G__25715;
+return G__25714;
 }
 }));
 

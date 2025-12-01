@@ -150,8 +150,8 @@ delete jsprops["value"];
 
 (jsprops.defaultValue = value);
 
-(jsprops.onChange = (function (p1__35588_SHARP_){
-return reagent.impl.input.input_handle_change(this$,on_change,p1__35588_SHARP_);
+(jsprops.onChange = (function (p1__35583_SHARP_){
+return reagent.impl.input.input_handle_change(this$,on_change,p1__35583_SHARP_);
 }));
 
 return (jsprops.ref = this$.reagentRefFn);

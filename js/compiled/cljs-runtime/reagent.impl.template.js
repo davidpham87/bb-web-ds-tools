@@ -337,11 +337,11 @@ var c = reagent.impl.component.as_class(tag,compiler);
 var jsprops = ({});
 (jsprops.argv = v);
 
-var temp__5829__auto___35621 = reagent.impl.util.react_key_from_vec(v);
-if((temp__5829__auto___35621 == null)){
+var temp__5829__auto___35625 = reagent.impl.util.react_key_from_vec(v);
+if((temp__5829__auto___35625 == null)){
 } else {
-var key_35622 = temp__5829__auto___35621;
-(jsprops.key = key_35622);
+var key_35626 = temp__5829__auto___35625;
+(jsprops.key = key_35626);
 }
 
 return shadow.js.shim.module$react.createElement(c,jsprops);
@@ -356,11 +356,11 @@ reagent.impl.template.defc_element = (function reagent$impl$template$defc_elemen
 var jsprops = ({});
 (jsprops.argv = cljs.core.subvec.cljs$core$IFn$_invoke$arity$2(v,(1)));
 
-var temp__5829__auto___35623 = reagent.impl.util.react_key_from_vec(v);
-if((temp__5829__auto___35623 == null)){
+var temp__5829__auto___35627 = reagent.impl.util.react_key_from_vec(v);
+if((temp__5829__auto___35627 == null)){
 } else {
-var key_35624 = temp__5829__auto___35623;
-(jsprops.key = key_35624);
+var key_35628 = temp__5829__auto___35627;
+(jsprops.key = key_35628);
 }
 
 return shadow.js.shim.module$react.createElement(tag,jsprops);
@@ -371,11 +371,11 @@ var jsprops = ({});
 
 (jsprops.argv = cljs.core.subvec.cljs$core$IFn$_invoke$arity$2(v,first_arg));
 
-var temp__5829__auto___35627 = reagent.impl.util.react_key_from_vec(v);
-if((temp__5829__auto___35627 == null)){
+var temp__5829__auto___35629 = reagent.impl.util.react_key_from_vec(v);
+if((temp__5829__auto___35629 == null)){
 } else {
-var key_35628 = temp__5829__auto___35627;
-(jsprops.key = key_35628);
+var key_35630 = temp__5829__auto___35629;
+(jsprops.key = key_35630);
 }
 
 return shadow.js.shim.module$react.createElement(reagent.impl.component.functional_render_fn(compiler,tag),jsprops);
@@ -450,11 +450,11 @@ return x;
 })();
 return reagent.impl.protocols.as_element(compiler,cljs.core.with_meta(new cljs.core.PersistentVector(null, 6, 5, cljs.core.PersistentVector.EMPTY_NODE, [input_class,argv,component,jsprops,first_child,compiler], null),cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(cljs.core.truth_(react_key)?new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"key","key",-1516042587),react_key], null):null),cljs.core.meta(argv)], 0))));
 } else {
-var temp__5829__auto___35635 = reagent.impl.util.get_react_key(cljs.core.meta(argv));
-if((temp__5829__auto___35635 == null)){
+var temp__5829__auto___35639 = reagent.impl.util.get_react_key(cljs.core.meta(argv));
+if((temp__5829__auto___35639 == null)){
 } else {
-var key_35636 = temp__5829__auto___35635;
-(jsprops.key = key_35636);
+var key_35640 = temp__5829__auto___35639;
+(jsprops.key = key_35640);
 }
 
 return reagent.impl.protocols.make_element(compiler,argv,component,jsprops,first_child);
@@ -469,11 +469,11 @@ return or__5025__auto__;
 return ({});
 }
 })();
-var temp__5829__auto___35639 = reagent.impl.util.get_react_key(cljs.core.meta(argv));
-if((temp__5829__auto___35639 == null)){
+var temp__5829__auto___35641 = reagent.impl.util.get_react_key(cljs.core.meta(argv));
+if((temp__5829__auto___35641 == null)){
 } else {
-var key_35641 = temp__5829__auto___35639;
-(jsprops.key = key_35641);
+var key_35642 = temp__5829__auto___35641;
+(jsprops.key = key_35642);
 }
 
 return reagent.impl.protocols.make_element(compiler,argv,comp,jsprops,(3));
@@ -538,10 +538,10 @@ throw (new Error(["Assert failed: ",reagent.impl.util.hiccup_err.cljs$core$IFn$_
 
 break;
 default:
-var G__35646 = cljs.core.with_meta(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.subs.cljs$core$IFn$_invoke$arity$3(n,(0),pos),cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(cljs.core.with_meta(v,null),(0),cljs.core.subs.cljs$core$IFn$_invoke$arity$2(n,(pos + (1))))], null),cljs.core.meta(v));
-var G__35647 = compiler;
-v = G__35646;
-compiler = G__35647;
+var G__35654 = cljs.core.with_meta(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.subs.cljs$core$IFn$_invoke$arity$3(n,(0),pos),cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(cljs.core.with_meta(v,null),(0),cljs.core.subs.cljs$core$IFn$_invoke$arity$2(n,(pos + (1))))], null),cljs.core.meta(v));
+var G__35658 = compiler;
+v = G__35654;
+compiler = G__35658;
 continue;
 
 }
