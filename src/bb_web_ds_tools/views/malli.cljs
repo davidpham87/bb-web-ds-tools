@@ -276,10 +276,10 @@
       (let [{:keys [inference-input inferred-schema datasets input-format]} @state-sub]
         [l/split-view {:ratio :2-1}
          ;; LEFT: Input
-         [l/flex-col {:class "h-full p-4 space-y-4"}
-          [l/flex-row {:class "justify-between items-center"}
+         [l/flex-col {:class "h-full w-full max-w-3xl"}
+          [l/flex-row {:class "justify-between py-4 items-center"}
            [c/label "Input Data"]
-           [l/flex-row {:class "space-x-2"}
+           [l/flex-row {:class "space-x-2 items-center"}
             [c/button-xs {:class (if (= input-format :edn) (str t/bg-button-primary " text-white") "")
                           :on-click #(rf/dispatch [:malli/set-input-format :edn])} "EDN"]
             [c/button-xs {:class (if (= input-format :csv) (str t/bg-button-primary " text-white") "")
@@ -287,26 +287,27 @@
             [c/button-xs {:class (if (= input-format :tsv) (str t/bg-button-primary " text-white") "")
                           :on-click #(rf/dispatch [:malli/set-input-format :tsv])} "TSV"]
             [c/button-xs {:class (if (= input-format :json) (str t/bg-button-primary " text-white") "")
-                          :on-click #(rf/dispatch [:malli/set-input-format :json])} "JSON"]]
-           (when (seq datasets)
-             [:div {:class "flex items-center space-x-2"}
-              [:span {:class (str "text-xs " t/text-secondary)} "Load:"]
-              [c/select {:class "py-1 px-2 text-xs"
-                         :on-change #(rf/dispatch [:malli/load-dataset (.. % -target -value)])
-                         :value ""}
-               [:option {:value ""} "Select Dataset..."]
-               (for [[id ds] datasets]
-                 [:option {:key id :value id} (:name ds)])]])]
+                          :on-click #(rf/dispatch [:malli/set-input-format :json])} "JSON"]
+            (when (seq datasets)
+              [:div {:class "flex items-center space-x-2"}
+               [:span {:class (str "text-xs " t/text-secondary)} "Load:"]
+               [c/select {:class "py-1 px-2 text-xs"
+                          :on-change #(rf/dispatch [:malli/load-dataset (.. % -target -value)])
+                          :value ""}
+                [:option {:value ""} "Select Dataset..."]
+                (for [[id ds] datasets]
+                  [:option {:key id :value id} (:name ds)])]])
+            [c/button {:on-click #(rf/dispatch [:malli/infer-schema])} "Infer Schema"]]]
 
-          [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
+          [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)
+                 :style {:height "85vh"}}
            [editor/monaco-editor {:value inference-input
                                   :language (case input-format
                                               :edn "clojure"
                                               :json "json"
                                               "plaintext")
-                                  :options {:rulers [80]}
-                                  :on-change #(rf/dispatch [:malli/update-inference-input %])}]]
-          [c/button {:on-click #(rf/dispatch [:malli/infer-schema])} "Infer Schema"]]
+                                  :options {:rulers [80] :lineNumbers "off"}
+                                  :on-change #(rf/dispatch [:malli/update-inference-input %])}]]]
 
          ;; RIGHT: Output
          [l/flex-col {:class "h-full p-4 space-y-4"}
