@@ -2,6 +2,11 @@
 
 All notable changes to a project will be documented in this file.
 
+## [0.7.0] - 2025-12-01
+
+### Fixed
+- Corrected a typo in the Gemma view (`gemma.cljs`).
+
 ## [0.6.0] - 2025-11-28
 
 ### Changed
