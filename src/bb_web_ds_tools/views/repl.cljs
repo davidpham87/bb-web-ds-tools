@@ -5,23 +5,11 @@
    [bb-web-ds-tools.components.editor :as editor]
    [bb-web-ds-tools.components.layout :as l]
    [bb-web-ds-tools.portal :as portal :refer (portal-frame)]
+   [bb-web-ds-tools.runtime.sci :as sci-runtime]
    [bb-web-ds-tools.theme :as t]
-   [bb-web-ds-tools.utils.worker :as worker]
    [clojure.string :as str]
    [re-frame.core :as rf]
    [reagent.core :as r]))
-
-(defonce sci-worker (atom nil))
-
-(defn on-worker-message [msg]
-  (let [{:keys [type event]} msg]
-    (case (keyword type)
-      :dispatch (rf/dispatch event)
-      (js/console.warn "Unknown worker msg:" msg))))
-
-(defn ensure-worker []
-  (when-not @sci-worker
-    (reset! sci-worker (worker/create-worker "js/compiled/sci-worker.js" on-worker-message))))
 
 (rf/reg-sub
  ::instances
@@ -38,8 +26,7 @@
 (rf/reg-fx
  ::eval-code
  (fn [code]
-   (when @sci-worker
-     (worker/post-message @sci-worker {:type "eval" :code code}))))
+   (sci-runtime/eval-in-worker code)))
 
 (rf/reg-event-fx
  ::eval-code
@@ -158,7 +145,7 @@
 
 (defn panel []
   (r/create-class
-   {:component-did-mount #(ensure-worker)
+   {:component-did-mount #(sci-runtime/init!)
     :reagent-render
     (fn []
       (let [instances (rf/subscribe [::instances])]

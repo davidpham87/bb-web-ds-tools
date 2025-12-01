@@ -1,0 +1,11 @@
+(ns bb-web-ds-tools.runtime-test
+  (:require [cljs.test :refer [deftest is testing async]]
+            [bb-web-ds-tools.runtime.sci :as sci]
+            [portal.web :as p]))
+
+(deftest test-sci-main-eval
+  (testing "eval-in-main executes code"
+    (let [results (atom [])]
+      (with-redefs [p/submit (fn [res] (swap! results conj res))]
+        (sci/eval-in-main "(+ 1 2)")
+        (is (= "3" (:value (last @results))))))))
