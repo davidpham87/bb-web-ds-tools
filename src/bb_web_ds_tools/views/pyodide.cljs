@@ -1,19 +1,16 @@
 (ns bb-web-ds-tools.views.pyodide
   (:require
-   ["pyodide" :as pyodide :refer (loadPyodide)]
    [bb-web-ds-tools.components.common :as c]
    [bb-web-ds-tools.components.editor :as editor]
    [bb-web-ds-tools.components.layout :as l]
    [bb-web-ds-tools.portal :as portal]
    [bb-web-ds-tools.theme :as t]
+   [bb-web-ds-tools.utils.worker :as worker]
    [clojure.string :as str]
-   [goog.object :as gobj]
    [re-frame.core :as rf]
    [reagent.core :as r]))
 
-
-
-(defonce pyodide-instance (atom nil))
+(defonce pyodide-worker (atom nil))
 
 (def packages
   ["numpy" "pandas" "altair" "cytoolz" "scikit-learn" "sqlite3" "protobuf"])
@@ -40,9 +37,20 @@
        "\n"
        initial-code))
 
-(defn run-code [^js pyodide-instance code]
-  (let [run-fn (gobj/get pyodide-instance "runPythonAsync")]
-    (run-fn code)))
+(defn on-worker-message [msg]
+  (let [{:keys [type value text]} msg]
+    (case (keyword type)
+      :ready (rf/dispatch [::on-ready])
+      :result (rf/dispatch [::portal/submit {:type "result" :value value}])
+      :stdout (rf/dispatch [::portal/submit {:type "stdout" :text text}])
+      :stderr (rf/dispatch [::portal/submit {:type "stderr" :text text}])
+      :error  (do (rf/dispatch [::portal/submit {:type "error" :text text}])
+                  (rf/dispatch [::set-error text]))
+      (js/console.warn "Unknown worker msg:" msg))))
+
+(defn ensure-worker []
+  (when-not @pyodide-worker
+    (reset! pyodide-worker (worker/create-worker "js/compiled/pyodide-worker.js" on-worker-message))))
 
 (rf/reg-event-fx
  ::initialize
@@ -109,35 +117,24 @@
  (fn [db [_ v]]
    (assoc-in db [:pyodide ::error] v)))
 
+(rf/reg-event-fx
+ ::on-ready
+ (fn [{:keys [db]} _]
+   {:db (assoc-in db [:pyodide ::ready?] true)
+    :fx [[:dispatch [::set-loading false]]
+         [:dispatch [::run-code setup-code]]]}))
+
 (rf/reg-fx
  ::load-runtime
  (fn [_]
-   (if @pyodide-instance
-     (rf/dispatch [::set-ready true])
-     (-> (loadPyodide
-          (clj->js {:indexURL #_"js/pyodide"
-                    (str "https://cdn.jsdelivr.net/pyodide/v" pyodide/version "/full/")
-                    :stdout (fn [text] (rf/dispatch [::portal/submit {:type "stdout" :text text}]))
-                    :stderr (fn [text] (rf/dispatch [::portal/submit {:type "stderr" :text text}]))}))
-         (.then (fn [p]
-                  (reset! pyodide-instance p)
-                  (rf/dispatch [::set-ready true])
-                  (rf/dispatch [::set-loading false])
-                  (rf/dispatch [::run-code setup-code])))
-         (.catch (fn [e]
-                   (rf/dispatch [::set-error (str e)])))))))
+   (ensure-worker)
+   (worker/post-message @pyodide-worker {:type "load"})))
 
 (rf/reg-fx
  ::execute-python
  (fn [code]
-   (when @pyodide-instance
-     (try
-       (let [res (run-code @pyodide-instance code)]
-         (.then res
-                (fn [x]
-                  (rf/dispatch [::portal/submit {:type "result" :value (str x)}]))))
-       (catch js/Error e
-         (rf/dispatch [::portal/submit {:type "error" :text (str e)}]))))))
+   (ensure-worker)
+   (worker/post-message @pyodide-worker {:type "run" :code code})))
 
 (rf/reg-event-fx
  ::run-code
@@ -190,6 +187,5 @@
     :reagent-render internal-view}))
 
 (comment
-  (.log js/console @pyodide-instance)
-  (.loadPackage @pyodide-instance "micropip")
+  (.log js/console @pyodide-worker)
   )

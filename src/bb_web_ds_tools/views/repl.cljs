@@ -6,17 +6,26 @@
    [bb-web-ds-tools.components.layout :as l]
    [bb-web-ds-tools.portal :as portal :refer (portal-frame)]
    [bb-web-ds-tools.theme :as t]
+   [bb-web-ds-tools.utils.worker :as worker]
    [clojure.string :as str]
-   [clojure.tools.reader :as tr]
-   [clojure.tools.reader.reader-types :as rt]
    [re-frame.core :as rf]
-   [reagent.core :as r]
-   [sci.core :as sci]))
+   [reagent.core :as r]))
 
-(def sci-ctx
-  (sci/init {:namespaces {'re-frame.core {'subscribe rf/subscribe
-                                          'dispatch rf/dispatch}
-                          'clojure.core {'println println}}}))
+(defonce sci-worker (atom nil))
+
+(defn on-worker-message [msg]
+  (let [{:keys [type value text event]} msg]
+    (case (keyword type)
+      :result (rf/dispatch [::portal/submit {:type "result" :value value}])
+      :stdout (rf/dispatch [::portal/submit {:type "stdout" :text text}])
+      :stderr (rf/dispatch [::portal/submit {:type "stderr" :text text}])
+      :error  (rf/dispatch [::portal/submit {:type "error" :text text}])
+      :dispatch (rf/dispatch event)
+      (js/console.warn "Unknown worker msg:" msg))))
+
+(defn ensure-worker []
+  (when-not @sci-worker
+    (reset! sci-worker (worker/create-worker "js/compiled/sci-worker.js" on-worker-message))))
 
 (rf/reg-sub
  ::instances
@@ -32,20 +41,9 @@
 (rf/reg-event-fx
  ::eval-code
  (fn [{:keys [db]} [_ _ code]]
-   (let [rdr (rt/string-push-back-reader code)
-         results
-         (loop [acc []]
-           (let [form (try (tr/read rdr false :eof)
-                           (catch :default e {:error (str "Read Error: " e)}))]
-             (if (= form :eof)
-               acc
-               (if (and (map? form) (:error form))
-                 (conj acc form)
-                 (let [res (try (sci/eval-form sci-ctx form)
-                                (catch :default e {:error (str "Eval Error: " e)}))]
-                   (recur (conj acc res)))))))]
-     {:fx (conj (vec (map (fn [r] [:portal/submit r]) results))
-                [:dispatch [::portal/update-portal-frame]])})))
+   (when @sci-worker
+     (worker/post-message @sci-worker {:type "eval" :code code}))
+   {:fx [[:dispatch [::portal/update-portal-frame]]]}))
 
 (rf/reg-sub
  ::code
@@ -151,7 +149,8 @@
 
 (defn panel []
   (r/create-class
-   {:reagent-render
+   {:component-did-mount #(ensure-worker)
+    :reagent-render
     (fn []
       (let [instances (rf/subscribe [::instances])]
         [:div {:class "flex flex-col h-full overflow-y-clip"}
