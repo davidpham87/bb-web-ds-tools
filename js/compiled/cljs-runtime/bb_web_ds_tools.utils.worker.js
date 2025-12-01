@@ -48,11 +48,11 @@ return cljs.core.async.put_BANG_.cljs$core$IFn$_invoke$arity$2(out_chan,err);
 }
 }));
 
-var G__49408 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"worker","worker",938239996),worker], null);
+var G__49407 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"worker","worker",938239996),worker], null);
 if(cljs.core.truth_(out_chan)){
-return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(G__49408,new cljs.core.Keyword(null,"out-chan","out-chan",384315017),out_chan);
+return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(G__49407,new cljs.core.Keyword(null,"out-chan","out-chan",384315017),out_chan);
 } else {
-return G__49408;
+return G__49407;
 }
 }));
 
@@ -61,10 +61,10 @@ return G__49408;
 /**
  * Sends a message to the worker.
  */
-bb_web_ds_tools.utils.worker.post_message = (function bb_web_ds_tools$utils$worker$post_message(p__49410,message){
-var map__49411 = p__49410;
-var map__49411__$1 = cljs.core.__destructure_map(map__49411);
-var worker = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49411__$1,new cljs.core.Keyword(null,"worker","worker",938239996));
+bb_web_ds_tools.utils.worker.post_message = (function bb_web_ds_tools$utils$worker$post_message(p__49409,message){
+var map__49410 = p__49409;
+var map__49410__$1 = cljs.core.__destructure_map(map__49410);
+var worker = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49410__$1,new cljs.core.Keyword(null,"worker","worker",938239996));
 return worker.postMessage(cljs.core.clj__GT_js(message));
 });
 /**

@@ -24,8 +24,8 @@ return reitit.frontend.query_param(q,p1__54781_SHARP_);
  */
 reitit.frontend.set_query_params = (function reitit$frontend$set_query_params(path,new_query_or_update_fn){
 var uri = goog.Uri.parse(path);
-var new_query = ((cljs.core.fn_QMARK_(new_query_or_update_fn))?(function (){var G__54783 = reitit.frontend.query_params(uri);
-return (new_query_or_update_fn.cljs$core$IFn$_invoke$arity$1 ? new_query_or_update_fn.cljs$core$IFn$_invoke$arity$1(G__54783) : new_query_or_update_fn.call(null,G__54783));
+var new_query = ((cljs.core.fn_QMARK_(new_query_or_update_fn))?(function (){var G__54782 = reitit.frontend.query_params(uri);
+return (new_query_or_update_fn.cljs$core$IFn$_invoke$arity$1 ? new_query_or_update_fn.cljs$core$IFn$_invoke$arity$1(G__54782) : new_query_or_update_fn.call(null,G__54782));
 })():new_query_or_update_fn);
 uri.setQueryData(goog.Uri.QueryData.createFromMap(cljs.core.clj__GT_js(new_query)));
 
@@ -189,8 +189,8 @@ return reitit.core.match_by_name(router,name,path_params);
  *   Enables request coercion. See [[reitit.core/router]] for details on options.
  */
 reitit.frontend.router = (function reitit$frontend$router(var_args){
-var G__54798 = arguments.length;
-switch (G__54798) {
+var G__54797 = arguments.length;
+switch (G__54797) {
 case 1:
 return reitit.frontend.router.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -244,8 +244,8 @@ var temp__5823__auto__ = reitit.frontend.match_by_name.cljs$core$IFn$_invoke$ari
 if(cljs.core.truth_(temp__5823__auto__)){
 var match = temp__5823__auto__;
 if(reitit.core.partial_match_QMARK_(match)){
-if(cljs.core.every_QMARK_((function (p1__54799_SHARP_){
-return cljs.core.contains_QMARK_(path_params,p1__54799_SHARP_);
+if(cljs.core.every_QMARK_((function (p1__54800_SHARP_){
+return cljs.core.contains_QMARK_(path_params,p1__54800_SHARP_);
 }),new cljs.core.Keyword(null,"required","required",1807647006).cljs$core$IFn$_invoke$arity$1(match))){
 return match;
 } else {
