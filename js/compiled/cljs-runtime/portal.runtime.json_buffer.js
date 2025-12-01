@@ -16,34 +16,34 @@ portal.runtime.json_buffer.__GT_reader = (function portal$runtime$json_buffer$__
 return portal.runtime.json_buffer.shifter(JSON.parse(data));
 });
 portal.runtime.json_buffer.push_null = (function portal$runtime$json_buffer$push_null(buffer){
-var G__21923 = buffer;
-G__21923.push(null);
+var G__21981 = buffer;
+G__21981.push(null);
 
-return G__21923;
+return G__21981;
 });
 portal.runtime.json_buffer.push_bool = (function portal$runtime$json_buffer$push_bool(buffer,value){
-var G__21924 = buffer;
-G__21924.push(value);
+var G__21994 = buffer;
+G__21994.push(value);
 
-return G__21924;
+return G__21994;
 });
 portal.runtime.json_buffer.push_long = (function portal$runtime$json_buffer$push_long(buffer,value){
-var G__21928 = buffer;
-G__21928.push(value);
+var G__22001 = buffer;
+G__22001.push(value);
 
-return G__21928;
+return G__22001;
 });
 portal.runtime.json_buffer.push_double = (function portal$runtime$json_buffer$push_double(buffer,value){
-var G__21933 = buffer;
-G__21933.push(value);
+var G__22002 = buffer;
+G__22002.push(value);
 
-return G__21933;
+return G__22002;
 });
 portal.runtime.json_buffer.push_string = (function portal$runtime$json_buffer$push_string(buffer,value){
-var G__21942 = buffer;
-G__21942.push(value);
+var G__22003 = buffer;
+G__22003.push(value);
 
-return G__21942;
+return G__22003;
 });
 portal.runtime.json_buffer.push_value = (function portal$runtime$json_buffer$push_value(buffer,value){
 if((value == null)){
@@ -87,9 +87,9 @@ portal.runtime.json_buffer.next_value = (function portal$runtime$json_buffer$nex
 return portal.runtime.json_buffer._shift(buffer);
 });
 portal.runtime.json_buffer.with_buffer = (function portal$runtime$json_buffer$with_buffer(f,value){
-return JSON.stringify((function (){var G__21974 = (new Array());
-var G__21975 = value;
-return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__21974,G__21975) : f.call(null,G__21974,G__21975));
+return JSON.stringify((function (){var G__22042 = (new Array());
+var G__22043 = value;
+return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__22042,G__22043) : f.call(null,G__22042,G__22043));
 })());
 });
 

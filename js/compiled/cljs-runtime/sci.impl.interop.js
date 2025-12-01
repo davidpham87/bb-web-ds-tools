@@ -8,8 +8,8 @@ if((temp__5827__auto__ == null)){
 throw (new Error(["Could not find instance method: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(method_name)].join('')));
 } else {
 var method = temp__5827__auto__;
-var args__$1 = args.map((function (p1__28059_SHARP_){
-return sci.impl.types.eval(p1__28059_SHARP_,ctx,bindings);
+var args__$1 = args.map((function (p1__28074_SHARP_){
+return sci.impl.types.eval(p1__28074_SHARP_,ctx,bindings);
 }));
 return Reflect.apply(method,obj,args__$1);
 }
@@ -20,7 +20,7 @@ return (class$[field_name_sym]);
 sci.impl.interop.fn_eval_allowed_QMARK_ = (function (){try{(new Function("return 1"));
 
 return true;
-}catch (e28093){var _ = e28093;
+}catch (e28083){var _ = e28083;
 return false;
 }})();
 sci.impl.interop.get_static_fields = (function sci$impl$interop$get_static_fields(cur,parts){
@@ -28,10 +28,10 @@ var cur__$1 = cur;
 var i = (0);
 while(true){
 if((i < parts.length)){
-var G__28117 = (cur__$1[(parts[i])]);
-var G__28118 = (i + (1));
-cur__$1 = G__28117;
-i = G__28118;
+var G__28125 = (cur__$1[(parts[i])]);
+var G__28126 = (i + (1));
+cur__$1 = G__28125;
+i = G__28126;
 continue;
 } else {
 return cur__$1;
@@ -53,13 +53,13 @@ return sci.impl.interop.get_static_fields(obj,parts);
 }
 });
 sci.impl.interop.invoke_js_constructor_STAR_ = (function sci$impl$interop$invoke_js_constructor_STAR_(ctx,bindings,constructor$,args){
-return Reflect.construct(constructor$,args.map((function (p1__28096_SHARP_){
-return sci.impl.types.eval(p1__28096_SHARP_,ctx,bindings);
+return Reflect.construct(constructor$,args.map((function (p1__28084_SHARP_){
+return sci.impl.types.eval(p1__28084_SHARP_,ctx,bindings);
 })));
 });
 sci.impl.interop.invoke_static_method = (function sci$impl$interop$invoke_static_method(ctx,bindings,class$,method,args){
-return Reflect.apply(method,class$,args.map((function (p1__28097_SHARP_){
-return sci.impl.types.eval(p1__28097_SHARP_,ctx,bindings);
+return Reflect.apply(method,class$,args.map((function (p1__28085_SHARP_){
+return sci.impl.types.eval(p1__28085_SHARP_,ctx,bindings);
 })));
 });
 sci.impl.interop.fully_qualify_class = (function sci$impl$interop$fully_qualify_class(ctx,sym){

@@ -12,8 +12,8 @@ return cljs.core.vec(vs);
  */
 reitit.frontend.query_params = (function reitit$frontend$query_params(uri){
 var q = uri.getQueryData();
-return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentArrayMap.EMPTY,cljs.core.map.cljs$core$IFn$_invoke$arity$2(cljs.core.juxt.cljs$core$IFn$_invoke$arity$2(cljs.core.keyword,(function (p1__54781_SHARP_){
-return reitit.frontend.query_param(q,p1__54781_SHARP_);
+return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentArrayMap.EMPTY,cljs.core.map.cljs$core$IFn$_invoke$arity$2(cljs.core.juxt.cljs$core$IFn$_invoke$arity$2(cljs.core.keyword,(function (p1__54779_SHARP_){
+return reitit.frontend.query_param(q,p1__54779_SHARP_);
 })),q.getKeys()));
 });
 /**
@@ -36,8 +36,8 @@ return uri.toString();
  *   optional fragment string.
  */
 reitit.frontend.match__GT_path = (function reitit$frontend$match__GT_path(var_args){
-var G__54785 = arguments.length;
-switch (G__54785) {
+var G__54784 = arguments.length;
+switch (G__54784) {
 case 1:
 return reitit.frontend.match__GT_path.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -94,8 +94,8 @@ return null;
  *   :on-coercion-error - a sideeffecting fn of `match exception -> nil`
  */
 reitit.frontend.match_by_path = (function reitit$frontend$match_by_path(var_args){
-var G__54789 = arguments.length;
-switch (G__54789) {
+var G__54788 = arguments.length;
+switch (G__54788) {
 case 2:
 return reitit.frontend.match_by_path.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -189,8 +189,8 @@ return reitit.core.match_by_name(router,name,path_params);
  *   Enables request coercion. See [[reitit.core/router]] for details on options.
  */
 reitit.frontend.router = (function reitit$frontend$router(var_args){
-var G__54797 = arguments.length;
-switch (G__54797) {
+var G__54798 = arguments.length;
+switch (G__54798) {
 case 1:
 return reitit.frontend.router.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 

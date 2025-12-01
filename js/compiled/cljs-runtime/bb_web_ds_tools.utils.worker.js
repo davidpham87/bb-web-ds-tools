@@ -48,11 +48,11 @@ return cljs.core.async.put_BANG_.cljs$core$IFn$_invoke$arity$2(out_chan,err);
 }
 }));
 
-var G__49407 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"worker","worker",938239996),worker], null);
+var G__49406 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"worker","worker",938239996),worker], null);
 if(cljs.core.truth_(out_chan)){
-return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(G__49407,new cljs.core.Keyword(null,"out-chan","out-chan",384315017),out_chan);
+return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(G__49406,new cljs.core.Keyword(null,"out-chan","out-chan",384315017),out_chan);
 } else {
-return G__49407;
+return G__49406;
 }
 }));
 
@@ -61,20 +61,20 @@ return G__49407;
 /**
  * Sends a message to the worker.
  */
-bb_web_ds_tools.utils.worker.post_message = (function bb_web_ds_tools$utils$worker$post_message(p__49409,message){
-var map__49410 = p__49409;
-var map__49410__$1 = cljs.core.__destructure_map(map__49410);
-var worker = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49410__$1,new cljs.core.Keyword(null,"worker","worker",938239996));
+bb_web_ds_tools.utils.worker.post_message = (function bb_web_ds_tools$utils$worker$post_message(p__49407,message){
+var map__49408 = p__49407;
+var map__49408__$1 = cljs.core.__destructure_map(map__49408);
+var worker = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49408__$1,new cljs.core.Keyword(null,"worker","worker",938239996));
 return worker.postMessage(cljs.core.clj__GT_js(message));
 });
 /**
  * Terminates the worker.
  */
-bb_web_ds_tools.utils.worker.terminate = (function bb_web_ds_tools$utils$worker$terminate(p__49413){
-var map__49414 = p__49413;
-var map__49414__$1 = cljs.core.__destructure_map(map__49414);
-var worker = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49414__$1,new cljs.core.Keyword(null,"worker","worker",938239996));
-var out_chan = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49414__$1,new cljs.core.Keyword(null,"out-chan","out-chan",384315017));
+bb_web_ds_tools.utils.worker.terminate = (function bb_web_ds_tools$utils$worker$terminate(p__49409){
+var map__49410 = p__49409;
+var map__49410__$1 = cljs.core.__destructure_map(map__49410);
+var worker = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49410__$1,new cljs.core.Keyword(null,"worker","worker",938239996));
+var out_chan = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49410__$1,new cljs.core.Keyword(null,"out-chan","out-chan",384315017));
 worker.terminate();
 
 if(cljs.core.truth_(out_chan)){

@@ -2,25 +2,25 @@ goog.provide('bb_web_ds_tools.core');
 re_frame.core.reg_sub.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword("bb-web-ds-tools.core","current-route","bb-web-ds-tools.core/current-route",-183395378),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (db){
 return new cljs.core.Keyword(null,"current-route","current-route",2067529448).cljs$core$IFn$_invoke$arity$1(db);
 })], 0));
-re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.core","navigate","bb-web-ds-tools.core/navigate",-787989557),(function (_,p__54924){
-var vec__54925 = p__54924;
-var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54925,(0),null);
-var route_name = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54925,(1),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54925,(2),null);
-var query = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54925,(3),null);
+re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.core","navigate","bb-web-ds-tools.core/navigate",-787989557),(function (_,p__54925){
+var vec__54926 = p__54925;
+var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54926,(0),null);
+var route_name = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54926,(1),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54926,(2),null);
+var query = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54926,(3),null);
 return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"navigate","navigate",657596805),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [route_name,params,query], null)], null);
 }));
-re_frame.core.reg_fx(new cljs.core.Keyword(null,"navigate","navigate",657596805),(function (p__54928){
-var vec__54929 = p__54928;
-var route_name = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54929,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54929,(1),null);
-var query = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54929,(2),null);
+re_frame.core.reg_fx(new cljs.core.Keyword(null,"navigate","navigate",657596805),(function (p__54929){
+var vec__54930 = p__54929;
+var route_name = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54930,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54930,(1),null);
+var query = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54930,(2),null);
 return reitit.frontend.easy.push_state.cljs$core$IFn$_invoke$arity$3(route_name,params,query);
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.core","navigated","bb-web-ds-tools.core/navigated",386373854),(function (db,p__54932){
-var vec__54933 = p__54932;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54933,(0),null);
-var match = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54933,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.core","navigated","bb-web-ds-tools.core/navigated",386373854),(function (db,p__54933){
+var vec__54934 = p__54933;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54934,(0),null);
+var match = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54934,(1),null);
 return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(db,new cljs.core.Keyword(null,"current-route","current-route",2067529448),match);
 }));
 bb_web_ds_tools.core.routes = new cljs.core.PersistentVector(null, 15, 5, cljs.core.PersistentVector.EMPTY_NODE, ["/",new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"landing-page","landing-page",1687415187)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["workspaces",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"workspaces","workspaces",168825563)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["malli",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"malli","malli",814072082)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["honeysql",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"honeysql","honeysql",1617091670)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["vega-lite",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"vega-lite","vega-lite",-650304770)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["gemma",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"gemma","gemma",2017704848)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["pyodide",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"pyodide","pyodide",-2009894763)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["editor",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"editor","editor",-989377770)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["repl",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"repl","repl",-35398667)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["r-repl",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"r-repl","r-repl",-2114415565)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["datasets",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"datasets","datasets",1896364419)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["changelog",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"changelog","changelog",-435725878)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["settings",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"settings","settings",1556144875)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["app-db",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"app-db","app-db",865606302)], null)], null)], null);

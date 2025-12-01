@@ -17,8 +17,8 @@ return false;
  *      future.
  */
 portal.viewer.default$ = (function portal$viewer$default(var_args){
-var G__22037 = arguments.length;
-switch (G__22037) {
+var G__22077 = arguments.length;
+switch (G__22077) {
 case 2:
 return portal.viewer.default$.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -37,8 +37,8 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 if(portal.viewer.can_meta_QMARK_(value)){
 return cljs.core.vary_meta.cljs$core$IFn$_invoke$arity$4(value,cljs.core.assoc,new cljs.core.Keyword("portal.viewer","default","portal.viewer/default",-1985169620),viewer);
 } else {
-var G__22040 = new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("portal.viewer","inspector","portal.viewer/inspector",1531405044),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword("portal.viewer","default","portal.viewer/default",-1985169620),viewer], null),value], null);
-return (portal.viewer.hiccup.cljs$core$IFn$_invoke$arity$1 ? portal.viewer.hiccup.cljs$core$IFn$_invoke$arity$1(G__22040) : portal.viewer.hiccup.call(null,G__22040));
+var G__22079 = new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("portal.viewer","inspector","portal.viewer/inspector",1531405044),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword("portal.viewer","default","portal.viewer/default",-1985169620),viewer], null),value], null);
+return (portal.viewer.hiccup.cljs$core$IFn$_invoke$arity$1 ? portal.viewer.hiccup.cljs$core$IFn$_invoke$arity$1(G__22079) : portal.viewer.hiccup.call(null,G__22079));
 }
 }));
 
@@ -46,8 +46,8 @@ return (portal.viewer.hiccup.cljs$core$IFn$_invoke$arity$1 ? portal.viewer.hiccu
 if(portal.viewer.can_meta_QMARK_(value)){
 return cljs.core.vary_meta.cljs$core$IFn$_invoke$arity$6(value,cljs.core.assoc,new cljs.core.Keyword("portal.viewer","default","portal.viewer/default",-1985169620),viewer,viewer,opts);
 } else {
-var G__22042 = new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("portal.viewer","inspector","portal.viewer/inspector",1531405044),cljs.core.PersistentArrayMap.createAsIfByAssoc([new cljs.core.Keyword("portal.viewer","default","portal.viewer/default",-1985169620),viewer,viewer,opts]),value], null);
-return (portal.viewer.hiccup.cljs$core$IFn$_invoke$arity$1 ? portal.viewer.hiccup.cljs$core$IFn$_invoke$arity$1(G__22042) : portal.viewer.hiccup.call(null,G__22042));
+var G__22080 = new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("portal.viewer","inspector","portal.viewer/inspector",1531405044),cljs.core.PersistentArrayMap.createAsIfByAssoc([new cljs.core.Keyword("portal.viewer","default","portal.viewer/default",-1985169620),viewer,viewer,opts]),value], null);
+return (portal.viewer.hiccup.cljs$core$IFn$_invoke$arity$1 ? portal.viewer.hiccup.cljs$core$IFn$_invoke$arity$1(G__22080) : portal.viewer.hiccup.call(null,G__22080));
 }
 }));
 
@@ -60,8 +60,8 @@ return cljs.core.vary_meta.cljs$core$IFn$_invoke$arity$5(value,cljs.core.update,
  * Default data viewer.
  */
 portal.viewer.inspector = (function portal$viewer$inspector(var_args){
-var G__22047 = arguments.length;
-switch (G__22047) {
+var G__22083 = arguments.length;
+switch (G__22083) {
 case 1:
 return portal.viewer.inspector.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -90,8 +90,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * Viewer for datafied exceptions.
  */
 portal.viewer.ex = (function portal$viewer$ex(var_args){
-var G__22051 = arguments.length;
-switch (G__22051) {
+var G__22086 = arguments.length;
+switch (G__22086) {
 case 1:
 return portal.viewer.ex.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -120,8 +120,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * Useful for conveying a value in a specific context (what/where/when).
  */
 portal.viewer.log = (function portal$viewer$log(var_args){
-var G__22053 = arguments.length;
-switch (G__22053) {
+var G__22090 = arguments.length;
+switch (G__22090) {
 case 1:
 return portal.viewer.log.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -150,8 +150,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * Highlight HTTP method and status code for http request and response.
  */
 portal.viewer.http = (function portal$viewer$http(var_args){
-var G__22055 = arguments.length;
-switch (G__22055) {
+var G__22092 = arguments.length;
+switch (G__22092) {
 case 1:
 return portal.viewer.http.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -180,8 +180,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * View clojure.test report output.
  */
 portal.viewer.test_report = (function portal$viewer$test_report(var_args){
-var G__22063 = arguments.length;
-switch (G__22063) {
+var G__22094 = arguments.length;
+switch (G__22094) {
 case 1:
 return portal.viewer.test_report.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -210,8 +210,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * View hex / rgb / rgba colors
  */
 portal.viewer.color = (function portal$viewer$color(var_args){
-var G__22066 = arguments.length;
-switch (G__22066) {
+var G__22102 = arguments.length;
+switch (G__22102) {
 case 1:
 return portal.viewer.color.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -240,8 +240,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * Interpret number as a duration in nanoseconds, round up to minutes.
  */
 portal.viewer.duration_ns = (function portal$viewer$duration_ns(var_args){
-var G__22075 = arguments.length;
-switch (G__22075) {
+var G__22110 = arguments.length;
+switch (G__22110) {
 case 1:
 return portal.viewer.duration_ns.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -270,8 +270,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * Interpret number as a duration in milliseconds, round up to minutes.
  */
 portal.viewer.duration_ms = (function portal$viewer$duration_ms(var_args){
-var G__22077 = arguments.length;
-switch (G__22077) {
+var G__22118 = arguments.length;
+switch (G__22118) {
 case 1:
 return portal.viewer.duration_ms.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -300,8 +300,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * View value printed via clojure.pprint/pprint.
  */
 portal.viewer.pprint = (function portal$viewer$pprint(var_args){
-var G__22082 = arguments.length;
-switch (G__22082) {
+var G__22120 = arguments.length;
+switch (G__22120) {
 case 1:
 return portal.viewer.pprint.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -327,8 +327,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
 (portal.viewer.pprint.cljs$lang$maxFixedArity = 2);
 
 portal.viewer.vega_lite = (function portal$viewer$vega_lite(var_args){
-var G__22087 = arguments.length;
-switch (G__22087) {
+var G__22123 = arguments.length;
+switch (G__22123) {
 case 1:
 return portal.viewer.vega_lite.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -354,8 +354,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
 (portal.viewer.vega_lite.cljs$lang$maxFixedArity = 2);
 
 portal.viewer.vega = (function portal$viewer$vega(var_args){
-var G__22090 = arguments.length;
-switch (G__22090) {
+var G__22126 = arguments.length;
+switch (G__22126) {
 case 1:
 return portal.viewer.vega.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -386,8 +386,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * - columns: vector of keys to use as columns in table.
  */
 portal.viewer.table = (function portal$viewer$table(var_args){
-var G__22093 = arguments.length;
-switch (G__22093) {
+var G__22128 = arguments.length;
+switch (G__22128) {
 case 1:
 return portal.viewer.table.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -416,8 +416,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * For viewing highly nested values, such as hiccup.
  */
 portal.viewer.tree = (function portal$viewer$tree(var_args){
-var G__22095 = arguments.length;
-switch (G__22095) {
+var G__22130 = arguments.length;
+switch (G__22130) {
 case 1:
 return portal.viewer.tree.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -443,8 +443,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
 (portal.viewer.tree.cljs$lang$maxFixedArity = 2);
 
 portal.viewer.pr_str = (function portal$viewer$pr_str(var_args){
-var G__22102 = arguments.length;
-switch (G__22102) {
+var G__22134 = arguments.length;
+switch (G__22134) {
 case 1:
 return portal.viewer.pr_str.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -473,8 +473,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * Render a hiccup value as html via reagent.
  */
 portal.viewer.hiccup = (function portal$viewer$hiccup(var_args){
-var G__22105 = arguments.length;
-switch (G__22105) {
+var G__22144 = arguments.length;
+switch (G__22144) {
 case 1:
 return portal.viewer.hiccup.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -500,8 +500,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
 (portal.viewer.hiccup.cljs$lang$maxFixedArity = 2);
 
 portal.viewer.date_time = (function portal$viewer$date_time(var_args){
-var G__22109 = arguments.length;
-switch (G__22109) {
+var G__22146 = arguments.length;
+switch (G__22146) {
 case 1:
 return portal.viewer.date_time.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -530,8 +530,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * Diff a collection of values successively starting with the first two.
  */
 portal.viewer.diff = (function portal$viewer$diff(var_args){
-var G__22111 = arguments.length;
-switch (G__22111) {
+var G__22149 = arguments.length;
+switch (G__22149) {
 case 1:
 return portal.viewer.diff.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -560,8 +560,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * Diff two strings.
  */
 portal.viewer.diff_text = (function portal$viewer$diff_text(var_args){
-var G__22113 = arguments.length;
-switch (G__22113) {
+var G__22157 = arguments.length;
+switch (G__22157) {
 case 1:
 return portal.viewer.diff_text.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -590,8 +590,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * View interlacing of stdout, stderr and tap values. Useful for build output.
  */
 portal.viewer.prepl = (function portal$viewer$prepl(var_args){
-var G__22122 = arguments.length;
-switch (G__22122) {
+var G__22160 = arguments.length;
+switch (G__22160) {
 case 1:
 return portal.viewer.prepl.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -620,8 +620,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * Parse string as markdown and view as html.
  */
 portal.viewer.markdown = (function portal$viewer$markdown(var_args){
-var G__22128 = arguments.length;
-switch (G__22128) {
+var G__22163 = arguments.length;
+switch (G__22163) {
 case 1:
 return portal.viewer.markdown.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -650,8 +650,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * View binary data as a hexdump.
  */
 portal.viewer.bin = (function portal$viewer$bin(var_args){
-var G__22132 = arguments.length;
-switch (G__22132) {
+var G__22168 = arguments.length;
+switch (G__22168) {
 case 1:
 return portal.viewer.bin.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -680,8 +680,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * View a binary value as an image.
  */
 portal.viewer.image = (function portal$viewer$image(var_args){
-var G__22135 = arguments.length;
-switch (G__22135) {
+var G__22170 = arguments.length;
+switch (G__22170) {
 case 1:
 return portal.viewer.image.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -710,8 +710,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * View string as a text file.
  */
 portal.viewer.text = (function portal$viewer$text(var_args){
-var G__22141 = arguments.length;
-switch (G__22141) {
+var G__22172 = arguments.length;
+switch (G__22172) {
 case 1:
 return portal.viewer.text.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -740,8 +740,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * Parse a string as JSON. Will render error if parsing fails.
  */
 portal.viewer.json = (function portal$viewer$json(var_args){
-var G__22144 = arguments.length;
-switch (G__22144) {
+var G__22174 = arguments.length;
+switch (G__22174) {
 case 1:
 return portal.viewer.json.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -770,8 +770,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * Parse a string as a JWT. Will render error if parsing fails.
  */
 portal.viewer.jwt = (function portal$viewer$jwt(var_args){
-var G__22147 = arguments.length;
-switch (G__22147) {
+var G__22180 = arguments.length;
+switch (G__22180) {
 case 1:
 return portal.viewer.jwt.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -800,8 +800,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * Parse a string as EDN. Will render error if parsing fails.
  */
 portal.viewer.edn = (function portal$viewer$edn(var_args){
-var G__22149 = arguments.length;
-switch (G__22149) {
+var G__22182 = arguments.length;
+switch (G__22182) {
 case 1:
 return portal.viewer.edn.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -830,8 +830,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * Parse a string as transit. Will render error if parsing fails.
  */
 portal.viewer.transit = (function portal$viewer$transit(var_args){
-var G__22153 = arguments.length;
-switch (G__22153) {
+var G__22184 = arguments.length;
+switch (G__22184) {
 case 1:
 return portal.viewer.transit.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -860,8 +860,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * Parse a string as a CSV and use the table viewer by default.
  */
 portal.viewer.csv = (function portal$viewer$csv(var_args){
-var G__22155 = arguments.length;
-switch (G__22155) {
+var G__22188 = arguments.length;
+switch (G__22188) {
 case 1:
 return portal.viewer.csv.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -887,8 +887,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
 (portal.viewer.csv.cljs$lang$maxFixedArity = 2);
 
 portal.viewer.html = (function portal$viewer$html(var_args){
-var G__22158 = arguments.length;
-switch (G__22158) {
+var G__22190 = arguments.length;
+switch (G__22190) {
 case 1:
 return portal.viewer.html.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -914,8 +914,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
 (portal.viewer.html.cljs$lang$maxFixedArity = 2);
 
 portal.viewer.code = (function portal$viewer$code(var_args){
-var G__22162 = arguments.length;
-switch (G__22162) {
+var G__22197 = arguments.length;
+switch (G__22197) {
 case 1:
 return portal.viewer.code.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -941,8 +941,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
 (portal.viewer.code.cljs$lang$maxFixedArity = 2);
 
 portal.viewer.size_bytes = (function portal$viewer$size_bytes(var_args){
-var G__22168 = arguments.length;
-switch (G__22168) {
+var G__22199 = arguments.length;
+switch (G__22199) {
 case 1:
 return portal.viewer.size_bytes.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 

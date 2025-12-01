@@ -10,8 +10,8 @@ while(true){
 var temp__5823__auto__ = active_element.shadowRoot;
 if(cljs.core.truth_(temp__5823__auto__)){
 var shadow_root = temp__5823__auto__;
-var G__35586 = shadow_root.activeElement;
-active_element = G__35586;
+var G__35590 = shadow_root.activeElement;
+active_element = G__35590;
 continue;
 } else {
 return active_element;
@@ -19,10 +19,10 @@ return active_element;
 break;
 }
 });
-reagent.impl.input.input_node_set_value = (function reagent$impl$input$input_node_set_value(node,rendered_value,dom_value,component,p__35572){
-var map__35573 = p__35572;
-var map__35573__$1 = cljs.core.__destructure_map(map__35573);
-var on_write = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__35573__$1,new cljs.core.Keyword(null,"on-write","on-write",31519475));
+reagent.impl.input.input_node_set_value = (function reagent$impl$input$input_node_set_value(node,rendered_value,dom_value,component,p__35577){
+var map__35578 = p__35577;
+var map__35578__$1 = cljs.core.__destructure_map(map__35578);
+var on_write = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__35578__$1,new cljs.core.Keyword(null,"on-write","on-write",31519475));
 if(cljs.core.truth_((function (){var or__5025__auto__ = (!((((node === reagent.impl.input.get_true_active_element())) && (((reagent.impl.input.has_selection_api_QMARK_(node.type)) && (((typeof rendered_value === 'string') && (typeof dom_value === 'string'))))))));
 if(or__5025__auto__){
 return or__5025__auto__;
@@ -150,8 +150,8 @@ delete jsprops["value"];
 
 (jsprops.defaultValue = value);
 
-(jsprops.onChange = (function (p1__35583_SHARP_){
-return reagent.impl.input.input_handle_change(this$,on_change,p1__35583_SHARP_);
+(jsprops.onChange = (function (p1__35588_SHARP_){
+return reagent.impl.input.input_handle_change(this$,on_change,p1__35588_SHARP_);
 }));
 
 return (jsprops.ref = this$.reagentRefFn);
@@ -163,8 +163,8 @@ reagent.impl.input.input_unmount = (function reagent$impl$input$input_unmount(th
 return (this$.cljsInputLive = null);
 });
 reagent.impl.input.input_component_QMARK_ = (function reagent$impl$input$input_component_QMARK_(x){
-var G__35584 = x;
-switch (G__35584) {
+var G__35589 = x;
+switch (G__35589) {
 case "input":
 case "textarea":
 return true;

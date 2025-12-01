@@ -24,13 +24,13 @@ try{var exprs = cljs.core.rest(form);
 var ret = null;
 while(true){
 if(cljs.core.seq(exprs)){
-var G__33958 = cljs.core.rest(exprs);
-var G__33959 = (function (){var G__33910 = ctx;
-var G__33911 = cljs.core.first(exprs);
-return (sci.impl.interpreter.eval_form.cljs$core$IFn$_invoke$arity$2 ? sci.impl.interpreter.eval_form.cljs$core$IFn$_invoke$arity$2(G__33910,G__33911) : sci.impl.interpreter.eval_form.call(null,G__33910,G__33911));
+var G__33921 = cljs.core.rest(exprs);
+var G__33922 = (function (){var G__33890 = ctx;
+var G__33891 = cljs.core.first(exprs);
+return (sci.impl.interpreter.eval_form.cljs$core$IFn$_invoke$arity$2 ? sci.impl.interpreter.eval_form.cljs$core$IFn$_invoke$arity$2(G__33890,G__33891) : sci.impl.interpreter.eval_form.call(null,G__33890,G__33891));
 })();
-exprs = G__33958;
-ret = G__33959;
+exprs = G__33921;
+ret = G__33922;
 continue;
 } else {
 return ret;
@@ -49,16 +49,16 @@ var analyzed = sci.impl.analyzer.analyze.cljs$core$IFn$_invoke$arity$3(ctx__$1,f
 var binding_array_size = cljs.core.count(cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(cljs.core.deref(cb),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [upper_sym,(0),new cljs.core.Keyword(null,"syms","syms",-1575891762)], null)));
 var bindings = cljs.core.object_array.cljs$core$IFn$_invoke$arity$1(binding_array_size);
 if((analyzed instanceof sci.impl.types.EvalForm)){
-var G__33913 = ctx__$1;
-var G__33914 = analyzed.sci$impl$types$IBox$getVal$arity$1(null);
-return (sci.impl.interpreter.eval_form.cljs$core$IFn$_invoke$arity$2 ? sci.impl.interpreter.eval_form.cljs$core$IFn$_invoke$arity$2(G__33913,G__33914) : sci.impl.interpreter.eval_form.call(null,G__33913,G__33914));
+var G__33893 = ctx__$1;
+var G__33894 = analyzed.sci$impl$types$IBox$getVal$arity$1(null);
+return (sci.impl.interpreter.eval_form.cljs$core$IFn$_invoke$arity$2 ? sci.impl.interpreter.eval_form.cljs$core$IFn$_invoke$arity$2(G__33893,G__33894) : sci.impl.interpreter.eval_form.call(null,G__33893,G__33894));
 } else {
 try{return sci.impl.types.eval(analyzed,ctx__$1,bindings);
-}catch (e33915){if((e33915 instanceof Error)){
-var e = e33915;
+}catch (e33896){if((e33896 instanceof Error)){
+var e = e33896;
 return sci.impl.utils.rethrow_with_location_of_node.cljs$core$IFn$_invoke$arity$4(ctx__$1,bindings,e,analyzed);
 } else {
-throw e33915;
+throw e33896;
 
 }
 }}
@@ -71,19 +71,19 @@ var analyzed = sci.impl.analyzer.analyze.cljs$core$IFn$_invoke$arity$2(ctx__$1,f
 var binding_array_size = cljs.core.count(cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(cljs.core.deref(cb),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [upper_sym,(0),new cljs.core.Keyword(null,"syms","syms",-1575891762)], null)));
 var bindings = cljs.core.object_array.cljs$core$IFn$_invoke$arity$1(binding_array_size);
 try{return sci.impl.types.eval(analyzed,ctx__$1,bindings);
-}catch (e33923){if((e33923 instanceof Error)){
-var e = e33923;
+}catch (e33907){if((e33907 instanceof Error)){
+var e = e33907;
 return sci.impl.utils.rethrow_with_location_of_node.cljs$core$IFn$_invoke$arity$4(ctx__$1,bindings,e,analyzed);
 } else {
-throw e33923;
+throw e33907;
 
 }
 }}
 });
 cljs.core.vreset_BANG_(sci.impl.utils.eval_form_state,sci.impl.interpreter.eval_form);
 sci.impl.interpreter.eval_string_STAR_ = (function sci$impl$interpreter$eval_string_STAR_(var_args){
-var G__33925 = arguments.length;
-switch (G__33925) {
+var G__33909 = arguments.length;
+switch (G__33909) {
 case 2:
 return sci.impl.interpreter.eval_string_STAR_.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -123,8 +123,8 @@ return ret;
 }
 } else {
 var ret__$1 = sci.impl.interpreter.eval_form(ctx,expr);
-var G__33964 = ret__$1;
-ret = G__33964;
+var G__33924 = ret__$1;
+ret = G__33924;
 continue;
 }
 break;
@@ -136,8 +136,8 @@ break;
 
 cljs.core.vreset_BANG_(sci.impl.utils.eval_string_STAR_,sci.impl.interpreter.eval_string_STAR_);
 sci.impl.interpreter.eval_string = (function sci$impl$interpreter$eval_string(var_args){
-var G__33944 = arguments.length;
-switch (G__33944) {
+var G__33920 = arguments.length;
+switch (G__33920) {
 case 1:
 return sci.impl.interpreter.eval_string.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 

@@ -1,14 +1,14 @@
 goog.provide('portal.async');
 portal.async.race = (function portal$async$race(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___21745 = arguments.length;
-var i__5750__auto___21746 = (0);
+var len__5749__auto___21774 = arguments.length;
+var i__5750__auto___21775 = (0);
 while(true){
-if((i__5750__auto___21746 < len__5749__auto___21745)){
-args__5755__auto__.push((arguments[i__5750__auto___21746]));
+if((i__5750__auto___21775 < len__5749__auto___21774)){
+args__5755__auto__.push((arguments[i__5750__auto___21775]));
 
-var G__21747 = (i__5750__auto___21746 + (1));
-i__5750__auto___21746 = G__21747;
+var G__21776 = (i__5750__auto___21775 + (1));
+i__5750__auto___21775 = G__21776;
 continue;
 } else {
 }
@@ -26,9 +26,9 @@ return Promise.race(args);
 (portal.async.race.cljs$lang$maxFixedArity = (0));
 
 /** @this {Function} */
-(portal.async.race.cljs$lang$applyTo = (function (seq21744){
+(portal.async.race.cljs$lang$applyTo = (function (seq21771){
 var self__5735__auto__ = this;
-return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq21744));
+return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq21771));
 }));
 
 

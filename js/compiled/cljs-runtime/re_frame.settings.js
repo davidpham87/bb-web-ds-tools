@@ -44,8 +44,8 @@ re_frame.settings.get_global_interceptors = (function re_frame$settings$get_glob
 return new cljs.core.Keyword(null,"global-interceptors","global-interceptors",-1995759472).cljs$core$IFn$_invoke$arity$1(cljs.core.deref(re_frame.settings.store));
 });
 re_frame.settings.clear_global_interceptors = (function re_frame$settings$clear_global_interceptors(var_args){
-var G__35811 = arguments.length;
-switch (G__35811) {
+var G__35810 = arguments.length;
+switch (G__35810) {
 case 0:
 return re_frame.settings.clear_global_interceptors.cljs$core$IFn$_invoke$arity$0();
 
