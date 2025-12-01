@@ -43,12 +43,12 @@ sci.impl.callstack.stacktrace = (function sci$impl$callstack$stacktrace(callstac
 var callstack__$1 = cljs.core.deref(callstack);
 var callstack__$2 = cljs.core.dedupe.cljs$core$IFn$_invoke$arity$1(callstack__$1);
 var data = cljs.core.mapcat.cljs$core$IFn$_invoke$arity$variadic(sci.impl.callstack.expr__GT_data,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([callstack__$2], 0));
-var data__$1 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (p__27994,entry){
-var vec__27995 = p__27994;
-var acc = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__27995,(0),null);
-var last_file = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__27995,(1),null);
-var last_ns = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__27995,(2),null);
-var last_name = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__27995,(3),null);
+var data__$1 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (p__27993,entry){
+var vec__27994 = p__27993;
+var acc = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__27994,(0),null);
+var last_file = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__27994,(1),null);
+var last_ns = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__27994,(2),null);
+var last_name = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__27994,(3),null);
 var new_last_name = (function (){var or__5025__auto__ = new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(entry);
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
@@ -76,16 +76,16 @@ return [cljs.core.str.cljs$core$IFn$_invoke$arity$1(s),clojure.string.join.cljs$
 });
 sci.impl.callstack.format_stacktrace = (function sci$impl$callstack$format_stacktrace(st){
 var st__$1 = cljs.core.force(st);
-var data = cljs.core.keep.cljs$core$IFn$_invoke$arity$2((function (p__28000){
-var map__28001 = p__28000;
-var map__28001__$1 = cljs.core.__destructure_map(map__28001);
-var nom = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28001__$1,new cljs.core.Keyword(null,"name","name",1843675177));
-var file = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28001__$1,new cljs.core.Keyword(null,"file","file",-1269645878));
-var ns = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28001__$1,new cljs.core.Keyword(null,"ns","ns",441598760));
-var line = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28001__$1,new cljs.core.Keyword(null,"line","line",212345235));
-var column = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28001__$1,new cljs.core.Keyword(null,"column","column",2078222095));
-var built_in = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28001__$1,new cljs.core.Keyword("sci","built-in","sci/built-in",1244659599));
-var local = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28001__$1,new cljs.core.Keyword(null,"local","local",-1497766724));
+var data = cljs.core.keep.cljs$core$IFn$_invoke$arity$2((function (p__27998){
+var map__27999 = p__27998;
+var map__27999__$1 = cljs.core.__destructure_map(map__27999);
+var nom = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__27999__$1,new cljs.core.Keyword(null,"name","name",1843675177));
+var file = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__27999__$1,new cljs.core.Keyword(null,"file","file",-1269645878));
+var ns = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__27999__$1,new cljs.core.Keyword(null,"ns","ns",441598760));
+var line = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__27999__$1,new cljs.core.Keyword(null,"line","line",212345235));
+var column = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__27999__$1,new cljs.core.Keyword(null,"column","column",2078222095));
+var built_in = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__27999__$1,new cljs.core.Keyword("sci","built-in","sci/built-in",1244659599));
+var local = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__27999__$1,new cljs.core.Keyword(null,"local","local",-1497766724));
 if(cljs.core.truth_((function (){var or__5025__auto__ = line;
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;

@@ -10,12 +10,12 @@ return portal.web.open.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArr
 return portal.web.open.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"theme","theme",-1247880880),new cljs.core.Keyword("portal.colors","zenburn","portal.colors/zenburn",-1225371086)], null));
 }
 }));
-re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.portal","open","bb-web-ds-tools.portal/open",1274924169),(function (_,p__36971){
-var vec__36972 = p__36971;
-var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36972,(0),null);
-var map__36975 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36972,(1),null);
-var map__36975__$1 = cljs.core.__destructure_map(map__36975);
-var node_id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36975__$1,new cljs.core.Keyword(null,"node-id","node-id",779482292));
+re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.portal","open","bb-web-ds-tools.portal/open",1274924169),(function (_,p__36972){
+var vec__36973 = p__36972;
+var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36973,(0),null);
+var map__36976 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36973,(1),null);
+var map__36976__$1 = cljs.core.__destructure_map(map__36976);
+var node_id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36976__$1,new cljs.core.Keyword(null,"node-id","node-id",779482292));
 return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword("portal","open","portal/open",1349656052),node_id], null);
 }));
 re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.portal","open-portal-frame","bb-web-ds-tools.portal/open-portal-frame",2118945057),(function (_,___$1){
@@ -24,16 +24,16 @@ return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword("portal"
 re_frame.core.reg_fx(new cljs.core.Keyword("portal","submit","portal/submit",861997951),(function (value){
 return portal.web.submit(value);
 }));
-re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.portal","submit","bb-web-ds-tools.portal/submit",1366041846),(function (_,p__36984){
-var vec__36986 = p__36984;
-var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36986,(0),null);
-var value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36986,(1),null);
+re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.portal","submit","bb-web-ds-tools.portal/submit",1366041846),(function (_,p__36977){
+var vec__36979 = p__36977;
+var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36979,(0),null);
+var value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36979,(1),null);
 return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword("portal","submit","portal/submit",861997951),value], null);
 }));
-re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.portal","update-portal-frame","bb-web-ds-tools.portal/update-portal-frame",-587086852),(function (p__36990,_){
-var map__36991 = p__36990;
-var map__36991__$1 = cljs.core.__destructure_map(map__36991);
-var db = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36991__$1,new cljs.core.Keyword(null,"db","db",993250759));
+re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.portal","update-portal-frame","bb-web-ds-tools.portal/update-portal-frame",-587086852),(function (p__36991,_){
+var map__36992 = p__36991;
+var map__36992__$1 = cljs.core.__destructure_map(map__36992);
+var db = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36992__$1,new cljs.core.Keyword(null,"db","db",993250759));
 return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"db","db",993250759),cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"portal","portal",2002989957),new cljs.core.Keyword("bb-web-ds-tools.portal","portal-frame-key","bb-web-ds-tools.portal/portal-frame-key",-1732403024)], null),cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.random_uuid()))], null);
 }));
 re_frame.core.reg_sub.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword("bb-web-ds-tools.portal","portal-frame-key","bb-web-ds-tools.portal/portal-frame-key",-1732403024),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (db,_){
@@ -49,10 +49,10 @@ return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMP
 bb_web_ds_tools.portal.portal_viewer = (function bb_web_ds_tools$portal$portal_viewer(value){
 return reagent.core.create_class.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"component-did-mount","component-did-mount",-1126910518),(function (){
 return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.portal","submit","bb-web-ds-tools.portal/submit",1366041846),value], null));
-}),new cljs.core.Keyword(null,"component-did-update","component-did-update",-1468549173),(function (this$,p__37002){
-var vec__37003 = p__37002;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37003,(0),null);
-var old_value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37003,(1),null);
+}),new cljs.core.Keyword(null,"component-did-update","component-did-update",-1468549173),(function (this$,p__37006){
+var vec__37008 = p__37006;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37008,(0),null);
+var old_value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37008,(1),null);
 if(cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(value,old_value)){
 return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.portal","submit","bb-web-ds-tools.portal/submit",1366041846),value], null));
 } else {
