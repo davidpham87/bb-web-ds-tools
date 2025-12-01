@@ -302,26 +302,16 @@
       [portal-viewer json-schema-result]]]))
 
 (defn panel-render []
-  (let [active-tab (or @(rf/subscribe [:malli/active-tab]) :inference)]
+  (let [active-tab (or @(rf/subscribe [:malli/active-tab]) :inference)
+        tabs [{:id :inference :label "Inference"}
+              {:id :generation :label "Generation"}
+              {:id :validation :label "Validation"}
+              {:id :json-schema :label "JSON Schema"}]]
     [l/flex-col {:class "h-full w-full"}
      ;; Tabs Navigation
-     [l/flex-row {:class (str "space-x-6 border-b " t/border-default " px-4 " t/bg-toolbar " shrink-0")}
-      [:button {:class (str "py-3 font-medium transition-colors border-b-2 "
-                            (if (= active-tab :inference) (str "border-[#f0dfaf] " t/text-accent) (str "border-transparent " t/text-secondary " hover:text-[#dcdccc]")))
-                :on-click #(rf/dispatch [:malli/set-active-tab :inference])}
-       "Inference"]
-      [:button {:class (str "py-3 font-medium transition-colors border-b-2 "
-                            (if (= active-tab :generation) (str "border-[#f0dfaf] " t/text-accent) (str "border-transparent " t/text-secondary " hover:text-[#dcdccc]")))
-                :on-click #(rf/dispatch [:malli/set-active-tab :generation])}
-       "Generation"]
-      [:button {:class (str "py-3 font-medium transition-colors border-b-2 "
-                            (if (= active-tab :validation) (str "border-[#f0dfaf] " t/text-accent) (str "border-transparent " t/text-secondary " hover:text-[#dcdccc]")))
-                :on-click #(rf/dispatch [:malli/set-active-tab :validation])}
-       "Validation"]
-      [:button {:class (str "py-3 font-medium transition-colors border-b-2 "
-                            (if (= active-tab :json-schema) (str "border-[#f0dfaf] " t/text-accent) (str "border-transparent " t/text-secondary " hover:text-[#dcdccc]")))
-                :on-click #(rf/dispatch [:malli/set-active-tab :json-schema])}
-       "JSON Schema"]]
+     [c/nav-tabs {:tabs tabs
+                  :active-tab-id active-tab
+                  :on-change #(rf/dispatch [:malli/set-active-tab %])}]
 
      [:div {:class "flex-grow overflow-hidden"}
       (case active-tab

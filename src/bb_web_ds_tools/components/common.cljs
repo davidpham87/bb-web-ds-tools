@@ -151,3 +151,14 @@
                :on-click on-add
                :title "Add New"}
       "+"])])
+
+(defn nav-tabs [{:keys [tabs active-tab-id on-change class]}]
+  [:div {:class (str "flex flex-row space-x-6 border-b " t/border-default " px-4 " t/bg-toolbar " shrink-0 " class)}
+   (for [{:keys [id label]} tabs]
+     ^{:key (str id)}
+     [:button {:class (str "py-3 font-medium transition-colors border-b-2 "
+                           (if (= active-tab-id id)
+                             (str "border-[#f0dfaf] " t/text-accent)
+                             (str "border-transparent " t/text-secondary " hover:text-[#dcdccc]")))
+               :on-click #(when on-change (on-change id))}
+      label])])
