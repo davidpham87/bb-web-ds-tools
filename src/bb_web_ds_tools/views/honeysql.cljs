@@ -75,13 +75,13 @@
   (let [state-sub (rf/subscribe [:honeysql/panel-state])]
     (fn []
       (let [{:keys [input output]} @state-sub]
-        [l/split-view {:ratio :2-1}
+        [l/flex-row {:class "h-full items-start gap-4 p-4"}
          ;; LEFT: Input
-         [l/flex-col {:class "h-full p-4 space-y-4"}
+         [l/flex-col {:class "gap-4 w-full max-w-3xl h-[85vh]"}
           [:h3 {:class (str "text-xl font-semibold " t/text-accent " flex items-center gap-2")}
            [:span "🍯"] "Convert to SQL"]
           [c/label "Clojure Code (Last value must be HoneySQL Map)"]
-          [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default " max-w-3xl")}
+          [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
            [editor/monaco-editor {:value input
                                   :language "clojure"
                                   :options {:rulers [80]}
@@ -89,6 +89,4 @@
           [c/button {:on-click #(rf/dispatch [:honeysql/convert-to-sql])} "Convert"]]
 
          ;; RIGHT: Output
-         [l/flex-col {:class "h-full p-4 space-y-4"}
-          [c/label "SQL Output"]
-          [portal-panel output]]]))))
+         [portal-panel output]]))))
