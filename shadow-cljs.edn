@@ -21,7 +21,7 @@
                 :external-index "target/index.js"
                 :keep-as-import #{"pyodide" "@sqlite.org/sqlite-wasm"}}
 
-   :compiler-options {:optimizations :advanced
+   :compiler-options {:optimizations :simple
                       :output-feature-set :es-next
                       :externs ["src/externs/webr.js"]}
 
