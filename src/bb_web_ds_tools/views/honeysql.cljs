@@ -41,20 +41,22 @@
 (defn panel []
   (let [honeysql-input @(rf/subscribe [:honeysql/input])
         honeysql-output @(rf/subscribe [:honeysql/output])]
-    [l/split-view {:ratio :2-1}
+    [l/flex-row {:class "h-full w-full"}
      ;; LEFT: Input
-     [l/flex-col {:class "h-full p-4 space-y-4"}
-      [:h3 {:class (str "text-xl font-semibold " t/text-accent " flex items-center gap-2")}
-       [:span "🍯"] "Convert to SQL"]
-      [c/label "Clojure Code (Last value must be HoneySQL Map)"]
-      [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default " max-w-3xl")}
+     [l/flex-col {:class "h-full w-full max-w-3xl"}
+      [l/flex-row {:class "justify-between py-4"}
+       [l/flex-col
+        [:h3 {:class (str "text-xl font-semibold " t/text-accent " flex items-center gap-2")}
+         [:span "🍯"] "Convert to SQL"]
+        [c/label "Clojure Code (Last value must be HoneySQL Map)"]]
+       [c/button {:on-click #(rf/dispatch [:honeysql/convert-to-sql])} "Convert"]]
+
+      [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)
+             :style {:height "85vh"}}
        [editor/monaco-editor {:value honeysql-input
                               :language "clojure"
-                              :options {:rulers [80]}
-                              :on-change #(rf/dispatch [:honeysql/update-input %])}]]
-      [c/button {:on-click #(rf/dispatch [:honeysql/convert-to-sql])} "Convert"]]
+                              :options {:rulers [80] :lineNumbers "off"}
+                              :on-change #(rf/dispatch [:honeysql/update-input %])}]]]
 
      ;; RIGHT: Output
-     [l/flex-col {:class "h-full p-4 space-y-4"}
-      [c/label "SQL Output"]
-      [portal-viewer honeysql-output]]]))
+     [portal-viewer honeysql-output]]))

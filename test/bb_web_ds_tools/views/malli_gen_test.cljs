@@ -2,6 +2,7 @@
   (:require [cljs.test :refer-macros [deftest is testing use-fixtures]]
             [re-frame.core :as rf]
             [day8.re-frame.test :as rf-test]
+            [bb-web-ds-tools.core]
             [bb-web-ds-tools.views.malli :as sut]
             [malli.generator :as mg]
             [bb-web-ds-tools.test-setup :as setup]))
