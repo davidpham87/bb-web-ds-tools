@@ -143,9 +143,17 @@
               :on-mount #(setup-editor-actions % instance-id mac-os?)}]]]
           [portal-frame]]]))))
 
+(defn on-worker-message [msg]
+  (let [{:keys [type event value]} msg]
+    (case (keyword type)
+      :dispatch (rf/dispatch event)
+      :error (rf/dispatch [::portal/submit msg])
+      :result (rf/dispatch [::portal/submit value])
+      (js/console.warn "Unknown worker msg:" msg))))
+
 (defn panel []
   (r/create-class
-   {:component-did-mount #(sci-runtime/init!)
+   {:component-did-mount #(sci-runtime/init! on-worker-message)
     :reagent-render
     (fn []
       (let [instances (rf/subscribe [::instances])]
