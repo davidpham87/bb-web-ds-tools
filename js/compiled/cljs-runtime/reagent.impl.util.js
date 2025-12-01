@@ -125,8 +125,8 @@ this.cljs$lang$protocol_mask$partition1$ = 0;
 (reagent.impl.util.PartialFn.prototype.call = (function (unused__11801__auto__){
 var self__ = this;
 var self__ = this;
-var G__35304 = (arguments.length - (1));
-switch (G__35304) {
+var G__35298 = (arguments.length - (1));
+switch (G__35298) {
 case (0):
 return self__.cljs$core$IFn$_invoke$arity$0();
 
@@ -221,10 +221,10 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 }
 }));
 
-(reagent.impl.util.PartialFn.prototype.apply = (function (self__,args35303){
+(reagent.impl.util.PartialFn.prototype.apply = (function (self__,args35294){
 var self__ = this;
 var self____$1 = this;
-return self____$1.call.apply(self____$1,[self____$1].concat(cljs.core.aclone(args35303)));
+return self____$1.call.apply(self____$1,[self____$1].concat(cljs.core.aclone(args35294)));
 }));
 
 (reagent.impl.util.PartialFn.prototype.cljs$core$IFn$_invoke$arity$0 = (function (){
@@ -695,14 +695,14 @@ return x;
 });
 reagent.impl.util.hiccup_err = (function reagent$impl$util$hiccup_err(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___35345 = arguments.length;
-var i__5750__auto___35346 = (0);
+var len__5749__auto___35341 = arguments.length;
+var i__5750__auto___35342 = (0);
 while(true){
-if((i__5750__auto___35346 < len__5749__auto___35345)){
-args__5755__auto__.push((arguments[i__5750__auto___35346]));
+if((i__5750__auto___35342 < len__5749__auto___35341)){
+args__5755__auto__.push((arguments[i__5750__auto___35342]));
 
-var G__35347 = (i__5750__auto___35346 + (1));
-i__5750__auto___35346 = G__35347;
+var G__35343 = (i__5750__auto___35342 + (1));
+i__5750__auto___35342 = G__35343;
 continue;
 } else {
 }

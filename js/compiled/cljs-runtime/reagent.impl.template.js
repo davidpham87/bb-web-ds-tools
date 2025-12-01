@@ -337,10 +337,10 @@ var c = reagent.impl.component.as_class(tag,compiler);
 var jsprops = ({});
 (jsprops.argv = v);
 
-var temp__5829__auto___35625 = reagent.impl.util.react_key_from_vec(v);
-if((temp__5829__auto___35625 == null)){
+var temp__5829__auto___35624 = reagent.impl.util.react_key_from_vec(v);
+if((temp__5829__auto___35624 == null)){
 } else {
-var key_35626 = temp__5829__auto___35625;
+var key_35626 = temp__5829__auto___35624;
 (jsprops.key = key_35626);
 }
 
@@ -538,10 +538,10 @@ throw (new Error(["Assert failed: ",reagent.impl.util.hiccup_err.cljs$core$IFn$_
 
 break;
 default:
-var G__35654 = cljs.core.with_meta(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.subs.cljs$core$IFn$_invoke$arity$3(n,(0),pos),cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(cljs.core.with_meta(v,null),(0),cljs.core.subs.cljs$core$IFn$_invoke$arity$2(n,(pos + (1))))], null),cljs.core.meta(v));
-var G__35658 = compiler;
-v = G__35654;
-compiler = G__35658;
+var G__35648 = cljs.core.with_meta(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.subs.cljs$core$IFn$_invoke$arity$3(n,(0),pos),cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(cljs.core.with_meta(v,null),(0),cljs.core.subs.cljs$core$IFn$_invoke$arity$2(n,(pos + (1))))], null),cljs.core.meta(v));
+var G__35649 = compiler;
+v = G__35648;
+compiler = G__35649;
 continue;
 
 }

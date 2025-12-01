@@ -28,8 +28,8 @@ if((typeof portal !== 'undefined') && (typeof portal.runtime !== 'undefined') &&
 portal.runtime.web.launcher.code_url = portal.runtime.web.launcher.str__GT_src(portal.runtime.web.launcher.code,"text/javascript");
 }
 portal.runtime.web.launcher.not_found = (function portal$runtime$web$launcher$not_found(_request,done){
-var G__24678 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"status","status",-1997798413),new cljs.core.Keyword(null,"not-found","not-found",-629079980)], null);
-return (done.cljs$core$IFn$_invoke$arity$1 ? done.cljs$core$IFn$_invoke$arity$1(G__24678) : done.call(null,G__24678));
+var G__24715 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"status","status",-1997798413),new cljs.core.Keyword(null,"not-found","not-found",-629079980)], null);
+return (done.cljs$core$IFn$_invoke$arity$1 ? done.cljs$core$IFn$_invoke$arity$1(G__24715) : done.call(null,G__24715));
 });
 portal.runtime.web.launcher.send_BANG_ = (function portal$runtime$web$launcher$send_BANG_(message){
 return (new Promise((function (resolve,_reject){
@@ -42,17 +42,17 @@ cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$2(portal.runtime.web.client.ses
 } else {
 }
 
-var _STAR_session_STAR__orig_val__24681 = portal.runtime._STAR_session_STAR_;
-var _STAR_session_STAR__temp_val__24682 = session;
-(portal.runtime._STAR_session_STAR_ = _STAR_session_STAR__temp_val__24682);
+var _STAR_session_STAR__orig_val__24735 = portal.runtime._STAR_session_STAR_;
+var _STAR_session_STAR__temp_val__24736 = session;
+(portal.runtime._STAR_session_STAR_ = _STAR_session_STAR__temp_val__24736);
 
-try{var G__24683 = body;
-var G__24696 = (function (p1__24680_SHARP_){
-var G__24697 = portal.runtime.write(cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(p1__24680_SHARP_,new cljs.core.Keyword("portal.rpc","id","portal.rpc/id",-1119763215),id),session);
-return (resolve.cljs$core$IFn$_invoke$arity$1 ? resolve.cljs$core$IFn$_invoke$arity$1(G__24697) : resolve.call(null,G__24697));
+try{var G__24737 = body;
+var G__24738 = (function (p1__24723_SHARP_){
+var G__24761 = portal.runtime.write(cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(p1__24723_SHARP_,new cljs.core.Keyword("portal.rpc","id","portal.rpc/id",-1119763215),id),session);
+return (resolve.cljs$core$IFn$_invoke$arity$1 ? resolve.cljs$core$IFn$_invoke$arity$1(G__24761) : resolve.call(null,G__24761));
 });
-return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__24683,G__24696) : f.call(null,G__24683,G__24696));
-}finally {(portal.runtime._STAR_session_STAR_ = _STAR_session_STAR__orig_val__24681);
+return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__24737,G__24738) : f.call(null,G__24737,G__24738));
+}finally {(portal.runtime._STAR_session_STAR_ = _STAR_session_STAR__orig_val__24735);
 }})));
 });
 portal.runtime.web.launcher.get_session = (function portal$runtime$web$launcher$get_session(){
@@ -63,9 +63,9 @@ return cljs.core.subs.cljs$core$IFn$_invoke$arity$2(window.location.search,(1));
 }
 });
 portal.runtime.web.launcher.main_js = (function portal$runtime$web$launcher$main_js(options){
-var G__24698 = new cljs.core.Keyword(null,"mode","mode",654403691).cljs$core$IFn$_invoke$arity$1(options);
-var G__24698__$1 = (((G__24698 instanceof cljs.core.Keyword))?G__24698.fqn:null);
-switch (G__24698__$1) {
+var G__24765 = new cljs.core.Keyword(null,"mode","mode",654403691).cljs$core$IFn$_invoke$arity$1(options);
+var G__24765__$1 = (((G__24765 instanceof cljs.core.Keyword))?G__24765.fqn:null);
+switch (G__24765__$1) {
 case "dev":
 return [cljs.core.str.cljs$core$IFn$_invoke$arity$1(window.location.origin),"/main.js?",cljs.core.str.cljs$core$IFn$_invoke$arity$1(portal.runtime.web.launcher.get_session())].join('');
 
@@ -109,16 +109,16 @@ return (f.cljs$core$IFn$_invoke$arity$0 ? f.cljs$core$IFn$_invoke$arity$0() : f.
 return null;
 }
 });
-portal.runtime.web.launcher.open_iframe = (function portal$runtime$web$launcher$open_iframe(p__24700,url){
-var map__24701 = p__24700;
-var map__24701__$1 = cljs.core.__destructure_map(map__24701);
-var iframe_parent = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24701__$1,new cljs.core.Keyword(null,"iframe-parent","iframe-parent",-2133134058));
-var iframe = (function (){var G__24702 = document.createElement("iframe");
-G__24702.setAttribute("src",url);
+portal.runtime.web.launcher.open_iframe = (function portal$runtime$web$launcher$open_iframe(p__24790,url){
+var map__24791 = p__24790;
+var map__24791__$1 = cljs.core.__destructure_map(map__24791);
+var iframe_parent = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24791__$1,new cljs.core.Keyword(null,"iframe-parent","iframe-parent",-2133134058));
+var iframe = (function (){var G__24793 = document.createElement("iframe");
+G__24793.setAttribute("src",url);
 
-G__24702.setAttribute("style","width: 100%; height: 100%; border: 0");
+G__24793.setAttribute("style","width: 100%; height: 100%; border: 0");
 
-return G__24702;
+return G__24793;
 })();
 iframe_parent.appendChild(iframe);
 
@@ -131,17 +131,17 @@ cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$4(portal.runtime.sessions,cljs.
 
 cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$2(portal.runtime.web.client.session,portal.runtime.open_session);
 
-var options_25444__$1 = cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([options,cljs.core.deref(portal.runtime.default_options)], 0));
-var url_25445 = portal.runtime.web.launcher.str__GT_src(portal.runtime.index.html(new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"code-url","code-url",532390406),portal.runtime.web.launcher.main_js(options_25444__$1),new cljs.core.Keyword(null,"platform","platform",-1086422114),"web"], null)),"text/html");
-var G__24703_25446 = new cljs.core.Keyword(null,"launcher","launcher",-1380803777).cljs$core$IFn$_invoke$arity$1(options_25444__$1);
-var G__24703_25447__$1 = (((G__24703_25446 instanceof cljs.core.Keyword))?G__24703_25446.fqn:null);
-switch (G__24703_25447__$1) {
+var options_25380__$1 = cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([options,cljs.core.deref(portal.runtime.default_options)], 0));
+var url_25381 = portal.runtime.web.launcher.str__GT_src(portal.runtime.index.html(new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"code-url","code-url",532390406),portal.runtime.web.launcher.main_js(options_25380__$1),new cljs.core.Keyword(null,"platform","platform",-1086422114),"web"], null)),"text/html");
+var G__24797_25382 = new cljs.core.Keyword(null,"launcher","launcher",-1380803777).cljs$core$IFn$_invoke$arity$1(options_25380__$1);
+var G__24797_25383__$1 = (((G__24797_25382 instanceof cljs.core.Keyword))?G__24797_25382.fqn:null);
+switch (G__24797_25383__$1) {
 case "iframe":
-portal.runtime.web.launcher.open_iframe(options_25444__$1,url_25445);
+portal.runtime.web.launcher.open_iframe(options_25380__$1,url_25381);
 
 break;
 default:
-portal.runtime.web.launcher.open_window(options_25444__$1,url_25445);
+portal.runtime.web.launcher.open_window(options_25380__$1,url_25381);
 
 }
 

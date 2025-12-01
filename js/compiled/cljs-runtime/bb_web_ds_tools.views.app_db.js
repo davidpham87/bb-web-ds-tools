@@ -11,43 +11,43 @@ return cljs.core.get.cljs$core$IFn$_invoke$arity$3(root,new cljs.core.Keyword(nu
 re_frame.core.reg_sub.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword("bb-web-ds-tools.views.app-db","active-path","bb-web-ds-tools.views.app-db/active-path",866671094),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (db,_){
 return cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(db,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"app-db","app-db",865606302),new cljs.core.Keyword(null,"active-path","active-path",-899675889)], null));
 })], 0));
-re_frame.core.reg_sub.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword("bb-web-ds-tools.views.app-db","path-value","bb-web-ds-tools.views.app-db/path-value",1939920672),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (db,p__37114){
-var vec__37115 = p__37114;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37115,(0),null);
-var path_str = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37115,(1),null);
+re_frame.core.reg_sub.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword("bb-web-ds-tools.views.app-db","path-value","bb-web-ds-tools.views.app-db/path-value",1939920672),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (db,p__37138){
+var vec__37139 = p__37138;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37139,(0),null);
+var path_str = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37139,(1),null);
 try{var path = cljs.reader.read_string.cljs$core$IFn$_invoke$arity$1(path_str);
 return cljs.core.get_in.cljs$core$IFn$_invoke$arity$3(db,path,new cljs.core.Keyword("bb-web-ds-tools.views.app-db","not-found","bb-web-ds-tools.views.app-db/not-found",698968281));
-}catch (e37118){var ___$1 = e37118;
+}catch (e37146){var ___$1 = e37146;
 return new cljs.core.Keyword("bb-web-ds-tools.views.app-db","error","bb-web-ds-tools.views.app-db/error",-336701303);
 }})], 0));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.app-db","set-active-path","bb-web-ds-tools.views.app-db/set-active-path",153735738),(function (db,p__37122){
-var vec__37123 = p__37122;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37123,(0),null);
-var path = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37123,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.app-db","set-active-path","bb-web-ds-tools.views.app-db/set-active-path",153735738),(function (db,p__37150){
+var vec__37151 = p__37150;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37151,(0),null);
+var path = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37151,(1),null);
 return cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"app-db","app-db",865606302),new cljs.core.Keyword(null,"active-path","active-path",-899675889)], null),path);
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.app-db","add-watch-path","bb-web-ds-tools.views.app-db/add-watch-path",1822864858),(function (db,p__37142){
-var vec__37143 = p__37142;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37143,(0),null);
-var path_str = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37143,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.app-db","add-watch-path","bb-web-ds-tools.views.app-db/add-watch-path",1822864858),(function (db,p__37154){
+var vec__37155 = p__37154;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37155,(0),null);
+var path_str = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37155,(1),null);
 if(cljs.core.truth_(cljs.core.some(cljs.core.PersistentHashSet.createAsIfByAssoc([path_str]),cljs.core.get_in.cljs$core$IFn$_invoke$arity$3(db,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"app-db","app-db",865606302),new cljs.core.Keyword(null,"watched-paths","watched-paths",-1266999052)], null),cljs.core.PersistentVector.EMPTY)))){
 return cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"app-db","app-db",865606302),new cljs.core.Keyword(null,"active-path","active-path",-899675889)], null),path_str);
 } else {
 return cljs.core.assoc_in(cljs.core.update_in.cljs$core$IFn$_invoke$arity$4(db,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"app-db","app-db",865606302),new cljs.core.Keyword(null,"watched-paths","watched-paths",-1266999052)], null),cljs.core.fnil.cljs$core$IFn$_invoke$arity$2(cljs.core.conj,cljs.core.PersistentVector.EMPTY),path_str),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"app-db","app-db",865606302),new cljs.core.Keyword(null,"active-path","active-path",-899675889)], null),path_str);
 }
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.app-db","remove-watch-path","bb-web-ds-tools.views.app-db/remove-watch-path",178630062),(function (db,p__37154){
-var vec__37155 = p__37154;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37155,(0),null);
-var path_str = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37155,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.app-db","remove-watch-path","bb-web-ds-tools.views.app-db/remove-watch-path",178630062),(function (db,p__37164){
+var vec__37165 = p__37164;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37165,(0),null);
+var path_str = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37165,(1),null);
 var watched_paths = cljs.core.get_in.cljs$core$IFn$_invoke$arity$3(db,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"app-db","app-db",865606302),new cljs.core.Keyword(null,"watched-paths","watched-paths",-1266999052)], null),cljs.core.PersistentVector.EMPTY);
-var new_paths = cljs.core.vec(cljs.core.remove.cljs$core$IFn$_invoke$arity$2((function (p1__37152_SHARP_){
-return cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(p1__37152_SHARP_,path_str);
+var new_paths = cljs.core.vec(cljs.core.remove.cljs$core$IFn$_invoke$arity$2((function (p1__37159_SHARP_){
+return cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(p1__37159_SHARP_,path_str);
 }),watched_paths));
 var active_path = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(db,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"app-db","app-db",865606302),new cljs.core.Keyword(null,"active-path","active-path",-899675889)], null));
-var G__37158 = cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"app-db","app-db",865606302),new cljs.core.Keyword(null,"watched-paths","watched-paths",-1266999052)], null),new_paths);
+var G__37175 = cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"app-db","app-db",865606302),new cljs.core.Keyword(null,"watched-paths","watched-paths",-1266999052)], null),new_paths);
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(active_path,path_str)){
-return cljs.core.assoc_in(G__37158,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"app-db","app-db",865606302),new cljs.core.Keyword(null,"active-path","active-path",-899675889)], null),(function (){var or__5025__auto__ = cljs.core.first(new_paths);
+return cljs.core.assoc_in(G__37175,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"app-db","app-db",865606302),new cljs.core.Keyword(null,"active-path","active-path",-899675889)], null),(function (){var or__5025__auto__ = cljs.core.first(new_paths);
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
 } else {
@@ -55,32 +55,32 @@ return new cljs.core.Keyword(null,"new","new",-2085437848);
 }
 })());
 } else {
-return G__37158;
+return G__37175;
 }
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.app-db","update-watch-path","bb-web-ds-tools.views.app-db/update-watch-path",-1498068284),(function (db,p__37162){
-var vec__37163 = p__37162;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37163,(0),null);
-var old_path = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37163,(1),null);
-var new_path = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37163,(2),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.app-db","update-watch-path","bb-web-ds-tools.views.app-db/update-watch-path",-1498068284),(function (db,p__37179){
+var vec__37180 = p__37179;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37180,(0),null);
+var old_path = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37180,(1),null);
+var new_path = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37180,(2),null);
 var paths = cljs.core.get_in.cljs$core$IFn$_invoke$arity$3(db,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"app-db","app-db",865606302),new cljs.core.Keyword(null,"watched-paths","watched-paths",-1266999052)], null),cljs.core.PersistentVector.EMPTY);
 var idx = paths.indexOf(old_path);
 var active_path = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(db,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"app-db","app-db",865606302),new cljs.core.Keyword(null,"active-path","active-path",-899675889)], null));
 if((idx < (0))){
 return db;
 } else {
-var G__37166 = cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"app-db","app-db",865606302),new cljs.core.Keyword(null,"watched-paths","watched-paths",-1266999052)], null),cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(paths,idx,new_path));
+var G__37186 = cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"app-db","app-db",865606302),new cljs.core.Keyword(null,"watched-paths","watched-paths",-1266999052)], null),cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(paths,idx,new_path));
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(active_path,old_path)){
-return cljs.core.assoc_in(G__37166,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"app-db","app-db",865606302),new cljs.core.Keyword(null,"active-path","active-path",-899675889)], null),new_path);
+return cljs.core.assoc_in(G__37186,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"app-db","app-db",865606302),new cljs.core.Keyword(null,"active-path","active-path",-899675889)], null),new_path);
 } else {
-return G__37166;
+return G__37186;
 }
 }
 }));
-re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.app-db","open-in-portal","bb-web-ds-tools.views.app-db/open-in-portal",-1055334551),(function (p__37171,_){
-var map__37173 = p__37171;
-var map__37173__$1 = cljs.core.__destructure_map(map__37173);
-var db = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__37173__$1,new cljs.core.Keyword(null,"db","db",993250759));
+re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.app-db","open-in-portal","bb-web-ds-tools.views.app-db/open-in-portal",-1055334551),(function (p__37187,_){
+var map__37188 = p__37187;
+var map__37188__$1 = cljs.core.__destructure_map(map__37188);
+var db = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__37188__$1,new cljs.core.Keyword(null,"db","db",993250759));
 return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"dispatch","dispatch",1319337009),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.portal","submit","bb-web-ds-tools.portal/submit",1366041846),db], null)], null);
 }));
 bb_web_ds_tools.views.app_db.path_list_item = (function bb_web_ds_tools$views$app_db$path_list_item(path,active_QMARK_){
@@ -88,11 +88,11 @@ var editing_QMARK_ = reagent.core.atom.cljs$core$IFn$_invoke$arity$1(false);
 var temp_path = reagent.core.atom.cljs$core$IFn$_invoke$arity$1(path);
 return (function (path__$1,active_QMARK___$1){
 if(cljs.core.truth_(cljs.core.deref(editing_QMARK_))){
-return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),["p-2 rounded ",bb_web_ds_tools.theme.bg_input," border ",bb_web_ds_tools.theme.border_focus," flex items-center space-x-2"].join('')], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.input,new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null,"class","class",-2030961996),"flex-grow h-6 text-sm py-0 font-mono",new cljs.core.Keyword(null,"value","value",305978217),cljs.core.deref(temp_path),new cljs.core.Keyword(null,"auto-focus","auto-focus",1250006231),true,new cljs.core.Keyword(null,"on-change","on-change",-732046149),(function (p1__37174_SHARP_){
-return cljs.core.reset_BANG_(temp_path,p1__37174_SHARP_.target.value);
-}),new cljs.core.Keyword(null,"on-key-down","on-key-down",-1374733765),(function (p1__37175_SHARP_){
-var G__37176 = p1__37175_SHARP_.key;
-switch (G__37176) {
+return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),["p-2 rounded ",bb_web_ds_tools.theme.bg_input," border ",bb_web_ds_tools.theme.border_focus," flex items-center space-x-2"].join('')], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.input,new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null,"class","class",-2030961996),"flex-grow h-6 text-sm py-0 font-mono",new cljs.core.Keyword(null,"value","value",305978217),cljs.core.deref(temp_path),new cljs.core.Keyword(null,"auto-focus","auto-focus",1250006231),true,new cljs.core.Keyword(null,"on-change","on-change",-732046149),(function (p1__37189_SHARP_){
+return cljs.core.reset_BANG_(temp_path,p1__37189_SHARP_.target.value);
+}),new cljs.core.Keyword(null,"on-key-down","on-key-down",-1374733765),(function (p1__37190_SHARP_){
+var G__37192 = p1__37190_SHARP_.key;
+switch (G__37192) {
 case "Enter":
 re_frame.core.dispatch(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.app-db","update-watch-path","bb-web-ds-tools.views.app-db/update-watch-path",-1498068284),path__$1,cljs.core.deref(temp_path)], null));
 
@@ -140,25 +140,25 @@ var watched_paths = cljs.core.deref(re_frame.core.subscribe.cljs$core$IFn$_invok
 var active_path = cljs.core.deref(re_frame.core.subscribe.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.app-db","active-path","bb-web-ds-tools.views.app-db/active-path",866671094)], null)));
 return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),["h-full ",bb_web_ds_tools.theme.bg_sidebar," flex flex-col"].join('')], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),["p-4 border-b ",bb_web_ds_tools.theme.border_main].join('')], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h3","h3",2067611163),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),["text-lg font-semibold ",bb_web_ds_tools.theme.text_accent," mb-4"].join('')], null),"App DB"], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.button_xs,new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"class","class",-2030961996),["w-full ",bb_web_ds_tools.theme.bg_button," ",bb_web_ds_tools.theme.bg_button_hover," justify-center"].join(''),new cljs.core.Keyword(null,"on-click","on-click",1632826543),(function (){
 return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.app-db","set-active-path","bb-web-ds-tools.views.app-db/set-active-path",153735738),new cljs.core.Keyword(null,"new","new",-2085437848)], null));
-})], null),"+ New Watch"], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"flex-grow overflow-y-auto p-2 space-y-1"], null),((cljs.core.seq(watched_paths))?(function (){var iter__5503__auto__ = (function bb_web_ds_tools$views$app_db$path_list_$_iter__37191(s__37192){
+})], null),"+ New Watch"], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"flex-grow overflow-y-auto p-2 space-y-1"], null),((cljs.core.seq(watched_paths))?(function (){var iter__5503__auto__ = (function bb_web_ds_tools$views$app_db$path_list_$_iter__37201(s__37202){
 return (new cljs.core.LazySeq(null,(function (){
-var s__37192__$1 = s__37192;
+var s__37202__$1 = s__37202;
 while(true){
-var temp__5825__auto__ = cljs.core.seq(s__37192__$1);
+var temp__5825__auto__ = cljs.core.seq(s__37202__$1);
 if(temp__5825__auto__){
-var s__37192__$2 = temp__5825__auto__;
-if(cljs.core.chunked_seq_QMARK_(s__37192__$2)){
-var c__5501__auto__ = cljs.core.chunk_first(s__37192__$2);
+var s__37202__$2 = temp__5825__auto__;
+if(cljs.core.chunked_seq_QMARK_(s__37202__$2)){
+var c__5501__auto__ = cljs.core.chunk_first(s__37202__$2);
 var size__5502__auto__ = cljs.core.count(c__5501__auto__);
-var b__37194 = cljs.core.chunk_buffer(size__5502__auto__);
-if((function (){var i__37193 = (0);
+var b__37204 = cljs.core.chunk_buffer(size__5502__auto__);
+if((function (){var i__37203 = (0);
 while(true){
-if((i__37193 < size__5502__auto__)){
-var path = cljs.core._nth(c__5501__auto__,i__37193);
-cljs.core.chunk_append(b__37194,cljs.core.with_meta(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.views.app_db.path_list_item,path,cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(path,active_path)], null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"key","key",-1516042587),path], null)));
+if((i__37203 < size__5502__auto__)){
+var path = cljs.core._nth(c__5501__auto__,i__37203);
+cljs.core.chunk_append(b__37204,cljs.core.with_meta(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.views.app_db.path_list_item,path,cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(path,active_path)], null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"key","key",-1516042587),path], null)));
 
-var G__37225 = (i__37193 + (1));
-i__37193 = G__37225;
+var G__37231 = (i__37203 + (1));
+i__37203 = G__37231;
 continue;
 } else {
 return true;
@@ -166,13 +166,13 @@ return true;
 break;
 }
 })()){
-return cljs.core.chunk_cons(cljs.core.chunk(b__37194),bb_web_ds_tools$views$app_db$path_list_$_iter__37191(cljs.core.chunk_rest(s__37192__$2)));
+return cljs.core.chunk_cons(cljs.core.chunk(b__37204),bb_web_ds_tools$views$app_db$path_list_$_iter__37201(cljs.core.chunk_rest(s__37202__$2)));
 } else {
-return cljs.core.chunk_cons(cljs.core.chunk(b__37194),null);
+return cljs.core.chunk_cons(cljs.core.chunk(b__37204),null);
 }
 } else {
-var path = cljs.core.first(s__37192__$2);
-return cljs.core.cons(cljs.core.with_meta(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.views.app_db.path_list_item,path,cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(path,active_path)], null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"key","key",-1516042587),path], null)),bb_web_ds_tools$views$app_db$path_list_$_iter__37191(cljs.core.rest(s__37192__$2)));
+var path = cljs.core.first(s__37202__$2);
+return cljs.core.cons(cljs.core.with_meta(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.views.app_db.path_list_item,path,cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(path,active_path)], null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"key","key",-1516042587),path], null)),bb_web_ds_tools$views$app_db$path_list_$_iter__37201(cljs.core.rest(s__37202__$2)));
 }
 } else {
 return null;
@@ -185,12 +185,12 @@ return iter__5503__auto__(watched_paths);
 })():new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),["text-sm ",bb_web_ds_tools.theme.text_muted," italic p-2"].join('')], null),"No watched paths"], null))], null)], null);
 });
 bb_web_ds_tools.views.app_db.add_path_view = (function bb_web_ds_tools$views$app_db$add_path_view(){
-var with_let37198 = reagent.ratom.with_let_values(new cljs.core.Keyword(null,"with-let37198","with-let37198",-48801097));
-var temp__5829__auto___37226 = reagent.ratom._STAR_ratom_context_STAR_;
-if((temp__5829__auto___37226 == null)){
+var with_let37217 = reagent.ratom.with_let_values(new cljs.core.Keyword(null,"with-let37217","with-let37217",1838478910));
+var temp__5829__auto___37232 = reagent.ratom._STAR_ratom_context_STAR_;
+if((temp__5829__auto___37232 == null)){
 } else {
-var c__35390__auto___37227 = temp__5829__auto___37226;
-if((with_let37198.generation === c__35390__auto___37227.ratomGeneration)){
+var c__35390__auto___37233 = temp__5829__auto___37232;
+if((with_let37217.generation === c__35390__auto___37233.ratomGeneration)){
 if(reagent.debug.has_console){
 ((reagent.debug.tracking)?reagent.debug.track_console:console).error(["Warning: The same with-let is being used more ","than once in the same reactive context."].join(''));
 } else {
@@ -198,19 +198,19 @@ if(reagent.debug.has_console){
 } else {
 }
 
-(with_let37198.generation = c__35390__auto___37227.ratomGeneration);
+(with_let37217.generation = c__35390__auto___37233.ratomGeneration);
 }
 
-var init37199 = (with_let37198.length === (0));
-var new_path = ((((init37199) || (cljs.core.not(with_let37198.hasOwnProperty((0))))))?(with_let37198[(0)] = reagent.core.atom.cljs$core$IFn$_invoke$arity$1("")):(with_let37198[(0)]));
-var res37200 = new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.card,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"p-8 flex flex-col items-center justify-center space-y-4 bg-transparent shadow-none h-full"], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h3","h3",2067611163),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"text-xl font-bold"], null),"Watch New Path"], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"w-full max-w-lg"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.input,new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"value","value",305978217),cljs.core.deref(new_path),new cljs.core.Keyword(null,"on-change","on-change",-732046149),(function (p1__37197_SHARP_){
-return cljs.core.reset_BANG_(new_path,p1__37197_SHARP_.target.value);
+var init37218 = (with_let37217.length === (0));
+var new_path = ((((init37218) || (cljs.core.not(with_let37217.hasOwnProperty((0))))))?(with_let37217[(0)] = reagent.core.atom.cljs$core$IFn$_invoke$arity$1("")):(with_let37217[(0)]));
+var res37219 = new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.card,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"p-8 flex flex-col items-center justify-center space-y-4 bg-transparent shadow-none h-full"], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h3","h3",2067611163),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"text-xl font-bold"], null),"Watch New Path"], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"w-full max-w-lg"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.input,new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"value","value",305978217),cljs.core.deref(new_path),new cljs.core.Keyword(null,"on-change","on-change",-732046149),(function (p1__37215_SHARP_){
+return cljs.core.reset_BANG_(new_path,p1__37215_SHARP_.target.value);
 }),new cljs.core.Keyword(null,"placeholder","placeholder",-104873083),"Enter path e.g. [:user-input :datasets]",new cljs.core.Keyword(null,"class","class",-2030961996),"font-mono mb-4"], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.button,new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"class","class",-2030961996),"w-full",new cljs.core.Keyword(null,"on-click","on-click",1632826543),(function (){
 re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.app-db","add-watch-path","bb-web-ds-tools.views.app-db/add-watch-path",1822864858),cljs.core.deref(new_path)], null));
 
 return cljs.core.reset_BANG_(new_path,"");
 })], null),"Add Watch"], null)], null)], null);
-return res37200;
+return res37219;
 });
 bb_web_ds_tools.views.app_db.panel = (function bb_web_ds_tools$views$app_db$panel(){
 var active_path = cljs.core.deref(re_frame.core.subscribe.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.app-db","active-path","bb-web-ds-tools.views.app-db/active-path",866671094)], null)));

@@ -9,21 +9,21 @@ return portal.web.open.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArr
 return portal.web.open.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"theme","theme",-1247880880),new cljs.core.Keyword("portal.colors","zenburn","portal.colors/zenburn",-1225371086)], null));
 }
 }));
-re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.portal","open","bb-web-ds-tools.portal/open",1274924169),(function (_,p__36971){
-var vec__36972 = p__36971;
-var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36972,(0),null);
-var map__36975 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36972,(1),null);
-var map__36975__$1 = cljs.core.__destructure_map(map__36975);
-var node_id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36975__$1,new cljs.core.Keyword(null,"node-id","node-id",779482292));
+re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.portal","open","bb-web-ds-tools.portal/open",1274924169),(function (_,p__36975){
+var vec__36976 = p__36975;
+var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36976,(0),null);
+var map__36979 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36976,(1),null);
+var map__36979__$1 = cljs.core.__destructure_map(map__36979);
+var node_id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36979__$1,new cljs.core.Keyword(null,"node-id","node-id",779482292));
 return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword("portal","open","portal/open",1349656052),node_id], null);
 }));
 re_frame.core.reg_fx(new cljs.core.Keyword("portal","submit","portal/submit",861997951),(function (value){
 return portal.web.submit(value);
 }));
-re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.portal","submit","bb-web-ds-tools.portal/submit",1366041846),(function (_,p__36976){
-var vec__36977 = p__36976;
-var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36977,(0),null);
-var value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36977,(1),null);
+re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.portal","submit","bb-web-ds-tools.portal/submit",1366041846),(function (_,p__36992){
+var vec__36993 = p__36992;
+var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36993,(0),null);
+var value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36993,(1),null);
 return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword("portal","submit","portal/submit",861997951),value], null);
 }));
 bb_web_ds_tools.portal.portal_frame = (function bb_web_ds_tools$portal$portal_frame(){
@@ -38,10 +38,10 @@ return null;
 bb_web_ds_tools.portal.portal_panel = (function bb_web_ds_tools$portal$portal_panel(value){
 return reagent.core.create_class.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"component-did-mount","component-did-mount",-1126910518),(function (){
 return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.portal","submit","bb-web-ds-tools.portal/submit",1366041846),value], null));
-}),new cljs.core.Keyword(null,"component-did-update","component-did-update",-1468549173),(function (this$,p__36990){
-var vec__36991 = p__36990;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36991,(0),null);
-var old_value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36991,(1),null);
+}),new cljs.core.Keyword(null,"component-did-update","component-did-update",-1468549173),(function (this$,p__37000){
+var vec__37002 = p__37000;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37002,(0),null);
+var old_value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37002,(1),null);
 if(cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(value,old_value)){
 return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.portal","submit","bb-web-ds-tools.portal/submit",1366041846),value], null));
 } else {

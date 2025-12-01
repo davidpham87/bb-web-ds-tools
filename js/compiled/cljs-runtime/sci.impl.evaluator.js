@@ -66,8 +66,8 @@ return sci.impl.types.eval(found,ctx,bindings);
 (sci.impl.evaluator.eval_case.cljs$lang$maxFixedArity = 5);
 
 sci.impl.evaluator.eval_try = (function sci$impl$evaluator$eval_try(ctx,bindings,body,catches,finally$,sci_error){
-try{var _STAR_in_try_STAR__orig_val__30658 = sci.impl.utils._STAR_in_try_STAR_;
-var _STAR_in_try_STAR__temp_val__30659 = (function (){var or__5025__auto__ = (cljs.core.truth_(sci_error)?new cljs.core.Keyword("sci","error","sci/error",-979082803):null);
+try{var _STAR_in_try_STAR__orig_val__30662 = sci.impl.utils._STAR_in_try_STAR_;
+var _STAR_in_try_STAR__temp_val__30663 = (function (){var or__5025__auto__ = (cljs.core.truth_(sci_error)?new cljs.core.Keyword("sci","error","sci/error",-979082803):null);
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
 } else {
@@ -79,11 +79,11 @@ return sci.impl.utils._STAR_in_try_STAR_;
 }
 }
 })();
-(sci.impl.utils._STAR_in_try_STAR_ = _STAR_in_try_STAR__temp_val__30659);
+(sci.impl.utils._STAR_in_try_STAR_ = _STAR_in_try_STAR__temp_val__30663);
 
 try{return sci.impl.types.eval(body,ctx,bindings);
-}finally {(sci.impl.utils._STAR_in_try_STAR_ = _STAR_in_try_STAR__orig_val__30658);
-}}catch (e30649){var e = e30649;
+}finally {(sci.impl.utils._STAR_in_try_STAR_ = _STAR_in_try_STAR__orig_val__30662);
+}}catch (e30653){var e = e30653;
 var temp__5823__auto__ = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (_,c){
 var clazz = new cljs.core.Keyword(null,"class","class",-2030961996).cljs$core$IFn$_invoke$arity$1(c);
 if(cljs.core.truth_((function (){var or__5025__auto__ = cljs.core.keyword_identical_QMARK_(new cljs.core.Keyword(null,"default","default",-1987822328),clazz);
@@ -110,9 +110,9 @@ return null;
 }
 }),null,catches);
 if(cljs.core.truth_(temp__5823__auto__)){
-var vec__30654 = temp__5823__auto__;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30654,(0),null);
-var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30654,(1),null);
+var vec__30657 = temp__5823__auto__;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30657,(0),null);
+var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30657,(1),null);
 return r;
 } else {
 return sci.impl.utils.rethrow_with_location_of_node.cljs$core$IFn$_invoke$arity$4(ctx,bindings,e,body);
@@ -236,14 +236,14 @@ return null;
 cljs.core.vreset_BANG_(sci.impl.utils.eval_resolve_state,sci.impl.evaluator.eval_resolve);
 sci.impl.evaluator.eval_import = (function sci$impl$evaluator$eval_import(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___30911 = arguments.length;
-var i__5750__auto___30912 = (0);
+var len__5749__auto___30918 = arguments.length;
+var i__5750__auto___30919 = (0);
 while(true){
-if((i__5750__auto___30912 < len__5749__auto___30911)){
-args__5755__auto__.push((arguments[i__5750__auto___30912]));
+if((i__5750__auto___30919 < len__5749__auto___30918)){
+args__5755__auto__.push((arguments[i__5750__auto___30919]));
 
-var G__30913 = (i__5750__auto___30912 + (1));
-i__5750__auto___30912 = G__30913;
+var G__30920 = (i__5750__auto___30919 + (1));
+i__5750__auto___30919 = G__30920;
 continue;
 } else {
 }
@@ -313,244 +313,244 @@ return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__30673,seq30672
 }));
 
 sci.impl.evaluator.fn_call = (function sci$impl$evaluator$fn_call(ctx,bindings,f,args){
-var G__30875 = cljs.core.count(args);
-switch (G__30875) {
+var G__30876 = cljs.core.count(args);
+switch (G__30876) {
 case (0):
 return (f.cljs$core$IFn$_invoke$arity$0 ? f.cljs$core$IFn$_invoke$arity$0() : f.call(null));
 
 break;
 case (1):
-var arg30684 = sci.impl.types.eval(cljs.core.first(args),ctx,bindings);
+var arg30685 = sci.impl.types.eval(cljs.core.first(args),ctx,bindings);
 var args__$1 = cljs.core.rest(args);
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(arg30684) : f.call(null,arg30684));
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(arg30685) : f.call(null,arg30685));
 
 break;
 case (2):
-var arg30685 = sci.impl.types.eval(cljs.core.first(args),ctx,bindings);
+var arg30686 = sci.impl.types.eval(cljs.core.first(args),ctx,bindings);
 var args__$1 = cljs.core.rest(args);
-var arg30686 = sci.impl.types.eval(cljs.core.first(args__$1),ctx,bindings);
+var arg30687 = sci.impl.types.eval(cljs.core.first(args__$1),ctx,bindings);
 var args__$2 = cljs.core.rest(args__$1);
-return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(arg30685,arg30686) : f.call(null,arg30685,arg30686));
+return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(arg30686,arg30687) : f.call(null,arg30686,arg30687));
 
 break;
 case (3):
-var arg30687 = sci.impl.types.eval(cljs.core.first(args),ctx,bindings);
+var arg30688 = sci.impl.types.eval(cljs.core.first(args),ctx,bindings);
 var args__$1 = cljs.core.rest(args);
-var arg30688 = sci.impl.types.eval(cljs.core.first(args__$1),ctx,bindings);
+var arg30689 = sci.impl.types.eval(cljs.core.first(args__$1),ctx,bindings);
 var args__$2 = cljs.core.rest(args__$1);
-var arg30689 = sci.impl.types.eval(cljs.core.first(args__$2),ctx,bindings);
+var arg30690 = sci.impl.types.eval(cljs.core.first(args__$2),ctx,bindings);
 var args__$3 = cljs.core.rest(args__$2);
-return (f.cljs$core$IFn$_invoke$arity$3 ? f.cljs$core$IFn$_invoke$arity$3(arg30687,arg30688,arg30689) : f.call(null,arg30687,arg30688,arg30689));
+return (f.cljs$core$IFn$_invoke$arity$3 ? f.cljs$core$IFn$_invoke$arity$3(arg30688,arg30689,arg30690) : f.call(null,arg30688,arg30689,arg30690));
 
 break;
 case (4):
-var arg30690 = sci.impl.types.eval(cljs.core.first(args),ctx,bindings);
+var arg30691 = sci.impl.types.eval(cljs.core.first(args),ctx,bindings);
 var args__$1 = cljs.core.rest(args);
-var arg30691 = sci.impl.types.eval(cljs.core.first(args__$1),ctx,bindings);
+var arg30692 = sci.impl.types.eval(cljs.core.first(args__$1),ctx,bindings);
 var args__$2 = cljs.core.rest(args__$1);
-var arg30692 = sci.impl.types.eval(cljs.core.first(args__$2),ctx,bindings);
+var arg30693 = sci.impl.types.eval(cljs.core.first(args__$2),ctx,bindings);
 var args__$3 = cljs.core.rest(args__$2);
-var arg30693 = sci.impl.types.eval(cljs.core.first(args__$3),ctx,bindings);
+var arg30694 = sci.impl.types.eval(cljs.core.first(args__$3),ctx,bindings);
 var args__$4 = cljs.core.rest(args__$3);
-return (f.cljs$core$IFn$_invoke$arity$4 ? f.cljs$core$IFn$_invoke$arity$4(arg30690,arg30691,arg30692,arg30693) : f.call(null,arg30690,arg30691,arg30692,arg30693));
+return (f.cljs$core$IFn$_invoke$arity$4 ? f.cljs$core$IFn$_invoke$arity$4(arg30691,arg30692,arg30693,arg30694) : f.call(null,arg30691,arg30692,arg30693,arg30694));
 
 break;
 case (5):
-var arg30694 = sci.impl.types.eval(cljs.core.first(args),ctx,bindings);
+var arg30695 = sci.impl.types.eval(cljs.core.first(args),ctx,bindings);
 var args__$1 = cljs.core.rest(args);
-var arg30695 = sci.impl.types.eval(cljs.core.first(args__$1),ctx,bindings);
+var arg30696 = sci.impl.types.eval(cljs.core.first(args__$1),ctx,bindings);
 var args__$2 = cljs.core.rest(args__$1);
-var arg30696 = sci.impl.types.eval(cljs.core.first(args__$2),ctx,bindings);
+var arg30697 = sci.impl.types.eval(cljs.core.first(args__$2),ctx,bindings);
 var args__$3 = cljs.core.rest(args__$2);
-var arg30697 = sci.impl.types.eval(cljs.core.first(args__$3),ctx,bindings);
+var arg30698 = sci.impl.types.eval(cljs.core.first(args__$3),ctx,bindings);
 var args__$4 = cljs.core.rest(args__$3);
-var arg30698 = sci.impl.types.eval(cljs.core.first(args__$4),ctx,bindings);
+var arg30699 = sci.impl.types.eval(cljs.core.first(args__$4),ctx,bindings);
 var args__$5 = cljs.core.rest(args__$4);
-return (f.cljs$core$IFn$_invoke$arity$5 ? f.cljs$core$IFn$_invoke$arity$5(arg30694,arg30695,arg30696,arg30697,arg30698) : f.call(null,arg30694,arg30695,arg30696,arg30697,arg30698));
+return (f.cljs$core$IFn$_invoke$arity$5 ? f.cljs$core$IFn$_invoke$arity$5(arg30695,arg30696,arg30697,arg30698,arg30699) : f.call(null,arg30695,arg30696,arg30697,arg30698,arg30699));
 
 break;
 case (6):
-var arg30699 = sci.impl.types.eval(cljs.core.first(args),ctx,bindings);
+var arg30700 = sci.impl.types.eval(cljs.core.first(args),ctx,bindings);
 var args__$1 = cljs.core.rest(args);
-var arg30700 = sci.impl.types.eval(cljs.core.first(args__$1),ctx,bindings);
+var arg30701 = sci.impl.types.eval(cljs.core.first(args__$1),ctx,bindings);
 var args__$2 = cljs.core.rest(args__$1);
-var arg30701 = sci.impl.types.eval(cljs.core.first(args__$2),ctx,bindings);
+var arg30702 = sci.impl.types.eval(cljs.core.first(args__$2),ctx,bindings);
 var args__$3 = cljs.core.rest(args__$2);
-var arg30702 = sci.impl.types.eval(cljs.core.first(args__$3),ctx,bindings);
+var arg30703 = sci.impl.types.eval(cljs.core.first(args__$3),ctx,bindings);
 var args__$4 = cljs.core.rest(args__$3);
-var arg30703 = sci.impl.types.eval(cljs.core.first(args__$4),ctx,bindings);
+var arg30704 = sci.impl.types.eval(cljs.core.first(args__$4),ctx,bindings);
 var args__$5 = cljs.core.rest(args__$4);
-var arg30704 = sci.impl.types.eval(cljs.core.first(args__$5),ctx,bindings);
+var arg30705 = sci.impl.types.eval(cljs.core.first(args__$5),ctx,bindings);
 var args__$6 = cljs.core.rest(args__$5);
-return (f.cljs$core$IFn$_invoke$arity$6 ? f.cljs$core$IFn$_invoke$arity$6(arg30699,arg30700,arg30701,arg30702,arg30703,arg30704) : f.call(null,arg30699,arg30700,arg30701,arg30702,arg30703,arg30704));
+return (f.cljs$core$IFn$_invoke$arity$6 ? f.cljs$core$IFn$_invoke$arity$6(arg30700,arg30701,arg30702,arg30703,arg30704,arg30705) : f.call(null,arg30700,arg30701,arg30702,arg30703,arg30704,arg30705));
 
 break;
 case (7):
-var arg30705 = sci.impl.types.eval(cljs.core.first(args),ctx,bindings);
+var arg30706 = sci.impl.types.eval(cljs.core.first(args),ctx,bindings);
 var args__$1 = cljs.core.rest(args);
-var arg30706 = sci.impl.types.eval(cljs.core.first(args__$1),ctx,bindings);
+var arg30707 = sci.impl.types.eval(cljs.core.first(args__$1),ctx,bindings);
 var args__$2 = cljs.core.rest(args__$1);
-var arg30707 = sci.impl.types.eval(cljs.core.first(args__$2),ctx,bindings);
+var arg30708 = sci.impl.types.eval(cljs.core.first(args__$2),ctx,bindings);
 var args__$3 = cljs.core.rest(args__$2);
-var arg30708 = sci.impl.types.eval(cljs.core.first(args__$3),ctx,bindings);
+var arg30709 = sci.impl.types.eval(cljs.core.first(args__$3),ctx,bindings);
 var args__$4 = cljs.core.rest(args__$3);
-var arg30709 = sci.impl.types.eval(cljs.core.first(args__$4),ctx,bindings);
+var arg30710 = sci.impl.types.eval(cljs.core.first(args__$4),ctx,bindings);
 var args__$5 = cljs.core.rest(args__$4);
-var arg30710 = sci.impl.types.eval(cljs.core.first(args__$5),ctx,bindings);
+var arg30711 = sci.impl.types.eval(cljs.core.first(args__$5),ctx,bindings);
 var args__$6 = cljs.core.rest(args__$5);
-var arg30711 = sci.impl.types.eval(cljs.core.first(args__$6),ctx,bindings);
+var arg30712 = sci.impl.types.eval(cljs.core.first(args__$6),ctx,bindings);
 var args__$7 = cljs.core.rest(args__$6);
-return (f.cljs$core$IFn$_invoke$arity$7 ? f.cljs$core$IFn$_invoke$arity$7(arg30705,arg30706,arg30707,arg30708,arg30709,arg30710,arg30711) : f.call(null,arg30705,arg30706,arg30707,arg30708,arg30709,arg30710,arg30711));
+return (f.cljs$core$IFn$_invoke$arity$7 ? f.cljs$core$IFn$_invoke$arity$7(arg30706,arg30707,arg30708,arg30709,arg30710,arg30711,arg30712) : f.call(null,arg30706,arg30707,arg30708,arg30709,arg30710,arg30711,arg30712));
 
 break;
 case (8):
-var arg30712 = sci.impl.types.eval(cljs.core.first(args),ctx,bindings);
+var arg30713 = sci.impl.types.eval(cljs.core.first(args),ctx,bindings);
 var args__$1 = cljs.core.rest(args);
-var arg30713 = sci.impl.types.eval(cljs.core.first(args__$1),ctx,bindings);
+var arg30714 = sci.impl.types.eval(cljs.core.first(args__$1),ctx,bindings);
 var args__$2 = cljs.core.rest(args__$1);
-var arg30714 = sci.impl.types.eval(cljs.core.first(args__$2),ctx,bindings);
+var arg30715 = sci.impl.types.eval(cljs.core.first(args__$2),ctx,bindings);
 var args__$3 = cljs.core.rest(args__$2);
-var arg30715 = sci.impl.types.eval(cljs.core.first(args__$3),ctx,bindings);
+var arg30716 = sci.impl.types.eval(cljs.core.first(args__$3),ctx,bindings);
 var args__$4 = cljs.core.rest(args__$3);
-var arg30716 = sci.impl.types.eval(cljs.core.first(args__$4),ctx,bindings);
+var arg30717 = sci.impl.types.eval(cljs.core.first(args__$4),ctx,bindings);
 var args__$5 = cljs.core.rest(args__$4);
-var arg30717 = sci.impl.types.eval(cljs.core.first(args__$5),ctx,bindings);
+var arg30718 = sci.impl.types.eval(cljs.core.first(args__$5),ctx,bindings);
 var args__$6 = cljs.core.rest(args__$5);
-var arg30718 = sci.impl.types.eval(cljs.core.first(args__$6),ctx,bindings);
+var arg30719 = sci.impl.types.eval(cljs.core.first(args__$6),ctx,bindings);
 var args__$7 = cljs.core.rest(args__$6);
-var arg30719 = sci.impl.types.eval(cljs.core.first(args__$7),ctx,bindings);
+var arg30720 = sci.impl.types.eval(cljs.core.first(args__$7),ctx,bindings);
 var args__$8 = cljs.core.rest(args__$7);
-return (f.cljs$core$IFn$_invoke$arity$8 ? f.cljs$core$IFn$_invoke$arity$8(arg30712,arg30713,arg30714,arg30715,arg30716,arg30717,arg30718,arg30719) : f.call(null,arg30712,arg30713,arg30714,arg30715,arg30716,arg30717,arg30718,arg30719));
+return (f.cljs$core$IFn$_invoke$arity$8 ? f.cljs$core$IFn$_invoke$arity$8(arg30713,arg30714,arg30715,arg30716,arg30717,arg30718,arg30719,arg30720) : f.call(null,arg30713,arg30714,arg30715,arg30716,arg30717,arg30718,arg30719,arg30720));
 
 break;
 case (9):
-var arg30720 = sci.impl.types.eval(cljs.core.first(args),ctx,bindings);
+var arg30721 = sci.impl.types.eval(cljs.core.first(args),ctx,bindings);
 var args__$1 = cljs.core.rest(args);
-var arg30721 = sci.impl.types.eval(cljs.core.first(args__$1),ctx,bindings);
+var arg30722 = sci.impl.types.eval(cljs.core.first(args__$1),ctx,bindings);
 var args__$2 = cljs.core.rest(args__$1);
-var arg30722 = sci.impl.types.eval(cljs.core.first(args__$2),ctx,bindings);
+var arg30723 = sci.impl.types.eval(cljs.core.first(args__$2),ctx,bindings);
 var args__$3 = cljs.core.rest(args__$2);
-var arg30723 = sci.impl.types.eval(cljs.core.first(args__$3),ctx,bindings);
+var arg30724 = sci.impl.types.eval(cljs.core.first(args__$3),ctx,bindings);
 var args__$4 = cljs.core.rest(args__$3);
-var arg30724 = sci.impl.types.eval(cljs.core.first(args__$4),ctx,bindings);
+var arg30725 = sci.impl.types.eval(cljs.core.first(args__$4),ctx,bindings);
 var args__$5 = cljs.core.rest(args__$4);
-var arg30725 = sci.impl.types.eval(cljs.core.first(args__$5),ctx,bindings);
+var arg30726 = sci.impl.types.eval(cljs.core.first(args__$5),ctx,bindings);
 var args__$6 = cljs.core.rest(args__$5);
-var arg30726 = sci.impl.types.eval(cljs.core.first(args__$6),ctx,bindings);
+var arg30727 = sci.impl.types.eval(cljs.core.first(args__$6),ctx,bindings);
 var args__$7 = cljs.core.rest(args__$6);
-var arg30727 = sci.impl.types.eval(cljs.core.first(args__$7),ctx,bindings);
+var arg30728 = sci.impl.types.eval(cljs.core.first(args__$7),ctx,bindings);
 var args__$8 = cljs.core.rest(args__$7);
-var arg30728 = sci.impl.types.eval(cljs.core.first(args__$8),ctx,bindings);
+var arg30729 = sci.impl.types.eval(cljs.core.first(args__$8),ctx,bindings);
 var args__$9 = cljs.core.rest(args__$8);
-return (f.cljs$core$IFn$_invoke$arity$9 ? f.cljs$core$IFn$_invoke$arity$9(arg30720,arg30721,arg30722,arg30723,arg30724,arg30725,arg30726,arg30727,arg30728) : f.call(null,arg30720,arg30721,arg30722,arg30723,arg30724,arg30725,arg30726,arg30727,arg30728));
+return (f.cljs$core$IFn$_invoke$arity$9 ? f.cljs$core$IFn$_invoke$arity$9(arg30721,arg30722,arg30723,arg30724,arg30725,arg30726,arg30727,arg30728,arg30729) : f.call(null,arg30721,arg30722,arg30723,arg30724,arg30725,arg30726,arg30727,arg30728,arg30729));
 
 break;
 case (10):
-var arg30729 = sci.impl.types.eval(cljs.core.first(args),ctx,bindings);
+var arg30730 = sci.impl.types.eval(cljs.core.first(args),ctx,bindings);
 var args__$1 = cljs.core.rest(args);
-var arg30730 = sci.impl.types.eval(cljs.core.first(args__$1),ctx,bindings);
+var arg30731 = sci.impl.types.eval(cljs.core.first(args__$1),ctx,bindings);
 var args__$2 = cljs.core.rest(args__$1);
-var arg30731 = sci.impl.types.eval(cljs.core.first(args__$2),ctx,bindings);
+var arg30732 = sci.impl.types.eval(cljs.core.first(args__$2),ctx,bindings);
 var args__$3 = cljs.core.rest(args__$2);
-var arg30732 = sci.impl.types.eval(cljs.core.first(args__$3),ctx,bindings);
+var arg30733 = sci.impl.types.eval(cljs.core.first(args__$3),ctx,bindings);
 var args__$4 = cljs.core.rest(args__$3);
-var arg30733 = sci.impl.types.eval(cljs.core.first(args__$4),ctx,bindings);
+var arg30734 = sci.impl.types.eval(cljs.core.first(args__$4),ctx,bindings);
 var args__$5 = cljs.core.rest(args__$4);
-var arg30734 = sci.impl.types.eval(cljs.core.first(args__$5),ctx,bindings);
+var arg30735 = sci.impl.types.eval(cljs.core.first(args__$5),ctx,bindings);
 var args__$6 = cljs.core.rest(args__$5);
-var arg30735 = sci.impl.types.eval(cljs.core.first(args__$6),ctx,bindings);
+var arg30736 = sci.impl.types.eval(cljs.core.first(args__$6),ctx,bindings);
 var args__$7 = cljs.core.rest(args__$6);
-var arg30736 = sci.impl.types.eval(cljs.core.first(args__$7),ctx,bindings);
+var arg30737 = sci.impl.types.eval(cljs.core.first(args__$7),ctx,bindings);
 var args__$8 = cljs.core.rest(args__$7);
-var arg30737 = sci.impl.types.eval(cljs.core.first(args__$8),ctx,bindings);
+var arg30738 = sci.impl.types.eval(cljs.core.first(args__$8),ctx,bindings);
 var args__$9 = cljs.core.rest(args__$8);
-var arg30738 = sci.impl.types.eval(cljs.core.first(args__$9),ctx,bindings);
+var arg30739 = sci.impl.types.eval(cljs.core.first(args__$9),ctx,bindings);
 var args__$10 = cljs.core.rest(args__$9);
-return (f.cljs$core$IFn$_invoke$arity$10 ? f.cljs$core$IFn$_invoke$arity$10(arg30729,arg30730,arg30731,arg30732,arg30733,arg30734,arg30735,arg30736,arg30737,arg30738) : f.call(null,arg30729,arg30730,arg30731,arg30732,arg30733,arg30734,arg30735,arg30736,arg30737,arg30738));
+return (f.cljs$core$IFn$_invoke$arity$10 ? f.cljs$core$IFn$_invoke$arity$10(arg30730,arg30731,arg30732,arg30733,arg30734,arg30735,arg30736,arg30737,arg30738,arg30739) : f.call(null,arg30730,arg30731,arg30732,arg30733,arg30734,arg30735,arg30736,arg30737,arg30738,arg30739));
 
 break;
 case (11):
-var arg30739 = sci.impl.types.eval(cljs.core.first(args),ctx,bindings);
+var arg30740 = sci.impl.types.eval(cljs.core.first(args),ctx,bindings);
 var args__$1 = cljs.core.rest(args);
-var arg30740 = sci.impl.types.eval(cljs.core.first(args__$1),ctx,bindings);
+var arg30741 = sci.impl.types.eval(cljs.core.first(args__$1),ctx,bindings);
 var args__$2 = cljs.core.rest(args__$1);
-var arg30741 = sci.impl.types.eval(cljs.core.first(args__$2),ctx,bindings);
+var arg30742 = sci.impl.types.eval(cljs.core.first(args__$2),ctx,bindings);
 var args__$3 = cljs.core.rest(args__$2);
-var arg30742 = sci.impl.types.eval(cljs.core.first(args__$3),ctx,bindings);
+var arg30743 = sci.impl.types.eval(cljs.core.first(args__$3),ctx,bindings);
 var args__$4 = cljs.core.rest(args__$3);
-var arg30743 = sci.impl.types.eval(cljs.core.first(args__$4),ctx,bindings);
+var arg30744 = sci.impl.types.eval(cljs.core.first(args__$4),ctx,bindings);
 var args__$5 = cljs.core.rest(args__$4);
-var arg30744 = sci.impl.types.eval(cljs.core.first(args__$5),ctx,bindings);
+var arg30745 = sci.impl.types.eval(cljs.core.first(args__$5),ctx,bindings);
 var args__$6 = cljs.core.rest(args__$5);
-var arg30745 = sci.impl.types.eval(cljs.core.first(args__$6),ctx,bindings);
+var arg30746 = sci.impl.types.eval(cljs.core.first(args__$6),ctx,bindings);
 var args__$7 = cljs.core.rest(args__$6);
-var arg30746 = sci.impl.types.eval(cljs.core.first(args__$7),ctx,bindings);
+var arg30747 = sci.impl.types.eval(cljs.core.first(args__$7),ctx,bindings);
 var args__$8 = cljs.core.rest(args__$7);
-var arg30747 = sci.impl.types.eval(cljs.core.first(args__$8),ctx,bindings);
+var arg30748 = sci.impl.types.eval(cljs.core.first(args__$8),ctx,bindings);
 var args__$9 = cljs.core.rest(args__$8);
-var arg30748 = sci.impl.types.eval(cljs.core.first(args__$9),ctx,bindings);
+var arg30749 = sci.impl.types.eval(cljs.core.first(args__$9),ctx,bindings);
 var args__$10 = cljs.core.rest(args__$9);
-var arg30749 = sci.impl.types.eval(cljs.core.first(args__$10),ctx,bindings);
+var arg30750 = sci.impl.types.eval(cljs.core.first(args__$10),ctx,bindings);
 var args__$11 = cljs.core.rest(args__$10);
-return (f.cljs$core$IFn$_invoke$arity$11 ? f.cljs$core$IFn$_invoke$arity$11(arg30739,arg30740,arg30741,arg30742,arg30743,arg30744,arg30745,arg30746,arg30747,arg30748,arg30749) : f.call(null,arg30739,arg30740,arg30741,arg30742,arg30743,arg30744,arg30745,arg30746,arg30747,arg30748,arg30749));
+return (f.cljs$core$IFn$_invoke$arity$11 ? f.cljs$core$IFn$_invoke$arity$11(arg30740,arg30741,arg30742,arg30743,arg30744,arg30745,arg30746,arg30747,arg30748,arg30749,arg30750) : f.call(null,arg30740,arg30741,arg30742,arg30743,arg30744,arg30745,arg30746,arg30747,arg30748,arg30749,arg30750));
 
 break;
 case (12):
-var arg30750 = sci.impl.types.eval(cljs.core.first(args),ctx,bindings);
+var arg30751 = sci.impl.types.eval(cljs.core.first(args),ctx,bindings);
 var args__$1 = cljs.core.rest(args);
-var arg30751 = sci.impl.types.eval(cljs.core.first(args__$1),ctx,bindings);
+var arg30752 = sci.impl.types.eval(cljs.core.first(args__$1),ctx,bindings);
 var args__$2 = cljs.core.rest(args__$1);
-var arg30752 = sci.impl.types.eval(cljs.core.first(args__$2),ctx,bindings);
+var arg30753 = sci.impl.types.eval(cljs.core.first(args__$2),ctx,bindings);
 var args__$3 = cljs.core.rest(args__$2);
-var arg30753 = sci.impl.types.eval(cljs.core.first(args__$3),ctx,bindings);
+var arg30754 = sci.impl.types.eval(cljs.core.first(args__$3),ctx,bindings);
 var args__$4 = cljs.core.rest(args__$3);
-var arg30754 = sci.impl.types.eval(cljs.core.first(args__$4),ctx,bindings);
+var arg30755 = sci.impl.types.eval(cljs.core.first(args__$4),ctx,bindings);
 var args__$5 = cljs.core.rest(args__$4);
-var arg30755 = sci.impl.types.eval(cljs.core.first(args__$5),ctx,bindings);
+var arg30756 = sci.impl.types.eval(cljs.core.first(args__$5),ctx,bindings);
 var args__$6 = cljs.core.rest(args__$5);
-var arg30756 = sci.impl.types.eval(cljs.core.first(args__$6),ctx,bindings);
+var arg30757 = sci.impl.types.eval(cljs.core.first(args__$6),ctx,bindings);
 var args__$7 = cljs.core.rest(args__$6);
-var arg30757 = sci.impl.types.eval(cljs.core.first(args__$7),ctx,bindings);
+var arg30758 = sci.impl.types.eval(cljs.core.first(args__$7),ctx,bindings);
 var args__$8 = cljs.core.rest(args__$7);
-var arg30758 = sci.impl.types.eval(cljs.core.first(args__$8),ctx,bindings);
+var arg30759 = sci.impl.types.eval(cljs.core.first(args__$8),ctx,bindings);
 var args__$9 = cljs.core.rest(args__$8);
-var arg30759 = sci.impl.types.eval(cljs.core.first(args__$9),ctx,bindings);
+var arg30760 = sci.impl.types.eval(cljs.core.first(args__$9),ctx,bindings);
 var args__$10 = cljs.core.rest(args__$9);
-var arg30760 = sci.impl.types.eval(cljs.core.first(args__$10),ctx,bindings);
+var arg30761 = sci.impl.types.eval(cljs.core.first(args__$10),ctx,bindings);
 var args__$11 = cljs.core.rest(args__$10);
-var arg30761 = sci.impl.types.eval(cljs.core.first(args__$11),ctx,bindings);
+var arg30762 = sci.impl.types.eval(cljs.core.first(args__$11),ctx,bindings);
 var args__$12 = cljs.core.rest(args__$11);
-return (f.cljs$core$IFn$_invoke$arity$12 ? f.cljs$core$IFn$_invoke$arity$12(arg30750,arg30751,arg30752,arg30753,arg30754,arg30755,arg30756,arg30757,arg30758,arg30759,arg30760,arg30761) : f.call(null,arg30750,arg30751,arg30752,arg30753,arg30754,arg30755,arg30756,arg30757,arg30758,arg30759,arg30760,arg30761));
+return (f.cljs$core$IFn$_invoke$arity$12 ? f.cljs$core$IFn$_invoke$arity$12(arg30751,arg30752,arg30753,arg30754,arg30755,arg30756,arg30757,arg30758,arg30759,arg30760,arg30761,arg30762) : f.call(null,arg30751,arg30752,arg30753,arg30754,arg30755,arg30756,arg30757,arg30758,arg30759,arg30760,arg30761,arg30762));
 
 break;
 case (13):
-var arg30762 = sci.impl.types.eval(cljs.core.first(args),ctx,bindings);
+var arg30763 = sci.impl.types.eval(cljs.core.first(args),ctx,bindings);
 var args__$1 = cljs.core.rest(args);
-var arg30763 = sci.impl.types.eval(cljs.core.first(args__$1),ctx,bindings);
+var arg30764 = sci.impl.types.eval(cljs.core.first(args__$1),ctx,bindings);
 var args__$2 = cljs.core.rest(args__$1);
-var arg30764 = sci.impl.types.eval(cljs.core.first(args__$2),ctx,bindings);
+var arg30765 = sci.impl.types.eval(cljs.core.first(args__$2),ctx,bindings);
 var args__$3 = cljs.core.rest(args__$2);
-var arg30765 = sci.impl.types.eval(cljs.core.first(args__$3),ctx,bindings);
+var arg30766 = sci.impl.types.eval(cljs.core.first(args__$3),ctx,bindings);
 var args__$4 = cljs.core.rest(args__$3);
-var arg30766 = sci.impl.types.eval(cljs.core.first(args__$4),ctx,bindings);
+var arg30767 = sci.impl.types.eval(cljs.core.first(args__$4),ctx,bindings);
 var args__$5 = cljs.core.rest(args__$4);
-var arg30767 = sci.impl.types.eval(cljs.core.first(args__$5),ctx,bindings);
+var arg30768 = sci.impl.types.eval(cljs.core.first(args__$5),ctx,bindings);
 var args__$6 = cljs.core.rest(args__$5);
-var arg30768 = sci.impl.types.eval(cljs.core.first(args__$6),ctx,bindings);
+var arg30769 = sci.impl.types.eval(cljs.core.first(args__$6),ctx,bindings);
 var args__$7 = cljs.core.rest(args__$6);
-var arg30769 = sci.impl.types.eval(cljs.core.first(args__$7),ctx,bindings);
+var arg30770 = sci.impl.types.eval(cljs.core.first(args__$7),ctx,bindings);
 var args__$8 = cljs.core.rest(args__$7);
-var arg30770 = sci.impl.types.eval(cljs.core.first(args__$8),ctx,bindings);
+var arg30771 = sci.impl.types.eval(cljs.core.first(args__$8),ctx,bindings);
 var args__$9 = cljs.core.rest(args__$8);
-var arg30771 = sci.impl.types.eval(cljs.core.first(args__$9),ctx,bindings);
+var arg30772 = sci.impl.types.eval(cljs.core.first(args__$9),ctx,bindings);
 var args__$10 = cljs.core.rest(args__$9);
-var arg30772 = sci.impl.types.eval(cljs.core.first(args__$10),ctx,bindings);
+var arg30773 = sci.impl.types.eval(cljs.core.first(args__$10),ctx,bindings);
 var args__$11 = cljs.core.rest(args__$10);
-var arg30773 = sci.impl.types.eval(cljs.core.first(args__$11),ctx,bindings);
+var arg30774 = sci.impl.types.eval(cljs.core.first(args__$11),ctx,bindings);
 var args__$12 = cljs.core.rest(args__$11);
-var arg30774 = sci.impl.types.eval(cljs.core.first(args__$12),ctx,bindings);
+var arg30775 = sci.impl.types.eval(cljs.core.first(args__$12),ctx,bindings);
 var args__$13 = cljs.core.rest(args__$12);
-return (f.cljs$core$IFn$_invoke$arity$13 ? f.cljs$core$IFn$_invoke$arity$13(arg30762,arg30763,arg30764,arg30765,arg30766,arg30767,arg30768,arg30769,arg30770,arg30771,arg30772,arg30773,arg30774) : f.call(null,arg30762,arg30763,arg30764,arg30765,arg30766,arg30767,arg30768,arg30769,arg30770,arg30771,arg30772,arg30773,arg30774));
+return (f.cljs$core$IFn$_invoke$arity$13 ? f.cljs$core$IFn$_invoke$arity$13(arg30763,arg30764,arg30765,arg30766,arg30767,arg30768,arg30769,arg30770,arg30771,arg30772,arg30773,arg30774,arg30775) : f.call(null,arg30763,arg30764,arg30765,arg30766,arg30767,arg30768,arg30769,arg30770,arg30771,arg30772,arg30773,arg30774,arg30775));
 
 break;
 case (14):

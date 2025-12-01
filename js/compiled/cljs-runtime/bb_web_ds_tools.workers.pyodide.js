@@ -39,7 +39,7 @@ portal.web.submit(new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keywo
 
 return bb_web_ds_tools.workers.pyodide.post_msg(new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"error","error",-978969032),new cljs.core.Keyword(null,"text","text",-1790561697),["Load Error: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(e)].join('')], null));
 }));
-}catch (e54954){var e = e54954;
+}catch (e54971){var e = e54971;
 portal.web.submit(new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"error","error",-978969032),new cljs.core.Keyword(null,"text","text",-1790561697),["Import Error: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(e)].join('')], null));
 
 return bb_web_ds_tools.workers.pyodide.post_msg(new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"error","error",-978969032),new cljs.core.Keyword(null,"text","text",-1790561697),["Import Error: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(e)].join('')], null));
@@ -47,12 +47,12 @@ return bb_web_ds_tools.workers.pyodide.post_msg(new cljs.core.PersistentArrayMap
 bb_web_ds_tools.workers.pyodide.init = (function bb_web_ds_tools$workers$pyodide$init(){
 return self.addEventListener("message",(function (e){
 var data = cljs.core.js__GT_clj.cljs$core$IFn$_invoke$arity$variadic(e.data,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"keywordize-keys","keywordize-keys",1310784252),true], 0));
-var map__54958 = data;
-var map__54958__$1 = cljs.core.__destructure_map(map__54958);
-var type = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__54958__$1,new cljs.core.Keyword(null,"type","type",1174270348));
-var code = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__54958__$1,new cljs.core.Keyword(null,"code","code",1586293142));
-var G__54959 = type;
-switch (G__54959) {
+var map__54975 = data;
+var map__54975__$1 = cljs.core.__destructure_map(map__54975);
+var type = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__54975__$1,new cljs.core.Keyword(null,"type","type",1174270348));
+var code = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__54975__$1,new cljs.core.Keyword(null,"code","code",1586293142));
+var G__54976 = type;
+switch (G__54976) {
 case "load":
 return bb_web_ds_tools.workers.pyodide.load_runtime();
 
