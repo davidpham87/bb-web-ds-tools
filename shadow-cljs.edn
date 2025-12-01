@@ -30,9 +30,7 @@
                             :pseudo-names true}}}
 
    :devtools {:http-root   "docs"
-              :http-port   8080
-              :autobuild   true
-              :reload-strategy :full}
+              :http-port   8080}
 
    :modules {:shared {:entries []}
              :main {:init-fn bb-web-ds-tools.core/init
