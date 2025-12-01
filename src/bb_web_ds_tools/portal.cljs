@@ -50,6 +50,8 @@
   (r/create-class
    {:component-did-mount
     (fn [_] (rf/dispatch [::open-portal-frame]))
+    :component-did-update
+    (fn [_] (rf/dispatch [::open-portal-frame]))
     :reagent-render
     (fn []
       [:div {:id portal-frame-id :class "w-full"
