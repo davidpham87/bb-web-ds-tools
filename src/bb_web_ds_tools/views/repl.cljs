@@ -150,6 +150,8 @@
     (fn []
       (let [instances (rf/subscribe [::instances])]
         [:div {:class "flex flex-col h-full overflow-y-clip"}
+         [c/button {:on-click #(rf/dispatch [::add-instance])
+                    :class "mb-4 w-32"} "Add REPL"]
          (into [:div]
                (for [[instance-id] @instances]
                  ^{:key instance-id}
