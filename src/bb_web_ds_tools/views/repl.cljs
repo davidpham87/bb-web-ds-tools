@@ -8,19 +8,14 @@
    [bb-web-ds-tools.theme :as t]
    [bb-web-ds-tools.utils.worker :as worker]
    [clojure.string :as str]
-   [portal.web :as p]
    [re-frame.core :as rf]
    [reagent.core :as r]))
 
 (defonce sci-worker (atom nil))
 
 (defn on-worker-message [msg]
-  (let [{:keys [type value text event]} msg]
+  (let [{:keys [type event]} msg]
     (case (keyword type)
-      :result (p/submit {:type "result" :value value})
-      :stdout (p/submit {:type "stdout" :text text})
-      :stderr (p/submit {:type "stderr" :text text})
-      :error  (p/submit {:type "error" :text text})
       :dispatch (rf/dispatch event)
       (js/console.warn "Unknown worker msg:" msg))))
 

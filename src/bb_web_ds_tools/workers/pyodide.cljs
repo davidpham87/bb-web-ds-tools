@@ -1,6 +1,7 @@
 (ns bb-web-ds-tools.workers.pyodide
   (:require [clojure.string :as str]
-            [goog.object :as gobj]))
+            [goog.object :as gobj]
+            [portal.web :as p]))
 
 (defonce pyodide-instance (atom nil))
 
@@ -12,8 +13,9 @@
     (let [run-fn (gobj/get @pyodide-instance "runPythonAsync")]
       (-> (run-fn code)
           (.then (fn [res]
-                   (post-msg {:type :result :value (str res)})))
+                   (p/submit {:type :result :value (str res)})))
           (.catch (fn [err]
+                    (p/submit {:type :error :text (str err)})
                     (post-msg {:type :error :text (str err)})))))))
 
 (defn load-runtime []
@@ -21,14 +23,16 @@
     (js/importScripts "https://cdn.jsdelivr.net/pyodide/v0.29.0/full/pyodide.js")
     (-> (js/loadPyodide
          (clj->js {:indexURL "https://cdn.jsdelivr.net/pyodide/v0.29.0/full/"
-                   :stdout (fn [text] (post-msg {:type :stdout :text text}))
-                   :stderr (fn [text] (post-msg {:type :stderr :text text}))}))
+                   :stdout (fn [text] (p/submit {:type :stdout :text text}))
+                   :stderr (fn [text] (p/submit {:type :stderr :text text}))}))
         (.then (fn [p]
                  (reset! pyodide-instance p)
                  (post-msg {:type :ready})))
         (.catch (fn [e]
+                  (p/submit {:type :error :text (str "Load Error: " e)})
                   (post-msg {:type :error :text (str "Load Error: " e)}))))
     (catch :default e
+      (p/submit {:type :error :text (str "Import Error: " e)})
       (post-msg {:type :error :text (str "Import Error: " e)}))))
 
 (defn init []

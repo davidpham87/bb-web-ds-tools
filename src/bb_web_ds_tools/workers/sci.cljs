@@ -1,20 +1,21 @@
 (ns bb-web-ds-tools.workers.sci
   (:require [sci.core :as sci]
             [clojure.tools.reader :as tr]
-            [clojure.tools.reader.reader-types :as rt]))
+            [clojure.tools.reader.reader-types :as rt]
+            [portal.web :as p]))
 
 (defn post-msg [msg]
   (js/postMessage (clj->js msg)))
 
 (def sci-ctx
   (sci/init {:namespaces {'clojure.core {'println (fn [& args]
-                                                    (post-msg {:type :stdout
+                                                    (p/submit {:type :stdout
                                                                :text (apply str (interpose " " args))}))}
                           're-frame.core {'dispatch (fn [event]
                                                       (post-msg {:type :dispatch
                                                                  :event event}))
                                           'subscribe (fn [_]
-                                                       (post-msg {:type :stderr
+                                                       (p/submit {:type :stderr
                                                                   :text "rf/subscribe is not supported in the worker."})
                                                        (atom nil))}}}))
 
@@ -28,14 +29,14 @@
             acc
             (if (and (map? form) (:error form))
               (do
-                (post-msg {:type :error :text (:error form)})
+                (p/submit {:type :error :text (:error form)})
                 (recur (conj acc form)))
               (let [res (try (sci/eval-form sci-ctx form)
                              (catch :default e {:error (str "Eval Error: " e)}))]
-                (post-msg {:type :result :value (str res)})
+                (p/submit {:type :result :value (str res)})
                 (recur (conj acc res)))))))
       (catch :default e
-        (post-msg {:type :error :text (str e)})))))
+        (p/submit {:type :error :text (str e)})))))
 
 (defn init []
   (js/self.addEventListener

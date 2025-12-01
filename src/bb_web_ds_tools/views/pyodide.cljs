@@ -7,7 +7,6 @@
    [bb-web-ds-tools.theme :as t]
    [bb-web-ds-tools.utils.worker :as worker]
    [clojure.string :as str]
-   [portal.web :as p]
    [re-frame.core :as rf]
    [reagent.core :as r]))
 
@@ -39,14 +38,10 @@
        initial-code))
 
 (defn on-worker-message [msg]
-  (let [{:keys [type value text]} msg]
+  (let [{:keys [type text]} msg]
     (case (keyword type)
       :ready (rf/dispatch [::on-ready])
-      :result (p/submit {:type "result" :value value})
-      :stdout (p/submit {:type "stdout" :text text})
-      :stderr (p/submit {:type "stderr" :text text})
-      :error  (do (p/submit {:type "error" :text text})
-                  (rf/dispatch [::set-error text]))
+      :error (rf/dispatch [::set-error text])
       (js/console.warn "Unknown worker msg:" msg))))
 
 (defn ensure-worker []
