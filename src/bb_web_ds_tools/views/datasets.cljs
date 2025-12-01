@@ -5,6 +5,7 @@
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.editor :as editor]
             [bb-web-ds-tools.components.layout :as l]
+            [bb-web-ds-tools.portal :as portal :refer [portal-frame portal-viewer]]
             [bb-web-ds-tools.theme :as t]
             [bb-web-ds-tools.utils.dataset-processing :as dp]))
 
@@ -52,11 +53,12 @@
  ::add-dataset
  (fn [db [_ {:keys [name data]}]]
    (let [id (str (random-uuid))
-         valid-data (if (seq data)
-                      (if (map? (first data))
-                        data
-                        (mapv (fn [row] {:value row}) data))
-                      [])
+         valid-data (cond
+                      (map? data) [data]
+                      (seq data) (if (map? (first data))
+                                   data
+                                   (mapv (fn [row] {:value row}) data))
+                      :else [])
          data-with-ids (mapv #(assoc % :_uuid (str (random-uuid))) valid-data)
          columns (if (seq valid-data)
                    (keys (first valid-data))
@@ -67,7 +69,7 @@
                     :name (or name "Untitled Dataset")
                     :data data-with-ids
                     :columns columns
-                    :view-state {:page 0 :rows-per-page 10 :filters {} :hidden-columns #{}}})
+                    :view-state {:page 0 :rows-per-page 10 :filters {} :hidden-columns {} :mode :table}})
          (assoc-in [::datasets :active-dataset-id] id)))))
 
 (rf/reg-event-db
@@ -249,18 +251,33 @@
                           :on-change #(rf/dispatch [::update-cell id row-uuid col (.. % -target -value)])}]])]))]]]]))
 
 (defn dataset-view [dataset]
-  [l/flex-col {:class "h-full"}
-   [l/flex-row {:class (str "justify-between " t/bg-toolbar " p-2 rounded shadow-sm m-4 mt-0 mb-0")}
-    [l/flex-row {:class "items-baseline space-x-4"}
-     [:input {:class (str "text-xl font-bold bg-transparent " t/text-accent " border-b border-transparent "
-                          t/border-focus-accent " " t/outline-none)
-              :value (:name dataset)
-              :on-change #(rf/dispatch [::update-dataset-name (:id dataset) (.. % -target -value)])}]
-     [:span {:class (str t/text-secondary " text-sm")} (str (count (:data dataset)) " rows")]]
-    [c/button {:class (str t/bg-button-danger " " t/bg-button-danger-hover " " t/text-button-primary)
-               :on-click #(rf/dispatch [::delete-dataset (:id dataset)])}
-     [c/dustbin-icon {:class "w-5 h-5"}]]]
-   [data-table dataset]])
+  (let [view-mode (get-in dataset [:view-state :mode] :table)]
+    [l/flex-col {:class "h-full"}
+     [l/flex-row {:class (str "justify-between " t/bg-toolbar " p-2 rounded shadow-sm m-4 mt-0 mb-0")}
+      [l/flex-row {:class "items-baseline space-x-4"}
+       [:input {:class (str "text-xl font-bold bg-transparent " t/text-accent " border-b border-transparent "
+                            t/border-focus-accent " " t/outline-none)
+                :value (:name dataset)
+                :on-change #(rf/dispatch [::update-dataset-name (:id dataset) (.. % -target -value)])}]
+       [:span {:class (str t/text-secondary " text-sm")} (str (count (:data dataset)) " rows")]]
+
+      [l/flex-row {:class "space-x-2 items-center"}
+       ;; View Toggles
+       [:div {:class "flex rounded bg-black/20 p-1 space-x-1"}
+        [c/button-xs {:class (if (= view-mode :table) (str t/bg-button-primary " text-white") "opacity-50 hover:opacity-100")
+                      :on-click #(rf/dispatch [::update-view-state (:id dataset) :mode :table])}
+         "Table"]
+        [c/button-xs {:class (if (= view-mode :portal) (str t/bg-button-primary " text-white") "opacity-50 hover:opacity-100")
+                      :on-click #(rf/dispatch [::update-view-state (:id dataset) :mode :portal])}
+         "Portal"]]
+
+       [c/button {:class (str t/bg-button-danger " " t/bg-button-danger-hover " " t/text-button-primary)
+                  :on-click #(rf/dispatch [::delete-dataset (:id dataset)])}
+        [c/dustbin-icon {:class "w-5 h-5"}]]]]
+
+     (if (= view-mode :portal)
+       [portal-viewer dataset]
+       [data-table dataset])]))
 
 (defn dataset-list-item [id ds active-id]
   (let [editing? (r/atom false)

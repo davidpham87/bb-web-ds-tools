@@ -55,6 +55,18 @@
       [:div {:id portal-frame-id :class "w-full"
              :style {:height "95vh" :margin-left 20}}])}))
 
+(defn portal-viewer [value]
+  (r/create-class
+   {:component-did-mount
+    (fn [] (rf/dispatch [::submit value]))
+    :component-did-update
+    (fn [this [_ old-value]]
+      (when (not= value old-value)
+        (rf/dispatch [::submit value])))
+    :reagent-render
+    (fn [_]
+      [portal-frame])}))
+
 (comment
   (p/submit 1232)
   (p/clear)

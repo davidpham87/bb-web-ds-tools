@@ -188,7 +188,7 @@
   ;; #_(rf/dispatch [::ws/init])
   ;; #_(rf/dispatch [::wp/init-persistence])
   (init-routes!)
-  (rf/dispatch [::navigate :landing-page nil nil]) ;; Removed to allow deep linking
+  ;; (rf/dispatch [::navigate :landing-page nil nil]) ;; Removed to allow deep linking
   (rdom/render [app] (.getElementById js/document "app")))
 
 (defn ^:dev/after-load reload!
