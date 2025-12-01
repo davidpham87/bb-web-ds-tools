@@ -52,11 +52,12 @@
  ::add-dataset
  (fn [db [_ {:keys [name data]}]]
    (let [id (str (random-uuid))
-         valid-data (if (seq data)
-                      (if (map? (first data))
-                        data
-                        (mapv (fn [row] {:value row}) data))
-                      [])
+         valid-data (cond
+                      (map? data) [data]
+                      (seq data) (if (map? (first data))
+                                   data
+                                   (mapv (fn [row] {:value row}) data))
+                      :else [])
          data-with-ids (mapv #(assoc % :_uuid (str (random-uuid))) valid-data)
          columns (if (seq valid-data)
                    (keys (first valid-data))
