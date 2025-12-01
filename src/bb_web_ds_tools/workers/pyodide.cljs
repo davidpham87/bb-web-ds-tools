@@ -13,7 +13,7 @@
     (let [run-fn (gobj/get @pyodide-instance "runPythonAsync")]
       (-> (run-fn code)
           (.then (fn [res]
-                   (p/submit {:type :result :value (str res)})))
+                   (p/submit {:type :result :value res})))
           (.catch (fn [err]
                     (p/submit {:type :error :text (str err)})
                     (post-msg {:type :error :text (str err)})))))))
