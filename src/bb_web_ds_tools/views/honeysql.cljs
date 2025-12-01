@@ -5,8 +5,15 @@
             [bb-web-ds-tools.components.editor :as editor]
             [bb-web-ds-tools.components.honeysql :as c-honeysql]
             [bb-web-ds-tools.components.layout :as l]
-            [bb-web-ds-tools.portal :as portal :refer [portal-frame portal-viewer]]
+            [bb-web-ds-tools.portal :as portal :refer [portal-frame portal-panel]]
             [bb-web-ds-tools.theme :as t]))
+
+;; Helper
+(defn get-honeysql-state [db]
+  (let [user-input (get-in db [:user-input :honeysql :default])
+        component-state (::honeysql db)]
+    {:input (:input user-input)
+     :output (:output component-state)}))
 
 ;; Event handlers
 (rf/reg-event-db
@@ -25,38 +32,61 @@
 (rf/reg-event-fx
  :honeysql/convert-to-sql
  (fn [{:keys [db]} _]
-   (let [input-text (get-in db [:user-input :honeysql :default :input])
-         result (c-honeysql/convert-to-sql input-text)
+   (let [{:keys [input]} (get-honeysql-state db)
+         result (c-honeysql/convert-to-sql input)
          output (if (:success result) (:output result) (:error result))]
      {:db (assoc-in db [::honeysql :output] output)})))
 
 ;; Subscriptions
-(rf/reg-sub :honeysql/user-input-root :<- [:bb-web-ds-tools.core/user-input] (fn [user-input _] (get-in user-input [:honeysql :default])))
-(rf/reg-sub :honeysql/component-root (fn [db _] (::honeysql db)))
-(rf/reg-sub :honeysql/input :<- [:honeysql/user-input-root] (fn [root _] (:input root)))
-(rf/reg-sub :honeysql/output :<- [:honeysql/component-root] (fn [root _] (:output root)))
+(rf/reg-sub
+ :honeysql/user-input-root
+ :<- [:bb-web-ds-tools.core/user-input]
+ (fn [user-input _]
+   (get-in user-input [:honeysql :default])))
+
+(rf/reg-sub
+ :honeysql/component-root
+ (fn [db _]
+   (::honeysql db)))
+
+(rf/reg-sub
+ :honeysql/input
+ :<- [:honeysql/user-input-root]
+ (fn [root _]
+   (:input root)))
+
+(rf/reg-sub
+ :honeysql/output
+ :<- [:honeysql/component-root]
+ (fn [root _]
+   (:output root)))
+
+(rf/reg-sub
+ :honeysql/panel-state
+ :<- [:honeysql/input]
+ :<- [:honeysql/output]
+ (fn [[input output] _]
+   {:input input
+    :output output}))
 
 ;; UI components
 
 (defn panel []
-  (let [honeysql-input @(rf/subscribe [:honeysql/input])
-        honeysql-output @(rf/subscribe [:honeysql/output])]
-    [l/flex-row {:class "h-full w-full"}
-     ;; LEFT: Input
-     [l/flex-col {:class "h-full w-full max-w-3xl"}
-      [l/flex-row {:class "justify-between py-4"}
-       [l/flex-col
-        [:h3 {:class (str "text-xl font-semibold " t/text-accent " flex items-center gap-2")}
-         [:span "🍯"] "Convert to SQL"]
-        [c/label "Clojure Code (Last value must be HoneySQL Map)"]]
-       [c/button {:on-click #(rf/dispatch [:honeysql/convert-to-sql])} "Convert"]]
+  (let [state-sub (rf/subscribe [:honeysql/panel-state])]
+    (fn []
+      (let [{:keys [input output]} @state-sub]
+        [l/flex-row {:class "h-full items-start gap-4 p-4"}
+         ;; LEFT: Input
+         [l/flex-col {:class "gap-4 w-full max-w-3xl h-[85vh]"}
+          [:h3 {:class (str "text-xl font-semibold " t/text-accent " flex items-center gap-2")}
+           [:span "🍯"] "Convert to SQL"]
+          [c/label "Clojure Code (Last value must be HoneySQL Map)"]
+          [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
+           [editor/monaco-editor {:value input
+                                  :language "clojure"
+                                  :options {:rulers [80]}
+                                  :on-change #(rf/dispatch [:honeysql/update-input %])}]]
+          [c/button {:on-click #(rf/dispatch [:honeysql/convert-to-sql])} "Convert"]]
 
-      [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)
-             :style {:height "85vh"}}
-       [editor/monaco-editor {:value honeysql-input
-                              :language "clojure"
-                              :options {:rulers [80] :lineNumbers "off"}
-                              :on-change #(rf/dispatch [:honeysql/update-input %])}]]]
-
-     ;; RIGHT: Output
-     [portal-viewer honeysql-output]]))
+         ;; RIGHT: Output
+         [portal-panel output]]))))

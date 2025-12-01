@@ -5,7 +5,7 @@
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.editor :as editor]
             [bb-web-ds-tools.components.layout :as l]
-            [bb-web-ds-tools.portal :as portal :refer [portal-frame portal-viewer]]
+            [bb-web-ds-tools.portal :as portal :refer [portal-frame portal-panel]]
             [bb-web-ds-tools.theme :as t]
             [bb-web-ds-tools.utils.dataset-processing :as dp]))
 
@@ -61,6 +61,22 @@
  :<- [::active-dataset-id]
  (fn [[items id]]
    (get items id)))
+
+(rf/reg-sub
+ ::dataset-list-state
+ :<- [::items]
+ :<- [::active-dataset-id]
+ (fn [[items active-id] _]
+   {:items items
+    :active-id active-id}))
+
+(rf/reg-sub
+ ::panel-state
+ :<- [::active-dataset-id]
+ :<- [::active-dataset]
+ (fn [[active-id active-dataset] _]
+   {:active-id active-id
+    :active-dataset active-dataset}))
 
 (rf/reg-event-db
  ::set-active-dataset-id
@@ -144,13 +160,13 @@
 (defn importer-view []
   (let [state (rf/subscribe [::new-dataset-state])]
     (fn []
-      (let [{:keys [text format structure] name-val :name} @state
+      (let [{:keys [text structure] fmt :format name-val :name} @state
             structure (or structure :columnar)
             dataset-name (or name-val "New Dataset")
 
             set-state (fn [k v] (rf/dispatch [::update-new-dataset-state k v]))
 
-            supported-structures (if (contains? #{:csv :tsv :markdown} format)
+            supported-structures (if (contains? #{:csv :tsv :markdown} fmt)
                                    #{:columnar}
                                    #{:columnar :row-maps :row-arrays})
 
@@ -162,13 +178,13 @@
          [l/flex-row {:class "justify-between items-center"}
           [:h3 {:class (str "text-xl font-bold " t/text-accent)} "Create New Dataset"]
           [l/flex-row {:class "space-x-2"}
-           (for [fmt [:csv :tsv :json :edn :markdown]]
-             [c/button-xs {:key fmt
-                           :class (if (= format fmt) (str t/bg-button-primary " text-white") "")
-                           :on-click #(do (set-state :format fmt)
-                                          (when (#{:csv :tsv :markdown} fmt)
+           (for [f [:csv :tsv :json :edn :markdown]]
+             [c/button-xs {:key f
+                           :class (if (= fmt f) (str t/bg-button-primary " text-white") "")
+                           :on-click #(do (set-state :format f)
+                                          (when (#{:csv :tsv :markdown} f)
                                             (set-state :structure :columnar)))}
-              (if (= fmt :markdown) "MD" (str/upper-case (name fmt)))])]]
+              (if (= f :markdown) "MD" (str/upper-case (name f)))])]]
 
          [c/input {:value dataset-name
                    :placeholder "Dataset Name"
@@ -187,20 +203,20 @@
               (get struct-labels s)])]
 
           [l/flex-row {:class (str "space-x-2 text-sm " t/text-primary " items-center")}
-           [c/button-info {:on-click #(set-state :text (dp/example-data format structure))}
+           [c/button-info {:on-click #(set-state :text (dp/example-data fmt structure))}
             "Load Example"]]
 
           [:div {:class "flex-grow"}]
 
           [c/button-xs {:class (str t/bg-button-primary " " t/bg-button-primary-hover " text-white px-4")
-                        :on-click #(let [parsed (dp/parse-dataset format structure text)]
+                        :on-click #(let [parsed (dp/parse-dataset fmt structure text)]
                                      (rf/dispatch [::add-dataset {:name dataset-name :data parsed}]))}
            "Create"]]
 
          [:div {:class (str "flex-grow " t/bg-input " rounded overflow-hidden shadow-inner border " t/border-default)}
           [editor/monaco-editor
            {:value text
-            :language (case format
+            :language (case fmt
                         :json "json"
                         :edn "clojure"
                         :markdown "markdown"
@@ -298,7 +314,7 @@
         [c/dustbin-icon {:class "w-5 h-5"}]]]]
 
      (if (= view-mode :portal)
-       [portal-viewer dataset]
+       [portal-panel dataset]
        [data-table dataset])]))
 
 (defn dataset-list-item [id ds active-id]
@@ -346,30 +362,32 @@
              [c/dustbin-icon]]]])))))
 
 (defn dataset-list []
-  (let [items @(rf/subscribe [::items])
-        active-id @(rf/subscribe [::active-dataset-id])]
-    [:div {:class (str "h-full " t/bg-sidebar " flex flex-col")}
-     [:div {:class (str "p-4 border-b " t/border-main)}
-      [:h3 {:class (str "text-lg font-semibold " t/text-accent " mb-4")} "Datasets"]
-      [c/button-xs {:class (str "w-full " t/bg-button " " t/bg-button-hover " justify-center")
-                    :on-click #(rf/dispatch [::set-active-dataset-id :new])}
-       "+ New Dataset"]]
-     [:div {:class "flex-grow overflow-y-auto p-2 space-y-1"}
-      (if (seq items)
-        (for [[id ds] items]
-          ^{:key id} [dataset-list-item id ds active-id])
-        [:div {:class (str "text-sm " t/text-muted " italic p-2")} "No datasets"])]]))
+  (let [state-sub (rf/subscribe [::dataset-list-state])]
+    (fn []
+      (let [{:keys [items active-id]} @state-sub]
+        [:div {:class (str "h-full " t/bg-sidebar " flex flex-col")}
+         [:div {:class (str "p-4 border-b " t/border-main)}
+          [:h3 {:class (str "text-lg font-semibold " t/text-accent " mb-4")} "Datasets"]
+          [c/button-xs {:class (str "w-full " t/bg-button " " t/bg-button-hover " justify-center")
+                        :on-click #(rf/dispatch [::set-active-dataset-id :new])}
+           "+ New Dataset"]]
+         [:div {:class "flex-grow overflow-y-auto p-2 space-y-1"}
+          (if (seq items)
+            (for [[id ds] items]
+              ^{:key id} [dataset-list-item id ds active-id])
+            [:div {:class (str "text-sm " t/text-muted " italic p-2")} "No datasets"])]]))))
 
 (defn panel-render []
-  (let [active-id @(rf/subscribe [::active-dataset-id])
-        active-dataset @(rf/subscribe [::active-dataset])]
-    [l/split-view {:ratio :1-3}
-     [dataset-list]
-     (if (= active-id :new)
-       [importer-view]
-       (if active-dataset
-         [dataset-view active-dataset]
-         [:div {:class (str "text-center " t/text-muted " mt-20")} "Select a dataset."]))]))
+  (let [state-sub (rf/subscribe [::panel-state])]
+    (fn []
+      (let [{:keys [active-id active-dataset]} @state-sub]
+        [l/split-view {:ratio :1-3}
+         [dataset-list]
+         (if (= active-id :new)
+           [importer-view]
+           (if active-dataset
+             [dataset-view active-dataset]
+             [:div {:class (str "text-center " t/text-muted " mt-20")} "Select a dataset."]))]))))
 
 (defn panel []
   (r/create-class
