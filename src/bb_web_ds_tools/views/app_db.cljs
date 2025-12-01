@@ -4,7 +4,7 @@
             [cljs.reader :as reader]
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.layout :as l]
-            [bb-web-ds-tools.portal :as portal :refer [portal-frame portal-viewer]]
+            [bb-web-ds-tools.portal :as portal :refer [portal-frame portal-panel]]
             [bb-web-ds-tools.theme :as t]))
 
 ;; Subscriptions
@@ -167,4 +167,4 @@
      (if (or (nil? active-path) (= active-path :new))
        [add-path-view]
        ^{:key active-path}
-       [portal-viewer active-value])]))
+       [portal-panel active-value])]))

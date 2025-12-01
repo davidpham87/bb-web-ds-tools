@@ -6,10 +6,25 @@
             [bb-web-ds-tools.components.editor :as editor]
             [bb-web-ds-tools.components.layout :as l]
             [bb-web-ds-tools.components.malli :as c-malli]
-            [bb-web-ds-tools.portal :as portal :refer [portal-frame portal-viewer]]
+            [bb-web-ds-tools.portal :as portal :refer [portal-frame portal-panel]]
             [bb-web-ds-tools.theme :as t]
             [bb-web-ds-tools.views.datasets :as datasets]
             [bb-web-ds-tools.utils.dataset-processing :as dp]))
+
+;; Helper for state extraction
+(defn get-malli-state [db]
+  (let [user-input (get-in db [:user-input :malli :default])
+        component-state (::malli db)]
+    {:schema-text (:schema-text user-input)
+     :inference-input (:inference-input user-input)
+     :generated-data (:generated-data component-state)
+     :inferred-schema (:inferred-schema component-state)
+     :input-fmt (:input-format component-state)
+     :samples (get component-state :generation-samples 1)
+     :generation-fmt (get component-state :generation-format :edn)
+     :active-tab (:active-tab component-state)
+     :validation-result (:validation-result component-state)
+     :json-schema-result (:json-schema-result component-state)}))
 
 ;; Event handlers
 (rf/reg-event-db
@@ -63,44 +78,38 @@
    (assoc-in db [::malli :generation-format] fmt)))
 
 (rf/reg-event-fx
-  :malli/parse-schema-and-generate
-  (fn [{:keys [db]} _]
-    (let [schema-text (get-in db [:user-input :malli :default :schema-text])
-          result (c-malli/parse-schema-and-generate schema-text)]
-      (if (:success result)
-        {:dispatch [:malli/generate-data (:schema result)]}
-        {:db (assoc-in db [::malli :generated-data] (:error result))}))))
+ :malli/parse-schema-and-generate
+ (fn [{:keys [db]} _]
+   (let [{:keys [schema-text]} (get-malli-state db)
+         result (c-malli/parse-schema-and-generate schema-text)]
+     (if (:success result)
+       {:dispatch [:malli/generate-data (:schema result)]}
+       {:db (assoc-in db [::malli :generated-data] (:error result))}))))
 
 (rf/reg-event-fx
  :malli/generate-data
  (fn [{:keys [db]} [_ schema]]
-   (let [component-state (::malli db)
-         samples (get component-state :generation-samples 1)
-         format (get component-state :generation-format :edn)
-         result (c-malli/generate-data schema samples format)
+   (let [{:keys [samples generation-fmt]} (get-malli-state db)
+         result (c-malli/generate-data schema samples generation-fmt)
          output (if (:success result) (:output result) (:error result))]
      {:db (assoc-in db [::malli :generated-data] output)})))
 
 (rf/reg-event-fx
  :malli/infer-schema
  (fn [{:keys [db]} _]
-   (let [user-input (get-in db [:user-input :malli :default])
-         component-state (::malli db)
-         input-text (:inference-input user-input)
-         format (:input-format component-state)
-         input-data (case format
-                      :edn (c-malli/detect-and-parse input-text)
-                      (dp/parse-dataset format input-text))
+   (let [{:keys [inference-input input-fmt]} (get-malli-state db)
+         input-data (case input-fmt
+                      :edn (c-malli/detect-and-parse inference-input)
+                      (dp/parse-dataset input-fmt inference-input))
          result (c-malli/infer-schema input-data)
-         output (if (:success result) (:schema-str result) (str "Invalid input data for format " (name format) "."))]
+         output (if (:success result) (:schema-str result) (str "Invalid input data for format " (name input-fmt) "."))]
      {:db (assoc-in db [::malli :inferred-schema] output)})))
 
 (rf/reg-event-fx
  :malli/save-dataset
  (fn [{:keys [db]} _]
-   (let [generated-data (get-in db [::malli :generated-data])
-         format (get-in db [::malli :generation-format] :edn)
-         parsed-data (c-malli/save-dataset-data generated-data format)]
+   (let [{:keys [generated-data generation-fmt]} (get-malli-state db)
+         parsed-data (c-malli/save-dataset-data generated-data generation-fmt)]
      (if parsed-data
        {:dispatch [::datasets/add-dataset {:name (str "Malli Generated " (rand-int 1000))
                                            :data parsed-data}]}
@@ -120,13 +129,11 @@
 (rf/reg-event-fx
  :malli/validate
  (fn [{:keys [db]} _]
-   (let [schema-text (get-in db [:user-input :malli :default :schema-text])
-         input-text (get-in db [:user-input :malli :default :inference-input])
-         format (get-in db [::malli :input-format] :edn)
+   (let [{:keys [schema-text inference-input input-fmt]} (get-malli-state db)
          schema-result (c-malli/parse-schema-and-generate schema-text)
-         input-data (case format
-                      :edn (c-malli/detect-and-parse input-text)
-                      (dp/parse-dataset format input-text))]
+         input-data (case input-fmt
+                      :edn (c-malli/detect-and-parse inference-input)
+                      (dp/parse-dataset input-fmt inference-input))]
      (if (:success schema-result)
        (let [result (c-malli/validate-data (:schema schema-result) input-data)]
          {:db (assoc-in db [::malli :validation-result] (:result result))})
@@ -135,7 +142,7 @@
 (rf/reg-event-fx
  :malli/transform-json
  (fn [{:keys [db]} _]
-   (let [schema-text (get-in db [:user-input :malli :default :schema-text])
+   (let [{:keys [schema-text]} (get-malli-state db)
          schema-result (c-malli/parse-schema-and-generate schema-text)]
      (if (:success schema-result)
        (let [result (c-malli/transform-to-json-schema (:schema schema-result))
@@ -144,31 +151,129 @@
        {:db (assoc-in db [::malli :json-schema-result] (:error schema-result))}))))
 
 ;; Subscriptions
-(rf/reg-sub :malli/user-input-root :<- [:bb-web-ds-tools.core/user-input] (fn [user-input _] (get-in user-input [:malli :default])))
-(rf/reg-sub :malli/component-root (fn [db _] (::malli db)))
-(rf/reg-sub :malli/schema-text :<- [:malli/user-input-root] (fn [root _] (:schema-text root)))
-(rf/reg-sub :malli/generated-data :<- [:malli/component-root] (fn [root _] (:generated-data root)))
-(rf/reg-sub :malli/inference-input :<- [:malli/user-input-root] (fn [root _] (:inference-input root)))
-(rf/reg-sub :malli/inferred-schema :<- [:malli/component-root] (fn [root _] (:inferred-schema root)))
-(rf/reg-sub :malli/active-tab :<- [:malli/component-root] (fn [root _] (:active-tab root)))
-(rf/reg-sub :malli/input-format :<- [:malli/component-root] (fn [root _] (get root :input-format :edn)))
-(rf/reg-sub :malli/generation-samples :<- [:malli/component-root] (fn [root _] (get root :generation-samples 1)))
-(rf/reg-sub :malli/generation-format :<- [:malli/component-root] (fn [root _] (get root :generation-format :edn)))
-(rf/reg-sub :malli/validation-result :<- [:malli/component-root] (fn [root _] (:validation-result root)))
-(rf/reg-sub :malli/json-schema-result :<- [:malli/component-root] (fn [root _] (:json-schema-result root)))
+(rf/reg-sub
+ :malli/user-input-root
+ :<- [:bb-web-ds-tools.core/user-input]
+ (fn [user-input _]
+   (get-in user-input [:malli :default])))
+
+(rf/reg-sub
+ :malli/component-root
+ (fn [db _]
+   (::malli db)))
+
+(rf/reg-sub
+ :malli/schema-text
+ :<- [:malli/user-input-root]
+ (fn [root _]
+   (:schema-text root)))
+
+(rf/reg-sub
+ :malli/generated-data
+ :<- [:malli/component-root]
+ (fn [root _]
+   (:generated-data root)))
+
+(rf/reg-sub
+ :malli/inference-input
+ :<- [:malli/user-input-root]
+ (fn [root _]
+   (:inference-input root)))
+
+(rf/reg-sub
+ :malli/inferred-schema
+ :<- [:malli/component-root]
+ (fn [root _]
+   (:inferred-schema root)))
+
+(rf/reg-sub
+ :malli/active-tab
+ :<- [:malli/component-root]
+ (fn [root _]
+   (:active-tab root)))
+
+(rf/reg-sub
+ :malli/input-format
+ :<- [:malli/component-root]
+ (fn [root _]
+   (get root :input-format :edn)))
+
+(rf/reg-sub
+ :malli/generation-samples
+ :<- [:malli/component-root]
+ (fn [root _]
+   (get root :generation-samples 1)))
+
+(rf/reg-sub
+ :malli/generation-format
+ :<- [:malli/component-root]
+ (fn [root _]
+   (get root :generation-format :edn)))
+
+(rf/reg-sub
+ :malli/validation-result
+ :<- [:malli/component-root]
+ (fn [root _]
+   (:validation-result root)))
+
+(rf/reg-sub
+ :malli/json-schema-result
+ :<- [:malli/component-root]
+ (fn [root _]
+   (:json-schema-result root)))
+
+;; Combined Subscriptions
+
+(rf/reg-sub
+ :malli/inference-view-state
+ :<- [:malli/inference-input]
+ :<- [:malli/inferred-schema]
+ :<- [::datasets/items]
+ :<- [:malli/input-format]
+ (fn [[inference-input inferred-schema datasets input-format] _]
+   {:inference-input inference-input
+    :inferred-schema inferred-schema
+    :datasets datasets
+    :input-format input-format}))
+
+(rf/reg-sub
+ :malli/generation-view-state
+ :<- [:malli/schema-text]
+ :<- [:malli/generated-data]
+ :<- [:malli/generation-samples]
+ :<- [:malli/generation-format]
+ (fn [[schema-text generated-data samples fmt] _]
+   {:schema-text schema-text
+    :generated-data generated-data
+    :samples samples
+    :gen-fmt fmt}))
+
+(rf/reg-sub
+ :malli/validation-view-state
+ :<- [:malli/schema-text]
+ :<- [:malli/inference-input]
+ :<- [:malli/input-format]
+ :<- [:malli/validation-result]
+ (fn [[schema-text inference-input input-format validation-result] _]
+   {:schema-text schema-text
+    :inference-input inference-input
+    :input-format input-format
+    :validation-result validation-result}))
+
+(rf/reg-sub
+ :malli/json-schema-view-state
+ :<- [:malli/schema-text]
+ :<- [:malli/json-schema-result]
+ (fn [[schema-text json-schema-result] _]
+   {:schema-text schema-text
+    :json-schema-result json-schema-result}))
 
 ;; UI components
 
 (defn inference-view []
-  (let [inference-input-sub (rf/subscribe [:malli/inference-input])
-        inferred-schema-sub (rf/subscribe [:malli/inferred-schema])
-        datasets-sub (rf/subscribe [::datasets/items])
-        input-format-sub (rf/subscribe [:malli/input-format])]
+  (let [state-sub (rf/subscribe [:malli/inference-view-state])]
     (fn []
-      (let [inference-input @inference-input-sub
-            inferred-schema @inferred-schema-sub
-            datasets @datasets-sub
-            input-format @input-format-sub]
+      (let [{:keys [inference-input inferred-schema datasets input-format]} @state-sub]
         [l/split-view {:ratio :2-1}
          ;; LEFT: Input
          [l/flex-col {:class "h-full p-4 space-y-4"}
@@ -206,100 +311,99 @@
          ;; RIGHT: Output
          [l/flex-col {:class "h-full p-4 space-y-4"}
           [c/label "Inferred Schema"]
-          [portal-viewer inferred-schema]]]))))
+          [portal-panel inferred-schema]]]))))
 
 (defn generation-view []
-  (let [schema-text @(rf/subscribe [:malli/schema-text])
-        generated-data @(rf/subscribe [:malli/generated-data])
-        samples @(rf/subscribe [:malli/generation-samples])
-        format @(rf/subscribe [:malli/generation-format])]
-    [l/split-view {:ratio :2-1}
-     ;; LEFT: Schema
-     [l/flex-col {:class "h-full p-4 space-y-4"}
-      [c/label "Schema (EDN)"]
-      [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
-       [editor/monaco-editor {:value schema-text
-                              :language "clojure"
-                              :options {:rulers [80]}
-                              :on-change #(rf/dispatch [:malli/update-schema-text %])}]]
+  (let [state-sub (rf/subscribe [:malli/generation-view-state])]
+    (fn []
+      (let [{:keys [schema-text generated-data samples gen-fmt]} @state-sub]
+        [l/split-view {:ratio :2-1}
+         ;; LEFT: Schema
+         [l/flex-col {:class "h-full p-4 space-y-4"}
+          [c/label "Schema (EDN)"]
+          [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
+           [editor/monaco-editor {:value schema-text
+                                  :language "clojure"
+                                  :options {:rulers [80]}
+                                  :on-change #(rf/dispatch [:malli/update-schema-text %])}]]
 
-      ;; Controls
-      [l/flex-row {:class "items-end gap-4"}
-       ;; Samples count
-       [:div {:class "w-24"}
-        [c/label "Samples"]
-        [c/input {:type "number"
-                  :min "1"
-                  :max "100"
-                  :value samples
-                  :on-change #(rf/dispatch [:malli/set-generation-samples (.. % -target -value)])}]]
+          ;; Controls
+          [l/flex-row {:class "items-end gap-4"}
+           ;; Samples count
+           [:div {:class "w-24"}
+            [c/label "Samples"]
+            [c/input {:type "number"
+                      :min "1"
+                      :max "100"
+                      :value samples
+                      :on-change #(rf/dispatch [:malli/set-generation-samples (.. % -target -value)])}]]
 
-       ;; Format selection
-       [:div {:class "w-32"}
-        [c/label "Format"]
-        [c/select {:value format
-                   :on-change #(rf/dispatch [:malli/set-generation-format (keyword (.. % -target -value))])}
-         [:option {:value "edn"} "EDN"]
-         [:option {:value "json"} "JSON"]]]
+           ;; Format selection
+           [:div {:class "w-32"}
+            [c/label "Format"]
+            [c/select {:value gen-fmt
+                       :on-change #(rf/dispatch [:malli/set-generation-format (keyword (.. % -target -value))])}
+             [:option {:value "edn"} "EDN"]
+             [:option {:value "json"} "JSON"]]]
 
-       ;; Generate Button
-       [c/button {:class "mb-[1px] flex-grow"
-                  :on-click #(rf/dispatch [:malli/parse-schema-and-generate])} "Parse and Generate"]]]
+           ;; Generate Button
+           [c/button {:class "mb-[1px] flex-grow"
+                      :on-click #(rf/dispatch [:malli/parse-schema-and-generate])} "Parse and Generate"]]]
 
-     ;; RIGHT: Generated Data
-     [l/flex-col {:class "h-full p-4 space-y-4"}
-      [l/flex-row {:class "justify-between items-center"}
-       [c/label "Generated Data"]
-       [c/button-xs {:on-click #(rf/dispatch [:malli/save-dataset])} "Save to Datasets"]]
-      [portal-viewer generated-data]]]))
+         ;; RIGHT: Generated Data
+         [l/flex-col {:class "h-full p-4 space-y-4"}
+          [l/flex-row {:class "justify-between items-center"}
+           [c/label "Generated Data"]
+           [c/button-xs {:on-click #(rf/dispatch [:malli/save-dataset])} "Save to Datasets"]]
+          [portal-panel generated-data]]]))))
 
 (defn validation-view []
-  (let [schema-text @(rf/subscribe [:malli/schema-text])
-        inference-input @(rf/subscribe [:malli/inference-input])
-        input-format @(rf/subscribe [:malli/input-format])
-        validation-result @(rf/subscribe [:malli/validation-result])]
-    [l/split-view {:ratio :2-1}
-     ;; LEFT: Schema
-     [l/flex-col {:class "h-full p-4 space-y-4"}
-      [c/label "Schema (EDN)"]
-      [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
-       [editor/monaco-editor {:value schema-text
-                              :language "clojure"
-                              :options {:rulers [80]}
-                              :on-change #(rf/dispatch [:malli/update-schema-text %])}]]]
+  (let [state-sub (rf/subscribe [:malli/validation-view-state])]
+    (fn []
+      (let [{:keys [schema-text inference-input input-format validation-result]} @state-sub]
+        [l/split-view {:ratio :2-1}
+         ;; LEFT: Schema
+         [l/flex-col {:class "h-full p-4 space-y-4"}
+          [c/label "Schema (EDN)"]
+          [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
+           [editor/monaco-editor {:value schema-text
+                                  :language "clojure"
+                                  :options {:rulers [80]}
+                                  :on-change #(rf/dispatch [:malli/update-schema-text %])}]]]
 
-     ;; RIGHT: Data + Validation
-     [l/flex-col {:class "h-full p-4 space-y-4"}
-      [c/label "Data to Validate"]
-      [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
-       [editor/monaco-editor {:value inference-input
-                              :language (case input-format :edn "clojure" :json "json" "plaintext")
-                              :options {:rulers [80]}
-                              :on-change #(rf/dispatch [:malli/update-inference-input %])}]]
+         ;; RIGHT: Data + Validation
+         [l/flex-col {:class "h-full p-4 space-y-4"}
+          [c/label "Data to Validate"]
+          [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
+           [editor/monaco-editor {:value inference-input
+                                  :language (case input-format :edn "clojure" :json "json" "plaintext")
+                                  :options {:rulers [80]}
+                                  :on-change #(rf/dispatch [:malli/update-inference-input %])}]]
 
-      [c/button {:on-click #(rf/dispatch [:malli/validate])} "Validate"]
+          [c/button {:on-click #(rf/dispatch [:malli/validate])} "Validate"]
 
-      [c/label "Validation Result"]
-      [portal-viewer validation-result]]]))
+          [c/label "Validation Result"]
+          [portal-panel validation-result]]]))))
 
 (defn json-schema-view []
-  (let [schema-text @(rf/subscribe [:malli/schema-text])
-        json-schema-result @(rf/subscribe [:malli/json-schema-result])]
-    [l/split-view {:ratio :2-1}
-     ;; LEFT: Schema
-     [l/flex-col {:class "h-full p-4 space-y-4"}
-      [c/label "Schema (EDN)"]
-      [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
-       [editor/monaco-editor {:value schema-text
-                              :language "clojure"
-                              :options {:rulers [80]}
-                              :on-change #(rf/dispatch [:malli/update-schema-text %])}]]
-      [c/button {:on-click #(rf/dispatch [:malli/transform-json])} "Transform to JSON Schema"]]
+  (let [state-sub (rf/subscribe [:malli/json-schema-view-state])]
+    (fn []
+      (let [{:keys [schema-text json-schema-result]} @state-sub]
+        [l/split-view {:ratio :2-1}
+         ;; LEFT: Schema
+         [l/flex-col {:class "h-full p-4 space-y-4"}
+          [c/label "Schema (EDN)"]
+          [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
+           [editor/monaco-editor {:value schema-text
+                                  :language "clojure"
+                                  :options {:rulers [80]}
+                                  :on-change #(rf/dispatch [:malli/update-schema-text %])}]]
+          [c/button {:on-click #(rf/dispatch [:malli/transform-json])} "Transform to JSON Schema"]]
 
-     ;; RIGHT: JSON Schema Output
-     [l/flex-col {:class "h-full p-4 space-y-4"}
-      [c/label "JSON Schema"]
-      [portal-viewer json-schema-result]]]))
+         ;; RIGHT: JSON Schema Output
+         [l/flex-col {:class "h-full p-4 space-y-4"}
+          [c/label "JSON Schema"]
+          [portal-panel json-schema-result]]]))))
 
 (defn panel-render []
   (let [active-tab (or @(rf/subscribe [:malli/active-tab]) :inference)
