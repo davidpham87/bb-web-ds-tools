@@ -8,5 +8,6 @@
 
 (deftest test-repl
   (testing "eval code dispatch"
-    (rf/dispatch-sync [:bb-web-ds-tools.views.repl/eval-code id "(+ 1 2)"])
-    (is true)))
+    (let [id "test-id"]
+      (rf/dispatch-sync [:bb-web-ds-tools.views.repl/eval-code id "(+ 1 2)"])
+      (is true))))
