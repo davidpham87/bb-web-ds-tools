@@ -84,12 +84,40 @@
       :fx [[::generate-response-fx text]]}
      {})))
 
-(rf/reg-sub ::user-input-root :<- [:bb-web-ds-tools.core/user-input] (fn [user-input _] (get-in user-input [:gemma :default])))
-(rf/reg-sub ::component-root (fn [db _] (::gemma db)))
-(rf/reg-sub ::messages :<- [::user-input-root] (fn [root] (:messages root)))
-(rf/reg-sub ::loading? :<- [::component-root] (fn [root] (:loading? root)))
-(rf/reg-sub ::error :<- [::component-root] (fn [root] (:error root)))
-(rf/reg-sub ::model-loaded? :<- [::component-root] (fn [root] (:model-loaded? root)))
+(rf/reg-sub
+ ::user-input-root
+ :<- [:bb-web-ds-tools.core/user-input]
+ (fn [user-input _]
+   (get-in user-input [:gemma :default])))
+
+(rf/reg-sub
+ ::component-root
+ (fn [db _]
+   (::gemma db)))
+
+(rf/reg-sub
+ ::messages
+ :<- [::user-input-root]
+ (fn [root]
+   (:messages root)))
+
+(rf/reg-sub
+ ::loading?
+ :<- [::component-root]
+ (fn [root]
+   (:loading? root)))
+
+(rf/reg-sub
+ ::error
+ :<- [::component-root]
+ (fn [root]
+   (:error root)))
+
+(rf/reg-sub
+ ::model-loaded?
+ :<- [::component-root]
+ (fn [root]
+   (:model-loaded? root)))
 
 ;; UI Components
 
