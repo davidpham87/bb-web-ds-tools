@@ -25,11 +25,6 @@
                       :output-feature-set :es-next
                       :externs ["src/externs/webr.js"]}
 
-   :dev {:target :browser
-         :compiler-options {:source-map true
-                            :pretty-print true
-                            :pseudo-names true}}}
-
    :devtools {:http-root   "docs"
               :http-port   8080}
 
