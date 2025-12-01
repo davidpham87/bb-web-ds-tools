@@ -25,7 +25,8 @@
                       :output-feature-set :es-next
                       :externs ["src/externs/webr.js"]}
 
-   :dev {:compiler-options {:source-map true
+   :dev {:target :browser
+         :compiler-options {:source-map true
                             :pretty-print true
                             :pseudo-names true}}}
 
