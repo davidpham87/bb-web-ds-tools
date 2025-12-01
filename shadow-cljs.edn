@@ -30,7 +30,15 @@
               :autobuild true
               :reload-strategy :full}
 
-   :modules {:main {:init-fn bb-web-ds-tools.core/init}}}
+   :modules {:shared {:entries []}
+             :main {:init-fn bb-web-ds-tools.core/init
+                    :depends-on #{:shared}}
+             :sci-worker {:init-fn bb-web-ds-tools.workers.sci/init
+                          :depends-on #{:shared}
+                          :web-worker true}
+             :pyodide-worker {:init-fn bb-web-ds-tools.workers.pyodide/init
+                              :depends-on #{:shared}
+                              :web-worker true}}}
   :reader
   {:target :browser
    :output-dir "docs/js/compiled"

@@ -21,18 +21,61 @@
                   ::code "install.packages(c(\"ggplot2\", \"dplyr\"))\n\nlibrary(ggplot2)\nlibrary(dplyr)\n\nmtcars %>% \n  filter(mpg > 20) %>% \n  ggplot(aes(x = wt, y = mpg)) + \n  geom_point()"})))))
 
 ;; Subscriptions
-(rf/reg-sub ::root :<- [:bb-web-ds-tools.core/user-input] (fn [user-input _] (get-in user-input [:r-repl :default])))
-(rf/reg-sub ::loading? :<- [::root] (fn [root] (::loading? root)))
-(rf/reg-sub ::ready? :<- [::root] (fn [root] (::ready? root)))
-(rf/reg-sub ::error :<- [::root] (fn [root] (::error root)))
-(rf/reg-sub ::code :<- [::root] (fn [root] (::code root)))
-(rf/reg-sub ::mac-os? (fn [db _] (get-in db [:platform :mac-os?])))
+(rf/reg-sub
+ ::root
+ :<- [:bb-web-ds-tools.core/user-input]
+ (fn [user-input _]
+   (get-in user-input [:r-repl :default])))
+
+(rf/reg-sub
+ ::loading?
+ :<- [::root]
+ (fn [root]
+   (::loading? root)))
+
+(rf/reg-sub
+ ::ready?
+ :<- [::root]
+ (fn [root]
+   (::ready? root)))
+
+(rf/reg-sub
+ ::error
+ :<- [::root]
+ (fn [root]
+   (::error root)))
+
+(rf/reg-sub
+ ::code
+ :<- [::root]
+ (fn [root]
+   (::code root)))
+
+(rf/reg-sub
+ ::mac-os?
+ (fn [db _]
+   (get-in db [:platform :mac-os?])))
 
 ;; Events
-(rf/reg-event-db ::set-loading (fn [db [_ v]] (assoc-in db [:user-input :r-repl :default ::loading?] v)))
-(rf/reg-event-db ::set-ready (fn [db [_ v]] (assoc-in db [:user-input :r-repl :default ::ready?] v)))
-(rf/reg-event-db ::set-error (fn [db [_ v]] (update-in db [:user-input :r-repl :default] assoc ::error v ::loading? false)))
-(rf/reg-event-db ::set-code (fn [db [_ v]] (assoc-in db [:user-input :r-repl :default ::code] v)))
+(rf/reg-event-db
+ ::set-loading
+ (fn [db [_ v]]
+   (assoc-in db [:user-input :r-repl :default ::loading?] v)))
+
+(rf/reg-event-db
+ ::set-ready
+ (fn [db [_ v]]
+   (assoc-in db [:user-input :r-repl :default ::ready?] v)))
+
+(rf/reg-event-db
+ ::set-error
+ (fn [db [_ v]]
+   (update-in db [:user-input :r-repl :default] assoc ::error v ::loading? false)))
+
+(rf/reg-event-db
+ ::set-code
+ (fn [db [_ v]]
+   (assoc-in db [:user-input :r-repl :default ::code] v)))
 
 ;; WebR Loader
 (defonce webr-instance (atom nil))

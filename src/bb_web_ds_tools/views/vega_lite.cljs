@@ -40,23 +40,86 @@
                ::active-left-tab :data
                ::active-right-tab :plot})))))
 
-(rf/reg-sub ::user-input-root :<- [:bb-web-ds-tools.core/user-input] (fn [user-input] (get-in user-input [:vega-lite :default])))
-(rf/reg-sub ::saved-configs :<- [:bb-web-ds-tools.core/user-input] (fn [user-input] (get-in user-input [:vega-lite :saved-configs])))
-(rf/reg-sub ::component-root (fn [db] (::vega-lite db)))
+(rf/reg-sub
+ ::user-input-root
+ :<- [:bb-web-ds-tools.core/user-input]
+ (fn [user-input]
+   (get-in user-input [:vega-lite :default])))
 
-(rf/reg-sub ::data-input :<- [::user-input-root] (fn [root] (::data-input root)))
-(rf/reg-sub ::config-input :<- [::user-input-root] (fn [root] (::config-input root)))
-(rf/reg-sub ::config-mode :<- [::user-input-root] (fn [root] (::config-mode root)))
-(rf/reg-sub ::active-config-name :<- [::user-input-root] (fn [root] (::active-config-name root)))
+(rf/reg-sub
+ ::saved-configs
+ :<- [:bb-web-ds-tools.core/user-input]
+ (fn [user-input]
+   (get-in user-input [:vega-lite :saved-configs])))
 
-(rf/reg-sub ::format :<- [::component-root] (fn [root] (::format root)))
-(rf/reg-sub ::structure :<- [::component-root] (fn [root] (::structure root)))
-(rf/reg-sub ::parsed-data :<- [::component-root] (fn [root] (::parsed-data root)))
-(rf/reg-sub ::active-left-tab :<- [::component-root] (fn [root] (::active-left-tab root)))
-(rf/reg-sub ::active-right-tab :<- [::component-root] (fn [root] (::active-right-tab root)))
+(rf/reg-sub
+ ::component-root
+ (fn [db]
+   (::vega-lite db)))
 
-(rf/reg-event-db ::set-data-input (fn [db [_ val]] (assoc-in db [:user-input :vega-lite :default ::data-input] val)))
-(rf/reg-event-db ::set-config-input (fn [db [_ val]] (assoc-in db [:user-input :vega-lite :default ::config-input] val)))
+(rf/reg-sub
+ ::data-input
+ :<- [::user-input-root]
+ (fn [root]
+   (::data-input root)))
+
+(rf/reg-sub
+ ::config-input
+ :<- [::user-input-root]
+ (fn [root]
+   (::config-input root)))
+
+(rf/reg-sub
+ ::config-mode
+ :<- [::user-input-root]
+ (fn [root]
+   (::config-mode root)))
+
+(rf/reg-sub
+ ::active-config-name
+ :<- [::user-input-root]
+ (fn [root]
+   (::active-config-name root)))
+
+(rf/reg-sub
+ ::format
+ :<- [::component-root]
+ (fn [root]
+   (::format root)))
+
+(rf/reg-sub
+ ::structure
+ :<- [::component-root]
+ (fn [root]
+   (::structure root)))
+
+(rf/reg-sub
+ ::parsed-data
+ :<- [::component-root]
+ (fn [root]
+   (::parsed-data root)))
+
+(rf/reg-sub
+ ::active-left-tab
+ :<- [::component-root]
+ (fn [root]
+   (::active-left-tab root)))
+
+(rf/reg-sub
+ ::active-right-tab
+ :<- [::component-root]
+ (fn [root]
+   (::active-right-tab root)))
+
+(rf/reg-event-db
+ ::set-data-input
+ (fn [db [_ val]]
+   (assoc-in db [:user-input :vega-lite :default ::data-input] val)))
+
+(rf/reg-event-db
+ ::set-config-input
+ (fn [db [_ val]]
+   (assoc-in db [:user-input :vega-lite :default ::config-input] val)))
 
 (rf/reg-event-db
  ::set-config-mode
@@ -84,12 +147,30 @@
          (assoc-in [:user-input :vega-lite :default ::config-mode] new-mode)
          (assoc-in [:user-input :vega-lite :default ::config-input] new-input)))))
 
-(rf/reg-event-db ::set-active-config-name (fn [db [_ name]] (assoc-in db [:user-input :vega-lite :default ::active-config-name] name)))
+(rf/reg-event-db
+ ::set-active-config-name
+ (fn [db [_ name]]
+   (assoc-in db [:user-input :vega-lite :default ::active-config-name] name)))
 
-(rf/reg-event-db ::set-format (fn [db [_ fmt]] (assoc-in db [::vega-lite ::format] fmt)))
-(rf/reg-event-db ::set-structure (fn [db [_ s]] (assoc-in db [::vega-lite ::structure] s)))
-(rf/reg-event-db ::set-active-left-tab (fn [db [_ tab]] (assoc-in db [::vega-lite ::active-left-tab] tab)))
-(rf/reg-event-db ::set-active-right-tab (fn [db [_ tab]] (assoc-in db [::vega-lite ::active-right-tab] tab)))
+(rf/reg-event-db
+ ::set-format
+ (fn [db [_ fmt]]
+   (assoc-in db [::vega-lite ::format] fmt)))
+
+(rf/reg-event-db
+ ::set-structure
+ (fn [db [_ s]]
+   (assoc-in db [::vega-lite ::structure] s)))
+
+(rf/reg-event-db
+ ::set-active-left-tab
+ (fn [db [_ tab]]
+   (assoc-in db [::vega-lite ::active-left-tab] tab)))
+
+(rf/reg-event-db
+ ::set-active-right-tab
+ (fn [db [_ tab]]
+   (assoc-in db [::vega-lite ::active-right-tab] tab)))
 
 (rf/reg-event-db
  ::save-config
