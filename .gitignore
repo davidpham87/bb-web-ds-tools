@@ -39,3 +39,4 @@ docs/js/fonts/
 docs/js/images/
 verification/**/*.png
 docs/js/pyodide/
+docs/js/workers/
