@@ -287,9 +287,9 @@
   (let [state-sub (rf/subscribe [:malli/inference-view-state])]
     (fn []
       (let [{:keys [inference-input inferred-schema datasets input-format]} @state-sub]
-        [l/split-view {:ratio :2-1}
+        [l/flex-row {:class "h-full w-full"}
          ;; LEFT: Input
-         [l/flex-col {:class "h-full w-full max-w-3xl"}
+         [l/flex-col {:class "space-y-2 w-full max-w-3xl"}
           [l/flex-row {:class "justify-between py-4 items-center"}
            [c/label "Input Data"]
            [l/flex-row {:class "space-x-2 items-center"}
@@ -323,9 +323,7 @@
                                   :on-change #(rf/dispatch [:malli/update-inference-input %])}]]]
 
          ;; RIGHT: Output
-         [l/flex-col {:class "h-full p-4 space-y-4"}
-          [c/label "Inferred Schema"]
-          [portal-panel inferred-schema]]]))))
+         [portal-panel inferred-schema]]))))
 
 (defn generation-view
   "Renders the data generation view.
@@ -336,45 +334,42 @@
   (let [state-sub (rf/subscribe [:malli/generation-view-state])]
     (fn []
       (let [{:keys [schema-text generated-data samples gen-fmt]} @state-sub]
-        [l/split-view {:ratio :2-1}
-         ;; LEFT: Schema
-         [l/flex-col {:class "h-full p-4 space-y-4"}
-          [c/label "Schema (EDN)"]
-          [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
+        [l/flex-row {:class "h-full w-full"}
+         ;; LEFT: Schema and Controls
+         [l/flex-col {:class "space-y-2 w-full max-w-3xl"}
+          [l/flex-row {:class "justify-between py-4 items-center"}
+           [c/label "Schema (EDN)"]
+           [l/flex-row {:class "items-center gap-2"}
+             ;; Samples count
+            [:div {:class "flex items-center gap-1"}
+             [:span {:class "text-xs"} "Samples:"]
+             [c/input {:type "number"
+                       :class "w-16 py-1 px-2 text-xs"
+                       :min "1"
+                       :max "100"
+                       :value samples
+                       :on-change #(rf/dispatch [:malli/set-generation-samples (.. % -target -value)])}]]
+             ;; Format selection
+            [:div {:class "flex items-center gap-1"}
+             [:span {:class "text-xs"} "Format:"]
+             [c/select {:class "py-1 px-2 text-xs"
+                        :value gen-fmt
+                        :on-change #(rf/dispatch [:malli/set-generation-format (keyword (.. % -target -value))])}
+              [:option {:value "edn"} "EDN"]
+              [:option {:value "json"} "JSON"]]]
+             ;; Generate Button
+            [c/button {:on-click #(rf/dispatch [:malli/parse-schema-and-generate])} "Generate"]
+            [c/button-xs {:on-click #(rf/dispatch [:malli/save-dataset])} "Save to Datasets"]]]
+
+          [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)
+                 :style {:height "85vh"}}
            [editor/monaco-editor {:value schema-text
                                   :language "clojure"
                                   :options {:rulers [80]}
-                                  :on-change #(rf/dispatch [:malli/update-schema-text %])}]]
-
-          ;; Controls
-          [l/flex-row {:class "items-end gap-4"}
-           ;; Samples count
-           [:div {:class "w-24"}
-            [c/label "Samples"]
-            [c/input {:type "number"
-                      :min "1"
-                      :max "100"
-                      :value samples
-                      :on-change #(rf/dispatch [:malli/set-generation-samples (.. % -target -value)])}]]
-
-           ;; Format selection
-           [:div {:class "w-32"}
-            [c/label "Format"]
-            [c/select {:value gen-fmt
-                       :on-change #(rf/dispatch [:malli/set-generation-format (keyword (.. % -target -value))])}
-             [:option {:value "edn"} "EDN"]
-             [:option {:value "json"} "JSON"]]]
-
-           ;; Generate Button
-           [c/button {:class "mb-[1px] flex-grow"
-                      :on-click #(rf/dispatch [:malli/parse-schema-and-generate])} "Parse and Generate"]]]
+                                  :on-change #(rf/dispatch [:malli/update-schema-text %])}]]]
 
          ;; RIGHT: Generated Data
-         [l/flex-col {:class "h-full p-4 space-y-4"}
-          [l/flex-row {:class "justify-between items-center"}
-           [c/label "Generated Data"]
-           [c/button-xs {:on-click #(rf/dispatch [:malli/save-dataset])} "Save to Datasets"]]
-          [portal-panel generated-data]]]))))
+         [portal-panel generated-data]]))))
 
 (defn validation-view
   "Renders the schema validation view.
@@ -385,29 +380,30 @@
   (let [state-sub (rf/subscribe [:malli/validation-view-state])]
     (fn []
       (let [{:keys [schema-text inference-input input-format validation-result]} @state-sub]
-        [l/split-view {:ratio :2-1}
-         ;; LEFT: Schema
-         [l/flex-col {:class "h-full p-4 space-y-4"}
-          [c/label "Schema (EDN)"]
-          [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
+        [l/flex-row {:class "h-full w-full"}
+         ;; LEFT: Schema and Data
+         [l/flex-col {:class "space-y-2 w-full max-w-3xl"}
+          [l/flex-row {:class "justify-between py-4 items-center"}
+           [c/label "Schema (EDN)"]
+           [c/button {:on-click #(rf/dispatch [:malli/validate])} "Validate"]]
+
+          [:div {:class (str "rounded overflow-hidden border " t/border-default)
+                 :style {:height "42vh"}}
            [editor/monaco-editor {:value schema-text
                                   :language "clojure"
                                   :options {:rulers [80]}
-                                  :on-change #(rf/dispatch [:malli/update-schema-text %])}]]]
+                                  :on-change #(rf/dispatch [:malli/update-schema-text %])}]]
 
-         ;; RIGHT: Data + Validation
-         [l/flex-col {:class "h-full p-4 space-y-4"}
           [c/label "Data to Validate"]
-          [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
+          [:div {:class (str "rounded overflow-hidden border " t/border-default)
+                 :style {:height "42vh"}}
            [editor/monaco-editor {:value inference-input
                                   :language (case input-format :edn "clojure" :json "json" "plaintext")
                                   :options {:rulers [80]}
-                                  :on-change #(rf/dispatch [:malli/update-inference-input %])}]]
+                                  :on-change #(rf/dispatch [:malli/update-inference-input %])}]]]
 
-          [c/button {:on-click #(rf/dispatch [:malli/validate])} "Validate"]
-
-          [c/label "Validation Result"]
-          [portal-panel validation-result]]]))))
+         ;; RIGHT: Validation Result
+         [portal-panel validation-result]]))))
 
 (defn json-schema-view
   "Renders the JSON Schema transformation view.
@@ -418,21 +414,22 @@
   (let [state-sub (rf/subscribe [:malli/json-schema-view-state])]
     (fn []
       (let [{:keys [schema-text json-schema-result]} @state-sub]
-        [l/split-view {:ratio :2-1}
+        [l/flex-row {:class "h-full w-full"}
          ;; LEFT: Schema
-         [l/flex-col {:class "h-full p-4 space-y-4"}
-          [c/label "Schema (EDN)"]
-          [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
+         [l/flex-col {:class "space-y-2 w-full max-w-3xl"}
+          [l/flex-row {:class "justify-between py-4 items-center"}
+           [c/label "Schema (EDN)"]
+           [c/button {:on-click #(rf/dispatch [:malli/transform-json])} "Transform to JSON Schema"]]
+
+          [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)
+                 :style {:height "85vh"}}
            [editor/monaco-editor {:value schema-text
                                   :language "clojure"
                                   :options {:rulers [80]}
-                                  :on-change #(rf/dispatch [:malli/update-schema-text %])}]]
-          [c/button {:on-click #(rf/dispatch [:malli/transform-json])} "Transform to JSON Schema"]]
+                                  :on-change #(rf/dispatch [:malli/update-schema-text %])}]]]
 
          ;; RIGHT: JSON Schema Output
-         [l/flex-col {:class "h-full p-4 space-y-4"}
-          [c/label "JSON Schema"]
-          [portal-panel json-schema-result]]]))))
+         [portal-panel json-schema-result]]))))
 
 (defn panel-render
   "Renders the main malli panel content including tabs.
