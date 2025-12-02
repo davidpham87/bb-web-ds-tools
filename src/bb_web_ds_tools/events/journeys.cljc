@@ -107,13 +107,34 @@
     {::state [:map
               [:name keyword?]
               [:type [:enum :atomic :compound :final]]
-              [:initial {:optional true} keyword?] ;; Entry point for compound states
-              [:states {:optional true} [:map-of keyword? [:ref ::state]]] ;; Sub-states
+              [:initial {:optional true} keyword?] ;; Required for :compound states
+              [:states {:optional true} [:map-of keyword? [:ref ::state]]] ;; Nested states
               [:on {:optional true}
-               [:map-of keyword? ;; Event name
+               [:map-of keyword? ;; Event triggering the transition
                 [:map
-                 [:target keyword?] ;; Target state name
-                 [:action {:optional true} keyword?] ;; Side effect / action name
-                 [:guard {:optional true} fn?]]]]]} ;; Guard function
+                 [:target keyword?] ;; The name of the next state
+                 [:action {:optional true} keyword?] ;; Optional side-effect identifier
+                 [:guard {:optional true} fn?]]]]]} ;; Optional guard predicate
     }
    [:ref ::state]])
+
+(comment
+  ;; Usage Example
+  (def my-journey
+    {:name :dataset-creation
+     :type :compound
+     :initial :idle
+     :states {:idle {:name :idle
+                     :type :atomic
+                     :on {:user/clicked-create {:target :creating}}}
+              :creating {:name :creating
+                         :type :compound
+                         :initial :input
+                         :states {:input {:name :input
+                                          :type :atomic
+                                          :on {:user/entered-data {:target :validating}}}
+                                  :validating {:name :validating
+                                               :type :atomic
+                                               :on {:validation/success {:target :saving}
+                                                    :validation/failure {:target :input}}}}
+                         :on {:user/cancelled {:target :idle}}}}}))
