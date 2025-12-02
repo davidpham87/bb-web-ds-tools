@@ -9,9 +9,9 @@
 (defn normalize-columnar [data]
   (let [cols (keys data)
         vals-seq (vals data)
-        cnt (if (seq vals-seq) (count (first vals-seq)) 0)]
+        cnt (if (seq vals-seq) (reduce max 0 (map count vals-seq)) 0)]
     (mapv (fn [i]
-            (zipmap cols (map #(nth (get data %) i) cols)))
+            (zipmap cols (map #(get (get data %) i) cols)))
           (range cnt))))
 
 (defn normalize-row-arrays [data]
