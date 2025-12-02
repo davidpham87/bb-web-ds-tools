@@ -44,10 +44,52 @@
  (fn [[route-name params query]]
    (rfe/push-state route-name params query)))
 
+(defn get-route-label
+  "Retrieves the label for a given route name from nav-items.
+
+  Args:
+    route-name (keyword): The route name.
+
+  Returns:
+    string: The label."
+  [route-name]
+  (let [item (some #(when (= (:route %) route-name) %) nav-items)]
+    (or (:label item)
+        (if (= route-name :landing-page) "Home" (name route-name)))))
+
+(rf/reg-event-fx
+ ::close-tab
+ (fn [{:keys [db]} [_ tab-id]]
+   (let [open-tabs (:open-tabs db)
+         new-tabs (filterv #(not= (:id %) tab-id) open-tabs)
+         active-tab-id (get-in db [:current-route :data :name])]
+     (cond
+       ;; If closing the active tab
+       (= active-tab-id tab-id)
+       (let [idx (.indexOf (mapv :id open-tabs) tab-id)
+             ;; Try to go to the one before, or after, or home
+             next-tab (or (get new-tabs (dec idx)) ;; Previous (preferred)
+                          (get new-tabs idx)       ;; Next (same index)
+                          {:id :landing-page})]
+         {:db (assoc db :open-tabs new-tabs)
+          :dispatch [::navigate (:id next-tab) nil nil]})
+
+       ;; If closing inactive tab
+       :else
+       {:db (assoc db :open-tabs new-tabs)}))))
+
 (rf/reg-event-db
  ::navigated
  (fn [db [_ match]]
-   (assoc db :current-route match)))
+   (let [route-name (:name (:data match))
+         open-tabs (or (:open-tabs db) [])
+         already-open? (some #(= (:id %) route-name) open-tabs)
+         new-tabs (if already-open?
+                    open-tabs
+                    (conj open-tabs {:id route-name
+                                     :label (get-route-label route-name)}))]
+     (assoc db :current-route match
+            :open-tabs new-tabs))))
 
 (def routes
   ["/"
@@ -115,10 +157,16 @@
      {:platform {:mac-os? mac-os?}
       :repl {}
       :portal {}
+      :open-tabs []
       :user-input {:editor {:default {:code "initial code"}}
                    :repl {repl-id {:id repl-id
                                    :code ""
                                    :output []}}}})))
+
+(rf/reg-sub
+ ::open-tabs
+ (fn [db]
+   (:open-tabs db)))
 
 (rf/reg-sub
  ::user-input
@@ -177,9 +225,15 @@
   Returns:
     vector: A hiccup vector representing the main panel."
   []
-  (let [current-route @(rf/subscribe [::current-route])]
+  (let [current-route @(rf/subscribe [::current-route])
+        open-tabs @(rf/subscribe [::open-tabs])
+        active-tab-id (get-in current-route [:data :name])]
     [:div {:class (str "flex flex-col h-screen w-full overflow-hidden " t/bg-page " " t/text-primary)}
-     [nav/top-bar]
+     [nav/top-bar
+      {:active-tab-id active-tab-id
+       :open-tabs open-tabs
+       :on-tab-change #(rf/dispatch [::navigate % nil nil])
+       :on-tab-close #(rf/dispatch [::close-tab %])}]
      [layout/main {}
       [:div {:class "flex-grow overflow-auto relative"}
        (when current-route
