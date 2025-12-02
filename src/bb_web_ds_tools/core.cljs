@@ -2,6 +2,7 @@
   (:require
    [bb-web-ds-tools.components.common :refer (nav-items)]
    [bb-web-ds-tools.components.layout :as layout]
+   [bb-web-ds-tools.components.navigation :as nav]
    [bb-web-ds-tools.portal :as portal]
    [bb-web-ds-tools.theme :as t]
    [bb-web-ds-tools.views.app-db :as app-db]
@@ -170,30 +171,6 @@
 (defmethod view :app-db [_] [app-db/panel])
 ;; (defmethod view :workspaces [_] [workspaces/main-panel])
 
-(defn top-tab-bar
-  "Renders the top navigation tab bar component.
-
-  Returns:
-    vector: A hiccup vector representing the navigation bar."
-  []
-  (let [current-route @(rf/subscribe [::current-route])
-        current-name (:name (:data current-route))
-        tab-style
-        (fn [route-name]
-          (str "px-4 py-2 text-xs font-medium rounded-t-lg "
-               (if (= current-name route-name)
-                 (str t/bg-page " " t/text-accent " border-t border-l border-r " t/border-main)
-                 (str t/text-primary " hover:" t/text-accent " border-transparent border-t border-l border-r"))))]
-    [:nav {:class (str "h-10 " t/bg-toolbar " border-b " t/border-main " flex items-end")}
-     [:a {:href (rfe/href :landing-page)
-          :class (str (tab-style :landing-page) " ml-2")}
-      "Home"]
-     (for [item nav-items]
-       ^{:key (:route item)}
-       [:a {:href (rfe/href (:route item))
-            :class (tab-style (:route item))}
-        (:label item)])]))
-
 (defn main-panel
   "Renders the main application panel containing the tab bar and the current view.
 
@@ -201,11 +178,12 @@
     vector: A hiccup vector representing the main panel."
   []
   (let [current-route @(rf/subscribe [::current-route])]
-    [layout/main {}
-     [top-tab-bar]
-     [:div {:class "flex-grow overflow-auto relative"}
-      (when current-route
-        [view current-route])]]))
+    [:div {:class (str "flex flex-col h-screen w-full overflow-hidden " t/bg-page " " t/text-primary)}
+     [nav/top-bar]
+     [layout/main {}
+      [:div {:class "flex-grow overflow-auto relative"}
+       (when current-route
+         [view current-route])]]]))
 
 (defn app
   "The root component of the application.
