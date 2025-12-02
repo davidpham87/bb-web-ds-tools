@@ -1,9 +1,0 @@
-{
-"version":3,
-"file":"shadow.js.shim.module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution.js",
-"lineCount":5,
-"mappings":"AAAAA,IAAKC,CAAAA,OAAL,CAAa,yFAAb,CAAA;AACAD,IAAKC,CAAAA,OAAL,CAAa,gGAAb,CAAA;AACAC,MAAOC,CAAAA,EAAGC,CAAAA,IAAKC,CAAAA,wEAAf,GAA0FH,MAAOC,CAAAA,EAAGG,CAAAA,cAAV,CAAyB,sEAAzB,CAA1F,GAA6LC,aAAA,CAAc,sEAAd,CAA7L;AACAC,8FAA+FC,CAAAA,OAA/F,GAAyGP,MAAOC,CAAAA,EAAGC,CAAAA,IAAKC,CAAAA,wEAAxH;;",
-"sources":["shadow.js.shim.module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution.js"],
-"sourcesContent":["goog.provide(\"shadow.js.shim.module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution\");\ngoog.provide(\"module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution\");\nshadow.js.shim.module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution = shadow.js.nativeProvides[\"monaco-editor/esm/vs/basic-languages/clojure/clojure.contribution.js\"] = shadow$bridge(\"monaco-editor/esm/vs/basic-languages/clojure/clojure.contribution.js\");\nmodule$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution.default = shadow.js.shim.module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution;\n"],
-"names":["goog","provide","shadow","js","shim","module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution","nativeProvides","shadow$bridge","module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution","default"]
-}
