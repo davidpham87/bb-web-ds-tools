@@ -4,11 +4,6 @@
    [re-frame.core :as rf]
    [reagent.core :as r]))
 
-(defn attach-meta [value meta-data]
-  (if (and meta-data (satisfies? IWithMeta value))
-    (with-meta value meta-data)
-    value))
-
 (rf/reg-fx
  :portal/open
  (fn [iframe-parent-id]
@@ -33,9 +28,12 @@
 (rf/reg-event-fx
  ::submit
  (fn [_ [_ value viewer]]
-   {:portal/submit (if viewer
-                     (attach-meta value {:portal.viewer/default viewer})
-                     value)}))
+   {:portal/submit
+    (if viewer
+      (if (satisfies? IWithMeta value)
+        (with-meta value {:portal.viewer/default viewer})
+        [viewer value])
+      value)}))
 
 (defn portal-frame []
   [:div {:class "w-full"
