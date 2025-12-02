@@ -5,10 +5,26 @@
 
 (defonce pyodide-instance (atom nil))
 
-(defn post-msg [msg]
+(defn post-msg
+  "Posts a message back to the main thread.
+
+  Args:
+    msg (map): The message to send.
+
+  Returns:
+    nil."
+  [msg]
   (js/postMessage (->js msg)))
 
-(defn run-code [code]
+(defn run-code
+  "Runs Python code using Pyodide.
+
+  Args:
+    code (string): The Python code.
+
+  Returns:
+    nil: Posts result or error messages."
+  [code]
   (when @pyodide-instance
     (let [run-fn (gobj/get @pyodide-instance "runPythonAsync")]
       (-> (run-fn code)
@@ -25,7 +41,12 @@
              (.log js/console err)
              (post-msg {:type :error :text (str err)})))))))
 
-(defn load-runtime []
+(defn load-runtime
+  "Loads the Pyodide runtime.
+
+  Returns:
+    nil: Posts status messages."
+  []
   (try
     (js/importScripts "https://cdn.jsdelivr.net/pyodide/v0.29.0/full/pyodide.js")
     (-> (js/loadPyodide
@@ -39,7 +60,12 @@
     (catch :default e
       (post-msg {:type :error :text (str "Import Error: " e)}))))
 
-(defn init []
+(defn init
+  "Initializes the worker listener.
+
+  Returns:
+    nil."
+  []
   (js/self.addEventListener
    "message"
    (fn [e]

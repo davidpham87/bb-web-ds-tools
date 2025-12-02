@@ -53,7 +53,15 @@ chart.to_html()")
        "\n"
        initial-code))
 
-(defn on-worker-message [msg]
+(defn on-worker-message
+  "Handles messages from the Pyodide worker.
+
+  Args:
+    msg (map): The message object.
+
+  Returns:
+    nil: Dispatches events."
+  [msg]
   (let [{:keys [type text value]} msg]
     (case (keyword type)
       :ready (rf/dispatch [::on-ready])
@@ -151,7 +159,12 @@ chart.to_html()")
  (fn [_ [_ code]]
    {:fx [[::execute-python code]]}))
 
-(defn internal-view []
+(defn internal-view
+  "Renders the internal Pyodide view content.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (let [code-sub (rf/subscribe [::code])]
     (fn []
       (let [code @code-sub
@@ -191,7 +204,12 @@ chart.to_html()")
             :else
             [portal/portal-frame])]]))))
 
-(defn panel []
+(defn panel
+  "Main component for the Pyodide view. Initializes on mount.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (r/create-class
    {:component-did-mount #(rf/dispatch [::initialize])
     :reagent-render internal-view}))

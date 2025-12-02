@@ -238,13 +238,32 @@
 
 ;; --- Components ---
 
-(defn load-example [fmt structure]
+(defn load-example
+  "Loads a Vega-Lite example into the state.
+
+  Args:
+    fmt (keyword): The data format.
+    structure (keyword): The data structure.
+
+  Returns:
+    nil: Dispatches events."
+  [fmt structure]
   (rf/dispatch [::set-format fmt])
   (rf/dispatch [::set-structure structure])
   (rf/dispatch [::set-data-input (dp/example-data fmt structure)])
   (rf/dispatch [::parse-data]))
 
-(defn render-vega [component spec-obj data]
+(defn render-vega
+  "Renders the Vega-Lite visualization into the DOM.
+
+  Args:
+    component (object): The React component instance.
+    spec-obj (object): The Vega-Lite specification.
+    data (object): The data to visualize.
+
+  Returns:
+    nil: Modifies the DOM."
+  [component spec-obj data]
   (when (and spec-obj data)
     (try
       (let [spec-with-data (js/Object.assign #js{} spec-obj)]
@@ -252,7 +271,15 @@
         (js/vegaEmbed (ReactDOM/findDOMNode component) spec-with-data))
       (catch js/Error e (js/console.warn "Vega render error" e)))))
 
-(defn vega-viz [{:keys [spec-obj data]}]
+(defn vega-viz
+  "Wrapper component for Vega-Lite visualization.
+
+  Args:
+    props (map): Contains :spec-obj and :data.
+
+  Returns:
+    vector: A hiccup vector."
+  [{:keys [spec-obj data]}]
   (r/create-class
    {:display-name "vega-viz"
     :component-did-mount
@@ -264,7 +291,17 @@
     :render
     (fn [] [:div {:style {:width "100%" :height "100%"}}])}))
 
-(defn tab-button [active? label on-click]
+(defn tab-button
+  "Renders a tab button.
+
+  Args:
+    active? (boolean): Whether the tab is active.
+    label (string): The tab label.
+    on-click (fn): Click handler.
+
+  Returns:
+    vector: A hiccup vector."
+  [active? label on-click]
   [:button {:class (str "py-2 px-4 font-medium text-sm transition-colors border-b-2 "
                         (if active?
                           (str "border-[#f0dfaf] " t/text-accent)
@@ -272,7 +309,12 @@
             :on-click on-click}
    label])
 
-(defn save-config-modal []
+(defn save-config-modal
+  "Renders a modal to save the current configuration.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (let [open? (r/atom false)
         name-input (r/atom "")]
     (fn []
@@ -293,7 +335,12 @@
                         :on-click #(reset! open? false)}
            "✗"]])])))
 
-(defn panel-render []
+(defn panel-render
+  "Renders the main Vega-Lite view content.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (let [data-input @(rf/subscribe [::data-input])
         config-input @(rf/subscribe [::config-input])
         parsed-data @(rf/subscribe [::parsed-data])
@@ -416,7 +463,12 @@
              :options {:readOnly true :minimap {:enabled false}}}]]
           nil)]]]]))
 
-(defn panel []
+(defn panel
+  "Main component for the Vega-Lite view. Initializes on mount.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (r/create-class
    {:display-name "vega-lite-panel"
     :component-did-mount #(rf/dispatch [::initialize])

@@ -5,7 +5,15 @@
    [clojure.tools.reader.reader-types :as rt]
    [sci.core :as sci]))
 
-(defn post-msg [msg]
+(defn post-msg
+  "Posts a message back to the main thread.
+
+  Args:
+    msg (map): The message to send.
+
+  Returns:
+    nil."
+  [msg]
   (js/postMessage (->js msg)))
 
 (def sci-ctx
@@ -21,7 +29,15 @@
                                                       :text "rf/subscribe is not supported in the worker."})
                                            (atom nil))}}}))
 
-(defn eval-code [code]
+(defn eval-code
+  "Evaluates Clojure code using SCI.
+
+  Args:
+    code (string): The code to evaluate.
+
+  Returns:
+    nil: Posts messages with results or errors."
+  [code]
   (let [rdr (rt/string-push-back-reader code)]
     (try
       (loop [acc []]
@@ -40,7 +56,12 @@
       (catch :default e
         (post-msg {:type :error :text (str e)})))))
 
-(defn init []
+(defn init
+  "Initializes the worker listener.
+
+  Returns:
+    nil."
+  []
   (js/self.addEventListener
    "message"
    (fn [e]

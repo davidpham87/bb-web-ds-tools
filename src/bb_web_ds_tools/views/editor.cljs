@@ -10,9 +10,17 @@
    (js/alert (str "Saved code successfully!"))
    db))
 
-(defn editor-form [{:keys [path initial-code]
-                    :or {path [:editor-form]
-                         initial-code @(rf/subscribe [:bb-web-ds-tools.core/code])}}]
+(defn editor-form
+  "Renders the editor form.
+
+  Args:
+    props (map): Optional properties map with keys :path and :initial-code.
+
+  Returns:
+    vector: A hiccup vector."
+  [{:keys [path initial-code]
+    :or {path [:editor-form]
+         initial-code @(rf/subscribe [:bb-web-ds-tools.core/code])}}]
   (let [initial-code @(rf/subscribe [:bb-web-ds-tools.core/code])]
     [fork/form {:initial-values {"code" initial-code}
                 :keywordize-keys true
@@ -32,7 +40,12 @@
         [:div.flex.justify-end
          [c/button {:type "submit"} "Save Code"]]])]))
 
-(defn panel []
+(defn panel
+  "Renders the editor view panel.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   [:div {:class "container mx-auto max-w-6xl p-6"}
    [c/card {}
     [editor-form {}]]])

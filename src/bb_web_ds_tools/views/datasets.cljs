@@ -11,7 +11,15 @@
 
 ;; --- Utilities ---
 
-(defn deep-merge [& maps]
+(defn deep-merge
+  "Recursively merges maps.
+
+  Args:
+    maps (rest): Maps to merge.
+
+  Returns:
+    map: The merged map."
+  [& maps]
   (if (every? map? maps)
     (apply merge-with deep-merge maps)
     (last maps)))
@@ -141,7 +149,17 @@
 
 ;; --- Helper Components ---
 
-(defn column-toggle-dropdown [id columns hidden-columns]
+(defn column-toggle-dropdown
+  "Renders a dropdown menu to toggle column visibility.
+
+  Args:
+    id (string): The dataset ID.
+    columns (seq): List of all columns.
+    hidden-columns (set): Set of hidden columns.
+
+  Returns:
+    vector: A hiccup vector."
+  [id columns hidden-columns]
   [:div {:class "relative group"}
    [:button {:class (str t/bg-input " " t/text-primary " px-4 py-2 rounded border " t/border-default)} "Select Columns"]
    [:div {:class (str "absolute hidden group-hover:block " t/bg-input " border " t/border-default " p-2 rounded shadow-lg z-10 w-48 max-h-60 overflow-y-auto")}
@@ -157,7 +175,12 @@
 
 ;; --- UI Components ---
 
-(defn importer-view []
+(defn importer-view
+  "Renders the dataset importer view.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (let [state (rf/subscribe [::new-dataset-state])]
     (fn []
       (let [{:keys [text structure] fmt :format name-val :name} @state
@@ -223,7 +246,15 @@
                         "plaintext")
             :on-change [::update-new-dataset-state :text]}]]]))))
 
-(defn data-table [dataset]
+(defn data-table
+  "Renders the interactive data table for a dataset.
+
+  Args:
+    dataset (map): The dataset map containing :data, :columns, etc.
+
+  Returns:
+    vector: A hiccup vector."
+  [dataset]
   (let [{:keys [id data columns view-state]} dataset
         {:keys [page rows-per-page filters hidden-columns sort-col sort-dir]} view-state
         {:keys [page-data total-rows start-idx end-idx visible-columns]}
@@ -288,7 +319,15 @@
                           :value (get row col "")
                           :on-change #(rf/dispatch [::update-cell id row-uuid col (.. % -target -value)])}]])]))]]]]))
 
-(defn dataset-view [dataset]
+(defn dataset-view
+  "Renders the main view for a single dataset (table or portal).
+
+  Args:
+    dataset (map): The dataset map.
+
+  Returns:
+    vector: A hiccup vector."
+  [dataset]
   (let [view-mode (get-in dataset [:view-state :mode] :table)]
     [l/flex-col {:class "h-full"}
      [l/flex-row {:class (str "justify-between " t/bg-toolbar " p-2 rounded shadow-sm m-4 mt-0 mb-0")}
@@ -317,7 +356,17 @@
        [portal-panel dataset]
        [data-table dataset])]))
 
-(defn dataset-list-item [id ds active-id]
+(defn dataset-list-item
+  "Renders a single dataset item in the sidebar list.
+
+  Args:
+    id (string): The dataset ID.
+    ds (map): The dataset map.
+    active-id (string): The currently active dataset ID.
+
+  Returns:
+    vector: A hiccup vector."
+  [id ds active-id]
   (let [editing? (r/atom false)
         temp-name (r/atom (:name ds))]
     (fn [id ds active-id]
@@ -361,7 +410,12 @@
                                     (rf/dispatch [::delete-dataset id])))}
              [c/dustbin-icon]]]])))))
 
-(defn dataset-list []
+(defn dataset-list
+  "Renders the sidebar list of datasets.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (let [state-sub (rf/subscribe [::dataset-list-state])]
     (fn []
       (let [{:keys [items active-id]} @state-sub]
@@ -377,7 +431,12 @@
               ^{:key id} [dataset-list-item id ds active-id])
             [:div {:class (str "text-sm " t/text-muted " italic p-2")} "No datasets"])]]))))
 
-(defn panel-render []
+(defn panel-render
+  "Renders the datasets panel content (split view).
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (let [state-sub (rf/subscribe [::panel-state])]
     (fn []
       (let [{:keys [active-id active-dataset]} @state-sub]
@@ -389,7 +448,12 @@
              [dataset-view active-dataset]
              [:div {:class (str "text-center " t/text-muted " mt-20")} "Select a dataset."]))]))))
 
-(defn panel []
+(defn panel
+  "Main component for the Datasets view. Initializes state on mount.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (r/create-class
    {:display-name "datasets-panel"
     :component-did-mount #(rf/dispatch [::initialize])

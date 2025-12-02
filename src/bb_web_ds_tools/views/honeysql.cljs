@@ -9,7 +9,15 @@
             [bb-web-ds-tools.theme :as t]))
 
 ;; Helper
-(defn get-honeysql-state [db]
+(defn get-honeysql-state
+  "Retrieves the HoneySQL state from the database.
+
+  Args:
+    db (map): The application database.
+
+  Returns:
+    map: A map containing :input and :output."
+  [db]
   (let [user-input (get-in db [:user-input :honeysql :default])
         component-state (::honeysql db)]
     {:input (:input user-input)
@@ -71,7 +79,12 @@
 
 ;; UI components
 
-(defn panel []
+(defn panel
+  "Renders the HoneySQL view panel.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (let [state-sub (rf/subscribe [:honeysql/panel-state])]
     (fn []
       (let [{:keys [input output]} @state-sub]
