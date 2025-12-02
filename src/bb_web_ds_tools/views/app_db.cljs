@@ -85,7 +85,16 @@
 
 ;; Components
 
-(defn path-list-item [path active?]
+(defn path-list-item
+  "Renders a single item in the watched paths list.
+
+  Args:
+    path (any): The path vector or string.
+    active? (boolean): Whether this path is currently active.
+
+  Returns:
+    vector: A hiccup vector."
+  [path active?]
   (let [editing? (r/atom false)
         temp-path (r/atom path)]
     (fn [path active?]
@@ -128,7 +137,12 @@
                                   (rf/dispatch [::remove-watch-path path])))}
            [c/dustbin-icon]]]]))))
 
-(defn path-list []
+(defn path-list
+  "Renders the sidebar list of watched paths.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (let [watched-paths @(rf/subscribe [::watched-paths])
         active-path @(rf/subscribe [::active-path])]
     [:div {:class (str "h-full " t/bg-sidebar " flex flex-col")}
@@ -143,7 +157,12 @@
           ^{:key path} [path-list-item path (= path active-path)])
         [:div {:class (str "text-sm " t/text-muted " italic p-2")} "No watched paths"])]]))
 
-(defn add-path-view []
+(defn add-path-view
+  "Renders the form to add a new path to watch.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (r/with-let [new-path (r/atom "")]
     [c/card {:class "p-8 flex flex-col items-center justify-center space-y-4 bg-transparent shadow-none h-full"}
      [:h3 {:class "text-xl font-bold"} "Watch New Path"]
@@ -157,7 +176,12 @@
                                 (reset! new-path ""))}
        "Add Watch"]]]))
 
-(defn panel []
+(defn panel
+  "Renders the App DB inspector panel.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (let [active-path @(rf/subscribe [::active-path])
         ;; Subscribe to value if active path is valid and not :new
         active-value (when (and active-path (not= active-path :new))

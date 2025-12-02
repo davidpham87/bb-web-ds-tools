@@ -10,12 +10,29 @@
 
 ;; --- Utils ---
 
-(defn get-workspaces [db]
+(defn get-workspaces
+  "Retrieves all workspaces from the DB.
+
+  Args:
+    db (map): The DataScript DB.
+
+  Returns:
+    seq: List of [eid name] tuples."
+  [db]
   (d/q '[:find ?e ?name
          :where [?e :workspace/name ?name]]
        db))
 
-(defn get-inputs [db workspace-eid]
+(defn get-inputs
+  "Retrieves all inputs for a given workspace.
+
+  Args:
+    db (map): The DataScript DB.
+    workspace-eid (int): The workspace entity ID.
+
+  Returns:
+    seq: List of input tuples."
+  [db workspace-eid]
   (d/q '[:find ?e ?type ?name ?content ?updated
          :in $ ?w
          :where

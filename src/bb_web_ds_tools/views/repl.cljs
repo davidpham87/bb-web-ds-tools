@@ -58,7 +58,16 @@
  (fn [db [_ instance-id code]]
    (assoc-in db [:user-input :repl instance-id :code] code)))
 
-(defn find-last-sexpr [text cursor-pos]
+(defn find-last-sexpr
+  "Finds the last S-expression before the cursor position.
+
+  Args:
+    text (string): The code text.
+    cursor-pos (number): The cursor index.
+
+  Returns:
+    string: The found S-expression or empty string."
+  [text cursor-pos]
   (let [substr (subs text 0 cursor-pos)
         trimmed (str/trimr substr)
         end-idx (count trimmed)]
@@ -100,10 +109,29 @@
                   (if (and (= c \") (not= (get trimmed (dec i)) \\)) (subs trimmed i) (recur (dec i))))))
           :else (let [match (re-find #"[^\s\(\)\[\]\{\}\"]+$" trimmed)] (or match trimmed)))))))
 
-(defn key-chord [first-part second-part]
+(defn key-chord
+  "Combines two key codes into a chord.
+
+  Args:
+    first-part (number): The first key code.
+    second-part (number): The second key code.
+
+  Returns:
+    number: The combined chord."
+  [first-part second-part]
   (bit-or first-part (bit-shift-left second-part 16)))
 
-(defn setup-editor-actions [^js editor instance-id mac-os?]
+(defn setup-editor-actions
+  "Configures custom actions for the Monaco editor.
+
+  Args:
+    editor (object): The Monaco editor instance.
+    instance-id (string): The REPL instance ID.
+    mac-os? (boolean): Whether running on macOS.
+
+  Returns:
+    nil: Modifies the editor instance."
+  [^js editor instance-id mac-os?]
   (let [eval-action (fn [code]
                       (rf/dispatch [::eval-code instance-id code]))
         ctrl-key (editor/get-ctrl-key mac-os?)]
@@ -122,7 +150,15 @@
                         (when (not (empty? sexpr))
                           (eval-action sexpr))))}))))
 
-(defn- repl-instance [{:keys [instance-id]}]
+(defn- repl-instance
+  "Renders a single REPL instance.
+
+  Args:
+    props (map): Contains :instance-id.
+
+  Returns:
+    vector: A hiccup vector."
+  [{:keys [instance-id]}]
   (let [state-sub (rf/subscribe [::repl-instance-state instance-id])]
     (fn []
       (let [{:keys [code mac-os?]} @state-sub]
@@ -143,7 +179,15 @@
               :on-mount #(setup-editor-actions % instance-id mac-os?)}]]]
           [portal-frame]]]))))
 
-(defn on-worker-message [msg]
+(defn on-worker-message
+  "Handles messages from the SCI worker.
+
+  Args:
+    msg (map): The message object.
+
+  Returns:
+    nil: Dispatches events."
+  [msg]
   (let [{:keys [type event value]} msg]
     (case (keyword type)
       :dispatch (rf/dispatch event)
@@ -151,7 +195,12 @@
       :result (rf/dispatch [::portal/submit value])
       (js/console.warn "Unknown worker msg:" msg))))
 
-(defn panel []
+(defn panel
+  "Main component for the Clojure REPL view. Initializes SCI on mount.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (r/create-class
    {:component-did-mount #(sci-runtime/init! on-worker-message)
     :reagent-render

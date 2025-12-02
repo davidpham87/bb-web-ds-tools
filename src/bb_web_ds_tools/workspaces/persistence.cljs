@@ -9,7 +9,12 @@
 (defonce sqlite-lib (atom nil))
 (defonce sql-db (atom nil))
 
-(defn init-db! []
+(defn init-db!
+  "Initializes the in-memory SQLite database.
+
+  Returns:
+    channel: A core.async channel."
+  []
   (go
     (try
       (let [^js init-fn (if (and (exists? sqlite3InitModule) (.-default sqlite3InitModule))
@@ -29,12 +34,22 @@
 
 ;; --- Persistence Logic --
 
-(defn create-tables! []
+(defn create-tables!
+  "Creates the necessary tables in the SQLite database.
+
+  Returns:
+    nil: Executes SQL."
+  []
   (when-let [^js db @sql-db]
     (.exec db "CREATE TABLE IF NOT EXISTS workspaces (id TEXT PRIMARY KEY, name TEXT, created_at INTEGER, updated_at INTEGER);")
     (.exec db "CREATE TABLE IF NOT EXISTS inputs (id TEXT PRIMARY KEY, workspace_id TEXT, type TEXT, name TEXT, content TEXT, metadata TEXT, updated_at INTEGER);")))
 
-(defn persist-all! []
+(defn persist-all!
+  "Dumps the current DataScript state to the SQLite database.
+
+  Returns:
+    nil: Executes SQL transactions."
+  []
   ;; Dump current DataScript state to SQL
   (when-let [^js db @sql-db]
     (create-tables!)
@@ -71,7 +86,12 @@
       (.exec db "COMMIT;")
       (println "Persisted to in-memory SQL DB."))))
 
-(defn export-db []
+(defn export-db
+  "Exports the SQLite database as a binary blob.
+
+  Returns:
+    js/Blob: The database file blob."
+  []
   (when-let [^js db @sql-db]
     (persist-all!)
     (let [capi (.. ^js @sqlite-lib -capi)

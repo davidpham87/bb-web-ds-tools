@@ -4,6 +4,14 @@
             [clojure.edn :as edn]
             [cljs.pprint :as pprint]))
 
+(def config
+  {:markdown {:cell-separator " | "
+              :row-start "| "
+              :row-end " |"
+              :header-dash "---"}
+   :json {:indent 2
+          :error-msg "JSON Parse Error"}})
+
 ;; --- Normalization ---
 
 (defn normalize-columnar [data]
@@ -45,12 +53,15 @@
         header (map keyword (parse-row header-line))]
     (mapv (fn [line] (zipmap header (parse-row line))) data-lines)))
 
-(defn- parse-json [text]
-  (try
-    (js->clj (js/JSON.parse text) :keywordize-keys true)
-    (catch js/Error e
-      (js/console.error "JSON Parse Error" e)
-      nil)))
+(defn- parse-json
+  ([text] (parse-json text (:json config)))
+  ([text conf]
+   (let [conf (or conf (:json config))]
+     (try
+       (js->clj (js/JSON.parse text) :keywordize-keys true)
+       (catch js/Error e
+         (js/console.error (:error-msg conf) e)
+         nil)))))
 
 (defmethod parse-dataset [:json :columnar] [_ _ text]
   (some-> (parse-json text) normalize-columnar))
@@ -99,14 +110,27 @@
     (vec (cons (vec ks)
                (mapv (fn [row] (mapv #(get row %) ks)) rows)))))
 
-(defn- to-markdown-table [rows]
-  (let [ks (keys (first rows))
-        header (str "| " (str/join " | " (map name ks)) " |")
-        separator (str "| " (str/join " | " (repeat (count ks) "---")) " |")
-        data-lines (map (fn [row]
-                          (str "| " (str/join " | " (map #(get row %) ks)) " |"))
-                        rows)]
-    (str/join "\n" (cons header (cons separator data-lines)))))
+(defn- to-markdown-table
+  ([rows] (to-markdown-table rows (:markdown config)))
+  ([rows conf]
+   (let [conf (or conf (:markdown config))
+         ks (keys (first rows))
+         cell-sep (:cell-separator conf)
+         row-start (:row-start conf)
+         row-end (:row-end conf)
+         dash (:header-dash conf)
+         header (str row-start (str/join cell-sep (map name ks)) row-end)
+         separator (str row-start (str/join cell-sep (repeat (count ks) dash)) row-end)
+         data-lines (map (fn [row]
+                           (str row-start (str/join cell-sep (map #(get row %) ks)) row-end))
+                         rows)]
+     (str/join "\n" (cons header (cons separator data-lines))))))
+
+(defn- stringify-json
+  ([data] (stringify-json data (:json config)))
+  ([data conf]
+   (let [conf (or conf (:json config))]
+     (js/JSON.stringify (clj->js data) nil (:indent conf)))))
 
 (defn- get-structured-data [structure]
   (case structure
@@ -114,36 +138,36 @@
     :columnar (to-columnar example-rows)
     :row-arrays (to-row-arrays example-rows)))
 
-(defmulti example-data (fn [fmt structure] [fmt structure]))
+(defmulti example-data (fn [fmt structure & [conf]] [fmt structure]))
 
-(defmethod example-data [:csv :columnar] [_ _]
+(defmethod example-data [:csv :columnar] [_ _ & [conf]]
   (.unparse Papa (clj->js example-rows) #js {:header true}))
 
-(defmethod example-data [:tsv :columnar] [_ _]
+(defmethod example-data [:tsv :columnar] [_ _ & [conf]]
   (.unparse Papa (clj->js example-rows) #js {:delimiter "\t" :header true}))
 
-(defmethod example-data [:markdown :columnar] [_ _]
-  (to-markdown-table example-rows))
+(defmethod example-data [:markdown :columnar] [_ _ & [conf]]
+  (to-markdown-table example-rows (:markdown conf)))
 
-(defmethod example-data [:json :columnar] [_ structure]
-  (js/JSON.stringify (clj->js (get-structured-data structure)) nil 2))
+(defmethod example-data [:json :columnar] [_ structure & [conf]]
+  (stringify-json (get-structured-data structure) (:json conf)))
 
-(defmethod example-data [:json :row-maps] [_ structure]
-  (js/JSON.stringify (clj->js (get-structured-data structure)) nil 2))
+(defmethod example-data [:json :row-maps] [_ structure & [conf]]
+  (stringify-json (get-structured-data structure) (:json conf)))
 
-(defmethod example-data [:json :row-arrays] [_ structure]
-  (js/JSON.stringify (clj->js (get-structured-data structure)) nil 2))
+(defmethod example-data [:json :row-arrays] [_ structure & [conf]]
+  (stringify-json (get-structured-data structure) (:json conf)))
 
-(defmethod example-data [:edn :columnar] [_ structure]
+(defmethod example-data [:edn :columnar] [_ structure & [conf]]
   (with-out-str (pprint/pprint (get-structured-data structure))))
 
-(defmethod example-data [:edn :row-maps] [_ structure]
+(defmethod example-data [:edn :row-maps] [_ structure & [conf]]
   (with-out-str (pprint/pprint (get-structured-data structure))))
 
-(defmethod example-data [:edn :row-arrays] [_ structure]
+(defmethod example-data [:edn :row-arrays] [_ structure & [conf]]
   (with-out-str (pprint/pprint (get-structured-data structure))))
 
-(defmethod example-data :default [_ _] "")
+(defmethod example-data :default [_ _ & [conf]] "")
 
 ;; --- Table Processing ---
 

@@ -12,7 +12,15 @@
             [bb-web-ds-tools.utils.dataset-processing :as dp]))
 
 ;; Helper for state extraction
-(defn get-malli-state [db]
+(defn get-malli-state
+  "Extracts the malli view state from the application database.
+
+  Args:
+    db (map): The application state map.
+
+  Returns:
+    map: The extracted state containing schemas, inputs, and results."
+  [db]
   (let [user-input (get-in db [:user-input :malli :default])
         component-state (::malli db)]
     {:schema-text (:schema-text user-input)
@@ -270,7 +278,12 @@
 
 ;; UI components
 
-(defn inference-view []
+(defn inference-view
+  "Renders the schema inference view.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (let [state-sub (rf/subscribe [:malli/inference-view-state])]
     (fn []
       (let [{:keys [inference-input inferred-schema datasets input-format]} @state-sub]
@@ -314,7 +327,12 @@
           [c/label "Inferred Schema"]
           [portal-panel inferred-schema]]]))))
 
-(defn generation-view []
+(defn generation-view
+  "Renders the data generation view.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (let [state-sub (rf/subscribe [:malli/generation-view-state])]
     (fn []
       (let [{:keys [schema-text generated-data samples gen-fmt]} @state-sub]
@@ -358,7 +376,12 @@
            [c/button-xs {:on-click #(rf/dispatch [:malli/save-dataset])} "Save to Datasets"]]
           [portal-panel generated-data]]]))))
 
-(defn validation-view []
+(defn validation-view
+  "Renders the schema validation view.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (let [state-sub (rf/subscribe [:malli/validation-view-state])]
     (fn []
       (let [{:keys [schema-text inference-input input-format validation-result]} @state-sub]
@@ -386,7 +409,12 @@
           [c/label "Validation Result"]
           [portal-panel validation-result]]]))))
 
-(defn json-schema-view []
+(defn json-schema-view
+  "Renders the JSON Schema transformation view.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (let [state-sub (rf/subscribe [:malli/json-schema-view-state])]
     (fn []
       (let [{:keys [schema-text json-schema-result]} @state-sub]
@@ -406,7 +434,12 @@
           [c/label "JSON Schema"]
           [portal-panel json-schema-result]]]))))
 
-(defn panel-render []
+(defn panel-render
+  "Renders the main malli panel content including tabs.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (let [active-tab (or @(rf/subscribe [:malli/active-tab]) :inference)
         tabs [{:id :inference :label "Inference"}
               {:id :generation :label "Generation"}
@@ -425,7 +458,12 @@
         :validation [validation-view]
         :json-schema [json-schema-view])]]))
 
-(defn panel []
+(defn panel
+  "Main component for the Malli Tools view. Initializes state on mount.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (r/create-class
    {:display-name "malli-panel"
     :component-did-mount #(rf/dispatch [:malli/initialize])

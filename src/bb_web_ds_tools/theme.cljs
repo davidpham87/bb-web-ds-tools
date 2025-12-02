@@ -40,7 +40,15 @@
 
    :ring-focus "#8cd0d3"})
 
-(defn color [k] (get colors k))
+(defn color
+  "Retrieves the hex color code for a given semantic key.
+
+  Args:
+    k (keyword): The semantic color key (e.g., :bg-page).
+
+  Returns:
+    string: The hex color code, or nil if not found."
+  [k] (get colors k))
 
 ;; Backgrounds
 (def bg-page (str "bg-[" (:bg-page colors) "]"))

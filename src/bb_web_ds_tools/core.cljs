@@ -81,10 +81,24 @@
    routes
    {:data {:coercion rss/coercion}}))
 
-(defn on-navigate [match _]
+(defn on-navigate
+  "Callback function triggered when the router navigates to a new match.
+
+  Args:
+    match (map): The Reitit match object containing route data.
+    _ (any): Unused history object.
+
+  Returns:
+    nil: Dispatches a re-frame event."
+  [match _]
   (rf/dispatch [::navigated match]))
 
-(defn init-routes! []
+(defn init-routes!
+  "Initializes the Reitit router and starts the HTML5 history listener.
+
+  Returns:
+    nil: Starts the router side-effect."
+  []
   (rfe/start!
    router
    on-navigate
@@ -130,7 +144,16 @@
 
 ;; ;; --- Views ---
 
-(defmulti view (fn [match] (:name (:data match))))
+(defmulti view
+  "Multimethod to render the view corresponding to the current route.
+
+  Args:
+    match (map): The Reitit match object.
+
+  Returns:
+    vector: A hiccup vector representing the view component."
+  (fn [match] (:name (:data match))))
+
 (defmethod view :default [_] [:div "404! Sorry"])
 (defmethod view :landing-page [_] [landing/landing-page])
 (defmethod view :malli [_] [malli/panel])
@@ -147,7 +170,12 @@
 (defmethod view :app-db [_] [app-db/panel])
 ;; (defmethod view :workspaces [_] [workspaces/main-panel])
 
-(defn top-tab-bar []
+(defn top-tab-bar
+  "Renders the top navigation tab bar component.
+
+  Returns:
+    vector: A hiccup vector representing the navigation bar."
+  []
   (let [current-route @(rf/subscribe [::current-route])
         current-name (:name (:data current-route))
         tab-style
@@ -166,7 +194,12 @@
             :class (tab-style (:route item))}
         (:label item)])]))
 
-(defn main-panel []
+(defn main-panel
+  "Renders the main application panel containing the tab bar and the current view.
+
+  Returns:
+    vector: A hiccup vector representing the main panel."
+  []
   (let [current-route @(rf/subscribe [::current-route])]
     [layout/main {}
      [top-tab-bar]
@@ -174,7 +207,12 @@
       (when current-route
         [view current-route])]]))
 
-(defn app []
+(defn app
+  "The root component of the application.
+
+  Returns:
+    vector: A hiccup vector representing the root application component."
+  []
   [layout/page-container {}
    [main-panel]])
 
@@ -183,7 +221,12 @@
 ;;    "Hello" " works!"])
 
 
-(defn ^:export init []
+(defn ^:export init
+  "The entry point of the application. Initializes the database, router, and mounts the React root.
+
+  Returns:
+    nil: Performs side-effects to start the app."
+  []
   (rf/dispatch-sync [::initialize-db])
   ;; #_(rf/dispatch [::ws/init])
   ;; #_(rf/dispatch [::wp/init-persistence])
@@ -192,6 +235,10 @@
   (rdom/render [app] (.getElementById js/document "app")))
 
 (defn ^:dev/after-load reload!
+  "Reload hook for shadow-cljs. Re-mounts the application after code changes.
+
+  Returns:
+    nil: Re-renders the app."
   []
   (js/console.log "reload")
   (rdom/render [app] (.getElementById js/document "app")))

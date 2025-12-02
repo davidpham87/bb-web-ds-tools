@@ -35,7 +35,12 @@
         [viewer value])
       value)}))
 
-(defn portal-frame []
+(defn portal-frame
+  "Renders a div that acts as the container for the Portal iframe.
+
+  Returns:
+    vector: A hiccup vector representing the portal container."
+  []
   [:div {:class "w-full"
          :style {:height "95vh" :margin-left 20}
          :ref (fn [el]
@@ -44,7 +49,16 @@
                            :iframe-parent el
                            :theme :portal.colors/zenburn})))}])
 
-(defn portal-panel [value & [viewer]]
+(defn portal-panel
+  "A Reagent component that renders a Portal inspector and automatically submits data to it.
+
+  Args:
+    value (any): The data to inspect.
+    viewer (keyword, optional): The default viewer to use (e.g., :portal.viewer/table).
+
+  Returns:
+    vector: A hiccup vector representing the component."
+  [value & [viewer]]
   (r/create-class
    {:component-did-mount
     (fn [this]
