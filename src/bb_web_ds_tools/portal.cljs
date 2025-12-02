@@ -4,6 +4,11 @@
    [re-frame.core :as rf]
    [reagent.core :as r]))
 
+(defn attach-meta [value meta-data]
+  (if (and meta-data (satisfies? IWithMeta value))
+    (with-meta value meta-data)
+    value))
+
 (rf/reg-fx
  :portal/open
  (fn [iframe-parent-id]
@@ -27,8 +32,10 @@
 
 (rf/reg-event-fx
  ::submit
- (fn [_ [_ value]]
-   {:portal/submit value}))
+ (fn [_ [_ value viewer]]
+   {:portal/submit (if viewer
+                     (attach-meta value {:portal.viewer/default viewer})
+                     value)}))
 
 (defn portal-frame []
   [:div {:class "w-full"
@@ -39,25 +46,20 @@
                            :iframe-parent el
                            :theme :portal.colors/zenburn})))}])
 
-(defn attach-meta [value meta-data]
-  (if (and meta-data (satisfies? IWithMeta value))
-    (with-meta value meta-data)
-    value))
-
-(defn portal-panel [value & [meta-data]]
+(defn portal-panel [value & [viewer]]
   (r/create-class
    {:component-did-mount
     (fn [this]
-      (let [[_ value meta-data] (r/argv this)]
-        (rf/dispatch [::submit (attach-meta value meta-data)])))
+      (let [[_ value viewer] (r/argv this)]
+        (rf/dispatch [::submit value viewer])))
     :component-did-update
-    (fn [this [_ old-value old-meta-data]]
-      (let [[_ value meta-data] (r/argv this)]
+    (fn [this [_ old-value old-viewer]]
+      (let [[_ value viewer] (r/argv this)]
         (when (or (not= value old-value)
-                  (not= meta-data old-meta-data))
-          (rf/dispatch [::submit (attach-meta value meta-data)]))))
+                  (not= viewer old-viewer))
+          (rf/dispatch [::submit value viewer]))))
     :reagent-render
-    (fn [value meta-data]
+    (fn [value viewer]
       [portal-frame])}))
 
 (comment
