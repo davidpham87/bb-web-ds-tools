@@ -9,9 +9,9 @@
 (defn normalize-columnar [data]
   (let [cols (keys data)
         vals-seq (vals data)
-        cnt (if (seq vals-seq) (count (first vals-seq)) 0)]
+        cnt (if (seq vals-seq) (reduce max 0 (map count vals-seq)) 0)]
     (mapv (fn [i]
-            (zipmap cols (map #(nth (get data %) i) cols)))
+            (zipmap cols (map #(get (get data %) i) cols)))
           (range cnt))))
 
 (defn normalize-row-arrays [data]
@@ -164,7 +164,7 @@
                       (sort-by sort-col (if (= sort-dir :asc) compare #(compare %2 %1)) filtered-data)
                       filtered-data)
         total-rows (count sorted-data)
-        start-idx (* page rows-per-page)
+        start-idx (min (* page rows-per-page) total-rows)
         end-idx (min (+ start-idx rows-per-page) total-rows)
         page-data (subvec (vec sorted-data) start-idx end-idx)
         visible-columns (remove hidden-columns all-columns)]

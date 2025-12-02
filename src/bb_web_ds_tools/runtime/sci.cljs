@@ -9,7 +9,7 @@
 (defonce sci-worker (atom nil))
 
 (defn- default-on-message [msg]
-  (let [{:keys [type event]} msg]
+  (let [{:keys [type event value text]} msg]
     (case (keyword type)
       :dispatch (rf/dispatch event)
       (js/console.warn "Unknown worker msg:" msg))))
@@ -24,14 +24,15 @@
 
 ;; Main thread SCI context
 (def sci-ctx
-  (sci/init {:namespaces {'clojure.core {'println (fn [& args]
-                                                    (p/submit {:type :stdout
-                                                               :text (apply str (interpose " " args))}))}
-                          're-frame.core {'dispatch rf/dispatch
-                                          'subscribe (fn [_]
-                                                       (p/submit {:type :stderr
-                                                                  :text "rf/subscribe is not supported in SCI main thread yet."})
-                                                       (atom nil))}}}))
+  (sci/init {:namespaces
+             {'clojure.core {'println (fn [& args]
+                                        (p/submit {:type :stdout
+                                                   :text (apply str (interpose " " args))}))}
+              're-frame.core {'dispatch rf/dispatch
+                              'subscribe (fn [_]
+                                           (p/submit {:type :stderr
+                                                      :text "rf/subscribe is not supported in SCI main thread yet."})
+                                           (atom nil))}}}))
 
 (defn eval-in-main [code]
   (let [rdr (rt/string-push-back-reader code)]

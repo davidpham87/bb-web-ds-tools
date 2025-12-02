@@ -11,7 +11,22 @@
    [reagent.core :as r]))
 
 (def packages
-  ["numpy" "pandas" "altair" "cytoolz" "scikit-learn" "sqlite3" "protobuf"])
+  ["numpy" "pandas" "altair" "cytoolz" "scikit-learn" "sqlite3" "protobuf"
+   "vega-datasets"])
+
+(def plot-code
+  "Plots to show how to use altair"
+  "source = vd.data.cars()
+
+chart = alt.Chart(source).mark_circle(size=60).encode(
+    x='Horsepower',
+    y='Miles_per_Gallon',
+    color='Origin',
+    tooltip=['Name', 'Origin', 'Horsepower', 'Miles_per_Gallon']
+).interactive()
+
+# Then in portal, click on value and then the \"v\" key and choose HTML viewer
+chart.to_html()")
 
 (def initial-code
   "initial code from the console"
@@ -27,7 +42,10 @@
       (import-fn "pandas" "pd")
       (import-fn "altair" "alt")
       (import-fn "sklearn.linear_model" "lm")
-      (import-fn "cytoolz" "tz")])))
+      (import-fn "cytoolz" "tz")
+      (import-fn "vega_datasets" "vd")
+      ""
+      plot-code])))
 
 (def setup-code
   "Code run at start of pyodide"
@@ -36,10 +54,13 @@
        initial-code))
 
 (defn on-worker-message [msg]
-  (let [{:keys [type text]} msg]
+  (let [{:keys [type text value]} msg]
     (case (keyword type)
       :ready (rf/dispatch [::on-ready])
-      :error (rf/dispatch [::set-error text])
+      :error (do (rf/dispatch [::set-error text])
+                 (rf/dispatch [::portal/submit msg]))
+      :result (rf/dispatch [::portal/submit value])
+      :stdout (rf/dispatch [::portal/submit text])
       (js/console.warn "Unknown worker msg:" msg))))
 
 (rf/reg-event-fx

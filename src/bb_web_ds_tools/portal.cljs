@@ -27,8 +27,13 @@
 
 (rf/reg-event-fx
  ::submit
- (fn [_ [_ value]]
-   {:portal/submit value}))
+ (fn [_ [_ value viewer]]
+   {:portal/submit
+    (if viewer
+      (if (satisfies? IWithMeta value)
+        (with-meta value {:portal.viewer/default viewer})
+        [viewer value])
+      value)}))
 
 (defn portal-frame []
   [:div {:class "w-full"
@@ -39,16 +44,20 @@
                            :iframe-parent el
                            :theme :portal.colors/zenburn})))}])
 
-(defn portal-panel [value]
+(defn portal-panel [value & [viewer]]
   (r/create-class
    {:component-did-mount
-    (fn [] (rf/dispatch [::submit value]))
+    (fn [this]
+      (let [[_ value viewer] (r/argv this)]
+        (rf/dispatch [::submit value viewer])))
     :component-did-update
-    (fn [this [_ old-value]]
-      (when (not= value old-value)
-        (rf/dispatch [::submit value])))
+    (fn [this [_ old-value old-viewer]]
+      (let [[_ value viewer] (r/argv this)]
+        (when (or (not= value old-value)
+                  (not= viewer old-viewer))
+          (rf/dispatch [::submit value viewer]))))
     :reagent-render
-    (fn [_]
+    (fn [value viewer]
       [portal-frame])}))
 
 (comment
