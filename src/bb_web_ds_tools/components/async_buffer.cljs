@@ -1,5 +1,5 @@
 (ns bb-web-ds-tools.components.async-buffer
-  (:require [cljs.core.async :as async]))
+  (:require [cljs.core.async :as a]))
 
 (defn create
   "Creates a buffered message processor.
@@ -12,12 +12,12 @@
    - A function that, when called, triggers a manual flush.
    "
   [{:keys [input-chan flush-interval-ms on-flush]}]
-  (let [flush-ch (async/chan)]
-    (async/go-loop [buffer []
+  (let [flush-ch (a/chan)]
+    (a/go-loop [buffer []
                     timer-ch nil]
       (let [ports (cond-> [input-chan flush-ch]
                     timer-ch (conj timer-ch))
-            [v port] (async/alts! ports)]
+            [v port] (a/alts! ports)]
 
         (condp = port
           input-chan
@@ -29,7 +29,7 @@
             ;; New message
             (let [new-buffer (conj buffer v)
                   new-timer-ch (if (and flush-interval-ms (nil? timer-ch))
-                                 (async/timeout flush-interval-ms)
+                                 (a/timeout flush-interval-ms)
                                  timer-ch)]
               (recur new-buffer new-timer-ch)))
 
@@ -46,4 +46,4 @@
               (on-flush buffer))
             ;; Timer fired, clear buffer and timer
             (recur [] nil)))))
-    (fn [] (async/put! flush-ch :flush))))
+    (fn [] (a/put! flush-ch :flush))))
