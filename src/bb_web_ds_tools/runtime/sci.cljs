@@ -8,17 +8,41 @@
 
 (defonce sci-worker (atom nil))
 
-(defn- default-on-message [msg]
+(defn- default-on-message
+  "Default handler for messages from the SCI worker.
+
+  Args:
+    msg (map): The message map containing :type, :event, :value, or :text.
+
+  Returns:
+    nil: Performs side-effects (dispatch or console log)."
+  [msg]
   (let [{:keys [type event value text]} msg]
     (case (keyword type)
       :dispatch (rf/dispatch event)
       (js/console.warn "Unknown worker msg:" msg))))
 
-(defn init! [& [on-message]]
+(defn init!
+  "Initializes the SCI worker if it hasn't been initialized yet.
+
+  Args:
+    on-message (fn, optional): Custom message handler. Defaults to `default-on-message`.
+
+  Returns:
+    nil: Sets the global sci-worker atom."
+  [& [on-message]]
   (when-not @sci-worker
     (reset! sci-worker (worker/create-worker "js/compiled/sci-worker.js" (or on-message default-on-message)))))
 
-(defn eval-in-worker [code]
+(defn eval-in-worker
+  "Evaluates Clojure code in the SCI worker.
+
+  Args:
+    code (string): The Clojure source code to evaluate.
+
+  Returns:
+    nil: Posts a message to the worker."
+  [code]
   (init!)
   (worker/post-message @sci-worker {:type "eval" :code code}))
 
@@ -34,7 +58,15 @@
                                                       :text "rf/subscribe is not supported in SCI main thread yet."})
                                            (atom nil))}}}))
 
-(defn eval-in-main [code]
+(defn eval-in-main
+  "Evaluates Clojure code in the main thread using SCI.
+
+  Args:
+    code (string): The Clojure source code to evaluate.
+
+  Returns:
+    vector: A vector of results or error maps from evaluating the forms."
+  [code]
   (let [rdr (rt/string-push-back-reader code)]
     (try
       (loop [acc []]

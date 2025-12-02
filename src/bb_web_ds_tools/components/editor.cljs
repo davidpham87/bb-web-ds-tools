@@ -27,7 +27,20 @@
       (js/console.warn "Failed to define Zenburn theme" e)
       false)))
 
-(defn monaco-editor [_]
+(defn monaco-editor
+  "Renders a Monaco Editor component.
+
+  Args:
+    props (map): Props for the editor. Keys:
+      - :value (string): Code content.
+      - :language (string): Language mode.
+      - :options (map): Monaco editor options.
+      - :on-change (fn/vec): Callback or event vector.
+      - :on-mount (fn): Callback(editor-instance).
+
+  Returns:
+    vector: A hiccup vector."
+  [_]
   (let [editor-instance (r/atom nil)
         subscription (r/atom nil)
         on-change-ref (atom nil)
@@ -124,27 +137,61 @@
 
 ;; Shared Editor Utilities
 
-(defn get-code-to-eval [^js editor]
+(defn get-code-to-eval
+  "Gets the code to evaluate from the editor (selected text or full content).
+
+  Args:
+    editor (object): The Monaco editor instance.
+
+  Returns:
+    string: The code string."
+  [^js editor]
   (let [selection (.getSelection editor)
         model (.getModel editor)]
     (if (and selection (not (.isEmpty selection)))
       (.getValueInRange model selection)
       (.getValue editor))))
 
-(defn get-ctrl-key [mac-os?]
+(defn get-ctrl-key
+  "Gets the Control key constant for the current platform.
+
+  Args:
+    mac-os? (boolean): Whether running on macOS.
+
+  Returns:
+    number: The KeyMod constant."
+  [mac-os?]
   "Use Ctrl on all platforms for consistent keyboard shortcuts."
   (if mac-os?
     (.-WinCtrl KeyMod)
     (.-CtrlCmd KeyMod)))
 
-(defn setup-editor-actions [^js editor mac-os? eval-action]
+(defn setup-editor-actions
+  "Sets up standard actions (like Evaluate Buffer) for the editor.
+
+  Args:
+    editor (object): The editor instance.
+    mac-os? (boolean): Platform flag.
+    eval-action (fn): Callback(code) to execute.
+
+  Returns:
+    nil."
+  [^js editor mac-os? eval-action]
   (let [ctrl-key (get-ctrl-key mac-os?)]
     (.addAction editor (clj->js {:id "eval-buffer"
                                  :label "Evaluate Buffer"
                                  :keybindings [(bit-or ctrl-key (.-Enter KeyCode))]
                                  :run (fn [^js ed] (eval-action (get-code-to-eval ed)))}))))
 
-(defn render-output [output]
+(defn render-output
+  "Renders a list of output messages.
+
+  Args:
+    output (seq): List of message maps {:type :text}.
+
+  Returns:
+    vector: A hiccup vector."
+  [output]
   (into [:div]
         (for [{:keys [type text]} output]
           ^{:key (random-uuid)}

@@ -5,7 +5,12 @@
             [bb-web-ds-tools.workspaces.persistence :as wp]
             [bb-web-ds-tools.components.common :as c]))
 
-(defn workspace-list []
+(defn workspace-list
+  "Renders the list of available workspaces.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (let [workspaces @(rf/subscribe [::ws/workspaces])
         active-id @(rf/subscribe [::ws/active-workspace-id])]
     [:div.p-4
@@ -27,7 +32,12 @@
                         (rf/dispatch [::ws/create-workspace name])))}
         "Create Workspace"]]]]))
 
-(defn input-list []
+(defn input-list
+  "Renders the list of inputs in the active workspace.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (let [inputs @(rf/subscribe [::ws/current-inputs])]
     [:div.p-4
      [:h2.text-xl.font-bold.mb-4 "Inputs"]
@@ -49,7 +59,12 @@
        {:on-click #(rf/dispatch [::wp/export-workspaces])}
        "Export DB"]]]))
 
-(defn main-panel []
+(defn main-panel
+  "Renders the main workspaces view panel.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   [:div.flex.h-full
    [:div {:class "w-1/3 border-r overflow-y-auto"}
     [workspace-list]]

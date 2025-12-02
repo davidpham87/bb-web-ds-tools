@@ -48,7 +48,15 @@
                 :items ["Refactored project structure: moved tool panels to `src/bb_web_ds_tools/views/` and shared components to `src/bb_web_ds_tools/components/`."
                         "Updated application layout to a dark \"Gemini CLI\" theme."]}]}])
 
-(defn changelog-item [{:keys [version date sections]}]
+(defn changelog-item
+  "Renders a single changelog entry card.
+
+  Args:
+    props (map): Changelog entry containing :version, :date, and :sections.
+
+  Returns:
+    vector: A hiccup vector."
+  [{:keys [version date sections]}]
   [:div {:class "bg-[#4f4f4f] border-l-4 border-[#8cd0d3] p-6 mb-6 rounded-r-lg shadow-md"}
    [:div {:class "flex items-center justify-between mb-4"}
     [:h3 {:class "text-2xl font-bold text-[#f0dfaf]"} (str "v" version)]
@@ -62,7 +70,12 @@
          ^{:key item}
          [:li {:class "leading-relaxed"} item])]])])
 
-(defn changelog-page []
+(defn changelog-page
+  "Renders the full changelog page.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   [:div {:class "min-h-screen bg-[#3f3f3f] py-12 px-4"}
    [:div {:class "container mx-auto max-w-3xl"}
     ;; [c/page-header "Changelog"] ;; Removed as per request

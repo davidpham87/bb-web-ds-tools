@@ -80,7 +80,15 @@
 ;; WebR Loader
 (defonce webr-instance (atom nil))
 
-(defn start-read-loop [^js webr]
+(defn start-read-loop
+  "Starts the WebR read loop to capture stdout/stderr.
+
+  Args:
+    webr (object): The WebR instance.
+
+  Returns:
+    nil: Starts the async loop."
+  [^js webr]
   (letfn [(loop-fn []
             (-> (.read webr)
                 (.then (fn [^js msg]
@@ -146,7 +154,12 @@
    {:fx [[::execute-r code]]}))
 
 ;; View
-(defn panel-render []
+(defn panel-render
+  "Renders the R REPL view content.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (let [loading? @(rf/subscribe [::loading?])
         ready? @(rf/subscribe [::ready?])
         error @(rf/subscribe [::error])
@@ -179,7 +192,12 @@
           [:div "Results and output are sent to Portal."]
           [c/button {:on-click #(rf/dispatch [:bb-web-ds-tools.portal/open])} "Open Portal"]]]])]))
 
-(defn panel []
+(defn panel
+  "Main component for the R REPL view. Initializes state on mount.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (r/create-class
    {:display-name "r-repl-panel"
     :component-did-mount (fn [] (rf/dispatch [::initialize]))

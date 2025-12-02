@@ -121,7 +121,12 @@
 
 ;; UI Components
 
-(defn model-loader []
+(defn model-loader
+  "Renders the Gemma model loading interface.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (let [loading?-sub (rf/subscribe [::loading?])
         error-sub (rf/subscribe [::error])]
     (fn []
@@ -151,7 +156,12 @@
               (when error
                 [:div {:class "text-[#cc9393] mt-4 p-3 bg-[#3f3f3f] border border-[#cc9393] rounded"} error])]]])]))))
 
-(defn chat-interface []
+(defn chat-interface
+  "Renders the chat interface for Gemma.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (let [messages-sub (rf/subscribe [::messages])
         loading?-sub (rf/subscribe [::loading?])]
     (fn []
@@ -188,7 +198,12 @@
                           :class "h-20 px-8"}
                 "Send"]]]]])]))))
 
-(defn panel []
+(defn panel
+  "Renders the main Gemma view panel.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (rf/dispatch-sync [::initialize])
   (let [loaded?-sub (rf/subscribe [::model-loaded?])]
     (fn []

@@ -3,7 +3,12 @@
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.portal :as portal]))
 
-(defn panel []
+(defn panel
+  "Renders the settings panel.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   [:div {:class "p-4 text-[#dcdccc]"}
    [:h2 {:class "text-2xl font-bold mb-6"} "Settings"]
    [c/card {:class "p-6 space-y-4"}

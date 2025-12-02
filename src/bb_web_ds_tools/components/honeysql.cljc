@@ -4,7 +4,15 @@
 
 (def sci-ctx (sci/init {}))
 
-(defn convert-to-sql [input-text]
+(defn convert-to-sql
+  "Converts a HoneySQL map (as a string or data) to a SQL string.
+
+  Args:
+    input-text (string): The HoneySQL map as a string (EDN).
+
+  Returns:
+    map: {:success true/false :output string :error string}."
+  [input-text]
   (try
     (let [input-data (sci/eval-string input-text sci-ctx)]
       (if (map? input-data)

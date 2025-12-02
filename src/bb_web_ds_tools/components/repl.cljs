@@ -1,7 +1,21 @@
 (ns bb-web-ds-tools.components.repl
   (:require [bb-web-ds-tools.components.editor :as editor-comp]))
 
-(defn input-panel [{:keys [code on-change on-submit on-focus on-blur on-mount]}]
+(defn input-panel
+  "Renders the REPL input area with a Monaco editor.
+
+  Args:
+    props (map): Keys:
+      - :code (string): Current code.
+      - :on-change (fn): Change callback.
+      - :on-submit (fn): Submit callback.
+      - :on-focus (fn): Focus callback.
+      - :on-blur (fn): Blur callback.
+      - :on-mount (fn): Mount callback.
+
+  Returns:
+    vector: A hiccup vector."
+  [{:keys [code on-change on-submit on-focus on-blur on-mount]}]
   [:div
    [:div {:class "flex-grow relative h-64 rounded overflow-hidden border border-[#5f5f5f]"}
     [editor-comp/monaco-editor {:value code
@@ -14,7 +28,16 @@
               :on-click #(on-submit code)}
      "Evaluate"]]])
 
-(defn output-panel [{:keys [output]}]
+(defn output-panel
+  "Renders the REPL output log.
+
+  Args:
+    props (map): Keys:
+      - :output (seq): List of output entries.
+
+  Returns:
+    vector: A hiccup vector."
+  [{:keys [output]}]
   [:div {:class "flex flex-col rounded shadow-sm bg-[#2f2f2f] h-full"}
    [:div {:class "bg-[#3f3f3f] p-2 border-b border-[#5f5f5f] font-semibold text-[#f0dfaf]"} "Output Log"]
    [:div {:class "flex-grow p-2 overflow-auto font-mono text-sm h-64 text-[#dcdccc]"}
@@ -26,7 +49,15 @@
          [:span {:class "font-bold mr-2"} (if (= (:type entry) :error) "ERR:" "=>")]
          (:text entry)]))]])
 
-(defn repl-card [{:keys [code output on-change on-eval on-focus on-blur path on-mount]}]
+(defn repl-card
+  "Renders a REPL card with input and output panels.
+
+  Args:
+    props (map): Combined props for input and output panels.
+
+  Returns:
+    vector: A hiccup vector."
+  [{:keys [code output on-change on-eval on-focus on-blur path on-mount]}]
   [:div {:class "grid grid-cols-1 md:grid-cols-3 gap-4 mb-4"}
    [:div {:class "flex flex-col md:col-span-2 rounded shadow-sm bg-[#4f4f4f]"}
     [:div {:class "bg-[#3f3f3f] p-2 border-b border-[#5f5f5f] font-semibold text-[#f0dfaf]"} "Code Input"]
