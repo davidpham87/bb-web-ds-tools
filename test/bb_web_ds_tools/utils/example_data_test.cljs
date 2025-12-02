@@ -36,3 +36,21 @@
 
               (is (string? (:category sample)))
               (is (string? (:date sample))))))))))
+
+(deftest example-data-config-test
+  (testing "Example data generation with custom config"
+    (let [custom-config {:markdown {:cell-separator " * "
+                                    :row-start "* "
+                                    :row-end " *"
+                                    :header-dash "==="}
+                         :json {:indent 4}}
+          markdown (dp/example-data :markdown :columnar custom-config)
+          json (dp/example-data :json :columnar custom-config)]
+
+      (testing "Markdown uses custom separators"
+        (is (str/includes? markdown "* id * score *"))
+        (is (str/includes? markdown "===")))
+
+      (testing "JSON uses custom indentation"
+        ;; Checking for indentation is tricky depending on implementation, but 4 spaces should start lines
+        (is (re-find #"\n    \"id\":" json))))))
