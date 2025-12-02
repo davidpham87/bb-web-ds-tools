@@ -5,7 +5,8 @@
             [bb-web-ds-tools.components.editor :as editor]
             [bb-web-ds-tools.components.layout :as l]
             [bb-web-ds-tools.theme :as t]
-            [bb-web-ds-tools.portal :as portal]))
+            [bb-web-ds-tools.portal :as portal]
+            [bb-web-ds-tools.runtime.webr :as webr]))
 
 ;; State initialization
 (rf/reg-event-db
@@ -78,50 +79,15 @@
    (assoc-in db [:user-input :r-repl :default ::code] v)))
 
 ;; WebR Loader
-(defonce webr-instance (atom nil))
-
-(defn start-read-loop
-  "Starts the WebR read loop to capture stdout/stderr.
-
-  Args:
-    webr (object): The WebR instance.
-
-  Returns:
-    nil: Starts the async loop."
-  [^js webr]
-  (letfn [(loop-fn []
-            (-> (.read webr)
-                (.then (fn [^js msg]
-                         (let [type (.-type msg)
-                               data (.-data msg)]
-                           (cond
-                             (= type "stdout") (rf/dispatch [:bb-web-ds-tools.portal/submit {:type "stdout" :text data}])
-                             (= type "stderr") (rf/dispatch [:bb-web-ds-tools.portal/submit {:type "stderr" :text data}])
-                             (= type "closed") nil
-                             :else nil)
-                           (when (not= type "closed")
-                             (loop-fn)))))
-                (.catch #(rf/dispatch [::set-error (str "WebR Read Error:" %)]))))]
-    (loop-fn)))
-
 (rf/reg-fx
  ::load-runtime
  (fn [_]
-   (if @webr-instance
-     (rf/dispatch [::set-ready true])
-     (let [init-fn (fn []
-                     (let [webr (new js/WebR (clj->js {}))]
-                       (reset! webr-instance webr)
-                       (-> (.init webr)
-                           (.then (fn []
-                                    (start-read-loop webr)
-                                    (rf/dispatch [::set-ready true])
-                                    (rf/dispatch [::set-loading false])))
-                           (.catch (fn [e]
-                                     (rf/dispatch [::set-error (str "WebR Init failed: " e)]))))))]
-       (if (exists? js/WebR)
-         (init-fn)
-         (rf/dispatch [::set-error "WebR script not loaded"]))))))
+   (webr/load-runtime-main
+    (fn []
+      (rf/dispatch [::set-ready true])
+      (rf/dispatch [::set-loading false]))
+    (fn [err]
+      (rf/dispatch [::set-error err])))))
 
 (rf/reg-event-fx
  ::initialize-runtime
@@ -133,20 +99,7 @@
 (rf/reg-fx
  ::execute-r
  (fn [code]
-   (when @webr-instance
-     (try
-       (-> (.evalR ^js @webr-instance code (clj->js {:autoprint true}))
-           (.then (fn [^js res]
-                    (try
-                      ;; Convert R object to JS or use capture?
-                      ;; WebR objects might need conversion.
-                      ;; For now, just submit string representation or the object if possible.
-                      (rf/dispatch [:bb-web-ds-tools.portal/submit {:type "result" :value (str res)}])
-                      (.destroy res)
-                      (catch js/Error _))))
-           (.catch (fn [e] (rf/dispatch [:bb-web-ds-tools.portal/submit {:type "error" :text (str e)}]))))
-       (catch js/Error e
-         (rf/dispatch [:bb-web-ds-tools.portal/submit {:type "error" :text (str e)}]))))))
+   (webr/eval-in-main code)))
 
 (rf/reg-event-fx
  ::run-code

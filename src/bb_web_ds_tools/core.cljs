@@ -2,6 +2,7 @@
   (:require
    [bb-web-ds-tools.components.common :refer (nav-items)]
    [bb-web-ds-tools.components.layout :as layout]
+   [bb-web-ds-tools.components.navigation :as nav]
    [bb-web-ds-tools.portal :as portal]
    [bb-web-ds-tools.theme :as t]
    [bb-web-ds-tools.views.app-db :as app-db]
@@ -43,10 +44,52 @@
  (fn [[route-name params query]]
    (rfe/push-state route-name params query)))
 
+(defn get-route-label
+  "Retrieves the label for a given route name from nav-items.
+
+  Args:
+    route-name (keyword): The route name.
+
+  Returns:
+    string: The label."
+  [route-name]
+  (let [item (some #(when (= (:route %) route-name) %) nav-items)]
+    (or (:label item)
+        (if (= route-name :landing-page) "Home" (name route-name)))))
+
+(rf/reg-event-fx
+ ::close-tab
+ (fn [{:keys [db]} [_ tab-id]]
+   (let [open-tabs (:open-tabs db)
+         new-tabs (filterv #(not= (:id %) tab-id) open-tabs)
+         active-tab-id (get-in db [:current-route :data :name])]
+     (cond
+       ;; If closing the active tab
+       (= active-tab-id tab-id)
+       (let [idx (.indexOf (mapv :id open-tabs) tab-id)
+             ;; Try to go to the one before, or after, or home
+             next-tab (or (get new-tabs (dec idx)) ;; Previous (preferred)
+                          (get new-tabs idx)       ;; Next (same index)
+                          {:id :landing-page})]
+         {:db (assoc db :open-tabs new-tabs)
+          :dispatch [::navigate (:id next-tab) nil nil]})
+
+       ;; If closing inactive tab
+       :else
+       {:db (assoc db :open-tabs new-tabs)}))))
+
 (rf/reg-event-db
  ::navigated
  (fn [db [_ match]]
-   (assoc db :current-route match)))
+   (let [route-name (:name (:data match))
+         open-tabs (or (:open-tabs db) [])
+         already-open? (some #(= (:id %) route-name) open-tabs)
+         new-tabs (if already-open?
+                    open-tabs
+                    (conj open-tabs {:id route-name
+                                     :label (get-route-label route-name)}))]
+     (assoc db :current-route match
+            :open-tabs new-tabs))))
 
 (def routes
   ["/"
@@ -114,10 +157,16 @@
      {:platform {:mac-os? mac-os?}
       :repl {}
       :portal {}
+      :open-tabs []
       :user-input {:editor {:default {:code "initial code"}}
                    :repl {repl-id {:id repl-id
                                    :code ""
                                    :output []}}}})))
+
+(rf/reg-sub
+ ::open-tabs
+ (fn [db]
+   (:open-tabs db)))
 
 (rf/reg-sub
  ::user-input
@@ -170,42 +219,25 @@
 (defmethod view :app-db [_] [app-db/panel])
 ;; (defmethod view :workspaces [_] [workspaces/main-panel])
 
-(defn top-tab-bar
-  "Renders the top navigation tab bar component.
-
-  Returns:
-    vector: A hiccup vector representing the navigation bar."
-  []
-  (let [current-route @(rf/subscribe [::current-route])
-        current-name (:name (:data current-route))
-        tab-style
-        (fn [route-name]
-          (str "px-4 py-2 text-xs font-medium rounded-t-lg "
-               (if (= current-name route-name)
-                 (str t/bg-page " " t/text-accent " border-t border-l border-r " t/border-main)
-                 (str t/text-primary " hover:" t/text-accent " border-transparent border-t border-l border-r"))))]
-    [:nav {:class (str "h-10 " t/bg-toolbar " border-b " t/border-main " flex items-end")}
-     [:a {:href (rfe/href :landing-page)
-          :class (str (tab-style :landing-page) " ml-2")}
-      "Home"]
-     (for [item nav-items]
-       ^{:key (:route item)}
-       [:a {:href (rfe/href (:route item))
-            :class (tab-style (:route item))}
-        (:label item)])]))
-
 (defn main-panel
   "Renders the main application panel containing the tab bar and the current view.
 
   Returns:
     vector: A hiccup vector representing the main panel."
   []
-  (let [current-route @(rf/subscribe [::current-route])]
-    [layout/main {}
-     [top-tab-bar]
-     [:div {:class "flex-grow overflow-auto relative"}
-      (when current-route
-        [view current-route])]]))
+  (let [current-route @(rf/subscribe [::current-route])
+        open-tabs @(rf/subscribe [::open-tabs])
+        active-tab-id (get-in current-route [:data :name])]
+    [:div {:class (str "flex flex-col h-screen w-full overflow-hidden " t/bg-page " " t/text-primary)}
+     [nav/top-bar
+      {:active-tab-id active-tab-id
+       :open-tabs open-tabs
+       :on-tab-change #(rf/dispatch [::navigate % nil nil])
+       :on-tab-close #(rf/dispatch [::close-tab %])}]
+     [layout/main {}
+      [:div {:class "flex-grow overflow-auto relative"}
+       (when current-route
+         [view current-route])]]]))
 
 (defn app
   "The root component of the application.
