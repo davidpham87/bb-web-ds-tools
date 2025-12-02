@@ -6,6 +6,7 @@
             [bb-web-ds-tools.components.editor :as editor]
             [bb-web-ds-tools.components.layout :as l]
             [bb-web-ds-tools.components.malli :as c-malli]
+            [bb-web-ds-tools.components.navigation :as nav]
             [bb-web-ds-tools.portal :as portal :refer [portal-frame portal-panel]]
             [bb-web-ds-tools.theme :as t]
             [bb-web-ds-tools.views.datasets :as datasets]
@@ -443,10 +444,12 @@
               {:id :validation :label "Validation"}
               {:id :json-schema :label "JSON Schema"}]]
     [l/flex-col {:class "h-full w-full"}
-     ;; Tabs Navigation
-     [c/nav-tabs {:tabs tabs
-                  :active-tab-id active-tab
-                  :on-change #(rf/dispatch [:malli/set-active-tab %])}]
+     ;; Tabs Navigation (Portaled to Top Bar)
+     [nav/portal-to-top-bar
+      [c/nav-tabs {:tabs tabs
+                   :active-tab-id active-tab
+                   :class "border-b-0 bg-transparent px-0"
+                   :on-change #(rf/dispatch [:malli/set-active-tab %])}]]
 
      [:div {:class "flex-grow overflow-hidden"}
       (case active-tab
