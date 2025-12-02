@@ -39,16 +39,25 @@
                            :iframe-parent el
                            :theme :portal.colors/zenburn})))}])
 
-(defn portal-panel [value]
+(defn attach-meta [value meta-data]
+  (if (and meta-data (satisfies? IWithMeta value))
+    (with-meta value meta-data)
+    value))
+
+(defn portal-panel [value & [meta-data]]
   (r/create-class
    {:component-did-mount
-    (fn [] (rf/dispatch [::submit value]))
+    (fn [this]
+      (let [[_ value meta-data] (r/argv this)]
+        (rf/dispatch [::submit (attach-meta value meta-data)])))
     :component-did-update
-    (fn [this [_ old-value]]
-      (when (not= value old-value)
-        (rf/dispatch [::submit value])))
+    (fn [this [_ old-value old-meta-data]]
+      (let [[_ value meta-data] (r/argv this)]
+        (when (or (not= value old-value)
+                  (not= meta-data old-meta-data))
+          (rf/dispatch [::submit (attach-meta value meta-data)]))))
     :reagent-render
-    (fn [_]
+    (fn [value meta-data]
       [portal-frame])}))
 
 (comment
