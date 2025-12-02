@@ -34,7 +34,7 @@
     },
     "scripts": {
         "build": "npm install && npx shadow-cljs release app && npx webpack --config-name app",
-        "test": "npx shadow-cljs release test && npx webpack --config-name test && karma start --single-run",
+        "test": "npx shadow-cljs compile test && npx webpack --config-name test && karma start --single-run",
         "storybook": "storybook dev -p 6006",
         "build-storybook": "storybook build",
         "dev-stories": "npx shadow-cljs watch stories",
