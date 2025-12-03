@@ -42,7 +42,7 @@
     vector: A hiccup vector representing the portal container."
   []
   [:div {:class "w-full"
-         :style {:height "95vh" :margin-left 20}
+         :style {:height "100%" :margin 0 :padding 0}
          :ref (fn [el]
                 (when el
                   (p/open {:launcher :iframe
