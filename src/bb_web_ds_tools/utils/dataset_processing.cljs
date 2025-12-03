@@ -14,7 +14,16 @@
 
 ;; --- Normalization ---
 
-(defn normalize-columnar [data]
+(defn normalize-columnar
+  "Normalizes columnar data (map of arrays) into a sequence of row maps.
+   Handles uneven column lengths by padding with nil.
+
+  Args:
+    data (map): A map where keys are column names and values are sequences of column values.
+
+  Returns:
+    vector: A vector of maps, where each map represents a row."
+  [data]
   (let [cols (keys data)
         vals-seq (vals data)
         cnt (if (seq vals-seq) (reduce max 0 (map count vals-seq)) 0)]
@@ -22,14 +31,32 @@
             (zipmap cols (map #(get (get data %) i) cols)))
           (range cnt))))
 
-(defn normalize-row-arrays [data]
+(defn normalize-row-arrays
+  "Normalizes row-array data (vector of vectors, first is header) into a sequence of row maps.
+
+  Args:
+    data (seq): A sequence of vectors. The first vector is expected to be the header row.
+
+  Returns:
+    vector: A vector of maps, where each map represents a row."
+  [data]
   (let [header (map keyword (first data))
         rows (rest data)]
     (mapv (fn [row] (zipmap header row)) rows)))
 
 ;; --- Parsing Logic ---
 
-(defmulti parse-dataset (fn [format structure _text] [format structure]))
+(defmulti parse-dataset
+  "Parses dataset text into a sequence of maps (row-maps) based on format and structure.
+
+  Args:
+    format (keyword): The input format (:csv, :tsv, :json, :edn, :markdown).
+    structure (keyword): The input structure (:columnar, :row-maps, :row-arrays).
+    text (string): The raw text content to parse.
+
+  Returns:
+    vector: A vector of maps representing the dataset rows."
+  (fn [format structure _text] [format structure]))
 
 ;; CSV/TSV are inherently "columnar" (tabular) in this context, but produce row-maps via PapaParse.
 ;; We treat them as valid inputs for :columnar structure selection.
@@ -138,7 +165,17 @@
     :columnar (to-columnar example-rows)
     :row-arrays (to-row-arrays example-rows)))
 
-(defmulti example-data (fn [fmt structure & [conf]] [fmt structure]))
+(defmulti example-data
+  "Generates example data text for a given format and structure.
+
+  Args:
+    fmt (keyword): The desired output format (:csv, :tsv, :json, :edn, :markdown).
+    structure (keyword): The structure of the data (:columnar, :row-maps, :row-arrays).
+    conf (map, optional): Configuration map (indentation, delimiters, etc.).
+
+  Returns:
+    string: The formatted example data string."
+  (fn [fmt structure & [conf]] [fmt structure]))
 
 (defmethod example-data [:csv :columnar] [_ _ & [conf]]
   (.unparse Papa (clj->js example-rows) #js {:header true}))
@@ -171,7 +208,29 @@
 
 ;; --- Table Processing ---
 
-(defn process-table-data [data view-state]
+(defn process-table-data
+  "Processes dataset data for display in a table: filtering, sorting, and pagination.
+
+  Args:
+    data (seq): A sequence of row maps.
+    view-state (map): The current view state containing:
+      - :page (int): Current page index (0-based).
+      - :rows-per-page (int): Number of rows per page.
+      - :filters (map): Map of col-key -> filter-string.
+      - :hidden-columns (set): Set of hidden column keys.
+      - :sort-col (keyword): Column to sort by.
+      - :sort-dir (keyword): Sort direction (:asc or :desc).
+      - :columns (seq, optional): List of column keys (defaults to keys of first row).
+
+  Returns:
+    map: A map containing:
+      - :filtered-data (seq): Data after filtering.
+      - :page-data (vector): Data for the current page.
+      - :total-rows (int): Total count after filtering.
+      - :start-idx (int): Start index of display.
+      - :end-idx (int): End index of display.
+      - :visible-columns (seq): List of visible column keys."
+  [data view-state]
   (let [{:keys [page rows-per-page filters hidden-columns sort-col sort-dir columns]} view-state
         ;; Note: columns might be passed in view-state or derived from data if not present.
         ;; Assuming data is a vector of maps.
