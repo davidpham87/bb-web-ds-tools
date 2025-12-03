@@ -5,8 +5,8 @@ goog.provide('bb_web_ds_tools.utils.worker');
  * Returns a map with the worker instance and optionally a channel if no callback provided.
  */
 bb_web_ds_tools.utils.worker.create_worker = (function bb_web_ds_tools$utils$worker$create_worker(var_args){
-var G__51981 = arguments.length;
-switch (G__51981) {
+var G__33841 = arguments.length;
+switch (G__33841) {
 case 1:
 return bb_web_ds_tools.utils.worker.create_worker.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -48,11 +48,11 @@ return cljs.core.async.put_BANG_.cljs$core$IFn$_invoke$arity$2(out_chan,err);
 }
 }));
 
-var G__51982 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"worker","worker",938239996),worker], null);
+var G__33842 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"worker","worker",938239996),worker], null);
 if(cljs.core.truth_(out_chan)){
-return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(G__51982,new cljs.core.Keyword(null,"out-chan","out-chan",384315017),out_chan);
+return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(G__33842,new cljs.core.Keyword(null,"out-chan","out-chan",384315017),out_chan);
 } else {
-return G__51982;
+return G__33842;
 }
 }));
 
@@ -61,20 +61,20 @@ return G__51982;
 /**
  * Sends a message to the worker.
  */
-bb_web_ds_tools.utils.worker.post_message = (function bb_web_ds_tools$utils$worker$post_message(p__51983,message){
-var map__51984 = p__51983;
-var map__51984__$1 = cljs.core.__destructure_map(map__51984);
-var worker = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__51984__$1,new cljs.core.Keyword(null,"worker","worker",938239996));
+bb_web_ds_tools.utils.worker.post_message = (function bb_web_ds_tools$utils$worker$post_message(p__33843,message){
+var map__33844 = p__33843;
+var map__33844__$1 = cljs.core.__destructure_map(map__33844);
+var worker = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__33844__$1,new cljs.core.Keyword(null,"worker","worker",938239996));
 return worker.postMessage(cljs.core.clj__GT_js(message));
 });
 /**
  * Terminates the worker.
  */
-bb_web_ds_tools.utils.worker.terminate = (function bb_web_ds_tools$utils$worker$terminate(p__51985){
-var map__51986 = p__51985;
-var map__51986__$1 = cljs.core.__destructure_map(map__51986);
-var worker = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__51986__$1,new cljs.core.Keyword(null,"worker","worker",938239996));
-var out_chan = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__51986__$1,new cljs.core.Keyword(null,"out-chan","out-chan",384315017));
+bb_web_ds_tools.utils.worker.terminate = (function bb_web_ds_tools$utils$worker$terminate(p__33845){
+var map__33846 = p__33845;
+var map__33846__$1 = cljs.core.__destructure_map(map__33846);
+var worker = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__33846__$1,new cljs.core.Keyword(null,"worker","worker",938239996));
+var out_chan = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__33846__$1,new cljs.core.Keyword(null,"out-chan","out-chan",384315017));
 worker.terminate();
 
 if(cljs.core.truth_(out_chan)){
