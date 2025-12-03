@@ -1,0 +1,9 @@
+{
+"version":3,
+"file":"shadow.js.shim.module$$mediapipe$tasks_genai.js",
+"lineCount":5,
+"mappings":"AAAAA,IAAKC,CAAAA,OAAL,CAAa,8CAAb,CAAA;AACAD,IAAKC,CAAAA,OAAL,CAAa,qDAAb,CAAA;AACAC,MAAOC,CAAAA,EAAGC,CAAAA,IAAKC,CAAAA,6BAAf,GAA+CH,MAAOC,CAAAA,EAAGG,CAAAA,cAAV,CAAyB,wBAAzB,CAA/C,GAAoGC,aAAA,CAAc,wBAAd,CAApG;AACAC,mDAAoDC,CAAAA,OAApD,GAA8DP,MAAOC,CAAAA,EAAGC,CAAAA,IAAKC,CAAAA,6BAA7E;;",
+"sources":["shadow.js.shim.module$$mediapipe$tasks_genai.js"],
+"sourcesContent":["goog.provide(\"shadow.js.shim.module$$mediapipe$tasks_genai\");\ngoog.provide(\"module$shadow_js_shim_module$$mediapipe$tasks_genai\");\nshadow.js.shim.module$$mediapipe$tasks_genai = shadow.js.nativeProvides[\"@mediapipe/tasks-genai\"] = shadow$bridge(\"@mediapipe/tasks-genai\");\nmodule$shadow_js_shim_module$$mediapipe$tasks_genai.default = shadow.js.shim.module$$mediapipe$tasks_genai;\n"],
+"names":["goog","provide","shadow","js","shim","module$$mediapipe$tasks_genai","nativeProvides","shadow$bridge","module$shadow_js_shim_module$$mediapipe$tasks_genai","default"]
+}

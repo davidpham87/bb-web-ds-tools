@@ -1,0 +1,40 @@
+goog.provide('honey.sql.protocols');
+
+/**
+ * @interface
+ */
+honey.sql.protocols.InlineValue = function(){};
+
+var honey$sql$protocols$InlineValue$sqlize$dyn_31209 = (function (this$){
+var x__5373__auto__ = (((this$ == null))?null:this$);
+var m__5374__auto__ = (honey.sql.protocols.sqlize[goog.typeOf(x__5373__auto__)]);
+if((!((m__5374__auto__ == null)))){
+return (m__5374__auto__.cljs$core$IFn$_invoke$arity$1 ? m__5374__auto__.cljs$core$IFn$_invoke$arity$1(this$) : m__5374__auto__.call(null,this$));
+} else {
+var m__5372__auto__ = (honey.sql.protocols.sqlize["_"]);
+if((!((m__5372__auto__ == null)))){
+return (m__5372__auto__.cljs$core$IFn$_invoke$arity$1 ? m__5372__auto__.cljs$core$IFn$_invoke$arity$1(this$) : m__5372__auto__.call(null,this$));
+} else {
+throw cljs.core.missing_protocol("InlineValue.sqlize",this$);
+}
+}
+});
+/**
+ * Render value inline in a SQL string.
+ */
+honey.sql.protocols.sqlize = (function honey$sql$protocols$sqlize(this$){
+var temp__5823__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(cljs.core.meta(this$),cljs.core.with_meta(new cljs.core.Symbol("honey.sql.protocols","sqlize","honey.sql.protocols/sqlize",160108832,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword("cljs.analyzer","no-resolve","cljs.analyzer/no-resolve",-1872351017),true], null)));
+if(temp__5823__auto__){
+var meta_impl__5375__auto__ = temp__5823__auto__;
+return (meta_impl__5375__auto__.cljs$core$IFn$_invoke$arity$1 ? meta_impl__5375__auto__.cljs$core$IFn$_invoke$arity$1(this$) : meta_impl__5375__auto__.call(null,this$));
+} else {
+if((((!((this$ == null)))) && ((!((this$.honey$sql$protocols$InlineValue$sqlize$arity$1 == null)))))){
+return this$.honey$sql$protocols$InlineValue$sqlize$arity$1(this$);
+} else {
+return honey$sql$protocols$InlineValue$sqlize$dyn_31209(this$);
+}
+}
+});
+
+
+//# sourceMappingURL=honey.sql.protocols.js.map

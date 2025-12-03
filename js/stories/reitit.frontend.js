@@ -55,8 +55,8 @@ return reitit.frontend.query_param(q,p1__36346_SHARP_);
  */
 reitit.frontend.set_query_params = (function reitit$frontend$set_query_params(path,new_query_or_update_fn){
 var uri = goog.Uri.parse(path);
-var new_query = ((cljs.core.fn_QMARK_(new_query_or_update_fn))?(function (){var G__36355 = reitit.frontend.query_params(uri);
-return (new_query_or_update_fn.cljs$core$IFn$_invoke$arity$1 ? new_query_or_update_fn.cljs$core$IFn$_invoke$arity$1(G__36355) : new_query_or_update_fn.call(null,G__36355));
+var new_query = ((cljs.core.fn_QMARK_(new_query_or_update_fn))?(function (){var G__36354 = reitit.frontend.query_params(uri);
+return (new_query_or_update_fn.cljs$core$IFn$_invoke$arity$1 ? new_query_or_update_fn.cljs$core$IFn$_invoke$arity$1(G__36354) : new_query_or_update_fn.call(null,G__36354));
 })():new_query_or_update_fn);
 uri.setQueryData(goog.Uri.QueryData.createFromMap(cljs.core.clj__GT_js(new_query)));
 
@@ -67,8 +67,8 @@ return uri.toString();
  *   optional fragment string.
  */
 reitit.frontend.match__GT_path = (function reitit$frontend$match__GT_path(var_args){
-var G__36358 = arguments.length;
-switch (G__36358) {
+var G__36356 = arguments.length;
+switch (G__36356) {
 case 1:
 return reitit.frontend.match__GT_path.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -125,8 +125,8 @@ return null;
  *   :on-coercion-error - a sideeffecting fn of `match exception -> nil`
  */
 reitit.frontend.match_by_path = (function reitit$frontend$match_by_path(var_args){
-var G__36362 = arguments.length;
-switch (G__36362) {
+var G__36361 = arguments.length;
+switch (G__36361) {
 case 2:
 return reitit.frontend.match_by_path.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -220,8 +220,8 @@ return reitit.core.match_by_name(router,name,path_params);
  *   Enables request coercion. See [[reitit.core/router]] for details on options.
  */
 reitit.frontend.router = (function reitit$frontend$router(var_args){
-var G__36370 = arguments.length;
-switch (G__36370) {
+var G__36371 = arguments.length;
+switch (G__36371) {
 case 1:
 return reitit.frontend.router.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 

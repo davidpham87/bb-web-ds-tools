@@ -44,35 +44,35 @@ return fork.core.set_error(state,path,input_name,message);
 fork.re_frame.retrieve_event_value = (function fork$re_frame$retrieve_event_value(evt){
 return fork.core.element_value(evt);
 });
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("fork.re-frame","server-dispatch-logic","fork.re-frame/server-dispatch-logic",-1023921676),(function (db,p__25064){
-var vec__25065 = p__25064;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__25065,(0),null);
-var config = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__25065,(1),null);
-var path = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__25065,(2),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("fork.re-frame","server-dispatch-logic","fork.re-frame/server-dispatch-logic",-1023921676),(function (db,p__25058){
+var vec__25060 = p__25058;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__25060,(0),null);
+var config = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__25060,(1),null);
+var path = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__25060,(2),null);
 var set_waiting_QMARK_ = fork.core.config_set_waiting_QMARK_(config);
 var input_names = new cljs.core.Keyword(null,"clean-on-refetch","clean-on-refetch",-385424580).cljs$core$IFn$_invoke$arity$1(config);
-var G__25068 = db;
-var G__25068__$1 = ((cljs.core.seq(input_names))?cljs.core.update_in.cljs$core$IFn$_invoke$arity$3(G__25068,path,(function (m){
+var G__25063 = db;
+var G__25063__$1 = ((cljs.core.seq(input_names))?cljs.core.update_in.cljs$core$IFn$_invoke$arity$3(G__25063,path,(function (m){
 return cljs.core.apply.cljs$core$IFn$_invoke$arity$5(cljs.core.update,m,new cljs.core.Keyword(null,"server","server",1499190120),cljs.core.dissoc,input_names);
-})):G__25068);
+})):G__25063);
 if(cljs.core.truth_(set_waiting_QMARK_)){
-return cljs.core.assoc_in(G__25068__$1,cljs.core.concat.cljs$core$IFn$_invoke$arity$2(path,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"server","server",1499190120),new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(config),new cljs.core.Keyword(null,"waiting?","waiting?",-2117257215)], null)),true);
+return cljs.core.assoc_in(G__25063__$1,cljs.core.concat.cljs$core$IFn$_invoke$arity$2(path,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"server","server",1499190120),new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(config),new cljs.core.Keyword(null,"waiting?","waiting?",-2117257215)], null)),true);
 } else {
-return G__25068__$1;
+return G__25063__$1;
 }
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("fork.re-frame","server-set-waiting","fork.re-frame/server-set-waiting",-1277872097),(function (db,p__25072){
-var vec__25073 = p__25072;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__25073,(0),null);
-var path = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__25073,(1),null);
-var input_key = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__25073,(2),null);
-var bool = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__25073,(3),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("fork.re-frame","server-set-waiting","fork.re-frame/server-set-waiting",-1277872097),(function (db,p__25068){
+var vec__25069 = p__25068;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__25069,(0),null);
+var path = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__25069,(1),null);
+var input_key = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__25069,(2),null);
+var bool = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__25069,(3),null);
 return cljs.core.assoc_in(db,cljs.core.concat.cljs$core$IFn$_invoke$arity$2(path,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"server","server",1499190120),input_key,new cljs.core.Keyword(null,"waiting?","waiting?",-2117257215)], null)),bool);
 }));
-re_frame.core.reg_sub.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword("fork.re-frame","db","fork.re-frame/db",503486154),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (db,p__25078){
-var vec__25079 = p__25078;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__25079,(0),null);
-var path = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__25079,(1),null);
+re_frame.core.reg_sub.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword("fork.re-frame","db","fork.re-frame/db",503486154),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (db,p__25075){
+var vec__25076 = p__25075;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__25076,(0),null);
+var path = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__25076,(1),null);
 return cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(db,path);
 })], 0));
 re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("fork.re-frame","clean","fork.re-frame/clean",-448599170),(function (db,p__25082){
