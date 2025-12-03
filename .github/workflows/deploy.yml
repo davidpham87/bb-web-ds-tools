@@ -35,6 +35,9 @@ jobs:
     - name: Compile test-interactive
       run: npx shadow-cljs compile test-interactive
 
+    - name: Compile storybook
+      run: npx shadow-cljs compile stories
+
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
