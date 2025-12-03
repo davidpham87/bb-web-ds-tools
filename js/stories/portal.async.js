@@ -28,14 +28,14 @@ $CLJS.SHADOW_ENV.setLoaded("portal.async.js");
 goog.provide('portal.async');
 portal.async.race = (function portal$async$race(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___36465 = arguments.length;
-var i__5750__auto___36466 = (0);
+var len__5749__auto___36493 = arguments.length;
+var i__5750__auto___36494 = (0);
 while(true){
-if((i__5750__auto___36466 < len__5749__auto___36465)){
-args__5755__auto__.push((arguments[i__5750__auto___36466]));
+if((i__5750__auto___36494 < len__5749__auto___36493)){
+args__5755__auto__.push((arguments[i__5750__auto___36494]));
 
-var G__36467 = (i__5750__auto___36466 + (1));
-i__5750__auto___36466 = G__36467;
+var G__36495 = (i__5750__auto___36494 + (1));
+i__5750__auto___36494 = G__36495;
 continue;
 } else {
 }
@@ -53,9 +53,9 @@ return Promise.race(args);
 (portal.async.race.cljs$lang$maxFixedArity = (0));
 
 /** @this {Function} */
-(portal.async.race.cljs$lang$applyTo = (function (seq36464){
+(portal.async.race.cljs$lang$applyTo = (function (seq36489){
 var self__5735__auto__ = this;
-return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq36464));
+return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq36489));
 }));
 
 

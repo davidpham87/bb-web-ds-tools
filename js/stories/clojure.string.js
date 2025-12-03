@@ -299,12 +299,12 @@ return cljs.core.conj.cljs$core$IFn$_invoke$arity$2(parts,s__$1);
 var m = cljs.core.re_find(re,s__$1);
 if((!((m == null)))){
 var index = s__$1.indexOf(m);
-var G__21642 = s__$1.substring((index + cljs.core.count(m)));
-var G__21643 = (limit__$1 - (1));
-var G__21644 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(parts,s__$1.substring((0),index));
-s__$1 = G__21642;
-limit__$1 = G__21643;
-parts = G__21644;
+var G__21644 = s__$1.substring((index + cljs.core.count(m)));
+var G__21645 = (limit__$1 - (1));
+var G__21646 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(parts,s__$1.substring((0),index));
+s__$1 = G__21644;
+limit__$1 = G__21645;
+parts = G__21646;
 continue;
 } else {
 return cljs.core.conj.cljs$core$IFn$_invoke$arity$2(parts,s__$1);
@@ -353,8 +353,8 @@ return "";
 } else {
 var ch = cljs.core.get.cljs$core$IFn$_invoke$arity$2(s,(index - (1)));
 if(((("\n" === ch)) || (("\r" === ch)))){
-var G__21650 = (index - (1));
-index = G__21650;
+var G__21649 = (index - (1));
+index = G__21649;
 continue;
 } else {
 return s.substring((0),index);
