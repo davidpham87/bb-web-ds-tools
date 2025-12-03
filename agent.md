@@ -40,7 +40,11 @@ following core technologies:
 
 3.  **Run tests:**
     To have have test running continuously on file change
-    Conect to localhost:8081 to see the test running or failing.
+    
+    ```bash
+    npx shadow-cljs watch text-node &
+    ```
+    Alternatively, conect to localhost:8081 to see the test running or failing after running the command
     ```bash
     npx shadow-cljs watch text-interactive &
     ```
