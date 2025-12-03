@@ -42,20 +42,22 @@
              :pyodide-worker {:init-fn bb-web-ds-tools.workers.pyodide/init
                               :depends-on #{:shared}
                               :web-worker true}}}
+  
   :test-interactive    
   {:target :browser-test
-    :output-to "docs/test/js"
-    :test-dir "test/js"
+    :test-dir "docs/test"
     :js-options {:js-provider :external
-                 :external-index "target/test/npm-index.js"}
-    :module-loader true
-    :compiler-options {:pretty-print true}
-    :devtools {:autotest true}}
-  :reader
-  {:target :browser
-   :output-dir "docs/js/compiled"
-    :asset-path "/js/compiled"
-    :modules {:reader {:init-fn bb-web-ds-tools.reader.core/init}}}
+                 :external-index "target/index.js"}
+    :compiler-options {:pretty-print true}}
+  
+  :test-node
+  {:target    :node-test
+   :output-to "target/node-tests.js"
+   :ns-regexp "-spec$"
+   :autorun   true
+   :js-options {:js-provider :external
+                 :external-index "target/index.js"}}
+    
   :test
    {:target :browser-test
     :ns-regexp "-test$"
@@ -67,6 +69,7 @@
     :module-loader true
     :compiler-options {:pretty-print true}
     :devtools {:autotest true}}
+  
    :stories
    {:target :npm-module
     :output-dir "docs/js/stories"
