@@ -26,11 +26,17 @@ jobs:
     - name: Link node_modules
       run: ln -s /opt/app/node_modules .
 
-    - name: Cache .shadow-cljs
+    - name: Cache .shadow-cljs and node modules
       uses: actions/cache@v3
       with:
-        path: .shadow-cljs
-        key: ${{ runner.os }}-shadow-cljs-${{ github.sha }}
+        path: |
+          .shadow-cljs
+          ~/.m2/repository
+          ~/.gitlibs
+          ~/.deps.clj
+          .cpcache
+          node_modules
+        key: ${{ runner.os }}-shadow-cljs-${{ hashFiles('deps.edn', 'package.json')}}
         restore-keys: |
           ${{ runner.os }}-shadow-cljs-
 
