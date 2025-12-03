@@ -32,6 +32,9 @@ jobs:
     - name: Run Postinstall
       run: npm run postinstall
 
+    - name: Compile test-interactive
+      run: npx shadow-cljs compile test-interactive
+
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
