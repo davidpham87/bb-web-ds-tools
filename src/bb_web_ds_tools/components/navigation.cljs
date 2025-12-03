@@ -71,29 +71,19 @@
 
   Args:
     props (map): Props. Keys:
-      - :active-tab-id (keyword): The ID of the currently active tab (route name).
-      - :open-tabs (seq): List of open tabs (maps with :id, :label).
-      - :on-tab-change (fn): Callback when a tab is clicked (arg: tab-id).
-      - :on-tab-close (fn): Callback when a tab is closed (arg: tab-id).
+      - :active-label (string): The label of the current section.
 
   Returns:
     vector: A hiccup vector."
-  [{:keys [active-tab-id open-tabs on-tab-change on-tab-close]}]
+  [{:keys [active-label]}]
   [:div {:class (str "flex items-center w-full h-12 px-4 border-b " t/border-main " " t/bg-toolbar)}
    ;; Menu Button
    [menu-button]
 
-   ;; Tabs
-   [:div {:class "ml-4 flex-grow overflow-hidden h-full flex items-end"}
-    [common/tabs
-     {:tabs (for [tab open-tabs]
-              {:id (:id tab)
-               :label (:label tab)
-               :on-close on-tab-close})
-      :active-tab-id active-tab-id
-      :on-change on-tab-change
-      :class "border-b-0" }]]
+   ;; Current Section Title
+   [:div {:class (str "ml-4 font-bold text-lg " t/text-accent)}
+    active-label]
 
-   ;; Portal Target
-   [:div {:class "h-full flex items-center"
+   ;; Portal Target (for secondary nav)
+   [:div {:class "flex-grow h-full flex items-center justify-end"
           :ref (fn [el] (rf/dispatch [::set-top-bar-ref el]))}]])

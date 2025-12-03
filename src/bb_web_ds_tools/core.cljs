@@ -7,6 +7,7 @@
    [bb-web-ds-tools.theme :as t]
    [bb-web-ds-tools.views.app-db :as app-db]
    [bb-web-ds-tools.views.changelog :as changelog]
+   [bb-web-ds-tools.views.code :as code]
    [bb-web-ds-tools.views.datasets :as datasets]
    [bb-web-ds-tools.views.editor :as editor]
    [bb-web-ds-tools.views.gemma :as gemma]
@@ -53,43 +54,16 @@
   Returns:
     string: The label."
   [route-name]
-  (let [item (some #(when (= (:route %) route-name) %) nav-items)]
-    (or (:label item)
-        (if (= route-name :landing-page) "Home" (name route-name)))))
-
-(rf/reg-event-fx
- ::close-tab
- (fn [{:keys [db]} [_ tab-id]]
-   (let [open-tabs (:open-tabs db)
-         new-tabs (filterv #(not= (:id %) tab-id) open-tabs)
-         active-tab-id (get-in db [:current-route :data :name])]
-     (cond
-       ;; If closing the active tab
-       (= active-tab-id tab-id)
-       (let [idx (.indexOf (mapv :id open-tabs) tab-id)
-             ;; Try to go to the one before, or after, or home
-             next-tab (or (get new-tabs (dec idx)) ;; Previous (preferred)
-                          (get new-tabs idx)       ;; Next (same index)
-                          {:id :landing-page})]
-         {:db (assoc db :open-tabs new-tabs)
-          :dispatch [::navigate (:id next-tab) nil nil]})
-
-       ;; If closing inactive tab
-       :else
-       {:db (assoc db :open-tabs new-tabs)}))))
+  (if-let [item (some #(when (= (:route %) route-name) %) nav-items)]
+    (:label item)
+    (if route-name
+      (if (= route-name :landing-page) "Home" (name route-name))
+      "")))
 
 (rf/reg-event-db
  ::navigated
  (fn [db [_ match]]
-   (let [route-name (:name (:data match))
-         open-tabs (or (:open-tabs db) [])
-         already-open? (some #(= (:id %) route-name) open-tabs)
-         new-tabs (if already-open?
-                    open-tabs
-                    (conj open-tabs {:id route-name
-                                     :label (get-route-label route-name)}))]
-     (assoc db :current-route match
-            :open-tabs new-tabs))))
+   (assoc db :current-route match)))
 
 (def routes
   ["/"
@@ -102,14 +76,8 @@
     {:name :vega-lite}]
    ["gemma"
     {:name :gemma}]
-   ["pyodide"
-    {:name :pyodide}]
-   ["editor"
-    {:name :editor}]
-   ["repl"
-    {:name :repl}]
-   ["r-repl"
-    {:name :r-repl}]
+   ["code"
+    {:name :code}]
    ["datasets"
     {:name :datasets}]
    ["changelog"
@@ -164,11 +132,6 @@
                                    :output []}}}})))
 
 (rf/reg-sub
- ::open-tabs
- (fn [db]
-   (:open-tabs db)))
-
-(rf/reg-sub
  ::user-input
  (fn [db]
    (:user-input db)))
@@ -209,9 +172,10 @@
 (defmethod view :honeysql [_] [honeysql/panel])
 (defmethod view :vega-lite [_] [vega-lite/panel])
 (defmethod view :gemma [_] [gemma/panel])
-(defmethod view :pyodide [_] [pyodide/panel])
-(defmethod view :editor [_] [editor/panel])
-(defmethod view :repl [_] [repl/panel])
+(defmethod view :code [_] [code/panel])
+;; (defmethod view :pyodide [_] [pyodide/panel])
+;; (defmethod view :editor [_] [editor/panel])
+;; (defmethod view :repl [_] [repl/panel])
 ;; (defmethod view :r-repl [_] [r-repl/panel])
 (defmethod view :datasets [_] [datasets/panel])
 (defmethod view :changelog [_] [changelog/changelog-page])
@@ -226,16 +190,12 @@
     vector: A hiccup vector representing the main panel."
   []
   (let [current-route @(rf/subscribe [::current-route])
-        open-tabs @(rf/subscribe [::open-tabs])
-        active-tab-id (get-in current-route [:data :name])]
+        active-tab-id (get-in current-route [:data :name])
+        label (get-route-label active-tab-id)]
     [:div {:class (str "flex flex-col h-screen w-full overflow-hidden " t/bg-page " " t/text-primary)}
-     [nav/top-bar
-      {:active-tab-id active-tab-id
-       :open-tabs open-tabs
-       :on-tab-change #(rf/dispatch [::navigate % nil nil])
-       :on-tab-close #(rf/dispatch [::close-tab %])}]
+     [nav/top-bar {:active-label label}]
      [layout/main {}
-      [:div {:class "flex-grow overflow-auto relative"}
+      [:div {:class "flex-grow overflow-hidden relative h-full"}
        (when current-route
          [view current-route])]]]))
 

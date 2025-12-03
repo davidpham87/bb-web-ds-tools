@@ -291,15 +291,12 @@
 (def nav-items
   [{:label "Workspaces" :route :workspaces :icon "📂"}
    {:label "App DB" :route :app-db :icon "🗄️"}
+   {:label "Code" :route :code :icon "💻"}
    {:label "Datasets" :route :datasets :icon "📊"}
    {:label "Malli" :route :malli :icon "✅"}
    {:label "HoneySQL" :route :honeysql :icon "🍯"}
    {:label "Vega-Lite" :route :vega-lite :icon "📈"}
    {:label "Gemma" :route :gemma :icon "🤖"}
-   {:label "Pyodide" :route :pyodide :icon "🐍"}
-   {:label "Editor" :route :editor :icon "📝"}
-   {:label "Repl" :route :repl :icon "💻"}
-   {:label "R" :route :r-repl :icon "🇷"}
    {:label "Settings" :route :settings :icon "⚙️"}
    {:label "Changelog" :route :changelog :icon "📜"}])
 
