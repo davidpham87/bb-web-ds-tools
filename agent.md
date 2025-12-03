@@ -33,14 +33,18 @@ following core technologies:
     ```
 
 2.  **Start the development server:**
+    Conect to localhost:8080 to see the app and browse. Use this with e2e testing to perform changes.
     ```bash
-    npx shadow-cljs watch app
+    npx shadow-cljs watch app &
     ```
 
 3.  **Run tests:**
+    To have have test running continuously on file change
+    Conect to localhost:8081 to see the test running or failing.
     ```bash
-    npm test
+    npx shadow-cljs watch text-interactive &
     ```
+
 
 ## Coding Style
 
