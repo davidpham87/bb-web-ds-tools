@@ -3,7 +3,8 @@
             [bb-web-ds-tools.theme :as t]
             [re-frame.core :as rf]
             [reagent.core :as r]
-            [reitit.frontend.easy :as rfe]))
+            [reitit.frontend.easy :as rfe]
+            ["react-dom" :as ReactDOM]))
 
 (defn menu-button
   "Renders a menu button that toggles a dropdown navigation menu.
@@ -42,6 +43,29 @@
            [:span (:icon item)]
            [:span (:label item)]])])]))
 
+(rf/reg-event-db
+ ::set-top-bar-ref
+ (fn [db [_ ref]]
+   (assoc-in db [:runtime :navigation :top-bar-ref] ref)))
+
+(rf/reg-sub
+ ::top-bar-ref
+ (fn [db _]
+   (get-in db [:runtime :navigation :top-bar-ref])))
+
+(defn portal-to-top-bar
+  "Renders children into the top bar via a portal.
+
+  Args:
+    children (rest): Child elements to render.
+
+  Returns:
+    ReactPortal: The portal element."
+  [& children]
+  (let [el @(rf/subscribe [::top-bar-ref])]
+    (when el
+      (ReactDOM/createPortal (r/as-element (into [:div {:class "h-full flex items-center"}] children)) el))))
+
 (defn top-bar
   "Renders the top navigation bar.
 
@@ -68,4 +92,8 @@
                :on-close on-tab-close})
       :active-tab-id active-tab-id
       :on-change on-tab-change
-      :class "border-b-0" }]]])
+      :class "border-b-0" }]]
+
+   ;; Portal Target
+   [:div {:class "h-full flex items-center"
+          :ref (fn [el] (rf/dispatch [::set-top-bar-ref el]))}]])
