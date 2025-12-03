@@ -4,7 +4,8 @@
 
  :deps true
 
- :dev-http {8080 "docs"}
+ :dev-http {8080 "docs"
+            8081 "docs/test"}
 
  :nrepl {:middleware
          [cider.nrepl/cider-middleware
@@ -41,12 +42,21 @@
              :pyodide-worker {:init-fn bb-web-ds-tools.workers.pyodide/init
                               :depends-on #{:shared}
                               :web-worker true}}}
+  :test-interactive    
+  {:target :browser-test
+    :output-to "docs/test/js"
+    :test-dir "test/js"
+    :js-options {:js-provider :external
+                 :external-index "target/test/npm-index.js"}
+    :module-loader true
+    :compiler-options {:pretty-print true}
+    :devtools {:autotest true}}
   :reader
   {:target :browser
    :output-dir "docs/js/compiled"
     :asset-path "/js/compiled"
     :modules {:reader {:init-fn bb-web-ds-tools.reader.core/init}}}
-   :test
+  :test
    {:target :browser-test
     :ns-regexp "-test$"
     :runner-ns shadow.test.karma

@@ -21,5 +21,8 @@ jobs:
     - name: Link node_modules
       run: ln -s /opt/app/node_modules .
 
+    - name: Compile test-interactive
+      run: npx shadow-cljs compile test-interactive
+
     - name: Run functional tests
       run: npm test
