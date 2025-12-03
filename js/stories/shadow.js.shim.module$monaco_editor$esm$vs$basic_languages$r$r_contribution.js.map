@@ -1,0 +1,9 @@
+{
+"version":3,
+"file":"shadow.js.shim.module$monaco_editor$esm$vs$basic_languages$r$r_contribution.js",
+"lineCount":5,
+"mappings":"AAAAA,IAAKC,CAAAA,OAAL,CAAa,6EAAb,CAAA;AACAD,IAAKC,CAAAA,OAAL,CAAa,oFAAb,CAAA;AACAC,MAAOC,CAAAA,EAAGC,CAAAA,IAAKC,CAAAA,4DAAf,GAA8EH,MAAOC,CAAAA,EAAGG,CAAAA,cAAV,CAAyB,0DAAzB,CAA9E,GAAqKC,OAAA,CAAQ,0DAAR,CAArK;AACAC,kFAAmFC,CAAAA,OAAnF,GAA6FP,MAAOC,CAAAA,EAAGC,CAAAA,IAAKC,CAAAA,4DAA5G;;",
+"sources":["shadow.js.shim.module$monaco_editor$esm$vs$basic_languages$r$r_contribution.js"],
+"sourcesContent":["goog.provide(\"shadow.js.shim.module$monaco_editor$esm$vs$basic_languages$r$r_contribution\");\ngoog.provide(\"module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contribution\");\nshadow.js.shim.module$monaco_editor$esm$vs$basic_languages$r$r_contribution = shadow.js.nativeProvides[\"monaco-editor/esm/vs/basic-languages/r/r.contribution.js\"] = require(\"monaco-editor/esm/vs/basic-languages/r/r.contribution.js\");\nmodule$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contribution.default = shadow.js.shim.module$monaco_editor$esm$vs$basic_languages$r$r_contribution;\n"],
+"names":["goog","provide","shadow","js","shim","module$monaco_editor$esm$vs$basic_languages$r$r_contribution","nativeProvides","require","module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contribution","default"]
+}

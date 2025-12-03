@@ -1,0 +1,9 @@
+{
+"version":3,
+"file":"shadow.js.shim.module$papaparse.js",
+"lineCount":5,
+"mappings":"AAAAA,IAAKC,CAAAA,OAAL,CAAa,iCAAb,CAAA;AACAD,IAAKC,CAAAA,OAAL,CAAa,wCAAb,CAAA;AACAC,MAAOC,CAAAA,EAAGC,CAAAA,IAAKC,CAAAA,gBAAf,GAAkCH,MAAOC,CAAAA,EAAGG,CAAAA,cAAV,CAAyB,WAAzB,CAAlC,GAA0EC,OAAA,CAAQ,WAAR,CAA1E;AACAC,sCAAuCC,CAAAA,OAAvC,GAAiDP,MAAOC,CAAAA,EAAGC,CAAAA,IAAKC,CAAAA,gBAAhE;;",
+"sources":["shadow.js.shim.module$papaparse.js"],
+"sourcesContent":["goog.provide(\"shadow.js.shim.module$papaparse\");\ngoog.provide(\"module$shadow_js_shim_module$papaparse\");\nshadow.js.shim.module$papaparse = shadow.js.nativeProvides[\"papaparse\"] = require(\"papaparse\");\nmodule$shadow_js_shim_module$papaparse.default = shadow.js.shim.module$papaparse;\n"],
+"names":["goog","provide","shadow","js","shim","module$papaparse","nativeProvides","require","module$shadow_js_shim_module$papaparse","default"]
+}

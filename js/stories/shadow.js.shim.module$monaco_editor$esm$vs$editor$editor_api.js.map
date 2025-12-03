@@ -1,0 +1,9 @@
+{
+"version":3,
+"file":"shadow.js.shim.module$monaco_editor$esm$vs$editor$editor_api.js",
+"lineCount":5,
+"mappings":"AAAAA,IAAKC,CAAAA,OAAL,CAAa,8DAAb,CAAA;AACAD,IAAKC,CAAAA,OAAL,CAAa,qEAAb,CAAA;AACAC,MAAOC,CAAAA,EAAGC,CAAAA,IAAKC,CAAAA,6CAAf,GAA+DH,MAAOC,CAAAA,EAAGG,CAAAA,cAAV,CAAyB,2CAAzB,CAA/D,GAAuIC,OAAA,CAAQ,2CAAR,CAAvI;AACAC,mEAAoEC,CAAAA,OAApE,GAA8EP,MAAOC,CAAAA,EAAGC,CAAAA,IAAKC,CAAAA,6CAA7F;;",
+"sources":["shadow.js.shim.module$monaco_editor$esm$vs$editor$editor_api.js"],
+"sourcesContent":["goog.provide(\"shadow.js.shim.module$monaco_editor$esm$vs$editor$editor_api\");\ngoog.provide(\"module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api\");\nshadow.js.shim.module$monaco_editor$esm$vs$editor$editor_api = shadow.js.nativeProvides[\"monaco-editor/esm/vs/editor/editor.api.js\"] = require(\"monaco-editor/esm/vs/editor/editor.api.js\");\nmodule$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api.default = shadow.js.shim.module$monaco_editor$esm$vs$editor$editor_api;\n"],
+"names":["goog","provide","shadow","js","shim","module$monaco_editor$esm$vs$editor$editor_api","nativeProvides","require","module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api","default"]
+}

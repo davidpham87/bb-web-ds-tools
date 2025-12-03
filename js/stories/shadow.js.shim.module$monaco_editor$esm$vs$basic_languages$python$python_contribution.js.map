@@ -1,0 +1,9 @@
+{
+"version":3,
+"file":"shadow.js.shim.module$monaco_editor$esm$vs$basic_languages$python$python_contribution.js",
+"lineCount":5,
+"mappings":"AAAAA,IAAKC,CAAAA,OAAL,CAAa,uFAAb,CAAA;AACAD,IAAKC,CAAAA,OAAL,CAAa,8FAAb,CAAA;AACAC,MAAOC,CAAAA,EAAGC,CAAAA,IAAKC,CAAAA,sEAAf,GAAwFH,MAAOC,CAAAA,EAAGG,CAAAA,cAAV,CAAyB,oEAAzB,CAAxF,GAAyLC,OAAA,CAAQ,oEAAR,CAAzL;AACAC,4FAA6FC,CAAAA,OAA7F,GAAuGP,MAAOC,CAAAA,EAAGC,CAAAA,IAAKC,CAAAA,sEAAtH;;",
+"sources":["shadow.js.shim.module$monaco_editor$esm$vs$basic_languages$python$python_contribution.js"],
+"sourcesContent":["goog.provide(\"shadow.js.shim.module$monaco_editor$esm$vs$basic_languages$python$python_contribution\");\ngoog.provide(\"module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution\");\nshadow.js.shim.module$monaco_editor$esm$vs$basic_languages$python$python_contribution = shadow.js.nativeProvides[\"monaco-editor/esm/vs/basic-languages/python/python.contribution.js\"] = require(\"monaco-editor/esm/vs/basic-languages/python/python.contribution.js\");\nmodule$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution.default = shadow.js.shim.module$monaco_editor$esm$vs$basic_languages$python$python_contribution;\n"],
+"names":["goog","provide","shadow","js","shim","module$monaco_editor$esm$vs$basic_languages$python$python_contribution","nativeProvides","require","module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution","default"]
+}
