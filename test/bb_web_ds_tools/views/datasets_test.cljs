@@ -62,3 +62,29 @@
                    (let [updated-ds (get @(rf/subscribe [::sut/items]) ds-id)
                          updated-row (first (filter #(= (:_uuid %) (:_uuid row)) (:data updated-ds)))]
                      (is (= new-val (get updated-row col)) "Should update cell value"))))))))))))
+
+(deftest vega-datasets-parsing-test
+  (rf-test/run-test-sync
+   (let [html-content "<html><body>
+                         <a href=\"/npm/vega-datasets@3.2.1/data/cars.json\">cars.json</a>
+                         <a href=\"/npm/vega-datasets@3.2.1/data/airports.csv\">airports.csv</a>
+                         <a href=\"other.txt\">other.txt</a>
+                         </body></html>"]
+      ;; Dispatch receiving event
+     (rf/dispatch [::sut/receive-vega-datasets html-content])
+
+     (let [list @(rf/subscribe [::sut/vega-datasets-list])]
+       (is (= ["airports.csv" "cars.json"] list) "Should parse and filter filenames")))))
+
+(deftest receive-vega-content-test
+  (rf-test/run-test-sync
+   (rf/dispatch [::sut/receive-vega-dataset-content "test.json" "{\"a\": 1}"])
+   (let [state @(rf/subscribe [::sut/new-dataset-state])]
+     (is (= "test.json" (:name state)))
+     (is (= :json (:format state)))
+     (is (= "{\"a\": 1}" (:text state))))
+
+   (rf/dispatch [::sut/receive-vega-dataset-content "data.csv" "a,b\n1,2"])
+   (let [state @(rf/subscribe [::sut/new-dataset-state])]
+     (is (= "data.csv" (:name state)))
+     (is (= :csv (:format state))))))
