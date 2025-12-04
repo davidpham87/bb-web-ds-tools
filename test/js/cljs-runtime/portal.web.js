@@ -130,8 +130,8 @@ return null;
  * Evaluate ClojureScript source given as a string in the UI runtime.
  */
 portal.web.eval_str = (function portal$web$eval_str(var_args){
-var G__30075 = arguments.length;
-switch (G__30075) {
+var G__30076 = arguments.length;
+switch (G__30076) {
 case 1:
 return portal.web.eval_str.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -152,11 +152,11 @@ return portal.web.eval_str.cljs$core$IFn$_invoke$arity$3(new cljs.core.Keyword(n
 
 (portal.web.eval_str.cljs$core$IFn$_invoke$arity$3 = (function (_portal,code,opts){
 var result = portal.runtime.web.launcher.eval_str(cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(opts,new cljs.core.Keyword(null,"code","code",1586293142),code));
-var G__30083 = result;
+var G__30091 = result;
 if(cljs.core.not(new cljs.core.Keyword(null,"verbose","verbose",1694226060).cljs$core$IFn$_invoke$arity$1(opts))){
-return new cljs.core.Keyword(null,"value","value",305978217).cljs$core$IFn$_invoke$arity$1(G__30083);
+return new cljs.core.Keyword(null,"value","value",305978217).cljs$core$IFn$_invoke$arity$1(G__30091);
 } else {
-return G__30083;
+return G__30091;
 }
 }));
 

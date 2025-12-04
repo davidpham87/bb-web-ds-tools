@@ -1,13 +1,13 @@
 goog.provide('portal.shortcuts');
 portal.shortcuts.get_platform = (function portal$shortcuts$get_platform(){
 var platform = window.navigator.platform;
-if(cljs.core.truth_((function (){var fexpr__29057 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 4, ["Mac68K",null,"Macintosh",null,"MacPPC",null,"MacIntel",null], null), null);
-return (fexpr__29057.cljs$core$IFn$_invoke$arity$1 ? fexpr__29057.cljs$core$IFn$_invoke$arity$1(platform) : fexpr__29057.call(null,platform));
+if(cljs.core.truth_((function (){var fexpr__29054 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 4, ["Mac68K",null,"Macintosh",null,"MacPPC",null,"MacIntel",null], null), null);
+return (fexpr__29054.cljs$core$IFn$_invoke$arity$1 ? fexpr__29054.cljs$core$IFn$_invoke$arity$1(platform) : fexpr__29054.call(null,platform));
 })())){
 return new cljs.core.Keyword("portal.shortcuts","osx","portal.shortcuts/osx",300522451);
 } else {
-if(cljs.core.truth_((function (){var fexpr__29058 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 4, ["WinCE",null,"Windows",null,"Win32",null,"Win64",null], null), null);
-return (fexpr__29058.cljs$core$IFn$_invoke$arity$1 ? fexpr__29058.cljs$core$IFn$_invoke$arity$1(platform) : fexpr__29058.call(null,platform));
+if(cljs.core.truth_((function (){var fexpr__29056 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 4, ["WinCE",null,"Windows",null,"Win32",null,"Win64",null], null), null);
+return (fexpr__29056.cljs$core$IFn$_invoke$arity$1 ? fexpr__29056.cljs$core$IFn$_invoke$arity$1(platform) : fexpr__29056.call(null,platform));
 })())){
 return new cljs.core.Keyword("portal.shortcuts","windows","portal.shortcuts/windows",-450991854);
 } else {
@@ -84,8 +84,8 @@ if((i__29066 < size__5502__auto__)){
 var n = cljs.core._nth(c__5501__auto__,i__29066);
 cljs.core.chunk_append(b__29067,cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentVector.EMPTY,cljs.core.reverse(cljs.core.take.cljs$core$IFn$_invoke$arity$2(n,log__$1))));
 
-var G__29085 = (i__29066 + (1));
-i__29066 = G__29085;
+var G__29088 = (i__29066 + (1));
+i__29066 = G__29088;
 continue;
 } else {
 return true;
@@ -156,16 +156,16 @@ portal.shortcuts.input_QMARK_ = (function portal$shortcuts$input_QMARK_(log){
 var temp__5825__auto__ = cljs.core.first(log);
 if(cljs.core.truth_(temp__5825__auto__)){
 var e = temp__5825__auto__;
-var G__29078 = e.target.tagName;
-var fexpr__29077 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 4, ["SELECT",null,"INPUT",null,"BUTTON",null,"TEXTAREA",null], null), null);
-return (fexpr__29077.cljs$core$IFn$_invoke$arity$1 ? fexpr__29077.cljs$core$IFn$_invoke$arity$1(G__29078) : fexpr__29077.call(null,G__29078));
+var G__29076 = e.target.tagName;
+var fexpr__29075 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 4, ["SELECT",null,"INPUT",null,"BUTTON",null,"TEXTAREA",null], null), null);
+return (fexpr__29075.cljs$core$IFn$_invoke$arity$1 ? fexpr__29075.cljs$core$IFn$_invoke$arity$1(G__29076) : fexpr__29075.call(null,G__29076));
 } else {
 return null;
 }
 });
 portal.shortcuts.keydown = (function portal$shortcuts$keydown(e){
-cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$2(portal.shortcuts.log,(function (p1__29079_SHARP_){
-return cljs.core.take.cljs$core$IFn$_invoke$arity$2((5),cljs.core.conj.cljs$core$IFn$_invoke$arity$2(p1__29079_SHARP_,e));
+cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$2(portal.shortcuts.log,(function (p1__29077_SHARP_){
+return cljs.core.take.cljs$core$IFn$_invoke$arity$2((5),cljs.core.conj.cljs$core$IFn$_invoke$arity$2(p1__29077_SHARP_,e));
 }));
 
 return null;

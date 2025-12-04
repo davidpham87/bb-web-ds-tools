@@ -8,8 +8,8 @@ if((typeof portal !== 'undefined') && (typeof portal.runtime !== 'undefined') &&
 portal.runtime.web.client.session = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"session-id","session-id",-1147060351),new cljs.core.Keyword("portal.runtime.web.client","id","portal.runtime.web.client/id",964542999)], null));
 }
 portal.runtime.web.client.request = (function portal$runtime$web$client$request(var_args){
-var G__29121 = arguments.length;
-switch (G__29121) {
+var G__29117 = arguments.length;
+switch (G__29117) {
 case 1:
 return portal.runtime.web.client.request.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -74,27 +74,27 @@ return portal.runtime.web.client.push_state(self__.session_id,new_value);
 (portal.runtime.web.client.Portal.prototype.cljs$core$ISwap$_swap_BANG_$arity$2 = (function (this$,f){
 var self__ = this;
 var this$__$1 = this;
-return cljs.core.reset_BANG_(this$__$1,(function (){var G__29156 = cljs.core.deref(this$__$1);
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__29156) : f.call(null,G__29156));
+return cljs.core.reset_BANG_(this$__$1,(function (){var G__29145 = cljs.core.deref(this$__$1);
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__29145) : f.call(null,G__29145));
 })());
 }));
 
 (portal.runtime.web.client.Portal.prototype.cljs$core$ISwap$_swap_BANG_$arity$3 = (function (this$,f,a){
 var self__ = this;
 var this$__$1 = this;
-return cljs.core.reset_BANG_(this$__$1,(function (){var G__29161 = cljs.core.deref(this$__$1);
-var G__29162 = a;
-return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__29161,G__29162) : f.call(null,G__29161,G__29162));
+return cljs.core.reset_BANG_(this$__$1,(function (){var G__29146 = cljs.core.deref(this$__$1);
+var G__29147 = a;
+return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__29146,G__29147) : f.call(null,G__29146,G__29147));
 })());
 }));
 
 (portal.runtime.web.client.Portal.prototype.cljs$core$ISwap$_swap_BANG_$arity$4 = (function (this$,f,a,b){
 var self__ = this;
 var this$__$1 = this;
-return cljs.core.reset_BANG_(this$__$1,(function (){var G__29171 = cljs.core.deref(this$__$1);
-var G__29172 = a;
-var G__29173 = b;
-return (f.cljs$core$IFn$_invoke$arity$3 ? f.cljs$core$IFn$_invoke$arity$3(G__29171,G__29172,G__29173) : f.call(null,G__29171,G__29172,G__29173));
+return cljs.core.reset_BANG_(this$__$1,(function (){var G__29148 = cljs.core.deref(this$__$1);
+var G__29149 = a;
+var G__29150 = b;
+return (f.cljs$core$IFn$_invoke$arity$3 ? f.cljs$core$IFn$_invoke$arity$3(G__29148,G__29149,G__29150) : f.call(null,G__29148,G__29149,G__29150));
 })());
 }));
 

@@ -70,11 +70,11 @@ return worker.postMessage(cljs.core.clj__GT_js(message));
 /**
  * Terminates the worker.
  */
-bb_web_ds_tools.utils.worker.terminate = (function bb_web_ds_tools$utils$worker$terminate(p__33846){
-var map__33847 = p__33846;
-var map__33847__$1 = cljs.core.__destructure_map(map__33847);
-var worker = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__33847__$1,new cljs.core.Keyword(null,"worker","worker",938239996));
-var out_chan = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__33847__$1,new cljs.core.Keyword(null,"out-chan","out-chan",384315017));
+bb_web_ds_tools.utils.worker.terminate = (function bb_web_ds_tools$utils$worker$terminate(p__33845){
+var map__33846 = p__33845;
+var map__33846__$1 = cljs.core.__destructure_map(map__33846);
+var worker = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__33846__$1,new cljs.core.Keyword(null,"worker","worker",938239996));
+var out_chan = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__33846__$1,new cljs.core.Keyword(null,"out-chan","out-chan",384315017));
 worker.terminate();
 
 if(cljs.core.truth_(out_chan)){

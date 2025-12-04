@@ -34,16 +34,16 @@ goog.provide('clojure.walk');
  */
 clojure.walk.walk = (function clojure$walk$walk(inner,outer,form){
 if(cljs.core.list_QMARK_(form)){
-var G__21604 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.list,cljs.core.map.cljs$core$IFn$_invoke$arity$2(inner,form));
-return (outer.cljs$core$IFn$_invoke$arity$1 ? outer.cljs$core$IFn$_invoke$arity$1(G__21604) : outer.call(null,G__21604));
+var G__21603 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.list,cljs.core.map.cljs$core$IFn$_invoke$arity$2(inner,form));
+return (outer.cljs$core$IFn$_invoke$arity$1 ? outer.cljs$core$IFn$_invoke$arity$1(G__21603) : outer.call(null,G__21603));
 } else {
 if(cljs.core.map_entry_QMARK_(form)){
-var G__21605 = (new cljs.core.MapEntry((function (){var G__21606 = cljs.core.key(form);
+var G__21604 = (new cljs.core.MapEntry((function (){var G__21606 = cljs.core.key(form);
 return (inner.cljs$core$IFn$_invoke$arity$1 ? inner.cljs$core$IFn$_invoke$arity$1(G__21606) : inner.call(null,G__21606));
 })(),(function (){var G__21607 = cljs.core.val(form);
 return (inner.cljs$core$IFn$_invoke$arity$1 ? inner.cljs$core$IFn$_invoke$arity$1(G__21607) : inner.call(null,G__21607));
 })(),null));
-return (outer.cljs$core$IFn$_invoke$arity$1 ? outer.cljs$core$IFn$_invoke$arity$1(G__21605) : outer.call(null,G__21605));
+return (outer.cljs$core$IFn$_invoke$arity$1 ? outer.cljs$core$IFn$_invoke$arity$1(G__21604) : outer.call(null,G__21604));
 } else {
 if(cljs.core.seq_QMARK_(form)){
 var G__21608 = cljs.core.doall.cljs$core$IFn$_invoke$arity$1(cljs.core.map.cljs$core$IFn$_invoke$arity$2(inner,form));
@@ -107,10 +107,10 @@ return x;
  * Recursively transforms all map keys from keywords to strings.
  */
 clojure.walk.stringify_keys = (function clojure$walk$stringify_keys(m){
-var f = (function (p__21618){
-var vec__21619 = p__21618;
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__21619,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__21619,(1),null);
+var f = (function (p__21617){
+var vec__21618 = p__21617;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__21618,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__21618,(1),null);
 if((k instanceof cljs.core.Keyword)){
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.name(k),v], null);
 } else {
