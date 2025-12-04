@@ -129,11 +129,11 @@ return cljs.tools.reader.impl.errors.throw_ex.cljs$core$IFn$_invoke$arity$variad
 (cljs.tools.reader.impl.errors.illegal_arg_error.cljs$lang$maxFixedArity = (1));
 
 /** @this {Function} */
-(cljs.tools.reader.impl.errors.illegal_arg_error.cljs$lang$applyTo = (function (seq30302){
-var G__30303 = cljs.core.first(seq30302);
-var seq30302__$1 = cljs.core.next(seq30302);
+(cljs.tools.reader.impl.errors.illegal_arg_error.cljs$lang$applyTo = (function (seq30306){
+var G__30307 = cljs.core.first(seq30306);
+var seq30306__$1 = cljs.core.next(seq30306);
 var self__5734__auto__ = this;
-return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__30303,seq30302__$1);
+return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__30307,seq30306__$1);
 }));
 
 /**

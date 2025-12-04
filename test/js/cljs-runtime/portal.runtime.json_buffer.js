@@ -16,34 +16,34 @@ portal.runtime.json_buffer.__GT_reader = (function portal$runtime$json_buffer$__
 return portal.runtime.json_buffer.shifter(JSON.parse(data));
 });
 portal.runtime.json_buffer.push_null = (function portal$runtime$json_buffer$push_null(buffer){
-var G__28724 = buffer;
-G__28724.push(null);
-
-return G__28724;
-});
-portal.runtime.json_buffer.push_bool = (function portal$runtime$json_buffer$push_bool(buffer,value){
-var G__28725 = buffer;
-G__28725.push(value);
-
-return G__28725;
-});
-portal.runtime.json_buffer.push_long = (function portal$runtime$json_buffer$push_long(buffer,value){
-var G__28726 = buffer;
-G__28726.push(value);
-
-return G__28726;
-});
-portal.runtime.json_buffer.push_double = (function portal$runtime$json_buffer$push_double(buffer,value){
-var G__28727 = buffer;
-G__28727.push(value);
-
-return G__28727;
-});
-portal.runtime.json_buffer.push_string = (function portal$runtime$json_buffer$push_string(buffer,value){
 var G__28728 = buffer;
-G__28728.push(value);
+G__28728.push(null);
 
 return G__28728;
+});
+portal.runtime.json_buffer.push_bool = (function portal$runtime$json_buffer$push_bool(buffer,value){
+var G__28730 = buffer;
+G__28730.push(value);
+
+return G__28730;
+});
+portal.runtime.json_buffer.push_long = (function portal$runtime$json_buffer$push_long(buffer,value){
+var G__28731 = buffer;
+G__28731.push(value);
+
+return G__28731;
+});
+portal.runtime.json_buffer.push_double = (function portal$runtime$json_buffer$push_double(buffer,value){
+var G__28732 = buffer;
+G__28732.push(value);
+
+return G__28732;
+});
+portal.runtime.json_buffer.push_string = (function portal$runtime$json_buffer$push_string(buffer,value){
+var G__28733 = buffer;
+G__28733.push(value);
+
+return G__28733;
 });
 portal.runtime.json_buffer.push_value = (function portal$runtime$json_buffer$push_value(buffer,value){
 if((value == null)){

@@ -42,13 +42,13 @@ return or__5025__auto__;
 return cljs.core.get.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"touched","touched",-609134419).cljs$core$IFn$_invoke$arity$1(cljs.core.deref(state)),k);
 }
 });
-fork.core.initialize_state = (function fork$core$initialize_state(p__24937){
-var map__24939 = p__24937;
-var map__24939__$1 = cljs.core.__destructure_map(map__24939);
-var state = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24939__$1,new cljs.core.Keyword(null,"state","state",-1988618099));
-var keywordize_keys = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24939__$1,new cljs.core.Keyword(null,"keywordize-keys","keywordize-keys",1310784252));
-var initial_values = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24939__$1,new cljs.core.Keyword(null,"initial-values","initial-values",1392120293));
-var initial_touched = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24939__$1,new cljs.core.Keyword(null,"initial-touched","initial-touched",-1887894494));
+fork.core.initialize_state = (function fork$core$initialize_state(p__24944){
+var map__24945 = p__24944;
+var map__24945__$1 = cljs.core.__destructure_map(map__24945);
+var state = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24945__$1,new cljs.core.Keyword(null,"state","state",-1988618099));
+var keywordize_keys = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24945__$1,new cljs.core.Keyword(null,"keywordize-keys","keywordize-keys",1310784252));
+var initial_values = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24945__$1,new cljs.core.Keyword(null,"initial-values","initial-values",1392120293));
+var initial_touched = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24945__$1,new cljs.core.Keyword(null,"initial-touched","initial-touched",-1887894494));
 var values = (function (){var or__5025__auto__ = cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([initial_values,initial_touched], 0));
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
@@ -71,8 +71,8 @@ return reagent.core.atom.cljs$core$IFn$_invoke$arity$1(initialized_state);
 });
 fork.core.element_value = (function fork$core$element_value(evt){
 var type = evt.target.type;
-var G__24945 = type;
-switch (G__24945) {
+var G__24946 = type;
+switch (G__24946) {
 case "checkbox":
 return evt.target.checked;
 
@@ -83,9 +83,9 @@ return evt.target.value;
 }
 });
 fork.core.element_name = (function fork$core$element_name(t,v,keywordize_QMARK_){
-var el_name = (function (){var G__24946 = t;
-var G__24946__$1 = (((G__24946 instanceof cljs.core.Keyword))?G__24946.fqn:null);
-switch (G__24946__$1) {
+var el_name = (function (){var G__24947 = t;
+var G__24947__$1 = (((G__24947 instanceof cljs.core.Keyword))?G__24947.fqn:null);
+switch (G__24947__$1) {
 case "evt":
 return v.target.getAttribute("name");
 
@@ -105,10 +105,10 @@ return cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(el_name);
 return el_name;
 }
 });
-fork.core.normalize_name = (function fork$core$normalize_name(k,p__24947){
-var map__24948 = p__24947;
-var map__24948__$1 = cljs.core.__destructure_map(map__24948);
-var keywordize_keys = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24948__$1,new cljs.core.Keyword(null,"keywordize-keys","keywordize-keys",1310784252));
+fork.core.normalize_name = (function fork$core$normalize_name(k,p__24948){
+var map__24949 = p__24948;
+var map__24949__$1 = cljs.core.__destructure_map(map__24949);
+var keywordize_keys = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24949__$1,new cljs.core.Keyword(null,"keywordize-keys","keywordize-keys",1310784252));
 if(cljs.core.truth_((function (){var and__5023__auto__ = keywordize_keys;
 if(cljs.core.truth_(and__5023__auto__)){
 return (k instanceof cljs.core.Keyword);
@@ -122,8 +122,8 @@ return k;
 }
 });
 fork.core.set_values = (function fork$core$set_values(new_values,state){
-return cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$2(state,(function (p1__24949_SHARP_){
-return cljs.core.update.cljs$core$IFn$_invoke$arity$4(cljs.core.update.cljs$core$IFn$_invoke$arity$4(p1__24949_SHARP_,new cljs.core.Keyword(null,"values","values",372645556),cljs.core.merge,new_values),new cljs.core.Keyword(null,"touched","touched",-609134419),(function (x,y){
+return cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$2(state,(function (p1__24950_SHARP_){
+return cljs.core.update.cljs$core$IFn$_invoke$arity$4(cljs.core.update.cljs$core$IFn$_invoke$arity$4(p1__24950_SHARP_,new cljs.core.Keyword(null,"values","values",372645556),cljs.core.merge,new_values),new cljs.core.Keyword(null,"touched","touched",-609134419),(function (x,y){
 return cljs.core.apply.cljs$core$IFn$_invoke$arity$3(cljs.core.conj,x,y);
 }),cljs.core.keys(new_values));
 }));
@@ -148,10 +148,10 @@ fork.core.set_error = (function fork$core$set_error(db,path,input_name,message){
 return cljs.core.assoc_in(db,cljs.core.concat.cljs$core$IFn$_invoke$arity$2(fork.core.vectorize_path(path),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"server","server",1499190120),input_name,new cljs.core.Keyword(null,"errors","errors",-908790718)], null)),message);
 });
 fork.core.resolve_server_validation = (function fork$core$resolve_server_validation(m){
-return cljs.core.not_empty(cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentArrayMap.EMPTY,cljs.core.keep.cljs$core$IFn$_invoke$arity$2((function (p__24950){
-var vec__24951 = p__24950;
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24951,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24951,(1),null);
+return cljs.core.not_empty(cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentArrayMap.EMPTY,cljs.core.keep.cljs$core$IFn$_invoke$arity$2((function (p__24951){
+var vec__24952 = p__24951;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24952,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24952,(1),null);
 var temp__5825__auto__ = new cljs.core.Keyword(null,"errors","errors",-908790718).cljs$core$IFn$_invoke$arity$1(v);
 if(cljs.core.truth_(temp__5825__auto__)){
 var err = temp__5825__auto__;
@@ -225,14 +225,14 @@ return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__24957,seq24956
 
 fork.core.enable = (function fork$core$enable(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___25000 = arguments.length;
-var i__5750__auto___25001 = (0);
+var len__5749__auto___24998 = arguments.length;
+var i__5750__auto___24999 = (0);
 while(true){
-if((i__5750__auto___25001 < len__5749__auto___25000)){
-args__5755__auto__.push((arguments[i__5750__auto___25001]));
+if((i__5750__auto___24999 < len__5749__auto___24998)){
+args__5755__auto__.push((arguments[i__5750__auto___24999]));
 
-var G__25002 = (i__5750__auto___25001 + (1));
-i__5750__auto___25001 = G__25002;
+var G__25000 = (i__5750__auto___24999 + (1));
+i__5750__auto___24999 = G__25000;
 continue;
 } else {
 }

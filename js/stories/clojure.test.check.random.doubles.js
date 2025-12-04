@@ -33,10 +33,10 @@ while(true){
 if((i === (0))){
 return x;
 } else {
-var G__30116 = (i - (1));
-var G__30117 = (x / (2));
-i = G__30116;
-x = G__30117;
+var G__29896 = (i - (1));
+var G__29897 = (x / (2));
+i = G__29896;
+x = G__29897;
 continue;
 }
 break;

@@ -361,9 +361,9 @@ var ret = cljs.core.PersistentArrayMap.EMPTY;
 var kvs = cljs.core.seq(f.bindings);
 while(true){
 if(kvs){
-var vec__35705 = cljs.core.first(kvs);
-var var_STAR_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35705,(0),null);
-var tbox = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35705,(1),null);
+var vec__35704 = cljs.core.first(kvs);
+var var_STAR_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35704,(0),null);
+var tbox = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35704,(1),null);
 var tbox_val = tbox.sci$impl$types$IBox$getVal$arity$1(null);
 var G__35731 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(ret,var_STAR_,tbox_val);
 var G__35732 = cljs.core.next(kvs);
@@ -491,8 +491,8 @@ return ["Unbound: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(self__.the_var)]
 (sci.impl.vars.SciUnbound.prototype.call = (function (unused__11801__auto__){
 var self__ = this;
 var self__ = this;
-var G__35709 = (arguments.length - (1));
-switch (G__35709) {
+var G__35708 = (arguments.length - (1));
+switch (G__35708) {
 case (0):
 return self__.cljs$core$IFn$_invoke$arity$0();
 
@@ -587,10 +587,10 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 }
 }));
 
-(sci.impl.vars.SciUnbound.prototype.apply = (function (self__,args35708){
+(sci.impl.vars.SciUnbound.prototype.apply = (function (self__,args35707){
 var self__ = this;
 var self____$1 = this;
-return self____$1.call.apply(self____$1,[self____$1].concat(cljs.core.aclone(args35708)));
+return self____$1.call.apply(self____$1,[self____$1].concat(cljs.core.aclone(args35707)));
 }));
 
 (sci.impl.vars.SciUnbound.prototype.cljs$core$IFn$_invoke$arity$0 = (function (){
@@ -772,14 +772,14 @@ return sci.impl.vars.alter_var_root.cljs$core$IFn$_invoke$arity$2((arguments[(0)
 break;
 default:
 var args_arr__5774__auto__ = [];
-var len__5749__auto___35747 = arguments.length;
-var i__5750__auto___35748 = (0);
+var len__5749__auto___35744 = arguments.length;
+var i__5750__auto___35745 = (0);
 while(true){
-if((i__5750__auto___35748 < len__5749__auto___35747)){
-args_arr__5774__auto__.push((arguments[i__5750__auto___35748]));
+if((i__5750__auto___35745 < len__5749__auto___35744)){
+args_arr__5774__auto__.push((arguments[i__5750__auto___35745]));
 
-var G__35749 = (i__5750__auto___35748 + (1));
-i__5750__auto___35748 = G__35749;
+var G__35746 = (i__5750__auto___35745 + (1));
+i__5750__auto___35745 = G__35746;
 continue;
 } else {
 }

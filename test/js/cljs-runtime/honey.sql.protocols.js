@@ -5,7 +5,7 @@ goog.provide('honey.sql.protocols');
  */
 honey.sql.protocols.InlineValue = function(){};
 
-var honey$sql$protocols$InlineValue$sqlize$dyn_43550 = (function (this$){
+var honey$sql$protocols$InlineValue$sqlize$dyn_43584 = (function (this$){
 var x__5373__auto__ = (((this$ == null))?null:this$);
 var m__5374__auto__ = (honey.sql.protocols.sqlize[goog.typeOf(x__5373__auto__)]);
 if((!((m__5374__auto__ == null)))){
@@ -31,7 +31,7 @@ return (meta_impl__5375__auto__.cljs$core$IFn$_invoke$arity$1 ? meta_impl__5375_
 if((((!((this$ == null)))) && ((!((this$.honey$sql$protocols$InlineValue$sqlize$arity$1 == null)))))){
 return this$.honey$sql$protocols$InlineValue$sqlize$arity$1(this$);
 } else {
-return honey$sql$protocols$InlineValue$sqlize$dyn_43550(this$);
+return honey$sql$protocols$InlineValue$sqlize$dyn_43584(this$);
 }
 }
 });

@@ -55,8 +55,8 @@ return reitit.frontend.query_param(q,p1__36344_SHARP_);
  */
 reitit.frontend.set_query_params = (function reitit$frontend$set_query_params(path,new_query_or_update_fn){
 var uri = goog.Uri.parse(path);
-var new_query = ((cljs.core.fn_QMARK_(new_query_or_update_fn))?(function (){var G__36345 = reitit.frontend.query_params(uri);
-return (new_query_or_update_fn.cljs$core$IFn$_invoke$arity$1 ? new_query_or_update_fn.cljs$core$IFn$_invoke$arity$1(G__36345) : new_query_or_update_fn.call(null,G__36345));
+var new_query = ((cljs.core.fn_QMARK_(new_query_or_update_fn))?(function (){var G__36346 = reitit.frontend.query_params(uri);
+return (new_query_or_update_fn.cljs$core$IFn$_invoke$arity$1 ? new_query_or_update_fn.cljs$core$IFn$_invoke$arity$1(G__36346) : new_query_or_update_fn.call(null,G__36346));
 })():new_query_or_update_fn);
 uri.setQueryData(goog.Uri.QueryData.createFromMap(cljs.core.clj__GT_js(new_query)));
 
@@ -67,8 +67,8 @@ return uri.toString();
  *   optional fragment string.
  */
 reitit.frontend.match__GT_path = (function reitit$frontend$match__GT_path(var_args){
-var G__36349 = arguments.length;
-switch (G__36349) {
+var G__36348 = arguments.length;
+switch (G__36348) {
 case 1:
 return reitit.frontend.match__GT_path.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -99,7 +99,7 @@ return reitit.frontend.match__GT_path.cljs$core$IFn$_invoke$arity$3(match,query_
 var temp__5825__auto__ = reitit.core.match__GT_path.cljs$core$IFn$_invoke$arity$2(match,query_params);
 if(cljs.core.truth_(temp__5825__auto__)){
 var path = temp__5825__auto__;
-var G__36354 = path;
+var G__36355 = path;
 if(cljs.core.truth_((function (){var and__5023__auto__ = fragment;
 if(cljs.core.truth_(and__5023__auto__)){
 return cljs.core.seq(fragment);
@@ -107,9 +107,9 @@ return cljs.core.seq(fragment);
 return and__5023__auto__;
 }
 })())){
-return [cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__36354),"#",reitit.impl.form_encode(fragment)].join('');
+return [cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__36355),"#",reitit.impl.form_encode(fragment)].join('');
 } else {
-return G__36354;
+return G__36355;
 }
 } else {
 return null;
@@ -125,8 +125,8 @@ return null;
  *   :on-coercion-error - a sideeffecting fn of `match exception -> nil`
  */
 reitit.frontend.match_by_path = (function reitit$frontend$match_by_path(var_args){
-var G__36359 = arguments.length;
-switch (G__36359) {
+var G__36357 = arguments.length;
+switch (G__36357) {
 case 2:
 return reitit.frontend.match_by_path.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -145,20 +145,20 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 return reitit.frontend.match_by_path.cljs$core$IFn$_invoke$arity$3(router,path,null);
 }));
 
-(reitit.frontend.match_by_path.cljs$core$IFn$_invoke$arity$3 = (function (router,path,p__36361){
-var map__36362 = p__36361;
-var map__36362__$1 = cljs.core.__destructure_map(map__36362);
-var on_coercion_error = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36362__$1,new cljs.core.Keyword(null,"on-coercion-error","on-coercion-error",-970787));
+(reitit.frontend.match_by_path.cljs$core$IFn$_invoke$arity$3 = (function (router,path,p__36358){
+var map__36359 = p__36358;
+var map__36359__$1 = cljs.core.__destructure_map(map__36359);
+var on_coercion_error = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36359__$1,new cljs.core.Keyword(null,"on-coercion-error","on-coercion-error",-970787));
 var uri = goog.Uri.parse(path);
 var coerce_BANG_ = (cljs.core.truth_(on_coercion_error)?(function (match){
 try{return reitit.coercion.coerce_BANG_(match);
-}catch (e36364){if((e36364 instanceof Error)){
-var e = e36364;
+}catch (e36363){if((e36363 instanceof Error)){
+var e = e36363;
 (on_coercion_error.cljs$core$IFn$_invoke$arity$2 ? on_coercion_error.cljs$core$IFn$_invoke$arity$2(match,e) : on_coercion_error.call(null,match,e));
 
 throw e;
 } else {
-throw e36364;
+throw e36363;
 
 }
 }}):reitit.coercion.coerce_BANG_);
@@ -189,8 +189,8 @@ return null;
  *   or `nil` (no match).
  */
 reitit.frontend.match_by_name = (function reitit$frontend$match_by_name(var_args){
-var G__36367 = arguments.length;
-switch (G__36367) {
+var G__36366 = arguments.length;
+switch (G__36366) {
 case 2:
 return reitit.frontend.match_by_name.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -220,8 +220,8 @@ return reitit.core.match_by_name(router,name,path_params);
  *   Enables request coercion. See [[reitit.core/router]] for details on options.
  */
 reitit.frontend.router = (function reitit$frontend$router(var_args){
-var G__36369 = arguments.length;
-switch (G__36369) {
+var G__36368 = arguments.length;
+switch (G__36368) {
 case 1:
 return reitit.frontend.router.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -250,8 +250,8 @@ return reitit.core.router.cljs$core$IFn$_invoke$arity$2(raw_routes,cljs.core.mer
  * Logs problems using console.warn
  */
 reitit.frontend.match_by_name_BANG_ = (function reitit$frontend$match_by_name_BANG_(var_args){
-var G__36373 = arguments.length;
-switch (G__36373) {
+var G__36372 = arguments.length;
+switch (G__36372) {
 case 2:
 return reitit.frontend.match_by_name_BANG_.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -275,8 +275,8 @@ var temp__5823__auto__ = reitit.frontend.match_by_name.cljs$core$IFn$_invoke$ari
 if(cljs.core.truth_(temp__5823__auto__)){
 var match = temp__5823__auto__;
 if(reitit.core.partial_match_QMARK_(match)){
-if(cljs.core.every_QMARK_((function (p1__36371_SHARP_){
-return cljs.core.contains_QMARK_(path_params,p1__36371_SHARP_);
+if(cljs.core.every_QMARK_((function (p1__36370_SHARP_){
+return cljs.core.contains_QMARK_(path_params,p1__36370_SHARP_);
 }),new cljs.core.Keyword(null,"required","required",1807647006).cljs$core$IFn$_invoke$arity$1(match))){
 return match;
 } else {

@@ -13,15 +13,15 @@ bb_web_ds_tools.runtime.sci.sci_worker = cljs.core.atom.cljs$core$IFn$_invoke$ar
  *  nil: Performs side-effects (dispatch or console log).
  */
 bb_web_ds_tools.runtime.sci.default_on_message = (function bb_web_ds_tools$runtime$sci$default_on_message(msg){
-var map__43262 = msg;
-var map__43262__$1 = cljs.core.__destructure_map(map__43262);
-var type = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__43262__$1,new cljs.core.Keyword(null,"type","type",1174270348));
-var event = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__43262__$1,new cljs.core.Keyword(null,"event","event",301435442));
-var value = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__43262__$1,new cljs.core.Keyword(null,"value","value",305978217));
-var text = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__43262__$1,new cljs.core.Keyword(null,"text","text",-1790561697));
-var G__43264 = cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(type);
-var G__43264__$1 = (((G__43264 instanceof cljs.core.Keyword))?G__43264.fqn:null);
-switch (G__43264__$1) {
+var map__43250 = msg;
+var map__43250__$1 = cljs.core.__destructure_map(map__43250);
+var type = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__43250__$1,new cljs.core.Keyword(null,"type","type",1174270348));
+var event = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__43250__$1,new cljs.core.Keyword(null,"event","event",301435442));
+var value = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__43250__$1,new cljs.core.Keyword(null,"value","value",305978217));
+var text = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__43250__$1,new cljs.core.Keyword(null,"text","text",-1790561697));
+var G__43254 = cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(type);
+var G__43254__$1 = (((G__43254 instanceof cljs.core.Keyword))?G__43254.fqn:null);
+switch (G__43254__$1) {
 case "dispatch":
 return re_frame.core.dispatch(event);
 
@@ -60,9 +60,9 @@ var argseq__5756__auto__ = ((((0) < args__5755__auto__.length))?(new cljs.core.I
 return bb_web_ds_tools.runtime.sci.init_BANG_.cljs$core$IFn$_invoke$arity$variadic(argseq__5756__auto__);
 });
 
-(bb_web_ds_tools.runtime.sci.init_BANG_.cljs$core$IFn$_invoke$arity$variadic = (function (p__43269){
-var vec__43270 = p__43269;
-var on_message = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43270,(0),null);
+(bb_web_ds_tools.runtime.sci.init_BANG_.cljs$core$IFn$_invoke$arity$variadic = (function (p__43266){
+var vec__43267 = p__43266;
+var on_message = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43267,(0),null);
 if(cljs.core.truth_(cljs.core.deref(bb_web_ds_tools.runtime.sci.sci_worker))){
 return null;
 } else {
@@ -79,9 +79,9 @@ return bb_web_ds_tools.runtime.sci.default_on_message;
 (bb_web_ds_tools.runtime.sci.init_BANG_.cljs$lang$maxFixedArity = (0));
 
 /** @this {Function} */
-(bb_web_ds_tools.runtime.sci.init_BANG_.cljs$lang$applyTo = (function (seq43265){
+(bb_web_ds_tools.runtime.sci.init_BANG_.cljs$lang$applyTo = (function (seq43255){
 var self__5735__auto__ = this;
-return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq43265));
+return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq43255));
 }));
 
 /**
