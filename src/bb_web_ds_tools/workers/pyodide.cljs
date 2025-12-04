@@ -14,7 +14,14 @@
   Returns:
     nil."
   [msg]
-  (js/postMessage (->js msg)))
+  (try
+    (js/postMessage (->js msg))
+    (catch :default e
+      (js/console.error "Worker postMessage failed:" e)
+      (try
+        (js/postMessage (->js {:type :error :text (str "Worker Communication Error: " (.-message e))}))
+        (catch :default _
+          (js/console.error "Fatal: Could not send error message."))))))
 
 (defn run-code
   "Runs Python code using Pyodide.
@@ -33,7 +40,7 @@
              (post-msg
               {:type :result
                :value (cond
-                        (and res (.-toJs res)) (.toJs ^js res #js {"create_pyproxies" true})
+                        (and res (.-toJs res)) (.toJs ^js res #js {"create_pyproxies" false})
                         (nil? res) "None"
                         :else res)})))
           (.catch
@@ -51,8 +58,8 @@
     (js/importScripts "https://cdn.jsdelivr.net/pyodide/v0.29.0/full/pyodide.js")
     (-> (js/loadPyodide
          (clj->js {:indexURL "https://cdn.jsdelivr.net/pyodide/v0.29.0/full/"
-                   :stdout (fn [text] (post-msg #js {"type" "stdout" "text" text}))
-                   :stderr (fn [text] (post-msg {:type :error :text text}))}))
+                   :stdout (fn [text] (post-msg #js {"type" "stdout" "text" (str text)}))
+                   :stderr (fn [text] (post-msg {:type :error :text (str text)}))}))
         (.then (fn [p]
                  (reset! pyodide-instance p)
                  (post-msg {:type :ready})))
