@@ -174,36 +174,23 @@ chart.to_html()")
             ready? @(rf/subscribe [::ready?])
             error @(rf/subscribe [::error])]
         [:div {:class "w-full border border-gray-700 rounded mb-4"}
-         [l/flex-row {:class "h-full w-screen"}
-          [l/flex-col {:class "h-fulll w-full max-w-3xl"}
-           [l/flex-row {:class "justify-between py-4"}
-            [c/label "Python Code"]
-            [c/button {:on-click #(rf/dispatch [::run-code code])} "Run"]]
-           [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)
-                  :style {:height "85vh"}}
-            [editor/monaco-editor
-             {:value code
-              :language "python"
-              :options {:rulers [80] :lineNumbers "off"}
-              :on-change #(rf/dispatch [::set-code %])
-              :on-mount #(editor/setup-editor-actions
-                          % mac-os?
-                          (fn [c] (rf/dispatch [::run-code c])))}]]]
-          (cond
-
-            ready?
-            [portal/portal-frame]
-
-            loading?
-            [l/flex-col {:class "h-full p-4 space-y-4"}
-             [:div "Loading Pyodide..."]]
-
-            error
-            [l/flex-col {:class "h-full p-4 space-y-4"}
-             [:div {:class "text-red-500"} (str "Error: " error)]]
-
-            :else
-            [portal/portal-frame])]]))))
+         [l/flex-col {:class "h-full w-full"}
+          [l/flex-row {:class "justify-between py-4"}
+           [c/label "Python Code"]
+           [l/flex-row {:class "space-x-4"}
+            (when loading? [:div "Loading Pyodide..."])
+            (when error [:div {:class "text-red-500"} (str "Error: " error)])
+            [c/button {:on-click #(rf/dispatch [::run-code code])} "Run"]]]
+          [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)
+                 :style {:height "85vh"}}
+           [editor/monaco-editor
+            {:value code
+             :language "python"
+             :options {:rulers [80] :lineNumbers "off"}
+             :on-change #(rf/dispatch [::set-code %])
+             :on-mount #(editor/setup-editor-actions
+                         % mac-os?
+                         (fn [c] (rf/dispatch [::run-code c])))}]]]]))))
 
 (defn panel
   "Main component for the Pyodide view. Initializes on mount.
