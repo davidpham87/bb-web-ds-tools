@@ -164,6 +164,14 @@
        :collection-type type
        :child (annotate-schema child-schema child-data)})
 
+    ;; Wrapper (Maybe)
+    (and (vector? schema) (= :maybe (first schema)))
+    (let [[type child-schema] schema
+          child-data (remove nil? data)]
+      {:type :wrapper
+       :wrapper-type type
+       :child (annotate-schema child-schema child-data)})
+
     ;; Leaf
     :else
     {:type :leaf
@@ -184,25 +192,66 @@
                    [(:key node) (:child node)])
           :entry-raw (:original node)
           :collection [(:collection-type node) (:child node)]
+          :wrapper [(:wrapper-type node) (:child node)]
           :leaf (:schema node)
           node)
         node))
     tree))
 
-(defn- infer-enums
-  "Refines schema by replacing string types with enums if cardinality is low."
+(defn- refine-schema-with-data
+  "Refines schema by replacing string types with enums and adding min/max to numbers and dates."
   [schema data max-values]
   (let [annotated (annotate-schema schema data)
         refined (walk/postwalk
                   (fn [node]
-                    (if (and (map? node) (= :leaf (:type node))
-                             (or (= (:schema node) 'string?) (= (:schema node) :string)))
-                      (let [strings (filter string? (:data node))
-                            distinct-vals (distinct strings)
-                            cnt (count distinct-vals)]
-                        (if (and (pos? cnt) (<= cnt max-values))
-                          (assoc node :schema (into [:enum] (sort distinct-vals)))
-                          node))
+                    (if (and (map? node) (= :leaf (:type node)))
+                      (let [s (:schema node)
+                            d (:data node)
+                            s-type (if (vector? s) (first s) s)]
+                        (cond
+                          ;; Enum Inference
+                          (or (= s-type 'string?) (= s-type :string))
+                          (let [strings (filter string? d)
+                                distinct-vals (distinct strings)
+                                cnt (count distinct-vals)]
+                            (if (and (pos? cnt) (<= cnt max-values))
+                              (assoc node :schema (into [:enum] (sort distinct-vals)))
+                              node))
+
+                          ;; Min/Max Inference (Numbers)
+                          (#{:int :double :number 'int? 'double? 'number?} s-type)
+                          (let [nums (filter number? d)]
+                            (if (seq nums)
+                              (let [min-val (apply min nums)
+                                    max-val (apply max nums)
+                                    existing-props (if (and (vector? s) (map? (second s))) (second s) nil)
+                                    new-props (merge existing-props {:min min-val :max max-val})
+                                    new-schema (if (vector? s)
+                                                 (if (map? (second s))
+                                                   (assoc s 1 new-props)
+                                                   (into [(first s) new-props] (rest s)))
+                                                 [s new-props])]
+                                (assoc node :schema new-schema))
+                              node))
+
+                          ;; Min/Max Inference (Dates)
+                          (or (= s-type 'inst?) (= s-type :inst))
+                          (let [dates (filter inst? d)]
+                            (if (seq dates)
+                              (let [sorted (sort dates)
+                                    min-val (first sorted)
+                                    max-val (last sorted)
+                                    existing-props (if (and (vector? s) (map? (second s))) (second s) nil)
+                                    new-props (merge existing-props {:min min-val :max max-val})
+                                    new-schema (if (vector? s)
+                                                 (if (map? (second s))
+                                                   (assoc s 1 new-props)
+                                                   (into [(first s) new-props] (rest s)))
+                                                 [s new-props])]
+                                (assoc node :schema new-schema))
+                              node))
+
+                          :else node))
                       node))
                   annotated)]
     (deannotate-schema refined)))
@@ -220,7 +269,7 @@
   ([input-data max-enum-values]
    (if (and (coll? input-data) (seq input-data))
      (let [schema (mp/provide input-data)
-           refined-schema (infer-enums schema input-data max-enum-values)]
+           refined-schema (refine-schema-with-data schema input-data max-enum-values)]
        {:success true
         :schema-str (pretty-print-str refined-schema)})
      {:success false
