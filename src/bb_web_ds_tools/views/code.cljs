@@ -4,6 +4,7 @@
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.layout :as l]
             [bb-web-ds-tools.components.navigation :as nav]
+            [bb-web-ds-tools.portal :as portal]
             [bb-web-ds-tools.views.pyodide :as pyodide]
             [bb-web-ds-tools.views.repl :as repl]
             [bb-web-ds-tools.views.editor :as editor]
@@ -45,13 +46,16 @@
                    :class "border-b-0 bg-transparent px-0"
                    :on-change #(rf/dispatch [::set-active-tab %])}]]
 
-     [:div {:class "flex-grow overflow-hidden relative h-full"}
-      (case active-tab
-        :clojure-repl [repl/panel]
-        :pyodide [pyodide/panel]
-        :r-repl [r-repl/panel]
-        :editor [editor/panel]
-        [repl/panel])]]))
+     [:div {:class "flex flex-col md:flex-row h-full w-full overflow-hidden"}
+      [:div {:class "h-1/2 md:h-full w-full md:w-1/2 overflow-auto border-r border-[#3f3f3f]"}
+       (case active-tab
+         :clojure-repl [repl/panel]
+         :pyodide [pyodide/panel]
+         :r-repl [r-repl/panel]
+         :editor [editor/panel]
+         [repl/panel])]
+      [:div {:class "h-1/2 md:h-full w-full md:w-1/2 overflow-hidden"}
+       [portal/portal-frame]]]]))
 
 (defn panel
   "Main component for the Code view. Initializes state on mount.

@@ -70,7 +70,7 @@
                            :minimap {:enabled false}
                            :scrollBeyondLastLine false
                            :fontFamily "Menlo, Monaco, 'Courier New', monospace"
-                           :fontSize 13}
+                           :fontSize 14}
                           options)))]
 
             (reset! editor-instance editor)
