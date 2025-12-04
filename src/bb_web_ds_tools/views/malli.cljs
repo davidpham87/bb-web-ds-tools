@@ -26,6 +26,7 @@
         component-state (::malli db)]
     {:schema-text (:schema-text user-input)
      :inference-input (:inference-input user-input)
+     :max-enum-values (get user-input :max-enum-values 10)
      :generated-data (:generated-data component-state)
      :inferred-schema (:inferred-schema component-state)
      :input-fmt (:input-format component-state)
@@ -45,7 +46,8 @@
        (not user-input-exists?)
        (assoc-in [:user-input :malli :default]
                  {:schema-text "[:map\n [:name string?]\n [:age int?]\n [:tags [:set keyword?]]]"
-                  :inference-input "{:user/id 1\n :user/name \"Alice\"\n :user/email \"alice@example.com\"\n :user/active? true\n :user/roles #{:admin :editor}}"})
+                  :inference-input "{:user/id 1\n :user/name \"Alice\"\n :user/email \"alice@example.com\"\n :user/active? true\n :user/roles #{:admin :editor}}"
+                  :max-enum-values 10})
 
        (not component-state-exists?)
        (assoc ::malli
@@ -65,6 +67,11 @@
  :malli/update-inference-input
  (fn [db [_ text]]
    (assoc-in db [:user-input :malli :default :inference-input] text)))
+
+(rf/reg-event-db
+ :malli/set-max-enum-values
+ (fn [db [_ n]]
+   (assoc-in db [:user-input :malli :default :max-enum-values] (c-malli/parse-int n))))
 
 (rf/reg-event-db
  :malli/set-active-tab
@@ -106,11 +113,12 @@
 (rf/reg-event-fx
  :malli/infer-schema
  (fn [{:keys [db]} _]
-   (let [{:keys [inference-input input-fmt]} (get-malli-state db)
+   (let [{:keys [inference-input input-fmt max-enum-values]} (get-malli-state db)
          input-data (case input-fmt
                       :edn (c-malli/detect-and-parse inference-input)
-                      (dp/parse-dataset input-fmt inference-input))
-         result (c-malli/infer-schema input-data)
+                      :json (dp/parse-dataset :json :row-maps inference-input)
+                      (dp/parse-dataset input-fmt :columnar inference-input))
+         result (c-malli/infer-schema input-data max-enum-values)
          output (if (:success result) (:schema-str result) (str "Invalid input data for format " (name input-fmt) "."))]
      {:db (assoc-in db [::malli :inferred-schema] output)})))
 
@@ -190,6 +198,12 @@
    (:inference-input root)))
 
 (rf/reg-sub
+ :malli/max-enum-values
+ :<- [:malli/user-input-root]
+ (fn [root _]
+   (get root :max-enum-values 10)))
+
+(rf/reg-sub
  :malli/inferred-schema
  :<- [:malli/component-root]
  (fn [root _]
@@ -239,11 +253,13 @@
  :<- [:malli/inferred-schema]
  :<- [::datasets/items]
  :<- [:malli/input-format]
- (fn [[inference-input inferred-schema datasets input-format] _]
+ :<- [:malli/max-enum-values]
+ (fn [[inference-input inferred-schema datasets input-format max-enum-values] _]
    {:inference-input inference-input
     :inferred-schema inferred-schema
     :datasets datasets
-    :input-format input-format}))
+    :input-format input-format
+    :max-enum-values max-enum-values}))
 
 (rf/reg-sub
  :malli/generation-view-state
@@ -331,7 +347,7 @@
 
 (defn get-inference-props
   "Generates props for the unified view in Inference mode."
-  [{:keys [inference-input inferred-schema datasets input-format]}]
+  [{:keys [inference-input inferred-schema datasets input-format max-enum-values]}]
   {:controls [:<>
               [c/label "Input Data"]
               [l/flex-row {:class "space-x-2 items-center"}
@@ -352,6 +368,16 @@
                    [:option {:value ""} "Select Dataset..."]
                    (for [[id ds] datasets]
                      [:option {:key id :value id} (:name ds)])]])
+
+               [:div {:class "flex items-center gap-1 ml-2"}
+                [:span {:class "text-xs"} "Max Enum:"]
+                [c/input {:type "number"
+                          :class "w-16 py-1 px-2 text-sm"
+                          :min "1"
+                          :max "100"
+                          :value max-enum-values
+                          :on-change #(rf/dispatch [:malli/set-max-enum-values (.. % -target -value)])}]]
+
                [btn {:primary true
                      :on-click #(rf/dispatch [:malli/infer-schema])} "Infer Schema"]]]
    :editors [{:value inference-input
