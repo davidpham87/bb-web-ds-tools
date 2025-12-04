@@ -152,8 +152,11 @@ npm test
     *   `core.cljs`: The spinal cord.
     *   `views/`: The pretty faces (UI).
     *   `components/`: The lego bricks.
+    *   `events/`: The re-frame event handlers.
     *   `runtime/`: The heavy lifters (SCI, Pyodide, WebR interfaces).
+    *   `utils/`: The helper functions.
     *   `workers/`: The background elves (Web Workers).
+    *   `workspaces/`: The persistence layer (SQLite).
 *   `docs/`: The build artifact (and where the website lives).
 
 ---

@@ -11,6 +11,7 @@
    [reagent.core :as r]))
 
 (def packages
+  "List of Python packages to install via micropip on initialization."
   ["numpy" "pandas" "altair" "cytoolz" "scikit-learn" "sqlite3" "protobuf"
    "vega-datasets"])
 
