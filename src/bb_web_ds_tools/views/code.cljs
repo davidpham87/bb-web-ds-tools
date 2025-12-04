@@ -26,7 +26,12 @@
  (fn [db _]
    (get db ::active-tab :clojure-repl)))
 
-(defn panel-render []
+(defn panel-render
+  "Renders the content of the Code view, switching between sub-views based on the active tab.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (let [active-tab @(rf/subscribe [::active-tab])
         tabs [{:id :clojure-repl :label "Clojure REPL"}
               {:id :pyodide :label "Python (Pyodide)"}
@@ -48,7 +53,12 @@
         :editor [editor/panel]
         [repl/panel])]]))
 
-(defn panel []
+(defn panel
+  "Main component for the Code view. Initializes state on mount.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (r/create-class
    {:display-name "code-panel"
     :component-did-mount #(rf/dispatch [::initialize])
