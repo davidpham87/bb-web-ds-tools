@@ -1,5 +1,6 @@
 (ns bb-web-ds-tools.components.malli
-  (:require [malli.provider :as mp]
+  (:require [clojure.walk :as walk]
+            [malli.provider :as mp]
             [malli.generator :as mg]
             [malli.core :as m]
             [malli.json-schema :as json-schema]
@@ -117,7 +118,7 @@
   Returns:
     map: {:success true :output string :data any}."
   [schema samples format]
-  (if schema
+  (if (and schema (pos? samples))
     (let [data (if (> samples 1)
                  (vec (repeatedly samples #(mg/generate schema)))
                  (mg/generate schema))
@@ -126,22 +127,104 @@
                    :json (generate-json data)
                    (pr-str data))]
       {:success true :output output :data data})
-    {:success false :error "Invalid schema."}))
+    {:success false :error "Invalid schema or samples."}))
+
+(defn- annotate-schema
+  "Recursively builds a tree of {:type ... :data ...} to align data with schema."
+  [schema data]
+  (cond
+    ;; Map
+    (and (vector? schema) (= :map (first schema)))
+    (let [[type & tail] schema
+          [props entries] (if (map? (first tail))
+                            [(first tail) (rest tail)]
+                            [nil tail])
+          maps (if (map? data) [data] (filter map? data))]
+      {:type :map
+       :schema-type type
+       :props props
+       :children (mapv (fn [entry]
+                         (if (vector? entry)
+                           (let [has-props? (map? (second entry))
+                                 k (first entry)
+                                 [p v-schema] (if has-props?
+                                                [(second entry) (nth entry 2)]
+                                                [nil (second entry)])
+                                 vals (map #(get % k) maps)
+                                 child-node (annotate-schema v-schema vals)]
+                             {:type :entry :key k :props p :child child-node})
+                           {:type :entry-raw :original entry}))
+                       entries)})
+
+    ;; Collection
+    (and (vector? schema) (#{ :vector :sequential :set } (first schema)))
+    (let [[type child-schema] schema
+          child-data (if (every? coll? data) (mapcat identity data) data)]
+      {:type :collection
+       :collection-type type
+       :child (annotate-schema child-schema child-data)})
+
+    ;; Leaf
+    :else
+    {:type :leaf
+     :schema schema
+     :data data}))
+
+(defn- deannotate-schema
+  "Reconstructs schema from annotated tree using postwalk."
+  [tree]
+  (walk/postwalk
+    (fn [node]
+      (if (map? node)
+        (case (:type node)
+          :map (into (if (:props node) [(:schema-type node) (:props node)] [(:schema-type node)])
+                     (:children node))
+          :entry (if (:props node)
+                   [(:key node) (:props node) (:child node)]
+                   [(:key node) (:child node)])
+          :entry-raw (:original node)
+          :collection [(:collection-type node) (:child node)]
+          :leaf (:schema node)
+          node)
+        node))
+    tree))
+
+(defn- infer-enums
+  "Refines schema by replacing string types with enums if cardinality is low."
+  [schema data max-values]
+  (let [annotated (annotate-schema schema data)
+        refined (walk/postwalk
+                  (fn [node]
+                    (if (and (map? node) (= :leaf (:type node))
+                             (or (= (:schema node) 'string?) (= (:schema node) :string)))
+                      (let [strings (filter string? (:data node))
+                            distinct-vals (distinct strings)
+                            cnt (count distinct-vals)]
+                        (if (and (pos? cnt) (<= cnt max-values))
+                          (assoc node :schema (into [:enum] (sort distinct-vals)))
+                          node))
+                      node))
+                  annotated)]
+    (deannotate-schema refined)))
 
 (defn infer-schema
   "Infers a Malli schema from data.
 
   Args:
     input-data (coll): The input data sample.
+    max-enum-values (int, optional): Max values to infer enum. Default 10.
 
   Returns:
     map: {:success true :schema-str string} or error."
-  [input-data]
-  (if (and (coll? input-data) (seq input-data))
-    {:success true
-     :schema-str (pretty-print-str (mp/provide input-data))}
-    {:success false
-     :error "Invalid input data or empty sequence."}))
+  ([input-data] (infer-schema input-data 10))
+  ([input-data max-enum-values]
+   (if (and (coll? input-data) (seq input-data))
+     (let [schema (mp/provide input-data)
+           refined-schema (infer-enums schema input-data max-enum-values)]
+       {:success true
+        :schema-str (pretty-print-str refined-schema)})
+     {:success false
+      :error "Invalid input data or empty sequence."})))
 
 (defn save-dataset-data
   "Parses generated data string back to data for saving.
