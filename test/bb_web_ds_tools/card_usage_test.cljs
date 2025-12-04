@@ -26,14 +26,11 @@
     (if (fn? res) (res) res)))
 
 (deftest malli-layout-test
-  (rf/dispatch-sync [:malli/initialize])
-  (let [inference (get-render malli/inference-view)
-        generation (get-render malli/generation-view)
-        rows (concat (find-component-usages l/flex-row inference)
-                     (find-component-usages l/flex-row generation))]
-    (is (seq rows) "Should find flex-row in malli (replacing split-view)")
+  (let [mock-props {:controls [:div "ctrl"] :editors [] :output "out"}
+        view (malli/unified-view mock-props)
+        rows (find-component-usages l/flex-row view)]
+    (is (seq rows) "Should find flex-row in unified-view")
     (doseq [row rows]
-      ;; The second element (index 1) should be the props map.
       (is (map? (nth row 1)) (str "Flex-row props should be a map, found: " (pr-str (nth row 1)))))))
 
 (deftest honeysql-layout-test

@@ -4,7 +4,7 @@
    [bb-web-ds-tools.components.common :as c]
    [bb-web-ds-tools.components.editor :as editor]
    [bb-web-ds-tools.components.layout :as l]
-   [bb-web-ds-tools.portal :as portal :refer (portal-frame)]
+   [bb-web-ds-tools.portal :as portal]
    [bb-web-ds-tools.runtime.sci :as sci-runtime]
    [bb-web-ds-tools.theme :as t]
    [clojure.string :as str]
@@ -163,21 +163,19 @@
     (fn []
       (let [{:keys [code mac-os?]} @state-sub]
         [:div {:class "w-full border border-gray-700 rounded mb-4"}
-         [l/flex-row {:class "h-full w-screen"}
-          [l/flex-col {:class "space-y-2 w-full max-w-3xl"}
-           [l/flex-row {:class "justify-between"}
-            [c/label "Clojure Code"]
-            [c/button {:on-click #(rf/dispatch [::eval-code instance-id code])} "Eval"]]
-           [:div {:class (str "flex-grow rounded overflow-hidden border w-screen-1/2"
-                              t/border-default)
-                  :style {:height "85vh"}}
-            [editor/monaco-editor
-             {:value code
-              :language "clojure"
-              :options {:rulers [80] :lineNumbers "off"}
-              :on-change #(rf/dispatch [::update-code instance-id %])
-              :on-mount #(setup-editor-actions % instance-id mac-os?)}]]]
-          [portal-frame]]]))))
+         [l/flex-col {:class "space-y-2 w-full"}
+          [l/flex-row {:class "justify-between"}
+           [c/label "Clojure Code"]
+           [c/button {:on-click #(rf/dispatch [::eval-code instance-id code])} "Eval"]]
+          [:div {:class (str "flex-grow rounded overflow-hidden border w-full"
+                             t/border-default)
+                 :style {:height "85vh"}}
+           [editor/monaco-editor
+            {:value code
+             :language "clojure"
+             :options {:rulers [80] :lineNumbers "off"}
+             :on-change #(rf/dispatch [::update-code instance-id %])
+             :on-mount #(setup-editor-actions % instance-id mac-os?)}]]]]))))
 
 (defn on-worker-message
   "Handles messages from the SCI worker.
