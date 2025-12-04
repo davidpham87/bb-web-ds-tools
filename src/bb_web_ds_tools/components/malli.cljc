@@ -117,7 +117,7 @@
   Returns:
     map: {:success true :output string :data any}."
   [schema samples format]
-  (if schema
+  (if (and schema (pos? samples))
     (let [data (if (> samples 1)
                  (vec (repeatedly samples #(mg/generate schema)))
                  (mg/generate schema))
@@ -126,22 +126,67 @@
                    :json (generate-json data)
                    (pr-str data))]
       {:success true :output output :data data})
-    {:success false :error "Invalid schema."}))
+    {:success false :error "Invalid schema or samples."}))
+
+(defn- infer-enums
+  "Refines schema by replacing string types with enums if cardinality is low."
+  [schema data max-values]
+  (cond
+    ;; Map
+    (and (vector? schema) (= :map (first schema)))
+    (let [[type & entries] schema
+          maps (if (map? data) [data] (filter map? data))]
+      (into [type]
+            (map (fn [entry]
+                   (if (vector? entry)
+                     (let [has-props? (map? (second entry))
+                           k (first entry)
+                           [props val-schema] (if has-props?
+                                                [(second entry) (nth entry 2)]
+                                                [nil (second entry)])
+                           vals (map #(get % k) maps)
+                           new-schema (infer-enums val-schema vals max-values)]
+                       (if props
+                         [k props new-schema]
+                         [k new-schema]))
+                     entry))
+                 entries)))
+
+    ;; Vector / Sequential / Set
+    (and (vector? schema) (#{ :vector :sequential :set } (first schema)))
+    (let [[type child-schema] schema
+          child-data (if (every? coll? data) (mapcat identity data) data)]
+      [type (infer-enums child-schema child-data max-values)])
+
+    ;; String
+    (or (= schema 'string?) (= schema :string))
+    (let [strings (filter string? data)
+          distinct-vals (distinct strings)
+          cnt (count distinct-vals)]
+      (if (and (pos? cnt) (<= cnt max-values))
+        (into [:enum] (sort distinct-vals))
+        schema))
+
+    :else schema))
 
 (defn infer-schema
   "Infers a Malli schema from data.
 
   Args:
     input-data (coll): The input data sample.
+    max-enum-values (int, optional): Max values to infer enum. Default 10.
 
   Returns:
     map: {:success true :schema-str string} or error."
-  [input-data]
-  (if (and (coll? input-data) (seq input-data))
-    {:success true
-     :schema-str (pretty-print-str (mp/provide input-data))}
-    {:success false
-     :error "Invalid input data or empty sequence."}))
+  ([input-data] (infer-schema input-data 10))
+  ([input-data max-enum-values]
+   (if (and (coll? input-data) (seq input-data))
+     (let [schema (mp/provide input-data)
+           refined-schema (infer-enums schema input-data max-enum-values)]
+       {:success true
+        :schema-str (pretty-print-str refined-schema)})
+     {:success false
+      :error "Invalid input data or empty sequence."})))
 
 (defn save-dataset-data
   "Parses generated data string back to data for saving.

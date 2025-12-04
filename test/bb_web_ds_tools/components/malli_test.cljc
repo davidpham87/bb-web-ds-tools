@@ -64,3 +64,27 @@
 
   (testing "Invalid schema"
     (is (not (:success (sut/transform-to-json-schema nil))))))
+
+(deftest infer-schema-enum-test
+  (testing "infer-schema uses max-enum-values to refine strings to enums"
+    (let [data [{:a "x"} {:a "y"} {:a "x"} {:a "z"}]
+          result (sut/infer-schema data)]
+      (is (:success result))
+      (let [schema (sut/read-edn (:schema-str result))]
+        (is (= :map (first schema)))
+        (let [entries (rest schema)
+              entry-a (first (filter #(= :a (first %)) entries))
+              val-schema (last entry-a)]
+           (is (= :enum (first val-schema)))
+           (is (= #{"x" "y" "z"} (set (rest val-schema))))))))
+
+  (testing "infer-schema respects max-enum-values limit"
+    (let [data [{:a "1"} {:a "2"} {:a "3"}]
+          ;; max-values 2. Distinct count 3. Should remain string.
+          result (sut/infer-schema data 2)
+          schema (sut/read-edn (:schema-str result))]
+      (is (:success result))
+      (let [entries (rest schema)
+            entry-a (first (filter #(= :a (first %)) entries))
+            val-schema (last entry-a)]
+         (is (or (= :string val-schema) (= 'string? val-schema)))))))
