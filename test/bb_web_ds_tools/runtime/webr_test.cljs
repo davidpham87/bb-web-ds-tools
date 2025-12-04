@@ -3,13 +3,14 @@
             [bb-web-ds-tools.runtime.webr :as webr]
             [portal.web :as p]))
 
-(def last-submit (atom nil))
+(def submitted (atom []))
 
 (defn mock-submit [val]
-  (reset! last-submit val))
+  (swap! submitted conj val))
 
 (def mock-result
   #js {:destroy (fn [])
+       :toJs (fn [] 42)
        :toString (fn [] "Result: 1 + 1")})
 
 (def mock-webr-proto
@@ -22,38 +23,44 @@
 
 (use-fixtures :each
   {:before (fn []
-             (reset! last-submit nil)
+             (reset! submitted [])
              (reset! webr/webr-instance nil))
    :after (fn [])})
 
 (deftest load-runtime-test
   (testing "WebR initialization"
     (let [orig-webr (when (exists? js/WebR) js/WebR)
-          orig-submit webr/submit-fn]
+          orig-submit p/submit]
       (set! js/WebR mock-WebR)
-      (set! webr/submit-fn mock-submit)
+      (set! p/submit mock-submit)
       (async done
         (webr/load-runtime-main
          (fn []
            (is (some? @webr/webr-instance))
            (set! js/WebR orig-webr)
-           (set! webr/submit-fn orig-submit)
+           (set! p/submit orig-submit)
            (done))
          (fn [err]
            (is (nil? err))
            (set! js/WebR orig-webr)
-           (set! webr/submit-fn orig-submit)
+           (set! p/submit orig-submit)
            (done)))))))
 
 (deftest eval-in-main-test
   (testing "WebR evaluation"
     (reset! webr/webr-instance mock-webr-proto)
-    (let [orig-submit webr/submit-fn]
-      (set! webr/submit-fn mock-submit)
+    (let [orig-submit p/submit]
+      (set! p/submit mock-submit)
       (async done
         (-> (webr/eval-in-main "1 + 1")
             (.then (fn []
-                     (is (= (:type @last-submit) :result))
-                     (is (= (:value @last-submit) "Result: 1 + 1"))
-                     (set! webr/submit-fn orig-submit)
-                     (done))))))))
+                     (is (some #(= (:type %) :code) @submitted) "Code should be submitted")
+                     (let [res (last @submitted)]
+                       (is (= (:type res) :result))
+                       (is (= (:value res) 42)))
+                     (set! p/submit orig-submit)
+                     (done)))
+            (.catch (fn [err]
+                      (is false (str "Evaluation failed: " err))
+                      (set! p/submit orig-submit)
+                      (done))))))))

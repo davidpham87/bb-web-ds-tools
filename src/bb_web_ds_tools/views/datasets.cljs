@@ -86,6 +86,24 @@
    {:active-id active-id
     :active-dataset active-dataset}))
 
+(rf/reg-sub
+ ::vega-datasets-list
+ :<- [::component-root]
+ (fn [root]
+   (:vega-datasets-list root)))
+
+(rf/reg-sub
+ ::loading-vega-list?
+ :<- [::component-root]
+ (fn [root]
+   (:loading-vega-list? root)))
+
+(rf/reg-sub
+ ::loading-vega-dataset?
+ :<- [::component-root]
+ (fn [root]
+   (:loading-vega-dataset? root)))
+
 (rf/reg-event-db
  ::set-active-dataset-id
  (fn [db [_ id]]
@@ -147,6 +165,58 @@
  (fn [db [_ id key value]]
    (assoc-in db [:user-input :datasets :items id :view-state key] value)))
 
+(rf/reg-event-fx
+ ::fetch-vega-datasets
+ (fn [{:keys [db]} _]
+   (-> (js/fetch "https://cdn.jsdelivr.net/npm/vega-datasets/data/")
+       (.then #(.text %))
+       (.then #(rf/dispatch [::receive-vega-datasets %]))
+       (.catch #(js/console.error "Failed to fetch vega datasets list" %)))
+   {:db (assoc-in db [::datasets :loading-vega-list?] true)}))
+
+(rf/reg-event-db
+ ::receive-vega-datasets
+ (fn [db [_ html-content]]
+   (let [parser (new js/DOMParser)
+         doc (.parseFromString parser html-content "text/html")
+         links (array-seq (.querySelectorAll doc "a"))
+         filenames (->> links
+                        (map #(.-innerText %))
+                        (filter #(re-find #"\.(json|csv|tsv|md)$" %))
+                        (sort)
+                        (distinct))]
+     (-> db
+         (assoc-in [::datasets :vega-datasets-list] filenames)
+         (assoc-in [::datasets :loading-vega-list?] false)))))
+
+(rf/reg-event-fx
+ ::fetch-vega-dataset
+ (fn [{:keys [db]} [_ filename]]
+   (let [url (str "https://cdn.jsdelivr.net/npm/vega-datasets@3/data/" filename)]
+     (-> (js/fetch url)
+         (.then #(.text %))
+         (.then #(rf/dispatch [::receive-vega-dataset-content filename %]))
+         (.catch #(js/console.error "Failed to fetch vega dataset" %)))
+     {:db (assoc-in db [::datasets :loading-vega-dataset?] true)})))
+
+(rf/reg-event-db
+ ::receive-vega-dataset-content
+ (fn [db [_ filename content]]
+   (let [extension (last (str/split filename #"\."))
+         format (case extension
+                  "json" :json
+                  "csv" :csv
+                  "tsv" :tsv
+                  "md" :markdown
+                  :csv)]
+     (-> db
+         (assoc-in [:user-input :datasets :new-dataset-state :text] content)
+         (assoc-in [:user-input :datasets :new-dataset-state :name] filename)
+         (assoc-in [:user-input :datasets :new-dataset-state :format] format)
+         (assoc-in [:user-input :datasets :new-dataset-state :structure]
+                   (if (#{:csv :tsv :markdown} format) :columnar :row-maps))
+         (assoc-in [::datasets :loading-vega-dataset?] false)))))
+
 ;; --- Helper Components ---
 
 (defn column-toggle-dropdown
@@ -181,7 +251,10 @@
   Returns:
     vector: A hiccup vector."
   []
-  (let [state (rf/subscribe [::new-dataset-state])]
+  (let [state (rf/subscribe [::new-dataset-state])
+        vega-list (rf/subscribe [::vega-datasets-list])
+        loading-list? (rf/subscribe [::loading-vega-list?])
+        loading-dataset? (rf/subscribe [::loading-vega-dataset?])]
     (fn []
       (let [{:keys [text structure] fmt :format name-val :name} @state
             structure (or structure :columnar)
@@ -197,17 +270,34 @@
                            :row-maps "Row (Maps)"
                            :row-arrays "Array (Arrays)"}]
 
+        (when (and (nil? @vega-list) (not @loading-list?))
+          (rf/dispatch [::fetch-vega-datasets]))
+
         [l/flex-col {:class "h-full space-y-4 p-4"}
          [l/flex-row {:class "justify-between items-center"}
           [:h3 {:class (str "text-xl font-bold " t/text-accent)} "Create New Dataset"]
-          [l/flex-row {:class "space-x-2"}
-           (for [f [:csv :tsv :json :edn :markdown]]
-             [c/button-xs {:key f
-                           :class (if (= fmt f) (str t/bg-button-primary " text-white") "")
-                           :on-click #(do (set-state :format f)
-                                          (when (#{:csv :tsv :markdown} f)
-                                            (set-state :structure :columnar)))}
-              (if (= f :markdown) "MD" (str/upper-case (name f)))])]]
+
+          [l/flex-row {:class "space-x-4 items-center"}
+           ;; Vega Dataset Selector
+           [l/flex-row {:class "items-center space-x-2"}
+            (if @loading-list?
+              [:span {:class "text-sm text-gray-500"} "Loading datasets..."]
+              [:select {:class (str "text-sm border rounded p-1 max-w-[150px] " t/bg-input " " t/text-primary " " t/border-default)
+                        :value ""
+                        :on-change #(when (not-empty (.. % -target -value))
+                                      (rf/dispatch [::fetch-vega-dataset (.. % -target -value)]))}
+               [:option {:value ""} "Select Example Data..."]
+               (for [ds @vega-list]
+                 [:option {:key ds :value ds} ds])])]
+
+           [l/flex-row {:class "space-x-2"}
+            (for [f [:csv :tsv :json :edn :markdown]]
+              [c/button-xs {:key f
+                            :class (if (= fmt f) (str t/bg-button-primary " text-white") "")
+                            :on-click #(do (set-state :format f)
+                                           (when (#{:csv :tsv :markdown} f)
+                                             (set-state :structure :columnar)))}
+               (if (= f :markdown) "MD" (str/upper-case (name f)))])]]]
 
          [c/input {:value dataset-name
                    :placeholder "Dataset Name"
@@ -227,7 +317,9 @@
 
           [l/flex-row {:class (str "space-x-2 text-sm " t/text-primary " items-center")}
            [c/button-info {:on-click #(set-state :text (dp/example-data fmt structure))}
-            "Load Example"]]
+            "Load Local Example"]
+           (when @loading-dataset?
+             [:span {:class "text-xs animate-pulse text-yellow-500"} "Fetching..."])]
 
           [:div {:class "flex-grow"}]
 
