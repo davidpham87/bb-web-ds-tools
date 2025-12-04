@@ -19,12 +19,12 @@ return webr.read().then((function (msg){
 var type = msg.type;
 var data = msg.data;
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(type,"stdout")){
-var G__43402_43417 = new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"stdout","stdout",-531490018),new cljs.core.Keyword(null,"text","text",-1790561697),data], null);
-(bb_web_ds_tools.runtime.webr.submit_fn.cljs$core$IFn$_invoke$arity$1 ? bb_web_ds_tools.runtime.webr.submit_fn.cljs$core$IFn$_invoke$arity$1(G__43402_43417) : bb_web_ds_tools.runtime.webr.submit_fn.call(null,G__43402_43417));
+var G__43404_43417 = new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"stdout","stdout",-531490018),new cljs.core.Keyword(null,"text","text",-1790561697),data], null);
+(bb_web_ds_tools.runtime.webr.submit_fn.cljs$core$IFn$_invoke$arity$1 ? bb_web_ds_tools.runtime.webr.submit_fn.cljs$core$IFn$_invoke$arity$1(G__43404_43417) : bb_web_ds_tools.runtime.webr.submit_fn.call(null,G__43404_43417));
 } else {
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(type,"stderr")){
-var G__43403_43418 = new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"stderr","stderr",-1571650309),new cljs.core.Keyword(null,"text","text",-1790561697),data], null);
-(bb_web_ds_tools.runtime.webr.submit_fn.cljs$core$IFn$_invoke$arity$1 ? bb_web_ds_tools.runtime.webr.submit_fn.cljs$core$IFn$_invoke$arity$1(G__43403_43418) : bb_web_ds_tools.runtime.webr.submit_fn.call(null,G__43403_43418));
+var G__43405_43418 = new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"stderr","stderr",-1571650309),new cljs.core.Keyword(null,"text","text",-1790561697),data], null);
+(bb_web_ds_tools.runtime.webr.submit_fn.cljs$core$IFn$_invoke$arity$1 ? bb_web_ds_tools.runtime.webr.submit_fn.cljs$core$IFn$_invoke$arity$1(G__43405_43418) : bb_web_ds_tools.runtime.webr.submit_fn.call(null,G__43405_43418));
 } else {
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(type,"closed")){
 } else {
@@ -39,8 +39,8 @@ return bb_web_ds_tools$runtime$webr$start_read_loop_$_loop_fn();
 return null;
 }
 })).catch((function (p1__43395_SHARP_){
-var G__43409 = new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"error","error",-978969032),new cljs.core.Keyword(null,"text","text",-1790561697),["WebR Read Error:",cljs.core.str.cljs$core$IFn$_invoke$arity$1(p1__43395_SHARP_)].join('')], null);
-return (bb_web_ds_tools.runtime.webr.submit_fn.cljs$core$IFn$_invoke$arity$1 ? bb_web_ds_tools.runtime.webr.submit_fn.cljs$core$IFn$_invoke$arity$1(G__43409) : bb_web_ds_tools.runtime.webr.submit_fn.call(null,G__43409));
+var G__43406 = new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"error","error",-978969032),new cljs.core.Keyword(null,"text","text",-1790561697),["WebR Read Error:",cljs.core.str.cljs$core$IFn$_invoke$arity$1(p1__43395_SHARP_)].join('')], null);
+return (bb_web_ds_tools.runtime.webr.submit_fn.cljs$core$IFn$_invoke$arity$1 ? bb_web_ds_tools.runtime.webr.submit_fn.cljs$core$IFn$_invoke$arity$1(G__43406) : bb_web_ds_tools.runtime.webr.submit_fn.call(null,G__43406));
 }));
 });
 return loop_fn();
@@ -68,8 +68,8 @@ bb_web_ds_tools.runtime.webr.start_read_loop(webr);
 
 return (on_ready.cljs$core$IFn$_invoke$arity$0 ? on_ready.cljs$core$IFn$_invoke$arity$0() : on_ready.call(null));
 })).catch((function (e){
-var G__43410 = ["WebR Init failed: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(e)].join('');
-return (on_error.cljs$core$IFn$_invoke$arity$1 ? on_error.cljs$core$IFn$_invoke$arity$1(G__43410) : on_error.call(null,G__43410));
+var G__43407 = ["WebR Init failed: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(e)].join('');
+return (on_error.cljs$core$IFn$_invoke$arity$1 ? on_error.cljs$core$IFn$_invoke$arity$1(G__43407) : on_error.call(null,G__43407));
 }));
 } else {
 return (on_error.cljs$core$IFn$_invoke$arity$1 ? on_error.cljs$core$IFn$_invoke$arity$1("WebR script not loaded") : on_error.call(null,"WebR script not loaded"));

@@ -231,7 +231,7 @@ return cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$4(day8.re_frame.test.tes
 });
 day8.re_frame.test._STAR_handling_STAR_ = false;
 day8.re_frame.test.run_test_sync_STAR_ = (function day8$re_frame$test$run_test_sync_STAR_(f){
-var restore_fn__59163__auto__ = re_frame.core.make_restore_fn();
+var restore_fn__59238__auto__ = re_frame.core.make_restore_fn();
 try{var my_queue = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(re_frame.interop.empty_queue);
 var new_dispatch = (function (argv){
 cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$3(my_queue,cljs.core.conj,argv);
@@ -272,7 +272,7 @@ try{return (f.cljs$core$IFn$_invoke$arity$0 ? f.cljs$core$IFn$_invoke$arity$0() 
 (re_frame.core.dispatch = dispatch_orig_val__59323);
 }}finally {day8.re_frame.test.clear_test_context();
 
-restore_fn__59163__auto__();
+restore_fn__59238__auto__();
 }});
 
 //# sourceMappingURL=day8.re_frame.test.js.map

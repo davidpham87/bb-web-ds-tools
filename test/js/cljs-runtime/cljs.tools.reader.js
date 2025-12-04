@@ -524,14 +524,14 @@ return cljs.tools.reader.impl.errors.throw_eof_reading.cljs$core$IFn$_invoke$ari
 var G__30417 = ch;
 switch (G__30417) {
 case "\\":
-var G__30529 = (function (){var G__30418 = sb;
+var G__30527 = (function (){var G__30418 = sb;
 G__30418.append(cljs.tools.reader.escape_char(sb,reader));
 
 return G__30418;
 })();
-var G__30530 = reader.cljs$tools$reader$reader_types$Reader$read_char$arity$1(null);
-sb = G__30529;
-ch = G__30530;
+var G__30529 = reader.cljs$tools$reader$reader_types$Reader$read_char$arity$1(null);
+sb = G__30527;
+ch = G__30529;
 continue;
 
 break;
@@ -909,18 +909,18 @@ var match = cljs.tools.reader.match_feature(first_line,rdr,opts,pending_forms);
 if((match === cljs.tools.reader.READ_FINISHED)){
 return cljs.tools.reader.READ_FINISHED;
 } else {
-var G__30540 = match;
-var G__30541 = null;
-matched = G__30540;
-finished = G__30541;
+var G__30537 = match;
+var G__30538 = null;
+matched = G__30537;
+finished = G__30538;
 continue;
 }
 } else {
 if((!((finished === cljs.tools.reader.READ_FINISHED)))){
-var G__30542 = matched;
-var G__30543 = cljs.tools.reader.read_suppress(first_line,rdr,opts,pending_forms);
-matched = G__30542;
-finished = G__30543;
+var G__30539 = matched;
+var G__30540 = cljs.tools.reader.read_suppress(first_line,rdr,opts,pending_forms);
+matched = G__30539;
+finished = G__30540;
 continue;
 } else {
 return matched;
@@ -1138,10 +1138,10 @@ if(s__$1){
 var item = cljs.core.first(s__$1);
 var ret = cljs.core.conj_BANG_.cljs$core$IFn$_invoke$arity$2(r,((cljs.tools.reader.unquote_QMARK_(item))?(new cljs.core.List(null,new cljs.core.Symbol("clojure.core","list","clojure.core/list",-1119203325,null),(new cljs.core.List(null,cljs.core.second(item),null,(1),null)),(2),null)):((cljs.tools.reader.unquote_splicing_QMARK_(item))?cljs.core.second(item):(new cljs.core.List(null,new cljs.core.Symbol("clojure.core","list","clojure.core/list",-1119203325,null),(new cljs.core.List(null,(cljs.tools.reader.syntax_quote_STAR_.cljs$core$IFn$_invoke$arity$1 ? cljs.tools.reader.syntax_quote_STAR_.cljs$core$IFn$_invoke$arity$1(item) : cljs.tools.reader.syntax_quote_STAR_.call(null,item)),null,(1),null)),(2),null))
 )));
-var G__30555 = cljs.core.next(s__$1);
-var G__30556 = ret;
-s__$1 = G__30555;
-r = G__30556;
+var G__30554 = cljs.core.next(s__$1);
+var G__30555 = ret;
+s__$1 = G__30554;
+r = G__30555;
 continue;
 } else {
 return cljs.core.seq(cljs.core.persistent_BANG_(r));
@@ -1158,10 +1158,10 @@ var key_vals = cljs.core.transient$(cljs.core.PersistentVector.EMPTY);
 while(true){
 if(s){
 var e = cljs.core.first(s);
-var G__30558 = cljs.core.next(s);
-var G__30559 = cljs.core.conj_BANG_.cljs$core$IFn$_invoke$arity$2(cljs.core.conj_BANG_.cljs$core$IFn$_invoke$arity$2(key_vals,cljs.core.key(e)),cljs.core.val(e));
-s = G__30558;
-key_vals = G__30559;
+var G__30556 = cljs.core.next(s);
+var G__30557 = cljs.core.conj_BANG_.cljs$core$IFn$_invoke$arity$2(cljs.core.conj_BANG_.cljs$core$IFn$_invoke$arity$2(key_vals,cljs.core.key(e)),cljs.core.val(e));
+s = G__30556;
+key_vals = G__30557;
 continue;
 } else {
 return cljs.core.seq(cljs.core.persistent_BANG_(key_vals));

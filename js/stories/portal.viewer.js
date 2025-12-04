@@ -354,8 +354,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
 (portal.viewer.pprint.cljs$lang$maxFixedArity = 2);
 
 portal.viewer.vega_lite = (function portal$viewer$vega_lite(var_args){
-var G__36604 = arguments.length;
-switch (G__36604) {
+var G__36603 = arguments.length;
+switch (G__36603) {
 case 1:
 return portal.viewer.vega_lite.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -381,8 +381,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
 (portal.viewer.vega_lite.cljs$lang$maxFixedArity = 2);
 
 portal.viewer.vega = (function portal$viewer$vega(var_args){
-var G__36606 = arguments.length;
-switch (G__36606) {
+var G__36605 = arguments.length;
+switch (G__36605) {
 case 1:
 return portal.viewer.vega.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -443,8 +443,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * For viewing highly nested values, such as hiccup.
  */
 portal.viewer.tree = (function portal$viewer$tree(var_args){
-var G__36615 = arguments.length;
-switch (G__36615) {
+var G__36610 = arguments.length;
+switch (G__36610) {
 case 1:
 return portal.viewer.tree.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -470,8 +470,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
 (portal.viewer.tree.cljs$lang$maxFixedArity = 2);
 
 portal.viewer.pr_str = (function portal$viewer$pr_str(var_args){
-var G__36619 = arguments.length;
-switch (G__36619) {
+var G__36612 = arguments.length;
+switch (G__36612) {
 case 1:
 return portal.viewer.pr_str.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -500,8 +500,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * Render a hiccup value as html via reagent.
  */
 portal.viewer.hiccup = (function portal$viewer$hiccup(var_args){
-var G__36624 = arguments.length;
-switch (G__36624) {
+var G__36619 = arguments.length;
+switch (G__36619) {
 case 1:
 return portal.viewer.hiccup.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -587,8 +587,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * Diff two strings.
  */
 portal.viewer.diff_text = (function portal$viewer$diff_text(var_args){
-var G__36634 = arguments.length;
-switch (G__36634) {
+var G__36630 = arguments.length;
+switch (G__36630) {
 case 1:
 return portal.viewer.diff_text.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -617,8 +617,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * View interlacing of stdout, stderr and tap values. Useful for build output.
  */
 portal.viewer.prepl = (function portal$viewer$prepl(var_args){
-var G__36636 = arguments.length;
-switch (G__36636) {
+var G__36632 = arguments.length;
+switch (G__36632) {
 case 1:
 return portal.viewer.prepl.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -677,8 +677,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * View binary data as a hexdump.
  */
 portal.viewer.bin = (function portal$viewer$bin(var_args){
-var G__36641 = arguments.length;
-switch (G__36641) {
+var G__36640 = arguments.length;
+switch (G__36640) {
 case 1:
 return portal.viewer.bin.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -707,8 +707,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * View a binary value as an image.
  */
 portal.viewer.image = (function portal$viewer$image(var_args){
-var G__36646 = arguments.length;
-switch (G__36646) {
+var G__36643 = arguments.length;
+switch (G__36643) {
 case 1:
 return portal.viewer.image.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -737,8 +737,8 @@ return portal.viewer.default$.cljs$core$IFn$_invoke$arity$3(value,new cljs.core.
  * View string as a text file.
  */
 portal.viewer.text = (function portal$viewer$text(var_args){
-var G__36648 = arguments.length;
-switch (G__36648) {
+var G__36646 = arguments.length;
+switch (G__36646) {
 case 1:
 return portal.viewer.text.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 

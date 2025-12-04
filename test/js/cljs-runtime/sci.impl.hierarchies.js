@@ -10,8 +10,8 @@ return x;
 }
 });
 sci.impl.hierarchies.derive_STAR_ = (function sci$impl$hierarchies$derive_STAR_(var_args){
-var G__36029 = arguments.length;
-switch (G__36029) {
+var G__36005 = arguments.length;
+switch (G__36005) {
 case 3:
 return sci.impl.hierarchies.derive_STAR_.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -27,9 +27,9 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 });
 
 (sci.impl.hierarchies.derive_STAR_.cljs$core$IFn$_invoke$arity$3 = (function (ctx,tag,parent){
-var tag_36052__$1 = sci.impl.hierarchies.__GT_tag(tag);
+var tag_36026__$1 = sci.impl.hierarchies.__GT_tag(tag);
 sci.impl.vars.alter_var_root.cljs$core$IFn$_invoke$arity$2(sci.impl.hierarchies.global_hierarchy(ctx),(function (h){
-return cljs.core.derive.cljs$core$IFn$_invoke$arity$3(h,tag_36052__$1,parent);
+return cljs.core.derive.cljs$core$IFn$_invoke$arity$3(h,tag_36026__$1,parent);
 }));
 
 return null;
@@ -43,8 +43,8 @@ return cljs.core.derive.cljs$core$IFn$_invoke$arity$3(h,tag__$1,parent);
 (sci.impl.hierarchies.derive_STAR_.cljs$lang$maxFixedArity = 4);
 
 sci.impl.hierarchies.underive_STAR_ = (function sci$impl$hierarchies$underive_STAR_(var_args){
-var G__36033 = arguments.length;
-switch (G__36033) {
+var G__36010 = arguments.length;
+switch (G__36010) {
 case 3:
 return sci.impl.hierarchies.underive_STAR_.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -60,9 +60,9 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 });
 
 (sci.impl.hierarchies.underive_STAR_.cljs$core$IFn$_invoke$arity$3 = (function (ctx,tag,parent){
-var tag_36056__$1 = sci.impl.hierarchies.__GT_tag(tag);
+var tag_36031__$1 = sci.impl.hierarchies.__GT_tag(tag);
 sci.impl.vars.alter_var_root.cljs$core$IFn$_invoke$arity$2(sci.impl.hierarchies.global_hierarchy(ctx),(function (h){
-return cljs.core.underive.cljs$core$IFn$_invoke$arity$3(h,tag_36056__$1,parent);
+return cljs.core.underive.cljs$core$IFn$_invoke$arity$3(h,tag_36031__$1,parent);
 }));
 
 return null;
@@ -76,8 +76,8 @@ return cljs.core.underive.cljs$core$IFn$_invoke$arity$3(h,tag__$1,parent);
 (sci.impl.hierarchies.underive_STAR_.cljs$lang$maxFixedArity = 4);
 
 sci.impl.hierarchies.isa_QMARK__STAR_ = (function sci$impl$hierarchies$isa_QMARK__STAR_(var_args){
-var G__36037 = arguments.length;
-switch (G__36037) {
+var G__36012 = arguments.length;
+switch (G__36012) {
 case 3:
 return sci.impl.hierarchies.isa_QMARK__STAR_.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -104,8 +104,8 @@ return cljs.core.isa_QMARK_.cljs$core$IFn$_invoke$arity$3(h,sci.impl.hierarchies
 (sci.impl.hierarchies.isa_QMARK__STAR_.cljs$lang$maxFixedArity = 4);
 
 sci.impl.hierarchies.ancestors_STAR_ = (function sci$impl$hierarchies$ancestors_STAR_(var_args){
-var G__36042 = arguments.length;
-switch (G__36042) {
+var G__36014 = arguments.length;
+switch (G__36014) {
 case 2:
 return sci.impl.hierarchies.ancestors_STAR_.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -132,8 +132,8 @@ return cljs.core.ancestors.cljs$core$IFn$_invoke$arity$2(h,tag);
 (sci.impl.hierarchies.ancestors_STAR_.cljs$lang$maxFixedArity = 3);
 
 sci.impl.hierarchies.descendants_STAR_ = (function sci$impl$hierarchies$descendants_STAR_(var_args){
-var G__36045 = arguments.length;
-switch (G__36045) {
+var G__36018 = arguments.length;
+switch (G__36018) {
 case 2:
 return sci.impl.hierarchies.descendants_STAR_.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -160,8 +160,8 @@ return cljs.core.descendants.cljs$core$IFn$_invoke$arity$2(h,tag);
 (sci.impl.hierarchies.descendants_STAR_.cljs$lang$maxFixedArity = 3);
 
 sci.impl.hierarchies.parents_STAR_ = (function sci$impl$hierarchies$parents_STAR_(var_args){
-var G__36047 = arguments.length;
-switch (G__36047) {
+var G__36021 = arguments.length;
+switch (G__36021) {
 case 2:
 return sci.impl.hierarchies.parents_STAR_.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 

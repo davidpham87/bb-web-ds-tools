@@ -58,20 +58,20 @@ return JSON.stringify(cljs.core.clj__GT_js(data),null,(2));
  */
 bb_web_ds_tools.components.malli.pretty_print_str = (function bb_web_ds_tools$components$malli$pretty_print_str(data){
 var sb__5670__auto__ = (new goog.string.StringBuffer());
-var _STAR_print_newline_STAR__orig_val__52415_52446 = cljs.core._STAR_print_newline_STAR_;
-var _STAR_print_fn_STAR__orig_val__52416_52447 = cljs.core._STAR_print_fn_STAR_;
-var _STAR_print_newline_STAR__temp_val__52417_52448 = true;
-var _STAR_print_fn_STAR__temp_val__52418_52449 = (function (x__5671__auto__){
+var _STAR_print_newline_STAR__orig_val__52440_52459 = cljs.core._STAR_print_newline_STAR_;
+var _STAR_print_fn_STAR__orig_val__52441_52460 = cljs.core._STAR_print_fn_STAR_;
+var _STAR_print_newline_STAR__temp_val__52442_52461 = true;
+var _STAR_print_fn_STAR__temp_val__52443_52462 = (function (x__5671__auto__){
 return sb__5670__auto__.append(x__5671__auto__);
 });
-(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__temp_val__52417_52448);
+(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__temp_val__52442_52461);
 
-(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__temp_val__52418_52449);
+(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__temp_val__52443_52462);
 
 try{cljs.pprint.pprint.cljs$core$IFn$_invoke$arity$1(data);
-}finally {(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__orig_val__52416_52447);
+}finally {(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__orig_val__52441_52460);
 
-(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__orig_val__52415_52446);
+(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__orig_val__52440_52459);
 }
 return cljs.core.str.cljs$core$IFn$_invoke$arity$1(sb__5670__auto__);
 });
@@ -89,9 +89,9 @@ if(clojure.string.blank_QMARK_(text)){
 return null;
 } else {
 try{return bb_web_ds_tools.components.malli.read_edn(text);
-}catch (e52419){var _ = e52419;
+}catch (e52444){var _ = e52444;
 try{return bb_web_ds_tools.components.malli.parse_json(text);
-}catch (e52420){var ___$1 = e52420;
+}catch (e52445){var ___$1 = e52445;
 return null;
 }}}
 });
@@ -107,7 +107,7 @@ return null;
 bb_web_ds_tools.components.malli.parse_schema_and_generate = (function bb_web_ds_tools$components$malli$parse_schema_and_generate(schema_text){
 try{var schema = bb_web_ds_tools.components.malli.read_edn(schema_text);
 return new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"success","success",1890645906),true,new cljs.core.Keyword(null,"schema","schema",-1582001791),schema], null);
-}catch (e52421){var e = e52421;
+}catch (e52446){var e = e52446;
 return new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"success","success",1890645906),false,new cljs.core.Keyword(null,"error","error",-978969032),["Invalid schema EDN: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.ex_message(e))].join('')], null);
 }});
 /**
@@ -126,9 +126,9 @@ if(cljs.core.truth_(schema)){
 var data = (((samples > (1)))?cljs.core.vec(cljs.core.repeatedly.cljs$core$IFn$_invoke$arity$2(samples,(function (){
 return malli.generator.generate.cljs$core$IFn$_invoke$arity$1(schema);
 }))):malli.generator.generate.cljs$core$IFn$_invoke$arity$1(schema));
-var output = (function (){var G__52426 = format;
-var G__52426__$1 = (((G__52426 instanceof cljs.core.Keyword))?G__52426.fqn:null);
-switch (G__52426__$1) {
+var output = (function (){var G__52450 = format;
+var G__52450__$1 = (((G__52450 instanceof cljs.core.Keyword))?G__52450.fqn:null);
+switch (G__52450__$1) {
 case "edn":
 return bb_web_ds_tools.components.malli.pretty_print_str(data);
 
@@ -174,18 +174,18 @@ return new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"su
  *  any: The parsed data or nil.
  */
 bb_web_ds_tools.components.malli.save_dataset_data = (function bb_web_ds_tools$components$malli$save_dataset_data(generated_data,format){
-var G__52430 = format;
-var G__52430__$1 = (((G__52430 instanceof cljs.core.Keyword))?G__52430.fqn:null);
-switch (G__52430__$1) {
+var G__52451 = format;
+var G__52451__$1 = (((G__52451 instanceof cljs.core.Keyword))?G__52451.fqn:null);
+switch (G__52451__$1) {
 case "edn":
 try{return bb_web_ds_tools.components.malli.read_edn(generated_data);
-}catch (e52431){var _ = e52431;
+}catch (e52452){var _ = e52452;
 return null;
 }
 break;
 case "json":
 try{return bb_web_ds_tools.components.malli.parse_json(generated_data);
-}catch (e52432){var _ = e52432;
+}catch (e52453){var _ = e52453;
 return null;
 }
 break;
@@ -233,7 +233,7 @@ return new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"su
 bb_web_ds_tools.components.malli.transform_to_json_schema = (function bb_web_ds_tools$components$malli$transform_to_json_schema(schema){
 if(cljs.core.truth_(schema)){
 try{return new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"success","success",1890645906),true,new cljs.core.Keyword(null,"json-schema","json-schema",389191695),bb_web_ds_tools.components.malli.generate_json(malli.json_schema.transform.cljs$core$IFn$_invoke$arity$1(schema))], null);
-}catch (e52433){var e = e52433;
+}catch (e52454){var e = e52454;
 return new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"success","success",1890645906),false,new cljs.core.Keyword(null,"error","error",-978969032),["Transformation failed: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.ex_message(e))].join('')], null);
 }} else {
 return new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"success","success",1890645906),false,new cljs.core.Keyword(null,"error","error",-978969032),"Invalid schema."], null);
@@ -248,13 +248,13 @@ return new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"su
  *     Returns:
  *       vector: A hiccup vector.
  */
-bb_web_ds_tools.components.malli.inference_panel = (function bb_web_ds_tools$components$malli$inference_panel(p__52434){
-var map__52435 = p__52434;
-var map__52435__$1 = cljs.core.__destructure_map(map__52435);
-var values = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52435__$1,new cljs.core.Keyword(null,"values","values",372645556));
-var handle_change = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52435__$1,new cljs.core.Keyword(null,"handle-change","handle-change",741134083));
-var on_infer = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52435__$1,new cljs.core.Keyword(null,"on-infer","on-infer",78181482));
-var inferred_schema = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52435__$1,new cljs.core.Keyword(null,"inferred-schema","inferred-schema",1558411545));
+bb_web_ds_tools.components.malli.inference_panel = (function bb_web_ds_tools$components$malli$inference_panel(p__52455){
+var map__52456 = p__52455;
+var map__52456__$1 = cljs.core.__destructure_map(map__52456);
+var values = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52456__$1,new cljs.core.Keyword(null,"values","values",372645556));
+var handle_change = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52456__$1,new cljs.core.Keyword(null,"handle-change","handle-change",741134083));
+var on_infer = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52456__$1,new cljs.core.Keyword(null,"on-infer","on-infer",78181482));
+var inferred_schema = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52456__$1,new cljs.core.Keyword(null,"inferred-schema","inferred-schema",1558411545));
 return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.card,cljs.core.PersistentArrayMap.EMPTY,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h3","h3",2067611163),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"text-xl font-semibold text-white mb-4 flex items-center gap-2"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"span","span",1394872991),"\uD83E\uDDE9"], null),"Schema Inference"], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"grid grid-cols-1 lg:grid-cols-2 gap-6"], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.label,"Input Data (EDN)"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.textarea,new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null,"value","value",305978217),cljs.core.get.cljs$core$IFn$_invoke$arity$2(values,"inference-input"),new cljs.core.Keyword(null,"name","name",1843675177),"inference-input",new cljs.core.Keyword(null,"placeholder","placeholder",-104873083),"{:user/name \"Alice\" :user/age 30}",new cljs.core.Keyword(null,"on-change","on-change",-732046149),handle_change,new cljs.core.Keyword(null,"class","class",-2030961996),"h-64"], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"mt-4"], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.button,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"on-click","on-click",1632826543),on_infer], null),"Infer Schema"], null)], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.label,"Inferred Schema"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.pre_block,new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"content","content",15833224),inferred_schema,new cljs.core.Keyword(null,"class","class",-2030961996),"h-64"], null)], null)], null)], null)], null)], null);
 });
 
@@ -267,13 +267,13 @@ return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMP
  *     Returns:
  *       vector: A hiccup vector.
  */
-bb_web_ds_tools.components.malli.generation_panel = (function bb_web_ds_tools$components$malli$generation_panel(p__52436){
-var map__52437 = p__52436;
-var map__52437__$1 = cljs.core.__destructure_map(map__52437);
-var values = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52437__$1,new cljs.core.Keyword(null,"values","values",372645556));
-var handle_change = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52437__$1,new cljs.core.Keyword(null,"handle-change","handle-change",741134083));
-var on_generate = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52437__$1,new cljs.core.Keyword(null,"on-generate","on-generate",-1231561477));
-var generated_data = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52437__$1,new cljs.core.Keyword(null,"generated-data","generated-data",-924406973));
+bb_web_ds_tools.components.malli.generation_panel = (function bb_web_ds_tools$components$malli$generation_panel(p__52457){
+var map__52458 = p__52457;
+var map__52458__$1 = cljs.core.__destructure_map(map__52458);
+var values = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52458__$1,new cljs.core.Keyword(null,"values","values",372645556));
+var handle_change = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52458__$1,new cljs.core.Keyword(null,"handle-change","handle-change",741134083));
+var on_generate = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52458__$1,new cljs.core.Keyword(null,"on-generate","on-generate",-1231561477));
+var generated_data = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52458__$1,new cljs.core.Keyword(null,"generated-data","generated-data",-924406973));
 return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.card,cljs.core.PersistentArrayMap.EMPTY,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h3","h3",2067611163),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"text-xl font-semibold text-white mb-4 flex items-center gap-2"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"span","span",1394872991),"\uD83C\uDFB2"], null),"Data Generation"], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"grid grid-cols-1 lg:grid-cols-2 gap-6"], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.label,"Schema (EDN)"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.textarea,new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null,"value","value",305978217),cljs.core.get.cljs$core$IFn$_invoke$arity$2(values,"schema-text"),new cljs.core.Keyword(null,"name","name",1843675177),"schema-text",new cljs.core.Keyword(null,"placeholder","placeholder",-104873083),"[:map [:x int?] [:y int?]]",new cljs.core.Keyword(null,"on-change","on-change",-732046149),handle_change,new cljs.core.Keyword(null,"class","class",-2030961996),"h-64"], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"mt-4"], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.button,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"on-click","on-click",1632826543),on_generate], null),"Generate Data"], null)], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.label,"Generated Data"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.pre_block,new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"content","content",15833224),generated_data,new cljs.core.Keyword(null,"class","class",-2030961996),"h-64"], null)], null)], null)], null)], null)], null);
 });
 

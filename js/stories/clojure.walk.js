@@ -85,10 +85,10 @@ return clojure.walk.walk(cljs.core.partial.cljs$core$IFn$_invoke$arity$2(clojure
  * Recursively transforms all map keys from strings to keywords.
  */
 clojure.walk.keywordize_keys = (function clojure$walk$keywordize_keys(m){
-var f = (function (p__21611){
-var vec__21612 = p__21611;
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__21612,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__21612,(1),null);
+var f = (function (p__21613){
+var vec__21614 = p__21613;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__21614,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__21614,(1),null);
 if(typeof k === 'string'){
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(k),v], null);
 } else {
@@ -107,10 +107,10 @@ return x;
  * Recursively transforms all map keys from keywords to strings.
  */
 clojure.walk.stringify_keys = (function clojure$walk$stringify_keys(m){
-var f = (function (p__21617){
-var vec__21618 = p__21617;
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__21618,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__21618,(1),null);
+var f = (function (p__21618){
+var vec__21619 = p__21618;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__21619,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__21619,(1),null);
 if((k instanceof cljs.core.Keyword)){
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.name(k),v], null);
 } else {

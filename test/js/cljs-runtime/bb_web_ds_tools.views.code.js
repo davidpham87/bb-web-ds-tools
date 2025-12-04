@@ -6,10 +6,10 @@ return db;
 return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(db,new cljs.core.Keyword("bb-web-ds-tools.views.code","active-tab","bb-web-ds-tools.views.code/active-tab",95275616),new cljs.core.Keyword(null,"clojure-repl","clojure-repl",-863277991));
 }
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.code","set-active-tab","bb-web-ds-tools.views.code/set-active-tab",-1083304053),(function (db,p__43453){
-var vec__43454 = p__43453;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43454,(0),null);
-var tab = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43454,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.code","set-active-tab","bb-web-ds-tools.views.code/set-active-tab",-1083304053),(function (db,p__43451){
+var vec__43452 = p__43451;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43452,(0),null);
+var tab = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43452,(1),null);
 return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(db,new cljs.core.Keyword("bb-web-ds-tools.views.code","active-tab","bb-web-ds-tools.views.code/active-tab",95275616),tab);
 }));
 re_frame.core.reg_sub.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword("bb-web-ds-tools.views.code","active-tab","bb-web-ds-tools.views.code/active-tab",95275616),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (db,_){
