@@ -10,9 +10,23 @@
             #?(:cljs [cljs.reader :as reader]
                :clj [clojure.edn :as reader])
             #?(:clj [cheshire.core :as json])
-            #?(:cljs [bb-web-ds-tools.components.common :as c])))
+            #?(:cljs [bb-web-ds-tools.components.common :as c])
+            #?(:cljs ["@js-joda/core" :as js-joda])))
 
 ;; Utils
+
+(defn compare-time
+  "Comparator for time objects (Java time or JS Joda).
+
+  Args:
+    a (any): First time object.
+    b (any): Second time object.
+
+  Returns:
+    int: Negative if a < b, positive if a > b, 0 if equal."
+  [a b]
+  #?(:cljs (.compareTo ^js a b)
+     :clj (compare a b)))
 
 (defn parse-int
   "Parses a string to an integer. Cross-platform.
@@ -239,6 +253,23 @@
                           (let [dates (filter inst? d)]
                             (if (seq dates)
                               (let [sorted (sort dates)
+                                    min-val (first sorted)
+                                    max-val (last sorted)
+                                    existing-props (if (and (vector? s) (map? (second s))) (second s) nil)
+                                    new-props (merge existing-props {:min min-val :max max-val})
+                                    new-schema (if (vector? s)
+                                                 (if (map? (second s))
+                                                   (assoc s 1 new-props)
+                                                   (into [(first s) new-props] (rest s)))
+                                                 [s new-props])]
+                                (assoc node :schema new-schema))
+                              node))
+
+                          ;; Min/Max Inference (Time Types)
+                          (#{:time/instant :time/local-date :time/local-date-time} s-type)
+                          (let [times (filter #(not (nil? %)) d)]
+                            (if (seq times)
+                              (let [sorted (sort compare-time times)
                                     min-val (first sorted)
                                     max-val (last sorted)
                                     existing-props (if (and (vector? s) (map? (second s))) (second s) nil)

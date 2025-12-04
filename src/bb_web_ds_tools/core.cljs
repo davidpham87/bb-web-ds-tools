@@ -22,6 +22,9 @@
    ;; [bb-web-ds-tools.views.workspaces :as workspaces]
    ;; [bb-web-ds-tools.workspaces.core :as ws]
    ;; [bb-web-ds-tools.workspaces.persistence :as wp]
+   [malli.core :as m]
+   [malli.registry :as mr]
+   [malli.experimental.time :as met]
    [re-frame.core :as rf]
    [reagent.dom :as rdom]
    [reitit.coercion.spec :as rss]
@@ -219,6 +222,12 @@
   Returns:
     nil: Performs side-effects to start the app."
   []
+  ;; Initialize Malli registry with time schemas
+  (mr/set-default-registry!
+   (mr/composite-registry
+    (m/default-schemas)
+    (met/schemas)))
+
   (rf/dispatch-sync [::initialize-db])
   ;; #_(rf/dispatch [::ws/init])
   ;; #_(rf/dispatch [::wp/init-persistence])

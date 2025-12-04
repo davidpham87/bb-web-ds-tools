@@ -3,6 +3,8 @@
     "version": "0.6.0",
     "private": true,
     "dependencies": {
+        "@js-joda/core": "^5.6.5",
+        "@js-joda/timezone": "^2.22.0",
         "@mediapipe/tasks-genai": "^0.10.25",
         "@sqlite.org/sqlite-wasm": "^3.51.1-build1",
         "monaco-editor": "^0.55.1",
