@@ -1,10 +1,13 @@
 (ns bb-web-ds-tools.views.vega-lite-test
-  (:require [cljs.test :refer-macros [deftest is testing]]
+  (:require [cljs.test :refer-macros [deftest is testing use-fixtures]]
             [re-frame.core :as rf]
             [day8.re-frame.test :as rf-test]
             [bb-web-ds-tools.views.vega-lite :as sut]
-            [bb-web-ds-tools.core :as core] ;; Require core to register subscriptions
-            [clojure.edn :as edn]))
+            [bb-web-ds-tools.core :as core]
+            [clojure.edn :as edn]
+            [bb-web-ds-tools.test-setup :as setup]))
+
+(use-fixtures :each setup/suppress-re-frame-warnings)
 
 (def sample-json "{\n  \"a\": 1\n}")
 
