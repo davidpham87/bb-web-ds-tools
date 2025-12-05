@@ -2,6 +2,11 @@
 
 All notable changes to a project will be documented in this file.
 
+## [0.8.0] - 2025-12-05
+
+### Added
+- Malli Time Schemas and Min/Max Inference (e029186).
+
 ## [0.7.0] - 2025-12-01
 
 ### Fixed
