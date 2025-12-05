@@ -2,7 +2,11 @@
   (:require [bb-web-ds-tools.components.common :as c]))
 
 (def changelog-data
-  [{:version "0.7.0"
+  [{:version "0.8.0"
+    :date "2025-12-05"
+    :sections [{:title "Added"
+                :items ["Malli Time Schemas and Min/Max Inference (e029186)."]}]}
+   {:version "0.7.0"
     :date "2025-12-01"
     :sections [{:title "Fixed"
                 :items ["Corrected a typo in the Gemma view (`gemma.cljs`) (5736b98)."]}
