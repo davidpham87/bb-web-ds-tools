@@ -1,7 +1,10 @@
 (ns bb-web-ds-tools.runtime-test
-  (:require [cljs.test :refer [deftest is testing async]]
+  (:require [cljs.test :refer [deftest is testing async use-fixtures]]
             [bb-web-ds-tools.runtime.sci :as sci]
-            [portal.web :as p]))
+            [portal.web :as p]
+            [bb-web-ds-tools.test-setup :as setup]))
+
+(use-fixtures :each setup/suppress-re-frame-warnings)
 
 (deftest test-sci-main-eval
   (testing "eval-in-main executes code"

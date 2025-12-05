@@ -1,7 +1,8 @@
 (ns bb-web-ds-tools.runtime.webr-test
   (:require [cljs.test :refer-macros [deftest is testing async use-fixtures]]
             [bb-web-ds-tools.runtime.webr :as webr]
-            [portal.web :as p]))
+            [portal.web :as p]
+            [bb-web-ds-tools.test-setup :as setup]))
 
 (def submitted (atom []))
 
@@ -22,6 +23,7 @@
   mock-webr-proto)
 
 (use-fixtures :each
+  setup/suppress-re-frame-warnings
   {:before (fn []
              (reset! submitted [])
              (reset! webr/webr-instance nil))
