@@ -35,8 +35,8 @@ return bb_web_ds_tools$runtime$webr$start_read_loop_$_loop_fn();
 } else {
 return null;
 }
-})).catch((function (p1__43403_SHARP_){
-return portal.web.submit(new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"error","error",-978969032),new cljs.core.Keyword(null,"text","text",-1790561697),["WebR Read Error:",cljs.core.str.cljs$core$IFn$_invoke$arity$1(p1__43403_SHARP_)].join('')], null));
+})).catch((function (p1__43401_SHARP_){
+return portal.web.submit(new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"error","error",-978969032),new cljs.core.Keyword(null,"text","text",-1790561697),["WebR Read Error:",cljs.core.str.cljs$core$IFn$_invoke$arity$1(p1__43401_SHARP_)].join('')], null));
 }));
 });
 return loop_fn();
@@ -86,7 +86,7 @@ if(cljs.core.truth_(cljs.core.deref(bb_web_ds_tools.runtime.webr.webr_instance))
 try{portal.web.submit(new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"code","code",1586293142),new cljs.core.Keyword(null,"text","text",-1790561697),code], null));
 
 return cljs.core.deref(bb_web_ds_tools.runtime.webr.webr_instance).evalR(code,cljs.core.clj__GT_js(new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"autoprint","autoprint",-1117415561),true], null))).then((function (res){
-try{var val_43408 = (function (){try{return cljs.core.js__GT_clj.cljs$core$IFn$_invoke$arity$variadic(res.toJs(),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"keywordize-keys","keywordize-keys",1310784252),true], 0));
+try{var val_43411 = (function (){try{return cljs.core.js__GT_clj.cljs$core$IFn$_invoke$arity$variadic(res.toJs(),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"keywordize-keys","keywordize-keys",1310784252),true], 0));
 }catch (e43407){if((e43407 instanceof Error)){
 var _ = e43407;
 return cljs.core.str.cljs$core$IFn$_invoke$arity$1(res);
@@ -95,7 +95,7 @@ throw e43407;
 
 }
 }})();
-portal.web.submit(new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"result","result",1415092211),new cljs.core.Keyword(null,"value","value",305978217),val_43408], null));
+portal.web.submit(new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"result","result",1415092211),new cljs.core.Keyword(null,"value","value",305978217),val_43411], null));
 
 return res.destroy();
 }catch (e43406){if((e43406 instanceof Error)){

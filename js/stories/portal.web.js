@@ -21,6 +21,7 @@ var module$shadow_js_shim_module$react_dom=$CLJS.module$shadow_js_shim_module$re
 var meta_merge=$CLJS.meta_merge || ($CLJS.meta_merge = {});
 var goog=$CLJS.goog || ($CLJS.goog = {});
 var reagent=$CLJS.reagent || ($CLJS.reagent = {});
+var module$shadow_js_shim_module$$js_joda$core=$CLJS.module$shadow_js_shim_module$$js_joda$core || ($CLJS.module$shadow_js_shim_module$$js_joda$core = {});
 var portal=$CLJS.portal || ($CLJS.portal = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contribution = {});
@@ -64,8 +65,8 @@ return cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$3(portal.runtime.default
  * Open a new inspector window.
  */
 portal.web.open = (function portal$web$open(var_args){
-var G__37651 = arguments.length;
-switch (G__37651) {
+var G__37722 = arguments.length;
+switch (G__37722) {
 case 0:
 return portal.web.open.cljs$core$IFn$_invoke$arity$0();
 
@@ -100,8 +101,8 @@ return portal.runtime.web.launcher.open(portal.web.rename(options));
  * - options: see `portal.web/open` for options.
  */
 portal.web.inspect = (function portal$web$inspect(var_args){
-var G__37722 = arguments.length;
-switch (G__37722) {
+var G__37752 = arguments.length;
+switch (G__37752) {
 case 1:
 return portal.web.inspect.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -158,8 +159,8 @@ return null;
  * Evaluate ClojureScript source given as a string in the UI runtime.
  */
 portal.web.eval_str = (function portal$web$eval_str(var_args){
-var G__37753 = arguments.length;
-switch (G__37753) {
+var G__37762 = arguments.length;
+switch (G__37762) {
 case 1:
 return portal.web.eval_str.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -180,11 +181,11 @@ return portal.web.eval_str.cljs$core$IFn$_invoke$arity$3(new cljs.core.Keyword(n
 
 (portal.web.eval_str.cljs$core$IFn$_invoke$arity$3 = (function (_portal,code,opts){
 var result = portal.runtime.web.launcher.eval_str(cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(opts,new cljs.core.Keyword(null,"code","code",1586293142),code));
-var G__37755 = result;
+var G__37767 = result;
 if(cljs.core.not(new cljs.core.Keyword(null,"verbose","verbose",1694226060).cljs$core$IFn$_invoke$arity$1(opts))){
-return new cljs.core.Keyword(null,"value","value",305978217).cljs$core$IFn$_invoke$arity$1(G__37755);
+return new cljs.core.Keyword(null,"value","value",305978217).cljs$core$IFn$_invoke$arity$1(G__37767);
 } else {
-return G__37755;
+return G__37767;
 }
 }));
 

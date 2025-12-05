@@ -15,6 +15,7 @@ var module$shadow_js_shim_module$react_dom=$CLJS.module$shadow_js_shim_module$re
 var meta_merge=$CLJS.meta_merge || ($CLJS.meta_merge = {});
 var goog=$CLJS.goog || ($CLJS.goog = {});
 var reagent=$CLJS.reagent || ($CLJS.reagent = {});
+var module$shadow_js_shim_module$$js_joda$core=$CLJS.module$shadow_js_shim_module$$js_joda$core || ($CLJS.module$shadow_js_shim_module$$js_joda$core = {});
 var portal=$CLJS.portal || ($CLJS.portal = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contribution = {});
@@ -37,13 +38,13 @@ clojure.string.reverse = (function clojure$string$reverse(s){
 return s.replace(clojure.string.re_surrogate_pair,"$2$1").split("").reverse().join("");
 });
 clojure.string.replace_all = (function clojure$string$replace_all(s,re,replacement){
-var r = (new RegExp(re.source,(function (){var G__21605 = "g";
-var G__21605__$1 = (cljs.core.truth_(re.ignoreCase)?[G__21605,"i"].join(''):G__21605);
-var G__21605__$2 = (cljs.core.truth_(re.multiline)?[G__21605__$1,"m"].join(''):G__21605__$1);
+var r = (new RegExp(re.source,(function (){var G__21607 = "g";
+var G__21607__$1 = (cljs.core.truth_(re.ignoreCase)?[G__21607,"i"].join(''):G__21607);
+var G__21607__$2 = (cljs.core.truth_(re.multiline)?[G__21607__$1,"m"].join(''):G__21607__$1);
 if(cljs.core.truth_(re.unicode)){
-return [G__21605__$2,"u"].join('');
+return [G__21607__$2,"u"].join('');
 } else {
-return G__21605__$2;
+return G__21607__$2;
 }
 })()));
 return s.replace(r,replacement);
@@ -145,8 +146,8 @@ return s.replace(match,replacement);
  *   separated by an optional separator.
  */
 clojure.string.join = (function clojure$string$join(var_args){
-var G__21622 = arguments.length;
-switch (G__21622) {
+var G__21618 = arguments.length;
+switch (G__21618) {
 case 1:
 return clojure.string.join.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 

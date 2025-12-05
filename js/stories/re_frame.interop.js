@@ -17,6 +17,7 @@ var module$shadow_js_shim_module$react_dom=$CLJS.module$shadow_js_shim_module$re
 var meta_merge=$CLJS.meta_merge || ($CLJS.meta_merge = {});
 var goog=$CLJS.goog || ($CLJS.goog = {});
 var reagent=$CLJS.reagent || ($CLJS.reagent = {});
+var module$shadow_js_shim_module$$js_joda$core=$CLJS.module$shadow_js_shim_module$$js_joda$core || ($CLJS.module$shadow_js_shim_module$$js_joda$core = {});
 var portal=$CLJS.portal || ($CLJS.portal = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contribution = {});
@@ -30,7 +31,7 @@ $CLJS.SHADOW_ENV.setLoaded("re_frame.interop.js");
 goog.provide('re_frame.interop');
 re_frame.interop.on_load = (function re_frame$interop$on_load(listener){
 try{return goog.events.listen(self,"load",listener);
-}catch (e22774){var _ = e22774;
+}catch (e23022){var _ = e23022;
 return null;
 }});
 re_frame.interop.next_tick = goog.async.nextTick;
@@ -98,18 +99,18 @@ return Date.now();
  */
 re_frame.interop.reagent_id = (function re_frame$interop$reagent_id(reactive_val){
 if((((!((reactive_val == null))))?((((false) || ((cljs.core.PROTOCOL_SENTINEL === reactive_val.reagent$ratom$IReactiveAtom$))))?true:false):false)){
-return [(function (){var pred__22848 = cljs.core.instance_QMARK_;
-var expr__22849 = reactive_val;
-if(cljs.core.truth_((pred__22848.cljs$core$IFn$_invoke$arity$2 ? pred__22848.cljs$core$IFn$_invoke$arity$2(reagent.ratom.RAtom,expr__22849) : pred__22848.call(null,reagent.ratom.RAtom,expr__22849)))){
+return [(function (){var pred__23055 = cljs.core.instance_QMARK_;
+var expr__23056 = reactive_val;
+if(cljs.core.truth_((pred__23055.cljs$core$IFn$_invoke$arity$2 ? pred__23055.cljs$core$IFn$_invoke$arity$2(reagent.ratom.RAtom,expr__23056) : pred__23055.call(null,reagent.ratom.RAtom,expr__23056)))){
 return "ra";
 } else {
-if(cljs.core.truth_((pred__22848.cljs$core$IFn$_invoke$arity$2 ? pred__22848.cljs$core$IFn$_invoke$arity$2(reagent.ratom.RCursor,expr__22849) : pred__22848.call(null,reagent.ratom.RCursor,expr__22849)))){
+if(cljs.core.truth_((pred__23055.cljs$core$IFn$_invoke$arity$2 ? pred__23055.cljs$core$IFn$_invoke$arity$2(reagent.ratom.RCursor,expr__23056) : pred__23055.call(null,reagent.ratom.RCursor,expr__23056)))){
 return "rc";
 } else {
-if(cljs.core.truth_((pred__22848.cljs$core$IFn$_invoke$arity$2 ? pred__22848.cljs$core$IFn$_invoke$arity$2(reagent.ratom.Reaction,expr__22849) : pred__22848.call(null,reagent.ratom.Reaction,expr__22849)))){
+if(cljs.core.truth_((pred__23055.cljs$core$IFn$_invoke$arity$2 ? pred__23055.cljs$core$IFn$_invoke$arity$2(reagent.ratom.Reaction,expr__23056) : pred__23055.call(null,reagent.ratom.Reaction,expr__23056)))){
 return "rx";
 } else {
-if(cljs.core.truth_((pred__22848.cljs$core$IFn$_invoke$arity$2 ? pred__22848.cljs$core$IFn$_invoke$arity$2(reagent.ratom.Track,expr__22849) : pred__22848.call(null,reagent.ratom.Track,expr__22849)))){
+if(cljs.core.truth_((pred__23055.cljs$core$IFn$_invoke$arity$2 ? pred__23055.cljs$core$IFn$_invoke$arity$2(reagent.ratom.Track,expr__23056) : pred__23055.call(null,reagent.ratom.Track,expr__23056)))){
 return "tr";
 } else {
 return "other";

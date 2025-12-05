@@ -18,6 +18,7 @@ var module$shadow_js_shim_module$react_dom=$CLJS.module$shadow_js_shim_module$re
 var meta_merge=$CLJS.meta_merge || ($CLJS.meta_merge = {});
 var goog=$CLJS.goog || ($CLJS.goog = {});
 var reagent=$CLJS.reagent || ($CLJS.reagent = {});
+var module$shadow_js_shim_module$$js_joda$core=$CLJS.module$shadow_js_shim_module$$js_joda$core || ($CLJS.module$shadow_js_shim_module$$js_joda$core = {});
 var portal=$CLJS.portal || ($CLJS.portal = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contribution = {});
@@ -38,12 +39,12 @@ goog.provide('bb_web_ds_tools.views.landing');
  *   Returns:
  *  vector: A hiccup vector.
  */
-bb_web_ds_tools.views.landing.nav_card = (function bb_web_ds_tools$views$landing$nav_card(p__24937){
-var map__24938 = p__24937;
-var map__24938__$1 = cljs.core.__destructure_map(map__24938);
-var label = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24938__$1,new cljs.core.Keyword(null,"label","label",1718410804));
-var route = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24938__$1,new cljs.core.Keyword(null,"route","route",329891309));
-var icon = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24938__$1,new cljs.core.Keyword(null,"icon","icon",1679606541));
+bb_web_ds_tools.views.landing.nav_card = (function bb_web_ds_tools$views$landing$nav_card(p__24936){
+var map__24937 = p__24936;
+var map__24937__$1 = cljs.core.__destructure_map(map__24937);
+var label = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24937__$1,new cljs.core.Keyword(null,"label","label",1718410804));
+var route = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24937__$1,new cljs.core.Keyword(null,"route","route",329891309));
+var icon = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24937__$1,new cljs.core.Keyword(null,"icon","icon",1679606541));
 return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.card,new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"class","class",-2030961996),["flex flex-col items-center justify-center p-6 text-center ","cursor-pointer transition-transform transform hover:scale-105 ",bb_web_ds_tools.theme.bg_item_hover].join(''),new cljs.core.Keyword(null,"on-click","on-click",1632826543),(function (){
 return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.core","navigate","bb-web-ds-tools.core/navigate",-787989557),route,null,null], null));
 })], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"text-4xl mb-2"], null),icon], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"span","span",1394872991),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"font-semibold"], null),label], null)], null);

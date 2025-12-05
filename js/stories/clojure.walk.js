@@ -15,6 +15,7 @@ var module$shadow_js_shim_module$react_dom=$CLJS.module$shadow_js_shim_module$re
 var meta_merge=$CLJS.meta_merge || ($CLJS.meta_merge = {});
 var goog=$CLJS.goog || ($CLJS.goog = {});
 var reagent=$CLJS.reagent || ($CLJS.reagent = {});
+var module$shadow_js_shim_module$$js_joda$core=$CLJS.module$shadow_js_shim_module$$js_joda$core || ($CLJS.module$shadow_js_shim_module$$js_joda$core = {});
 var portal=$CLJS.portal || ($CLJS.portal = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contribution = {});
@@ -38,10 +39,10 @@ var G__21603 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.list,cljs
 return (outer.cljs$core$IFn$_invoke$arity$1 ? outer.cljs$core$IFn$_invoke$arity$1(G__21603) : outer.call(null,G__21603));
 } else {
 if(cljs.core.map_entry_QMARK_(form)){
-var G__21604 = (new cljs.core.MapEntry((function (){var G__21606 = cljs.core.key(form);
+var G__21604 = (new cljs.core.MapEntry((function (){var G__21605 = cljs.core.key(form);
+return (inner.cljs$core$IFn$_invoke$arity$1 ? inner.cljs$core$IFn$_invoke$arity$1(G__21605) : inner.call(null,G__21605));
+})(),(function (){var G__21606 = cljs.core.val(form);
 return (inner.cljs$core$IFn$_invoke$arity$1 ? inner.cljs$core$IFn$_invoke$arity$1(G__21606) : inner.call(null,G__21606));
-})(),(function (){var G__21607 = cljs.core.val(form);
-return (inner.cljs$core$IFn$_invoke$arity$1 ? inner.cljs$core$IFn$_invoke$arity$1(G__21607) : inner.call(null,G__21607));
 })(),null));
 return (outer.cljs$core$IFn$_invoke$arity$1 ? outer.cljs$core$IFn$_invoke$arity$1(G__21604) : outer.call(null,G__21604));
 } else {
@@ -107,10 +108,10 @@ return x;
  * Recursively transforms all map keys from keywords to strings.
  */
 clojure.walk.stringify_keys = (function clojure$walk$stringify_keys(m){
-var f = (function (p__21617){
-var vec__21618 = p__21617;
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__21618,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__21618,(1),null);
+var f = (function (p__21619){
+var vec__21620 = p__21619;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__21620,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__21620,(1),null);
 if((k instanceof cljs.core.Keyword)){
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.name(k),v], null);
 } else {
