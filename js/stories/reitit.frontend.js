@@ -44,8 +44,8 @@ return cljs.core.vec(vs);
  */
 reitit.frontend.query_params = (function reitit$frontend$query_params(uri){
 var q = uri.getQueryData();
-return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentArrayMap.EMPTY,cljs.core.map.cljs$core$IFn$_invoke$arity$2(cljs.core.juxt.cljs$core$IFn$_invoke$arity$2(cljs.core.keyword,(function (p1__36461_SHARP_){
-return reitit.frontend.query_param(q,p1__36461_SHARP_);
+return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentArrayMap.EMPTY,cljs.core.map.cljs$core$IFn$_invoke$arity$2(cljs.core.juxt.cljs$core$IFn$_invoke$arity$2(cljs.core.keyword,(function (p1__36458_SHARP_){
+return reitit.frontend.query_param(q,p1__36458_SHARP_);
 })),q.getKeys()));
 });
 /**
@@ -68,8 +68,8 @@ return uri.toString();
  *   optional fragment string.
  */
 reitit.frontend.match__GT_path = (function reitit$frontend$match__GT_path(var_args){
-var G__36469 = arguments.length;
-switch (G__36469) {
+var G__36467 = arguments.length;
+switch (G__36467) {
 case 1:
 return reitit.frontend.match__GT_path.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -100,7 +100,7 @@ return reitit.frontend.match__GT_path.cljs$core$IFn$_invoke$arity$3(match,query_
 var temp__5825__auto__ = reitit.core.match__GT_path.cljs$core$IFn$_invoke$arity$2(match,query_params);
 if(cljs.core.truth_(temp__5825__auto__)){
 var path = temp__5825__auto__;
-var G__36471 = path;
+var G__36468 = path;
 if(cljs.core.truth_((function (){var and__5023__auto__ = fragment;
 if(cljs.core.truth_(and__5023__auto__)){
 return cljs.core.seq(fragment);
@@ -108,9 +108,9 @@ return cljs.core.seq(fragment);
 return and__5023__auto__;
 }
 })())){
-return [cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__36471),"#",reitit.impl.form_encode(fragment)].join('');
+return [cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__36468),"#",reitit.impl.form_encode(fragment)].join('');
 } else {
-return G__36471;
+return G__36468;
 }
 } else {
 return null;
@@ -221,8 +221,8 @@ return reitit.core.match_by_name(router,name,path_params);
  *   Enables request coercion. See [[reitit.core/router]] for details on options.
  */
 reitit.frontend.router = (function reitit$frontend$router(var_args){
-var G__36483 = arguments.length;
-switch (G__36483) {
+var G__36482 = arguments.length;
+switch (G__36482) {
 case 1:
 return reitit.frontend.router.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 

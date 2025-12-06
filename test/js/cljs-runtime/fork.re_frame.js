@@ -32,23 +32,23 @@ return G__43314__$1;
 }
 }));
 re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("fork.re-frame","server-set-waiting","fork.re-frame/server-set-waiting",-1277872097),(function (db,p__43315){
-var vec__43316 = p__43315;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43316,(0),null);
-var path = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43316,(1),null);
-var input_key = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43316,(2),null);
-var bool = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43316,(3),null);
+var vec__43318 = p__43315;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43318,(0),null);
+var path = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43318,(1),null);
+var input_key = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43318,(2),null);
+var bool = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43318,(3),null);
 return cljs.core.assoc_in(db,cljs.core.concat.cljs$core$IFn$_invoke$arity$2(path,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"server","server",1499190120),input_key,new cljs.core.Keyword(null,"waiting?","waiting?",-2117257215)], null)),bool);
 }));
-re_frame.core.reg_sub.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword("fork.re-frame","db","fork.re-frame/db",503486154),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (db,p__43319){
-var vec__43320 = p__43319;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43320,(0),null);
-var path = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43320,(1),null);
-return cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(db,path);
-})], 0));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("fork.re-frame","clean","fork.re-frame/clean",-448599170),(function (db,p__43323){
+re_frame.core.reg_sub.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword("fork.re-frame","db","fork.re-frame/db",503486154),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (db,p__43323){
 var vec__43324 = p__43323;
 var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43324,(0),null);
 var path = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43324,(1),null);
+return cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(db,path);
+})], 0));
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("fork.re-frame","clean","fork.re-frame/clean",-448599170),(function (db,p__43327){
+var vec__43328 = p__43327;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43328,(0),null);
+var path = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43328,(1),null);
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2((1),cljs.core.count(path))){
 return cljs.core.dissoc.cljs$core$IFn$_invoke$arity$2(db,cljs.core.first(path));
 } else {
@@ -89,42 +89,88 @@ while (G__43357__i < G__43357__a.length) {G__43357__a[G__43357__i] = arguments[G
 } 
 return G__43356__delegate.call(this,ks);};
 G__43356.cljs$lang$maxFixedArity = 0;
-G__43356.cljs$lang$applyTo = (function (arglist__43361){
-var ks = cljs.core.seq(arglist__43361);
+G__43356.cljs$lang$applyTo = (function (arglist__43358){
+var ks = cljs.core.seq(arglist__43358);
 return G__43356__delegate(ks);
 });
 G__43356.cljs$core$IFn$_invoke$arity$variadic = G__43356__delegate;
 return G__43356;
 })()
-,(function (p1__43333_SHARP_){
-return fork.core.handle_blur(p1__43333_SHARP_,state);
-}),(function (p1__43327_SHARP_){
-return fork.core.set_values(p1__43327_SHARP_,state);
-}),(function (p1__43332_SHARP_){
-return fork.core.handle_change(p1__43332_SHARP_,state);
+,(function (p1__43337_SHARP_){
+return fork.core.handle_blur(p1__43337_SHARP_,state);
+}),(function (p1__43331_SHARP_){
+return fork.core.set_values(p1__43331_SHARP_,state);
+}),(function (p1__43336_SHARP_){
+return fork.core.handle_change(p1__43336_SHARP_,state);
 }),(function() { 
-var G__43371__delegate = function (ks){
+var G__43359__delegate = function (ks){
 return fork.core.enable.cljs$core$IFn$_invoke$arity$variadic(state,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([ks], 0));
 };
-var G__43371 = function (var_args){
+var G__43359 = function (var_args){
 var ks = null;
 if (arguments.length > 0) {
-var G__43372__i = 0, G__43372__a = new Array(arguments.length -  0);
-while (G__43372__i < G__43372__a.length) {G__43372__a[G__43372__i] = arguments[G__43372__i + 0]; ++G__43372__i;}
-  ks = new cljs.core.IndexedSeq(G__43372__a,0,null);
+var G__43360__i = 0, G__43360__a = new Array(arguments.length -  0);
+while (G__43360__i < G__43360__a.length) {G__43360__a[G__43360__i] = arguments[G__43360__i + 0]; ++G__43360__i;}
+  ks = new cljs.core.IndexedSeq(G__43360__a,0,null);
 } 
-return G__43371__delegate.call(this,ks);};
-G__43371.cljs$lang$maxFixedArity = 0;
-G__43371.cljs$lang$applyTo = (function (arglist__43373){
-var ks = cljs.core.seq(arglist__43373);
-return G__43371__delegate(ks);
+return G__43359__delegate.call(this,ks);};
+G__43359.cljs$lang$maxFixedArity = 0;
+G__43359.cljs$lang$applyTo = (function (arglist__43361){
+var ks = cljs.core.seq(arglist__43361);
+return G__43359__delegate(ks);
 });
-G__43371.cljs$core$IFn$_invoke$arity$variadic = G__43371__delegate;
-return G__43371;
+G__43359.cljs$core$IFn$_invoke$arity$variadic = G__43359__delegate;
+return G__43359;
 })()
 ,(function() { 
-var G__43374__delegate = function (ks){
+var G__43362__delegate = function (ks){
 return fork.core.set_untouched(ks,state);
+};
+var G__43362 = function (var_args){
+var ks = null;
+if (arguments.length > 0) {
+var G__43363__i = 0, G__43363__a = new Array(arguments.length -  0);
+while (G__43363__i < G__43363__a.length) {G__43363__a[G__43363__i] = arguments[G__43363__i + 0]; ++G__43363__i;}
+  ks = new cljs.core.IndexedSeq(G__43363__a,0,null);
+} 
+return G__43362__delegate.call(this,ks);};
+G__43362.cljs$lang$maxFixedArity = 0;
+G__43362.cljs$lang$applyTo = (function (arglist__43364){
+var ks = cljs.core.seq(arglist__43364);
+return G__43362__delegate(ks);
+});
+G__43362.cljs$core$IFn$_invoke$arity$variadic = G__43362__delegate;
+return G__43362;
+})()
+,(function() { 
+var G__43365__delegate = function (p__43342){
+var vec__43343 = p__43342;
+var m = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43343,(0),null);
+cljs.core.reset_BANG_(state,cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(cljs.core.truth_(new cljs.core.Keyword(null,"keywordize-keys","keywordize-keys",1310784252).cljs$core$IFn$_invoke$arity$1(props))?new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"keywordize-keys","keywordize-keys",1310784252),true], null):null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"values","values",372645556),cljs.core.PersistentArrayMap.EMPTY,new cljs.core.Keyword(null,"touched","touched",-609134419),cljs.core.PersistentHashSet.EMPTY], null),m], 0)));
+
+return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("fork.re-frame","clean","fork.re-frame/clean",-448599170),path], null));
+};
+var G__43365 = function (var_args){
+var p__43342 = null;
+if (arguments.length > 0) {
+var G__43366__i = 0, G__43366__a = new Array(arguments.length -  0);
+while (G__43366__i < G__43366__a.length) {G__43366__a[G__43366__i] = arguments[G__43366__i + 0]; ++G__43366__i;}
+  p__43342 = new cljs.core.IndexedSeq(G__43366__a,0,null);
+} 
+return G__43365__delegate.call(this,p__43342);};
+G__43365.cljs$lang$maxFixedArity = 0;
+G__43365.cljs$lang$applyTo = (function (arglist__43367){
+var p__43342 = cljs.core.seq(arglist__43367);
+return G__43365__delegate(p__43342);
+});
+G__43365.cljs$core$IFn$_invoke$arity$variadic = G__43365__delegate;
+return G__43365;
+})()
+,(function (p1__43335_SHARP_){
+return fork.core.set_handle_blur(p1__43335_SHARP_,state);
+}),(function() { 
+var G__43374__delegate = function (ks){
+return fork.core.set_touched(ks,state);
 };
 var G__43374 = function (var_args){
 var ks = null;
@@ -142,64 +188,18 @@ return G__43374__delegate(ks);
 G__43374.cljs$core$IFn$_invoke$arity$variadic = G__43374__delegate;
 return G__43374;
 })()
-,(function() { 
-var G__43377__delegate = function (p__43342){
-var vec__43343 = p__43342;
-var m = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43343,(0),null);
-cljs.core.reset_BANG_(state,cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(cljs.core.truth_(new cljs.core.Keyword(null,"keywordize-keys","keywordize-keys",1310784252).cljs$core$IFn$_invoke$arity$1(props))?new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"keywordize-keys","keywordize-keys",1310784252),true], null):null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"values","values",372645556),cljs.core.PersistentArrayMap.EMPTY,new cljs.core.Keyword(null,"touched","touched",-609134419),cljs.core.PersistentHashSet.EMPTY], null),m], 0)));
-
-return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("fork.re-frame","clean","fork.re-frame/clean",-448599170),path], null));
-};
-var G__43377 = function (var_args){
-var p__43342 = null;
-if (arguments.length > 0) {
-var G__43389__i = 0, G__43389__a = new Array(arguments.length -  0);
-while (G__43389__i < G__43389__a.length) {G__43389__a[G__43389__i] = arguments[G__43389__i + 0]; ++G__43389__i;}
-  p__43342 = new cljs.core.IndexedSeq(G__43389__a,0,null);
-} 
-return G__43377__delegate.call(this,p__43342);};
-G__43377.cljs$lang$maxFixedArity = 0;
-G__43377.cljs$lang$applyTo = (function (arglist__43390){
-var p__43342 = cljs.core.seq(arglist__43390);
-return G__43377__delegate(p__43342);
-});
-G__43377.cljs$core$IFn$_invoke$arity$variadic = G__43377__delegate;
-return G__43377;
-})()
-,(function (p1__43331_SHARP_){
-return fork.core.set_handle_blur(p1__43331_SHARP_,state);
-}),(function() { 
-var G__43391__delegate = function (ks){
-return fork.core.set_touched(ks,state);
-};
-var G__43391 = function (var_args){
-var ks = null;
-if (arguments.length > 0) {
-var G__43392__i = 0, G__43392__a = new Array(arguments.length -  0);
-while (G__43392__i < G__43392__a.length) {G__43392__a[G__43392__i] = arguments[G__43392__i + 0]; ++G__43392__i;}
-  ks = new cljs.core.IndexedSeq(G__43392__a,0,null);
-} 
-return G__43391__delegate.call(this,ks);};
-G__43391.cljs$lang$maxFixedArity = 0;
-G__43391.cljs$lang$applyTo = (function (arglist__43393){
-var ks = cljs.core.seq(arglist__43393);
-return G__43391__delegate(ks);
-});
-G__43391.cljs$core$IFn$_invoke$arity$variadic = G__43391__delegate;
-return G__43391;
-})()
 ,(function (k){
 return fork.core.touched(state,k);
-}),(function (p1__43329_SHARP_){
-return fork.core.normalize_name(p1__43329_SHARP_,props);
+}),(function (p1__43333_SHARP_){
+return fork.core.normalize_name(p1__43333_SHARP_,props);
 }),(function (config,callback){
 return fork.core.send_server_request(callback,cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([config,props,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"path","path",-188191168),path,new cljs.core.Keyword(null,"state","state",-1988618099),state,new cljs.core.Keyword(null,"server-dispatch-logic","server-dispatch-logic",-465441551),(function (){
 return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("fork.re-frame","server-dispatch-logic","fork.re-frame/server-dispatch-logic",-1023921676),config,path], null));
 })], null)], 0)));
-}),(function (p1__43330_SHARP_){
-return fork.core.set_handle_change(p1__43330_SHARP_,state);
-}),(function (p1__43328_SHARP_){
-return fork.core.disabled_QMARK_(state,p1__43328_SHARP_);
+}),(function (p1__43334_SHARP_){
+return fork.core.set_handle_change(p1__43334_SHARP_,state);
+}),(function (p1__43332_SHARP_){
+return fork.core.disabled_QMARK_(state,p1__43332_SHARP_);
 })]);
 return reagent.core.create_class.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"component-did-mount","component-did-mount",-1126910518),(function (){
 var temp__5825__auto__ = new cljs.core.Keyword(null,"component-did-mount","component-did-mount",-1126910518).cljs$core$IFn$_invoke$arity$1(props);
@@ -227,8 +227,8 @@ return null;
 })();
 var server_validation = fork.core.resolve_server_validation(new cljs.core.Keyword(null,"server","server",1499190120).cljs$core$IFn$_invoke$arity$1(db));
 var on_submit_server_message = new cljs.core.Keyword(null,"server-message","server-message",-678695903).cljs$core$IFn$_invoke$arity$1(db);
-return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [component,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"disable","disable",1717637504),new cljs.core.Keyword(null,"path","path",-188191168),new cljs.core.Keyword(null,"handle-blur","handle-blur",-546639264),new cljs.core.Keyword(null,"dirty","dirty",729553281),new cljs.core.Keyword(null,"errors","errors",-908790718),new cljs.core.Keyword(null,"set-values","set-values",-928640446),new cljs.core.Keyword(null,"handle-change","handle-change",741134083),new cljs.core.Keyword(null,"enable","enable",-1839114332),new cljs.core.Keyword(null,"set-untouched","set-untouched",922972645),new cljs.core.Keyword(null,"handle-submit","handle-submit",1732326917),new cljs.core.Keyword(null,"successful-submissions","successful-submissions",-961073531),new cljs.core.Keyword(null,"submitting?","submitting?",1281507942),new cljs.core.Keyword(null,"reset","reset",-800929946),new cljs.core.Keyword(null,"db","db",993250759),new cljs.core.Keyword(null,"set-handle-blur","set-handle-blur",1284701225),new cljs.core.Keyword(null,"attempted-submissions","attempted-submissions",2035303435),new cljs.core.Keyword(null,"set-touched","set-touched",-443889429),new cljs.core.Keyword(null,"state","state",-1988618099),new cljs.core.Keyword(null,"touched","touched",-609134419),new cljs.core.Keyword(null,"normalize-name","normalize-name",-510567633),new cljs.core.Keyword(null,"on-submit-server-message","on-submit-server-message",-1306531376),new cljs.core.Keyword(null,"send-server-request","send-server-request",175775635),new cljs.core.Keyword(null,"values","values",372645556),new cljs.core.Keyword(null,"set-handle-change","set-handle-change",-827648040),new cljs.core.Keyword(null,"form-id","form-id",-158754567),new cljs.core.Keyword(null,"disabled?","disabled?",-1523234181),new cljs.core.Keyword(null,"server-errors","server-errors",-485636324),new cljs.core.Keyword(null,"props","props",453281727)],[new cljs.core.Keyword(null,"disable","disable",1717637504).cljs$core$IFn$_invoke$arity$1(handlers),path,new cljs.core.Keyword(null,"handle-blur","handle-blur",-546639264).cljs$core$IFn$_invoke$arity$1(handlers),fork.core.dirty(new cljs.core.Keyword(null,"values","values",372645556).cljs$core$IFn$_invoke$arity$1(cljs.core.deref(state)),cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"initial-values","initial-values",1392120293).cljs$core$IFn$_invoke$arity$1(cljs.core.deref(state)),new cljs.core.Keyword(null,"touched-values","touched-values",-1817885644).cljs$core$IFn$_invoke$arity$1(cljs.core.deref(state))], 0))),validation,new cljs.core.Keyword(null,"set-values","set-values",-928640446).cljs$core$IFn$_invoke$arity$1(handlers),new cljs.core.Keyword(null,"handle-change","handle-change",741134083).cljs$core$IFn$_invoke$arity$1(handlers),new cljs.core.Keyword(null,"enable","enable",-1839114332).cljs$core$IFn$_invoke$arity$1(handlers),new cljs.core.Keyword(null,"set-untouched","set-untouched",922972645).cljs$core$IFn$_invoke$arity$1(handlers),(function (p1__43334_SHARP_){
-return fork.core.handle_submit(p1__43334_SHARP_,cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([props__$1,new cljs.core.PersistentArrayMap(null, 7, [new cljs.core.Keyword(null,"state","state",-1988618099),state,new cljs.core.Keyword(null,"path","path",-188191168),path,new cljs.core.Keyword(null,"server","server",1499190120),new cljs.core.Keyword(null,"server","server",1499190120).cljs$core$IFn$_invoke$arity$1(db),new cljs.core.Keyword(null,"form-id","form-id",-158754567),form_id,new cljs.core.Keyword(null,"validation","validation",-2141396518),validation,new cljs.core.Keyword(null,"already-submitting?","already-submitting?",1438118407),new cljs.core.Keyword(null,"submitting?","submitting?",1281507942).cljs$core$IFn$_invoke$arity$1(db),new cljs.core.Keyword(null,"reset","reset",-800929946),new cljs.core.Keyword(null,"reset","reset",-800929946).cljs$core$IFn$_invoke$arity$1(handlers)], null)], 0)));
+return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [component,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"disable","disable",1717637504),new cljs.core.Keyword(null,"path","path",-188191168),new cljs.core.Keyword(null,"handle-blur","handle-blur",-546639264),new cljs.core.Keyword(null,"dirty","dirty",729553281),new cljs.core.Keyword(null,"errors","errors",-908790718),new cljs.core.Keyword(null,"set-values","set-values",-928640446),new cljs.core.Keyword(null,"handle-change","handle-change",741134083),new cljs.core.Keyword(null,"enable","enable",-1839114332),new cljs.core.Keyword(null,"set-untouched","set-untouched",922972645),new cljs.core.Keyword(null,"handle-submit","handle-submit",1732326917),new cljs.core.Keyword(null,"successful-submissions","successful-submissions",-961073531),new cljs.core.Keyword(null,"submitting?","submitting?",1281507942),new cljs.core.Keyword(null,"reset","reset",-800929946),new cljs.core.Keyword(null,"db","db",993250759),new cljs.core.Keyword(null,"set-handle-blur","set-handle-blur",1284701225),new cljs.core.Keyword(null,"attempted-submissions","attempted-submissions",2035303435),new cljs.core.Keyword(null,"set-touched","set-touched",-443889429),new cljs.core.Keyword(null,"state","state",-1988618099),new cljs.core.Keyword(null,"touched","touched",-609134419),new cljs.core.Keyword(null,"normalize-name","normalize-name",-510567633),new cljs.core.Keyword(null,"on-submit-server-message","on-submit-server-message",-1306531376),new cljs.core.Keyword(null,"send-server-request","send-server-request",175775635),new cljs.core.Keyword(null,"values","values",372645556),new cljs.core.Keyword(null,"set-handle-change","set-handle-change",-827648040),new cljs.core.Keyword(null,"form-id","form-id",-158754567),new cljs.core.Keyword(null,"disabled?","disabled?",-1523234181),new cljs.core.Keyword(null,"server-errors","server-errors",-485636324),new cljs.core.Keyword(null,"props","props",453281727)],[new cljs.core.Keyword(null,"disable","disable",1717637504).cljs$core$IFn$_invoke$arity$1(handlers),path,new cljs.core.Keyword(null,"handle-blur","handle-blur",-546639264).cljs$core$IFn$_invoke$arity$1(handlers),fork.core.dirty(new cljs.core.Keyword(null,"values","values",372645556).cljs$core$IFn$_invoke$arity$1(cljs.core.deref(state)),cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"initial-values","initial-values",1392120293).cljs$core$IFn$_invoke$arity$1(cljs.core.deref(state)),new cljs.core.Keyword(null,"touched-values","touched-values",-1817885644).cljs$core$IFn$_invoke$arity$1(cljs.core.deref(state))], 0))),validation,new cljs.core.Keyword(null,"set-values","set-values",-928640446).cljs$core$IFn$_invoke$arity$1(handlers),new cljs.core.Keyword(null,"handle-change","handle-change",741134083).cljs$core$IFn$_invoke$arity$1(handlers),new cljs.core.Keyword(null,"enable","enable",-1839114332).cljs$core$IFn$_invoke$arity$1(handlers),new cljs.core.Keyword(null,"set-untouched","set-untouched",922972645).cljs$core$IFn$_invoke$arity$1(handlers),(function (p1__43338_SHARP_){
+return fork.core.handle_submit(p1__43338_SHARP_,cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([props__$1,new cljs.core.PersistentArrayMap(null, 7, [new cljs.core.Keyword(null,"state","state",-1988618099),state,new cljs.core.Keyword(null,"path","path",-188191168),path,new cljs.core.Keyword(null,"server","server",1499190120),new cljs.core.Keyword(null,"server","server",1499190120).cljs$core$IFn$_invoke$arity$1(db),new cljs.core.Keyword(null,"form-id","form-id",-158754567),form_id,new cljs.core.Keyword(null,"validation","validation",-2141396518),validation,new cljs.core.Keyword(null,"already-submitting?","already-submitting?",1438118407),new cljs.core.Keyword(null,"submitting?","submitting?",1281507942).cljs$core$IFn$_invoke$arity$1(db),new cljs.core.Keyword(null,"reset","reset",-800929946),new cljs.core.Keyword(null,"reset","reset",-800929946).cljs$core$IFn$_invoke$arity$1(handlers)], null)], 0)));
 }),(function (){var or__5025__auto__ = new cljs.core.Keyword(null,"successful-submissions","successful-submissions",-961073531).cljs$core$IFn$_invoke$arity$1(cljs.core.deref(state));
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
