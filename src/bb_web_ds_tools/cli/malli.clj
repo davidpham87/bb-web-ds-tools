@@ -8,12 +8,37 @@
 ;; Need to ensure dependencies for malli are available in bb.edn if running via bb
 ;; or just assume the user runs this with correct classpath.
 
+(def cli-specs
+  {:infer
+   {:max-enum {:desc "Max distinct values for enum inference"
+               :ref "<int>"
+               :coerce :int
+               :default 10}
+    :file     {:desc "Input file (stdin if omitted)"
+               :ref "<file>"}}
+   :generate
+   {:samples {:desc "Number of samples to generate"
+              :ref "<int>"
+              :coerce :int
+              :default 1}
+    :format  {:desc "Output format (edn, json)"
+              :ref "<fmt>"
+              :default "edn"}
+    :file    {:desc "Schema input file (stdin if omitted)"
+              :ref "<file>"}}
+   :validate
+   {:schema {:desc "Schema file"
+             :ref "<file>"
+             :require true}
+    :file   {:desc "Data file (stdin if omitted)"
+             :ref "<file>"}}})
+
 (defn- read-input [opts]
   (if-let [f (:file opts)]
     (slurp f)
     (slurp *in*)))
 
-(defn infer [opts]
+(defn infer [{:keys [opts]}]
   (let [input-str (read-input opts)
         ;; Try to parse as EDN first, then fallback or fail.
         ;; For CLI, we might expect valid EDN or JSON if we implement JSON parsing here or reuse component logic.
@@ -27,7 +52,7 @@
       (binding [*out* *err*]
         (println "Error: Could not parse input as EDN or JSON.")))))
 
-(defn generate [opts]
+(defn generate [{:keys [opts]}]
   (let [schema-str (read-input opts)
         samples (or (:samples opts) 1)
         fmt (keyword (or (:format opts) "edn"))]
@@ -41,7 +66,7 @@
         (binding [*out* *err*]
           (println "Error parsing schema:" (:error parse-res)))))))
 
-(defn validate [opts]
+(defn validate [{:keys [opts]}]
   (let [schema-file (:schema opts)
         data-file (:file opts)
         schema-str (if schema-file (slurp schema-file) (throw (ex-info "Missing --schema" {})))
@@ -54,22 +79,18 @@
         (binding [*out* *err*]
           (println "Validation Failed:\n" (:result res)))))))
 
-(defn help [_]
+(defn show-help [_]
   (println "Usage: bb -m bb-web-ds-tools.cli.malli <command> [opts]")
-  (println "Commands:")
-  (println "  infer    : Infer schema from data (stdin or --file)")
-  (println "             Opts: --max-enum <int>")
-  (println "  generate : Generate data from schema (stdin or --file)")
-  (println "             Opts: --samples <int>, --format <edn|json>")
-  (println "  validate : Validate data against schema")
-  (println "             Opts: --schema <file>, --file <data-file>"))
+  (println "\nCommands:\n")
+  (doseq [[cmd spec] cli-specs]
+    (println "  " (name cmd))
+    (println (cli/format-opts {:spec spec :indent 4}))))
+
+(def table
+  [{:cmds ["infer"] :fn infer :spec (:infer cli-specs)}
+   {:cmds ["generate"] :fn generate :spec (:generate cli-specs)}
+   {:cmds ["validate"] :fn validate :spec (:validate cli-specs)}
+   {:cmds [] :fn show-help}])
 
 (defn -main [& args]
-  (let [opts (cli/parse-opts args)
-        cmd (first (:cmds opts))]
-    (case cmd
-      "infer" (infer opts)
-      "generate" (generate opts)
-      "validate" (validate opts)
-      "help" (help opts)
-      (help opts))))
+  (cli/dispatch table args))

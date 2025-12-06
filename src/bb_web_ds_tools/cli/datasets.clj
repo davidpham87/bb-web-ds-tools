@@ -7,8 +7,18 @@
             [babashka.fs :as fs]
             [babashka.cli :as cli]))
 
-(defn- parse-opts [args]
-  (cli/parse-opts args))
+(def cli-specs
+  {:convert
+   {:format {:desc "Input format (csv, json, edn)"
+             :ref "<fmt>"
+             :require true}
+    :to     {:desc "Output format (csv, json, edn)"
+             :ref "<fmt>"
+             :default "json"}
+    :file   {:desc "Input file (stdin if omitted)"
+             :ref "<file>"}
+    :out    {:desc "Output file (stdout if omitted)"
+             :ref "<file>"}}})
 
 (defn- read-input [opts]
   (if-let [f (:file opts)]
@@ -45,7 +55,7 @@
 (defn- to-edn [data]
   (with-out-str (pprint/pprint data)))
 
-(defn convert [opts]
+(defn convert [{:keys [opts]}]
   (let [format (:format opts) ;; input format: csv, json, edn
         out-format (:to opts "json") ;; output format: csv, json, edn
         text (read-input opts)]
@@ -65,17 +75,16 @@
         (binding [*out* *err*]
           (println "Error:" (.getMessage e)))))))
 
-(defn help [_]
-  (println "Usage: bb -m bb-web-ds-tools.cli.datasets convert --format <fmt> --to <fmt> [--file <input>] [--out <output>]")
-  (println "  --format : Input format (csv, json, edn)")
-  (println "  --to     : Output format (csv, json, edn). Default: json")
-  (println "  --file   : Input file (stdin if omitted)")
-  (println "  --out    : Output file (stdout if omitted)"))
+(defn show-help [_]
+  (println "Usage: bb -m bb-web-ds-tools.cli.datasets <command> [opts]")
+  (println "\nCommands:\n")
+  (doseq [[cmd spec] cli-specs]
+    (println "  " (name cmd))
+    (println (cli/format-opts {:spec spec :indent 4}))))
+
+(def table
+  [{:cmds ["convert"] :fn convert :spec (:convert cli-specs)}
+   {:cmds [] :fn show-help}])
 
 (defn -main [& args]
-  (let [opts (parse-opts args)
-        cmd (first (:cmds opts))]
-    (case cmd
-      "convert" (convert opts)
-      "help" (help opts)
-      (help opts))))
+  (cli/dispatch table args))
