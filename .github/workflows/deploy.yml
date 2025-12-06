@@ -52,6 +52,9 @@ jobs:
     - name: Compile storybook
       run: npx shadow-cljs compile stories
 
+    - name: Render Blog
+      run: bb render
+
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
