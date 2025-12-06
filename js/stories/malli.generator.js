@@ -49,7 +49,7 @@ goog.provide('malli.generator');
  */
 malli.generator.Generator = function(){};
 
-var malli$generator$Generator$_generator$dyn_33101 = (function (this$,options){
+var malli$generator$Generator$_generator$dyn_33302 = (function (this$,options){
 var x__5373__auto__ = (((this$ == null))?null:this$);
 var m__5374__auto__ = (malli.generator._generator[goog.typeOf(x__5373__auto__)]);
 if((!((m__5374__auto__ == null)))){
@@ -70,7 +70,7 @@ malli.generator._generator = (function malli$generator$_generator(this$,options)
 if((((!((this$ == null)))) && ((!((this$.malli$generator$Generator$_generator$arity$2 == null)))))){
 return this$.malli$generator$Generator$_generator$arity$2(this$,options);
 } else {
-return malli$generator$Generator$_generator$dyn_33101(this$,options);
+return malli$generator$Generator$_generator$dyn_33302(this$,options);
 }
 });
 
@@ -79,24 +79,24 @@ malli.generator._child = (function malli$generator$_child(schema,options){
 return cljs.core.first(malli.core.children.cljs$core$IFn$_invoke$arity$2(schema,options));
 });
 malli.generator._child_gen = (function malli$generator$_child_gen(schema,options){
-var G__32699 = malli.generator._child(schema,options);
-var G__32700 = options;
-return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(G__32699,G__32700) : malli.generator.generator.call(null,G__32699,G__32700));
+var G__32862 = malli.generator._child(schema,options);
+var G__32863 = options;
+return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(G__32862,G__32863) : malli.generator.generator.call(null,G__32862,G__32863));
 });
 /**
  * Return a generator of no values that is compatible with -unreachable-gen?.
  */
-malli.generator._never_gen = (function malli$generator$_never_gen(p__32704){
-var map__32705 = p__32704;
-var map__32705__$1 = cljs.core.__destructure_map(map__32705);
-var _options = map__32705__$1;
-var original_generator_schema = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32705__$1,new cljs.core.Keyword("malli.generator","original-generator-schema","malli.generator/original-generator-schema",-1122475395));
+malli.generator._never_gen = (function malli$generator$_never_gen(p__32864){
+var map__32865 = p__32864;
+var map__32865__$1 = cljs.core.__destructure_map(map__32865);
+var _options = map__32865__$1;
+var original_generator_schema = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32865__$1,new cljs.core.Keyword("malli.generator","original-generator-schema","malli.generator/original-generator-schema",-1122475395));
 return cljs.core.with_meta(clojure.test.check.generators.sized((function (_){
-return malli.core._fail_BANG_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("malli.generator","unsatisfiable-schema","malli.generator/unsatisfiable-schema",919209538),(function (){var G__32707 = cljs.core.PersistentArrayMap.EMPTY;
+return malli.core._fail_BANG_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("malli.generator","unsatisfiable-schema","malli.generator/unsatisfiable-schema",919209538),(function (){var G__32874 = cljs.core.PersistentArrayMap.EMPTY;
 if(cljs.core.truth_(original_generator_schema)){
-return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(G__32707,new cljs.core.Keyword(null,"schema","schema",-1582001791),original_generator_schema);
+return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(G__32874,new cljs.core.Keyword(null,"schema","schema",-1582001791),original_generator_schema);
 } else {
-return G__32707;
+return G__32874;
 }
 })());
 })),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword("malli.generator","never-gen","malli.generator/never-gen",-887335792),true,new cljs.core.Keyword("malli.generator","original-generator-schema","malli.generator/original-generator-schema",-1122475395),original_generator_schema], null));
@@ -129,12 +129,12 @@ return clojure.test.check.random.make_random.cljs$core$IFn$_invoke$arity$0();
 }
 });
 malli.generator._min_max = (function malli$generator$_min_max(schema,options){
-var map__32721 = malli.core.properties.cljs$core$IFn$_invoke$arity$2(schema,options);
-var map__32721__$1 = cljs.core.__destructure_map(map__32721);
-var gen_min = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32721__$1,new cljs.core.Keyword("gen","min","gen/min",444569458));
-var gen_max = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32721__$1,new cljs.core.Keyword("gen","max","gen/max",61264228));
-var min = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32721__$1,new cljs.core.Keyword(null,"min","min",444991522));
-var max = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32721__$1,new cljs.core.Keyword(null,"max","max",61366548));
+var map__32881 = malli.core.properties.cljs$core$IFn$_invoke$arity$2(schema,options);
+var map__32881__$1 = cljs.core.__destructure_map(map__32881);
+var gen_min = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32881__$1,new cljs.core.Keyword("gen","min","gen/min",444569458));
+var gen_max = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32881__$1,new cljs.core.Keyword("gen","max","gen/max",61264228));
+var min = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32881__$1,new cljs.core.Keyword(null,"min","min",444991522));
+var max = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32881__$1,new cljs.core.Keyword(null,"max","max",61366548));
 if(cljs.core.truth_((function (){var and__5023__auto__ = min;
 if(cljs.core.truth_(and__5023__auto__)){
 var and__5023__auto____$1 = gen_min;
@@ -182,10 +182,10 @@ return max;
 })()], null);
 });
 malli.generator.inf_nan = (function malli$generator$inf_nan(schema,options){
-var map__32731 = malli.core.properties.cljs$core$IFn$_invoke$arity$1(schema);
-var map__32731__$1 = cljs.core.__destructure_map(map__32731);
-var infinite_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32731__$1,new cljs.core.Keyword("gen","infinite?","gen/infinite?",-2017652832));
-var NaN_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32731__$1,new cljs.core.Keyword("gen","NaN?","gen/NaN?",-1917993267));
+var map__32892 = malli.core.properties.cljs$core$IFn$_invoke$arity$1(schema);
+var map__32892__$1 = cljs.core.__destructure_map(map__32892);
+var infinite_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32892__$1,new cljs.core.Keyword("gen","infinite?","gen/infinite?",-2017652832));
+var NaN_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32892__$1,new cljs.core.Keyword("gen","NaN?","gen/NaN?",-1917993267));
 return new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"infinite?","infinite?",-2017886608),infinite_QMARK_,new cljs.core.Keyword(null,"NaN?","NaN?",-1917767651),NaN_QMARK_], null);
 });
 malli.generator.gen_fmap = (function malli$generator$gen_fmap(f,gen){
@@ -197,8 +197,8 @@ return clojure.test.check.generators.fmap(f,gen);
 }
 });
 malli.generator.gen_fcat = (function malli$generator$gen_fcat(gen){
-return malli.generator.gen_fmap((function (p1__32734_SHARP_){
-return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.concat,p1__32734_SHARP_);
+return malli.generator.gen_fmap((function (p1__32894_SHARP_){
+return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.concat,p1__32894_SHARP_);
 }),gen);
 });
 malli.generator.gen_tuple = (function malli$generator$gen_tuple(gens){
@@ -218,27 +218,27 @@ return clojure.test.check.generators.one_of(new cljs.core.PersistentVector(null,
 });
 malli.generator.double_default = new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"infinite?","infinite?",-2017886608),false,new cljs.core.Keyword(null,"NaN?","NaN?",-1917767651),false], null);
 malli.generator.gen_double = (function malli$generator$gen_double(opts){
-return clojure.test.check.generators.double_STAR_(cljs.core.update.cljs$core$IFn$_invoke$arity$3(cljs.core.update.cljs$core$IFn$_invoke$arity$3(cljs.core.into.cljs$core$IFn$_invoke$arity$2(malli.generator.double_default,opts),new cljs.core.Keyword(null,"min","min",444991522),(function (p1__32739_SHARP_){
-var G__32741 = p1__32739_SHARP_;
-if((G__32741 == null)){
+return clojure.test.check.generators.double_STAR_(cljs.core.update.cljs$core$IFn$_invoke$arity$3(cljs.core.update.cljs$core$IFn$_invoke$arity$3(cljs.core.into.cljs$core$IFn$_invoke$arity$2(malli.generator.double_default,opts),new cljs.core.Keyword(null,"min","min",444991522),(function (p1__32898_SHARP_){
+var G__32900 = p1__32898_SHARP_;
+if((G__32900 == null)){
 return null;
 } else {
-return G__32741;
+return G__32900;
 }
-})),new cljs.core.Keyword(null,"max","max",61366548),(function (p1__32740_SHARP_){
-var G__32745 = p1__32740_SHARP_;
-if((G__32745 == null)){
+})),new cljs.core.Keyword(null,"max","max",61366548),(function (p1__32899_SHARP_){
+var G__32901 = p1__32899_SHARP_;
+if((G__32901 == null)){
 return null;
 } else {
-return G__32745;
+return G__32901;
 }
 })));
 });
-malli.generator.gen_vector = (function malli$generator$gen_vector(p__32747,g){
-var map__32748 = p__32747;
-var map__32748__$1 = cljs.core.__destructure_map(map__32748);
-var min = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32748__$1,new cljs.core.Keyword(null,"min","min",444991522));
-var max = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32748__$1,new cljs.core.Keyword(null,"max","max",61366548));
+malli.generator.gen_vector = (function malli$generator$gen_vector(p__32903,g){
+var map__32904 = p__32903;
+var map__32904__$1 = cljs.core.__destructure_map(map__32904);
+var min = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32904__$1,new cljs.core.Keyword(null,"min","min",444991522));
+var max = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32904__$1,new cljs.core.Keyword(null,"max","max",61366548));
 if(malli.generator._unreachable_gen_QMARK_(g)){
 if(((function (){var or__5025__auto__ = min;
 if(cljs.core.truth_(or__5025__auto__)){
@@ -271,8 +271,8 @@ return and__5023__auto__;
 return clojure.test.check.generators.vector.cljs$core$IFn$_invoke$arity$3(g,min,max);
 } else {
 if(cljs.core.truth_(min)){
-return cljs.core.vary_meta.cljs$core$IFn$_invoke$arity$4(clojure.test.check.generators.sized((function (p1__32746_SHARP_){
-return clojure.test.check.generators.vector.cljs$core$IFn$_invoke$arity$3(g,min,(min + p1__32746_SHARP_));
+return cljs.core.vary_meta.cljs$core$IFn$_invoke$arity$4(clojure.test.check.generators.sized((function (p1__32902_SHARP_){
+return clojure.test.check.generators.vector.cljs$core$IFn$_invoke$arity$3(g,min,(min + p1__32902_SHARP_));
 })),cljs.core.assoc,new cljs.core.Keyword("malli.generator","generator-ast","malli.generator/generator-ast",-1769943051),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"op","op",-1882987955),new cljs.core.Keyword(null,"vector-min","vector-min",-2065952790),new cljs.core.Keyword(null,"generator","generator",-572962281),g,new cljs.core.Keyword(null,"min","min",444991522),min], null));
 } else {
 if(cljs.core.truth_(max)){
@@ -286,11 +286,11 @@ return clojure.test.check.generators.vector.cljs$core$IFn$_invoke$arity$1(g);
 }
 }
 });
-malli.generator.gen_vector_distinct_by = (function malli$generator$gen_vector_distinct_by(schema,p__32756,f,g){
-var map__32757 = p__32756;
-var map__32757__$1 = cljs.core.__destructure_map(map__32757);
-var m = map__32757__$1;
-var min = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32757__$1,new cljs.core.Keyword(null,"min","min",444991522));
+malli.generator.gen_vector_distinct_by = (function malli$generator$gen_vector_distinct_by(schema,p__32907,f,g){
+var map__32908 = p__32907;
+var map__32908__$1 = cljs.core.__destructure_map(map__32908);
+var m = map__32908__$1;
+var min = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32908__$1,new cljs.core.Keyword(null,"min","min",444991522));
 if(malli.generator._unreachable_gen_QMARK_(g)){
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2((0),(function (){var or__5025__auto__ = min;
 if(cljs.core.truth_(or__5025__auto__)){
@@ -310,8 +310,8 @@ return cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(min,cljs.core.max);
 } else {
 return and__5023__auto__;
 }
-})())?new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"num-elements","num-elements",1960422107),min], null):clojure.set.rename_keys(m,new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"min","min",444991522),new cljs.core.Keyword(null,"min-elements","min-elements",949370780),new cljs.core.Keyword(null,"max","max",61366548),new cljs.core.Keyword(null,"max-elements","max-elements",433034073)], null))),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"max-tries","max-tries",-1824441792),(100),new cljs.core.Keyword(null,"ex-fn","ex-fn",-284925510),(function (p1__32752_SHARP_){
-return malli.core._exception(new cljs.core.Keyword("malli.generator","distinct-generator-failure","malli.generator/distinct-generator-failure",-2085139904),cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(p1__32752_SHARP_,new cljs.core.Keyword(null,"schema","schema",-1582001791),schema));
+})())?new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"num-elements","num-elements",1960422107),min], null):clojure.set.rename_keys(m,new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"min","min",444991522),new cljs.core.Keyword(null,"min-elements","min-elements",949370780),new cljs.core.Keyword(null,"max","max",61366548),new cljs.core.Keyword(null,"max-elements","max-elements",433034073)], null))),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"max-tries","max-tries",-1824441792),(100),new cljs.core.Keyword(null,"ex-fn","ex-fn",-284925510),(function (p1__32906_SHARP_){
+return malli.core._exception(new cljs.core.Keyword("malli.generator","distinct-generator-failure","malli.generator/distinct-generator-failure",-2085139904),cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(p1__32906_SHARP_,new cljs.core.Keyword(null,"schema","schema",-1582001791),schema));
 })], null)));
 }
 });
@@ -319,8 +319,8 @@ malli.generator._string_gen = (function malli$generator$_string_gen(schema,optio
 return malli.generator.gen_fmap(clojure.string.join,malli.generator.gen_vector(malli.generator._min_max(schema,options),clojure.test.check.generators.char_alphanumeric));
 });
 malli.generator._coll_gen = (function malli$generator$_coll_gen(var_args){
-var G__32764 = arguments.length;
-switch (G__32764) {
+var G__32911 = arguments.length;
+switch (G__32911) {
 case 2:
 return malli.generator._coll_gen.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -352,8 +352,8 @@ malli.generator._coll_distinct_gen = (function malli$generator$_coll_distinct_ge
 return malli.generator.gen_fmap(f,malli.generator.gen_vector_distinct(schema,malli.generator._min_max(schema,options),malli.generator._child_gen(schema,options)));
 });
 malli.generator.__GT_such_that_opts = (function malli$generator$__GT_such_that_opts(schema){
-return new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"max-tries","max-tries",-1824441792),(100),new cljs.core.Keyword(null,"ex-fn","ex-fn",-284925510),(function (p1__32765_SHARP_){
-return malli.core._exception(new cljs.core.Keyword("malli.generator","such-that-failure","malli.generator/such-that-failure",599634585),cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(p1__32765_SHARP_,new cljs.core.Keyword(null,"schema","schema",-1582001791),schema));
+return new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"max-tries","max-tries",-1824441792),(100),new cljs.core.Keyword(null,"ex-fn","ex-fn",-284925510),(function (p1__32923_SHARP_){
+return malli.core._exception(new cljs.core.Keyword("malli.generator","such-that-failure","malli.generator/such-that-failure",599634585),cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(p1__32923_SHARP_,new cljs.core.Keyword(null,"schema","schema",-1582001791),schema));
 })], null);
 });
 malli.generator.gen_such_that = (function malli$generator$gen_such_that(schema,pred,gen){
@@ -381,78 +381,78 @@ return clojure.test.check.generators.one_of(gs__$1);
 }
 });
 malli.generator._seqable_gen = (function malli$generator$_seqable_gen(schema,options){
-var map__32785 = malli.generator._min_max(schema,options);
-var map__32785__$1 = cljs.core.__destructure_map(map__32785);
-var min = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32785__$1,new cljs.core.Keyword(null,"min","min",444991522));
+var map__32929 = malli.generator._min_max(schema,options);
+var map__32929__$1 = cljs.core.__destructure_map(map__32929);
+var min = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32929__$1,new cljs.core.Keyword(null,"min","min",444991522));
 var el = malli.generator._child(schema,options);
-return malli.generator.gen_one_of(options,(function (){var G__32790 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(cljs.core.into.cljs$core$IFn$_invoke$arity$3((function (){var G__32791 = cljs.core.PersistentVector.EMPTY;
+return malli.generator.gen_one_of(options,(function (){var G__32930 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(cljs.core.into.cljs$core$IFn$_invoke$arity$3((function (){var G__32931 = cljs.core.PersistentVector.EMPTY;
 if((((min == null)) || ((min === (0))))){
-return cljs.core.conj.cljs$core$IFn$_invoke$arity$2(G__32791,malli.generator.nil_gen);
+return cljs.core.conj.cljs$core$IFn$_invoke$arity$2(G__32931,malli.generator.nil_gen);
 } else {
-return G__32791;
+return G__32931;
 }
-})(),cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__32776_SHARP_){
-return malli.generator._coll_gen.cljs$core$IFn$_invoke$arity$3(schema,p1__32776_SHARP_,options);
-})),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.identity,cljs.core.vec,cljs.core.eduction,(function (p1__32780_SHARP_){
-return cljs.core.into_array.cljs$core$IFn$_invoke$arity$1(p1__32780_SHARP_);
+})(),cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__32925_SHARP_){
+return malli.generator._coll_gen.cljs$core$IFn$_invoke$arity$3(schema,p1__32925_SHARP_,options);
+})),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.identity,cljs.core.vec,cljs.core.eduction,(function (p1__32926_SHARP_){
+return cljs.core.into_array.cljs$core$IFn$_invoke$arity$1(p1__32926_SHARP_);
 })], null)),malli.generator._coll_distinct_gen(schema,cljs.core.set,options));
 if(((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"tuple","tuple",-472667284),malli.core.type.cljs$core$IFn$_invoke$arity$1(el))) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2((2),cljs.core.count(malli.core.children.cljs$core$IFn$_invoke$arity$1(el)))))){
-return cljs.core.conj.cljs$core$IFn$_invoke$arity$2(G__32790,(function (){var vec__32792 = malli.core.children.cljs$core$IFn$_invoke$arity$1(el);
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__32792,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__32792,(1),null);
-var G__32795 = new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"map-of","map-of",1189682355),(function (){var or__5025__auto__ = malli.core.properties.cljs$core$IFn$_invoke$arity$1(schema);
+return cljs.core.conj.cljs$core$IFn$_invoke$arity$2(G__32930,(function (){var vec__32932 = malli.core.children.cljs$core$IFn$_invoke$arity$1(el);
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__32932,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__32932,(1),null);
+var G__32935 = new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"map-of","map-of",1189682355),(function (){var or__5025__auto__ = malli.core.properties.cljs$core$IFn$_invoke$arity$1(schema);
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
 } else {
 return cljs.core.PersistentArrayMap.EMPTY;
 }
 })(),k,v], null);
-var G__32796 = options;
-return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(G__32795,G__32796) : malli.generator.generator.call(null,G__32795,G__32796));
+var G__32936 = options;
+return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(G__32935,G__32936) : malli.generator.generator.call(null,G__32935,G__32936));
 })());
 } else {
-return G__32790;
+return G__32930;
 }
 })());
 });
 malli.generator._or_gen = (function malli$generator$_or_gen(schema,options){
-return malli.generator.gen_one_of(options,cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__32797_SHARP_){
-return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(p1__32797_SHARP_,options) : malli.generator.generator.call(null,p1__32797_SHARP_,options));
+return malli.generator.gen_one_of(options,cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__32937_SHARP_){
+return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(p1__32937_SHARP_,options) : malli.generator.generator.call(null,p1__32937_SHARP_,options));
 }),malli.core.children.cljs$core$IFn$_invoke$arity$2(schema,options)));
 });
 malli.generator._merge_keyword_dispatch_map_into_entries = (function malli$generator$_merge_keyword_dispatch_map_into_entries(schema){
 var dispatch = new cljs.core.Keyword(null,"dispatch","dispatch",1319337009).cljs$core$IFn$_invoke$arity$1(malli.core.properties.cljs$core$IFn$_invoke$arity$1(schema));
-var G__32799 = schema;
+var G__32939 = schema;
 if((dispatch instanceof cljs.core.Keyword)){
-return malli.util.transform_entries.cljs$core$IFn$_invoke$arity$3(G__32799,(function (p1__32798_SHARP_){
-return cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p__32800){
-var vec__32801 = p__32800;
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__32801,(0),null);
-var e = vec__32801;
-var G__32804 = e;
+return malli.util.transform_entries.cljs$core$IFn$_invoke$arity$3(G__32939,(function (p1__32938_SHARP_){
+return cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p__32940){
+var vec__32941 = p__32940;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__32941,(0),null);
+var e = vec__32941;
+var G__32944 = e;
 if(cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("malli.core","default","malli.core/default",-1706204176),k)){
-return cljs.core.update.cljs$core$IFn$_invoke$arity$4(G__32804,(2),malli.util.merge,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"map","map",1371690461),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [dispatch,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"=","=",1152933628),null,k], null)], null)], null));
+return cljs.core.update.cljs$core$IFn$_invoke$arity$4(G__32944,(2),malli.util.merge,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"map","map",1371690461),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [dispatch,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"=","=",1152933628),null,k], null)], null)], null));
 } else {
-return G__32804;
+return G__32944;
 }
-}),p1__32798_SHARP_);
+}),p1__32938_SHARP_);
 }),malli.core.options.cljs$core$IFn$_invoke$arity$1(schema));
 } else {
-return G__32799;
+return G__32939;
 }
 });
 malli.generator._multi_gen = (function malli$generator$_multi_gen(schema,options){
-return malli.generator.gen_one_of(options,cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__32812_SHARP_){
-var G__32813 = cljs.core.last(p1__32812_SHARP_);
-var G__32814 = options;
-return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(G__32813,G__32814) : malli.generator.generator.call(null,G__32813,G__32814));
+return malli.generator.gen_one_of(options,cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__32945_SHARP_){
+var G__32946 = cljs.core.last(p1__32945_SHARP_);
+var G__32947 = options;
+return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(G__32946,G__32947) : malli.generator.generator.call(null,G__32946,G__32947));
 }),malli.core.entries.cljs$core$IFn$_invoke$arity$2(malli.generator._merge_keyword_dispatch_map_into_entries(schema),options)));
 });
 malli.generator._build_map = (function malli$generator$_build_map(kvs){
-return cljs.core.persistent_BANG_(cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (acc,p__32816){
-var vec__32817 = p__32816;
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__32817,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__32817,(1),null);
+return cljs.core.persistent_BANG_(cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (acc,p__32948){
+var vec__32949 = p__32948;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__32949,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__32949,(1),null);
 if(((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(k,new cljs.core.Keyword("malli.core","default","malli.core/default",-1706204176))) && (cljs.core.map_QMARK_(v)))){
 return cljs.core.reduce_kv(cljs.core.assoc_BANG_,acc,v);
 } else {
@@ -465,31 +465,31 @@ return cljs.core.assoc_BANG_.cljs$core$IFn$_invoke$arity$3(acc,k,v);
 }
 }),cljs.core.transient$(cljs.core.PersistentArrayMap.EMPTY),kvs));
 });
-malli.generator._entry_gen = (function malli$generator$_entry_gen(p__32825,options){
-var vec__32826 = p__32825;
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__32826,(0),null);
-var s = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__32826,(1),null);
-var G__32829 = malli.generator.gen_fmap((function (p1__32824_SHARP_){
-return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [k,p1__32824_SHARP_], null);
+malli.generator._entry_gen = (function malli$generator$_entry_gen(p__32953,options){
+var vec__32954 = p__32953;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__32954,(0),null);
+var s = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__32954,(1),null);
+var G__32957 = malli.generator.gen_fmap((function (p1__32952_SHARP_){
+return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [k,p1__32952_SHARP_], null);
 }),(malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(s,options) : malli.generator.generator.call(null,s,options)));
 if(cljs.core.truth_(new cljs.core.Keyword(null,"optional","optional",2053951509).cljs$core$IFn$_invoke$arity$1(malli.core.properties.cljs$core$IFn$_invoke$arity$1(s)))){
-return malli.generator.gen_maybe(G__32829);
+return malli.generator.gen_maybe(G__32957);
 } else {
-return G__32829;
+return G__32957;
 }
 });
 malli.generator._map_gen = (function malli$generator$_map_gen(schema,options){
-return malli.generator.gen_fmap(malli.generator._build_map,malli.generator.gen_tuple(cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__32830_SHARP_){
-return malli.generator._entry_gen(p1__32830_SHARP_,options);
+return malli.generator.gen_fmap(malli.generator._build_map,malli.generator.gen_tuple(cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__32958_SHARP_){
+return malli.generator._entry_gen(p1__32958_SHARP_,options);
 }),malli.core.entries.cljs$core$IFn$_invoke$arity$1(schema))));
 });
 malli.generator._map_of_gen = (function malli$generator$_map_of_gen(schema,options){
-return malli.generator.gen_fmap((function (p1__32833_SHARP_){
-return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentArrayMap.EMPTY,p1__32833_SHARP_);
-}),malli.generator.gen_vector_distinct_by(schema,malli.generator._min_max(schema,options),(function (p1__32832_SHARP_){
-return cljs.core.nth.cljs$core$IFn$_invoke$arity$2(p1__32832_SHARP_,(0));
-}),malli.generator.gen_tuple(cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__32831_SHARP_){
-return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(p1__32831_SHARP_,options) : malli.generator.generator.call(null,p1__32831_SHARP_,options));
+return malli.generator.gen_fmap((function (p1__32961_SHARP_){
+return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentArrayMap.EMPTY,p1__32961_SHARP_);
+}),malli.generator.gen_vector_distinct_by(schema,malli.generator._min_max(schema,options),(function (p1__32960_SHARP_){
+return cljs.core.nth.cljs$core$IFn$_invoke$arity$2(p1__32960_SHARP_,(0));
+}),malli.generator.gen_tuple(cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__32959_SHARP_){
+return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(p1__32959_SHARP_,options) : malli.generator.generator.call(null,p1__32959_SHARP_,options));
 }),malli.core.children.cljs$core$IFn$_invoke$arity$2(schema,options)))));
 });
 malli.generator._identify_ref_schema = (function malli$generator$_identify_ref_schema(schema){
@@ -505,72 +505,72 @@ var scalar_ref_gen = (new cljs.core.Delay((function (){
 return malli.generator._never_gen(options);
 }),null));
 var dschema = malli.core.deref.cljs$core$IFn$_invoke$arity$1(schema);
-var G__32840 = (function (){var G__32841 = dschema;
-var G__32842 = cljs.core.assoc_in(options,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("malli.generator","rec-gen","malli.generator/rec-gen",65631558),ref_id], null),scalar_ref_gen);
-return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(G__32841,G__32842) : malli.generator.generator.call(null,G__32841,G__32842));
+var G__32969 = (function (){var G__32970 = dschema;
+var G__32971 = cljs.core.assoc_in(options,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("malli.generator","rec-gen","malli.generator/rec-gen",65631558),ref_id], null),scalar_ref_gen);
+return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(G__32970,G__32971) : malli.generator.generator.call(null,G__32970,G__32971));
 })();
 if(cljs.core.realized_QMARK_(scalar_ref_gen)){
-return clojure.test.check.generators.recursive_gen((function (p1__32835_SHARP_){
-var G__32843 = dschema;
-var G__32844 = cljs.core.assoc_in(options,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("malli.generator","rec-gen","malli.generator/rec-gen",65631558),ref_id], null),p1__32835_SHARP_);
-return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(G__32843,G__32844) : malli.generator.generator.call(null,G__32843,G__32844));
-}),G__32840);
+return clojure.test.check.generators.recursive_gen((function (p1__32963_SHARP_){
+var G__32972 = dschema;
+var G__32973 = cljs.core.assoc_in(options,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("malli.generator","rec-gen","malli.generator/rec-gen",65631558),ref_id], null),p1__32963_SHARP_);
+return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(G__32972,G__32973) : malli.generator.generator.call(null,G__32972,G__32973));
+}),G__32969);
 } else {
-return G__32840;
+return G__32969;
 }
 }
 });
 malli.generator.__EQ__GT__gen = (function malli$generator$__EQ__GT__gen(schema,options){
-var output_generator = (function (){var G__32845 = new cljs.core.Keyword(null,"output","output",-1105869043).cljs$core$IFn$_invoke$arity$1(malli.core._function_info(schema));
-var G__32846 = options;
-return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(G__32845,G__32846) : malli.generator.generator.call(null,G__32845,G__32846));
+var output_generator = (function (){var G__32978 = new cljs.core.Keyword(null,"output","output",-1105869043).cljs$core$IFn$_invoke$arity$1(malli.core._function_info(schema));
+var G__32979 = options;
+return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(G__32978,G__32979) : malli.generator.generator.call(null,G__32978,G__32979));
 })();
 return clojure.test.check.generators.return$(malli.core._instrument.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"schema","schema",-1582001791),schema], null),(function() { 
-var G__33189__delegate = function (_){
+var G__33312__delegate = function (_){
 return (malli.generator.generate.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generate.cljs$core$IFn$_invoke$arity$2(output_generator,options) : malli.generator.generate.call(null,output_generator,options));
 };
-var G__33189 = function (var_args){
+var G__33312 = function (var_args){
 var _ = null;
 if (arguments.length > 0) {
-var G__33190__i = 0, G__33190__a = new Array(arguments.length -  0);
-while (G__33190__i < G__33190__a.length) {G__33190__a[G__33190__i] = arguments[G__33190__i + 0]; ++G__33190__i;}
-  _ = new cljs.core.IndexedSeq(G__33190__a,0,null);
+var G__33313__i = 0, G__33313__a = new Array(arguments.length -  0);
+while (G__33313__i < G__33313__a.length) {G__33313__a[G__33313__i] = arguments[G__33313__i + 0]; ++G__33313__i;}
+  _ = new cljs.core.IndexedSeq(G__33313__a,0,null);
 } 
-return G__33189__delegate.call(this,_);};
-G__33189.cljs$lang$maxFixedArity = 0;
-G__33189.cljs$lang$applyTo = (function (arglist__33191){
-var _ = cljs.core.seq(arglist__33191);
-return G__33189__delegate(_);
+return G__33312__delegate.call(this,_);};
+G__33312.cljs$lang$maxFixedArity = 0;
+G__33312.cljs$lang$applyTo = (function (arglist__33314){
+var _ = cljs.core.seq(arglist__33314);
+return G__33312__delegate(_);
 });
-G__33189.cljs$core$IFn$_invoke$arity$variadic = G__33189__delegate;
-return G__33189;
+G__33312.cljs$core$IFn$_invoke$arity$variadic = G__33312__delegate;
+return G__33312;
 })()
 ));
 });
 malli.generator._function_gen = (function malli$generator$_function_gen(schema,options){
-return clojure.test.check.generators.return$(malli.core._instrument.cljs$core$IFn$_invoke$arity$3(new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"schema","schema",-1582001791),schema,new cljs.core.Keyword(null,"gen","gen",142575302),(function (p1__32847_SHARP_){
-return (malli.generator.generate.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generate.cljs$core$IFn$_invoke$arity$2(p1__32847_SHARP_,options) : malli.generator.generate.call(null,p1__32847_SHARP_,options));
+return clojure.test.check.generators.return$(malli.core._instrument.cljs$core$IFn$_invoke$arity$3(new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"schema","schema",-1582001791),schema,new cljs.core.Keyword(null,"gen","gen",142575302),(function (p1__32994_SHARP_){
+return (malli.generator.generate.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generate.cljs$core$IFn$_invoke$arity$2(p1__32994_SHARP_,options) : malli.generator.generate.call(null,p1__32994_SHARP_,options));
 })], null),null,options));
 });
 malli.generator._regex_generator = (function malli$generator$_regex_generator(schema,options){
-var G__32850 = (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(schema,options) : malli.generator.generator.call(null,schema,options));
+var G__33002 = (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(schema,options) : malli.generator.generator.call(null,schema,options));
 if(cljs.core.not(malli.core._regex_op_QMARK_(schema))){
-return malli.generator.gen_tuple((new cljs.core.PersistentVector(null,1,(5),cljs.core.PersistentVector.EMPTY_NODE,[G__32850],null)));
+return malli.generator.gen_tuple((new cljs.core.PersistentVector(null,1,(5),cljs.core.PersistentVector.EMPTY_NODE,[G__33002],null)));
 } else {
-return G__32850;
+return G__33002;
 }
 });
 malli.generator._re_entry_gen = (function malli$generator$_re_entry_gen(e,options){
 return malli.generator._regex_generator(((cljs.core.vector_QMARK_(e))?cljs.core.get.cljs$core$IFn$_invoke$arity$2(e,(2)):e),options);
 });
 malli.generator._cat_gen = (function malli$generator$_cat_gen(schema,options){
-return malli.generator.gen_fcat(malli.generator.gen_tuple(cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__32852_SHARP_){
-return malli.generator._re_entry_gen(p1__32852_SHARP_,options);
+return malli.generator.gen_fcat(malli.generator.gen_tuple(cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__33008_SHARP_){
+return malli.generator._re_entry_gen(p1__33008_SHARP_,options);
 }),malli.core.children.cljs$core$IFn$_invoke$arity$2(schema,options))));
 });
 malli.generator._alt_gen = (function malli$generator$_alt_gen(schema,options){
-return malli.generator.gen_one_of(options,cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__32855_SHARP_){
-return malli.generator._re_entry_gen(p1__32855_SHARP_,options);
+return malli.generator.gen_one_of(options,cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__33011_SHARP_){
+return malli.generator._re_entry_gen(p1__33011_SHARP_,options);
 }),malli.core.children.cljs$core$IFn$_invoke$arity$2(schema,options)));
 });
 malli.generator.__QMARK__gen = (function malli$generator$__QMARK__gen(schema,options){
@@ -589,33 +589,33 @@ return clojure.test.check.generators.vector.cljs$core$IFn$_invoke$arity$3(g,(0),
 });
 malli.generator.__STAR__gen = (function malli$generator$__STAR__gen(schema,options){
 var child = malli.generator._child(schema,options);
-var G__32862 = malli.generator.gen_vector(malli.generator._min_max(schema,options),(malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(child,options) : malli.generator.generator.call(null,child,options)));
+var G__33021 = malli.generator.gen_vector(malli.generator._min_max(schema,options),(malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(child,options) : malli.generator.generator.call(null,child,options)));
 if(cljs.core.truth_(malli.core._regex_op_QMARK_(child))){
-return malli.generator.gen_fcat(G__32862);
+return malli.generator.gen_fcat(G__33021);
 } else {
-return G__32862;
+return G__33021;
 }
 });
 malli.generator.__PLUS__gen = (function malli$generator$__PLUS__gen(schema,options){
 var child = malli.generator._child(schema,options);
-var G__32876 = malli.generator.gen_vector(cljs.core.update.cljs$core$IFn$_invoke$arity$3(malli.generator._min_max(schema,options),new cljs.core.Keyword(null,"min","min",444991522),cljs.core.fnil.cljs$core$IFn$_invoke$arity$2(cljs.core.max,(1))),(malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(child,options) : malli.generator.generator.call(null,child,options)));
+var G__33028 = malli.generator.gen_vector(cljs.core.update.cljs$core$IFn$_invoke$arity$3(malli.generator._min_max(schema,options),new cljs.core.Keyword(null,"min","min",444991522),cljs.core.fnil.cljs$core$IFn$_invoke$arity$2(cljs.core.max,(1))),(malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(child,options) : malli.generator.generator.call(null,child,options)));
 if(cljs.core.truth_(malli.core._regex_op_QMARK_(child))){
-return malli.generator.gen_fcat(G__32876);
+return malli.generator.gen_fcat(G__33028);
 } else {
-return G__32876;
+return G__33028;
 }
 });
 malli.generator._repeat_gen = (function malli$generator$_repeat_gen(schema,options){
-var or__5025__auto__ = (function (){var G__32879 = malli.generator._coll_gen.cljs$core$IFn$_invoke$arity$2(schema,options);
-var G__32879__$1 = (((G__32879 == null))?null:malli.generator._not_unreachable(G__32879));
-if((G__32879__$1 == null)){
+var or__5025__auto__ = (function (){var G__33036 = malli.generator._coll_gen.cljs$core$IFn$_invoke$arity$2(schema,options);
+var G__33036__$1 = (((G__33036 == null))?null:malli.generator._not_unreachable(G__33036));
+if((G__33036__$1 == null)){
 return null;
 } else {
-var G__32880 = G__32879__$1;
+var G__33037 = G__33036__$1;
 if(cljs.core.truth_(malli.core._regex_op_QMARK_(malli.generator._child(schema,options)))){
-return malli.generator.gen_fcat(G__32880);
+return malli.generator.gen_fcat(G__33037);
 } else {
-return G__32880;
+return G__33037;
 }
 }
 })();
@@ -630,9 +630,9 @@ var temp__5823__auto__ = new cljs.core.Keyword(null,"namespace","namespace",-377
 if(cljs.core.truth_(temp__5823__auto__)){
 var namespace_unparsed = temp__5823__auto__;
 return malli.generator.gen_fmap((function (k){
-var G__32888 = cljs.core.name(namespace_unparsed);
-var G__32889 = cljs.core.name(k);
-return (mk_value_with_ns.cljs$core$IFn$_invoke$arity$2 ? mk_value_with_ns.cljs$core$IFn$_invoke$arity$2(G__32888,G__32889) : mk_value_with_ns.call(null,G__32888,G__32889));
+var G__33044 = cljs.core.name(namespace_unparsed);
+var G__33045 = cljs.core.name(k);
+return (mk_value_with_ns.cljs$core$IFn$_invoke$arity$2 ? mk_value_with_ns.cljs$core$IFn$_invoke$arity$2(G__33044,G__33045) : mk_value_with_ns.call(null,G__33044,G__33045));
 }),value_with_ns_gen_size);
 } else {
 return malli.generator.gen_such_that(schema,pred,gen);
@@ -654,19 +654,19 @@ return clojure.test.check.generators.elements(es);
 malli.generator.double_gen = (function malli$generator$double_gen(schema,options){
 return clojure.test.check.generators.double_STAR_(cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (){var props = malli.core.properties.cljs$core$IFn$_invoke$arity$2(schema,options);
 return new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"infinite?","infinite?",-2017886608),cljs.core.get.cljs$core$IFn$_invoke$arity$3(props,new cljs.core.Keyword("gen","infinite?","gen/infinite?",-2017652832),false),new cljs.core.Keyword(null,"NaN?","NaN?",-1917767651),cljs.core.get.cljs$core$IFn$_invoke$arity$3(props,new cljs.core.Keyword("gen","NaN?","gen/NaN?",-1917993267),false)], null);
-})(),cljs.core.update.cljs$core$IFn$_invoke$arity$3(cljs.core.update.cljs$core$IFn$_invoke$arity$3(malli.generator._min_max(schema,options),new cljs.core.Keyword(null,"min","min",444991522),(function (p1__32896_SHARP_){
-var G__32905 = p1__32896_SHARP_;
-if((G__32905 == null)){
+})(),cljs.core.update.cljs$core$IFn$_invoke$arity$3(cljs.core.update.cljs$core$IFn$_invoke$arity$3(malli.generator._min_max(schema,options),new cljs.core.Keyword(null,"min","min",444991522),(function (p1__33050_SHARP_){
+var G__33056 = p1__33050_SHARP_;
+if((G__33056 == null)){
 return null;
 } else {
-return G__32905;
+return G__33056;
 }
-})),new cljs.core.Keyword(null,"max","max",61366548),(function (p1__32904_SHARP_){
-var G__32906 = p1__32904_SHARP_;
-if((G__32906 == null)){
+})),new cljs.core.Keyword(null,"max","max",61366548),(function (p1__33051_SHARP_){
+var G__33057 = p1__33051_SHARP_;
+if((G__33057 == null)){
 return null;
 } else {
-return G__32906;
+return G__33057;
 }
 }))], 0)));
 });
@@ -676,8 +676,8 @@ malli.generator._schema_generator = (function (){var method_table__5622__auto__ 
 var prefer_table__5623__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
 var method_cache__5624__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
 var cached_hierarchy__5625__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
-var hierarchy__5626__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"default","default",-1987822328),new cljs.core.Keyword("malli.generator","default","malli.generator/default",-943988734)], null),new cljs.core.Keyword(null,"hierarchy","hierarchy",-1053470341),(function (){var fexpr__32908 = cljs.core.get_global_hierarchy;
-return (fexpr__32908.cljs$core$IFn$_invoke$arity$0 ? fexpr__32908.cljs$core$IFn$_invoke$arity$0() : fexpr__32908.call(null));
+var hierarchy__5626__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"default","default",-1987822328),new cljs.core.Keyword("malli.generator","default","malli.generator/default",-943988734)], null),new cljs.core.Keyword(null,"hierarchy","hierarchy",-1053470341),(function (){var fexpr__33061 = cljs.core.get_global_hierarchy;
+return (fexpr__33061.cljs$core$IFn$_invoke$arity$0 ? fexpr__33061.cljs$core$IFn$_invoke$arity$0() : fexpr__33061.call(null));
 })());
 return (new cljs.core.MultiFn(cljs.core.symbol.cljs$core$IFn$_invoke$arity$2("malli.generator","-schema-generator"),(function (schema,options){
 return malli.core.type.cljs$core$IFn$_invoke$arity$2(schema,options);
@@ -706,8 +706,8 @@ malli.generator._schema_generator.cljs$core$IMultiFn$_add_method$arity$3(null,ne
 return clojure.test.check.generators.return$(malli.generator._child(schema,options));
 }));
 malli.generator._schema_generator.cljs$core$IMultiFn$_add_method$arity$3(null,new cljs.core.Keyword(null,"not=","not=",-173995323),(function (schema,options){
-return malli.generator.gen_such_that(schema,(function (p1__32923_SHARP_){
-return cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(p1__32923_SHARP_,malli.generator._child(schema,options));
+return malli.generator.gen_such_that(schema,(function (p1__33083_SHARP_){
+return cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(p1__33083_SHARP_,malli.generator._child(schema,options));
 }),clojure.test.check.generators.any_printable);
 }));
 malli.generator._schema_generator.cljs$core$IMultiFn$_add_method$arity$3(null,new cljs.core.Symbol(null,"pos?","pos?",-244377722,null),(function (_,options){
@@ -765,8 +765,8 @@ malli.generator._schema_generator.cljs$core$IMultiFn$_add_method$arity$3(null,ne
 return malli.generator.gen_maybe(malli.generator._child_gen(schema,options));
 }));
 malli.generator._schema_generator.cljs$core$IMultiFn$_add_method$arity$3(null,new cljs.core.Keyword(null,"tuple","tuple",-472667284),(function (schema,options){
-return malli.generator.gen_tuple(cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__32957_SHARP_){
-return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(p1__32957_SHARP_,options) : malli.generator.generator.call(null,p1__32957_SHARP_,options));
+return malli.generator.gen_tuple(cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__33138_SHARP_){
+return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(p1__33138_SHARP_,options) : malli.generator.generator.call(null,p1__33138_SHARP_,options));
 }),malli.core.children.cljs$core$IFn$_invoke$arity$2(schema,options)));
 }));
 malli.generator._schema_generator.cljs$core$IMultiFn$_add_method$arity$3(null,new cljs.core.Keyword(null,"any","any",1705907423),(function (_,___$1){
@@ -824,29 +824,29 @@ malli.generator._schema_generator.cljs$core$IMultiFn$_add_method$arity$3(null,ne
 return malli.generator._ref_gen(schema,options);
 }));
 malli.generator._schema_generator.cljs$core$IMultiFn$_add_method$arity$3(null,new cljs.core.Keyword(null,"schema","schema",-1582001791),(function (schema,options){
-var G__32995 = malli.core.deref.cljs$core$IFn$_invoke$arity$1(schema);
-var G__32996 = options;
-return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(G__32995,G__32996) : malli.generator.generator.call(null,G__32995,G__32996));
+var G__33169 = malli.core.deref.cljs$core$IFn$_invoke$arity$1(schema);
+var G__33170 = options;
+return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(G__33169,G__33170) : malli.generator.generator.call(null,G__33169,G__33170));
 }));
 malli.generator._schema_generator.cljs$core$IMultiFn$_add_method$arity$3(null,new cljs.core.Keyword("malli.core","schema","malli.core/schema",-1780373863),(function (schema,options){
-var G__32997 = malli.core.deref.cljs$core$IFn$_invoke$arity$1(schema);
-var G__32998 = options;
-return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(G__32997,G__32998) : malli.generator.generator.call(null,G__32997,G__32998));
+var G__33174 = malli.core.deref.cljs$core$IFn$_invoke$arity$1(schema);
+var G__33175 = options;
+return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(G__33174,G__33175) : malli.generator.generator.call(null,G__33174,G__33175));
 }));
 malli.generator._schema_generator.cljs$core$IMultiFn$_add_method$arity$3(null,new cljs.core.Keyword(null,"merge","merge",-1804319409),(function (schema,options){
-var G__33000 = malli.core.deref.cljs$core$IFn$_invoke$arity$1(schema);
-var G__33001 = options;
-return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(G__33000,G__33001) : malli.generator.generator.call(null,G__33000,G__33001));
+var G__33179 = malli.core.deref.cljs$core$IFn$_invoke$arity$1(schema);
+var G__33180 = options;
+return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(G__33179,G__33180) : malli.generator.generator.call(null,G__33179,G__33180));
 }));
 malli.generator._schema_generator.cljs$core$IMultiFn$_add_method$arity$3(null,new cljs.core.Keyword(null,"union","union",2142937499),(function (schema,options){
-var G__33002 = malli.core.deref.cljs$core$IFn$_invoke$arity$1(schema);
-var G__33003 = options;
-return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(G__33002,G__33003) : malli.generator.generator.call(null,G__33002,G__33003));
+var G__33184 = malli.core.deref.cljs$core$IFn$_invoke$arity$1(schema);
+var G__33185 = options;
+return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(G__33184,G__33185) : malli.generator.generator.call(null,G__33184,G__33185));
 }));
 malli.generator._schema_generator.cljs$core$IMultiFn$_add_method$arity$3(null,new cljs.core.Keyword(null,"select-keys","select-keys",1945879180),(function (schema,options){
-var G__33004 = malli.core.deref.cljs$core$IFn$_invoke$arity$1(schema);
-var G__33005 = options;
-return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(G__33004,G__33005) : malli.generator.generator.call(null,G__33004,G__33005));
+var G__33186 = malli.core.deref.cljs$core$IFn$_invoke$arity$1(schema);
+var G__33187 = options;
+return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(G__33186,G__33187) : malli.generator.generator.call(null,G__33186,G__33187));
 }));
 malli.generator._schema_generator.cljs$core$IMultiFn$_add_method$arity$3(null,new cljs.core.Keyword(null,"cat","cat",-1457810207),(function (schema,options){
 return malli.generator._cat_gen(schema,options);
@@ -880,11 +880,11 @@ return null;
 }
 });
 malli.generator._create_from_elements = (function malli$generator$_create_from_elements(props){
-var G__33026 = new cljs.core.Keyword("gen","elements","gen/elements",657813311).cljs$core$IFn$_invoke$arity$1(props);
-if((G__33026 == null)){
+var G__33212 = new cljs.core.Keyword("gen","elements","gen/elements",657813311).cljs$core$IFn$_invoke$arity$1(props);
+if((G__33212 == null)){
 return null;
 } else {
-return malli.generator.gen_elements(G__33026);
+return malli.generator.gen_elements(G__33212);
 }
 });
 (malli.generator.Generator["_"] = true);
@@ -905,11 +905,11 @@ return malli.generator._generator(schema,options);
 }
 });
 malli.generator._create_from_schema = (function malli$generator$_create_from_schema(props,options){
-var G__33028 = new cljs.core.Keyword("gen","schema","gen/schema",-1582038959).cljs$core$IFn$_invoke$arity$1(props);
-if((G__33028 == null)){
+var G__33230 = new cljs.core.Keyword("gen","schema","gen/schema",-1582038959).cljs$core$IFn$_invoke$arity$1(props);
+if((G__33230 == null)){
 return null;
 } else {
-return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(G__33028,options) : malli.generator.generator.call(null,G__33028,options));
+return (malli.generator.generator.cljs$core$IFn$_invoke$arity$2 ? malli.generator.generator.cljs$core$IFn$_invoke$arity$2(G__33230,options) : malli.generator.generator.call(null,G__33230,options));
 }
 });
 malli.generator._create_from_fmap = (function malli$generator$_create_from_fmap(gen,props,schema,options){
@@ -959,8 +959,8 @@ return gen;
 }
 });
 malli.generator.generator = (function malli$generator$generator(var_args){
-var G__33031 = arguments.length;
-switch (G__33031) {
+var G__33246 = arguments.length;
+switch (G__33246) {
 case 1:
 return malli.generator.generator.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -983,8 +983,8 @@ return malli.generator.generator.cljs$core$IFn$_invoke$arity$2(_QMARK_schema,nul
 if(cljs.core.truth_(new cljs.core.Keyword("malli.generator","rec-gen","malli.generator/rec-gen",65631558).cljs$core$IFn$_invoke$arity$1(options))){
 return malli.generator._create(malli.core.schema.cljs$core$IFn$_invoke$arity$2(_QMARK_schema,options),options);
 } else {
-return malli.core._cached(malli.core.schema.cljs$core$IFn$_invoke$arity$2(_QMARK_schema,options),new cljs.core.Keyword(null,"generator","generator",-572962281),(function (p1__33029_SHARP_){
-return malli.generator._create(p1__33029_SHARP_,options);
+return malli.core._cached(malli.core.schema.cljs$core$IFn$_invoke$arity$2(_QMARK_schema,options),new cljs.core.Keyword(null,"generator","generator",-572962281),(function (p1__33244_SHARP_){
+return malli.generator._create(p1__33244_SHARP_,options);
 }));
 }
 }));
@@ -992,8 +992,8 @@ return malli.generator._create(p1__33029_SHARP_,options);
 (malli.generator.generator.cljs$lang$maxFixedArity = 2);
 
 malli.generator.generate = (function malli$generator$generate(var_args){
-var G__33033 = arguments.length;
-switch (G__33033) {
+var G__33248 = arguments.length;
+switch (G__33248) {
 case 1:
 return malli.generator.generate.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -1012,12 +1012,12 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 return malli.generator.generate.cljs$core$IFn$_invoke$arity$2(_QMARK_gen_or_schema,null);
 }));
 
-(malli.generator.generate.cljs$core$IFn$_invoke$arity$2 = (function (_QMARK_gen_or_schema,p__33034){
-var map__33035 = p__33034;
-var map__33035__$1 = cljs.core.__destructure_map(map__33035);
-var options = map__33035__$1;
-var seed = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__33035__$1,new cljs.core.Keyword(null,"seed","seed",68613327));
-var size = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__33035__$1,new cljs.core.Keyword(null,"size","size",1098693007),(30));
+(malli.generator.generate.cljs$core$IFn$_invoke$arity$2 = (function (_QMARK_gen_or_schema,p__33256){
+var map__33257 = p__33256;
+var map__33257__$1 = cljs.core.__destructure_map(map__33257);
+var options = map__33257__$1;
+var seed = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__33257__$1,new cljs.core.Keyword(null,"seed","seed",68613327));
+var size = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__33257__$1,new cljs.core.Keyword(null,"size","size",1098693007),(30));
 var gen = ((clojure.test.check.generators.generator_QMARK_(_QMARK_gen_or_schema))?_QMARK_gen_or_schema:malli.generator.generator.cljs$core$IFn$_invoke$arity$2(_QMARK_gen_or_schema,options));
 return clojure.test.check.rose_tree.root(clojure.test.check.generators.call_gen(gen,malli.generator._random(seed),size));
 }));
@@ -1025,8 +1025,8 @@ return clojure.test.check.rose_tree.root(clojure.test.check.generators.call_gen(
 (malli.generator.generate.cljs$lang$maxFixedArity = 2);
 
 malli.generator.sample = (function malli$generator$sample(var_args){
-var G__33040 = arguments.length;
-switch (G__33040) {
+var G__33262 = arguments.length;
+switch (G__33262) {
 case 1:
 return malli.generator.sample.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -1045,23 +1045,23 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 return malli.generator.sample.cljs$core$IFn$_invoke$arity$2(_QMARK_gen_or_schema,null);
 }));
 
-(malli.generator.sample.cljs$core$IFn$_invoke$arity$2 = (function (_QMARK_gen_or_schema,p__33041){
-var map__33042 = p__33041;
-var map__33042__$1 = cljs.core.__destructure_map(map__33042);
-var options = map__33042__$1;
-var seed = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__33042__$1,new cljs.core.Keyword(null,"seed","seed",68613327));
-var size = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__33042__$1,new cljs.core.Keyword(null,"size","size",1098693007),(10));
+(malli.generator.sample.cljs$core$IFn$_invoke$arity$2 = (function (_QMARK_gen_or_schema,p__33263){
+var map__33264 = p__33263;
+var map__33264__$1 = cljs.core.__destructure_map(map__33264);
+var options = map__33264__$1;
+var seed = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__33264__$1,new cljs.core.Keyword(null,"seed","seed",68613327));
+var size = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__33264__$1,new cljs.core.Keyword(null,"size","size",1098693007),(10));
 var gen = ((clojure.test.check.generators.generator_QMARK_(_QMARK_gen_or_schema))?_QMARK_gen_or_schema:malli.generator.generator.cljs$core$IFn$_invoke$arity$2(_QMARK_gen_or_schema,options));
-return cljs.core.take.cljs$core$IFn$_invoke$arity$2(size,cljs.core.map.cljs$core$IFn$_invoke$arity$3((function (p1__33036_SHARP_,p2__33037_SHARP_){
-return clojure.test.check.rose_tree.root(clojure.test.check.generators.call_gen(gen,p1__33036_SHARP_,p2__33037_SHARP_));
+return cljs.core.take.cljs$core$IFn$_invoke$arity$2(size,cljs.core.map.cljs$core$IFn$_invoke$arity$3((function (p1__33259_SHARP_,p2__33260_SHARP_){
+return clojure.test.check.rose_tree.root(clojure.test.check.generators.call_gen(gen,p1__33259_SHARP_,p2__33260_SHARP_));
 }),clojure.test.check.generators.lazy_random_states(malli.generator._random(seed)),clojure.test.check.generators.make_size_range_seq(size)));
 }));
 
 (malli.generator.sample.cljs$lang$maxFixedArity = 2);
 
 malli.generator.function_checker = (function malli$generator$function_checker(var_args){
-var G__33054 = arguments.length;
-switch (G__33054) {
+var G__33271 = arguments.length;
+switch (G__33271) {
 case 1:
 return malli.generator.function_checker.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -1080,28 +1080,28 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 return malli.generator.function_checker.cljs$core$IFn$_invoke$arity$2(_QMARK_schema,null);
 }));
 
-(malli.generator.function_checker.cljs$core$IFn$_invoke$arity$2 = (function (_QMARK_schema,p__33058){
-var map__33059 = p__33058;
-var map__33059__$1 = cljs.core.__destructure_map(map__33059);
-var options = map__33059__$1;
-var _EQ__GT_iterations = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__33059__$1,new cljs.core.Keyword("malli.generator","=>iterations","malli.generator/=>iterations",-1726832707),(100));
+(malli.generator.function_checker.cljs$core$IFn$_invoke$arity$2 = (function (_QMARK_schema,p__33272){
+var map__33274 = p__33272;
+var map__33274__$1 = cljs.core.__destructure_map(map__33274);
+var options = map__33274__$1;
+var _EQ__GT_iterations = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__33274__$1,new cljs.core.Keyword("malli.generator","=>iterations","malli.generator/=>iterations",-1726832707),(100));
 var schema = malli.core.schema.cljs$core$IFn$_invoke$arity$2(_QMARK_schema,options);
 var _try = (function (f){
 try{return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [(f.cljs$core$IFn$_invoke$arity$0 ? f.cljs$core$IFn$_invoke$arity$0() : f.call(null)),true], null);
-}catch (e33061){if((e33061 instanceof Error)){
-var e = e33061;
+}catch (e33275){if((e33275 instanceof Error)){
+var e = e33275;
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [e,false], null);
 } else {
-throw e33061;
+throw e33275;
 
 }
 }});
 var check = (function (schema__$1){
-var map__33063 = malli.core._function_info(schema__$1);
-var map__33063__$1 = cljs.core.__destructure_map(map__33063);
-var input = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__33063__$1,new cljs.core.Keyword(null,"input","input",556931961));
-var output = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__33063__$1,new cljs.core.Keyword(null,"output","output",-1105869043));
-var guard = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__33063__$1,new cljs.core.Keyword(null,"guard","guard",-873147811));
+var map__33276 = malli.core._function_info(schema__$1);
+var map__33276__$1 = cljs.core.__destructure_map(map__33276);
+var input = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__33276__$1,new cljs.core.Keyword(null,"input","input",556931961));
+var output = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__33276__$1,new cljs.core.Keyword(null,"output","output",-1105869043));
+var guard = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__33276__$1,new cljs.core.Keyword(null,"guard","guard",-873147811));
 var input_generator = malli.generator.generator.cljs$core$IFn$_invoke$arity$2(input,options);
 var valid_output_QMARK_ = malli.core.validator.cljs$core$IFn$_invoke$arity$2(output,options);
 var valid_guard_QMARK_ = (cljs.core.truth_(guard)?malli.core.validator.cljs$core$IFn$_invoke$arity$2(guard,options):cljs.core.constantly(true));
@@ -1109,29 +1109,29 @@ var validate = (function (f,args){
 var $ = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(f,args);
 var and__5023__auto__ = (valid_output_QMARK_.cljs$core$IFn$_invoke$arity$1 ? valid_output_QMARK_.cljs$core$IFn$_invoke$arity$1($) : valid_output_QMARK_.call(null,$));
 if(cljs.core.truth_(and__5023__auto__)){
-var G__33065 = new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [args,$], null);
-return (valid_guard_QMARK_.cljs$core$IFn$_invoke$arity$1 ? valid_guard_QMARK_.cljs$core$IFn$_invoke$arity$1(G__33065) : valid_guard_QMARK_.call(null,G__33065));
+var G__33278 = new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [args,$], null);
+return (valid_guard_QMARK_.cljs$core$IFn$_invoke$arity$1 ? valid_guard_QMARK_.cljs$core$IFn$_invoke$arity$1(G__33278) : valid_guard_QMARK_.call(null,G__33278));
 } else {
 return and__5023__auto__;
 }
 });
 return (function (f){
-var map__33066 = clojure.test.check.quick_check(_EQ__GT_iterations,clojure.test.check.properties.for_all_STAR_(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [input_generator], null),(function (p1__33047_SHARP_){
-return validate(f,p1__33047_SHARP_);
+var map__33279 = clojure.test.check.quick_check(_EQ__GT_iterations,clojure.test.check.properties.for_all_STAR_(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [input_generator], null),(function (p1__33267_SHARP_){
+return validate(f,p1__33267_SHARP_);
 })));
-var map__33066__$1 = cljs.core.__destructure_map(map__33066);
-var result = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__33066__$1,new cljs.core.Keyword(null,"result","result",1415092211));
-var shrunk = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__33066__$1,new cljs.core.Keyword(null,"shrunk","shrunk",-2041664412));
+var map__33279__$1 = cljs.core.__destructure_map(map__33279);
+var result = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__33279__$1,new cljs.core.Keyword(null,"result","result",1415092211));
+var shrunk = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__33279__$1,new cljs.core.Keyword(null,"shrunk","shrunk",-2041664412));
 var smallest = cljs.core.first(new cljs.core.Keyword(null,"smallest","smallest",-152623883).cljs$core$IFn$_invoke$arity$1(shrunk));
 if(result === true){
 return null;
 } else {
 var explain_input = malli.core.explain.cljs$core$IFn$_invoke$arity$2(input,smallest);
-var vec__33071 = (cljs.core.truth_(explain_input)?null:_try((function (){
+var vec__33280 = (cljs.core.truth_(explain_input)?null:_try((function (){
 return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(f,smallest);
 })));
-var result__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__33071,(0),null);
-var success = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__33071,(1),null);
+var result__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__33280,(0),null);
+var success = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__33280,(1),null);
 var explain_output = (cljs.core.truth_((function (){var and__5023__auto__ = success;
 if(cljs.core.truth_(and__5023__auto__)){
 return cljs.core.not(explain_input);
@@ -1151,14 +1151,14 @@ return and__5023__auto____$1;
 return and__5023__auto__;
 }
 })())?malli.core.explain.cljs$core$IFn$_invoke$arity$2(guard,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [smallest,result__$1], null)):null);
-var G__33077 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(shrunk,new cljs.core.Keyword("malli.core","result","malli.core/result",1538632379),result__$1);
-var G__33077__$1 = (cljs.core.truth_(explain_input)?cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(G__33077,new cljs.core.Keyword("malli.core","explain-input","malli.core/explain-input",1441627811),explain_input):G__33077);
-var G__33077__$2 = (cljs.core.truth_(explain_output)?cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(G__33077__$1,new cljs.core.Keyword("malli.core","explain-output","malli.core/explain-output",-124321573),explain_output):G__33077__$1);
-var G__33077__$3 = (cljs.core.truth_(explain_guard)?cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(G__33077__$2,new cljs.core.Keyword("malli.core","explain-guard","malli.core/explain-guard",-1119572847),explain_guard):G__33077__$2);
+var G__33289 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(shrunk,new cljs.core.Keyword("malli.core","result","malli.core/result",1538632379),result__$1);
+var G__33289__$1 = (cljs.core.truth_(explain_input)?cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(G__33289,new cljs.core.Keyword("malli.core","explain-input","malli.core/explain-input",1441627811),explain_input):G__33289);
+var G__33289__$2 = (cljs.core.truth_(explain_output)?cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(G__33289__$1,new cljs.core.Keyword("malli.core","explain-output","malli.core/explain-output",-124321573),explain_output):G__33289__$1);
+var G__33289__$3 = (cljs.core.truth_(explain_guard)?cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(G__33289__$2,new cljs.core.Keyword("malli.core","explain-guard","malli.core/explain-guard",-1119572847),explain_guard):G__33289__$2);
 if(cljs.core.truth_(cljs.core.ex_message(result__$1))){
-return cljs.core.dissoc.cljs$core$IFn$_invoke$arity$2(cljs.core.update.cljs$core$IFn$_invoke$arity$3(G__33077__$3,new cljs.core.Keyword(null,"result","result",1415092211),cljs.core.ex_message),new cljs.core.Keyword(null,"result-data","result-data",-1724248844));
+return cljs.core.dissoc.cljs$core$IFn$_invoke$arity$2(cljs.core.update.cljs$core$IFn$_invoke$arity$3(G__33289__$3,new cljs.core.Keyword(null,"result","result",1415092211),cljs.core.ex_message),new cljs.core.Keyword(null,"result-data","result-data",-1724248844));
 } else {
-return G__33077__$3;
+return G__33289__$3;
 }
 }
 });
@@ -1167,12 +1167,12 @@ if(cljs.core.truth_(malli.core._function_info(schema))){
 return check(schema);
 } else {
 if(cljs.core.truth_(malli.core._function_schema_QMARK_(schema))){
-var checkers = cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__33048_SHARP_){
-return malli.generator.function_checker.cljs$core$IFn$_invoke$arity$2(p1__33048_SHARP_,options);
+var checkers = cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__33268_SHARP_){
+return malli.generator.function_checker.cljs$core$IFn$_invoke$arity$2(p1__33268_SHARP_,options);
 }),malli.core._function_schema_arities(schema));
 return (function (x){
-return cljs.core.seq(cljs.core.keep.cljs$core$IFn$_invoke$arity$2((function (p1__33049_SHARP_){
-return (p1__33049_SHARP_.cljs$core$IFn$_invoke$arity$1 ? p1__33049_SHARP_.cljs$core$IFn$_invoke$arity$1(x) : p1__33049_SHARP_.call(null,x));
+return cljs.core.seq(cljs.core.keep.cljs$core$IFn$_invoke$arity$2((function (p1__33269_SHARP_){
+return (p1__33269_SHARP_.cljs$core$IFn$_invoke$arity$1 ? p1__33269_SHARP_.cljs$core$IFn$_invoke$arity$1(x) : p1__33269_SHARP_.call(null,x));
 }),checkers));
 });
 } else {
@@ -1184,8 +1184,8 @@ return malli.core._fail_BANG_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keywor
 (malli.generator.function_checker.cljs$lang$maxFixedArity = 2);
 
 malli.generator.check = (function malli$generator$check(var_args){
-var G__33083 = arguments.length;
-switch (G__33083) {
+var G__33295 = arguments.length;
+switch (G__33295) {
 case 2:
 return malli.generator.check.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -1206,8 +1206,8 @@ return malli.generator.check.cljs$core$IFn$_invoke$arity$3(_QMARK_schema,f,null)
 
 (malli.generator.check.cljs$core$IFn$_invoke$arity$3 = (function (_QMARK_schema,f,options){
 var schema = malli.core.schema.cljs$core$IFn$_invoke$arity$2(_QMARK_schema,options);
-return malli.core.explain.cljs$core$IFn$_invoke$arity$2(malli.core._update_options(schema,(function (p1__33081_SHARP_){
-return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(p1__33081_SHARP_,new cljs.core.Keyword("malli.core","function-checker","malli.core/function-checker",-792030936),malli.generator.function_checker);
+return malli.core.explain.cljs$core$IFn$_invoke$arity$2(malli.core._update_options(schema,(function (p1__33290_SHARP_){
+return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(p1__33290_SHARP_,new cljs.core.Keyword("malli.core","function-checker","malli.core/function-checker",-792030936),malli.generator.function_checker);
 })),f);
 }));
 

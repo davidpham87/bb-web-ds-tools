@@ -38,13 +38,13 @@ clojure.string.reverse = (function clojure$string$reverse(s){
 return s.replace(clojure.string.re_surrogate_pair,"$2$1").split("").reverse().join("");
 });
 clojure.string.replace_all = (function clojure$string$replace_all(s,re,replacement){
-var r = (new RegExp(re.source,(function (){var G__21607 = "g";
-var G__21607__$1 = (cljs.core.truth_(re.ignoreCase)?[G__21607,"i"].join(''):G__21607);
-var G__21607__$2 = (cljs.core.truth_(re.multiline)?[G__21607__$1,"m"].join(''):G__21607__$1);
+var r = (new RegExp(re.source,(function (){var G__21610 = "g";
+var G__21610__$1 = (cljs.core.truth_(re.ignoreCase)?[G__21610,"i"].join(''):G__21610);
+var G__21610__$2 = (cljs.core.truth_(re.multiline)?[G__21610__$1,"m"].join(''):G__21610__$1);
 if(cljs.core.truth_(re.unicode)){
-return [G__21607__$2,"u"].join('');
+return [G__21610__$2,"u"].join('');
 } else {
-return G__21607__$2;
+return G__21610__$2;
 }
 })()));
 return s.replace(r,replacement);
@@ -393,8 +393,8 @@ buffer.append(cljs.core.str.cljs$core$IFn$_invoke$arity$1(replacement));
 buffer.append(ch);
 }
 
-var G__21647 = (index + (1));
-index = G__21647;
+var G__21646 = (index + (1));
+index = G__21646;
 continue;
 }
 break;

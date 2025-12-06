@@ -22,28 +22,28 @@ G__28733.push(null);
 return G__28733;
 });
 portal.runtime.json_buffer.push_bool = (function portal$runtime$json_buffer$push_bool(buffer,value){
+var G__28734 = buffer;
+G__28734.push(value);
+
+return G__28734;
+});
+portal.runtime.json_buffer.push_long = (function portal$runtime$json_buffer$push_long(buffer,value){
+var G__28736 = buffer;
+G__28736.push(value);
+
+return G__28736;
+});
+portal.runtime.json_buffer.push_double = (function portal$runtime$json_buffer$push_double(buffer,value){
 var G__28737 = buffer;
 G__28737.push(value);
 
 return G__28737;
 });
-portal.runtime.json_buffer.push_long = (function portal$runtime$json_buffer$push_long(buffer,value){
-var G__28740 = buffer;
-G__28740.push(value);
-
-return G__28740;
-});
-portal.runtime.json_buffer.push_double = (function portal$runtime$json_buffer$push_double(buffer,value){
-var G__28745 = buffer;
-G__28745.push(value);
-
-return G__28745;
-});
 portal.runtime.json_buffer.push_string = (function portal$runtime$json_buffer$push_string(buffer,value){
-var G__28748 = buffer;
-G__28748.push(value);
+var G__28741 = buffer;
+G__28741.push(value);
 
-return G__28748;
+return G__28741;
 });
 portal.runtime.json_buffer.push_value = (function portal$runtime$json_buffer$push_value(buffer,value){
 if((value == null)){
@@ -87,9 +87,9 @@ portal.runtime.json_buffer.next_value = (function portal$runtime$json_buffer$nex
 return portal.runtime.json_buffer._shift(buffer);
 });
 portal.runtime.json_buffer.with_buffer = (function portal$runtime$json_buffer$with_buffer(f,value){
-return JSON.stringify((function (){var G__28757 = (new Array());
-var G__28758 = value;
-return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__28757,G__28758) : f.call(null,G__28757,G__28758));
+return JSON.stringify((function (){var G__28742 = (new Array());
+var G__28743 = value;
+return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__28742,G__28743) : f.call(null,G__28742,G__28743));
 })());
 });
 

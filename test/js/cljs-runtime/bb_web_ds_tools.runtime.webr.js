@@ -35,8 +35,8 @@ return bb_web_ds_tools$runtime$webr$start_read_loop_$_loop_fn();
 } else {
 return null;
 }
-})).catch((function (p1__43401_SHARP_){
-return portal.web.submit(new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"error","error",-978969032),new cljs.core.Keyword(null,"text","text",-1790561697),["WebR Read Error:",cljs.core.str.cljs$core$IFn$_invoke$arity$1(p1__43401_SHARP_)].join('')], null));
+})).catch((function (p1__43387_SHARP_){
+return portal.web.submit(new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"error","error",-978969032),new cljs.core.Keyword(null,"text","text",-1790561697),["WebR Read Error:",cljs.core.str.cljs$core$IFn$_invoke$arity$1(p1__43387_SHARP_)].join('')], null));
 }));
 });
 return loop_fn();
@@ -64,8 +64,8 @@ bb_web_ds_tools.runtime.webr.start_read_loop(webr);
 
 return (on_ready.cljs$core$IFn$_invoke$arity$0 ? on_ready.cljs$core$IFn$_invoke$arity$0() : on_ready.call(null));
 })).catch((function (e){
-var G__43404 = ["WebR Init failed: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(e)].join('');
-return (on_error.cljs$core$IFn$_invoke$arity$1 ? on_error.cljs$core$IFn$_invoke$arity$1(G__43404) : on_error.call(null,G__43404));
+var G__43394 = ["WebR Init failed: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(e)].join('');
+return (on_error.cljs$core$IFn$_invoke$arity$1 ? on_error.cljs$core$IFn$_invoke$arity$1(G__43394) : on_error.call(null,G__43394));
 }));
 } else {
 return (on_error.cljs$core$IFn$_invoke$arity$1 ? on_error.cljs$core$IFn$_invoke$arity$1("WebR script not loaded") : on_error.call(null,"WebR script not loaded"));
@@ -86,33 +86,33 @@ if(cljs.core.truth_(cljs.core.deref(bb_web_ds_tools.runtime.webr.webr_instance))
 try{portal.web.submit(new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"code","code",1586293142),new cljs.core.Keyword(null,"text","text",-1790561697),code], null));
 
 return cljs.core.deref(bb_web_ds_tools.runtime.webr.webr_instance).evalR(code,cljs.core.clj__GT_js(new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"autoprint","autoprint",-1117415561),true], null))).then((function (res){
-try{var val_43411 = (function (){try{return cljs.core.js__GT_clj.cljs$core$IFn$_invoke$arity$variadic(res.toJs(),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"keywordize-keys","keywordize-keys",1310784252),true], 0));
-}catch (e43407){if((e43407 instanceof Error)){
-var _ = e43407;
+try{var val_43399 = (function (){try{return cljs.core.js__GT_clj.cljs$core$IFn$_invoke$arity$variadic(res.toJs(),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"keywordize-keys","keywordize-keys",1310784252),true], 0));
+}catch (e43398){if((e43398 instanceof Error)){
+var _ = e43398;
 return cljs.core.str.cljs$core$IFn$_invoke$arity$1(res);
 } else {
-throw e43407;
+throw e43398;
 
 }
 }})();
-portal.web.submit(new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"result","result",1415092211),new cljs.core.Keyword(null,"value","value",305978217),val_43411], null));
+portal.web.submit(new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"result","result",1415092211),new cljs.core.Keyword(null,"value","value",305978217),val_43399], null));
 
 return res.destroy();
-}catch (e43406){if((e43406 instanceof Error)){
-var _ = e43406;
+}catch (e43397){if((e43397 instanceof Error)){
+var _ = e43397;
 return null;
 } else {
-throw e43406;
+throw e43397;
 
 }
 }})).catch((function (e){
 return portal.web.submit(new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"error","error",-978969032),new cljs.core.Keyword(null,"text","text",-1790561697),cljs.core.str.cljs$core$IFn$_invoke$arity$1(e)], null));
 }));
-}catch (e43405){if((e43405 instanceof Error)){
-var e = e43405;
+}catch (e43395){if((e43395 instanceof Error)){
+var e = e43395;
 return portal.web.submit(new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"error","error",-978969032),new cljs.core.Keyword(null,"text","text",-1790561697),cljs.core.str.cljs$core$IFn$_invoke$arity$1(e)], null));
 } else {
-throw e43405;
+throw e43395;
 
 }
 }} else {

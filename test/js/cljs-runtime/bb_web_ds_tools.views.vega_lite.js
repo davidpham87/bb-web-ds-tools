@@ -3,12 +3,12 @@ bb_web_ds_tools.views.vega_lite.default_config_json = "{\n  \"$schema\": \"https
 re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","initialize","bb-web-ds-tools.views.vega-lite/initialize",1758779882),(function (db,_){
 var user_input_exists_QMARK_ = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(db,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"vega-lite","vega-lite",-650304770)], null));
 var component_state_exists_QMARK_ = new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","vega-lite","bb-web-ds-tools.views.vega-lite/vega-lite",348810215).cljs$core$IFn$_invoke$arity$1(db);
-var G__52617 = db;
-var G__52617__$1 = ((cljs.core.not(user_input_exists_QMARK_))?cljs.core.assoc_in(G__52617,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"vega-lite","vega-lite",-650304770)], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"saved-configs","saved-configs",1634320315),cljs.core.PersistentArrayMap.EMPTY,new cljs.core.Keyword(null,"default","default",-1987822328),new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","data-input","bb-web-ds-tools.views.vega-lite/data-input",-1679982013),"",new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","config-input","bb-web-ds-tools.views.vega-lite/config-input",-593303029),bb_web_ds_tools.views.vega_lite.default_config_json,new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","config-mode","bb-web-ds-tools.views.vega-lite/config-mode",-1590507328),new cljs.core.Keyword(null,"json","json",1279968570),new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","active-config-name","bb-web-ds-tools.views.vega-lite/active-config-name",-1463263112),null], null)], null)):G__52617);
+var G__52776 = db;
+var G__52776__$1 = ((cljs.core.not(user_input_exists_QMARK_))?cljs.core.assoc_in(G__52776,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"vega-lite","vega-lite",-650304770)], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"saved-configs","saved-configs",1634320315),cljs.core.PersistentArrayMap.EMPTY,new cljs.core.Keyword(null,"default","default",-1987822328),new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","data-input","bb-web-ds-tools.views.vega-lite/data-input",-1679982013),"",new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","config-input","bb-web-ds-tools.views.vega-lite/config-input",-593303029),bb_web_ds_tools.views.vega_lite.default_config_json,new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","config-mode","bb-web-ds-tools.views.vega-lite/config-mode",-1590507328),new cljs.core.Keyword(null,"json","json",1279968570),new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","active-config-name","bb-web-ds-tools.views.vega-lite/active-config-name",-1463263112),null], null)], null)):G__52776);
 if(cljs.core.not(component_state_exists_QMARK_)){
-return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(G__52617__$1,new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","vega-lite","bb-web-ds-tools.views.vega-lite/vega-lite",348810215),new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","format","bb-web-ds-tools.views.vega-lite/format",-174777479),new cljs.core.Keyword(null,"csv","csv",-1164440893),new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","structure","bb-web-ds-tools.views.vega-lite/structure",1637845102),new cljs.core.Keyword(null,"columnar","columnar",-1122999701),new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","parsed-data","bb-web-ds-tools.views.vega-lite/parsed-data",1101160363),null,new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","inferred-schema","bb-web-ds-tools.views.vega-lite/inferred-schema",3976792),null,new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","active-left-tab","bb-web-ds-tools.views.vega-lite/active-left-tab",-1047612510),new cljs.core.Keyword(null,"data","data",-232669377),new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","active-right-tab","bb-web-ds-tools.views.vega-lite/active-right-tab",-638097379),new cljs.core.Keyword(null,"plot","plot",2086832225)], null));
+return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(G__52776__$1,new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","vega-lite","bb-web-ds-tools.views.vega-lite/vega-lite",348810215),new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","format","bb-web-ds-tools.views.vega-lite/format",-174777479),new cljs.core.Keyword(null,"csv","csv",-1164440893),new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","structure","bb-web-ds-tools.views.vega-lite/structure",1637845102),new cljs.core.Keyword(null,"columnar","columnar",-1122999701),new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","parsed-data","bb-web-ds-tools.views.vega-lite/parsed-data",1101160363),null,new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","inferred-schema","bb-web-ds-tools.views.vega-lite/inferred-schema",3976792),null,new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","active-left-tab","bb-web-ds-tools.views.vega-lite/active-left-tab",-1047612510),new cljs.core.Keyword(null,"data","data",-232669377),new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","active-right-tab","bb-web-ds-tools.views.vega-lite/active-right-tab",-638097379),new cljs.core.Keyword(null,"plot","plot",2086832225)], null));
 } else {
-return G__52617__$1;
+return G__52776__$1;
 }
 }));
 re_frame.core.reg_sub.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","user-input-root","bb-web-ds-tools.views.vega-lite/user-input-root",1411762347),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"<-","<-",760412998),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.core","user-input","bb-web-ds-tools.core/user-input",1937733608)], null),(function (user_input){
@@ -47,152 +47,152 @@ return new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","active-left-tab"
 re_frame.core.reg_sub.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","active-right-tab","bb-web-ds-tools.views.vega-lite/active-right-tab",-638097379),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"<-","<-",760412998),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","component-root","bb-web-ds-tools.views.vega-lite/component-root",-1501251861)], null),(function (root){
 return new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","active-right-tab","bb-web-ds-tools.views.vega-lite/active-right-tab",-638097379).cljs$core$IFn$_invoke$arity$1(root);
 })], 0));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","set-data-input","bb-web-ds-tools.views.vega-lite/set-data-input",672681982),(function (db,p__52621){
-var vec__52622 = p__52621;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52622,(0),null);
-var val = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52622,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","set-data-input","bb-web-ds-tools.views.vega-lite/set-data-input",672681982),(function (db,p__52780){
+var vec__52782 = p__52780;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52782,(0),null);
+var val = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52782,(1),null);
 return cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"vega-lite","vega-lite",-650304770),new cljs.core.Keyword(null,"default","default",-1987822328),new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","data-input","bb-web-ds-tools.views.vega-lite/data-input",-1679982013)], null),val);
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","set-config-input","bb-web-ds-tools.views.vega-lite/set-config-input",1175394425),(function (db,p__52626){
-var vec__52627 = p__52626;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52627,(0),null);
-var val = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52627,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","set-config-input","bb-web-ds-tools.views.vega-lite/set-config-input",1175394425),(function (db,p__52787){
+var vec__52789 = p__52787;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52789,(0),null);
+var val = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52789,(1),null);
 return cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"vega-lite","vega-lite",-650304770),new cljs.core.Keyword(null,"default","default",-1987822328),new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","config-input","bb-web-ds-tools.views.vega-lite/config-input",-593303029)], null),val);
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","set-config-mode","bb-web-ds-tools.views.vega-lite/set-config-mode",1935491083),(function (db,p__52630){
-var vec__52631 = p__52630;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52631,(0),null);
-var new_mode = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52631,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","set-config-mode","bb-web-ds-tools.views.vega-lite/set-config-mode",1935491083),(function (db,p__52792){
+var vec__52793 = p__52792;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52793,(0),null);
+var new_mode = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52793,(1),null);
 var user_input = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(db,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"vega-lite","vega-lite",-650304770),new cljs.core.Keyword(null,"default","default",-1987822328)], null));
 var current_mode = new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","config-mode","bb-web-ds-tools.views.vega-lite/config-mode",-1590507328).cljs$core$IFn$_invoke$arity$1(user_input);
 var current_input = new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","config-input","bb-web-ds-tools.views.vega-lite/config-input",-593303029).cljs$core$IFn$_invoke$arity$1(user_input);
 var new_input = ((((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(current_mode,new cljs.core.Keyword(null,"json","json",1279968570))) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new_mode,new cljs.core.Keyword(null,"edn","edn",1317840885)))))?(function (){try{var obj = JSON.parse(current_input);
 var edn_data = cljs.core.js__GT_clj.cljs$core$IFn$_invoke$arity$variadic(obj,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"keywordize-keys","keywordize-keys",1310784252),true], 0));
 var sb__5670__auto__ = (new goog.string.StringBuffer());
-var _STAR_print_newline_STAR__orig_val__52635_52788 = cljs.core._STAR_print_newline_STAR_;
-var _STAR_print_fn_STAR__orig_val__52636_52789 = cljs.core._STAR_print_fn_STAR_;
-var _STAR_print_newline_STAR__temp_val__52637_52790 = true;
-var _STAR_print_fn_STAR__temp_val__52638_52791 = (function (x__5671__auto__){
+var _STAR_print_newline_STAR__orig_val__52797_52889 = cljs.core._STAR_print_newline_STAR_;
+var _STAR_print_fn_STAR__orig_val__52798_52890 = cljs.core._STAR_print_fn_STAR_;
+var _STAR_print_newline_STAR__temp_val__52799_52891 = true;
+var _STAR_print_fn_STAR__temp_val__52800_52892 = (function (x__5671__auto__){
 return sb__5670__auto__.append(x__5671__auto__);
 });
-(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__temp_val__52637_52790);
+(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__temp_val__52799_52891);
 
-(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__temp_val__52638_52791);
+(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__temp_val__52800_52892);
 
 try{cljs.pprint.pprint.cljs$core$IFn$_invoke$arity$1(edn_data);
-}finally {(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__orig_val__52636_52789);
+}finally {(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__orig_val__52798_52890);
 
-(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__orig_val__52635_52788);
+(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__orig_val__52797_52889);
 }
 return cljs.core.str.cljs$core$IFn$_invoke$arity$1(sb__5670__auto__);
-}catch (e52634){if((e52634 instanceof Error)){
-var ___$1 = e52634;
+}catch (e52796){if((e52796 instanceof Error)){
+var ___$1 = e52796;
 return current_input;
 } else {
-throw e52634;
+throw e52796;
 
 }
 }})():((((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(current_mode,new cljs.core.Keyword(null,"edn","edn",1317840885))) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new_mode,new cljs.core.Keyword(null,"json","json",1279968570)))))?(function (){try{var edn_data = clojure.edn.read_string.cljs$core$IFn$_invoke$arity$1(current_input);
 var obj = cljs.core.clj__GT_js(edn_data);
 return JSON.stringify(obj,null,(2));
-}catch (e52639){if((e52639 instanceof Error)){
-var ___$1 = e52639;
+}catch (e52802){if((e52802 instanceof Error)){
+var ___$1 = e52802;
 return current_input;
 } else {
-throw e52639;
+throw e52802;
 
 }
 }})():current_input
 ));
 return cljs.core.assoc_in(cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"vega-lite","vega-lite",-650304770),new cljs.core.Keyword(null,"default","default",-1987822328),new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","config-mode","bb-web-ds-tools.views.vega-lite/config-mode",-1590507328)], null),new_mode),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"vega-lite","vega-lite",-650304770),new cljs.core.Keyword(null,"default","default",-1987822328),new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","config-input","bb-web-ds-tools.views.vega-lite/config-input",-593303029)], null),new_input);
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","set-active-config-name","bb-web-ds-tools.views.vega-lite/set-active-config-name",-1337470050),(function (db,p__52640){
-var vec__52641 = p__52640;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52641,(0),null);
-var name = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52641,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","set-active-config-name","bb-web-ds-tools.views.vega-lite/set-active-config-name",-1337470050),(function (db,p__52803){
+var vec__52805 = p__52803;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52805,(0),null);
+var name = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52805,(1),null);
 return cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"vega-lite","vega-lite",-650304770),new cljs.core.Keyword(null,"default","default",-1987822328),new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","active-config-name","bb-web-ds-tools.views.vega-lite/active-config-name",-1463263112)], null),name);
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","set-format","bb-web-ds-tools.views.vega-lite/set-format",600148309),(function (db,p__52644){
-var vec__52645 = p__52644;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52645,(0),null);
-var fmt = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52645,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","set-format","bb-web-ds-tools.views.vega-lite/set-format",600148309),(function (db,p__52808){
+var vec__52809 = p__52808;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52809,(0),null);
+var fmt = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52809,(1),null);
 return cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","vega-lite","bb-web-ds-tools.views.vega-lite/vega-lite",348810215),new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","format","bb-web-ds-tools.views.vega-lite/format",-174777479)], null),fmt);
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","set-structure","bb-web-ds-tools.views.vega-lite/set-structure",-607755948),(function (db,p__52648){
-var vec__52649 = p__52648;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52649,(0),null);
-var s = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52649,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","set-structure","bb-web-ds-tools.views.vega-lite/set-structure",-607755948),(function (db,p__52812){
+var vec__52814 = p__52812;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52814,(0),null);
+var s = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52814,(1),null);
 return cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","vega-lite","bb-web-ds-tools.views.vega-lite/vega-lite",348810215),new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","structure","bb-web-ds-tools.views.vega-lite/structure",1637845102)], null),s);
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","set-active-left-tab","bb-web-ds-tools.views.vega-lite/set-active-left-tab",300865662),(function (db,p__52652){
-var vec__52653 = p__52652;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52653,(0),null);
-var tab = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52653,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","set-active-left-tab","bb-web-ds-tools.views.vega-lite/set-active-left-tab",300865662),(function (db,p__52818){
+var vec__52819 = p__52818;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52819,(0),null);
+var tab = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52819,(1),null);
 return cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","vega-lite","bb-web-ds-tools.views.vega-lite/vega-lite",348810215),new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","active-left-tab","bb-web-ds-tools.views.vega-lite/active-left-tab",-1047612510)], null),tab);
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","set-active-right-tab","bb-web-ds-tools.views.vega-lite/set-active-right-tab",-490897405),(function (db,p__52656){
-var vec__52657 = p__52656;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52657,(0),null);
-var tab = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52657,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","set-active-right-tab","bb-web-ds-tools.views.vega-lite/set-active-right-tab",-490897405),(function (db,p__52822){
+var vec__52823 = p__52822;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52823,(0),null);
+var tab = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52823,(1),null);
 return cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","vega-lite","bb-web-ds-tools.views.vega-lite/vega-lite",348810215),new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","active-right-tab","bb-web-ds-tools.views.vega-lite/active-right-tab",-638097379)], null),tab);
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","save-config","bb-web-ds-tools.views.vega-lite/save-config",1789695845),(function (db,p__52660){
-var vec__52661 = p__52660;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52661,(0),null);
-var name = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52661,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","save-config","bb-web-ds-tools.views.vega-lite/save-config",1789695845),(function (db,p__52826){
+var vec__52827 = p__52826;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52827,(0),null);
+var name = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52827,(1),null);
 var root = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(db,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"vega-lite","vega-lite",-650304770),new cljs.core.Keyword(null,"default","default",-1987822328)], null));
 var config = cljs.core.select_keys(root,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","config-input","bb-web-ds-tools.views.vega-lite/config-input",-593303029),new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","config-mode","bb-web-ds-tools.views.vega-lite/config-mode",-1590507328)], null));
 return cljs.core.assoc_in(cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"vega-lite","vega-lite",-650304770),new cljs.core.Keyword(null,"saved-configs","saved-configs",1634320315),name], null),config),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"vega-lite","vega-lite",-650304770),new cljs.core.Keyword(null,"default","default",-1987822328),new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","active-config-name","bb-web-ds-tools.views.vega-lite/active-config-name",-1463263112)], null),name);
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","load-config","bb-web-ds-tools.views.vega-lite/load-config",-2057445703),(function (db,p__52664){
-var vec__52665 = p__52664;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52665,(0),null);
-var name = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52665,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","load-config","bb-web-ds-tools.views.vega-lite/load-config",-2057445703),(function (db,p__52830){
+var vec__52831 = p__52830;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52831,(0),null);
+var name = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52831,(1),null);
 var config = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(db,new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"vega-lite","vega-lite",-650304770),new cljs.core.Keyword(null,"saved-configs","saved-configs",1634320315),name], null));
 return cljs.core.assoc_in(cljs.core.update_in.cljs$core$IFn$_invoke$arity$4(db,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"vega-lite","vega-lite",-650304770),new cljs.core.Keyword(null,"default","default",-1987822328)], null),cljs.core.merge,config),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"vega-lite","vega-lite",-650304770),new cljs.core.Keyword(null,"default","default",-1987822328),new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","active-config-name","bb-web-ds-tools.views.vega-lite/active-config-name",-1463263112)], null),name);
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","delete-config","bb-web-ds-tools.views.vega-lite/delete-config",-602454691),(function (db,p__52686){
-var vec__52687 = p__52686;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52687,(0),null);
-var name = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52687,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","delete-config","bb-web-ds-tools.views.vega-lite/delete-config",-602454691),(function (db,p__52834){
+var vec__52835 = p__52834;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52835,(0),null);
+var name = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52835,(1),null);
 var active_name = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(db,new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"vega-lite","vega-lite",-650304770),new cljs.core.Keyword(null,"default","default",-1987822328),new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","active-config-name","bb-web-ds-tools.views.vega-lite/active-config-name",-1463263112)], null));
-var G__52690 = db;
-var G__52690__$1 = cljs.core.update_in.cljs$core$IFn$_invoke$arity$4(G__52690,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"vega-lite","vega-lite",-650304770),new cljs.core.Keyword(null,"saved-configs","saved-configs",1634320315)], null),cljs.core.dissoc,name)
+var G__52838 = db;
+var G__52838__$1 = cljs.core.update_in.cljs$core$IFn$_invoke$arity$4(G__52838,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"vega-lite","vega-lite",-650304770),new cljs.core.Keyword(null,"saved-configs","saved-configs",1634320315)], null),cljs.core.dissoc,name)
 ;
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(active_name,name)){
-return cljs.core.assoc_in(G__52690__$1,new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"vega-lite","vega-lite",-650304770),new cljs.core.Keyword(null,"default","default",-1987822328),new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","active-config-name","bb-web-ds-tools.views.vega-lite/active-config-name",-1463263112)], null),null);
+return cljs.core.assoc_in(G__52838__$1,new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"vega-lite","vega-lite",-650304770),new cljs.core.Keyword(null,"default","default",-1987822328),new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","active-config-name","bb-web-ds-tools.views.vega-lite/active-config-name",-1463263112)], null),null);
 } else {
-return G__52690__$1;
+return G__52838__$1;
 }
 }));
-re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","import-dataset","bb-web-ds-tools.views.vega-lite/import-dataset",1691198254),(function (p__52693,p__52694){
-var map__52695 = p__52693;
-var map__52695__$1 = cljs.core.__destructure_map(map__52695);
-var db = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52695__$1,new cljs.core.Keyword(null,"db","db",993250759));
-var vec__52696 = p__52694;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52696,(0),null);
-var dataset_id = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52696,(1),null);
+re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","import-dataset","bb-web-ds-tools.views.vega-lite/import-dataset",1691198254),(function (p__52840,p__52841){
+var map__52842 = p__52840;
+var map__52842__$1 = cljs.core.__destructure_map(map__52842);
+var db = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52842__$1,new cljs.core.Keyword(null,"db","db",993250759));
+var vec__52843 = p__52841;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52843,(0),null);
+var dataset_id = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52843,(1),null);
 var datasets = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(db,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"datasets","datasets",1896364419),new cljs.core.Keyword(null,"items","items",1031954938)], null));
 var dataset = cljs.core.get.cljs$core$IFn$_invoke$arity$2(datasets,dataset_id);
 var data = new cljs.core.Keyword(null,"data","data",-232669377).cljs$core$IFn$_invoke$arity$1(dataset);
-var clean_data = cljs.core.mapv.cljs$core$IFn$_invoke$arity$2((function (p1__52691_SHARP_){
-return cljs.core.dissoc.cljs$core$IFn$_invoke$arity$2(p1__52691_SHARP_,new cljs.core.Keyword(null,"_uuid","_uuid",797900280));
+var clean_data = cljs.core.mapv.cljs$core$IFn$_invoke$arity$2((function (p1__52839_SHARP_){
+return cljs.core.dissoc.cljs$core$IFn$_invoke$arity$2(p1__52839_SHARP_,new cljs.core.Keyword(null,"_uuid","_uuid",797900280));
 }),data);
 var data_str = (function (){var sb__5670__auto__ = (new goog.string.StringBuffer());
-var _STAR_print_newline_STAR__orig_val__52699_52794 = cljs.core._STAR_print_newline_STAR_;
-var _STAR_print_fn_STAR__orig_val__52700_52795 = cljs.core._STAR_print_fn_STAR_;
-var _STAR_print_newline_STAR__temp_val__52701_52796 = true;
-var _STAR_print_fn_STAR__temp_val__52702_52797 = (function (x__5671__auto__){
+var _STAR_print_newline_STAR__orig_val__52846_52906 = cljs.core._STAR_print_newline_STAR_;
+var _STAR_print_fn_STAR__orig_val__52847_52907 = cljs.core._STAR_print_fn_STAR_;
+var _STAR_print_newline_STAR__temp_val__52848_52908 = true;
+var _STAR_print_fn_STAR__temp_val__52849_52909 = (function (x__5671__auto__){
 return sb__5670__auto__.append(x__5671__auto__);
 });
-(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__temp_val__52701_52796);
+(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__temp_val__52848_52908);
 
-(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__temp_val__52702_52797);
+(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__temp_val__52849_52909);
 
 try{cljs.pprint.pprint.cljs$core$IFn$_invoke$arity$1(clean_data);
-}finally {(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__orig_val__52700_52795);
+}finally {(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__orig_val__52847_52907);
 
-(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__orig_val__52699_52794);
+(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__orig_val__52846_52906);
 }
 return cljs.core.str.cljs$core$IFn$_invoke$arity$1(sb__5670__auto__);
 })();
@@ -206,23 +206,23 @@ var fmt = new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","format","bb-w
 var structure = new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","structure","bb-web-ds-tools.views.vega-lite/structure",1637845102).cljs$core$IFn$_invoke$arity$1(component_state);
 var parsed = bb_web_ds_tools.utils.dataset_processing.parse_dataset.cljs$core$IFn$_invoke$arity$3(fmt,structure,text);
 var schema = (function (){try{return malli.provider.provide.cljs$core$IFn$_invoke$arity$1(parsed);
-}catch (e52709){if((e52709 instanceof Error)){
-var e = e52709;
+}catch (e52850){if((e52850 instanceof Error)){
+var e = e52850;
 return ["Error inferring schema: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(e.message)].join('');
 } else {
-throw e52709;
+throw e52850;
 
 }
 }})();
 return cljs.core.update.cljs$core$IFn$_invoke$arity$variadic(db,new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","vega-lite","bb-web-ds-tools.views.vega-lite/vega-lite",348810215),cljs.core.assoc,new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","parsed-data","bb-web-ds-tools.views.vega-lite/parsed-data",1101160363),parsed,new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","inferred-schema","bb-web-ds-tools.views.vega-lite/inferred-schema",3976792),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([schema], 0));
 }));
-re_frame.core.reg_sub.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","parsed-config-obj","bb-web-ds-tools.views.vega-lite/parsed-config-obj",-653801240),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"<-","<-",760412998),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","config-input","bb-web-ds-tools.views.vega-lite/config-input",-593303029)], null),new cljs.core.Keyword(null,"<-","<-",760412998),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","config-mode","bb-web-ds-tools.views.vega-lite/config-mode",-1590507328)], null),(function (p__52713){
-var vec__52714 = p__52713;
-var input = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52714,(0),null);
-var mode = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52714,(1),null);
-try{var G__52718 = mode;
-var G__52718__$1 = (((G__52718 instanceof cljs.core.Keyword))?G__52718.fqn:null);
-switch (G__52718__$1) {
+re_frame.core.reg_sub.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","parsed-config-obj","bb-web-ds-tools.views.vega-lite/parsed-config-obj",-653801240),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"<-","<-",760412998),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","config-input","bb-web-ds-tools.views.vega-lite/config-input",-593303029)], null),new cljs.core.Keyword(null,"<-","<-",760412998),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","config-mode","bb-web-ds-tools.views.vega-lite/config-mode",-1590507328)], null),(function (p__52851){
+var vec__52852 = p__52851;
+var input = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52852,(0),null);
+var mode = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52852,(1),null);
+try{var G__52856 = mode;
+var G__52856__$1 = (((G__52856 instanceof cljs.core.Keyword))?G__52856.fqn:null);
+switch (G__52856__$1) {
 case "json":
 return JSON.parse(input);
 
@@ -232,14 +232,14 @@ return cljs.core.clj__GT_js(clojure.edn.read_string.cljs$core$IFn$_invoke$arity$
 
 break;
 default:
-throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__52718__$1)].join('')));
+throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__52856__$1)].join('')));
 
 }
-}catch (e52717){if((e52717 instanceof Error)){
-var _ = e52717;
+}catch (e52855){if((e52855 instanceof Error)){
+var _ = e52855;
 return null;
 } else {
-throw e52717;
+throw e52855;
 
 }
 }})], 0));
@@ -285,11 +285,11 @@ try{var spec_with_data = Object.assign(({}),spec_obj);
 (spec_with_data.data = ({"values": cljs.core.clj__GT_js(data)}));
 
 return vegaEmbed(shadow.js.shim.module$react_dom.findDOMNode(component),spec_with_data);
-}catch (e52723){if((e52723 instanceof Error)){
-var e = e52723;
+}catch (e52857){if((e52857 instanceof Error)){
+var e = e52857;
 return console.warn("Vega render error",e);
 } else {
-throw e52723;
+throw e52857;
 
 }
 }} else {
@@ -305,11 +305,11 @@ return null;
  *   Returns:
  *  vector: A hiccup vector.
  */
-bb_web_ds_tools.views.vega_lite.vega_viz = (function bb_web_ds_tools$views$vega_lite$vega_viz(p__52724){
-var map__52725 = p__52724;
-var map__52725__$1 = cljs.core.__destructure_map(map__52725);
-var spec_obj = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52725__$1,new cljs.core.Keyword(null,"spec-obj","spec-obj",-642575778));
-var data = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52725__$1,new cljs.core.Keyword(null,"data","data",-232669377));
+bb_web_ds_tools.views.vega_lite.vega_viz = (function bb_web_ds_tools$views$vega_lite$vega_viz(p__52858){
+var map__52859 = p__52858;
+var map__52859__$1 = cljs.core.__destructure_map(map__52859);
+var spec_obj = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52859__$1,new cljs.core.Keyword(null,"spec-obj","spec-obj",-642575778));
+var data = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52859__$1,new cljs.core.Keyword(null,"data","data",-232669377));
 return reagent.core.create_class.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"display-name","display-name",694513143),"vega-viz",new cljs.core.Keyword(null,"component-did-mount","component-did-mount",-1126910518),(function (this$){
 return bb_web_ds_tools.views.vega_lite.render_vega(this$,new cljs.core.Keyword(null,"spec-obj","spec-obj",-642575778).cljs$core$IFn$_invoke$arity$1(reagent.core.props(this$)),new cljs.core.Keyword(null,"data","data",-232669377).cljs$core$IFn$_invoke$arity$1(reagent.core.props(this$)));
 }),new cljs.core.Keyword(null,"component-did-update","component-did-update",-1468549173),(function (this$){
@@ -344,8 +344,8 @@ var name_input = reagent.core.atom.cljs$core$IFn$_invoke$arity$1("");
 return (function (){
 return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"relative inline-block"], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.button_xs,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"on-click","on-click",1632826543),(function (){
 return cljs.core.reset_BANG_(open_QMARK_,true);
-})], null),"Save"], null),(cljs.core.truth_(cljs.core.deref(open_QMARK_))?new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),["absolute top-8 right-0 z-50 p-2 rounded shadow-lg border ",bb_web_ds_tools.theme.bg_input," ",bb_web_ds_tools.theme.border_default," flex items-center space-x-2"].join('')], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.input,new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"class","class",-2030961996),"w-32 text-xs",new cljs.core.Keyword(null,"placeholder","placeholder",-104873083),"Name",new cljs.core.Keyword(null,"value","value",305978217),cljs.core.deref(name_input),new cljs.core.Keyword(null,"on-change","on-change",-732046149),(function (p1__52742_SHARP_){
-return cljs.core.reset_BANG_(name_input,p1__52742_SHARP_.target.value);
+})], null),"Save"], null),(cljs.core.truth_(cljs.core.deref(open_QMARK_))?new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),["absolute top-8 right-0 z-50 p-2 rounded shadow-lg border ",bb_web_ds_tools.theme.bg_input," ",bb_web_ds_tools.theme.border_default," flex items-center space-x-2"].join('')], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.input,new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"class","class",-2030961996),"w-32 text-xs",new cljs.core.Keyword(null,"placeholder","placeholder",-104873083),"Name",new cljs.core.Keyword(null,"value","value",305978217),cljs.core.deref(name_input),new cljs.core.Keyword(null,"on-change","on-change",-732046149),(function (p1__52860_SHARP_){
+return cljs.core.reset_BANG_(name_input,p1__52860_SHARP_.target.value);
 })], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.button_xs,new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"class","class",-2030961996),"text-green-400",new cljs.core.Keyword(null,"on-click","on-click",1632826543),(function (){
 re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","save-config","bb-web-ds-tools.views.vega-lite/save-config",1789695845),cljs.core.deref(name_input)], null));
 
@@ -389,9 +389,9 @@ return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMP
 return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","set-active-left-tab","bb-web-ds-tools.views.vega-lite/set-active-left-tab",300865662),new cljs.core.Keyword(null,"data","data",-232669377)], null));
 })], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.views.vega_lite.tab_button,cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(active_left_tab,new cljs.core.Keyword(null,"config","config",994861415)),"Config",(function (){
 return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","set-active-left-tab","bb-web-ds-tools.views.vega-lite/set-active-left-tab",300865662),new cljs.core.Keyword(null,"config","config",994861415)], null));
-})], null)], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"flex-grow overflow-hidden relative"], null),(function (){var G__52763 = active_left_tab;
-var G__52763__$1 = (((G__52763 instanceof cljs.core.Keyword))?G__52763.fqn:null);
-switch (G__52763__$1) {
+})], null)], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"flex-grow overflow-hidden relative"], null),(function (){var G__52863 = active_left_tab;
+var G__52863__$1 = (((G__52863 instanceof cljs.core.Keyword))?G__52863.fqn:null);
+switch (G__52863__$1) {
 case "data":
 return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.layout.flex_col,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"h-full"], null),new cljs.core.PersistentVector(null, 10, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.layout.flex_row,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"p-2 gap-2 flex-wrap border-b border-[#3f3f3f] bg-[#1c2128] items-center"], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.button_info,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"on-click","on-click",1632826543),(function (){
 return bb_web_ds_tools.views.vega_lite.load_example(new cljs.core.Keyword(null,"csv","csv",-1164440893),new cljs.core.Keyword(null,"columnar","columnar",-1122999701));
@@ -407,31 +407,31 @@ return bb_web_ds_tools.views.vega_lite.load_example(new cljs.core.Keyword(null,"
 return bb_web_ds_tools.views.vega_lite.load_example(new cljs.core.Keyword(null,"edn","edn",1317840885),new cljs.core.Keyword(null,"row-maps","row-maps",-2115135284));
 })], null),"EDN Maps"], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.button_info,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"on-click","on-click",1632826543),(function (){
 return bb_web_ds_tools.views.vega_lite.load_example(new cljs.core.Keyword(null,"edn","edn",1317840885),new cljs.core.Keyword(null,"columnar","columnar",-1122999701));
-})], null),"EDN Col"], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"relative group ml-auto"], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.button_info,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"border-dashed border-white/50"], null),"Import Dataset \u25BC"], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),["absolute hidden group-hover:block right-0 ",bb_web_ds_tools.theme.bg_input," border ",bb_web_ds_tools.theme.border_default," p-1 rounded shadow-lg z-10 w-48 max-h-60 overflow-y-auto"].join('')], null),((cljs.core.seq(datasets))?(function (){var iter__5503__auto__ = (function bb_web_ds_tools$views$vega_lite$panel_render_$_iter__52764(s__52765){
+})], null),"EDN Col"], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"relative group ml-auto"], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.button_info,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"border-dashed border-white/50"], null),"Import Dataset \u25BC"], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),["absolute hidden group-hover:block right-0 ",bb_web_ds_tools.theme.bg_input," border ",bb_web_ds_tools.theme.border_default," p-1 rounded shadow-lg z-10 w-48 max-h-60 overflow-y-auto"].join('')], null),((cljs.core.seq(datasets))?(function (){var iter__5503__auto__ = (function bb_web_ds_tools$views$vega_lite$panel_render_$_iter__52864(s__52865){
 return (new cljs.core.LazySeq(null,(function (){
-var s__52765__$1 = s__52765;
+var s__52865__$1 = s__52865;
 while(true){
-var temp__5825__auto__ = cljs.core.seq(s__52765__$1);
+var temp__5825__auto__ = cljs.core.seq(s__52865__$1);
 if(temp__5825__auto__){
-var s__52765__$2 = temp__5825__auto__;
-if(cljs.core.chunked_seq_QMARK_(s__52765__$2)){
-var c__5501__auto__ = cljs.core.chunk_first(s__52765__$2);
+var s__52865__$2 = temp__5825__auto__;
+if(cljs.core.chunked_seq_QMARK_(s__52865__$2)){
+var c__5501__auto__ = cljs.core.chunk_first(s__52865__$2);
 var size__5502__auto__ = cljs.core.count(c__5501__auto__);
-var b__52767 = cljs.core.chunk_buffer(size__5502__auto__);
-if((function (){var i__52766 = (0);
+var b__52867 = cljs.core.chunk_buffer(size__5502__auto__);
+if((function (){var i__52866 = (0);
 while(true){
-if((i__52766 < size__5502__auto__)){
-var vec__52768 = cljs.core._nth(c__5501__auto__,i__52766);
-var id = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52768,(0),null);
-var ds = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52768,(1),null);
-cljs.core.chunk_append(b__52767,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"key","key",-1516042587),id,new cljs.core.Keyword(null,"class","class",-2030961996),["cursor-pointer px-2 py-1 text-xs ",bb_web_ds_tools.theme.bg_item_hover," truncate"].join(''),new cljs.core.Keyword(null,"on-click","on-click",1632826543),((function (i__52766,vec__52768,id,ds,c__5501__auto__,size__5502__auto__,b__52767,s__52765__$2,temp__5825__auto__,G__52763,G__52763__$1,data_input,config_input,parsed_data,active_left_tab,active_right_tab,datasets,config_mode,saved_configs,active_config_name,parsed_config_obj,format){
+if((i__52866 < size__5502__auto__)){
+var vec__52868 = cljs.core._nth(c__5501__auto__,i__52866);
+var id = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52868,(0),null);
+var ds = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52868,(1),null);
+cljs.core.chunk_append(b__52867,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"key","key",-1516042587),id,new cljs.core.Keyword(null,"class","class",-2030961996),["cursor-pointer px-2 py-1 text-xs ",bb_web_ds_tools.theme.bg_item_hover," truncate"].join(''),new cljs.core.Keyword(null,"on-click","on-click",1632826543),((function (i__52866,vec__52868,id,ds,c__5501__auto__,size__5502__auto__,b__52867,s__52865__$2,temp__5825__auto__,G__52863,G__52863__$1,data_input,config_input,parsed_data,active_left_tab,active_right_tab,datasets,config_mode,saved_configs,active_config_name,parsed_config_obj,format){
 return (function (){
 return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","import-dataset","bb-web-ds-tools.views.vega-lite/import-dataset",1691198254),id], null));
-});})(i__52766,vec__52768,id,ds,c__5501__auto__,size__5502__auto__,b__52767,s__52765__$2,temp__5825__auto__,G__52763,G__52763__$1,data_input,config_input,parsed_data,active_left_tab,active_right_tab,datasets,config_mode,saved_configs,active_config_name,parsed_config_obj,format))
+});})(i__52866,vec__52868,id,ds,c__5501__auto__,size__5502__auto__,b__52867,s__52865__$2,temp__5825__auto__,G__52863,G__52863__$1,data_input,config_input,parsed_data,active_left_tab,active_right_tab,datasets,config_mode,saved_configs,active_config_name,parsed_config_obj,format))
 ], null),new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(ds)], null));
 
-var G__52821 = (i__52766 + (1));
-i__52766 = G__52821;
+var G__52944 = (i__52866 + (1));
+i__52866 = G__52944;
 continue;
 } else {
 return true;
@@ -439,19 +439,19 @@ return true;
 break;
 }
 })()){
-return cljs.core.chunk_cons(cljs.core.chunk(b__52767),bb_web_ds_tools$views$vega_lite$panel_render_$_iter__52764(cljs.core.chunk_rest(s__52765__$2)));
+return cljs.core.chunk_cons(cljs.core.chunk(b__52867),bb_web_ds_tools$views$vega_lite$panel_render_$_iter__52864(cljs.core.chunk_rest(s__52865__$2)));
 } else {
-return cljs.core.chunk_cons(cljs.core.chunk(b__52767),null);
+return cljs.core.chunk_cons(cljs.core.chunk(b__52867),null);
 }
 } else {
-var vec__52774 = cljs.core.first(s__52765__$2);
-var id = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52774,(0),null);
-var ds = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52774,(1),null);
-return cljs.core.cons(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"key","key",-1516042587),id,new cljs.core.Keyword(null,"class","class",-2030961996),["cursor-pointer px-2 py-1 text-xs ",bb_web_ds_tools.theme.bg_item_hover," truncate"].join(''),new cljs.core.Keyword(null,"on-click","on-click",1632826543),((function (vec__52774,id,ds,s__52765__$2,temp__5825__auto__,G__52763,G__52763__$1,data_input,config_input,parsed_data,active_left_tab,active_right_tab,datasets,config_mode,saved_configs,active_config_name,parsed_config_obj,format){
+var vec__52871 = cljs.core.first(s__52865__$2);
+var id = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52871,(0),null);
+var ds = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52871,(1),null);
+return cljs.core.cons(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"key","key",-1516042587),id,new cljs.core.Keyword(null,"class","class",-2030961996),["cursor-pointer px-2 py-1 text-xs ",bb_web_ds_tools.theme.bg_item_hover," truncate"].join(''),new cljs.core.Keyword(null,"on-click","on-click",1632826543),((function (vec__52871,id,ds,s__52865__$2,temp__5825__auto__,G__52863,G__52863__$1,data_input,config_input,parsed_data,active_left_tab,active_right_tab,datasets,config_mode,saved_configs,active_config_name,parsed_config_obj,format){
 return (function (){
 return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","import-dataset","bb-web-ds-tools.views.vega-lite/import-dataset",1691198254),id], null));
-});})(vec__52774,id,ds,s__52765__$2,temp__5825__auto__,G__52763,G__52763__$1,data_input,config_input,parsed_data,active_left_tab,active_right_tab,datasets,config_mode,saved_configs,active_config_name,parsed_config_obj,format))
-], null),new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(ds)], null),bb_web_ds_tools$views$vega_lite$panel_render_$_iter__52764(cljs.core.rest(s__52765__$2)));
+});})(vec__52871,id,ds,s__52865__$2,temp__5825__auto__,G__52863,G__52863__$1,data_input,config_input,parsed_data,active_left_tab,active_right_tab,datasets,config_mode,saved_configs,active_config_name,parsed_config_obj,format))
+], null),new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(ds)], null),bb_web_ds_tools$views$vega_lite$panel_render_$_iter__52864(cljs.core.rest(s__52865__$2)));
 }
 } else {
 return null;
@@ -479,27 +479,27 @@ return or__5025__auto__;
 } else {
 return "";
 }
-})(),new cljs.core.Keyword(null,"on-change","on-change",-732046149),(function (p1__52752_SHARP_){
-return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","load-config","bb-web-ds-tools.views.vega-lite/load-config",-2057445703),p1__52752_SHARP_.target.value], null));
-})], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"option","option",65132272),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"value","value",305978217),""], null),"Select Config..."], null),(function (){var iter__5503__auto__ = (function bb_web_ds_tools$views$vega_lite$panel_render_$_iter__52777(s__52778){
+})(),new cljs.core.Keyword(null,"on-change","on-change",-732046149),(function (p1__52861_SHARP_){
+return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","load-config","bb-web-ds-tools.views.vega-lite/load-config",-2057445703),p1__52861_SHARP_.target.value], null));
+})], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"option","option",65132272),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"value","value",305978217),""], null),"Select Config..."], null),(function (){var iter__5503__auto__ = (function bb_web_ds_tools$views$vega_lite$panel_render_$_iter__52874(s__52875){
 return (new cljs.core.LazySeq(null,(function (){
-var s__52778__$1 = s__52778;
+var s__52875__$1 = s__52875;
 while(true){
-var temp__5825__auto__ = cljs.core.seq(s__52778__$1);
+var temp__5825__auto__ = cljs.core.seq(s__52875__$1);
 if(temp__5825__auto__){
-var s__52778__$2 = temp__5825__auto__;
-if(cljs.core.chunked_seq_QMARK_(s__52778__$2)){
-var c__5501__auto__ = cljs.core.chunk_first(s__52778__$2);
+var s__52875__$2 = temp__5825__auto__;
+if(cljs.core.chunked_seq_QMARK_(s__52875__$2)){
+var c__5501__auto__ = cljs.core.chunk_first(s__52875__$2);
 var size__5502__auto__ = cljs.core.count(c__5501__auto__);
-var b__52780 = cljs.core.chunk_buffer(size__5502__auto__);
-if((function (){var i__52779 = (0);
+var b__52877 = cljs.core.chunk_buffer(size__5502__auto__);
+if((function (){var i__52876 = (0);
 while(true){
-if((i__52779 < size__5502__auto__)){
-var name = cljs.core._nth(c__5501__auto__,i__52779);
-cljs.core.chunk_append(b__52780,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"option","option",65132272),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"key","key",-1516042587),name,new cljs.core.Keyword(null,"value","value",305978217),name], null),name], null));
+if((i__52876 < size__5502__auto__)){
+var name = cljs.core._nth(c__5501__auto__,i__52876);
+cljs.core.chunk_append(b__52877,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"option","option",65132272),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"key","key",-1516042587),name,new cljs.core.Keyword(null,"value","value",305978217),name], null),name], null));
 
-var G__52832 = (i__52779 + (1));
-i__52779 = G__52832;
+var G__52945 = (i__52876 + (1));
+i__52876 = G__52945;
 continue;
 } else {
 return true;
@@ -507,13 +507,13 @@ return true;
 break;
 }
 })()){
-return cljs.core.chunk_cons(cljs.core.chunk(b__52780),bb_web_ds_tools$views$vega_lite$panel_render_$_iter__52777(cljs.core.chunk_rest(s__52778__$2)));
+return cljs.core.chunk_cons(cljs.core.chunk(b__52877),bb_web_ds_tools$views$vega_lite$panel_render_$_iter__52874(cljs.core.chunk_rest(s__52875__$2)));
 } else {
-return cljs.core.chunk_cons(cljs.core.chunk(b__52780),null);
+return cljs.core.chunk_cons(cljs.core.chunk(b__52877),null);
 }
 } else {
-var name = cljs.core.first(s__52778__$2);
-return cljs.core.cons(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"option","option",65132272),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"key","key",-1516042587),name,new cljs.core.Keyword(null,"value","value",305978217),name], null),name], null),bb_web_ds_tools$views$vega_lite$panel_render_$_iter__52777(cljs.core.rest(s__52778__$2)));
+var name = cljs.core.first(s__52875__$2);
+return cljs.core.cons(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"option","option",65132272),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"key","key",-1516042587),name,new cljs.core.Keyword(null,"value","value",305978217),name], null),name], null),bb_web_ds_tools$views$vega_lite$panel_render_$_iter__52874(cljs.core.rest(s__52875__$2)));
 }
 } else {
 return null;
@@ -525,8 +525,8 @@ break;
 return iter__5503__auto__(cljs.core.keys(saved_configs));
 })()], null):null),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.views.vega_lite.save_config_modal], null),(cljs.core.truth_(active_config_name)?new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.button_xs,new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"class","class",-2030961996),"text-red-400",new cljs.core.Keyword(null,"on-click","on-click",1632826543),(function (){
 return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","delete-config","bb-web-ds-tools.views.vega-lite/delete-config",-602454691),active_config_name], null));
-})], null),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.dustbin_icon], null)], null):null)], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"flex-grow relative"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.editor.monaco_editor,new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"value","value",305978217),config_input,new cljs.core.Keyword(null,"language","language",-1591107564),((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(config_mode,new cljs.core.Keyword(null,"json","json",1279968570)))?"json":"clojure"),new cljs.core.Keyword(null,"options","options",99638489),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"rulers","rulers",756731282),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [(80)], null),new cljs.core.Keyword(null,"minimap","minimap",-1428643929),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"enabled","enabled",1195909756),false], null)], null),new cljs.core.Keyword(null,"on-change","on-change",-732046149),(function (p1__52753_SHARP_){
-return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","set-config-input","bb-web-ds-tools.views.vega-lite/set-config-input",1175394425),p1__52753_SHARP_], null));
+})], null),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.dustbin_icon], null)], null):null)], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"flex-grow relative"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.editor.monaco_editor,new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"value","value",305978217),config_input,new cljs.core.Keyword(null,"language","language",-1591107564),((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(config_mode,new cljs.core.Keyword(null,"json","json",1279968570)))?"json":"clojure"),new cljs.core.Keyword(null,"options","options",99638489),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"rulers","rulers",756731282),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [(80)], null),new cljs.core.Keyword(null,"minimap","minimap",-1428643929),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"enabled","enabled",1195909756),false], null)], null),new cljs.core.Keyword(null,"on-change","on-change",-732046149),(function (p1__52862_SHARP_){
+return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite","set-config-input","bb-web-ds-tools.views.vega-lite/set-config-input",1175394425),p1__52862_SHARP_], null));
 })], null)], null)], null)], null);
 
 break;
@@ -542,29 +542,29 @@ return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.co
 var config_edn = cljs.core.js__GT_clj.cljs$core$IFn$_invoke$arity$variadic(parsed_config_obj,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"keywordize-keys","keywordize-keys",1310784252),true], 0));
 var final_edn = cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(config_edn,new cljs.core.Keyword(null,"data","data",-232669377),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"values","values",372645556),parsed_data], null));
 return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.portal","submit","bb-web-ds-tools.portal/submit",1366041846),final_edn], null));
-})], null),"Send to Portal"], null):null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"flex-grow overflow-hidden relative bg-white"], null),(function (){var G__52781 = active_right_tab;
-var G__52781__$1 = (((G__52781 instanceof cljs.core.Keyword))?G__52781.fqn:null);
-switch (G__52781__$1) {
+})], null),"Send to Portal"], null):null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"flex-grow overflow-hidden relative bg-white"], null),(function (){var G__52878 = active_right_tab;
+var G__52878__$1 = (((G__52878 instanceof cljs.core.Keyword))?G__52878.fqn:null);
+switch (G__52878__$1) {
 case "plot":
 return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"h-full w-full overflow-auto p-4"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.views.vega_lite.vega_viz,new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"spec-obj","spec-obj",-642575778),parsed_config_obj,new cljs.core.Keyword(null,"data","data",-232669377),parsed_data], null)], null)], null);
 
 break;
 case "parsed":
 return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),["h-full w-full ",bb_web_ds_tools.theme.bg_page].join('')], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.editor.monaco_editor,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"value","value",305978217),(function (){var sb__5670__auto__ = (new goog.string.StringBuffer());
-var _STAR_print_newline_STAR__orig_val__52783_52834 = cljs.core._STAR_print_newline_STAR_;
-var _STAR_print_fn_STAR__orig_val__52784_52835 = cljs.core._STAR_print_fn_STAR_;
-var _STAR_print_newline_STAR__temp_val__52785_52836 = true;
-var _STAR_print_fn_STAR__temp_val__52786_52837 = (function (x__5671__auto__){
+var _STAR_print_newline_STAR__orig_val__52879_52948 = cljs.core._STAR_print_newline_STAR_;
+var _STAR_print_fn_STAR__orig_val__52880_52949 = cljs.core._STAR_print_fn_STAR_;
+var _STAR_print_newline_STAR__temp_val__52881_52950 = true;
+var _STAR_print_fn_STAR__temp_val__52882_52951 = (function (x__5671__auto__){
 return sb__5670__auto__.append(x__5671__auto__);
 });
-(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__temp_val__52785_52836);
+(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__temp_val__52881_52950);
 
-(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__temp_val__52786_52837);
+(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__temp_val__52882_52951);
 
 try{cljs.pprint.pprint.cljs$core$IFn$_invoke$arity$1(parsed_data);
-}finally {(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__orig_val__52784_52835);
+}finally {(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__orig_val__52880_52949);
 
-(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__orig_val__52783_52834);
+(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__orig_val__52879_52948);
 }
 return cljs.core.str.cljs$core$IFn$_invoke$arity$1(sb__5670__auto__);
 })(),new cljs.core.Keyword(null,"language","language",-1591107564),"clojure",new cljs.core.Keyword(null,"options","options",99638489),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"readOnly","readOnly",-1749118317),true,new cljs.core.Keyword(null,"minimap","minimap",-1428643929),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"enabled","enabled",1195909756),false], null)], null)], null)], null)], null);

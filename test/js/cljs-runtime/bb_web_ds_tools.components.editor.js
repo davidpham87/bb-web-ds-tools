@@ -4,13 +4,13 @@ if((typeof bb_web_ds_tools !== 'undefined') && (typeof bb_web_ds_tools.component
 bb_web_ds_tools.components.editor.theme_initialized = (function (){try{shadow.js.shim.module$monaco_editor$esm$vs$editor$editor_api.editor.defineTheme("zenburn",cljs.core.clj__GT_js(new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"base","base",185279322),"vs-dark",new cljs.core.Keyword(null,"inherit","inherit",-1840815422),true,new cljs.core.Keyword(null,"rules","rules",1198912366),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"background","background",-863952629),bb_web_ds_tools.theme.color(new cljs.core.Keyword(null,"bg-page","bg-page",-494934192)),new cljs.core.Keyword(null,"foreground","foreground",499022036),bb_web_ds_tools.theme.color(new cljs.core.Keyword(null,"text-primary","text-primary",803135474))], null)], null),new cljs.core.Keyword(null,"colors","colors",1157174732),new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword(null,"editor.background","editor.background",2026633319),bb_web_ds_tools.theme.color(new cljs.core.Keyword(null,"bg-page","bg-page",-494934192)),new cljs.core.Keyword(null,"editor.foreground","editor.foreground",1303499970),bb_web_ds_tools.theme.color(new cljs.core.Keyword(null,"text-primary","text-primary",803135474)),new cljs.core.Keyword(null,"editorCursor.foreground","editorCursor.foreground",1866693001),bb_web_ds_tools.theme.color(new cljs.core.Keyword(null,"text-muted","text-muted",1792287758)),new cljs.core.Keyword(null,"editor.lineHighlightBackground","editor.lineHighlightBackground",-130612686),bb_web_ds_tools.theme.color(new cljs.core.Keyword(null,"bg-card","bg-card",-1712632517)),new cljs.core.Keyword(null,"editor.selectionBackground","editor.selectionBackground",-454164974),bb_web_ds_tools.theme.color(new cljs.core.Keyword(null,"bg-button","bg-button",40627543)),new cljs.core.Keyword(null,"editor.inactiveSelectionBackground","editor.inactiveSelectionBackground",997371136),bb_web_ds_tools.theme.color(new cljs.core.Keyword(null,"bg-card","bg-card",-1712632517))], null)], null)));
 
 return true;
-}catch (e30662){if((e30662 instanceof Error)){
-var e = e30662;
+}catch (e30645){if((e30645 instanceof Error)){
+var e = e30645;
 console.warn("Failed to define Zenburn theme",e);
 
 return false;
 } else {
-throw e30662;
+throw e30645;
 
 }
 }})();
@@ -35,23 +35,23 @@ var subscription = reagent.core.atom.cljs$core$IFn$_invoke$arity$1(null);
 var on_change_ref = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(null);
 var ignore_change_QMARK_ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(false);
 return reagent.core.create_class.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null,"displayName","displayName",-809144601),"monaco-editor",new cljs.core.Keyword(null,"component-did-mount","component-did-mount",-1126910518),(function (this$){
-try{var map__30664 = reagent.core.props(this$);
-var map__30664__$1 = cljs.core.__destructure_map(map__30664);
-var value = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30664__$1,new cljs.core.Keyword(null,"value","value",305978217));
-var mode = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30664__$1,new cljs.core.Keyword(null,"mode","mode",654403691));
-var language = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30664__$1,new cljs.core.Keyword(null,"language","language",-1591107564));
-var options = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30664__$1,new cljs.core.Keyword(null,"options","options",99638489));
-var on_focus = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30664__$1,new cljs.core.Keyword(null,"on-focus","on-focus",-13737624));
-var on_blur = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30664__$1,new cljs.core.Keyword(null,"on-blur","on-blur",814300747));
-var on_mount = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30664__$1,new cljs.core.Keyword(null,"on-mount","on-mount",-1236735840));
-var on_change = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30664__$1,new cljs.core.Keyword(null,"on-change","on-change",-732046149));
+try{var map__30656 = reagent.core.props(this$);
+var map__30656__$1 = cljs.core.__destructure_map(map__30656);
+var value = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30656__$1,new cljs.core.Keyword(null,"value","value",305978217));
+var mode = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30656__$1,new cljs.core.Keyword(null,"mode","mode",654403691));
+var language = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30656__$1,new cljs.core.Keyword(null,"language","language",-1591107564));
+var options = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30656__$1,new cljs.core.Keyword(null,"options","options",99638489));
+var on_focus = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30656__$1,new cljs.core.Keyword(null,"on-focus","on-focus",-13737624));
+var on_blur = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30656__$1,new cljs.core.Keyword(null,"on-blur","on-blur",814300747));
+var on_mount = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30656__$1,new cljs.core.Keyword(null,"on-mount","on-mount",-1236735840));
+var on_change = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30656__$1,new cljs.core.Keyword(null,"on-change","on-change",-732046149));
 var node = shadow.js.shim.module$react_dom.findDOMNode(this$);
 var lang = (function (){var or__5025__auto__ = language;
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
 } else {
-var G__30674 = mode;
-switch (G__30674) {
+var G__30661 = mode;
+switch (G__30661) {
 case "application/json":
 return "json";
 
@@ -111,24 +111,24 @@ return editor.onDidBlurEditorText(on_blur);
 } else {
 return null;
 }
-}catch (e30663){if((e30663 instanceof Error)){
-var e = e30663;
+}catch (e30655){if((e30655 instanceof Error)){
+var e = e30655;
 return console.error("Monaco initialization failed:",e);
 } else {
-throw e30663;
+throw e30655;
 
 }
-}}),new cljs.core.Keyword(null,"component-did-update","component-did-update",-1468549173),(function (this$,p__30681){
-var vec__30682 = p__30681;
-var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30682,(0),null);
-var old_props = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30682,(1),null);
-var map__30685 = reagent.core.props(this$);
-var map__30685__$1 = cljs.core.__destructure_map(map__30685);
-var value = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30685__$1,new cljs.core.Keyword(null,"value","value",305978217));
-var language = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30685__$1,new cljs.core.Keyword(null,"language","language",-1591107564));
-var mode = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30685__$1,new cljs.core.Keyword(null,"mode","mode",654403691));
-var options = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30685__$1,new cljs.core.Keyword(null,"options","options",99638489));
-var on_change = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30685__$1,new cljs.core.Keyword(null,"on-change","on-change",-732046149));
+}}),new cljs.core.Keyword(null,"component-did-update","component-did-update",-1468549173),(function (this$,p__30668){
+var vec__30669 = p__30668;
+var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30669,(0),null);
+var old_props = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30669,(1),null);
+var map__30672 = reagent.core.props(this$);
+var map__30672__$1 = cljs.core.__destructure_map(map__30672);
+var value = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30672__$1,new cljs.core.Keyword(null,"value","value",305978217));
+var language = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30672__$1,new cljs.core.Keyword(null,"language","language",-1591107564));
+var mode = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30672__$1,new cljs.core.Keyword(null,"mode","mode",654403691));
+var options = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30672__$1,new cljs.core.Keyword(null,"options","options",99638489));
+var on_change = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30672__$1,new cljs.core.Keyword(null,"on-change","on-change",-732046149));
 var editor = cljs.core.deref(editor_instance);
 cljs.core.reset_BANG_(on_change_ref,on_change);
 
@@ -148,8 +148,8 @@ var lang_30709 = (function (){var or__5025__auto__ = language;
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
 } else {
-var G__30686 = mode;
-switch (G__30686) {
+var G__30676 = mode;
+switch (G__30676) {
 case "application/json":
 return "json";
 
@@ -206,10 +206,10 @@ return editor.dispose();
 return null;
 }
 }),new cljs.core.Keyword(null,"reagent-render","reagent-render",-985383853),(function (props){
-var map__30690 = props;
-var map__30690__$1 = cljs.core.__destructure_map(map__30690);
-var style = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30690__$1,new cljs.core.Keyword(null,"style","style",-496642736));
-var class$ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30690__$1,new cljs.core.Keyword(null,"class","class",-2030961996));
+var map__30685 = props;
+var map__30685__$1 = cljs.core.__destructure_map(map__30685);
+var style = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30685__$1,new cljs.core.Keyword(null,"style","style",-496642736));
+var class$ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30685__$1,new cljs.core.Keyword(null,"class","class",-2030961996));
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.editor-wrapper","div.editor-wrapper",1872306278),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"class","class",-2030961996),class$,new cljs.core.Keyword(null,"style","style",-496642736),cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"width","width",-384071477),"100%",new cljs.core.Keyword(null,"height","height",1025178622),"100%"], null),style], 0))], null)], null);
 })], null));
 });
@@ -325,8 +325,8 @@ throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$ari
 }
 })()], null),text], null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"key","key",-1516042587),cljs.core.random_uuid()], null)));
 
-var G__30718 = (i__30694 + (1));
-i__30694 = G__30718;
+var G__30717 = (i__30694 + (1));
+i__30694 = G__30717;
 continue;
 } else {
 return true;
@@ -339,13 +339,13 @@ return cljs.core.chunk_cons(cljs.core.chunk(b__30695),bb_web_ds_tools$components
 return cljs.core.chunk_cons(cljs.core.chunk(b__30695),null);
 }
 } else {
-var map__30700 = cljs.core.first(s__30693__$2);
-var map__30700__$1 = cljs.core.__destructure_map(map__30700);
-var type = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30700__$1,new cljs.core.Keyword(null,"type","type",1174270348));
-var text = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30700__$1,new cljs.core.Keyword(null,"text","text",-1790561697));
-return cljs.core.cons(cljs.core.with_meta(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"pre","pre",2118456869),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),(function (){var G__30701 = type;
-var G__30701__$1 = (((G__30701 instanceof cljs.core.Keyword))?G__30701.fqn:null);
-switch (G__30701__$1) {
+var map__30698 = cljs.core.first(s__30693__$2);
+var map__30698__$1 = cljs.core.__destructure_map(map__30698);
+var type = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30698__$1,new cljs.core.Keyword(null,"type","type",1174270348));
+var text = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30698__$1,new cljs.core.Keyword(null,"text","text",-1790561697));
+return cljs.core.cons(cljs.core.with_meta(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"pre","pre",2118456869),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),(function (){var G__30699 = type;
+var G__30699__$1 = (((G__30699 instanceof cljs.core.Keyword))?G__30699.fqn:null);
+switch (G__30699__$1) {
 case "result":
 return bb_web_ds_tools.theme.text_primary;
 
@@ -363,7 +363,7 @@ return bb_web_ds_tools.theme.text_danger;
 
 break;
 default:
-throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__30701__$1)].join('')));
+throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__30699__$1)].join('')));
 
 }
 })()], null),text], null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"key","key",-1516042587),cljs.core.random_uuid()], null)),bb_web_ds_tools$components$editor$render_output_$_iter__30692(cljs.core.rest(s__30693__$2)));
