@@ -5,7 +5,8 @@
    [clojure.tools.reader.reader-types :as rt]
    [sci.core :as sci]
    [clojure.string :as str]
-   [clojure.set :as set]))
+   [clojure.set :as set]
+   [clojure.edn :as edn]))
 
 (def datasets-atom (atom {}))
 
@@ -32,40 +33,44 @@
                                            (post-msg {:type :stderr
                                                       :text "rf/subscribe is not supported in the worker."})
                                            (atom nil))}
-              'str {'blank? str/blank?
-                    'capitalize str/capitalize
-                    'ends-with? str/ends-with?
-                    'escape str/escape
-                    'includes? str/includes?
-                    'index-of str/index-of
-                    'join str/join
-                    'last-index-of str/last-index-of
-                    'lower-case str/lower-case
-                    're-quote-replacement str/re-quote-replacement
-                    'replace str/replace
-                    'replace-first str/replace-first
-                    'reverse str/reverse
-                    'split str/split
-                    'split-lines str/split-lines
-                    'starts-with? str/starts-with?
-                    'trim str/trim
-                    'trim-newline str/trim-newline
-                    'triml str/triml
-                    'trimr str/trimr
-                    'upper-case str/upper-case}
-              'set {'difference set/difference
-                    'index set/index
-                    'intersection set/intersection
-                    'join set/join
-                    'map-invert set/map-invert
-                    'project set/project
-                    'rename set/rename
-                    'rename-keys set/rename-keys
-                    'select set/select
-                    'subset? set/subset?
-                    'superset? set/superset?
-                    'union set/union}
+              'clojure.string {'blank? str/blank?
+                               'capitalize str/capitalize
+                               'ends-with? str/ends-with?
+                               'escape str/escape
+                               'includes? str/includes?
+                               'index-of str/index-of
+                               'join str/join
+                               'last-index-of str/last-index-of
+                               'lower-case str/lower-case
+                               're-quote-replacement str/re-quote-replacement
+                               'replace str/replace
+                               'replace-first str/replace-first
+                               'reverse str/reverse
+                               'split str/split
+                               'split-lines str/split-lines
+                               'starts-with? str/starts-with?
+                               'trim str/trim
+                               'trim-newline str/trim-newline
+                               'triml str/triml
+                               'trimr str/trimr
+                               'upper-case str/upper-case}
+              'clojure.set {'difference set/difference
+                            'index set/index
+                            'intersection set/intersection
+                            'join set/join
+                            'map-invert set/map-invert
+                            'project set/project
+                            'rename set/rename
+                            'rename-keys set/rename-keys
+                            'select set/select
+                            'subset? set/subset?
+                            'superset? set/superset?
+                            'union set/union}
+              'clojure.edn {'read-string edn/read-string}
               'user {'datasets datasets-atom}}}))
+
+;; Initialize aliases
+(sci/eval-string sci-ctx "(require '[clojure.string :as str] '[clojure.set :as set] '[clojure.edn :as edn])")
 
 (defn eval-code
   "Evaluates Clojure code using SCI.
