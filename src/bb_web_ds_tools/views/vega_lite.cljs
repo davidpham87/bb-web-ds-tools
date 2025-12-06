@@ -352,9 +352,9 @@
         active-config-name @(rf/subscribe [::active-config-name])
         parsed-config-obj @(rf/subscribe [::parsed-config-obj])
         format @(rf/subscribe [::format])]
-    [:div {:class "flex flex-col 2xl:flex-row h-full w-full overflow-hidden"}
+    [:div {:class "flex flex-col md:flex-row h-full w-full overflow-hidden"}
      ;; Left Column (Inputs)
-     [:div {:class "h-1/2 2xl:h-full overflow-auto border-b 2xl:border-b-0 2xl:border-r border-[#3f3f3f] w-full 2xl:w-1/2"}
+     [:div {:class "h-1/2 md:h-full overflow-auto border-b md:border-b-0 md:border-r border-[#3f3f3f] w-full md:max-w-3xl flex-shrink-0"}
       [l/flex-col {:class "h-full"}
        ;; Left Tabs
        [l/flex-row {:class (str "justify-between border-b " t/border-default " px-2 " t/bg-toolbar)}
@@ -434,7 +434,7 @@
           nil)]]]
 
      ;; Right Column (Outputs)
-     [:div {:class "h-1/2 2xl:h-full overflow-auto w-full 2xl:w-1/2"}
+     [:div {:class "h-1/2 md:h-full overflow-auto flex-grow"}
       [l/flex-col {:class "h-full"}
        ;; Right Tabs
        [l/flex-row {:class (str "justify-between border-b " t/border-default " px-2 " t/bg-toolbar)}
