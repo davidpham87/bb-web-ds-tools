@@ -40,10 +40,12 @@
 (rf/reg-event-fx
  :honeysql/convert-to-sql
  (fn [{:keys [db]} _]
-   (let [{:keys [input]} (get-honeysql-state db)
-         result (c-honeysql/convert-to-sql input)
-         output (if (:success result) (:output result) (:error result))]
-     {:db (assoc-in db [::honeysql :output] output)})))
+   (let [{:keys [input]} (get-honeysql-state db)]
+     (if (empty? input)
+       {}
+       (let [result (c-honeysql/convert-to-sql input)
+             output (if (:success result) (:output result) (:error result))]
+         {:db (assoc-in db [::honeysql :output] output)})))))
 
 ;; Subscriptions
 (rf/reg-sub
