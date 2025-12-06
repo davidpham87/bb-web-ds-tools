@@ -1,7 +1,20 @@
 (ns bb-web-ds-tools.runtime.webr
-  (:require [portal.web :as p]))
+  (:require [re-frame.core :as rf]
+            [bb-web-ds-tools.portal :as portal]))
 
 (defonce webr-instance (atom nil))
+
+(defn- portal-submit [value]
+  (let [viewer (cond
+                 (= (:type value) :code) :portal.viewer/code
+                 (= (:type value) :result)
+                 (let [v (:value value)]
+                   (cond
+                     (and (map? v) (or (:image v) (:beatmap v))) :portal.viewer/image
+                     :else :portal.viewer/edn))
+                 (#{:stdout :stderr :error} (:type value)) :portal.viewer/text
+                 :else nil)]
+    (rf/dispatch [::portal/submit value viewer])))
 
 (defn- start-read-loop
   "Starts the WebR read loop to capture stdout/stderr.
@@ -18,13 +31,13 @@
                          (let [type (.-type msg)
                                data (.-data msg)]
                            (cond
-                             (= type "stdout") (p/submit {:type :stdout :text data})
-                             (= type "stderr") (p/submit {:type :stderr :text data})
+                             (= type "stdout") (portal-submit {:type :stdout :text data})
+                             (= type "stderr") (portal-submit {:type :stderr :text data})
                              (= type "closed") nil
                              :else nil)
                            (when (not= type "closed")
                              (loop-fn)))))
-                (.catch #(p/submit {:type :error :text (str "WebR Read Error:" %)}))))]
+                (.catch #(portal-submit {:type :error :text (str "WebR Read Error:" %)}))))]
     (loop-fn)))
 
 (defn load-runtime-main
@@ -61,16 +74,16 @@
   [code]
   (if @webr-instance
     (try
-      (p/submit {:type :code :text code})
+      (portal-submit {:type :code :text code})
       (-> (.evalR ^js @webr-instance code (clj->js {:autoprint true}))
           (.then (fn [^js res]
                    (try
                      (let [val (try (js->clj (.toJs res) :keywordize-keys true)
                                     (catch js/Error _ (str res)))]
-                       (p/submit {:type :result :value val}))
+                       (portal-submit {:type :result :value val}))
                      (.destroy res)
                      (catch js/Error _))))
-          (.catch (fn [e] (p/submit {:type :error :text (str e)}))))
+          (.catch (fn [e] (portal-submit {:type :error :text (str e)}))))
       (catch js/Error e
-        (p/submit {:type :error :text (str e)})))
-    (p/submit {:type :error :text "WebR not loaded"})))
+        (portal-submit {:type :error :text (str e)})))
+    (portal-submit {:type :error :text "WebR not loaded"})))

@@ -2,7 +2,8 @@
   (:require [cljs.test :refer-macros [deftest is testing async use-fixtures]]
             [bb-web-ds-tools.runtime.webr :as webr]
             [portal.web :as p]
-            [bb-web-ds-tools.test-setup :as setup]))
+            [bb-web-ds-tools.test-setup :as setup]
+            [re-frame.core :as rf]))
 
 (def submitted (atom []))
 
@@ -51,18 +52,27 @@
 (deftest eval-in-main-test
   (testing "WebR evaluation"
     (reset! webr/webr-instance mock-webr-proto)
-    (let [orig-submit p/submit]
-      (set! p/submit mock-submit)
+    (let [dispatched (atom [])
+          mock-dispatch (fn [event] (swap! dispatched conj event))
+          orig-dispatch rf/dispatch]
+      (set! rf/dispatch mock-dispatch)
       (async done
         (-> (webr/eval-in-main "1 + 1")
             (.then (fn []
-                     (is (some #(= (:type %) :code) @submitted) "Code should be submitted")
-                     (let [res (last @submitted)]
-                       (is (= (:type res) :result))
-                       (is (= (:value res) 42)))
-                     (set! p/submit orig-submit)
+                     (is (some #(and (= (first %) :bb-web-ds-tools.portal/submit)
+                                     (= (:type (second %)) :code)
+                                     (= (nth % 2) :portal.viewer/code))
+                               @dispatched) "Code should be submitted")
+                     (let [res-event (last @dispatched)
+                           res-val (second res-event)
+                           res-viewer (nth res-event 2)]
+                       (is (= (first res-event) :bb-web-ds-tools.portal/submit))
+                       (is (= (:type res-val) :result))
+                       (is (= (:value res-val) 42))
+                       (is (= res-viewer :portal.viewer/edn)))
+                     (set! rf/dispatch orig-dispatch)
                      (done)))
             (.catch (fn [err]
                       (is false (str "Evaluation failed: " err))
-                      (set! p/submit orig-submit)
+                      (set! rf/dispatch orig-dispatch)
                       (done))))))))
