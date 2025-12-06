@@ -47,14 +47,14 @@
                    :on-change #(rf/dispatch [::set-active-tab %])}]]
 
      [:div {:class "flex flex-col md:flex-row h-full w-full overflow-hidden"}
-      [:div {:class "h-1/2 md:h-full w-full md:w-1/2 overflow-auto border-r border-[#3f3f3f]"}
+      [:div {:class "h-1/2 md:h-full w-full md:max-w-3xl overflow-auto border-r border-[#3f3f3f] flex-shrink-0"}
        (case active-tab
          :clojure-repl [repl/panel]
          :pyodide [pyodide/panel]
          :r-repl [r-repl/panel]
          :editor [editor/panel]
          [repl/panel])]
-      [:div {:class "h-1/2 md:h-full w-full md:w-1/2 overflow-hidden"}
+      [:div {:class "h-1/2 md:h-full flex-grow overflow-hidden"}
        [portal/portal-frame]]]]))
 
 (defn panel

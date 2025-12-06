@@ -78,11 +78,22 @@
       (-> (.evalR ^js @webr-instance code (clj->js {:autoprint true}))
           (.then (fn [^js res]
                    (try
-                     (let [val (try (js->clj (.toJs res) :keywordize-keys true)
-                                    (catch js/Error _ (str res)))]
-                       (portal-submit {:type :result :value val}))
-                     (.destroy res)
-                     (catch js/Error _))))
+                     (let [js-val (.toJs res)]
+                       (if (instance? js/Promise js-val)
+                         (-> js-val
+                             (.then (fn [v]
+                                      (let [val (try (js->clj v :keywordize-keys true)
+                                                     (catch js/Error _ (str v)))]
+                                        (portal-submit {:type :result :value val}))))
+                             (.catch (fn [e] (portal-submit {:type :error :text (str e)})))
+                             (.finally (fn [] (.destroy res))))
+                         (let [val (try (js->clj js-val :keywordize-keys true)
+                                        (catch js/Error _ (str res)))]
+                           (portal-submit {:type :result :value val})
+                           (.destroy res))))
+                     (catch js/Error e
+                       (.destroy res)
+                       (throw e)))))
           (.catch (fn [e] (portal-submit {:type :error :text (str e)}))))
       (catch js/Error e
         (portal-submit {:type :error :text (str e)})))
