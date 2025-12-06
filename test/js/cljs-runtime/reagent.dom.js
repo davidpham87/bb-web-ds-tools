@@ -112,57 +112,57 @@ return reagent.dom.unmount_comp(container);
 reagent.dom.force_update_all = (function reagent$dom$force_update_all(){
 reagent.ratom.flush_BANG_();
 
-var seq__52914_52935 = cljs.core.seq(cljs.core.deref(reagent.dom.roots));
-var chunk__52915_52936 = null;
-var count__52916_52937 = (0);
-var i__52917_52938 = (0);
+var seq__52914_52931 = cljs.core.seq(cljs.core.deref(reagent.dom.roots));
+var chunk__52915_52932 = null;
+var count__52916_52933 = (0);
+var i__52917_52934 = (0);
 while(true){
-if((i__52917_52938 < count__52916_52937)){
-var vec__52924_52939 = chunk__52915_52936.cljs$core$IIndexed$_nth$arity$2(null,i__52917_52938);
-var container_52940 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52924_52939,(0),null);
-var comp_52941 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52924_52939,(1),null);
-reagent.dom.re_render_component(comp_52941,container_52940);
+if((i__52917_52934 < count__52916_52933)){
+var vec__52924_52935 = chunk__52915_52932.cljs$core$IIndexed$_nth$arity$2(null,i__52917_52934);
+var container_52936 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52924_52935,(0),null);
+var comp_52937 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52924_52935,(1),null);
+reagent.dom.re_render_component(comp_52937,container_52936);
 
 
-var G__52942 = seq__52914_52935;
-var G__52943 = chunk__52915_52936;
-var G__52944 = count__52916_52937;
-var G__52945 = (i__52917_52938 + (1));
-seq__52914_52935 = G__52942;
-chunk__52915_52936 = G__52943;
-count__52916_52937 = G__52944;
-i__52917_52938 = G__52945;
+var G__52938 = seq__52914_52931;
+var G__52939 = chunk__52915_52932;
+var G__52940 = count__52916_52933;
+var G__52941 = (i__52917_52934 + (1));
+seq__52914_52931 = G__52938;
+chunk__52915_52932 = G__52939;
+count__52916_52933 = G__52940;
+i__52917_52934 = G__52941;
 continue;
 } else {
-var temp__5825__auto___52946 = cljs.core.seq(seq__52914_52935);
-if(temp__5825__auto___52946){
-var seq__52914_52947__$1 = temp__5825__auto___52946;
-if(cljs.core.chunked_seq_QMARK_(seq__52914_52947__$1)){
-var c__5548__auto___52948 = cljs.core.chunk_first(seq__52914_52947__$1);
-var G__52949 = cljs.core.chunk_rest(seq__52914_52947__$1);
-var G__52950 = c__5548__auto___52948;
-var G__52951 = cljs.core.count(c__5548__auto___52948);
-var G__52952 = (0);
-seq__52914_52935 = G__52949;
-chunk__52915_52936 = G__52950;
-count__52916_52937 = G__52951;
-i__52917_52938 = G__52952;
+var temp__5825__auto___52942 = cljs.core.seq(seq__52914_52931);
+if(temp__5825__auto___52942){
+var seq__52914_52943__$1 = temp__5825__auto___52942;
+if(cljs.core.chunked_seq_QMARK_(seq__52914_52943__$1)){
+var c__5548__auto___52944 = cljs.core.chunk_first(seq__52914_52943__$1);
+var G__52945 = cljs.core.chunk_rest(seq__52914_52943__$1);
+var G__52946 = c__5548__auto___52944;
+var G__52947 = cljs.core.count(c__5548__auto___52944);
+var G__52948 = (0);
+seq__52914_52931 = G__52945;
+chunk__52915_52932 = G__52946;
+count__52916_52933 = G__52947;
+i__52917_52934 = G__52948;
 continue;
 } else {
-var vec__52927_52953 = cljs.core.first(seq__52914_52947__$1);
-var container_52954 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52927_52953,(0),null);
-var comp_52955 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52927_52953,(1),null);
-reagent.dom.re_render_component(comp_52955,container_52954);
+var vec__52927_52949 = cljs.core.first(seq__52914_52943__$1);
+var container_52950 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52927_52949,(0),null);
+var comp_52951 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52927_52949,(1),null);
+reagent.dom.re_render_component(comp_52951,container_52950);
 
 
-var G__52956 = cljs.core.next(seq__52914_52947__$1);
-var G__52957 = null;
-var G__52958 = (0);
-var G__52959 = (0);
-seq__52914_52935 = G__52956;
-chunk__52915_52936 = G__52957;
-count__52916_52937 = G__52958;
-i__52917_52938 = G__52959;
+var G__52952 = cljs.core.next(seq__52914_52943__$1);
+var G__52953 = null;
+var G__52954 = (0);
+var G__52955 = (0);
+seq__52914_52931 = G__52952;
+chunk__52915_52932 = G__52953;
+count__52916_52933 = G__52954;
+i__52917_52934 = G__52955;
 continue;
 }
 } else {

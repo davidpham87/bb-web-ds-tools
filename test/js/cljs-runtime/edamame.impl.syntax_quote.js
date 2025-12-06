@@ -65,11 +65,11 @@ return cljs.core.seq(cljs.core.persistent_BANG_(key_vals));
 break;
 }
 });
-edamame.impl.syntax_quote.syntax_quote_STAR_ = (function edamame$impl$syntax_quote$syntax_quote_STAR_(p__34379,reader,form){
-var map__34380 = p__34379;
-var map__34380__$1 = cljs.core.__destructure_map(map__34380);
-var ctx = map__34380__$1;
-var gensyms = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__34380__$1,new cljs.core.Keyword(null,"gensyms","gensyms",248713782));
+edamame.impl.syntax_quote.syntax_quote_STAR_ = (function edamame$impl$syntax_quote$syntax_quote_STAR_(p__34410,reader,form){
+var map__34411 = p__34410;
+var map__34411__$1 = cljs.core.__destructure_map(map__34411);
+var ctx = map__34411__$1;
+var gensyms = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__34411__$1,new cljs.core.Keyword(null,"gensyms","gensyms",248713782));
 if(cljs.core.special_symbol_QMARK_(form)){
 return (new cljs.core.List(null,new cljs.core.Symbol(null,"quote","quote",1377916282,null),(new cljs.core.List(null,form,null,(1),null)),(2),null));
 } else {
@@ -97,22 +97,22 @@ var f__$1 = (function (){var or__5025__auto__ = f;
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
 } else {
-var temp__5823__auto__ = (function (){var G__34388 = ctx;
-var G__34388__$1 = (((G__34388 == null))?null:new cljs.core.Keyword(null,"ns-state","ns-state",-532270771).cljs$core$IFn$_invoke$arity$1(G__34388));
-if((G__34388__$1 == null)){
+var temp__5823__auto__ = (function (){var G__34412 = ctx;
+var G__34412__$1 = (((G__34412 == null))?null:new cljs.core.Keyword(null,"ns-state","ns-state",-532270771).cljs$core$IFn$_invoke$arity$1(G__34412));
+if((G__34412__$1 == null)){
 return null;
 } else {
-return cljs.core.deref(G__34388__$1);
+return cljs.core.deref(G__34412__$1);
 }
 })();
 if(cljs.core.truth_(temp__5823__auto__)){
 var ns_state = temp__5823__auto__;
 return (function (sym){
-var temp__5823__auto____$1 = (function (){var G__34391 = cljs.core.namespace(sym);
-if((G__34391 == null)){
+var temp__5823__auto____$1 = (function (){var G__34413 = cljs.core.namespace(sym);
+if((G__34413 == null)){
 return null;
 } else {
-return cljs.core.symbol.cljs$core$IFn$_invoke$arity$1(G__34391);
+return cljs.core.symbol.cljs$core$IFn$_invoke$arity$1(G__34413);
 }
 })();
 if(cljs.core.truth_(temp__5823__auto____$1)){

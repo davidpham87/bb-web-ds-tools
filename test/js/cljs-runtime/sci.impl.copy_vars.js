@@ -5,8 +5,8 @@ return cljs.analyzer.api.resolve;
 }),cljs.core.with_meta(new cljs.core.Symbol("cljs.analyzer.api","resolve","cljs.analyzer.api/resolve",498213843,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword("cljs.analyzer","no-resolve","cljs.analyzer/no-resolve",-1872351017),true], null)),null)):null);
 sci.impl.copy_vars.elide_vars = false;
 sci.impl.copy_vars.macrofy_STAR_ = (function sci$impl$copy_vars$macrofy_STAR_(var_args){
-var G__40165 = arguments.length;
-switch (G__40165) {
+var G__38993 = arguments.length;
+switch (G__38993) {
 case 1:
 return sci.impl.copy_vars.macrofy_STAR_.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -34,8 +34,8 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 });
 
 (sci.impl.copy_vars.macrofy_STAR_.cljs$core$IFn$_invoke$arity$1 = (function (f){
-return cljs.core.vary_meta.cljs$core$IFn$_invoke$arity$2(f,(function (p1__40161_SHARP_){
-return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(p1__40161_SHARP_,new cljs.core.Keyword("sci","macro","sci/macro",-868536151),true);
+return cljs.core.vary_meta.cljs$core$IFn$_invoke$arity$2(f,(function (p1__38991_SHARP_){
+return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(p1__38991_SHARP_,new cljs.core.Keyword("sci","macro","sci/macro",-868536151),true);
 }));
 }));
 
@@ -59,7 +59,7 @@ return or__5025__auto__;
 return sci.impl.utils.clojure_core_ns;
 }
 })();
-return sci.impl.utils.new_var.cljs$core$IFn$_invoke$arity$4(sym,f,(function (){var G__40166 = new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"ns","ns",441598760),ns__$1,new cljs.core.Keyword(null,"macro","macro",-867863404),true,new cljs.core.Keyword("sci","built-in","sci/built-in",1244659599),true], null);
+return sci.impl.utils.new_var.cljs$core$IFn$_invoke$arity$4(sym,f,(function (){var G__39009 = new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"ns","ns",441598760),ns__$1,new cljs.core.Keyword(null,"macro","macro",-867863404),true,new cljs.core.Keyword("sci","built-in","sci/built-in",1244659599),true], null);
 if(cljs.core.truth_((function (){var and__5023__auto__ = (!(sci.impl.copy_vars.elide_vars));
 if(and__5023__auto__){
 return extra_meta;
@@ -67,9 +67,9 @@ return extra_meta;
 return and__5023__auto__;
 }
 })())){
-return cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([G__40166,extra_meta], 0));
+return cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([G__39009,extra_meta], 0));
 } else {
-return G__40166;
+return G__39009;
 }
 })(),ctx_QMARK_);
 }));
@@ -77,8 +77,8 @@ return G__40166;
 (sci.impl.copy_vars.macrofy_STAR_.cljs$lang$maxFixedArity = 5);
 
 sci.impl.copy_vars.new_var = (function sci$impl$copy_vars$new_var(var_args){
-var G__40168 = arguments.length;
-switch (G__40168) {
+var G__39011 = arguments.length;
+switch (G__39011) {
 case 2:
 return sci.impl.copy_vars.new_var.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -133,7 +133,7 @@ if((((!(cljs.core.boolean_QMARK_(ns__$1)))) && ((ns__$1 instanceof sci.lang.Name
 throw (new Error(["Assert failed: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(sym),"\n","(and (not (boolean? ns)) (instance? sci.lang.Namespace ns))"].join('')));
 }
 
-return sci.impl.utils.new_var.cljs$core$IFn$_invoke$arity$4(sym,f,(function (){var G__40169 = new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"ns","ns",441598760),ns__$1,new cljs.core.Keyword("sci","built-in","sci/built-in",1244659599),true], null);
+return sci.impl.utils.new_var.cljs$core$IFn$_invoke$arity$4(sym,f,(function (){var G__39030 = new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"ns","ns",441598760),ns__$1,new cljs.core.Keyword("sci","built-in","sci/built-in",1244659599),true], null);
 if(cljs.core.truth_((function (){var and__5023__auto__ = (!(sci.impl.copy_vars.elide_vars));
 if(and__5023__auto__){
 return extra_meta;
@@ -141,9 +141,9 @@ return extra_meta;
 return and__5023__auto__;
 }
 })())){
-return cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([G__40169,extra_meta], 0));
+return cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([G__39030,extra_meta], 0));
 } else {
-return G__40169;
+return G__39030;
 }
 })(),ctx_QMARK___$1);
 }));
