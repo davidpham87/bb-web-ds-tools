@@ -23,27 +23,42 @@
   "
   [{:keys [label description route draw-fn]}]
   (let [canvas-ref (r/atom nil)
-        animation-id (r/atom nil)]
+        animation-id (r/atom nil)
+        resize-observer (r/atom nil)
+        dimensions (r/atom {:width 0 :height 0})]
     (r/create-class
       {:display-name (str "canvas-card-" label)
 
        :component-did-mount
        (fn [this]
          (when-let [canvas @canvas-ref]
-           (let [width (.-offsetWidth canvas)
-                 height (.-offsetHeight canvas)
-                 ctx (setup-canvas canvas width height)
-                 start-time (js/Date.now)
-                 loop-fn (fn loop-fn []
-                           (let [elapsed (- (js/Date.now) start-time)]
-                             (draw-fn ctx width height elapsed)
-                             (reset! animation-id (js/requestAnimationFrame loop-fn))))]
-             (loop-fn))))
+           (let [ctx (.getContext canvas "2d")
+                 update-size (fn []
+                               (let [w (.-offsetWidth canvas)
+                                     h (.-offsetHeight canvas)]
+                                 (reset! dimensions {:width w :height h})
+                                 (setup-canvas canvas w h)))
+                 observer (js/ResizeObserver. (fn [_] (update-size)))]
+
+             (.observe observer canvas)
+             (reset! resize-observer observer)
+             (update-size)
+
+             (let [start-time (js/Date.now)
+                   loop-fn (fn loop-fn []
+                             (let [elapsed (- (js/Date.now) start-time)
+                                   {:keys [width height]} @dimensions]
+                               (when (and (> width 0) (> height 0))
+                                 (draw-fn ctx width height elapsed))
+                               (reset! animation-id (js/requestAnimationFrame loop-fn))))]
+               (loop-fn)))))
 
        :component-will-unmount
        (fn []
          (when-let [id @animation-id]
-           (js/cancelAnimationFrame id)))
+           (js/cancelAnimationFrame id))
+         (when-let [obs @resize-observer]
+           (.disconnect obs)))
 
        :reagent-render
        (fn []
