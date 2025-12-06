@@ -1,6 +1,7 @@
-# Data Management & AI: Now 100% Less Creepy
-
-*Date: 2025-11-24*
+Title: Data Management & AI: Now 100% Less Creepy
+Date: 2025-11-24
+Tags: clojure, data-science
+---
 
 Let’s talk about your data. Specifically, let’s talk about where it goes.
 Usually, when you use a "smart" tool, your data is packed up, shipped off to a

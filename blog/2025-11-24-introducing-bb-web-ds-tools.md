@@ -1,6 +1,7 @@
-# Introducing BB Web DS Tools: Because Servers Are The Worst
-
-*Date: 2025-11-24*
+Title: Introducing BB Web DS Tools: Because Servers Are The Worst
+Date: 2025-11-24
+Tags: clojure, data-science
+---
 
 *By The "Why Did We Build This" Team*
 
