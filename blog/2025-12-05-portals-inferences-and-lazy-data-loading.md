@@ -1,6 +1,7 @@
-# Portals, Inferences, and Lazy Data Loading: A Love Story
-
-*Date: 2025-12-05*
+Title: Portals, Inferences, and Lazy Data Loading: A Love Story
+Date: 2025-12-05
+Tags: clojure, data-science
+---
 
 *By The "We're Still Apologizing For The Parentheses" Team*
 
