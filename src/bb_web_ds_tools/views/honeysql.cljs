@@ -99,7 +99,10 @@
                                   :language "clojure"
                                   :options {:rulers [80]}
                                   :on-change #(rf/dispatch [:honeysql/update-input %])}]]
-          [c/button {:on-click #(rf/dispatch [:honeysql/convert-to-sql])} "Convert"]]
+           [l/flex-row {:class "items-center gap-4"}
+            [c/button {:on-click #(rf/dispatch [:honeysql/convert-to-sql])} "Convert"]
+            [:div {:class (str "text-xs " t/text-secondary)}
+             "CLI: " [:code {:class "bg-black/20 p-1 rounded"} "bb -x bb-web-ds-tools.cli.honeysql/convert"]]]]
 
          ;; RIGHT: Output
          [portal-panel output]]))))
