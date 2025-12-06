@@ -1,4 +1,4 @@
-{:deps {quickblog/quickblog {:mvn/version "0.4.5"}}
+{:deps {io.github.borkdude/quickblog {:git/sha "51668d28ade5c9a5700d1300ae57efd29aefbff3"}}
  :tasks
  {render
   {:doc "Renders the blog"
