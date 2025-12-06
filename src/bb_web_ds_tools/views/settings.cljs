@@ -9,7 +9,7 @@
   Returns:
     vector: A hiccup vector."
   []
-  [:div {:class "p-4 text-[#dcdccc]"}
+  [:div {:class "h-full w-full p-6 text-[#dcdccc]"}
    [:h2 {:class "text-2xl font-bold mb-6"} "Settings"]
    [c/card {:class "p-6 space-y-4"}
     [:h3 {:class "text-xl font-bold"} "Development Tools"]

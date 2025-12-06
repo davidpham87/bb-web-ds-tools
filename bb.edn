@@ -1,0 +1,10 @@
+{:deps {io.github.borkdude/quickblog {:git/sha "51668d28ade5c9a5700d1300ae57efd29aefbff3"}}
+ :tasks
+ {render
+  {:doc "Renders the blog"
+   :requires ([quickblog.api :as quickblog])
+   :task (quickblog/render
+          {:blog-title "bb-web-ds-tools"
+           :blog-description "A data science suite that runs entirely in your browser."
+           :content-dir "blog"
+           :out-dir "docs/blog"})}}}

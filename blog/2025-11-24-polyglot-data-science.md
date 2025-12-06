@@ -1,6 +1,7 @@
-# Polyglot Data Science: A Frankenstein's Monster of Languages
-
-*Date: 2025-11-24*
+Title: Polyglot Data Science: A Frankenstein's Monster of Languages
+Date: 2025-11-24
+Tags: clojure, data-science
+---
 
 Data Science is a divided world. In one corner, you have the Python people, who
 have a library for everything and an indentation error for everyone. In the

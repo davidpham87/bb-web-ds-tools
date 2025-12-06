@@ -74,13 +74,13 @@
          ^{:key item}
          [:li {:class "leading-relaxed"} item])]])])
 
-(defn changelog-page
+(defn changelog-view
   "Renders the full changelog page.
 
   Returns:
     vector: A hiccup vector."
   []
-  [:div {:class "min-h-screen bg-[#3f3f3f] py-12 px-4"}
+  [:div {:class "h-full w-full bg-[#3f3f3f] py-12 px-4 overflow-y-auto"}
    [:div {:class "container mx-auto max-w-3xl"}
     ;; [c/page-header "Changelog"] ;; Removed as per request
     [:h2 {:class "text-3xl font-bold text-[#f0dfaf] text-center mb-8"} "Changelog"]

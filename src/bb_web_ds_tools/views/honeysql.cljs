@@ -88,9 +88,9 @@
   (let [state-sub (rf/subscribe [:honeysql/panel-state])]
     (fn []
       (let [{:keys [input output]} @state-sub]
-        [l/flex-row {:class "h-full items-start gap-4 p-4"}
+        [l/flex-row {:class "h-full items-start gap-0"}
          ;; LEFT: Input
-         [l/flex-col {:class "gap-4 w-full max-w-3xl h-[85vh]"}
+         [l/flex-col {:class "gap-4 w-full max-w-3xl h-full p-4 border-r border-[#3f3f3f]"}
           [:h3 {:class (str "text-xl font-semibold " t/text-accent " flex items-center gap-2")}
            [:span "🍯"] "Convert to SQL"]
           [c/label "Clojure Code (Last value must be HoneySQL Map)"]

@@ -511,13 +511,13 @@
   (let [state-sub (rf/subscribe [::dataset-list-state])]
     (fn []
       (let [{:keys [items active-id]} @state-sub]
-        [:div {:class (str "h-full " t/bg-sidebar " flex flex-col")}
-         [:div {:class (str "p-4 border-b " t/border-main)}
+        [:div {:class (str "h-full w-full " t/bg-sidebar " flex flex-col p-4 border-r border-[#3f3f3f]")}
+         [:div {:class (str "pb-4 border-b " t/border-main)}
           [:h3 {:class (str "text-lg font-semibold " t/text-accent " mb-4")} "Datasets"]
           [c/button-xs {:class (str "w-full " t/bg-button " " t/bg-button-hover " justify-center")
                         :on-click #(rf/dispatch [::set-active-dataset-id :new])}
            "+ New Dataset"]]
-         [:div {:class "flex-grow overflow-y-auto p-2 space-y-1"}
+         [:div {:class "flex-grow overflow-y-auto pt-4 space-y-1"}
           (if (seq items)
             (for [[id ds] items]
               ^{:key id} [dataset-list-item id ds active-id])
