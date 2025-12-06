@@ -24,13 +24,13 @@ bb_web_ds_tools.runtime.pyodide.main_loading = cljs.core.atom.cljs$core$IFn$_inv
  *  nil: Side-effects (logging).
  */
 bb_web_ds_tools.runtime.pyodide.default_on_message = (function bb_web_ds_tools$runtime$pyodide$default_on_message(msg){
-var map__33908 = msg;
-var map__33908__$1 = cljs.core.__destructure_map(map__33908);
-var type = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__33908__$1,new cljs.core.Keyword(null,"type","type",1174270348));
-var text = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__33908__$1,new cljs.core.Keyword(null,"text","text",-1790561697));
-var G__33909 = cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(type);
-var G__33909__$1 = (((G__33909 instanceof cljs.core.Keyword))?G__33909.fqn:null);
-switch (G__33909__$1) {
+var map__33914 = msg;
+var map__33914__$1 = cljs.core.__destructure_map(map__33914);
+var type = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__33914__$1,new cljs.core.Keyword(null,"type","type",1174270348));
+var text = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__33914__$1,new cljs.core.Keyword(null,"text","text",-1790561697));
+var G__33917 = cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(type);
+var G__33917__$1 = (((G__33917 instanceof cljs.core.Keyword))?G__33917.fqn:null);
+switch (G__33917__$1) {
 case "ready":
 return console.log("Pyodide worker ready");
 
@@ -55,14 +55,14 @@ return console.warn("Unknown worker msg:",msg);
  */
 bb_web_ds_tools.runtime.pyodide.init_worker_BANG_ = (function bb_web_ds_tools$runtime$pyodide$init_worker_BANG_(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___34023 = arguments.length;
-var i__5750__auto___34024 = (0);
+var len__5749__auto___33985 = arguments.length;
+var i__5750__auto___33986 = (0);
 while(true){
-if((i__5750__auto___34024 < len__5749__auto___34023)){
-args__5755__auto__.push((arguments[i__5750__auto___34024]));
+if((i__5750__auto___33986 < len__5749__auto___33985)){
+args__5755__auto__.push((arguments[i__5750__auto___33986]));
 
-var G__34026 = (i__5750__auto___34024 + (1));
-i__5750__auto___34024 = G__34026;
+var G__33987 = (i__5750__auto___33986 + (1));
+i__5750__auto___33986 = G__33987;
 continue;
 } else {
 }
@@ -73,9 +73,9 @@ var argseq__5756__auto__ = ((((0) < args__5755__auto__.length))?(new cljs.core.I
 return bb_web_ds_tools.runtime.pyodide.init_worker_BANG_.cljs$core$IFn$_invoke$arity$variadic(argseq__5756__auto__);
 });
 
-(bb_web_ds_tools.runtime.pyodide.init_worker_BANG_.cljs$core$IFn$_invoke$arity$variadic = (function (p__33928){
-var vec__33929 = p__33928;
-var on_message = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__33929,(0),null);
+(bb_web_ds_tools.runtime.pyodide.init_worker_BANG_.cljs$core$IFn$_invoke$arity$variadic = (function (p__33925){
+var vec__33926 = p__33925;
+var on_message = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__33926,(0),null);
 if(cljs.core.truth_(cljs.core.deref(bb_web_ds_tools.runtime.pyodide.pyodide_worker))){
 return null;
 } else {
@@ -92,9 +92,9 @@ return bb_web_ds_tools.runtime.pyodide.default_on_message;
 (bb_web_ds_tools.runtime.pyodide.init_worker_BANG_.cljs$lang$maxFixedArity = (0));
 
 /** @this {Function} */
-(bb_web_ds_tools.runtime.pyodide.init_worker_BANG_.cljs$lang$applyTo = (function (seq33915){
+(bb_web_ds_tools.runtime.pyodide.init_worker_BANG_.cljs$lang$applyTo = (function (seq33922){
 var self__5735__auto__ = this;
-return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq33915));
+return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq33922));
 }));
 
 /**
@@ -178,14 +178,14 @@ return (on_ready.cljs$core$IFn$_invoke$arity$0 ? on_ready.cljs$core$IFn$_invoke$
 })).catch((function (e){
 cljs.core.reset_BANG_(bb_web_ds_tools.runtime.pyodide.main_loading,false);
 
-var G__33980 = ["Load Error: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(e)].join('');
-return (on_error.cljs$core$IFn$_invoke$arity$1 ? on_error.cljs$core$IFn$_invoke$arity$1(G__33980) : on_error.call(null,G__33980));
+var G__33953 = ["Load Error: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(e)].join('');
+return (on_error.cljs$core$IFn$_invoke$arity$1 ? on_error.cljs$core$IFn$_invoke$arity$1(G__33953) : on_error.call(null,G__33953));
 }));
 }),(function (e){
 cljs.core.reset_BANG_(bb_web_ds_tools.runtime.pyodide.main_loading,false);
 
-var G__33986 = ["Script Load Error: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(e)].join('');
-return (on_error.cljs$core$IFn$_invoke$arity$1 ? on_error.cljs$core$IFn$_invoke$arity$1(G__33986) : on_error.call(null,G__33986));
+var G__33956 = ["Script Load Error: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(e)].join('');
+return (on_error.cljs$core$IFn$_invoke$arity$1 ? on_error.cljs$core$IFn$_invoke$arity$1(G__33956) : on_error.call(null,G__33956));
 }));
 
 }

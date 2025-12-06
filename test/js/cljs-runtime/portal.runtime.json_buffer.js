@@ -22,28 +22,28 @@ G__28724.push(null);
 return G__28724;
 });
 portal.runtime.json_buffer.push_bool = (function portal$runtime$json_buffer$push_bool(buffer,value){
-var G__28725 = buffer;
-G__28725.push(value);
+var G__28738 = buffer;
+G__28738.push(value);
 
-return G__28725;
+return G__28738;
 });
 portal.runtime.json_buffer.push_long = (function portal$runtime$json_buffer$push_long(buffer,value){
-var G__28726 = buffer;
-G__28726.push(value);
+var G__28742 = buffer;
+G__28742.push(value);
 
-return G__28726;
+return G__28742;
 });
 portal.runtime.json_buffer.push_double = (function portal$runtime$json_buffer$push_double(buffer,value){
-var G__28727 = buffer;
-G__28727.push(value);
+var G__28744 = buffer;
+G__28744.push(value);
 
-return G__28727;
+return G__28744;
 });
 portal.runtime.json_buffer.push_string = (function portal$runtime$json_buffer$push_string(buffer,value){
-var G__28728 = buffer;
-G__28728.push(value);
+var G__28746 = buffer;
+G__28746.push(value);
 
-return G__28728;
+return G__28746;
 });
 portal.runtime.json_buffer.push_value = (function portal$runtime$json_buffer$push_value(buffer,value){
 if((value == null)){
@@ -87,9 +87,9 @@ portal.runtime.json_buffer.next_value = (function portal$runtime$json_buffer$nex
 return portal.runtime.json_buffer._shift(buffer);
 });
 portal.runtime.json_buffer.with_buffer = (function portal$runtime$json_buffer$with_buffer(f,value){
-return JSON.stringify((function (){var G__28734 = (new Array());
-var G__28735 = value;
-return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__28734,G__28735) : f.call(null,G__28734,G__28735));
+return JSON.stringify((function (){var G__28760 = (new Array());
+var G__28761 = value;
+return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__28760,G__28761) : f.call(null,G__28760,G__28761));
 })());
 });
 

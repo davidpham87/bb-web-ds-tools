@@ -22,9 +22,9 @@ return new cljs.core.Keyword("portal.viewer","image","portal.viewer/image",-6132
 return new cljs.core.Keyword("portal.viewer","edn","portal.viewer/edn",1319461537);
 
 }
-})():(cljs.core.truth_((function (){var G__43404 = new cljs.core.Keyword(null,"type","type",1174270348).cljs$core$IFn$_invoke$arity$1(value);
-var fexpr__43403 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"error","error",-978969032),null,new cljs.core.Keyword(null,"stderr","stderr",-1571650309),null,new cljs.core.Keyword(null,"stdout","stdout",-531490018),null], null), null);
-return (fexpr__43403.cljs$core$IFn$_invoke$arity$1 ? fexpr__43403.cljs$core$IFn$_invoke$arity$1(G__43404) : fexpr__43403.call(null,G__43404));
+})():(cljs.core.truth_((function (){var G__43398 = new cljs.core.Keyword(null,"type","type",1174270348).cljs$core$IFn$_invoke$arity$1(value);
+var fexpr__43397 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"error","error",-978969032),null,new cljs.core.Keyword(null,"stderr","stderr",-1571650309),null,new cljs.core.Keyword(null,"stdout","stdout",-531490018),null], null), null);
+return (fexpr__43397.cljs$core$IFn$_invoke$arity$1 ? fexpr__43397.cljs$core$IFn$_invoke$arity$1(G__43398) : fexpr__43397.call(null,G__43398));
 })())?new cljs.core.Keyword("portal.viewer","text","portal.viewer/text",-1784810453):null
 )));
 return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.portal","submit","bb-web-ds-tools.portal/submit",1366041846),value,viewer], null));
@@ -61,8 +61,8 @@ return bb_web_ds_tools$runtime$webr$start_read_loop_$_loop_fn();
 } else {
 return null;
 }
-})).catch((function (p1__43405_SHARP_){
-return bb_web_ds_tools.runtime.webr.portal_submit(new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"error","error",-978969032),new cljs.core.Keyword(null,"text","text",-1790561697),["WebR Read Error:",cljs.core.str.cljs$core$IFn$_invoke$arity$1(p1__43405_SHARP_)].join('')], null));
+})).catch((function (p1__43399_SHARP_){
+return bb_web_ds_tools.runtime.webr.portal_submit(new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"error","error",-978969032),new cljs.core.Keyword(null,"text","text",-1790561697),["WebR Read Error:",cljs.core.str.cljs$core$IFn$_invoke$arity$1(p1__43399_SHARP_)].join('')], null));
 }));
 });
 return loop_fn();

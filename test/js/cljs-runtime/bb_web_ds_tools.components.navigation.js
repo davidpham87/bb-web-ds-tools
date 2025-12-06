@@ -7,11 +7,11 @@ goog.provide('bb_web_ds_tools.components.navigation');
  */
 bb_web_ds_tools.components.navigation.menu_button = (function bb_web_ds_tools$components$navigation$menu_button(){
 var with_let28717 = reagent.ratom.with_let_values(new cljs.core.Keyword(null,"with-let28717","with-let28717",1022057278));
-var temp__5829__auto___28738 = reagent.ratom._STAR_ratom_context_STAR_;
-if((temp__5829__auto___28738 == null)){
+var temp__5829__auto___28757 = reagent.ratom._STAR_ratom_context_STAR_;
+if((temp__5829__auto___28757 == null)){
 } else {
-var c__23529__auto___28739 = temp__5829__auto___28738;
-if((with_let28717.generation === c__23529__auto___28739.ratomGeneration)){
+var c__23559__auto___28758 = temp__5829__auto___28757;
+if((with_let28717.generation === c__23559__auto___28758.ratomGeneration)){
 if(reagent.debug.has_console){
 ((reagent.debug.tracking)?reagent.debug.track_console:console).error(["Warning: The same with-let is being used more ","than once in the same reactive context."].join(''));
 } else {
@@ -19,7 +19,7 @@ if(reagent.debug.has_console){
 } else {
 }
 
-(with_let28717.generation = c__23529__auto___28739.ratomGeneration);
+(with_let28717.generation = c__23559__auto___28758.ratomGeneration);
 }
 
 var init28718 = (with_let28717.length === (0));
@@ -46,8 +46,8 @@ if((i__28722 < size__5502__auto__)){
 var item = cljs.core._nth(c__5501__auto__,i__28722);
 cljs.core.chunk_append(b__28723,cljs.core.with_meta(new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"a","a",-2123407586),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"href","href",-793805698),reitit.frontend.easy.href.cljs$core$IFn$_invoke$arity$1(new cljs.core.Keyword(null,"route","route",329891309).cljs$core$IFn$_invoke$arity$1(item)),new cljs.core.Keyword(null,"class","class",-2030961996),["block px-4 py-2 text-sm ",bb_web_ds_tools.theme.text_primary," hover:bg-white/5 flex items-center gap-2"].join(''),new cljs.core.Keyword(null,"on-click","on-click",1632826543),close_fn], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"span","span",1394872991),new cljs.core.Keyword(null,"icon","icon",1679606541).cljs$core$IFn$_invoke$arity$1(item)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"span","span",1394872991),new cljs.core.Keyword(null,"label","label",1718410804).cljs$core$IFn$_invoke$arity$1(item)], null)], null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"key","key",-1516042587),new cljs.core.Keyword(null,"route","route",329891309).cljs$core$IFn$_invoke$arity$1(item)], null)));
 
-var G__28748 = (i__28722 + (1));
-i__28722 = G__28748;
+var G__28759 = (i__28722 + (1));
+i__28722 = G__28759;
 continue;
 } else {
 return true;
@@ -74,10 +74,10 @@ return iter__5503__auto__(bb_web_ds_tools.components.common.nav_items);
 })()], null):null)], null);
 return res28719;
 });
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.components.navigation","set-top-bar-ref","bb-web-ds-tools.components.navigation/set-top-bar-ref",1693658101),(function (db,p__28729){
-var vec__28730 = p__28729;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28730,(0),null);
-var ref = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28730,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.components.navigation","set-top-bar-ref","bb-web-ds-tools.components.navigation/set-top-bar-ref",1693658101),(function (db,p__28727){
+var vec__28728 = p__28727;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28728,(0),null);
+var ref = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28728,(1),null);
 return cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"runtime","runtime",-1331573996),new cljs.core.Keyword(null,"navigation","navigation",369417),new cljs.core.Keyword(null,"top-bar-ref","top-bar-ref",-971317764)], null),ref);
 }));
 re_frame.core.reg_sub.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword("bb-web-ds-tools.components.navigation","top-bar-ref","bb-web-ds-tools.components.navigation/top-bar-ref",-836321251),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (db,_){
@@ -94,14 +94,14 @@ return cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(db,new cljs.core.Persisten
  */
 bb_web_ds_tools.components.navigation.portal_to_top_bar = (function bb_web_ds_tools$components$navigation$portal_to_top_bar(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___28756 = arguments.length;
-var i__5750__auto___28757 = (0);
+var len__5749__auto___28762 = arguments.length;
+var i__5750__auto___28763 = (0);
 while(true){
-if((i__5750__auto___28757 < len__5749__auto___28756)){
-args__5755__auto__.push((arguments[i__5750__auto___28757]));
+if((i__5750__auto___28763 < len__5749__auto___28762)){
+args__5755__auto__.push((arguments[i__5750__auto___28763]));
 
-var G__28758 = (i__5750__auto___28757 + (1));
-i__5750__auto___28757 = G__28758;
+var G__28764 = (i__5750__auto___28763 + (1));
+i__5750__auto___28763 = G__28764;
 continue;
 } else {
 }
@@ -124,9 +124,9 @@ return null;
 (bb_web_ds_tools.components.navigation.portal_to_top_bar.cljs$lang$maxFixedArity = (0));
 
 /** @this {Function} */
-(bb_web_ds_tools.components.navigation.portal_to_top_bar.cljs$lang$applyTo = (function (seq28733){
+(bb_web_ds_tools.components.navigation.portal_to_top_bar.cljs$lang$applyTo = (function (seq28735){
 var self__5735__auto__ = this;
-return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq28733));
+return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq28735));
 }));
 
 /**
@@ -139,10 +139,10 @@ return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq
  *   Returns:
  *  vector: A hiccup vector.
  */
-bb_web_ds_tools.components.navigation.top_bar = (function bb_web_ds_tools$components$navigation$top_bar(p__28736){
-var map__28737 = p__28736;
-var map__28737__$1 = cljs.core.__destructure_map(map__28737);
-var active_label = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28737__$1,new cljs.core.Keyword(null,"active-label","active-label",1965964916));
+bb_web_ds_tools.components.navigation.top_bar = (function bb_web_ds_tools$components$navigation$top_bar(p__28755){
+var map__28756 = p__28755;
+var map__28756__$1 = cljs.core.__destructure_map(map__28756);
+var active_label = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28756__$1,new cljs.core.Keyword(null,"active-label","active-label",1965964916));
 return new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),["flex items-center w-full h-12 px-4 border-b ",bb_web_ds_tools.theme.border_main," ",bb_web_ds_tools.theme.bg_toolbar].join('')], null),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.navigation.menu_button], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),["ml-4 font-bold text-lg ",bb_web_ds_tools.theme.text_accent].join('')], null),active_label], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"class","class",-2030961996),"flex-grow h-full flex items-center justify-end",new cljs.core.Keyword(null,"ref","ref",1289896967),(function (el){
 return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.components.navigation","set-top-bar-ref","bb-web-ds-tools.components.navigation/set-top-bar-ref",1693658101),el], null));
 })], null)], null)], null);

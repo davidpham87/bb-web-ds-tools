@@ -5,7 +5,7 @@ goog.provide('reitit.frontend.history');
  */
 reitit.frontend.history.History = function(){};
 
-var reitit$frontend$history$History$_init$dyn_28679 = (function (this$){
+var reitit$frontend$history$History$_init$dyn_28680 = (function (this$){
 var x__5373__auto__ = (((this$ == null))?null:this$);
 var m__5374__auto__ = (reitit.frontend.history._init[goog.typeOf(x__5373__auto__)]);
 if((!((m__5374__auto__ == null)))){
@@ -26,11 +26,11 @@ reitit.frontend.history._init = (function reitit$frontend$history$_init(this$){
 if((((!((this$ == null)))) && ((!((this$.reitit$frontend$history$History$_init$arity$1 == null)))))){
 return this$.reitit$frontend$history$History$_init$arity$1(this$);
 } else {
-return reitit$frontend$history$History$_init$dyn_28679(this$);
+return reitit$frontend$history$History$_init$dyn_28680(this$);
 }
 });
 
-var reitit$frontend$history$History$_stop$dyn_28680 = (function (this$){
+var reitit$frontend$history$History$_stop$dyn_28681 = (function (this$){
 var x__5373__auto__ = (((this$ == null))?null:this$);
 var m__5374__auto__ = (reitit.frontend.history._stop[goog.typeOf(x__5373__auto__)]);
 if((!((m__5374__auto__ == null)))){
@@ -51,11 +51,11 @@ reitit.frontend.history._stop = (function reitit$frontend$history$_stop(this$){
 if((((!((this$ == null)))) && ((!((this$.reitit$frontend$history$History$_stop$arity$1 == null)))))){
 return this$.reitit$frontend$history$History$_stop$arity$1(this$);
 } else {
-return reitit$frontend$history$History$_stop$dyn_28680(this$);
+return reitit$frontend$history$History$_stop$dyn_28681(this$);
 }
 });
 
-var reitit$frontend$history$History$_on_navigate$dyn_28681 = (function (this$,path){
+var reitit$frontend$history$History$_on_navigate$dyn_28682 = (function (this$,path){
 var x__5373__auto__ = (((this$ == null))?null:this$);
 var m__5374__auto__ = (reitit.frontend.history._on_navigate[goog.typeOf(x__5373__auto__)]);
 if((!((m__5374__auto__ == null)))){
@@ -76,11 +76,11 @@ reitit.frontend.history._on_navigate = (function reitit$frontend$history$_on_nav
 if((((!((this$ == null)))) && ((!((this$.reitit$frontend$history$History$_on_navigate$arity$2 == null)))))){
 return this$.reitit$frontend$history$History$_on_navigate$arity$2(this$,path);
 } else {
-return reitit$frontend$history$History$_on_navigate$dyn_28681(this$,path);
+return reitit$frontend$history$History$_on_navigate$dyn_28682(this$,path);
 }
 });
 
-var reitit$frontend$history$History$_get_path$dyn_28682 = (function (this$){
+var reitit$frontend$history$History$_get_path$dyn_28683 = (function (this$){
 var x__5373__auto__ = (((this$ == null))?null:this$);
 var m__5374__auto__ = (reitit.frontend.history._get_path[goog.typeOf(x__5373__auto__)]);
 if((!((m__5374__auto__ == null)))){
@@ -101,11 +101,11 @@ reitit.frontend.history._get_path = (function reitit$frontend$history$_get_path(
 if((((!((this$ == null)))) && ((!((this$.reitit$frontend$history$History$_get_path$arity$1 == null)))))){
 return this$.reitit$frontend$history$History$_get_path$arity$1(this$);
 } else {
-return reitit$frontend$history$History$_get_path$dyn_28682(this$);
+return reitit$frontend$history$History$_get_path$dyn_28683(this$);
 }
 });
 
-var reitit$frontend$history$History$_href$dyn_28683 = (function (this$,path){
+var reitit$frontend$history$History$_href$dyn_28684 = (function (this$,path){
 var x__5373__auto__ = (((this$ == null))?null:this$);
 var m__5374__auto__ = (reitit.frontend.history._href[goog.typeOf(x__5373__auto__)]);
 if((!((m__5374__auto__ == null)))){
@@ -126,7 +126,7 @@ reitit.frontend.history._href = (function reitit$frontend$history$_href(this$,pa
 if((((!((this$ == null)))) && ((!((this$.reitit$frontend$history$History$_href$arity$2 == null)))))){
 return this$.reitit$frontend$history$History$_href$arity$2(this$,path);
 } else {
-return reitit$frontend$history$History$_href$dyn_28683(this$,path);
+return reitit$frontend$history$History$_href$dyn_28684(this$,path);
 }
 });
 
@@ -451,8 +451,8 @@ if(cljs.core.truth_(el__$1)){
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(tag__$1,el__$1.nodeName)){
 return el__$1;
 } else {
-var G__28686 = el__$1.parentNode;
-el__$1 = G__28686;
+var G__28690 = el__$1.parentNode;
+el__$1 = G__28690;
 continue;
 }
 } else {
@@ -697,9 +697,9 @@ return this$__$2;
 (reitit.frontend.history.Html5History.prototype.reitit$frontend$history$History$_on_navigate$arity$2 = (function (this$,path){
 var self__ = this;
 var this$__$1 = this;
-var G__28608 = reitit.frontend.match_by_path.cljs$core$IFn$_invoke$arity$3(self__.router,path,this$__$1);
-var G__28609 = this$__$1;
-return (self__.on_navigate.cljs$core$IFn$_invoke$arity$2 ? self__.on_navigate.cljs$core$IFn$_invoke$arity$2(G__28608,G__28609) : self__.on_navigate.call(null,G__28608,G__28609));
+var G__28622 = reitit.frontend.match_by_path.cljs$core$IFn$_invoke$arity$3(self__.router,path,this$__$1);
+var G__28623 = this$__$1;
+return (self__.on_navigate.cljs$core$IFn$_invoke$arity$2 ? self__.on_navigate.cljs$core$IFn$_invoke$arity$2(G__28622,G__28623) : self__.on_navigate.call(null,G__28622,G__28623));
 }));
 
 (reitit.frontend.history.Html5History.prototype.reitit$frontend$history$History$_stop$arity$1 = (function (this$){
@@ -737,9 +737,9 @@ return (new reitit.frontend.history.Html5History(self__.on_navigate,self__.route
 (reitit.frontend.history.Html5History.prototype.cljs$core$IAssociative$_contains_key_QMARK_$arity$2 = (function (this__5330__auto__,k28599){
 var self__ = this;
 var this__5330__auto____$1 = this;
-var G__28612 = k28599;
-var G__28612__$1 = (((G__28612 instanceof cljs.core.Keyword))?G__28612.fqn:null);
-switch (G__28612__$1) {
+var G__28636 = k28599;
+var G__28636__$1 = (((G__28636 instanceof cljs.core.Keyword))?G__28636.fqn:null);
+switch (G__28636__$1) {
 case "on-navigate":
 case "router":
 case "listen-key":
@@ -756,18 +756,18 @@ return cljs.core.contains_QMARK_(self__.__extmap,k28599);
 (reitit.frontend.history.Html5History.prototype.cljs$core$IAssociative$_assoc$arity$3 = (function (this__5331__auto__,k__5332__auto__,G__28598){
 var self__ = this;
 var this__5331__auto____$1 = this;
-var pred__28615 = cljs.core.keyword_identical_QMARK_;
-var expr__28616 = k__5332__auto__;
-if(cljs.core.truth_((pred__28615.cljs$core$IFn$_invoke$arity$2 ? pred__28615.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"on-navigate","on-navigate",-297227908),expr__28616) : pred__28615.call(null,new cljs.core.Keyword(null,"on-navigate","on-navigate",-297227908),expr__28616)))){
+var pred__28641 = cljs.core.keyword_identical_QMARK_;
+var expr__28642 = k__5332__auto__;
+if(cljs.core.truth_((pred__28641.cljs$core$IFn$_invoke$arity$2 ? pred__28641.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"on-navigate","on-navigate",-297227908),expr__28642) : pred__28641.call(null,new cljs.core.Keyword(null,"on-navigate","on-navigate",-297227908),expr__28642)))){
 return (new reitit.frontend.history.Html5History(G__28598,self__.router,self__.listen_key,self__.click_listen_key,self__.__meta,self__.__extmap,null));
 } else {
-if(cljs.core.truth_((pred__28615.cljs$core$IFn$_invoke$arity$2 ? pred__28615.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"router","router",1091916230),expr__28616) : pred__28615.call(null,new cljs.core.Keyword(null,"router","router",1091916230),expr__28616)))){
+if(cljs.core.truth_((pred__28641.cljs$core$IFn$_invoke$arity$2 ? pred__28641.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"router","router",1091916230),expr__28642) : pred__28641.call(null,new cljs.core.Keyword(null,"router","router",1091916230),expr__28642)))){
 return (new reitit.frontend.history.Html5History(self__.on_navigate,G__28598,self__.listen_key,self__.click_listen_key,self__.__meta,self__.__extmap,null));
 } else {
-if(cljs.core.truth_((pred__28615.cljs$core$IFn$_invoke$arity$2 ? pred__28615.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"listen-key","listen-key",51973686),expr__28616) : pred__28615.call(null,new cljs.core.Keyword(null,"listen-key","listen-key",51973686),expr__28616)))){
+if(cljs.core.truth_((pred__28641.cljs$core$IFn$_invoke$arity$2 ? pred__28641.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"listen-key","listen-key",51973686),expr__28642) : pred__28641.call(null,new cljs.core.Keyword(null,"listen-key","listen-key",51973686),expr__28642)))){
 return (new reitit.frontend.history.Html5History(self__.on_navigate,self__.router,G__28598,self__.click_listen_key,self__.__meta,self__.__extmap,null));
 } else {
-if(cljs.core.truth_((pred__28615.cljs$core$IFn$_invoke$arity$2 ? pred__28615.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"click-listen-key","click-listen-key",642240955),expr__28616) : pred__28615.call(null,new cljs.core.Keyword(null,"click-listen-key","click-listen-key",642240955),expr__28616)))){
+if(cljs.core.truth_((pred__28641.cljs$core$IFn$_invoke$arity$2 ? pred__28641.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"click-listen-key","click-listen-key",642240955),expr__28642) : pred__28641.call(null,new cljs.core.Keyword(null,"click-listen-key","click-listen-key",642240955),expr__28642)))){
 return (new reitit.frontend.history.Html5History(self__.on_navigate,self__.router,self__.listen_key,G__28598,self__.__meta,self__.__extmap,null));
 } else {
 return (new reitit.frontend.history.Html5History(self__.on_navigate,self__.router,self__.listen_key,self__.click_listen_key,self__.__meta,cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(self__.__extmap,k__5332__auto__,G__28598),null));
@@ -824,11 +824,11 @@ return (new reitit.frontend.history.Html5History(on_navigate,router,listen_key,c
  * Factory function for reitit.frontend.history/Html5History, taking a map of keywords to field values.
  */
 reitit.frontend.history.map__GT_Html5History = (function reitit$frontend$history$map__GT_Html5History(G__28602){
-var extmap__5365__auto__ = (function (){var G__28628 = cljs.core.dissoc.cljs$core$IFn$_invoke$arity$variadic(G__28602,new cljs.core.Keyword(null,"on-navigate","on-navigate",-297227908),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"router","router",1091916230),new cljs.core.Keyword(null,"listen-key","listen-key",51973686),new cljs.core.Keyword(null,"click-listen-key","click-listen-key",642240955)], 0));
+var extmap__5365__auto__ = (function (){var G__28656 = cljs.core.dissoc.cljs$core$IFn$_invoke$arity$variadic(G__28602,new cljs.core.Keyword(null,"on-navigate","on-navigate",-297227908),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"router","router",1091916230),new cljs.core.Keyword(null,"listen-key","listen-key",51973686),new cljs.core.Keyword(null,"click-listen-key","click-listen-key",642240955)], 0));
 if(cljs.core.record_QMARK_(G__28602)){
-return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentArrayMap.EMPTY,G__28628);
+return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentArrayMap.EMPTY,G__28656);
 } else {
-return G__28628;
+return G__28656;
 }
 })();
 return (new reitit.frontend.history.Html5History(new cljs.core.Keyword(null,"on-navigate","on-navigate",-297227908).cljs$core$IFn$_invoke$arity$1(G__28602),new cljs.core.Keyword(null,"router","router",1091916230).cljs$core$IFn$_invoke$arity$1(G__28602),new cljs.core.Keyword(null,"listen-key","listen-key",51973686).cljs$core$IFn$_invoke$arity$1(G__28602),new cljs.core.Keyword(null,"click-listen-key","click-listen-key",642240955).cljs$core$IFn$_invoke$arity$1(G__28602),null,cljs.core.not_empty(extmap__5365__auto__),null));
@@ -856,8 +856,8 @@ return (new reitit.frontend.history.Html5History(new cljs.core.Keyword(null,"on-
  *                         function, which will ignore clicks if the href matches route tree.
  */
 reitit.frontend.history.start_BANG_ = (function reitit$frontend$history$start_BANG_(var_args){
-var G__28635 = arguments.length;
-switch (G__28635) {
+var G__28659 = arguments.length;
+switch (G__28659) {
 case 2:
 return reitit.frontend.history.start_BANG_.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -876,11 +876,11 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 return reitit.frontend.history.start_BANG_.cljs$core$IFn$_invoke$arity$3(router,on_navigate,null);
 }));
 
-(reitit.frontend.history.start_BANG_.cljs$core$IFn$_invoke$arity$3 = (function (router,on_navigate,p__28645){
-var map__28648 = p__28645;
-var map__28648__$1 = cljs.core.__destructure_map(map__28648);
-var opts = map__28648__$1;
-var use_fragment = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__28648__$1,new cljs.core.Keyword(null,"use-fragment","use-fragment",-1617737154),true);
+(reitit.frontend.history.start_BANG_.cljs$core$IFn$_invoke$arity$3 = (function (router,on_navigate,p__28660){
+var map__28663 = p__28660;
+var map__28663__$1 = cljs.core.__destructure_map(map__28663);
+var opts = map__28663__$1;
+var use_fragment = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__28663__$1,new cljs.core.Keyword(null,"use-fragment","use-fragment",-1617737154),true);
 var opts__$1 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$variadic(cljs.core.dissoc.cljs$core$IFn$_invoke$arity$2(opts,new cljs.core.Keyword(null,"use-fragment","use-fragment",-1617737154)),new cljs.core.Keyword(null,"router","router",1091916230),router,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"on-navigate","on-navigate",-297227908),on_navigate], 0));
 return reitit.frontend.history._init((cljs.core.truth_(use_fragment)?reitit.frontend.history.map__GT_FragmentHistory(opts__$1):reitit.frontend.history.map__GT_Html5History(opts__$1)));
 }));
@@ -908,8 +908,8 @@ return null;
  *   differently, convert the collections to strings first.
  */
 reitit.frontend.history.href = (function reitit$frontend$history$href(var_args){
-var G__28658 = arguments.length;
-switch (G__28658) {
+var G__28666 = arguments.length;
+switch (G__28666) {
 case 2:
 return reitit.frontend.history.href.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -965,8 +965,8 @@ return reitit.frontend.history._href(history,reitit.frontend.match__GT_path.cljs
  *   https://developer.mozilla.org/en-US/docs/Web/API/History/pushState
  */
 reitit.frontend.history.push_state = (function reitit$frontend$history$push_state(var_args){
-var G__28665 = arguments.length;
-switch (G__28665) {
+var G__28668 = arguments.length;
+switch (G__28668) {
 case 2:
 return reitit.frontend.history.push_state.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
