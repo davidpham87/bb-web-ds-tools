@@ -6,5 +6,5 @@
    :task (quickblog/render
           {:blog-title "bb-web-ds-tools"
            :blog-description "A data science suite that runs entirely in your browser."
-           :content-dir "blog"
+           :posts-dir "blog"
            :out-dir "docs/blog"})}}}
