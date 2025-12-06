@@ -3,7 +3,11 @@
    [cljs-bean.core :refer (->js ->clj)]
    [clojure.tools.reader :as tr]
    [clojure.tools.reader.reader-types :as rt]
-   [sci.core :as sci]))
+   [sci.core :as sci]
+   [clojure.string :as str]
+   [clojure.set :as set]))
+
+(def datasets-atom (atom {}))
 
 (defn post-msg
   "Posts a message back to the main thread.
@@ -27,7 +31,41 @@
                               'subscribe (fn [_]
                                            (post-msg {:type :stderr
                                                       :text "rf/subscribe is not supported in the worker."})
-                                           (atom nil))}}}))
+                                           (atom nil))}
+              'str {'blank? str/blank?
+                    'capitalize str/capitalize
+                    'ends-with? str/ends-with?
+                    'escape str/escape
+                    'includes? str/includes?
+                    'index-of str/index-of
+                    'join str/join
+                    'last-index-of str/last-index-of
+                    'lower-case str/lower-case
+                    're-quote-replacement str/re-quote-replacement
+                    'replace str/replace
+                    'replace-first str/replace-first
+                    'reverse str/reverse
+                    'split str/split
+                    'split-lines str/split-lines
+                    'starts-with? str/starts-with?
+                    'trim str/trim
+                    'trim-newline str/trim-newline
+                    'triml str/triml
+                    'trimr str/trimr
+                    'upper-case str/upper-case}
+              'set {'difference set/difference
+                    'index set/index
+                    'intersection set/intersection
+                    'join set/join
+                    'map-invert set/map-invert
+                    'project set/project
+                    'rename set/rename
+                    'rename-keys set/rename-keys
+                    'select set/select
+                    'subset? set/subset?
+                    'superset? set/superset?
+                    'union set/union}
+              'user {'datasets datasets-atom}}}))
 
 (defn eval-code
   "Evaluates Clojure code using SCI.
@@ -66,7 +104,8 @@
    "message"
    (fn [e]
      (let [data (->clj (.-data e) :keywordize-keys true)
-           {:keys [type code]} data]
+           {:keys [type code datasets]} data]
        (case type
          "eval" (eval-code code)
+         "update-datasets" (reset! datasets-atom datasets)
          (js/console.warn "Unknown message type:" type))))))
