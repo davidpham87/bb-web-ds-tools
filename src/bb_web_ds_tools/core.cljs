@@ -194,11 +194,13 @@
   []
   (let [current-route @(rf/subscribe [::current-route])
         active-tab-id (get-in current-route [:data :name])
-        label (get-route-label active-tab-id)]
+        label (get-route-label active-tab-id)
+        landing-page? (= active-tab-id :landing-page)]
     [:div {:class (str "flex flex-col h-screen w-full overflow-hidden " t/bg-page " " t/text-primary)}
      [nav/top-bar {:active-label label}]
      [layout/main {}
-      [:div {:class "flex-grow overflow-hidden relative h-full"}
+      [:div {:class (str "flex-grow relative h-full "
+                         (if landing-page? "overflow-y-auto" "overflow-hidden"))}
        (when current-route
          [view current-route])]]]))
 
