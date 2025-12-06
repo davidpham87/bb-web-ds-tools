@@ -42,3 +42,6 @@ docs/js/pyodide/
 docs/js/workers/
 test/js/
 docs/test/
+docs/blogs
+.work
+templates/
