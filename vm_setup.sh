@@ -29,3 +29,5 @@ echo "\nTesting Clojure..."
 clojure -M -e "(+ 1 1)"
 
 echo "\n--- Installation and verification complete! ---"
+
+npm install

@@ -1,8 +1,11 @@
 (ns bb-web-ds-tools.editor-bug-test
-  (:require [cljs.test :refer [deftest is async]]
+  (:require [cljs.test :refer [deftest is async use-fixtures]]
             [reagent.core :as r]
             [reagent.dom :as rdom]
-            [bb-web-ds-tools.components.editor :as editor]))
+            [bb-web-ds-tools.components.editor :as editor]
+            [bb-web-ds-tools.test-setup :as setup]))
+
+(use-fixtures :each setup/suppress-re-frame-warnings)
 
 (deftest language-update-test
   (async done
