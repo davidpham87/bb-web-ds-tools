@@ -81,7 +81,7 @@ chart.to_html()")
               (cond->
                   (not exists?)
                 (assoc-in [:user-input :pyodide :default ::code] initial-code))
-              (assoc-in [:pyodide ::loading?] true))
+              (assoc-in [:pyodide ::loading?] (not ready?)))
       :fx [(when-not ready? [::load-runtime])]})))
 
 (rf/reg-sub
