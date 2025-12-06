@@ -1,5 +1,6 @@
 (ns bb-web-ds-tools.runtime.sci
   (:require [bb-web-ds-tools.utils.worker :as worker]
+            [bb-web-ds-tools.views.datasets :as datasets]
             [portal.web :as p]
             [sci.core :as sci]
             [clojure.tools.reader :as tr]
@@ -22,6 +23,18 @@
       :dispatch (rf/dispatch event)
       (js/console.warn "Unknown worker msg:" msg))))
 
+(defn sync-datasets!
+  "Subscribes to datasets changes and sends them to the worker."
+  []
+  (let [datasets-sub (rf/subscribe [::datasets/items])]
+    (add-watch datasets-sub :sci-worker-sync
+               (fn [_ _ _ new-val]
+                 (when @sci-worker
+                   (worker/post-message @sci-worker {:type "update-datasets" :datasets new-val}))))
+    ;; Send initial value
+    (when @sci-worker
+      (worker/post-message @sci-worker {:type "update-datasets" :datasets @datasets-sub}))))
+
 (defn init!
   "Initializes the SCI worker if it hasn't been initialized yet.
 
@@ -32,7 +45,8 @@
     nil: Sets the global sci-worker atom."
   [& [on-message]]
   (when-not @sci-worker
-    (reset! sci-worker (worker/create-worker "js/compiled/sci-worker.js" (or on-message default-on-message)))))
+    (reset! sci-worker (worker/create-worker "js/compiled/sci-worker.js" (or on-message default-on-message)))
+    (sync-datasets!)))
 
 (defn eval-in-worker
   "Evaluates Clojure code in the SCI worker.
