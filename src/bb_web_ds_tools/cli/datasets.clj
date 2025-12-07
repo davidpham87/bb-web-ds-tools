@@ -16,7 +16,8 @@
     :to     {:desc "Output format (csv, json, edn)"
              :ref "<fmt>"
              :alias :t
-             :default "json"}
+             :default "json"
+             :default-desc "json"}
     :file   {:desc "Input file (stdin if omitted)"
              :ref "<file>"
              :alias :i}

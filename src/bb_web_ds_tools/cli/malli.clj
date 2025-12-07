@@ -14,7 +14,8 @@
                :ref "<int>"
                :alias :e
                :coerce :int
-               :default 10}
+               :default 10
+               :default-desc "10"}
     :file     {:desc "Input file (stdin if omitted)"
                :ref "<file>"
                :alias :i}}
@@ -23,11 +24,13 @@
               :ref "<int>"
               :alias :s
               :coerce :int
-              :default 1}
+              :default 1
+              :default-desc "1"}
     :format  {:desc "Output format (edn, json)"
               :ref "<fmt>"
               :alias :f
-              :default "edn"}
+              :default "edn"
+              :default-desc "edn"}
     :file    {:desc "Schema input file (stdin if omitted)"
               :ref "<file>"
               :alias :i}}
