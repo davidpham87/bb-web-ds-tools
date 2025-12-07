@@ -16,6 +16,7 @@
   re-frame/re-frame                {:mvn/version "1.4.3"}
   reagent/reagent                  {:mvn/version "2.0.1"}
   thheller/shadow-cljs             {:mvn/version "3.2.1"}
+  clj-commons/clj-yaml             {:mvn/version "1.0.29"}
 
   cider/cider-nrepl                {:mvn/version "0.58.0"}
   refactor-nrepl/refactor-nrepl    {:mvn/version "3.9.0"}}
