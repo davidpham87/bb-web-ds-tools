@@ -12,16 +12,24 @@ You'll need `babashka` installed. If you don't have it, go get it. We'll wait.
 
 ## The Tools
 
-We have three main tools for your enjoyment: `datasets`, `honeysql`, and `malli`.
+We have three main tools for your enjoyment: `data`, `sql`, and `schema`.
 
-### 1. Datasets: The Data Plumber
+You can access them all via the `dstools` entry point:
 
-The `datasets` tool is your Swiss Army knife for converting data formats. Because sometimes you have JSON, but you really, really want EDN.
+```bash
+bb -m dstools <command> <subcommand> [opts]
+```
+
+### 1. Datasets: The Data Plumber (`data`)
+
+The `data` tool is your Swiss Army knife for converting data formats. Because sometimes you have JSON, but you really, really want EDN.
+
+**Note on Data Format:** The tool currently expects data to be a **sequence of maps** (also known as "row-maps" or "array of objects"). For example: `[{"a": 1}, {"a": 2}]`. It does not automatically handle columnar data (object of arrays) or other exotic structures.
 
 **Usage:**
 
 ```bash
-bb -m bb-web-ds-tools.cli.datasets convert [opts]
+bb -m dstools data convert [opts]
 ```
 
 **Options:**
@@ -29,7 +37,7 @@ bb -m bb-web-ds-tools.cli.datasets convert [opts]
 - `-f, --format <fmt>`: Input format (csv, json, edn). Required.
 - `-t, --to <fmt>`: Output format (csv, json, edn). Default: `json`.
 - `-i, --file <file>`: Input file. Reads from stdin if omitted.
-- `-o, --out <file>`: Output file. Writes to stdout if omitted.
+- `-o, --out <file>`: Output file. Writes to stdout if omitted. Inferred from input filename if possible (e.g., `input.json` -> `input.edn`).
 
 **Example: Converting Cars**
 
@@ -47,10 +55,10 @@ First, imagine you have `cars.json`:
 Now, let's convert it:
 
 ```bash
-bb -m bb-web-ds-tools.cli.datasets convert -f json -t edn -i cars.json -o cars.edn
+bb -m dstools data convert -f json -t edn -i cars.json
 ```
 
-Your `cars.edn` will look something like this (but prettier, because EDN is beautiful):
+This will create `cars.edn` automatically. Your `cars.edn` will look something like this (but prettier, because EDN is beautiful):
 
 ```clojure
 [{:Name "chevrolet chevelle malibu",
@@ -73,19 +81,20 @@ Your `cars.edn` will look something like this (but prettier, because EDN is beau
   :Origin "USA"}]
 ```
 
-### 2. HoneySQL: The Query Whisperer
+### 2. HoneySQL: The Query Whisperer (`sql`)
 
 You write Clojure data structures. You get SQL strings. It's magic, but with more parentheses.
 
 **Usage:**
 
 ```bash
-bb -m bb-web-ds-tools.cli.honeysql convert [opts]
+bb -m dstools sql convert [opts]
 ```
 
 **Options:**
 
 - `-i, --file <file>`: Input file containing a HoneySQL map. Stdin if omitted.
+- `-o, --out <file>`: Output file. Inferred from input filename (e.g., `query.edn` -> `query.sql`).
 
 **Example:**
 
@@ -100,16 +109,16 @@ Input `query.edn`:
 Command:
 
 ```bash
-bb -m bb-web-ds-tools.cli.honeysql convert -i query.edn
+bb -m dstools sql convert -i query.edn
 ```
 
-Output:
+Output (to `query.sql`):
 
 ```sql
 SELECT * FROM cars WHERE Origin = 'USA'
 ```
 
-### 3. Malli: The Schema Enforcer
+### 3. Malli: The Schema Enforcer (`schema`)
 
 Infer schemas, generate data, and validate your life choices (or at least your data).
 
@@ -124,7 +133,7 @@ Infer schemas, generate data, and validate your life choices (or at least your d
 Remember that `cars.edn` file? Let's see what Malli thinks of it.
 
 ```bash
-bb -m bb-web-ds-tools.cli.malli infer -i cars.edn
+bb -m dstools schema infer -i cars.edn
 ```
 
 Output (something like):

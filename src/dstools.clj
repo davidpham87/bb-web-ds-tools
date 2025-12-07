@@ -1,11 +1,11 @@
-(ns bb-web-ds-tools.cli.main
+(ns dstools
   (:require [bb-web-ds-tools.cli.datasets :as datasets]
             [bb-web-ds-tools.cli.honeysql :as honeysql]
             [bb-web-ds-tools.cli.malli :as malli]
             [babashka.cli :as cli]))
 
 (defn show-help [_]
-  (println "Usage: bb -m bb-web-ds-tools.cli.main <command> <subcommand> [opts]")
+  (println "Usage: bb -m dstools <command> <subcommand> [opts]")
   (println "\nCommands:")
   (println "  data    Data processing tools (datasets)")
   (println "  sql     SQL generation tools (honeysql)")
