@@ -1,13 +1,9 @@
 (ns bb-web-ds-tools.cli.datasets
   (:require [clojure.string :as str]
-            [clojure.edn :as edn]
-            [clojure.pprint :as pprint]
-            [clojure.data.csv :as csv]
-            [clojure.data.json :as json]
-            [clj-yaml.core :as yaml]
             [babashka.fs :as fs]
             [babashka.cli :as cli]
-            [bb-web-ds-tools.impl.datasets :as impl]))
+            [bb-web-ds-tools.impl.datasets :as impl]
+            [bb-web-ds-tools.impl.io :as io]))
 
 (def cli-specs
   {:convert
@@ -58,79 +54,28 @@
         "yaml" "yaml"
         nil))))
 
-(defn- parse-csv [text]
-  (let [data (csv/read-csv text)
-        header (first data)
-        rows (rest data)]
-    (mapv #(zipmap header %) rows)))
-
-(defn- parse-json [text]
-  (json/read-str text :key-fn keyword))
-
-(defn- parse-edn [text]
-  (edn/read-string text))
-
-(defn- parse-yaml [text]
-  (yaml/parse-string text))
-
-(defn- to-csv [data]
-  (let [sw (java.io.StringWriter.)]
-    (cond
-      ;; If map (columnar), convert to row-maps first
-      (map? data)
-      (let [row-maps (impl/transform data :columnar :row-maps)
-            header (keys (first row-maps))
-            rows (map (fn [row] (map #(get row %) header)) row-maps)]
-        (csv/write-csv sw (cons header rows)))
-
-      ;; If vector of vectors (rows), use directly
-      (and (sequential? data) (sequential? (first data)))
-      (csv/write-csv sw data)
-
-      ;; Default: Assume row-maps
-      :else
-      (if (empty? data)
-        ""
-        (let [header (keys (first data))
-              rows (map (fn [row] (map #(get row %) header)) data)]
-          (csv/write-csv sw (cons header rows)))))
-    (.toString sw)))
-
-(defn- to-json [data]
-  (json/write-str data {:indent true}))
-
-(defn- to-edn [data]
-  (with-out-str (pprint/pprint data)))
-
-(defn- to-yaml [data]
-  (yaml/generate-string data))
-
 (defn convert [{:keys [opts]}]
   (let [in-format (or (:format opts) (infer-format (:file opts)))
         out-format (:to opts "json") ;; output format: csv, json, edn, yaml
         text (read-input opts)]
     (try
-      (let [raw-data (case in-format
-                       "csv" (parse-csv text)
-                       "json" (parse-json text)
-                       "edn" (parse-edn text)
-                       "yaml" (parse-yaml text)
-                       (throw (ex-info (if (:format opts)
-                                         "Unknown input format. Use --format [csv|json|edn|yaml]"
-                                         "Could not infer input format from filename. Please use --format.")
-                                       {})))
+      (let [raw-data (try
+                       (io/parse-string in-format text)
+                       (catch Exception e
+                         (throw (ex-info (if (:format opts)
+                                           (str "Unknown input format: " in-format)
+                                           "Could not infer input format from filename. Please use --format.")
+                                         {}))))
 
             input-struct (or (keyword (:input-struct opts)) (impl/detect-structure raw-data))
             output-struct (or (keyword (:output-struct opts)) input-struct)
 
             processed-data (impl/transform raw-data input-struct output-struct)
 
-            output (case out-format
-                     "csv" (to-csv processed-data)
-                     "json" (to-json processed-data)
-                     "edn" (to-edn processed-data)
-                     "yaml" (to-yaml processed-data)
-                     (throw (ex-info "Unknown output format. Use --to [csv|json|edn|yaml]" {})))]
+            output (try
+                     (io/write-string out-format processed-data)
+                     (catch IllegalArgumentException _
+                        (throw (ex-info (str "Unknown output format: " out-format) {}))))]
         (write-output opts output out-format))
       (catch Exception e
         (binding [*out* *err*]
