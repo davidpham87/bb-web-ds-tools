@@ -4,16 +4,16 @@
             [clojure.pprint :as pprint]
             [clojure.data.csv :as csv]
             [clojure.data.json :as json]
+            [clj-yaml.core :as yaml]
             [babashka.fs :as fs]
             [babashka.cli :as cli]))
 
 (def cli-specs
   {:convert
-   {:format {:desc "Input format (csv, json, edn)"
+   {:format {:desc "Input format (csv, json, edn, yaml)"
              :ref "<fmt>"
-             :alias :f
-             :require true}
-    :to     {:desc "Output format (csv, json, edn)"
+             :alias :f}
+    :to     {:desc "Output format (csv, json, edn, yaml)"
              :ref "<fmt>"
              :alias :t
              :default "json"
@@ -46,6 +46,17 @@
     (spit f content)
     (println content)))
 
+(defn- infer-format [filename]
+  (when filename
+    (let [ext (str/lower-case (fs/extension filename))]
+      (case ext
+        "csv" "csv"
+        "json" "json"
+        "edn" "edn"
+        "yml" "yaml"
+        "yaml" "yaml"
+        nil))))
+
 (defn- parse-csv [text]
   (let [data (csv/read-csv text)
         header (first data)
@@ -57,6 +68,9 @@
 
 (defn- parse-edn [text]
   (edn/read-string text))
+
+(defn- parse-yaml [text]
+  (yaml/parse-string text))
 
 (defn- detect-structure [data]
   (cond
@@ -150,22 +164,30 @@
 (defn- to-edn [data]
   (with-out-str (pprint/pprint data)))
 
+(defn- to-yaml [data]
+  (yaml/generate-string data))
+
 (defn convert [{:keys [opts]}]
-  (let [format (:format opts) ;; input format: csv, json, edn
-        out-format (:to opts "json") ;; output format: csv, json, edn
+  (let [in-format (or (:format opts) (infer-format (:file opts)))
+        out-format (:to opts "json") ;; output format: csv, json, edn, yaml
         text (read-input opts)]
     (try
-      (let [raw-data (case format
+      (let [raw-data (case in-format
                        "csv" (parse-csv text)
                        "json" (parse-json text)
                        "edn" (parse-edn text)
-                       (throw (ex-info "Unknown input format. Use --format [csv|json|edn]" {})))
+                       "yaml" (parse-yaml text)
+                       (throw (ex-info (if (:format opts)
+                                         "Unknown input format. Use --format [csv|json|edn|yaml]"
+                                         "Could not infer input format from filename. Please use --format.")
+                                       {})))
             processed-data (transform-structure raw-data (:input-struct opts) (:output-struct opts))
             output (case out-format
                      "csv" (to-csv processed-data)
                      "json" (to-json processed-data)
                      "edn" (to-edn processed-data)
-                     (throw (ex-info "Unknown output format. Use --to [csv|json|edn]" {})))]
+                     "yaml" (to-yaml processed-data)
+                     (throw (ex-info "Unknown output format. Use --to [csv|json|edn|yaml]" {})))]
         (write-output opts output out-format))
       (catch Exception e
         (binding [*out* *err*]
