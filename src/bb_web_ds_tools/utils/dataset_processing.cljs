@@ -73,9 +73,15 @@
                    (map str/trim)
                    (remove empty?))
         parse-row (fn [line]
-                    (->> (str/split line #"\|")
-                         (map str/trim)
-                         (remove empty?)))
+                    (let [parts (->> (str/split line #"\|")
+                                     (map str/trim)
+                                     vec)
+                          n (count parts)
+                          start (if (and (> n 0) (empty? (nth parts 0))) 1 0)
+                          end (if (and (> n 0) (empty? (peek parts))) (dec n) n)]
+                      (if (< start end)
+                        (subvec parts start end)
+                        [])))
         [header-line _ & data-lines] lines
         header (map keyword (parse-row header-line))]
     (mapv (fn [line] (zipmap header (parse-row line))) data-lines)))
