@@ -12,26 +12,33 @@
   {:infer
    {:max-enum {:desc "Max distinct values for enum inference"
                :ref "<int>"
+               :alias :e
                :coerce :int
                :default 10}
     :file     {:desc "Input file (stdin if omitted)"
-               :ref "<file>"}}
+               :ref "<file>"
+               :alias :i}}
    :generate
    {:samples {:desc "Number of samples to generate"
               :ref "<int>"
+              :alias :s
               :coerce :int
               :default 1}
     :format  {:desc "Output format (edn, json)"
               :ref "<fmt>"
+              :alias :f
               :default "edn"}
     :file    {:desc "Schema input file (stdin if omitted)"
-              :ref "<file>"}}
+              :ref "<file>"
+              :alias :i}}
    :validate
    {:schema {:desc "Schema file"
              :ref "<file>"
+             :alias :s
              :require true}
     :file   {:desc "Data file (stdin if omitted)"
-             :ref "<file>"}}})
+             :ref "<file>"
+             :alias :i}}})
 
 (defn- read-input [opts]
   (if-let [f (:file opts)]

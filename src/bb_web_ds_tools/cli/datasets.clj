@@ -11,14 +11,18 @@
   {:convert
    {:format {:desc "Input format (csv, json, edn)"
              :ref "<fmt>"
+             :alias :f
              :require true}
     :to     {:desc "Output format (csv, json, edn)"
              :ref "<fmt>"
+             :alias :t
              :default "json"}
     :file   {:desc "Input file (stdin if omitted)"
-             :ref "<file>"}
+             :ref "<file>"
+             :alias :i}
     :out    {:desc "Output file (stdout if omitted)"
-             :ref "<file>"}}})
+             :ref "<file>"
+             :alias :o}}})
 
 (defn- read-input [opts]
   (if-let [f (:file opts)]

@@ -5,7 +5,8 @@
 (def cli-specs
   {:convert
    {:file {:desc "Input file (stdin if omitted)"
-           :ref "<file>"}}})
+           :ref "<file>"
+           :alias :i}}})
 
 (defn convert [{:keys [opts]}]
   (let [input-str (if-let [f (:file opts)]
