@@ -14,11 +14,17 @@ bb -m dstools <command> <subcommand> [opts]
 
 ### 1. Datasets (`data`)
 
-Converts data between CSV, JSON, and EDN formats.
+Converts data between CSV, JSON, and EDN formats, and transforms data structures (e.g., row-maps to columnar).
 
 **Command:** `convert`
 
-**Data Format Note:** The tool expects input data to be a **sequence of maps** (row-maps). Columnar data formats (e.g., object of arrays) are not currently supported for automatic conversion to row-based formats like CSV.
+**Data Structures:**
+The tool supports converting between different internal structures:
+*   `row-maps` (default for JSON/EDN usually): `[{:a 1} {:a 2}]`
+*   `columnar`: `{:a [1 2]}`
+*   `rows`: `[[:a] [1] [2]]`
+
+See `docs/CLI_DATA_STRUCTURES.md` for full details on structure guessing and conversion.
 
 **Options:**
 
@@ -26,6 +32,8 @@ Converts data between CSV, JSON, and EDN formats.
 *   `-t, --to <fmt>`: Output format (`csv`, `json`, `edn`). Default: `json`.
 *   `-i, --file <file>`: Input file path. Reads from stdin if omitted.
 *   `-o, --out <file>`: Output file path. Writes to stdout if omitted. If input file is provided and output is not, the filename is inferred (e.g., `data.json` -> `data.edn`).
+*   `-S, --input-struct <struct>`: Input data structure (`row-maps`, `columnar`, `rows`).
+*   `-s, --output-struct <struct>`: Output data structure (`row-maps`, `columnar`, `rows`).
 
 **Example:**
 
@@ -33,6 +41,9 @@ Converts data between CSV, JSON, and EDN formats.
 # Convert JSON to EDN
 bb -m dstools data convert -f json -t edn -i data.json
 # Output: data.edn
+
+# Convert JSON row-maps to JSON columnar
+bb -m dstools data convert -f json -t json -s columnar -i data.json
 ```
 
 ### 2. HoneySQL (`sql`)

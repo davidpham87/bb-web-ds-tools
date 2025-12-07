@@ -24,7 +24,7 @@ bb -m dstools <command> <subcommand> [opts]
 
 The `data` tool is your Swiss Army knife for converting data formats. Because sometimes you have JSON, but you really, really want EDN.
 
-**Note on Data Format:** The tool currently expects data to be a **sequence of maps** (also known as "row-maps" or "array of objects"). For example: `[{"a": 1}, {"a": 2}]`. It does not automatically handle columnar data (object of arrays) or other exotic structures.
+**Note on Data Format:** By default, the tool guesses the structure of your data (e.g., row-maps vs columnar). You can explicitly control this with `--input-struct` and `--output-struct`. See `docs/CLI_DATA_STRUCTURES.md` for details.
 
 **Usage:**
 
@@ -38,6 +38,8 @@ bb -m dstools data convert [opts]
 - `-t, --to <fmt>`: Output format (csv, json, edn). Default: `json`.
 - `-i, --file <file>`: Input file. Reads from stdin if omitted.
 - `-o, --out <file>`: Output file. Writes to stdout if omitted. Inferred from input filename if possible (e.g., `input.json` -> `input.edn`).
+- `-S, --input-struct <struct>`: Input data structure (row-maps, columnar, rows).
+- `-s, --output-struct <struct>`: Output data structure (row-maps, columnar, rows).
 
 **Example: Converting Cars**
 
