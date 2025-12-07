@@ -6,7 +6,8 @@
             [clojure.data.json :as json]
             [clj-yaml.core :as yaml]
             [babashka.fs :as fs]
-            [babashka.cli :as cli]))
+            [babashka.cli :as cli]
+            [bb-web-ds-tools.impl.datasets :as impl]))
 
 (def cli-specs
   {:convert
@@ -72,77 +73,12 @@
 (defn- parse-yaml [text]
   (yaml/parse-string text))
 
-(defn- detect-structure [data]
-  (cond
-    (and (sequential? data) (map? (first data))) :row-maps
-    (map? data) :columnar
-    (and (sequential? data) (sequential? (first data))) :rows
-    :else :unknown))
-
-(defn- to-row-maps [data struct]
-  (case struct
-    :row-maps data
-    :columnar (let [cols (keys data)
-                    count (count (first (vals data)))]
-                (mapv (fn [i] (zipmap cols (map #(nth (get data %) i) cols))) (range count)))
-    :rows (let [header (first data)
-                rows (rest data)]
-            (mapv #(zipmap header %) rows))
-    data))
-
-(defn- to-columnar [data struct]
-  (case struct
-    :columnar data
-    :row-maps (if (empty? data)
-                {}
-                (let [cols (keys (first data))]
-                  (reduce (fn [acc col]
-                            (assoc acc col (mapv #(get % col) data)))
-                          {}
-                          cols)))
-    :rows (let [header (first data)
-                rows (rest data)]
-            (if (empty? rows)
-              (zipmap header (repeat []))
-              (reduce (fn [acc i]
-                        (let [col-name (nth header i)]
-                          (assoc acc col-name (mapv #(nth % i) rows))))
-                      {}
-                      (range (count header)))))
-    data))
-
-(defn- to-rows [data struct]
-  (case struct
-    :rows data
-    :row-maps (if (empty? data)
-                []
-                (let [header (keys (first data))]
-                  (cons header (mapv (fn [row] (mapv #(get row %) header)) data))))
-    :columnar (if (empty? data)
-                []
-                (let [header (keys data)
-                      count (count (first (vals data)))
-                      rows (mapv (fn [i] (mapv #(nth (get data %) i) header)) (range count))]
-                  (cons header rows)))
-    data))
-
-(defn- transform-structure [data input-struct target-struct]
-  (let [actual-struct (or (keyword input-struct) (detect-structure data) :row-maps)
-        target (or (keyword target-struct) actual-struct)]
-    (if (= actual-struct target)
-      data
-      (case target
-        :row-maps (to-row-maps data actual-struct)
-        :columnar (to-columnar data actual-struct)
-        :rows (to-rows data actual-struct)
-        data))))
-
 (defn- to-csv [data]
   (let [sw (java.io.StringWriter.)]
     (cond
       ;; If map (columnar), convert to row-maps first
       (map? data)
-      (let [row-maps (to-row-maps data :columnar)
+      (let [row-maps (impl/transform data :columnar :row-maps)
             header (keys (first row-maps))
             rows (map (fn [row] (map #(get row %) header)) row-maps)]
         (csv/write-csv sw (cons header rows)))
@@ -153,9 +89,11 @@
 
       ;; Default: Assume row-maps
       :else
-      (let [header (keys (first data))
-            rows (map (fn [row] (map #(get row %) header)) data)]
-        (csv/write-csv sw (cons header rows))))
+      (if (empty? data)
+        ""
+        (let [header (keys (first data))
+              rows (map (fn [row] (map #(get row %) header)) data)]
+          (csv/write-csv sw (cons header rows)))))
     (.toString sw)))
 
 (defn- to-json [data]
@@ -181,7 +119,12 @@
                                          "Unknown input format. Use --format [csv|json|edn|yaml]"
                                          "Could not infer input format from filename. Please use --format.")
                                        {})))
-            processed-data (transform-structure raw-data (:input-struct opts) (:output-struct opts))
+
+            input-struct (or (keyword (:input-struct opts)) (impl/detect-structure raw-data))
+            output-struct (or (keyword (:output-struct opts)) input-struct)
+
+            processed-data (impl/transform raw-data input-struct output-struct)
+
             output (case out-format
                      "csv" (to-csv processed-data)
                      "json" (to-json processed-data)
