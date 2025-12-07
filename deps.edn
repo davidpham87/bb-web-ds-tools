@@ -1,6 +1,8 @@
 {:paths ["src" "test" "src/stories"]
  :deps
- {cheshire/cheshire                {:mvn/version "5.13.0"}
+ {babashka/fs                      {:mvn/version "0.5.20"}
+  org.babashka/cli                 {:mvn/version "0.8.58"}
+  cheshire/cheshire                {:mvn/version "5.13.0"}
   cljs-bean/cljs-bean              {:mvn/version "1.9.0"}
   com.github.seancorfield/honeysql {:mvn/version "2.7.1350"}
   datascript/datascript            {:mvn/version "1.5.4"}
@@ -16,6 +18,7 @@
   re-frame/re-frame                {:mvn/version "1.4.3"}
   reagent/reagent                  {:mvn/version "2.0.1"}
   thheller/shadow-cljs             {:mvn/version "3.2.1"}
+  org.clojure/data.csv             {:mvn/version "1.0.1"}
   clj-commons/clj-yaml             {:mvn/version "1.0.29"}
 
   cider/cider-nrepl                {:mvn/version "0.58.0"}
