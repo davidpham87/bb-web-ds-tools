@@ -14,7 +14,7 @@ bb -m dstools <command> <subcommand> [opts]
 
 ### 1. Datasets (`data`)
 
-Converts data between CSV, JSON, and EDN formats, and transforms data structures (e.g., row-maps to columnar).
+Converts data between CSV, JSON, EDN, and YAML formats, and transforms data structures (e.g., row-maps to columnar).
 
 **Command:** `convert`
 
@@ -28,8 +28,8 @@ See `docs/CLI_DATA_STRUCTURES.md` for full details on structure guessing and con
 
 **Options:**
 
-*   `-f, --format <fmt>`: Input format (`csv`, `json`, `edn`). **Required**.
-*   `-t, --to <fmt>`: Output format (`csv`, `json`, `edn`). Default: `json`.
+*   `-f, --format <fmt>`: Input format (`csv`, `json`, `edn`, `yaml`). Optional if inferred from filename.
+*   `-t, --to <fmt>`: Output format (`csv`, `json`, `edn`, `yaml`). Default: `json`.
 *   `-i, --file <file>`: Input file path. Reads from stdin if omitted.
 *   `-o, --out <file>`: Output file path. Writes to stdout if omitted. If input file is provided and output is not, the filename is inferred (e.g., `data.json` -> `data.edn`).
 *   `-S, --input-struct <struct>`: Input data structure (`row-maps`, `columnar`, `rows`).
@@ -44,6 +44,10 @@ bb -m dstools data convert -f json -t edn -i data.json
 
 # Convert JSON row-maps to JSON columnar
 bb -m dstools data convert -f json -t json -s columnar -i data.json
+
+# Convert to YAML (inferring input format)
+bb -m dstools data convert -t yaml -i data.edn
+# Output: data.yaml
 ```
 
 ### 2. HoneySQL (`sql`)

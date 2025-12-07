@@ -22,9 +22,9 @@ bb -m dstools <command> <subcommand> [opts]
 
 ### 1. Datasets: The Data Plumber (`data`)
 
-The `data` tool is your Swiss Army knife for converting data formats. Because sometimes you have JSON, but you really, really want EDN.
+The `data` tool is your Swiss Army knife for converting data formats. Because sometimes you have JSON, but you really, really want EDN. Or maybe YAML, because you're feeling adventurous.
 
-**Note on Data Format:** By default, the tool guesses the structure of your data (e.g., row-maps vs columnar). You can explicitly control this with `--input-struct` and `--output-struct`. See `docs/CLI_DATA_STRUCTURES.md` for details.
+**Structure Guessing:** By default, the tool guesses the structure of your data (e.g., row-maps vs columnar). You can explicitly control this with `--input-struct` and `--output-struct`. See `docs/CLI_DATA_STRUCTURES.md` for details.
 
 **Usage:**
 
@@ -34,8 +34,8 @@ bb -m dstools data convert [opts]
 
 **Options:**
 
-- `-f, --format <fmt>`: Input format (csv, json, edn). Required.
-- `-t, --to <fmt>`: Output format (csv, json, edn). Default: `json`.
+- `-f, --format <fmt>`: Input format (csv, json, edn, yaml). Optional if it can be inferred from the filename extension.
+- `-t, --to <fmt>`: Output format (csv, json, edn, yaml). Default: `json`.
 - `-i, --file <file>`: Input file. Reads from stdin if omitted.
 - `-o, --out <file>`: Output file. Writes to stdout if omitted. Inferred from input filename if possible (e.g., `input.json` -> `input.edn`).
 - `-S, --input-struct <struct>`: Input data structure (row-maps, columnar, rows).
@@ -54,10 +54,10 @@ First, imagine you have `cars.json`:
 ]
 ```
 
-Now, let's convert it:
+Now, let's convert it to EDN. Notice we don't even need to tell it the input format, because we named our file properly:
 
 ```bash
-bb -m dstools data convert -f json -t edn -i cars.json
+bb -m dstools data convert -t edn -i cars.json
 ```
 
 This will create `cars.edn` automatically. Your `cars.edn` will look something like this (but prettier, because EDN is beautiful):
@@ -82,6 +82,14 @@ This will create `cars.edn` automatically. Your `cars.edn` will look something l
   :Year "1970-01-01",
   :Origin "USA"}]
 ```
+
+And if you want to join the YAML revolution:
+
+```bash
+bb -m dstools data convert -t yaml -i cars.edn
+```
+
+Boom. `cars.yaml`.
 
 ### 2. HoneySQL: The Query Whisperer (`sql`)
 
