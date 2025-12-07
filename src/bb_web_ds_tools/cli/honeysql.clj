@@ -1,12 +1,21 @@
 (ns bb-web-ds-tools.cli.honeysql
   (:require [bb-web-ds-tools.components.honeysql :as h]
-            [babashka.cli :as cli]))
+            [babashka.cli :as cli]
+            [babashka.fs :as fs]))
 
 (def cli-specs
   {:convert
    {:file {:desc "Input file (stdin if omitted)"
            :ref "<file>"
-           :alias :i}}})
+           :alias :i}
+    :out  {:desc "Output file (inferred if input file given, else stdout)"
+           :ref "<file>"
+           :alias :o}}})
+
+(defn- infer-output [opts]
+  (or (:out opts)
+      (when (:file opts)
+        (str (fs/strip-ext (:file opts)) ".sql"))))
 
 (defn convert [{:keys [opts]}]
   (let [input-str (if-let [f (:file opts)]
@@ -14,7 +23,9 @@
                     (slurp *in*))
         res (h/convert-to-sql input-str)]
     (if (:success res)
-      (println (:output res))
+      (if-let [f (infer-output opts)]
+        (spit f (:output res))
+        (println (:output res)))
       (binding [*out* *err*]
         (println "Error:" (:error res))))))
 

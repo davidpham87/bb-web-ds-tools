@@ -21,7 +21,7 @@
     :file   {:desc "Input file (stdin if omitted)"
              :ref "<file>"
              :alias :i}
-    :out    {:desc "Output file (stdout if omitted)"
+    :out    {:desc "Output file (inferred if input file given, else stdout)"
              :ref "<file>"
              :alias :o}}})
 
@@ -30,8 +30,13 @@
     (slurp f)
     (slurp *in*)))
 
-(defn- write-output [opts content]
-  (if-let [f (:out opts)]
+(defn- infer-output [opts default-ext]
+  (or (:out opts)
+      (when (:file opts)
+        (str (fs/strip-ext (:file opts)) "." default-ext))))
+
+(defn- write-output [opts content default-ext]
+  (if-let [f (infer-output opts default-ext)]
     (spit f content)
     (println content)))
 
@@ -75,7 +80,7 @@
                      "json" (to-json data)
                      "edn" (to-edn data)
                      (throw (ex-info "Unknown output format. Use --to [csv|json|edn]" {})))]
-        (write-output opts output))
+        (write-output opts output out-format))
       (catch Exception e
         (binding [*out* *err*]
           (println "Error:" (.getMessage e)))))))
