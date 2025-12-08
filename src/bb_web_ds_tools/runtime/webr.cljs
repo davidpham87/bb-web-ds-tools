@@ -90,7 +90,8 @@
                                  (js/Promise.reject (js/Error. "Shelter not found on WebR instance")))))]
         (-> (create-shelter)
             (.then (fn [^js shelter]
-                     (-> (.captureR shelter code (clj->js {:autoprint true}))
+                     (-> (.captureR shelter code (clj->js {:autoprint true 
+                                                           :captureGraphics {:width 320 :height 240}}))
                          (.then (fn [^js res]
                                   (let [output (.-output res)
                                         images (.-images res)
