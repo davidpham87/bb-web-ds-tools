@@ -13,15 +13,15 @@ bb_web_ds_tools.runtime.sci.sci_worker = cljs.core.atom.cljs$core$IFn$_invoke$ar
  *  nil: Performs side-effects (dispatch or console log).
  */
 bb_web_ds_tools.runtime.sci.default_on_message = (function bb_web_ds_tools$runtime$sci$default_on_message(msg){
-var map__43545 = msg;
-var map__43545__$1 = cljs.core.__destructure_map(map__43545);
-var type = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__43545__$1,new cljs.core.Keyword(null,"type","type",1174270348));
-var event = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__43545__$1,new cljs.core.Keyword(null,"event","event",301435442));
-var value = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__43545__$1,new cljs.core.Keyword(null,"value","value",305978217));
-var text = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__43545__$1,new cljs.core.Keyword(null,"text","text",-1790561697));
-var G__43546 = cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(type);
-var G__43546__$1 = (((G__43546 instanceof cljs.core.Keyword))?G__43546.fqn:null);
-switch (G__43546__$1) {
+var map__43542 = msg;
+var map__43542__$1 = cljs.core.__destructure_map(map__43542);
+var type = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__43542__$1,new cljs.core.Keyword(null,"type","type",1174270348));
+var event = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__43542__$1,new cljs.core.Keyword(null,"event","event",301435442));
+var value = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__43542__$1,new cljs.core.Keyword(null,"value","value",305978217));
+var text = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__43542__$1,new cljs.core.Keyword(null,"text","text",-1790561697));
+var G__43544 = cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(type);
+var G__43544__$1 = (((G__43544 instanceof cljs.core.Keyword))?G__43544.fqn:null);
+switch (G__43544__$1) {
 case "dispatch":
 return re_frame.core.dispatch(event);
 
@@ -79,9 +79,9 @@ var argseq__5756__auto__ = ((((0) < args__5755__auto__.length))?(new cljs.core.I
 return bb_web_ds_tools.runtime.sci.init_BANG_.cljs$core$IFn$_invoke$arity$variadic(argseq__5756__auto__);
 });
 
-(bb_web_ds_tools.runtime.sci.init_BANG_.cljs$core$IFn$_invoke$arity$variadic = (function (p__43552){
-var vec__43553 = p__43552;
-var on_message = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43553,(0),null);
+(bb_web_ds_tools.runtime.sci.init_BANG_.cljs$core$IFn$_invoke$arity$variadic = (function (p__43554){
+var vec__43557 = p__43554;
+var on_message = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43557,(0),null);
 if(cljs.core.truth_(cljs.core.deref(bb_web_ds_tools.runtime.sci.sci_worker))){
 return null;
 } else {
@@ -100,9 +100,9 @@ return bb_web_ds_tools.runtime.sci.sync_datasets_BANG_();
 (bb_web_ds_tools.runtime.sci.init_BANG_.cljs$lang$maxFixedArity = (0));
 
 /** @this {Function} */
-(bb_web_ds_tools.runtime.sci.init_BANG_.cljs$lang$applyTo = (function (seq43549){
+(bb_web_ds_tools.runtime.sci.init_BANG_.cljs$lang$applyTo = (function (seq43553){
 var self__5735__auto__ = this;
-return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq43549));
+return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq43553));
 }));
 
 /**
@@ -158,7 +158,7 @@ var rdr = cljs.tools.reader.reader_types.string_push_back_reader.cljs$core$IFn$_
 try{var acc = cljs.core.PersistentVector.EMPTY;
 while(true){
 var form = (function (){try{return cljs.tools.reader.read.cljs$core$IFn$_invoke$arity$3(rdr,false,new cljs.core.Keyword(null,"eof","eof",-489063237));
-}catch (e43561){var e = e43561;
+}catch (e43567){var e = e43567;
 return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"error","error",-978969032),["Read Error: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(e)].join('')], null);
 }})();
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(form,new cljs.core.Keyword(null,"eof","eof",-489063237))){
@@ -178,19 +178,19 @@ acc = G__43576;
 continue;
 } else {
 var res = (function (){try{return sci.core.eval_form(bb_web_ds_tools.runtime.sci.sci_ctx,form);
-}catch (e43562){var e = e43562;
+}catch (e43568){var e = e43568;
 return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"error","error",-978969032),["Eval Error: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(e)].join('')], null);
 }})();
 portal.web.submit(new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"result","result",1415092211),new cljs.core.Keyword(null,"value","value",305978217),cljs.core.str.cljs$core$IFn$_invoke$arity$1(res)], null));
 
-var G__43580 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(acc,res);
-acc = G__43580;
+var G__43577 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(acc,res);
+acc = G__43577;
 continue;
 }
 }
 break;
 }
-}catch (e43557){var e = e43557;
+}catch (e43564){var e = e43564;
 return portal.web.submit(new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"error","error",-978969032),new cljs.core.Keyword(null,"text","text",-1790561697),cljs.core.str.cljs$core$IFn$_invoke$arity$1(e)], null));
 }});
 

@@ -26,11 +26,11 @@ return cljs_test_display.notify.with_permission("granted",(function (){
 return (new Notification("All CLJS Tests Passed",({"icon": cljs_test_display.notify.green_url, "silent": true})));
 }));
 });
-cljs_test_display.notify.failure = (function cljs_test_display$notify$failure(p__65611){
-var map__65612 = p__65611;
-var map__65612__$1 = cljs.core.__destructure_map(map__65612);
-var error = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__65612__$1,new cljs.core.Keyword(null,"error","error",-978969032));
-var fail = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__65612__$1,new cljs.core.Keyword(null,"fail","fail",1706214930));
+cljs_test_display.notify.failure = (function cljs_test_display$notify$failure(p__65653){
+var map__65654 = p__65653;
+var map__65654__$1 = cljs.core.__destructure_map(map__65654);
+var error = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__65654__$1,new cljs.core.Keyword(null,"error","error",-978969032));
+var fail = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__65654__$1,new cljs.core.Keyword(null,"fail","fail",1706214930));
 return cljs_test_display.notify.with_permission("granted",(function (){
 return (new Notification("CLJS Tests Failed",({"icon": cljs_test_display.notify.red_url, "silent": true, "body": [(cljs.core.truth_(fail)?[cljs.core.str.cljs$core$IFn$_invoke$arity$1(fail)," failures "].join(''):null),(cljs.core.truth_(error)?[cljs.core.str.cljs$core$IFn$_invoke$arity$1(error)," errors"].join(''):null)].join('')})));
 }));

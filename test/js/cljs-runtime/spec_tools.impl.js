@@ -201,8 +201,8 @@ var G__54494__$2 = (((G__54494__$1 == null))?null:cljs.core.first(G__54494__$1))
 if((G__54494__$2 == null)){
 return null;
 } else {
-var fexpr__54499 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Symbol("cljs.spec.alpha","nilable","cljs.spec.alpha/nilable",1628308748,null),null,new cljs.core.Symbol("clojure.spec.alpha","nilable","clojure.spec.alpha/nilable",-1718644550,null),null], null), null);
-return (fexpr__54499.cljs$core$IFn$_invoke$arity$1 ? fexpr__54499.cljs$core$IFn$_invoke$arity$1(G__54494__$2) : fexpr__54499.call(null,G__54494__$2));
+var fexpr__54503 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Symbol("cljs.spec.alpha","nilable","cljs.spec.alpha/nilable",1628308748,null),null,new cljs.core.Symbol("clojure.spec.alpha","nilable","clojure.spec.alpha/nilable",-1718644550,null),null], null), null);
+return (fexpr__54503.cljs$core$IFn$_invoke$arity$1 ? fexpr__54503.cljs$core$IFn$_invoke$arity$1(G__54494__$2) : fexpr__54503.call(null,G__54494__$2));
 }
 })():null));
 });
@@ -219,14 +219,14 @@ return cljs.core.first(coll);
 });
 spec_tools.impl.deep_merge = (function spec_tools$impl$deep_merge(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___54593 = arguments.length;
-var i__5750__auto___54594 = (0);
+var len__5749__auto___54620 = arguments.length;
+var i__5750__auto___54621 = (0);
 while(true){
-if((i__5750__auto___54594 < len__5749__auto___54593)){
-args__5755__auto__.push((arguments[i__5750__auto___54594]));
+if((i__5750__auto___54621 < len__5749__auto___54620)){
+args__5755__auto__.push((arguments[i__5750__auto___54621]));
 
-var G__54595 = (i__5750__auto___54594 + (1));
-i__5750__auto___54594 = G__54595;
+var G__54622 = (i__5750__auto___54621 + (1));
+i__5750__auto___54621 = G__54622;
 continue;
 } else {
 }

@@ -56,9 +56,9 @@ var ctx = (init.cljs$core$IFn$_invoke$arity$1 ? init.cljs$core$IFn$_invoke$arity
 (eval_string_STAR_.cljs$core$IFn$_invoke$arity$2 ? eval_string_STAR_.cljs$core$IFn$_invoke$arity$2(ctx,"(alias 'm 'malli.core)") : eval_string_STAR_.call(null,ctx,"(alias 'm 'malli.core)"));
 
 return (function malli$sci$evaluator_$_eval(s){
-var G__45477 = (fork__$1.cljs$core$IFn$_invoke$arity$1 ? fork__$1.cljs$core$IFn$_invoke$arity$1(ctx) : fork__$1.call(null,ctx));
-var G__45478 = cljs.core.str.cljs$core$IFn$_invoke$arity$1(s);
-return (eval_string_STAR_.cljs$core$IFn$_invoke$arity$2 ? eval_string_STAR_.cljs$core$IFn$_invoke$arity$2(G__45477,G__45478) : eval_string_STAR_.call(null,G__45477,G__45478));
+var G__45490 = (fork__$1.cljs$core$IFn$_invoke$arity$1 ? fork__$1.cljs$core$IFn$_invoke$arity$1(ctx) : fork__$1.call(null,ctx));
+var G__45491 = cljs.core.str.cljs$core$IFn$_invoke$arity$1(s);
+return (eval_string_STAR_.cljs$core$IFn$_invoke$arity$2 ? eval_string_STAR_.cljs$core$IFn$_invoke$arity$2(G__45490,G__45491) : eval_string_STAR_.call(null,G__45490,G__45491));
 });
 } else {
 return fail_BANG_;

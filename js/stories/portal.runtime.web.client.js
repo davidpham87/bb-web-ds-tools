@@ -103,27 +103,27 @@ return portal.runtime.web.client.push_state(self__.session_id,new_value);
 (portal.runtime.web.client.Portal.prototype.cljs$core$ISwap$_swap_BANG_$arity$2 = (function (this$,f){
 var self__ = this;
 var this$__$1 = this;
-return cljs.core.reset_BANG_(this$__$1,(function (){var G__37047 = cljs.core.deref(this$__$1);
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__37047) : f.call(null,G__37047));
+return cljs.core.reset_BANG_(this$__$1,(function (){var G__37067 = cljs.core.deref(this$__$1);
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__37067) : f.call(null,G__37067));
 })());
 }));
 
 (portal.runtime.web.client.Portal.prototype.cljs$core$ISwap$_swap_BANG_$arity$3 = (function (this$,f,a){
 var self__ = this;
 var this$__$1 = this;
-return cljs.core.reset_BANG_(this$__$1,(function (){var G__37048 = cljs.core.deref(this$__$1);
-var G__37049 = a;
-return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__37048,G__37049) : f.call(null,G__37048,G__37049));
+return cljs.core.reset_BANG_(this$__$1,(function (){var G__37068 = cljs.core.deref(this$__$1);
+var G__37069 = a;
+return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__37068,G__37069) : f.call(null,G__37068,G__37069));
 })());
 }));
 
 (portal.runtime.web.client.Portal.prototype.cljs$core$ISwap$_swap_BANG_$arity$4 = (function (this$,f,a,b){
 var self__ = this;
 var this$__$1 = this;
-return cljs.core.reset_BANG_(this$__$1,(function (){var G__37073 = cljs.core.deref(this$__$1);
-var G__37074 = a;
-var G__37075 = b;
-return (f.cljs$core$IFn$_invoke$arity$3 ? f.cljs$core$IFn$_invoke$arity$3(G__37073,G__37074,G__37075) : f.call(null,G__37073,G__37074,G__37075));
+return cljs.core.reset_BANG_(this$__$1,(function (){var G__37070 = cljs.core.deref(this$__$1);
+var G__37071 = a;
+var G__37072 = b;
+return (f.cljs$core$IFn$_invoke$arity$3 ? f.cljs$core$IFn$_invoke$arity$3(G__37070,G__37071,G__37072) : f.call(null,G__37070,G__37071,G__37072));
 })());
 }));
 
