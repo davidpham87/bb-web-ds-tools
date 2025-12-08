@@ -323,10 +323,13 @@
 
           [:div {:class "flex-grow"}]
 
-          [c/button-xs {:class (str t/bg-button-primary " " t/bg-button-primary-hover " text-white px-4")
-                        :on-click #(let [parsed (dp/parse-dataset fmt structure text)]
-                                     (rf/dispatch [::add-dataset {:name dataset-name :data parsed}]))}
-           "Create"]]
+           [l/flex-row {:class "items-center gap-2"}
+            [:div {:class (str "text-xs " t/text-secondary)}
+             "CLI: " [:code {:class "bg-black/20 p-1 rounded"} "bb -x bb-web-ds-tools.cli.datasets/convert"]]
+            [c/button-xs {:class (str t/bg-button-primary " " t/bg-button-primary-hover " text-white px-4")
+                          :on-click #(let [parsed (dp/parse-dataset fmt structure text)]
+                                       (rf/dispatch [::add-dataset {:name dataset-name :data parsed}]))}
+             "Create"]]]
 
          [:div {:class (str "flex-grow " t/bg-input " rounded overflow-hidden shadow-inner border " t/border-default)}
           [editor/monaco-editor

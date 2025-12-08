@@ -15,10 +15,22 @@
        :toJs (fn [] 42)
        :toString (fn [] "Result: 1 + 1")})
 
+(def mock-capture-output
+  #js {:result mock-result
+       :output #js []
+       :images #js []})
+
+(defn MockShelter []
+  (this-as this
+    (set! (.-captureR this) (fn [_ _] (js/Promise.resolve mock-capture-output)))
+    (set! (.-purge this) (fn [] (js/Promise.resolve)))
+    this))
+
 (def mock-webr-proto
   #js {:init (fn [] (js/Promise.resolve))
        :read (fn [] (js/Promise.resolve #js {:type "closed" :data ""}))
-       :evalR (fn [code _] (js/Promise.resolve mock-result))})
+       :evalR (fn [code _] (js/Promise.resolve mock-result))
+       :Shelter MockShelter})
 
 (defn mock-WebR [_]
   mock-webr-proto)

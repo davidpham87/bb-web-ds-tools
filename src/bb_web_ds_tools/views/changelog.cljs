@@ -74,7 +74,7 @@
          ^{:key item}
          [:li {:class "leading-relaxed"} item])]])])
 
-(defn changelog-view
+(defn panel
   "Renders the full changelog page.
 
   Returns:

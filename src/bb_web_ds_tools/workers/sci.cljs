@@ -3,7 +3,12 @@
    [cljs-bean.core :refer (->js ->clj)]
    [clojure.tools.reader :as tr]
    [clojure.tools.reader.reader-types :as rt]
-   [sci.core :as sci]))
+   [sci.core :as sci]
+   [clojure.string :as str]
+   [clojure.set :as set]
+   [clojure.edn :as edn]))
+
+(def datasets-atom (atom {}))
 
 (defn post-msg
   "Posts a message back to the main thread.
@@ -27,7 +32,11 @@
                               'subscribe (fn [_]
                                            (post-msg {:type :stderr
                                                       :text "rf/subscribe is not supported in the worker."})
-                                           (atom nil))}}}))
+                                           (atom nil))}
+              'user {'datasets datasets-atom}}}))
+
+;; Initialize aliases
+(sci/eval-string sci-ctx "(require '[clojure.string :as str] '[clojure.set :as set] '[clojure.edn :as edn])")
 
 (defn eval-code
   "Evaluates Clojure code using SCI.
@@ -66,7 +75,8 @@
    "message"
    (fn [e]
      (let [data (->clj (.-data e) :keywordize-keys true)
-           {:keys [type code]} data]
+           {:keys [type code datasets]} data]
        (case type
          "eval" (eval-code code)
+         "update-datasets" (reset! datasets-atom datasets)
          (js/console.warn "Unknown message type:" type))))))

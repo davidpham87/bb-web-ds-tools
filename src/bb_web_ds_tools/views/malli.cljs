@@ -379,7 +379,10 @@
                           :on-change #(rf/dispatch [:malli/set-max-enum-values (.. % -target -value)])}]]
 
                [btn {:primary true
-                     :on-click #(rf/dispatch [:malli/infer-schema])} "Infer Schema"]]]
+                     :on-click #(rf/dispatch [:malli/infer-schema])} "Infer Schema"]
+
+               [:div {:class (str "ml-4 text-xs " t/text-secondary)}
+                "CLI: " [:code {:class "bg-black/20 p-1 rounded"} "bb -x bb-web-ds-tools.cli.malli/infer"]]]]
    :editors [{:value inference-input
               :language (case input-format
                           :edn "clojure"
@@ -416,7 +419,10 @@
                ;; Generate Button
                [btn {:primary true
                      :on-click #(rf/dispatch [:malli/parse-schema-and-generate])} "Generate"]
-               [btn {:on-click #(rf/dispatch [:malli/save-dataset])} "Save to Datasets"]]]
+               [btn {:on-click #(rf/dispatch [:malli/save-dataset])} "Save to Datasets"]
+
+               [:div {:class (str "ml-4 text-xs " t/text-secondary)}
+                "CLI: " [:code {:class "bg-black/20 p-1 rounded"} "bb -x bb-web-ds-tools.cli.malli/generate"]]]]
    :editors [{:value schema-text
               :language "clojure"
               :options {:rulers [80]}
@@ -430,7 +436,10 @@
   {:controls [:<>
               [c/label "Schema (EDN)"]
               [btn {:primary true
-                    :on-click #(rf/dispatch [:malli/validate])} "Validate"]]
+                    :on-click #(rf/dispatch [:malli/validate])} "Validate"]
+
+              [:div {:class (str "ml-4 text-xs " t/text-secondary)}
+               "CLI: " [:code {:class "bg-black/20 p-1 rounded"} "bb -x bb-web-ds-tools.cli.malli/validate"]]]
    :editors [{:value schema-text
               :language "clojure"
               :options {:rulers [80]}

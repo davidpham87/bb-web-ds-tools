@@ -181,7 +181,7 @@
 ;; (defmethod view :repl [_] [repl/panel])
 ;; (defmethod view :r-repl [_] [r-repl/panel])
 (defmethod view :datasets [_] [datasets/panel])
-(defmethod view :changelog [_] [changelog/changelog-page])
+(defmethod view :changelog [_] [changelog/panel])
 (defmethod view :settings [_] [settings/panel])
 (defmethod view :app-db [_] [app-db/panel])
 ;; (defmethod view :workspaces [_] [workspaces/main-panel])
