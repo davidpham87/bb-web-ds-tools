@@ -71,8 +71,8 @@ if((typeof portal !== 'undefined') && (typeof portal.runtime !== 'undefined') &&
 portal.runtime.id = cljs.core.atom.cljs$core$IFn$_invoke$arity$1((0));
 }
 portal.runtime.next_id = (function portal$runtime$next_id(var_args){
-var G__36874 = arguments.length;
-switch (G__36874) {
+var G__36860 = arguments.length;
+switch (G__36860) {
 case 0:
 return portal.runtime.next_id.cljs$core$IFn$_invoke$arity$0();
 
@@ -91,86 +91,86 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 return cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$2(portal.runtime.id,cljs.core.inc);
 }));
 
-(portal.runtime.next_id.cljs$core$IFn$_invoke$arity$1 = (function (p__36875){
-var map__36876 = p__36875;
-var map__36876__$1 = cljs.core.__destructure_map(map__36876);
-var id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36876__$1,new cljs.core.Keyword(null,"id","id",-1388402092));
+(portal.runtime.next_id.cljs$core$IFn$_invoke$arity$1 = (function (p__36874){
+var map__36875 = p__36874;
+var map__36875__$1 = cljs.core.__destructure_map(map__36875);
+var id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36875__$1,new cljs.core.Keyword(null,"id","id",-1388402092));
 return cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$2(id,cljs.core.inc);
 }));
 
 (portal.runtime.next_id.cljs$lang$maxFixedArity = 1);
 
 portal.runtime.get_session = (function portal$runtime$get_session(session_id){
-return cljs.core.update.cljs$core$IFn$_invoke$arity$3(cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(cljs.core.get.cljs$core$IFn$_invoke$arity$2(cljs.core.deref(portal.runtime.sessions),session_id),new cljs.core.Keyword(null,"session-id","session-id",-1147060351),session_id),new cljs.core.Keyword(null,"options","options",99638489),(function (p1__36877_SHARP_){
-return cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([cljs.core.deref(portal.runtime.default_options),p1__36877_SHARP_], 0));
+return cljs.core.update.cljs$core$IFn$_invoke$arity$3(cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(cljs.core.get.cljs$core$IFn$_invoke$arity$2(cljs.core.deref(portal.runtime.sessions),session_id),new cljs.core.Keyword(null,"session-id","session-id",-1147060351),session_id),new cljs.core.Keyword(null,"options","options",99638489),(function (p1__36876_SHARP_){
+return cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([cljs.core.deref(portal.runtime.default_options),p1__36876_SHARP_], 0));
 }));
 });
-portal.runtime.open_session = (function portal$runtime$open_session(p__36878){
-var map__36879 = p__36878;
-var map__36879__$1 = cljs.core.__destructure_map(map__36879);
-var session = map__36879__$1;
-var session_id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36879__$1,new cljs.core.Keyword(null,"session-id","session-id",-1147060351));
+portal.runtime.open_session = (function portal$runtime$open_session(p__36877){
+var map__36878 = p__36877;
+var map__36878__$1 = cljs.core.__destructure_map(map__36878);
+var session = map__36878__$1;
+var session_id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36878__$1,new cljs.core.Keyword(null,"session-id","session-id",-1147060351));
 return cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([portal.runtime.get_session(session_id),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"id","id",-1388402092),cljs.core.atom.cljs$core$IFn$_invoke$arity$1((0)),new cljs.core.Keyword(null,"value-cache","value-cache",-844944621),cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY),new cljs.core.Keyword(null,"watch-registry","watch-registry",1089587936),cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentHashSet.EMPTY)], null),session], 0));
 });
 portal.runtime.close_session = (function portal$runtime$close_session(session_id){
 return cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$3(portal.runtime.sessions,cljs.core.dissoc,session_id);
 });
-portal.runtime.reset_session = (function portal$runtime$reset_session(p__36881){
-var map__36882 = p__36881;
-var map__36882__$1 = cljs.core.__destructure_map(map__36882);
-var session = map__36882__$1;
-var session_id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36882__$1,new cljs.core.Keyword(null,"session-id","session-id",-1147060351));
-var value_cache = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36882__$1,new cljs.core.Keyword(null,"value-cache","value-cache",-844944621));
-var watch_registry = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36882__$1,new cljs.core.Keyword(null,"watch-registry","watch-registry",1089587936));
+portal.runtime.reset_session = (function portal$runtime$reset_session(p__36924){
+var map__36925 = p__36924;
+var map__36925__$1 = cljs.core.__destructure_map(map__36925);
+var session = map__36925__$1;
+var session_id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36925__$1,new cljs.core.Keyword(null,"session-id","session-id",-1147060351));
+var value_cache = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36925__$1,new cljs.core.Keyword(null,"value-cache","value-cache",-844944621));
+var watch_registry = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36925__$1,new cljs.core.Keyword(null,"watch-registry","watch-registry",1089587936));
 cljs.core.reset_BANG_(value_cache,cljs.core.PersistentArrayMap.EMPTY);
 
-var seq__36883_37046 = cljs.core.seq(cljs.core.deref(watch_registry));
-var chunk__36884_37047 = null;
-var count__36885_37048 = (0);
-var i__36886_37049 = (0);
+var seq__36926_37050 = cljs.core.seq(cljs.core.deref(watch_registry));
+var chunk__36927_37051 = null;
+var count__36928_37052 = (0);
+var i__36929_37053 = (0);
 while(true){
-if((i__36886_37049 < count__36885_37048)){
-var a_37050 = chunk__36884_37047.cljs$core$IIndexed$_nth$arity$2(null,i__36886_37049);
-cljs.core.remove_watch(a_37050,session_id);
+if((i__36929_37053 < count__36928_37052)){
+var a_37054 = chunk__36927_37051.cljs$core$IIndexed$_nth$arity$2(null,i__36929_37053);
+cljs.core.remove_watch(a_37054,session_id);
 
 
-var G__37051 = seq__36883_37046;
-var G__37052 = chunk__36884_37047;
-var G__37053 = count__36885_37048;
-var G__37054 = (i__36886_37049 + (1));
-seq__36883_37046 = G__37051;
-chunk__36884_37047 = G__37052;
-count__36885_37048 = G__37053;
-i__36886_37049 = G__37054;
+var G__37056 = seq__36926_37050;
+var G__37057 = chunk__36927_37051;
+var G__37058 = count__36928_37052;
+var G__37059 = (i__36929_37053 + (1));
+seq__36926_37050 = G__37056;
+chunk__36927_37051 = G__37057;
+count__36928_37052 = G__37058;
+i__36929_37053 = G__37059;
 continue;
 } else {
-var temp__5825__auto___37055 = cljs.core.seq(seq__36883_37046);
-if(temp__5825__auto___37055){
-var seq__36883_37056__$1 = temp__5825__auto___37055;
-if(cljs.core.chunked_seq_QMARK_(seq__36883_37056__$1)){
-var c__5548__auto___37057 = cljs.core.chunk_first(seq__36883_37056__$1);
-var G__37058 = cljs.core.chunk_rest(seq__36883_37056__$1);
-var G__37059 = c__5548__auto___37057;
-var G__37060 = cljs.core.count(c__5548__auto___37057);
-var G__37061 = (0);
-seq__36883_37046 = G__37058;
-chunk__36884_37047 = G__37059;
-count__36885_37048 = G__37060;
-i__36886_37049 = G__37061;
-continue;
-} else {
-var a_37062 = cljs.core.first(seq__36883_37056__$1);
-cljs.core.remove_watch(a_37062,session_id);
-
-
-var G__37063 = cljs.core.next(seq__36883_37056__$1);
-var G__37064 = null;
-var G__37065 = (0);
+var temp__5825__auto___37060 = cljs.core.seq(seq__36926_37050);
+if(temp__5825__auto___37060){
+var seq__36926_37061__$1 = temp__5825__auto___37060;
+if(cljs.core.chunked_seq_QMARK_(seq__36926_37061__$1)){
+var c__5548__auto___37062 = cljs.core.chunk_first(seq__36926_37061__$1);
+var G__37063 = cljs.core.chunk_rest(seq__36926_37061__$1);
+var G__37064 = c__5548__auto___37062;
+var G__37065 = cljs.core.count(c__5548__auto___37062);
 var G__37066 = (0);
-seq__36883_37046 = G__37063;
-chunk__36884_37047 = G__37064;
-count__36885_37048 = G__37065;
-i__36886_37049 = G__37066;
+seq__36926_37050 = G__37063;
+chunk__36927_37051 = G__37064;
+count__36928_37052 = G__37065;
+i__36929_37053 = G__37066;
+continue;
+} else {
+var a_37067 = cljs.core.first(seq__36926_37061__$1);
+cljs.core.remove_watch(a_37067,session_id);
+
+
+var G__37068 = cljs.core.next(seq__36926_37061__$1);
+var G__37069 = null;
+var G__37070 = (0);
+var G__37071 = (0);
+seq__36926_37050 = G__37068;
+chunk__36927_37051 = G__37069;
+count__36928_37052 = G__37070;
+i__36929_37053 = G__37071;
 continue;
 }
 } else {
@@ -199,7 +199,7 @@ return true;
 } else {
 return and__5023__auto__;
 }
-}catch (e36933){var _ = e36933;
+}catch (e36940){var _ = e36940;
 return false;
 }});
 portal.runtime.can_meta_QMARK_ = (function portal$runtime$can_meta_QMARK_(value){
@@ -217,25 +217,25 @@ portal.runtime.hash_PLUS_ = (function portal$runtime$hash_PLUS_(x){
 if(cljs.core.map_QMARK_(x)){
 return cljs.core.reduce_kv((function (out,k,v){
 return ((out + (portal.runtime.hash_PLUS_.cljs$core$IFn$_invoke$arity$1 ? portal.runtime.hash_PLUS_.cljs$core$IFn$_invoke$arity$1(k) : portal.runtime.hash_PLUS_.call(null,k))) + (portal.runtime.hash_PLUS_.cljs$core$IFn$_invoke$arity$1 ? portal.runtime.hash_PLUS_.cljs$core$IFn$_invoke$arity$1(v) : portal.runtime.hash_PLUS_.call(null,v)));
-}),(((1) + ((cljs.core.sorted_QMARK_(x))?(1):(0))) + (function (){var G__36939 = cljs.core.meta(x);
-return (portal.runtime.hash_PLUS_.cljs$core$IFn$_invoke$arity$1 ? portal.runtime.hash_PLUS_.cljs$core$IFn$_invoke$arity$1(G__36939) : portal.runtime.hash_PLUS_.call(null,G__36939));
+}),(((1) + ((cljs.core.sorted_QMARK_(x))?(1):(0))) + (function (){var G__36942 = cljs.core.meta(x);
+return (portal.runtime.hash_PLUS_.cljs$core$IFn$_invoke$arity$1 ? portal.runtime.hash_PLUS_.cljs$core$IFn$_invoke$arity$1(G__36942) : portal.runtime.hash_PLUS_.call(null,G__36942));
 })()),x);
 } else {
 if(cljs.core.coll_QMARK_(x)){
 return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (out,v){
 return (out + (portal.runtime.hash_PLUS_.cljs$core$IFn$_invoke$arity$1 ? portal.runtime.hash_PLUS_.cljs$core$IFn$_invoke$arity$1(v) : portal.runtime.hash_PLUS_.call(null,v)));
 }),(((cljs.core.list_QMARK_(x))?(3):((cljs.core.set_QMARK_(x))?((cljs.core.sorted_QMARK_(x))?(4):(5)):((cljs.core.vector_QMARK_(x))?(6):(7)
-))) + (function (){var G__36940 = cljs.core.meta(x);
-return (portal.runtime.hash_PLUS_.cljs$core$IFn$_invoke$arity$1 ? portal.runtime.hash_PLUS_.cljs$core$IFn$_invoke$arity$1(G__36940) : portal.runtime.hash_PLUS_.call(null,G__36940));
+))) + (function (){var G__36943 = cljs.core.meta(x);
+return (portal.runtime.hash_PLUS_.cljs$core$IFn$_invoke$arity$1 ? portal.runtime.hash_PLUS_.cljs$core$IFn$_invoke$arity$1(G__36943) : portal.runtime.hash_PLUS_.call(null,G__36943));
 })()),x);
 } else {
-var G__36941 = (cljs.core.hash(x) + cljs.core.hash(cljs.core.type(x)));
+var G__36944 = (cljs.core.hash(x) + cljs.core.hash(cljs.core.type(x)));
 if(portal.runtime.can_meta_QMARK_(x)){
-return (G__36941 + (function (){var G__36943 = cljs.core.meta(x);
-return (portal.runtime.hash_PLUS_.cljs$core$IFn$_invoke$arity$1 ? portal.runtime.hash_PLUS_.cljs$core$IFn$_invoke$arity$1(G__36943) : portal.runtime.hash_PLUS_.call(null,G__36943));
+return (G__36944 + (function (){var G__36945 = cljs.core.meta(x);
+return (portal.runtime.hash_PLUS_.cljs$core$IFn$_invoke$arity$1 ? portal.runtime.hash_PLUS_.cljs$core$IFn$_invoke$arity$1(G__36945) : portal.runtime.hash_PLUS_.call(null,G__36945));
 })());
 } else {
-return G__36941;
+return G__36944;
 }
 
 }
@@ -544,14 +544,14 @@ var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36973,(1),null);
 (portal.runtime.realize_value_BANG_.cljs$core$IFn$_invoke$arity$1 ? portal.runtime.realize_value_BANG_.cljs$core$IFn$_invoke$arity$1(v) : portal.runtime.realize_value_BANG_.call(null,v));
 
 
-var G__37074 = seq__36963;
-var G__37075 = chunk__36964;
-var G__37076 = count__36965;
-var G__37077 = (i__36966 + (1));
-seq__36963 = G__37074;
-chunk__36964 = G__37075;
-count__36965 = G__37076;
-i__36966 = G__37077;
+var G__37088 = seq__36963;
+var G__37089 = chunk__36964;
+var G__37090 = count__36965;
+var G__37091 = (i__36966 + (1));
+seq__36963 = G__37088;
+chunk__36964 = G__37089;
+count__36965 = G__37090;
+i__36966 = G__37091;
 continue;
 } else {
 var temp__5825__auto__ = cljs.core.seq(seq__36963);
@@ -559,32 +559,32 @@ if(temp__5825__auto__){
 var seq__36963__$1 = temp__5825__auto__;
 if(cljs.core.chunked_seq_QMARK_(seq__36963__$1)){
 var c__5548__auto__ = cljs.core.chunk_first(seq__36963__$1);
-var G__37078 = cljs.core.chunk_rest(seq__36963__$1);
-var G__37079 = c__5548__auto__;
-var G__37080 = cljs.core.count(c__5548__auto__);
-var G__37081 = (0);
-seq__36963 = G__37078;
-chunk__36964 = G__37079;
-count__36965 = G__37080;
-i__36966 = G__37081;
+var G__37092 = cljs.core.chunk_rest(seq__36963__$1);
+var G__37093 = c__5548__auto__;
+var G__37094 = cljs.core.count(c__5548__auto__);
+var G__37095 = (0);
+seq__36963 = G__37092;
+chunk__36964 = G__37093;
+count__36965 = G__37094;
+i__36966 = G__37095;
 continue;
 } else {
-var vec__36976 = cljs.core.first(seq__36963__$1);
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36976,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36976,(1),null);
+var vec__36977 = cljs.core.first(seq__36963__$1);
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36977,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36977,(1),null);
 (portal.runtime.realize_value_BANG_.cljs$core$IFn$_invoke$arity$1 ? portal.runtime.realize_value_BANG_.cljs$core$IFn$_invoke$arity$1(k) : portal.runtime.realize_value_BANG_.call(null,k));
 
 (portal.runtime.realize_value_BANG_.cljs$core$IFn$_invoke$arity$1 ? portal.runtime.realize_value_BANG_.cljs$core$IFn$_invoke$arity$1(v) : portal.runtime.realize_value_BANG_.call(null,v));
 
 
-var G__37082 = cljs.core.next(seq__36963__$1);
-var G__37083 = null;
-var G__37084 = (0);
-var G__37085 = (0);
-seq__36963 = G__37082;
-chunk__36964 = G__37083;
-count__36965 = G__37084;
-i__36966 = G__37085;
+var G__37096 = cljs.core.next(seq__36963__$1);
+var G__37097 = null;
+var G__37098 = (0);
+var G__37099 = (0);
+seq__36963 = G__37096;
+chunk__36964 = G__37097;
+count__36965 = G__37098;
+i__36966 = G__37099;
 continue;
 }
 } else {
@@ -595,53 +595,53 @@ break;
 }
 } else {
 if(cljs.core.coll_QMARK_(x)){
-var seq__36979 = cljs.core.seq(cljs.core.take.cljs$core$IFn$_invoke$arity$2((100000),x));
-var chunk__36980 = null;
-var count__36981 = (0);
-var i__36982 = (0);
+var seq__36981 = cljs.core.seq(cljs.core.take.cljs$core$IFn$_invoke$arity$2((100000),x));
+var chunk__36982 = null;
+var count__36983 = (0);
+var i__36984 = (0);
 while(true){
-if((i__36982 < count__36981)){
-var v = chunk__36980.cljs$core$IIndexed$_nth$arity$2(null,i__36982);
+if((i__36984 < count__36983)){
+var v = chunk__36982.cljs$core$IIndexed$_nth$arity$2(null,i__36984);
 (portal.runtime.realize_value_BANG_.cljs$core$IFn$_invoke$arity$1 ? portal.runtime.realize_value_BANG_.cljs$core$IFn$_invoke$arity$1(v) : portal.runtime.realize_value_BANG_.call(null,v));
 
 
-var G__37086 = seq__36979;
-var G__37087 = chunk__36980;
-var G__37088 = count__36981;
-var G__37089 = (i__36982 + (1));
-seq__36979 = G__37086;
-chunk__36980 = G__37087;
-count__36981 = G__37088;
-i__36982 = G__37089;
+var G__37100 = seq__36981;
+var G__37101 = chunk__36982;
+var G__37102 = count__36983;
+var G__37103 = (i__36984 + (1));
+seq__36981 = G__37100;
+chunk__36982 = G__37101;
+count__36983 = G__37102;
+i__36984 = G__37103;
 continue;
 } else {
-var temp__5825__auto__ = cljs.core.seq(seq__36979);
+var temp__5825__auto__ = cljs.core.seq(seq__36981);
 if(temp__5825__auto__){
-var seq__36979__$1 = temp__5825__auto__;
-if(cljs.core.chunked_seq_QMARK_(seq__36979__$1)){
-var c__5548__auto__ = cljs.core.chunk_first(seq__36979__$1);
-var G__37090 = cljs.core.chunk_rest(seq__36979__$1);
-var G__37091 = c__5548__auto__;
-var G__37092 = cljs.core.count(c__5548__auto__);
-var G__37093 = (0);
-seq__36979 = G__37090;
-chunk__36980 = G__37091;
-count__36981 = G__37092;
-i__36982 = G__37093;
+var seq__36981__$1 = temp__5825__auto__;
+if(cljs.core.chunked_seq_QMARK_(seq__36981__$1)){
+var c__5548__auto__ = cljs.core.chunk_first(seq__36981__$1);
+var G__37108 = cljs.core.chunk_rest(seq__36981__$1);
+var G__37109 = c__5548__auto__;
+var G__37110 = cljs.core.count(c__5548__auto__);
+var G__37111 = (0);
+seq__36981 = G__37108;
+chunk__36982 = G__37109;
+count__36983 = G__37110;
+i__36984 = G__37111;
 continue;
 } else {
-var v = cljs.core.first(seq__36979__$1);
+var v = cljs.core.first(seq__36981__$1);
 (portal.runtime.realize_value_BANG_.cljs$core$IFn$_invoke$arity$1 ? portal.runtime.realize_value_BANG_.cljs$core$IFn$_invoke$arity$1(v) : portal.runtime.realize_value_BANG_.call(null,v));
 
 
-var G__37094 = cljs.core.next(seq__36979__$1);
-var G__37095 = null;
-var G__37096 = (0);
-var G__37097 = (0);
-seq__36979 = G__37094;
-chunk__36980 = G__37095;
-count__36981 = G__37096;
-i__36982 = G__37097;
+var G__37112 = cljs.core.next(seq__36981__$1);
+var G__37113 = null;
+var G__37114 = (0);
+var G__37115 = (0);
+seq__36981 = G__37112;
+chunk__36982 = G__37113;
+count__36983 = G__37114;
+i__36984 = G__37115;
 continue;
 }
 } else {
@@ -665,21 +665,21 @@ portal.runtime.update_value = (function portal$runtime$update_value(new_value){
 try{portal.runtime.realize_value_BANG_(new_value);
 
 return cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$3(portal.runtime.tap_list,cljs.core.conj,new_value);
-}catch (e36984){var e = e36984;
+}catch (e36989){var e = e36989;
 return cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$3(portal.runtime.tap_list,cljs.core.conj,portal.runtime.error__GT_data(cljs.core.ex_info.cljs$core$IFn$_invoke$arity$3("Failed to receive value.",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"value-type","value-type",576005757),cljs.core.type(new_value)], null),e)));
 }});
 portal.runtime.runtime_keymap = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.with_meta(cljs.core.PersistentArrayMap.EMPTY,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword("portal.runtime","no-cache","portal.runtime/no-cache",-631302980),true], null)));
 portal.runtime.get_options = (function portal$runtime$get_options(){
-var map__36986 = portal.runtime._STAR_session_STAR_;
-var map__36986__$1 = cljs.core.__destructure_map(map__36986);
-var options = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36986__$1,new cljs.core.Keyword(null,"options","options",99638489));
-var watch_registry = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36986__$1,new cljs.core.Keyword(null,"watch-registry","watch-registry",1089587936));
+var map__36990 = portal.runtime._STAR_session_STAR_;
+var map__36990__$1 = cljs.core.__destructure_map(map__36990);
+var options = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36990__$1,new cljs.core.Keyword(null,"options","options",99638489));
+var watch_registry = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36990__$1,new cljs.core.Keyword(null,"watch-registry","watch-registry",1089587936));
 return cljs.core.with_meta(cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.PersistentArrayMap(null, 7, [new cljs.core.Keyword(null,"name","name",1843675177),((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"dev","dev",1010022654),new cljs.core.Keyword(null,"mode","mode",654403691).cljs$core$IFn$_invoke$arity$1(options)))?"portal-dev":"portal"),new cljs.core.Keyword(null,"version","version",425292698),"0.62.0",new cljs.core.Keyword(null,"runtime","runtime",-1331573996),portal.runtime.runtime(),new cljs.core.Keyword(null,"platform","platform",-1086422114),(((typeof window !== 'undefined'))?"web":(((typeof process !== 'undefined'))?"node":(((typeof PLANCK_VERSION !== 'undefined'))?"planck":"web"
 ))),new cljs.core.Keyword(null,"value","value",305978217),portal.runtime.tap_list,new cljs.core.Keyword(null,"keymap","keymap",-499605268),portal.runtime.runtime_keymap,new cljs.core.Keyword(null,"watch-registry","watch-registry",1089587936),watch_registry], null),options], 0)),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword("portal.runtime","no-cache","portal.runtime/no-cache",-631302980),true], null));
 });
 portal.runtime.clear_values = (function portal$runtime$clear_values(var_args){
-var G__36988 = arguments.length;
-switch (G__36988) {
+var G__36992 = arguments.length;
+switch (G__36992) {
 case 0:
 return portal.runtime.clear_values.cljs$core$IFn$_invoke$arity$0();
 
@@ -699,68 +699,68 @@ return portal.runtime.clear_values.cljs$core$IFn$_invoke$arity$2(null,cljs.core.
 }));
 
 (portal.runtime.clear_values.cljs$core$IFn$_invoke$arity$2 = (function (_request,done){
-var temp__5825__auto___37099 = portal.runtime._STAR_session_STAR_;
-if(cljs.core.truth_(temp__5825__auto___37099)){
-var map__36993_37100 = temp__5825__auto___37099;
-var map__36993_37101__$1 = cljs.core.__destructure_map(map__36993_37100);
-var session_id_37102 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36993_37101__$1,new cljs.core.Keyword(null,"session-id","session-id",-1147060351));
-var value_cache_37103 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36993_37101__$1,new cljs.core.Keyword(null,"value-cache","value-cache",-844944621));
-var watch_registry_37104 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36993_37101__$1,new cljs.core.Keyword(null,"watch-registry","watch-registry",1089587936));
-var value_37105 = new cljs.core.Keyword(null,"value","value",305978217).cljs$core$IFn$_invoke$arity$1(portal.runtime.get_options());
-if(portal.runtime.atom_QMARK_(value_37105)){
-cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$2(value_37105,cljs.core.empty);
+var temp__5825__auto___37151 = portal.runtime._STAR_session_STAR_;
+if(cljs.core.truth_(temp__5825__auto___37151)){
+var map__36994_37152 = temp__5825__auto___37151;
+var map__36994_37153__$1 = cljs.core.__destructure_map(map__36994_37152);
+var session_id_37154 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36994_37153__$1,new cljs.core.Keyword(null,"session-id","session-id",-1147060351));
+var value_cache_37155 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36994_37153__$1,new cljs.core.Keyword(null,"value-cache","value-cache",-844944621));
+var watch_registry_37156 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36994_37153__$1,new cljs.core.Keyword(null,"watch-registry","watch-registry",1089587936));
+var value_37157 = new cljs.core.Keyword(null,"value","value",305978217).cljs$core$IFn$_invoke$arity$1(portal.runtime.get_options());
+if(portal.runtime.atom_QMARK_(value_37157)){
+cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$2(value_37157,cljs.core.empty);
 } else {
 }
 
-cljs.core.reset_BANG_(value_cache_37103,cljs.core.PersistentArrayMap.EMPTY);
+cljs.core.reset_BANG_(value_cache_37155,cljs.core.PersistentArrayMap.EMPTY);
 
-var seq__36994_37106 = cljs.core.seq(cljs.core.deref(watch_registry_37104));
-var chunk__36995_37107 = null;
-var count__36996_37108 = (0);
-var i__36997_37109 = (0);
+var seq__36995_37158 = cljs.core.seq(cljs.core.deref(watch_registry_37156));
+var chunk__36996_37159 = null;
+var count__36997_37160 = (0);
+var i__36998_37161 = (0);
 while(true){
-if((i__36997_37109 < count__36996_37108)){
-var a_37111 = chunk__36995_37107.cljs$core$IIndexed$_nth$arity$2(null,i__36997_37109);
-cljs.core.remove_watch(a_37111,session_id_37102);
+if((i__36998_37161 < count__36997_37160)){
+var a_37162 = chunk__36996_37159.cljs$core$IIndexed$_nth$arity$2(null,i__36998_37161);
+cljs.core.remove_watch(a_37162,session_id_37154);
 
 
-var G__37112 = seq__36994_37106;
-var G__37113 = chunk__36995_37107;
-var G__37114 = count__36996_37108;
-var G__37115 = (i__36997_37109 + (1));
-seq__36994_37106 = G__37112;
-chunk__36995_37107 = G__37113;
-count__36996_37108 = G__37114;
-i__36997_37109 = G__37115;
+var G__37163 = seq__36995_37158;
+var G__37164 = chunk__36996_37159;
+var G__37165 = count__36997_37160;
+var G__37166 = (i__36998_37161 + (1));
+seq__36995_37158 = G__37163;
+chunk__36996_37159 = G__37164;
+count__36997_37160 = G__37165;
+i__36998_37161 = G__37166;
 continue;
 } else {
-var temp__5825__auto___37116__$1 = cljs.core.seq(seq__36994_37106);
-if(temp__5825__auto___37116__$1){
-var seq__36994_37117__$1 = temp__5825__auto___37116__$1;
-if(cljs.core.chunked_seq_QMARK_(seq__36994_37117__$1)){
-var c__5548__auto___37118 = cljs.core.chunk_first(seq__36994_37117__$1);
-var G__37119 = cljs.core.chunk_rest(seq__36994_37117__$1);
-var G__37120 = c__5548__auto___37118;
-var G__37121 = cljs.core.count(c__5548__auto___37118);
-var G__37122 = (0);
-seq__36994_37106 = G__37119;
-chunk__36995_37107 = G__37120;
-count__36996_37108 = G__37121;
-i__36997_37109 = G__37122;
+var temp__5825__auto___37167__$1 = cljs.core.seq(seq__36995_37158);
+if(temp__5825__auto___37167__$1){
+var seq__36995_37171__$1 = temp__5825__auto___37167__$1;
+if(cljs.core.chunked_seq_QMARK_(seq__36995_37171__$1)){
+var c__5548__auto___37172 = cljs.core.chunk_first(seq__36995_37171__$1);
+var G__37173 = cljs.core.chunk_rest(seq__36995_37171__$1);
+var G__37174 = c__5548__auto___37172;
+var G__37175 = cljs.core.count(c__5548__auto___37172);
+var G__37176 = (0);
+seq__36995_37158 = G__37173;
+chunk__36996_37159 = G__37174;
+count__36997_37160 = G__37175;
+i__36998_37161 = G__37176;
 continue;
 } else {
-var a_37123 = cljs.core.first(seq__36994_37117__$1);
-cljs.core.remove_watch(a_37123,session_id_37102);
+var a_37177 = cljs.core.first(seq__36995_37171__$1);
+cljs.core.remove_watch(a_37177,session_id_37154);
 
 
-var G__37124 = cljs.core.next(seq__36994_37117__$1);
-var G__37125 = null;
-var G__37126 = (0);
-var G__37127 = (0);
-seq__36994_37106 = G__37124;
-chunk__36995_37107 = G__37125;
-count__36996_37108 = G__37126;
-i__36997_37109 = G__37127;
+var G__37179 = cljs.core.next(seq__36995_37171__$1);
+var G__37180 = null;
+var G__37181 = (0);
+var G__37182 = (0);
+seq__36995_37158 = G__37179;
+chunk__36996_37159 = G__37180;
+count__36997_37160 = G__37181;
+i__36998_37161 = G__37182;
 continue;
 }
 } else {
@@ -769,7 +769,7 @@ continue;
 break;
 }
 
-cljs.core.reset_BANG_(watch_registry_37104,cljs.core.PersistentHashSet.EMPTY);
+cljs.core.reset_BANG_(watch_registry_37156,cljs.core.PersistentHashSet.EMPTY);
 } else {
 }
 
@@ -782,11 +782,11 @@ return (done.cljs$core$IFn$_invoke$arity$1 ? done.cljs$core$IFn$_invoke$arity$1(
 
 portal.runtime.cache_evict = (function portal$runtime$cache_evict(id){
 var value = portal.runtime.id__GT_value(id);
-var map__36999 = portal.runtime._STAR_session_STAR_;
-var map__36999__$1 = cljs.core.__destructure_map(map__36999);
-var session_id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36999__$1,new cljs.core.Keyword(null,"session-id","session-id",-1147060351));
-var value_cache = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36999__$1,new cljs.core.Keyword(null,"value-cache","value-cache",-844944621));
-var watch_registry = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36999__$1,new cljs.core.Keyword(null,"watch-registry","watch-registry",1089587936));
+var map__37000 = portal.runtime._STAR_session_STAR_;
+var map__37000__$1 = cljs.core.__destructure_map(map__37000);
+var session_id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__37000__$1,new cljs.core.Keyword(null,"session-id","session-id",-1147060351));
+var value_cache = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__37000__$1,new cljs.core.Keyword(null,"value-cache","value-cache",-844944621));
+var watch_registry = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__37000__$1,new cljs.core.Keyword(null,"watch-registry","watch-registry",1089587936));
 if(portal.runtime.atom_QMARK_(value)){
 cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$3(watch_registry,cljs.core.disj,value);
 
@@ -799,8 +799,8 @@ cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$4(value_cache,cljs.core.dissoc,
 return null;
 });
 portal.runtime.update_selected = (function portal$runtime$update_selected(var_args){
-var G__37002 = arguments.length;
-switch (G__37002) {
+var G__37005 = arguments.length;
+switch (G__37005) {
 case 1:
 return portal.runtime.update_selected.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -865,11 +865,11 @@ return cljs.core.select_keys(cljs.core.meta(f),new cljs.core.PersistentVector(nu
 return null;
 }
 });
-portal.runtime.invoke = (function portal$runtime$invoke(p__37009,done){
-var map__37010 = p__37009;
-var map__37010__$1 = cljs.core.__destructure_map(map__37010);
-var f = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__37010__$1,new cljs.core.Keyword(null,"f","f",-1597136552));
-var args = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__37010__$1,new cljs.core.Keyword(null,"args","args",1315556576));
+portal.runtime.invoke = (function portal$runtime$invoke(p__37010,done){
+var map__37011 = p__37010;
+var map__37011__$1 = cljs.core.__destructure_map(map__37011);
+var f = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__37011__$1,new cljs.core.Keyword(null,"f","f",-1597136552));
+var args = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__37011__$1,new cljs.core.Keyword(null,"args","args",1315556576));
 var session = portal.runtime._STAR_session_STAR_;
 var f__$1 = (((f instanceof cljs.core.Symbol))?portal.runtime.get_function(f):f);
 return Promise.resolve(null).then((function (){
@@ -934,53 +934,53 @@ return or__5025__auto__;
 return portal.runtime.var__GT_name(var$);
 }
 })();
-var seq__37019_37131 = cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"shortcuts","shortcuts",1717107810).cljs$core$IFn$_invoke$arity$1(m),new cljs.core.Keyword(null,"shortcuts","shortcuts",1717107810).cljs$core$IFn$_invoke$arity$1(opts)));
-var chunk__37020_37132 = null;
-var count__37021_37133 = (0);
-var i__37022_37134 = (0);
+var seq__37019_37227 = cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"shortcuts","shortcuts",1717107810).cljs$core$IFn$_invoke$arity$1(m),new cljs.core.Keyword(null,"shortcuts","shortcuts",1717107810).cljs$core$IFn$_invoke$arity$1(opts)));
+var chunk__37020_37228 = null;
+var count__37021_37229 = (0);
+var i__37022_37230 = (0);
 while(true){
-if((i__37022_37134 < count__37021_37133)){
-var shortcut_37135 = chunk__37020_37132.cljs$core$IIndexed$_nth$arity$2(null,i__37022_37134);
-cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$4(portal.runtime.runtime_keymap,cljs.core.assoc,shortcut_37135,name);
+if((i__37022_37230 < count__37021_37229)){
+var shortcut_37234 = chunk__37020_37228.cljs$core$IIndexed$_nth$arity$2(null,i__37022_37230);
+cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$4(portal.runtime.runtime_keymap,cljs.core.assoc,shortcut_37234,name);
 
 
-var G__37136 = seq__37019_37131;
-var G__37137 = chunk__37020_37132;
-var G__37138 = count__37021_37133;
-var G__37139 = (i__37022_37134 + (1));
-seq__37019_37131 = G__37136;
-chunk__37020_37132 = G__37137;
-count__37021_37133 = G__37138;
-i__37022_37134 = G__37139;
+var G__37236 = seq__37019_37227;
+var G__37237 = chunk__37020_37228;
+var G__37238 = count__37021_37229;
+var G__37239 = (i__37022_37230 + (1));
+seq__37019_37227 = G__37236;
+chunk__37020_37228 = G__37237;
+count__37021_37229 = G__37238;
+i__37022_37230 = G__37239;
 continue;
 } else {
-var temp__5825__auto___37140 = cljs.core.seq(seq__37019_37131);
-if(temp__5825__auto___37140){
-var seq__37019_37141__$1 = temp__5825__auto___37140;
-if(cljs.core.chunked_seq_QMARK_(seq__37019_37141__$1)){
-var c__5548__auto___37142 = cljs.core.chunk_first(seq__37019_37141__$1);
-var G__37143 = cljs.core.chunk_rest(seq__37019_37141__$1);
-var G__37144 = c__5548__auto___37142;
-var G__37145 = cljs.core.count(c__5548__auto___37142);
-var G__37146 = (0);
-seq__37019_37131 = G__37143;
-chunk__37020_37132 = G__37144;
-count__37021_37133 = G__37145;
-i__37022_37134 = G__37146;
+var temp__5825__auto___37240 = cljs.core.seq(seq__37019_37227);
+if(temp__5825__auto___37240){
+var seq__37019_37241__$1 = temp__5825__auto___37240;
+if(cljs.core.chunked_seq_QMARK_(seq__37019_37241__$1)){
+var c__5548__auto___37242 = cljs.core.chunk_first(seq__37019_37241__$1);
+var G__37243 = cljs.core.chunk_rest(seq__37019_37241__$1);
+var G__37244 = c__5548__auto___37242;
+var G__37245 = cljs.core.count(c__5548__auto___37242);
+var G__37246 = (0);
+seq__37019_37227 = G__37243;
+chunk__37020_37228 = G__37244;
+count__37021_37229 = G__37245;
+i__37022_37230 = G__37246;
 continue;
 } else {
-var shortcut_37147 = cljs.core.first(seq__37019_37141__$1);
-cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$4(portal.runtime.runtime_keymap,cljs.core.assoc,shortcut_37147,name);
+var shortcut_37247 = cljs.core.first(seq__37019_37241__$1);
+cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$4(portal.runtime.runtime_keymap,cljs.core.assoc,shortcut_37247,name);
 
 
-var G__37148 = cljs.core.next(seq__37019_37141__$1);
-var G__37149 = null;
-var G__37150 = (0);
-var G__37151 = (0);
-seq__37019_37131 = G__37148;
-chunk__37020_37132 = G__37149;
-count__37021_37133 = G__37150;
-i__37022_37134 = G__37151;
+var G__37248 = cljs.core.next(seq__37019_37241__$1);
+var G__37249 = null;
+var G__37250 = (0);
+var G__37251 = (0);
+seq__37019_37227 = G__37248;
+chunk__37020_37228 = G__37249;
+count__37021_37229 = G__37250;
+i__37022_37230 = G__37251;
 continue;
 }
 } else {
@@ -994,53 +994,53 @@ return cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$4(portal.runtime.registr
 
 (portal.runtime.register_BANG_.cljs$lang$maxFixedArity = 2);
 
-var seq__37023_37152 = cljs.core.seq(new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Var(function(){return portal.runtime.ping;},new cljs.core.Symbol("portal.runtime","ping","portal.runtime/ping",-1301457895,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"portal.runtime","portal.runtime",1572197736,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"no-doc","no-doc",1559921891),true], null)),new cljs.core.Symbol(null,"ping","ping",-29583257,null),"portal/runtime.cljc",12,1,482,482,cljs.core.list(cljs.core.PersistentVector.EMPTY),null,(cljs.core.truth_(portal.runtime.ping)?portal.runtime.ping.cljs$lang$test:null)])),new cljs.core.Var(function(){return portal.runtime.cache_evict;},new cljs.core.Symbol("portal.runtime","cache-evict","portal.runtime/cache-evict",-228220051,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"portal.runtime","portal.runtime",1572197736,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"no-doc","no-doc",1559921891),true], null)),new cljs.core.Symbol(null,"cache-evict","cache-evict",1043785499,null),"portal/runtime.cljc",19,1,443,443,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"id","id",252129435,null)], null)),null,(cljs.core.truth_(portal.runtime.cache_evict)?portal.runtime.cache_evict.cljs$lang$test:null)])),new cljs.core.Var(function(){return portal.runtime.get_options;},new cljs.core.Symbol("portal.runtime","get-options","portal.runtime/get-options",-355075714,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"portal.runtime","portal.runtime",1572197736,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"no-doc","no-doc",1559921891),true], null)),new cljs.core.Symbol(null,"get-options","get-options",652557604,null),"portal/runtime.cljc",19,1,402,402,cljs.core.list(cljs.core.PersistentVector.EMPTY),null,(cljs.core.truth_(portal.runtime.get_options)?portal.runtime.get_options.cljs$lang$test:null)])),new cljs.core.Var(function(){return portal.runtime.get_functions;},new cljs.core.Symbol("portal.runtime","get-functions","portal.runtime/get-functions",-62603721,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"portal.runtime","portal.runtime",1572197736,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"no-doc","no-doc",1559921891),true], null)),new cljs.core.Symbol(null,"get-functions","get-functions",940964841,null),"portal/runtime.cljc",21,1,461,461,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"v","v",1661996586,null)], null)),null,(cljs.core.truth_(portal.runtime.get_functions)?portal.runtime.get_functions.cljs$lang$test:null)])),new cljs.core.Var(function(){return cljs.core.type;},new cljs.core.Symbol("cljs.core","type","cljs.core/type",-821761154,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"cljs.core","cljs.core",770546058,null),new cljs.core.Symbol(null,"type","type",-1480165421,null),"cljs/core.cljs",11,1,317,317,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"x","x",-555367584,null)], null)),"Return x's constructor.",(cljs.core.truth_(cljs.core.type)?cljs.core.type.cljs$lang$test:null)]))], null));
-var chunk__37024_37153 = null;
-var count__37025_37154 = (0);
-var i__37026_37155 = (0);
+var seq__37023_37252 = cljs.core.seq(new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Var(function(){return portal.runtime.ping;},new cljs.core.Symbol("portal.runtime","ping","portal.runtime/ping",-1301457895,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"portal.runtime","portal.runtime",1572197736,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"no-doc","no-doc",1559921891),true], null)),new cljs.core.Symbol(null,"ping","ping",-29583257,null),"portal/runtime.cljc",12,1,482,482,cljs.core.list(cljs.core.PersistentVector.EMPTY),null,(cljs.core.truth_(portal.runtime.ping)?portal.runtime.ping.cljs$lang$test:null)])),new cljs.core.Var(function(){return portal.runtime.cache_evict;},new cljs.core.Symbol("portal.runtime","cache-evict","portal.runtime/cache-evict",-228220051,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"portal.runtime","portal.runtime",1572197736,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"no-doc","no-doc",1559921891),true], null)),new cljs.core.Symbol(null,"cache-evict","cache-evict",1043785499,null),"portal/runtime.cljc",19,1,443,443,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"id","id",252129435,null)], null)),null,(cljs.core.truth_(portal.runtime.cache_evict)?portal.runtime.cache_evict.cljs$lang$test:null)])),new cljs.core.Var(function(){return portal.runtime.get_options;},new cljs.core.Symbol("portal.runtime","get-options","portal.runtime/get-options",-355075714,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"portal.runtime","portal.runtime",1572197736,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"no-doc","no-doc",1559921891),true], null)),new cljs.core.Symbol(null,"get-options","get-options",652557604,null),"portal/runtime.cljc",19,1,402,402,cljs.core.list(cljs.core.PersistentVector.EMPTY),null,(cljs.core.truth_(portal.runtime.get_options)?portal.runtime.get_options.cljs$lang$test:null)])),new cljs.core.Var(function(){return portal.runtime.get_functions;},new cljs.core.Symbol("portal.runtime","get-functions","portal.runtime/get-functions",-62603721,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"portal.runtime","portal.runtime",1572197736,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"no-doc","no-doc",1559921891),true], null)),new cljs.core.Symbol(null,"get-functions","get-functions",940964841,null),"portal/runtime.cljc",21,1,461,461,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"v","v",1661996586,null)], null)),null,(cljs.core.truth_(portal.runtime.get_functions)?portal.runtime.get_functions.cljs$lang$test:null)])),new cljs.core.Var(function(){return cljs.core.type;},new cljs.core.Symbol("cljs.core","type","cljs.core/type",-821761154,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"cljs.core","cljs.core",770546058,null),new cljs.core.Symbol(null,"type","type",-1480165421,null),"cljs/core.cljs",11,1,317,317,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"x","x",-555367584,null)], null)),"Return x's constructor.",(cljs.core.truth_(cljs.core.type)?cljs.core.type.cljs$lang$test:null)]))], null));
+var chunk__37024_37253 = null;
+var count__37025_37254 = (0);
+var i__37026_37255 = (0);
 while(true){
-if((i__37026_37155 < count__37025_37154)){
-var var_37156 = chunk__37024_37153.cljs$core$IIndexed$_nth$arity$2(null,i__37026_37155);
-portal.runtime.register_BANG_.cljs$core$IFn$_invoke$arity$1(var_37156);
+if((i__37026_37255 < count__37025_37254)){
+var var_37265 = chunk__37024_37253.cljs$core$IIndexed$_nth$arity$2(null,i__37026_37255);
+portal.runtime.register_BANG_.cljs$core$IFn$_invoke$arity$1(var_37265);
 
 
-var G__37157 = seq__37023_37152;
-var G__37158 = chunk__37024_37153;
-var G__37159 = count__37025_37154;
-var G__37160 = (i__37026_37155 + (1));
-seq__37023_37152 = G__37157;
-chunk__37024_37153 = G__37158;
-count__37025_37154 = G__37159;
-i__37026_37155 = G__37160;
+var G__37266 = seq__37023_37252;
+var G__37267 = chunk__37024_37253;
+var G__37268 = count__37025_37254;
+var G__37269 = (i__37026_37255 + (1));
+seq__37023_37252 = G__37266;
+chunk__37024_37253 = G__37267;
+count__37025_37254 = G__37268;
+i__37026_37255 = G__37269;
 continue;
 } else {
-var temp__5825__auto___37161 = cljs.core.seq(seq__37023_37152);
-if(temp__5825__auto___37161){
-var seq__37023_37162__$1 = temp__5825__auto___37161;
-if(cljs.core.chunked_seq_QMARK_(seq__37023_37162__$1)){
-var c__5548__auto___37163 = cljs.core.chunk_first(seq__37023_37162__$1);
-var G__37164 = cljs.core.chunk_rest(seq__37023_37162__$1);
-var G__37165 = c__5548__auto___37163;
-var G__37166 = cljs.core.count(c__5548__auto___37163);
-var G__37167 = (0);
-seq__37023_37152 = G__37164;
-chunk__37024_37153 = G__37165;
-count__37025_37154 = G__37166;
-i__37026_37155 = G__37167;
+var temp__5825__auto___37270 = cljs.core.seq(seq__37023_37252);
+if(temp__5825__auto___37270){
+var seq__37023_37271__$1 = temp__5825__auto___37270;
+if(cljs.core.chunked_seq_QMARK_(seq__37023_37271__$1)){
+var c__5548__auto___37272 = cljs.core.chunk_first(seq__37023_37271__$1);
+var G__37273 = cljs.core.chunk_rest(seq__37023_37271__$1);
+var G__37274 = c__5548__auto___37272;
+var G__37275 = cljs.core.count(c__5548__auto___37272);
+var G__37276 = (0);
+seq__37023_37252 = G__37273;
+chunk__37024_37253 = G__37274;
+count__37025_37254 = G__37275;
+i__37026_37255 = G__37276;
 continue;
 } else {
-var var_37168 = cljs.core.first(seq__37023_37162__$1);
-portal.runtime.register_BANG_.cljs$core$IFn$_invoke$arity$1(var_37168);
+var var_37277 = cljs.core.first(seq__37023_37271__$1);
+portal.runtime.register_BANG_.cljs$core$IFn$_invoke$arity$1(var_37277);
 
 
-var G__37169 = cljs.core.next(seq__37023_37162__$1);
-var G__37170 = null;
-var G__37171 = (0);
-var G__37172 = (0);
-seq__37023_37152 = G__37169;
-chunk__37024_37153 = G__37170;
-count__37025_37154 = G__37171;
-i__37026_37155 = G__37172;
+var G__37278 = cljs.core.next(seq__37023_37271__$1);
+var G__37279 = null;
+var G__37280 = (0);
+var G__37281 = (0);
+seq__37023_37252 = G__37278;
+chunk__37024_37253 = G__37279;
+count__37025_37254 = G__37280;
+i__37026_37255 = G__37281;
 continue;
 }
 } else {
@@ -1048,57 +1048,57 @@ continue;
 }
 break;
 }
-var seq__37027_37173 = cljs.core.seq(cljs.core.PersistentArrayMap.createAsIfByAssoc([new cljs.core.Var(function(){return cljs.core.pr_str;},new cljs.core.Symbol("cljs.core","pr-str","cljs.core/pr-str",-552799478,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"top-fn","top-fn",-2056129173),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"cljs.core","cljs.core",770546058,null),new cljs.core.Symbol(null,"pr-str","pr-str",-2066912145,null),"cljs/core.cljs",13,new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword(null,"variadic?","variadic?",584179762),true,new cljs.core.Keyword(null,"fixed-arity","fixed-arity",1586445869),(0),new cljs.core.Keyword(null,"max-fixed-arity","max-fixed-arity",-690205543),(0),new cljs.core.Keyword(null,"method-params","method-params",-980792179),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.list(new cljs.core.Symbol(null,"objs","objs",-170194107,null))], null),new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"&","&",-2144855648,null),new cljs.core.Symbol(null,"objs","objs",-170194107,null)], null)),new cljs.core.Keyword(null,"arglists-meta","arglists-meta",1944829838),cljs.core.list(null)], null),1,10644,10644,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"&","&",-2144855648,null),new cljs.core.Symbol(null,"objs","objs",-170194107,null)], null)),"pr to a string, returning it. Fundamental entrypoint to IPrintWithWriter.",(cljs.core.truth_(cljs.core.pr_str)?cljs.core.pr_str.cljs$lang$test:null)])),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("clojure.core","pr-str","clojure.core/pr-str",-718141196,null)], null),new cljs.core.Var(function(){return cljs.core.deref;},new cljs.core.Symbol("cljs.core","deref","cljs.core/deref",1901963335,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"cljs.core","cljs.core",770546058,null),new cljs.core.Symbol(null,"deref","deref",1494944732,null),"cljs/core.cljs",12,1,1499,1499,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"o","o",290524299,null)], null)),"Also reader macro: @var/@atom/@delay. Returns the\n   most-recently-committed value of ref. When applied to a var\n   or atom, returns its current state. When applied to a delay, forces\n   it if not already forced. See also - realized?.",(cljs.core.truth_(cljs.core.deref)?cljs.core.deref.cljs$lang$test:null)])),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("clojure.core","deref","clojure.core/deref",188719157,null),new cljs.core.Keyword(null,"predicate","predicate",-1742501860),portal.runtime.deref_QMARK_], null),new cljs.core.Var(function(){return cljs.core.meta;},new cljs.core.Symbol("cljs.core","meta","cljs.core/meta",-748218346,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"cljs.core","cljs.core",770546058,null),new cljs.core.Symbol(null,"meta","meta",-1154898805,null),"cljs/core.cljs",11,1,2136,2136,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"o","o",290524299,null)], null)),"Returns the metadata of obj, returns nil if there is no metadata.",(cljs.core.truth_(cljs.core.meta)?cljs.core.meta.cljs$lang$test:null)])),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"predicate","predicate",-1742501860),portal.runtime.can_meta_QMARK_], null),new cljs.core.Var(function(){return portal.runtime.update_selected;},new cljs.core.Symbol("portal.runtime","update-selected","portal.runtime/update-selected",713792101,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"top-fn","top-fn",-2056129173),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[cljs.core.with_meta(new cljs.core.Symbol(null,"portal.runtime","portal.runtime",1572197736,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"no-doc","no-doc",1559921891),true], null)),new cljs.core.Symbol(null,"update-selected","update-selected",-161784109,null),"portal/runtime.cljc",22,new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword(null,"variadic?","variadic?",584179762),false,new cljs.core.Keyword(null,"fixed-arity","fixed-arity",1586445869),2,new cljs.core.Keyword(null,"max-fixed-arity","max-fixed-arity",-690205543),2,new cljs.core.Keyword(null,"method-params","method-params",-980792179),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"value","value",1946509744,null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"session-id","session-id",493471176,null),new cljs.core.Symbol(null,"value","value",1946509744,null)], null)], null),new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"value","value",1946509744,null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"session-id","session-id",493471176,null),new cljs.core.Symbol(null,"value","value",1946509744,null)], null)),new cljs.core.Keyword(null,"arglists-meta","arglists-meta",1944829838),cljs.core.list(null,null)], null),1,452,452,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"value","value",1946509744,null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"session-id","session-id",493471176,null),new cljs.core.Symbol(null,"value","value",1946509744,null)], null)),null,(cljs.core.truth_(portal.runtime.update_selected)?portal.runtime.update_selected.cljs$lang$test:null)])),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"private","private",-558947994),true], null),new cljs.core.Var(function(){return portal.runtime.clear_values;},new cljs.core.Symbol("portal.runtime","clear-values","portal.runtime/clear-values",1961286450,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"top-fn","top-fn",-2056129173),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[cljs.core.with_meta(new cljs.core.Symbol(null,"portal.runtime","portal.runtime",1572197736,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"no-doc","no-doc",1559921891),true], null)),new cljs.core.Symbol(null,"clear-values","clear-values",-1328446232,null),"portal/runtime.cljc",19,new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword(null,"variadic?","variadic?",584179762),false,new cljs.core.Keyword(null,"fixed-arity","fixed-arity",1586445869),2,new cljs.core.Keyword(null,"max-fixed-arity","max-fixed-arity",-690205543),2,new cljs.core.Keyword(null,"method-params","method-params",-980792179),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.PersistentVector.EMPTY,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"_request","_request",682265813,null),new cljs.core.Symbol(null,"done","done",750687339,null)], null)], null),new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(cljs.core.PersistentVector.EMPTY,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"_request","_request",682265813,null),new cljs.core.Symbol(null,"done","done",750687339,null)], null)),new cljs.core.Keyword(null,"arglists-meta","arglists-meta",1944829838),cljs.core.list(null,null)], null),1,429,429,cljs.core.list(cljs.core.PersistentVector.EMPTY,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"_request","_request",682265813,null),new cljs.core.Symbol(null,"done","done",750687339,null)], null)),null,(cljs.core.truth_(portal.runtime.clear_values)?portal.runtime.clear_values.cljs$lang$test:null)])),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"private","private",-558947994),true], null),new cljs.core.Var(function(){return clojure.datafy.nav;},new cljs.core.Symbol("clojure.datafy","nav","clojure.datafy/nav",1600156429,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"clojure.datafy","clojure.datafy",-1781078910,null),new cljs.core.Symbol(null,"nav","nav",-1934895292,null),"clojure/datafy.cljs",10,1,31,31,cljs.core.list(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"coll","coll",-1006698606,null),new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"v","v",1661996586,null)], null)),"Returns (possibly transformed) v in the context of coll and k (a\n  key/index or nil). Callers should attempt to provide the key/index\n  context k for Indexed/Associative/ILookup colls if possible, but not\n  to fabricate one e.g. for sequences (pass nil). nav will return the\n  value of clojure.core.protocols/nav.",(cljs.core.truth_(clojure.datafy.nav)?clojure.datafy.nav.cljs$lang$test:null)])),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("clojure.datafy","nav","clojure.datafy/nav",1600156429,null),new cljs.core.Keyword(null,"private","private",-558947994),true,new cljs.core.Keyword(null,"shortcuts","shortcuts",1717107810),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 1, ["enter",null], null), null)], null)], null),new cljs.core.Var(function(){return clojure.datafy.datafy;},new cljs.core.Symbol("clojure.datafy","datafy","clojure.datafy/datafy",-459340080,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"clojure.datafy","clojure.datafy",-1781078910,null),new cljs.core.Symbol(null,"datafy","datafy",-1790598647,null),"clojure/datafy.cljs",13,1,14,14,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"x","x",-555367584,null)], null)),"Attempts to return x as data.\n  datafy will return the value of clojure.protocols/datafy. If\n  the value has been transformed and the result supports\n  metadata, :clojure.datafy/obj will be set on the metadata to the\n  original value of x.",(cljs.core.truth_(clojure.datafy.datafy)?clojure.datafy.datafy.cljs$lang$test:null)])),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("clojure.datafy","datafy","clojure.datafy/datafy",-459340080,null),new cljs.core.Keyword(null,"shortcuts","shortcuts",1717107810),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, ["shift",null,"enter",null], null), null)], null)], null),new cljs.core.Var(function(){return portal.runtime.toggle_watch;},new cljs.core.Symbol("portal.runtime","toggle-watch","portal.runtime/toggle-watch",1647096761,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"command","command",-894540724),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"portal.runtime","portal.runtime",1572197736,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"no-doc","no-doc",1559921891),true], null)),new cljs.core.Symbol(null,"toggle-watch","toggle-watch",509308931,null),"portal/runtime.cljc",20,true,1,191,191,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"a","a",-482876059,null)], null)),"Toggle watching an atom for a given Portal session.",(cljs.core.truth_(portal.runtime.toggle_watch)?portal.runtime.toggle_watch.cljs$lang$test:null)])),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"private","private",-558947994),false,new cljs.core.Keyword(null,"predicate","predicate",-1742501860),portal.runtime.atom_QMARK_,new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("portal.api","toggle-watch","portal.api/toggle-watch",778447483,null)], null)]));
-var chunk__37028_37174 = null;
-var count__37029_37175 = (0);
-var i__37030_37176 = (0);
+var seq__37027_37282 = cljs.core.seq(cljs.core.PersistentArrayMap.createAsIfByAssoc([new cljs.core.Var(function(){return cljs.core.pr_str;},new cljs.core.Symbol("cljs.core","pr-str","cljs.core/pr-str",-552799478,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"top-fn","top-fn",-2056129173),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"cljs.core","cljs.core",770546058,null),new cljs.core.Symbol(null,"pr-str","pr-str",-2066912145,null),"cljs/core.cljs",13,new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword(null,"variadic?","variadic?",584179762),true,new cljs.core.Keyword(null,"fixed-arity","fixed-arity",1586445869),(0),new cljs.core.Keyword(null,"max-fixed-arity","max-fixed-arity",-690205543),(0),new cljs.core.Keyword(null,"method-params","method-params",-980792179),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.list(new cljs.core.Symbol(null,"objs","objs",-170194107,null))], null),new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"&","&",-2144855648,null),new cljs.core.Symbol(null,"objs","objs",-170194107,null)], null)),new cljs.core.Keyword(null,"arglists-meta","arglists-meta",1944829838),cljs.core.list(null)], null),1,10644,10644,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"&","&",-2144855648,null),new cljs.core.Symbol(null,"objs","objs",-170194107,null)], null)),"pr to a string, returning it. Fundamental entrypoint to IPrintWithWriter.",(cljs.core.truth_(cljs.core.pr_str)?cljs.core.pr_str.cljs$lang$test:null)])),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("clojure.core","pr-str","clojure.core/pr-str",-718141196,null)], null),new cljs.core.Var(function(){return cljs.core.deref;},new cljs.core.Symbol("cljs.core","deref","cljs.core/deref",1901963335,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"cljs.core","cljs.core",770546058,null),new cljs.core.Symbol(null,"deref","deref",1494944732,null),"cljs/core.cljs",12,1,1499,1499,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"o","o",290524299,null)], null)),"Also reader macro: @var/@atom/@delay. Returns the\n   most-recently-committed value of ref. When applied to a var\n   or atom, returns its current state. When applied to a delay, forces\n   it if not already forced. See also - realized?.",(cljs.core.truth_(cljs.core.deref)?cljs.core.deref.cljs$lang$test:null)])),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("clojure.core","deref","clojure.core/deref",188719157,null),new cljs.core.Keyword(null,"predicate","predicate",-1742501860),portal.runtime.deref_QMARK_], null),new cljs.core.Var(function(){return cljs.core.meta;},new cljs.core.Symbol("cljs.core","meta","cljs.core/meta",-748218346,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"cljs.core","cljs.core",770546058,null),new cljs.core.Symbol(null,"meta","meta",-1154898805,null),"cljs/core.cljs",11,1,2136,2136,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"o","o",290524299,null)], null)),"Returns the metadata of obj, returns nil if there is no metadata.",(cljs.core.truth_(cljs.core.meta)?cljs.core.meta.cljs$lang$test:null)])),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"predicate","predicate",-1742501860),portal.runtime.can_meta_QMARK_], null),new cljs.core.Var(function(){return portal.runtime.update_selected;},new cljs.core.Symbol("portal.runtime","update-selected","portal.runtime/update-selected",713792101,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"top-fn","top-fn",-2056129173),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[cljs.core.with_meta(new cljs.core.Symbol(null,"portal.runtime","portal.runtime",1572197736,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"no-doc","no-doc",1559921891),true], null)),new cljs.core.Symbol(null,"update-selected","update-selected",-161784109,null),"portal/runtime.cljc",22,new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword(null,"variadic?","variadic?",584179762),false,new cljs.core.Keyword(null,"fixed-arity","fixed-arity",1586445869),2,new cljs.core.Keyword(null,"max-fixed-arity","max-fixed-arity",-690205543),2,new cljs.core.Keyword(null,"method-params","method-params",-980792179),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"value","value",1946509744,null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"session-id","session-id",493471176,null),new cljs.core.Symbol(null,"value","value",1946509744,null)], null)], null),new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"value","value",1946509744,null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"session-id","session-id",493471176,null),new cljs.core.Symbol(null,"value","value",1946509744,null)], null)),new cljs.core.Keyword(null,"arglists-meta","arglists-meta",1944829838),cljs.core.list(null,null)], null),1,452,452,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"value","value",1946509744,null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"session-id","session-id",493471176,null),new cljs.core.Symbol(null,"value","value",1946509744,null)], null)),null,(cljs.core.truth_(portal.runtime.update_selected)?portal.runtime.update_selected.cljs$lang$test:null)])),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"private","private",-558947994),true], null),new cljs.core.Var(function(){return portal.runtime.clear_values;},new cljs.core.Symbol("portal.runtime","clear-values","portal.runtime/clear-values",1961286450,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"top-fn","top-fn",-2056129173),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[cljs.core.with_meta(new cljs.core.Symbol(null,"portal.runtime","portal.runtime",1572197736,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"no-doc","no-doc",1559921891),true], null)),new cljs.core.Symbol(null,"clear-values","clear-values",-1328446232,null),"portal/runtime.cljc",19,new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword(null,"variadic?","variadic?",584179762),false,new cljs.core.Keyword(null,"fixed-arity","fixed-arity",1586445869),2,new cljs.core.Keyword(null,"max-fixed-arity","max-fixed-arity",-690205543),2,new cljs.core.Keyword(null,"method-params","method-params",-980792179),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.PersistentVector.EMPTY,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"_request","_request",682265813,null),new cljs.core.Symbol(null,"done","done",750687339,null)], null)], null),new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(cljs.core.PersistentVector.EMPTY,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"_request","_request",682265813,null),new cljs.core.Symbol(null,"done","done",750687339,null)], null)),new cljs.core.Keyword(null,"arglists-meta","arglists-meta",1944829838),cljs.core.list(null,null)], null),1,429,429,cljs.core.list(cljs.core.PersistentVector.EMPTY,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"_request","_request",682265813,null),new cljs.core.Symbol(null,"done","done",750687339,null)], null)),null,(cljs.core.truth_(portal.runtime.clear_values)?portal.runtime.clear_values.cljs$lang$test:null)])),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"private","private",-558947994),true], null),new cljs.core.Var(function(){return clojure.datafy.nav;},new cljs.core.Symbol("clojure.datafy","nav","clojure.datafy/nav",1600156429,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"clojure.datafy","clojure.datafy",-1781078910,null),new cljs.core.Symbol(null,"nav","nav",-1934895292,null),"clojure/datafy.cljs",10,1,31,31,cljs.core.list(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"coll","coll",-1006698606,null),new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"v","v",1661996586,null)], null)),"Returns (possibly transformed) v in the context of coll and k (a\n  key/index or nil). Callers should attempt to provide the key/index\n  context k for Indexed/Associative/ILookup colls if possible, but not\n  to fabricate one e.g. for sequences (pass nil). nav will return the\n  value of clojure.core.protocols/nav.",(cljs.core.truth_(clojure.datafy.nav)?clojure.datafy.nav.cljs$lang$test:null)])),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("clojure.datafy","nav","clojure.datafy/nav",1600156429,null),new cljs.core.Keyword(null,"private","private",-558947994),true,new cljs.core.Keyword(null,"shortcuts","shortcuts",1717107810),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 1, ["enter",null], null), null)], null)], null),new cljs.core.Var(function(){return clojure.datafy.datafy;},new cljs.core.Symbol("clojure.datafy","datafy","clojure.datafy/datafy",-459340080,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"clojure.datafy","clojure.datafy",-1781078910,null),new cljs.core.Symbol(null,"datafy","datafy",-1790598647,null),"clojure/datafy.cljs",13,1,14,14,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"x","x",-555367584,null)], null)),"Attempts to return x as data.\n  datafy will return the value of clojure.protocols/datafy. If\n  the value has been transformed and the result supports\n  metadata, :clojure.datafy/obj will be set on the metadata to the\n  original value of x.",(cljs.core.truth_(clojure.datafy.datafy)?clojure.datafy.datafy.cljs$lang$test:null)])),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("clojure.datafy","datafy","clojure.datafy/datafy",-459340080,null),new cljs.core.Keyword(null,"shortcuts","shortcuts",1717107810),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, ["shift",null,"enter",null], null), null)], null)], null),new cljs.core.Var(function(){return portal.runtime.toggle_watch;},new cljs.core.Symbol("portal.runtime","toggle-watch","portal.runtime/toggle-watch",1647096761,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"command","command",-894540724),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"portal.runtime","portal.runtime",1572197736,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"no-doc","no-doc",1559921891),true], null)),new cljs.core.Symbol(null,"toggle-watch","toggle-watch",509308931,null),"portal/runtime.cljc",20,true,1,191,191,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"a","a",-482876059,null)], null)),"Toggle watching an atom for a given Portal session.",(cljs.core.truth_(portal.runtime.toggle_watch)?portal.runtime.toggle_watch.cljs$lang$test:null)])),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"private","private",-558947994),false,new cljs.core.Keyword(null,"predicate","predicate",-1742501860),portal.runtime.atom_QMARK_,new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("portal.api","toggle-watch","portal.api/toggle-watch",778447483,null)], null)]));
+var chunk__37028_37283 = null;
+var count__37029_37284 = (0);
+var i__37030_37285 = (0);
 while(true){
-if((i__37030_37176 < count__37029_37175)){
-var vec__37037_37178 = chunk__37028_37174.cljs$core$IIndexed$_nth$arity$2(null,i__37030_37176);
-var var_37179 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37037_37178,(0),null);
-var opts_37180 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37037_37178,(1),null);
-portal.runtime.register_BANG_.cljs$core$IFn$_invoke$arity$2(var_37179,opts_37180);
+if((i__37030_37285 < count__37029_37284)){
+var vec__37037_37288 = chunk__37028_37283.cljs$core$IIndexed$_nth$arity$2(null,i__37030_37285);
+var var_37289 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37037_37288,(0),null);
+var opts_37290 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37037_37288,(1),null);
+portal.runtime.register_BANG_.cljs$core$IFn$_invoke$arity$2(var_37289,opts_37290);
 
 
-var G__37181 = seq__37027_37173;
-var G__37182 = chunk__37028_37174;
-var G__37183 = count__37029_37175;
-var G__37184 = (i__37030_37176 + (1));
-seq__37027_37173 = G__37181;
-chunk__37028_37174 = G__37182;
-count__37029_37175 = G__37183;
-i__37030_37176 = G__37184;
+var G__37291 = seq__37027_37282;
+var G__37292 = chunk__37028_37283;
+var G__37293 = count__37029_37284;
+var G__37294 = (i__37030_37285 + (1));
+seq__37027_37282 = G__37291;
+chunk__37028_37283 = G__37292;
+count__37029_37284 = G__37293;
+i__37030_37285 = G__37294;
 continue;
 } else {
-var temp__5825__auto___37185 = cljs.core.seq(seq__37027_37173);
-if(temp__5825__auto___37185){
-var seq__37027_37186__$1 = temp__5825__auto___37185;
-if(cljs.core.chunked_seq_QMARK_(seq__37027_37186__$1)){
-var c__5548__auto___37187 = cljs.core.chunk_first(seq__37027_37186__$1);
-var G__37188 = cljs.core.chunk_rest(seq__37027_37186__$1);
-var G__37189 = c__5548__auto___37187;
-var G__37190 = cljs.core.count(c__5548__auto___37187);
-var G__37191 = (0);
-seq__37027_37173 = G__37188;
-chunk__37028_37174 = G__37189;
-count__37029_37175 = G__37190;
-i__37030_37176 = G__37191;
+var temp__5825__auto___37295 = cljs.core.seq(seq__37027_37282);
+if(temp__5825__auto___37295){
+var seq__37027_37296__$1 = temp__5825__auto___37295;
+if(cljs.core.chunked_seq_QMARK_(seq__37027_37296__$1)){
+var c__5548__auto___37297 = cljs.core.chunk_first(seq__37027_37296__$1);
+var G__37298 = cljs.core.chunk_rest(seq__37027_37296__$1);
+var G__37299 = c__5548__auto___37297;
+var G__37300 = cljs.core.count(c__5548__auto___37297);
+var G__37301 = (0);
+seq__37027_37282 = G__37298;
+chunk__37028_37283 = G__37299;
+count__37029_37284 = G__37300;
+i__37030_37285 = G__37301;
 continue;
 } else {
-var vec__37040_37192 = cljs.core.first(seq__37027_37186__$1);
-var var_37193 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37040_37192,(0),null);
-var opts_37194 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37040_37192,(1),null);
-portal.runtime.register_BANG_.cljs$core$IFn$_invoke$arity$2(var_37193,opts_37194);
+var vec__37040_37302 = cljs.core.first(seq__37027_37296__$1);
+var var_37303 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37040_37302,(0),null);
+var opts_37304 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37040_37302,(1),null);
+portal.runtime.register_BANG_.cljs$core$IFn$_invoke$arity$2(var_37303,opts_37304);
 
 
-var G__37195 = cljs.core.next(seq__37027_37186__$1);
-var G__37196 = null;
-var G__37197 = (0);
-var G__37198 = (0);
-seq__37027_37173 = G__37195;
-chunk__37028_37174 = G__37196;
-count__37029_37175 = G__37197;
-i__37030_37176 = G__37198;
+var G__37305 = cljs.core.next(seq__37027_37296__$1);
+var G__37306 = null;
+var G__37307 = (0);
+var G__37308 = (0);
+seq__37027_37282 = G__37305;
+chunk__37028_37283 = G__37306;
+count__37029_37284 = G__37307;
+i__37030_37285 = G__37308;
 continue;
 }
 } else {

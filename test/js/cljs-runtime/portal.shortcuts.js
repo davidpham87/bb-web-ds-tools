@@ -1,13 +1,13 @@
 goog.provide('portal.shortcuts');
 portal.shortcuts.get_platform = (function portal$shortcuts$get_platform(){
 var platform = window.navigator.platform;
-if(cljs.core.truth_((function (){var fexpr__29023 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 4, ["Mac68K",null,"Macintosh",null,"MacPPC",null,"MacIntel",null], null), null);
-return (fexpr__29023.cljs$core$IFn$_invoke$arity$1 ? fexpr__29023.cljs$core$IFn$_invoke$arity$1(platform) : fexpr__29023.call(null,platform));
+if(cljs.core.truth_((function (){var fexpr__29022 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 4, ["Mac68K",null,"Macintosh",null,"MacPPC",null,"MacIntel",null], null), null);
+return (fexpr__29022.cljs$core$IFn$_invoke$arity$1 ? fexpr__29022.cljs$core$IFn$_invoke$arity$1(platform) : fexpr__29022.call(null,platform));
 })())){
 return new cljs.core.Keyword("portal.shortcuts","osx","portal.shortcuts/osx",300522451);
 } else {
-if(cljs.core.truth_((function (){var fexpr__29024 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 4, ["WinCE",null,"Windows",null,"Win32",null,"Win64",null], null), null);
-return (fexpr__29024.cljs$core$IFn$_invoke$arity$1 ? fexpr__29024.cljs$core$IFn$_invoke$arity$1(platform) : fexpr__29024.call(null,platform));
+if(cljs.core.truth_((function (){var fexpr__29023 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 4, ["WinCE",null,"Windows",null,"Win32",null,"Win64",null], null), null);
+return (fexpr__29023.cljs$core$IFn$_invoke$arity$1 ? fexpr__29023.cljs$core$IFn$_invoke$arity$1(platform) : fexpr__29023.call(null,platform));
 })())){
 return new cljs.core.Keyword("portal.shortcuts","windows","portal.shortcuts/windows",-450991854);
 } else {
@@ -67,25 +67,25 @@ return null;
  */
 portal.shortcuts.log__GT_seq = (function portal$shortcuts$log__GT_seq(log){
 var log__$1 = cljs.core.map.cljs$core$IFn$_invoke$arity$2(portal.shortcuts.event__GT_key,log);
-var iter__5503__auto__ = (function portal$shortcuts$log__GT_seq_$_iter__29028(s__29029){
+var iter__5503__auto__ = (function portal$shortcuts$log__GT_seq_$_iter__29026(s__29027){
 return (new cljs.core.LazySeq(null,(function (){
-var s__29029__$1 = s__29029;
+var s__29027__$1 = s__29027;
 while(true){
-var temp__5825__auto__ = cljs.core.seq(s__29029__$1);
+var temp__5825__auto__ = cljs.core.seq(s__29027__$1);
 if(temp__5825__auto__){
-var s__29029__$2 = temp__5825__auto__;
-if(cljs.core.chunked_seq_QMARK_(s__29029__$2)){
-var c__5501__auto__ = cljs.core.chunk_first(s__29029__$2);
+var s__29027__$2 = temp__5825__auto__;
+if(cljs.core.chunked_seq_QMARK_(s__29027__$2)){
+var c__5501__auto__ = cljs.core.chunk_first(s__29027__$2);
 var size__5502__auto__ = cljs.core.count(c__5501__auto__);
-var b__29031 = cljs.core.chunk_buffer(size__5502__auto__);
-if((function (){var i__29030 = (0);
+var b__29029 = cljs.core.chunk_buffer(size__5502__auto__);
+if((function (){var i__29028 = (0);
 while(true){
-if((i__29030 < size__5502__auto__)){
-var n = cljs.core._nth(c__5501__auto__,i__29030);
-cljs.core.chunk_append(b__29031,cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentVector.EMPTY,cljs.core.reverse(cljs.core.take.cljs$core$IFn$_invoke$arity$2(n,log__$1))));
+if((i__29028 < size__5502__auto__)){
+var n = cljs.core._nth(c__5501__auto__,i__29028);
+cljs.core.chunk_append(b__29029,cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentVector.EMPTY,cljs.core.reverse(cljs.core.take.cljs$core$IFn$_invoke$arity$2(n,log__$1))));
 
-var G__29065 = (i__29030 + (1));
-i__29030 = G__29065;
+var G__29065 = (i__29028 + (1));
+i__29028 = G__29065;
 continue;
 } else {
 return true;
@@ -93,13 +93,13 @@ return true;
 break;
 }
 })()){
-return cljs.core.chunk_cons(cljs.core.chunk(b__29031),portal$shortcuts$log__GT_seq_$_iter__29028(cljs.core.chunk_rest(s__29029__$2)));
+return cljs.core.chunk_cons(cljs.core.chunk(b__29029),portal$shortcuts$log__GT_seq_$_iter__29026(cljs.core.chunk_rest(s__29027__$2)));
 } else {
-return cljs.core.chunk_cons(cljs.core.chunk(b__29031),null);
+return cljs.core.chunk_cons(cljs.core.chunk(b__29029),null);
 }
 } else {
-var n = cljs.core.first(s__29029__$2);
-return cljs.core.cons(cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentVector.EMPTY,cljs.core.reverse(cljs.core.take.cljs$core$IFn$_invoke$arity$2(n,log__$1))),portal$shortcuts$log__GT_seq_$_iter__29028(cljs.core.rest(s__29029__$2)));
+var n = cljs.core.first(s__29027__$2);
+return cljs.core.cons(cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentVector.EMPTY,cljs.core.reverse(cljs.core.take.cljs$core$IFn$_invoke$arity$2(n,log__$1))),portal$shortcuts$log__GT_seq_$_iter__29026(cljs.core.rest(s__29027__$2)));
 }
 } else {
 return null;
@@ -147,8 +147,8 @@ var or__5025__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(mapping,porta
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
 } else {
-return cljs.core.some((function (p1__29037_SHARP_){
-return cljs.core.get.cljs$core$IFn$_invoke$arity$2(mapping,p1__29037_SHARP_);
+return cljs.core.some((function (p1__29035_SHARP_){
+return cljs.core.get.cljs$core$IFn$_invoke$arity$2(mapping,p1__29035_SHARP_);
 }),portal.shortcuts.log__GT_seq(log));
 }
 });
@@ -156,16 +156,16 @@ portal.shortcuts.input_QMARK_ = (function portal$shortcuts$input_QMARK_(log){
 var temp__5825__auto__ = cljs.core.first(log);
 if(cljs.core.truth_(temp__5825__auto__)){
 var e = temp__5825__auto__;
-var G__29042 = e.target.tagName;
-var fexpr__29041 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 4, ["SELECT",null,"INPUT",null,"BUTTON",null,"TEXTAREA",null], null), null);
-return (fexpr__29041.cljs$core$IFn$_invoke$arity$1 ? fexpr__29041.cljs$core$IFn$_invoke$arity$1(G__29042) : fexpr__29041.call(null,G__29042));
+var G__29037 = e.target.tagName;
+var fexpr__29036 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 4, ["SELECT",null,"INPUT",null,"BUTTON",null,"TEXTAREA",null], null), null);
+return (fexpr__29036.cljs$core$IFn$_invoke$arity$1 ? fexpr__29036.cljs$core$IFn$_invoke$arity$1(G__29037) : fexpr__29036.call(null,G__29037));
 } else {
 return null;
 }
 });
 portal.shortcuts.keydown = (function portal$shortcuts$keydown(e){
-cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$2(portal.shortcuts.log,(function (p1__29043_SHARP_){
-return cljs.core.take.cljs$core$IFn$_invoke$arity$2((5),cljs.core.conj.cljs$core$IFn$_invoke$arity$2(p1__29043_SHARP_,e));
+cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$2(portal.shortcuts.log,(function (p1__29038_SHARP_){
+return cljs.core.take.cljs$core$IFn$_invoke$arity$2((5),cljs.core.conj.cljs$core$IFn$_invoke$arity$2(p1__29038_SHARP_,e));
 }));
 
 return null;
@@ -178,8 +178,8 @@ window.addEventListener("blur",(function (){
 return portal.shortcuts.clear_BANG_();
 }));
 
-return window.addEventListener("keydown",(function (p1__29048_SHARP_){
-return portal.shortcuts.keydown(p1__29048_SHARP_);
+return window.addEventListener("keydown",(function (p1__29041_SHARP_){
+return portal.shortcuts.keydown(p1__29041_SHARP_);
 }));
 } else {
 return null;

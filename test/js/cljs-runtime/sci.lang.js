@@ -177,21 +177,21 @@ return self__.meta;
 var self__ = this;
 var this$__$1 = this;
 var old_root_36078 = this$__$1.root;
-var vm__35944__auto___36079 = self__.meta;
+var vm__35937__auto___36079 = self__.meta;
 if(cljs.core.truth_((function (){var or__5025__auto__ = sci.impl.unrestrict._STAR_unrestricted_STAR_;
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
 } else {
-return cljs.core.not(new cljs.core.Keyword("sci","built-in","sci/built-in",1244659599).cljs$core$IFn$_invoke$arity$1(vm__35944__auto___36079));
+return cljs.core.not(new cljs.core.Keyword("sci","built-in","sci/built-in",1244659599).cljs$core$IFn$_invoke$arity$1(vm__35937__auto___36079));
 }
 })())){
 (self__.root = v);
 } else {
-var the_var__35945__auto___36080 = this$__$1;
-var ns__35946__auto___36081 = new cljs.core.Keyword(null,"ns","ns",441598760).cljs$core$IFn$_invoke$arity$1(vm__35944__auto___36079);
-var ns_name__35947__auto___36082 = sci.impl.types.getName(ns__35946__auto___36081);
-var name__35948__auto___36083 = the_var__35945__auto___36080.sci$impl$types$HasName$getName$arity$1(null);
-throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(["Built-in var #'",cljs.core.str.cljs$core$IFn$_invoke$arity$1(ns_name__35947__auto___36082),"/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(name__35948__auto___36083)," is read-only."].join(''),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"var","var",-769682797),this$__$1], null));
+var the_var__35938__auto___36080 = this$__$1;
+var ns__35939__auto___36081 = new cljs.core.Keyword(null,"ns","ns",441598760).cljs$core$IFn$_invoke$arity$1(vm__35937__auto___36079);
+var ns_name__35940__auto___36082 = sci.impl.types.getName(ns__35939__auto___36081);
+var name__35941__auto___36083 = the_var__35938__auto___36080.sci$impl$types$HasName$getName$arity$1(null);
+throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(["Built-in var #'",cljs.core.str.cljs$core$IFn$_invoke$arity$1(ns_name__35940__auto___36082),"/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(name__35941__auto___36083)," is read-only."].join(''),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"var","var",-769682797),this$__$1], null));
 }
 
 sci.lang.notify_watches(this$__$1,self__.watches,old_root_36078,v);
@@ -256,21 +256,21 @@ return (this$__$1.thread_bound = v);
 (sci.lang.Var.prototype.sci$impl$vars$IVar$unbind$arity$1 = (function (this$){
 var self__ = this;
 var this$__$1 = this;
-var vm__35944__auto__ = self__.meta;
+var vm__35937__auto__ = self__.meta;
 if(cljs.core.truth_((function (){var or__5025__auto__ = sci.impl.unrestrict._STAR_unrestricted_STAR_;
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
 } else {
-return cljs.core.not(new cljs.core.Keyword("sci","built-in","sci/built-in",1244659599).cljs$core$IFn$_invoke$arity$1(vm__35944__auto__));
+return cljs.core.not(new cljs.core.Keyword("sci","built-in","sci/built-in",1244659599).cljs$core$IFn$_invoke$arity$1(vm__35937__auto__));
 }
 })())){
 return (this$__$1.root = (new sci.impl.vars.SciUnbound(this$__$1)));
 } else {
-var the_var__35945__auto__ = this$__$1;
-var ns__35946__auto__ = new cljs.core.Keyword(null,"ns","ns",441598760).cljs$core$IFn$_invoke$arity$1(vm__35944__auto__);
-var ns_name__35947__auto__ = sci.impl.types.getName(ns__35946__auto__);
-var name__35948__auto__ = the_var__35945__auto__.sci$impl$types$HasName$getName$arity$1(null);
-throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(["Built-in var #'",cljs.core.str.cljs$core$IFn$_invoke$arity$1(ns_name__35947__auto__),"/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(name__35948__auto__)," is read-only."].join(''),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"var","var",-769682797),this$__$1], null));
+var the_var__35938__auto__ = this$__$1;
+var ns__35939__auto__ = new cljs.core.Keyword(null,"ns","ns",441598760).cljs$core$IFn$_invoke$arity$1(vm__35937__auto__);
+var ns_name__35940__auto__ = sci.impl.types.getName(ns__35939__auto__);
+var name__35941__auto__ = the_var__35938__auto__.sci$impl$types$HasName$getName$arity$1(null);
+throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(["Built-in var #'",cljs.core.str.cljs$core$IFn$_invoke$arity$1(ns_name__35940__auto__),"/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(name__35941__auto__)," is read-only."].join(''),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"var","var",-769682797),this$__$1], null));
 }
 }));
 
