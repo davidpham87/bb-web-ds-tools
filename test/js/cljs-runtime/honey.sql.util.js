@@ -5,8 +5,8 @@ goog.provide('honey.sql.util');
  *   reverts back to `clojure.core/str`.
  */
 honey.sql.util.str = (function honey$sql$util$str(var_args){
-var G__43874 = arguments.length;
-switch (G__43874) {
+var G__43878 = arguments.length;
+switch (G__43878) {
 case 0:
 return honey.sql.util.str.cljs$core$IFn$_invoke$arity$0();
 
@@ -82,19 +82,19 @@ return cljs.core.apply.cljs$core$IFn$_invoke$arity$variadic(cljs.core.str,a,b,c,
 }));
 
 /** @this {Function} */
-(honey.sql.util.str.cljs$lang$applyTo = (function (seq43868){
-var G__43869 = cljs.core.first(seq43868);
-var seq43868__$1 = cljs.core.next(seq43868);
-var G__43870 = cljs.core.first(seq43868__$1);
-var seq43868__$2 = cljs.core.next(seq43868__$1);
-var G__43871 = cljs.core.first(seq43868__$2);
-var seq43868__$3 = cljs.core.next(seq43868__$2);
-var G__43872 = cljs.core.first(seq43868__$3);
-var seq43868__$4 = cljs.core.next(seq43868__$3);
-var G__43873 = cljs.core.first(seq43868__$4);
-var seq43868__$5 = cljs.core.next(seq43868__$4);
+(honey.sql.util.str.cljs$lang$applyTo = (function (seq43872){
+var G__43873 = cljs.core.first(seq43872);
+var seq43872__$1 = cljs.core.next(seq43872);
+var G__43874 = cljs.core.first(seq43872__$1);
+var seq43872__$2 = cljs.core.next(seq43872__$1);
+var G__43875 = cljs.core.first(seq43872__$2);
+var seq43872__$3 = cljs.core.next(seq43872__$2);
+var G__43876 = cljs.core.first(seq43872__$3);
+var seq43872__$4 = cljs.core.next(seq43872__$3);
+var G__43877 = cljs.core.first(seq43872__$4);
+var seq43872__$5 = cljs.core.next(seq43872__$4);
 var self__5734__auto__ = this;
-return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__43869,G__43870,G__43871,G__43872,G__43873,seq43868__$5);
+return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__43873,G__43874,G__43875,G__43876,G__43877,seq43872__$5);
 }));
 
 (honey.sql.util.str.cljs$lang$maxFixedArity = (5));
@@ -106,8 +106,8 @@ return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__43869,G__43870
  *   platforms.
  */
 honey.sql.util.join = (function honey$sql$util$join(var_args){
-var G__43879 = arguments.length;
-switch (G__43879) {
+var G__43880 = arguments.length;
+switch (G__43880) {
 case 2:
 return honey.sql.util.join.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 

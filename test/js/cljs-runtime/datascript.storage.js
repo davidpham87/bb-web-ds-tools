@@ -3,8 +3,8 @@ datascript.storage.storage = (function datascript$storage$storage(db){
 return null;
 });
 datascript.storage.store = (function datascript$storage$store(var_args){
-var G__62093 = arguments.length;
-switch (G__62093) {
+var G__62092 = arguments.length;
+switch (G__62092) {
 case 1:
 return datascript.storage.store.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 

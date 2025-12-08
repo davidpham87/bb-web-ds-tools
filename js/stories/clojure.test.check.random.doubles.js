@@ -34,10 +34,10 @@ while(true){
 if((i === (0))){
 return x;
 } else {
-var G__29992 = (i - (1));
-var G__29993 = (x / (2));
-i = G__29992;
-x = G__29993;
+var G__30001 = (i - (1));
+var G__30002 = (x / (2));
+i = G__30001;
+x = G__30002;
 continue;
 }
 break;
