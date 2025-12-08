@@ -3,6 +3,7 @@
    [bb-web-ds-tools.components.common :refer (nav-items)]
    [bb-web-ds-tools.components.layout :as layout]
    [bb-web-ds-tools.components.navigation :as nav]
+   [bb-web-ds-tools.events.theme :as theme-events] ;; Import theme events
    [bb-web-ds-tools.portal :as portal]
    [bb-web-ds-tools.theme :as t]
    [bb-web-ds-tools.views.app-db :as app-db]
@@ -181,7 +182,7 @@
 ;; (defmethod view :repl [_] [repl/panel])
 ;; (defmethod view :r-repl [_] [r-repl/panel])
 (defmethod view :datasets [_] [datasets/panel])
-(defmethod view :changelog [_] [changelog/changelog-page])
+(defmethod view :changelog [_] [changelog/panel])
 (defmethod view :settings [_] [settings/panel])
 (defmethod view :app-db [_] [app-db/panel])
 ;; (defmethod view :workspaces [_] [workspaces/main-panel])
@@ -233,6 +234,9 @@
   (rf/dispatch-sync [::initialize-db])
   ;; Initialize persistence
   (rf/dispatch [::wp/init-persistence])
+  (rf/dispatch [::theme-events/set-theme :zenburn]) ;; Initialize theme
+  ;; #_(rf/dispatch [::ws/init])
+  ;; #_(rf/dispatch [::wp/init-persistence])
   (init-routes!)
   ;; (rf/dispatch [::navigate :landing-page nil nil]) ;; Removed to allow deep linking
   (rdom/render [app] (.getElementById js/document "app")))

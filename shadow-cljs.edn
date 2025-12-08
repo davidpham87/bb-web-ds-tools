@@ -24,7 +24,7 @@
 
    :compiler-options {:optimizations :advanced
                       :output-feature-set :es-next
-                      :externs ["src/externs/webr.js"]}
+                      :externs ["src/externs/webr.js" "src/externs/datascript.js"]}
 
    :dev {:compiler-options {:source-map true
                             :pretty-print true

@@ -4,41 +4,46 @@
 
 (defonce webr-instance (atom nil))
 
-(defn- portal-submit [value]
-  (let [viewer (cond
-                 (= (:type value) :code) :portal.viewer/code
-                 (= (:type value) :result)
-                 (let [v (:value value)]
+(defn- portal-submit [{:keys [text] :as value} & [viewer]]
+  (let [viewer (or viewer
                    (cond
-                     (and (map? v) (or (:image v) (:beatmap v))) :portal.viewer/image
-                     :else :portal.viewer/edn))
-                 (#{:stdout :stderr :error} (:type value)) :portal.viewer/text
-                 :else nil)]
-    (rf/dispatch [::portal/submit value viewer])))
+                     (= (:type value) :code) :portal.viewer/hiccup
+                     (= (:type value) :result)
+                     (let [v (:value value)]
+                       (cond
+                         (and (map? v) (or (:image v) (:beatmap v))) :portal.viewer/image
+                         :else :portal.viewer/edn))
+                     (#{:stdout :stderr :error} (:type value)) :portal.viewer/hiccup
+                     :else nil))]
+    (rf/dispatch 
+    [::portal/submit (cond 
+                      text [:portal.viewer/code text] 
+                      :else (:value value)) viewer])))
 
-(defn- start-read-loop
-  "Starts the WebR read loop to capture stdout/stderr.
+(defn- image-bitmap->data-url [^js image-bitmap]
+  (let [canvas (.createElement js/document "canvas")
+        ctx (.getContext canvas "2d")]
+    (set! (.-width canvas) (.-width image-bitmap))
+    (set! (.-height canvas) (.-height image-bitmap))
+    (.drawImage ctx image-bitmap 0 0)
+    (.toDataURL canvas)))
 
-  Args:
-    webr (object): The WebR instance.
+(defn- process-output-msg [msg]
+  (let [type (.-type msg)
+        data (.-data msg)]
+    (cond
+      (#{"stdout" "stderr"} type)
+      (js/Promise.resolve {:type (keyword type) :text data})
 
-  Returns:
-    nil: Starts the async loop."
-  [^js webr]
-  (letfn [(loop-fn []
-            (-> (.read webr)
-                (.then (fn [^js msg]
-                         (let [type (.-type msg)
-                               data (.-data msg)]
-                           (cond
-                             (= type "stdout") (portal-submit {:type :stdout :text data})
-                             (= type "stderr") (portal-submit {:type :stderr :text data})
-                             (= type "closed") nil
-                             :else nil)
-                           (when (not= type "closed")
-                             (loop-fn)))))
-                (.catch #(portal-submit {:type :error :text (str "WebR Read Error:" %)}))))]
-    (loop-fn)))
+      (#{"message" "warning"} type)
+      (-> (.toJs ^js data)
+          (.then (fn [js-data]
+                   (let [clj-data (js->clj js-data :keywordize-keys true)
+                         text (or (:message clj-data) (str clj-data))]
+                     {:type (keyword type) :text text})))
+          (.catch (fn [_] {:type (keyword type) :text "Error decoding message"})))
+
+      :else (js/Promise.resolve nil))))
 
 (defn load-runtime-main
   "Loads the WebR runtime in the main thread.
@@ -53,13 +58,15 @@
   (if @webr-instance
     (on-ready)
     (if (exists? js/WebR)
-      (let [webr (new js/WebR (clj->js {}))]
+      (let [options {:channelType 3 ;; PostMessage
+                     :baseUrl "https://webr.r-wasm.org/v0.5.7/"}
+            webr (new js/WebR (clj->js options))]
         (reset! webr-instance webr)
         (-> (.init webr)
             (.then (fn []
-                     (start-read-loop webr)
                      (on-ready)))
             (.catch (fn [e]
+                      (js/console.error "WebR Init Error:" e)
                       (on-error (str "WebR Init failed: " e))))))
       (on-error "WebR script not loaded"))))
 
@@ -75,26 +82,54 @@
   (if @webr-instance
     (try
       (portal-submit {:type :code :text code})
-      (-> (.evalR ^js @webr-instance code (clj->js {:autoprint true}))
-          (.then (fn [^js res]
-                   (try
-                     (let [js-val (.toJs res)]
-                       (if (instance? js/Promise js-val)
-                         (-> js-val
-                             (.then (fn [v]
-                                      (let [val (try (js->clj v :keywordize-keys true)
-                                                     (catch js/Error _ (str v)))]
-                                        (portal-submit {:type :result :value val}))))
-                             (.catch (fn [e] (portal-submit {:type :error :text (str e)})))
-                             (.finally (fn [] (.destroy res))))
-                         (let [val (try (js->clj js-val :keywordize-keys true)
-                                        (catch js/Error _ (str res)))]
-                           (portal-submit {:type :result :value val})
-                           (.destroy res))))
-                     (catch js/Error e
-                       (.destroy res)
-                       (throw e)))))
-          (.catch (fn [e] (portal-submit {:type :error :text (str e)}))))
+      (let [create-shelter (fn []
+                             (let [shelter-class (.-Shelter ^js @webr-instance)]
+                               (if shelter-class
+                                 (let [s (new shelter-class)]
+                                   (if (instance? js/Promise s) s
+                                       (if (exists? (.-init s))
+                                         (-> (.init s) (.then (fn [] s)))
+                                         (js/Promise.resolve s))))
+                                 (js/Promise.reject (js/Error. "Shelter not found on WebR instance")))))]
+        (-> (create-shelter)
+            (.then (fn [^js shelter]
+                     (-> (.captureR shelter code (clj->js {:autoprint true}))
+                         (.then (fn [^js res]
+                                  (let [output (.-output res)
+                                        images (.-images res)
+                                        result (.-result res)]
+
+                                    (-> (js/Promise.all (into-array (map process-output-msg (array-seq output))))
+                                        (.then (fn [results]
+                                                 (doseq [res results]
+                                                   (when res (portal-submit res)))
+
+                                                 (doseq [img (array-seq images)]
+                                                   (let [data-url (image-bitmap->data-url img)
+                                                         canvas-hiccup [:div {:style {:width 720 :height 720}} 
+                                                                         [:canvas
+                                                                           {:width (.-width img)
+                                                                            :height (.-height img)
+                                                                            :style {:background-image (str "url(" data-url ")")
+                                                                                    :background-size "cover"}}]]]
+                                                    (rf/dispatch [::portal/submit canvas-hiccup :portal.viewer/hiccup])))
+
+                                                 (let [js-val (.toJs result)]
+                                                   (if (instance? js/Promise js-val)
+                                                     (-> js-val
+                                                         (.then (fn [v]
+                                                                  (let [val (try (js->clj v :keywordize-keys true)
+                                                                                 (catch js/Error _ (str v)))]
+                                                                    (portal-submit {:type :result :value val}))))
+                                                         (.catch (fn [e] (portal-submit {:type :error :text (str e)}))))
+                                                     (let [val (try (js->clj js-val :keywordize-keys true)
+                                                                    (catch js/Error _ (str result)))]
+                                                       (portal-submit {:type :result :value val}))))))
+                                        (.finally (fn [] (.purge shelter)))))))
+                         (.catch (fn [e]
+                                   (.purge shelter)
+                                   (portal-submit {:type :error :text (str e)}))))))
+            (.catch (fn [e] (portal-submit {:type :error :text (str e)})))))
       (catch js/Error e
         (portal-submit {:type :error :text (str e)})))
     (portal-submit {:type :error :text "WebR not loaded"})))

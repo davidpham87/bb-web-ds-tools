@@ -15,10 +15,22 @@
        :toJs (fn [] 42)
        :toString (fn [] "Result: 1 + 1")})
 
+(def mock-capture-output
+  #js {:result mock-result
+       :output #js []
+       :images #js []})
+
+(defn MockShelter []
+  (this-as this
+    (set! (.-captureR this) (fn [_ _] (js/Promise.resolve mock-capture-output)))
+    (set! (.-purge this) (fn [] (js/Promise.resolve)))
+    this))
+
 (def mock-webr-proto
   #js {:init (fn [] (js/Promise.resolve))
        :read (fn [] (js/Promise.resolve #js {:type "closed" :data ""}))
-       :evalR (fn [code _] (js/Promise.resolve mock-result))})
+       :evalR (fn [code _] (js/Promise.resolve mock-result))
+       :Shelter MockShelter})
 
 (defn mock-WebR [_]
   mock-webr-proto)
@@ -60,15 +72,14 @@
         (-> (webr/eval-in-main "1 + 1")
             (.then (fn []
                      (is (some #(and (= (first %) :bb-web-ds-tools.portal/submit)
-                                     (= (:type (second %)) :code)
+                                     (= (second %) "1 + 1")
                                      (= (nth % 2) :portal.viewer/code))
                                @dispatched) "Code should be submitted")
                      (let [res-event (last @dispatched)
                            res-val (second res-event)
                            res-viewer (nth res-event 2)]
                        (is (= (first res-event) :bb-web-ds-tools.portal/submit))
-                       (is (= (:type res-val) :result))
-                       (is (= (:value res-val) 42))
+                       (is (= res-val 42))
                        (is (= res-viewer :portal.viewer/edn)))
                      (set! rf/dispatch orig-dispatch)
                      (done)))
