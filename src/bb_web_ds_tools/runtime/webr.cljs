@@ -106,7 +106,7 @@
 
                                                  (doseq [img (array-seq images)]
                                                    (let [data-url (image-bitmap->data-url img)
-                                                         canvas-hiccup [:div {:style {:width 720 :height 640}} 
+                                                         canvas-hiccup [:div {:style {:width 720 :height 720}} 
                                                                          [:canvas
                                                                            {:width (.-width img)
                                                                             :height (.-height img)
