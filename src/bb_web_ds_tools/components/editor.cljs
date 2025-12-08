@@ -6,26 +6,8 @@
             ["monaco-editor/esm/vs/basic-languages/clojure/clojure.contribution.js"]
             ["monaco-editor/esm/vs/basic-languages/python/python.contribution.js"]
             ["monaco-editor/esm/vs/basic-languages/r/r.contribution.js"]
-            [bb-web-ds-tools.theme :as t]))
-
-(defonce theme-initialized
-  (try
-    (monaco/editor.defineTheme
-     "zenburn"
-     (clj->js {:base "vs-dark"
-               :inherit true
-               :rules [{:background (t/color :bg-page)
-                        :foreground (t/color :text-primary)}]
-               :colors {:editor.background (t/color :bg-page)
-                        :editor.foreground (t/color :text-primary)
-                        :editorCursor.foreground (t/color :text-muted)
-                        :editor.lineHighlightBackground (t/color :bg-card)
-                        :editor.selectionBackground (t/color :bg-button)
-                        :editor.inactiveSelectionBackground (t/color :bg-card)}}))
-    true
-    (catch js/Error e
-      (js/console.warn "Failed to define Zenburn theme" e)
-      false)))
+            [bb-web-ds-tools.theme :as t]
+            [bb-web-ds-tools.events.theme :as theme-events]))
 
 (defn monaco-editor
   "Renders a Monaco Editor component.
@@ -44,7 +26,8 @@
   (let [editor-instance (r/atom nil)
         subscription (r/atom nil)
         on-change-ref (atom nil)
-        ignore-change? (atom false)]
+        ignore-change? (atom false)
+        current-theme (rf/subscribe [::theme-events/current-theme])]
     (r/create-class
      {:displayName "monaco-editor"
       :component-did-mount
@@ -65,7 +48,7 @@
                           {:value (or value "")
                            :language lang
                            :linenumber "off"
-                           :theme "zenburn"
+                           :theme (or (:theme options) (name @current-theme))
                            :automaticLayout true
                            :minimap {:enabled false}
                            :scrollBeyondLastLine false
