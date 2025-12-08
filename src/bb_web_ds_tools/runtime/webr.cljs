@@ -7,17 +7,17 @@
 (defn- portal-submit [{:keys [text] :as value} & [viewer]]
   (let [viewer (or viewer
                    (cond
-                     (= (:type value) :code) :portal.viewer/code
+                     (= (:type value) :code) :portal.viewer/hiccup
                      (= (:type value) :result)
                      (let [v (:value value)]
                        (cond
                          (and (map? v) (or (:image v) (:beatmap v))) :portal.viewer/image
                          :else :portal.viewer/edn))
-                     (#{:stdout :stderr :error} (:type value)) :portal.viewer/text
+                     (#{:stdout :stderr :error} (:type value)) :portal.viewer/hiccup
                      :else nil))]
     (rf/dispatch 
     [::portal/submit (cond 
-                      text [:portal.viewer/markdown text] 
+                      text [:portal.viewer/code text] 
                       :else (:value value)) viewer])))
 
 (defn- image-bitmap->data-url [^js image-bitmap]
