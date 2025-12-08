@@ -43,12 +43,12 @@ var this__5323__auto____$1 = this;
 return this__5323__auto____$1.cljs$core$ILookup$_lookup$arity$3(null,k__5324__auto__,null);
 }));
 
-(datascript.pull_parser.PullAttr.prototype.cljs$core$ILookup$_lookup$arity$3 = (function (this__5325__auto__,k61994,else__5326__auto__){
+(datascript.pull_parser.PullAttr.prototype.cljs$core$ILookup$_lookup$arity$3 = (function (this__5325__auto__,k62031,else__5326__auto__){
 var self__ = this;
 var this__5325__auto____$1 = this;
-var G__62000 = k61994;
-var G__62000__$1 = (((G__62000 instanceof cljs.core.Keyword))?G__62000.fqn:null);
-switch (G__62000__$1) {
+var G__62043 = k62031;
+var G__62043__$1 = (((G__62043 instanceof cljs.core.Keyword))?G__62043.fqn:null);
+switch (G__62043__$1) {
 case "as":
 return self__.as;
 
@@ -98,7 +98,7 @@ return self__.component_QMARK_;
 
 break;
 default:
-return cljs.core.get.cljs$core$IFn$_invoke$arity$3(self__.__extmap,k61994,else__5326__auto__);
+return cljs.core.get.cljs$core$IFn$_invoke$arity$3(self__.__extmap,k62031,else__5326__auto__);
 
 }
 }));
@@ -106,10 +106,10 @@ return cljs.core.get.cljs$core$IFn$_invoke$arity$3(self__.__extmap,k61994,else__
 (datascript.pull_parser.PullAttr.prototype.cljs$core$IKVReduce$_kv_reduce$arity$3 = (function (this__5343__auto__,f__5344__auto__,init__5345__auto__){
 var self__ = this;
 var this__5343__auto____$1 = this;
-return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (ret__5346__auto__,p__62003){
-var vec__62004 = p__62003;
-var k__5347__auto__ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__62004,(0),null);
-var v__5348__auto__ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__62004,(1),null);
+return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (ret__5346__auto__,p__62050){
+var vec__62051 = p__62050;
+var k__5347__auto__ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__62051,(0),null);
+var v__5348__auto__ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__62051,(1),null);
 return (f__5344__auto__.cljs$core$IFn$_invoke$arity$3 ? f__5344__auto__.cljs$core$IFn$_invoke$arity$3(ret__5346__auto__,k__5347__auto__,v__5348__auto__) : f__5344__auto__.call(null,ret__5346__auto__,k__5347__auto__,v__5348__auto__));
 }),init__5345__auto__,this__5343__auto____$1);
 }));
@@ -123,10 +123,10 @@ return cljs.core.pr_sequential_writer(writer__5339__auto__,cljs.core.pr_writer,"
 return cljs.core.pr_sequential_writer(writer__5339__auto__,pr_pair__5341__auto__,"#datascript.pull-parser.PullAttr{",", ","}",opts__5340__auto__,cljs.core.concat.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 12, 5, cljs.core.PersistentVector.EMPTY_NODE, [(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"as","as",1148689641),self__.as],null)),(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"default","default",-1987822328),self__.default$],null)),(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"limit","limit",-1355822363),self__.limit],null)),(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"name","name",1843675177),self__.name],null)),(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"pattern","pattern",242135423),self__.pattern],null)),(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"recursion-limit","recursion-limit",52345639),self__.recursion_limit],null)),(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"recursive?","recursive?",1340075244),self__.recursive_QMARK_],null)),(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"reverse?","reverse?",-1672868474),self__.reverse_QMARK_],null)),(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"xform","xform",-1725711008),self__.xform],null)),(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"multival?","multival?",1072388383),self__.multival_QMARK_],null)),(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"ref?","ref?",1932693720),self__.ref_QMARK_],null)),(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"component?","component?",407783990),self__.component_QMARK_],null))], null),self__.__extmap));
 }));
 
-(datascript.pull_parser.PullAttr.prototype.cljs$core$IIterable$_iterator$arity$1 = (function (G__61993){
+(datascript.pull_parser.PullAttr.prototype.cljs$core$IIterable$_iterator$arity$1 = (function (G__62030){
 var self__ = this;
-var G__61993__$1 = this;
-return (new cljs.core.RecordIter((0),G__61993__$1,12,new cljs.core.PersistentVector(null, 12, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"as","as",1148689641),new cljs.core.Keyword(null,"default","default",-1987822328),new cljs.core.Keyword(null,"limit","limit",-1355822363),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"pattern","pattern",242135423),new cljs.core.Keyword(null,"recursion-limit","recursion-limit",52345639),new cljs.core.Keyword(null,"recursive?","recursive?",1340075244),new cljs.core.Keyword(null,"reverse?","reverse?",-1672868474),new cljs.core.Keyword(null,"xform","xform",-1725711008),new cljs.core.Keyword(null,"multival?","multival?",1072388383),new cljs.core.Keyword(null,"ref?","ref?",1932693720),new cljs.core.Keyword(null,"component?","component?",407783990)], null),(cljs.core.truth_(self__.__extmap)?cljs.core._iterator(self__.__extmap):cljs.core.nil_iter())));
+var G__62030__$1 = this;
+return (new cljs.core.RecordIter((0),G__62030__$1,12,new cljs.core.PersistentVector(null, 12, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"as","as",1148689641),new cljs.core.Keyword(null,"default","default",-1987822328),new cljs.core.Keyword(null,"limit","limit",-1355822363),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"pattern","pattern",242135423),new cljs.core.Keyword(null,"recursion-limit","recursion-limit",52345639),new cljs.core.Keyword(null,"recursive?","recursive?",1340075244),new cljs.core.Keyword(null,"reverse?","reverse?",-1672868474),new cljs.core.Keyword(null,"xform","xform",-1725711008),new cljs.core.Keyword(null,"multival?","multival?",1072388383),new cljs.core.Keyword(null,"ref?","ref?",1932693720),new cljs.core.Keyword(null,"component?","component?",407783990)], null),(cljs.core.truth_(self__.__extmap)?cljs.core._iterator(self__.__extmap):cljs.core.nil_iter())));
 }));
 
 (datascript.pull_parser.PullAttr.prototype.cljs$core$IMeta$_meta$arity$1 = (function (this__5321__auto__){
@@ -163,10 +163,10 @@ return h__5134__auto____$1;
 }
 }));
 
-(datascript.pull_parser.PullAttr.prototype.cljs$core$IEquiv$_equiv$arity$2 = (function (this61995,other61996){
+(datascript.pull_parser.PullAttr.prototype.cljs$core$IEquiv$_equiv$arity$2 = (function (this62032,other62033){
 var self__ = this;
-var this61995__$1 = this;
-return (((!((other61996 == null)))) && ((((this61995__$1.constructor === other61996.constructor)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this61995__$1.as,other61996.as)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this61995__$1.default,other61996.default)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this61995__$1.limit,other61996.limit)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this61995__$1.name,other61996.name)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this61995__$1.pattern,other61996.pattern)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this61995__$1.recursion_limit,other61996.recursion_limit)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this61995__$1.recursive_QMARK_,other61996.recursive_QMARK_)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this61995__$1.reverse_QMARK_,other61996.reverse_QMARK_)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this61995__$1.xform,other61996.xform)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this61995__$1.multival_QMARK_,other61996.multival_QMARK_)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this61995__$1.ref_QMARK_,other61996.ref_QMARK_)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this61995__$1.component_QMARK_,other61996.component_QMARK_)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this61995__$1.__extmap,other61996.__extmap)))))))))))))))))))))))))))));
+var this62032__$1 = this;
+return (((!((other62033 == null)))) && ((((this62032__$1.constructor === other62033.constructor)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this62032__$1.as,other62033.as)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this62032__$1.default,other62033.default)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this62032__$1.limit,other62033.limit)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this62032__$1.name,other62033.name)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this62032__$1.pattern,other62033.pattern)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this62032__$1.recursion_limit,other62033.recursion_limit)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this62032__$1.recursive_QMARK_,other62033.recursive_QMARK_)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this62032__$1.reverse_QMARK_,other62033.reverse_QMARK_)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this62032__$1.xform,other62033.xform)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this62032__$1.multival_QMARK_,other62033.multival_QMARK_)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this62032__$1.ref_QMARK_,other62033.ref_QMARK_)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this62032__$1.component_QMARK_,other62033.component_QMARK_)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this62032__$1.__extmap,other62033.__extmap)))))))))))))))))))))))))))));
 }));
 
 (datascript.pull_parser.PullAttr.prototype.cljs$core$IMap$_dissoc$arity$2 = (function (this__5333__auto__,k__5334__auto__){
@@ -179,12 +179,12 @@ return (new datascript.pull_parser.PullAttr(self__.as,self__.default$,self__.lim
 }
 }));
 
-(datascript.pull_parser.PullAttr.prototype.cljs$core$IAssociative$_contains_key_QMARK_$arity$2 = (function (this__5330__auto__,k61994){
+(datascript.pull_parser.PullAttr.prototype.cljs$core$IAssociative$_contains_key_QMARK_$arity$2 = (function (this__5330__auto__,k62031){
 var self__ = this;
 var this__5330__auto____$1 = this;
-var G__62072 = k61994;
-var G__62072__$1 = (((G__62072 instanceof cljs.core.Keyword))?G__62072.fqn:null);
-switch (G__62072__$1) {
+var G__62073 = k62031;
+var G__62073__$1 = (((G__62073 instanceof cljs.core.Keyword))?G__62073.fqn:null);
+switch (G__62073__$1) {
 case "as":
 case "default":
 case "limit":
@@ -201,53 +201,53 @@ return true;
 
 break;
 default:
-return cljs.core.contains_QMARK_(self__.__extmap,k61994);
+return cljs.core.contains_QMARK_(self__.__extmap,k62031);
 
 }
 }));
 
-(datascript.pull_parser.PullAttr.prototype.cljs$core$IAssociative$_assoc$arity$3 = (function (this__5331__auto__,k__5332__auto__,G__61993){
+(datascript.pull_parser.PullAttr.prototype.cljs$core$IAssociative$_assoc$arity$3 = (function (this__5331__auto__,k__5332__auto__,G__62030){
 var self__ = this;
 var this__5331__auto____$1 = this;
-var pred__62073 = cljs.core.keyword_identical_QMARK_;
-var expr__62074 = k__5332__auto__;
-if(cljs.core.truth_((pred__62073.cljs$core$IFn$_invoke$arity$2 ? pred__62073.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"as","as",1148689641),expr__62074) : pred__62073.call(null,new cljs.core.Keyword(null,"as","as",1148689641),expr__62074)))){
-return (new datascript.pull_parser.PullAttr(G__61993,self__.default$,self__.limit,self__.name,self__.pattern,self__.recursion_limit,self__.recursive_QMARK_,self__.reverse_QMARK_,self__.xform,self__.multival_QMARK_,self__.ref_QMARK_,self__.component_QMARK_,self__.__meta,self__.__extmap,null));
+var pred__62075 = cljs.core.keyword_identical_QMARK_;
+var expr__62076 = k__5332__auto__;
+if(cljs.core.truth_((pred__62075.cljs$core$IFn$_invoke$arity$2 ? pred__62075.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"as","as",1148689641),expr__62076) : pred__62075.call(null,new cljs.core.Keyword(null,"as","as",1148689641),expr__62076)))){
+return (new datascript.pull_parser.PullAttr(G__62030,self__.default$,self__.limit,self__.name,self__.pattern,self__.recursion_limit,self__.recursive_QMARK_,self__.reverse_QMARK_,self__.xform,self__.multival_QMARK_,self__.ref_QMARK_,self__.component_QMARK_,self__.__meta,self__.__extmap,null));
 } else {
-if(cljs.core.truth_((pred__62073.cljs$core$IFn$_invoke$arity$2 ? pred__62073.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"default","default",-1987822328),expr__62074) : pred__62073.call(null,new cljs.core.Keyword(null,"default","default",-1987822328),expr__62074)))){
-return (new datascript.pull_parser.PullAttr(self__.as,G__61993,self__.limit,self__.name,self__.pattern,self__.recursion_limit,self__.recursive_QMARK_,self__.reverse_QMARK_,self__.xform,self__.multival_QMARK_,self__.ref_QMARK_,self__.component_QMARK_,self__.__meta,self__.__extmap,null));
+if(cljs.core.truth_((pred__62075.cljs$core$IFn$_invoke$arity$2 ? pred__62075.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"default","default",-1987822328),expr__62076) : pred__62075.call(null,new cljs.core.Keyword(null,"default","default",-1987822328),expr__62076)))){
+return (new datascript.pull_parser.PullAttr(self__.as,G__62030,self__.limit,self__.name,self__.pattern,self__.recursion_limit,self__.recursive_QMARK_,self__.reverse_QMARK_,self__.xform,self__.multival_QMARK_,self__.ref_QMARK_,self__.component_QMARK_,self__.__meta,self__.__extmap,null));
 } else {
-if(cljs.core.truth_((pred__62073.cljs$core$IFn$_invoke$arity$2 ? pred__62073.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"limit","limit",-1355822363),expr__62074) : pred__62073.call(null,new cljs.core.Keyword(null,"limit","limit",-1355822363),expr__62074)))){
-return (new datascript.pull_parser.PullAttr(self__.as,self__.default$,G__61993,self__.name,self__.pattern,self__.recursion_limit,self__.recursive_QMARK_,self__.reverse_QMARK_,self__.xform,self__.multival_QMARK_,self__.ref_QMARK_,self__.component_QMARK_,self__.__meta,self__.__extmap,null));
+if(cljs.core.truth_((pred__62075.cljs$core$IFn$_invoke$arity$2 ? pred__62075.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"limit","limit",-1355822363),expr__62076) : pred__62075.call(null,new cljs.core.Keyword(null,"limit","limit",-1355822363),expr__62076)))){
+return (new datascript.pull_parser.PullAttr(self__.as,self__.default$,G__62030,self__.name,self__.pattern,self__.recursion_limit,self__.recursive_QMARK_,self__.reverse_QMARK_,self__.xform,self__.multival_QMARK_,self__.ref_QMARK_,self__.component_QMARK_,self__.__meta,self__.__extmap,null));
 } else {
-if(cljs.core.truth_((pred__62073.cljs$core$IFn$_invoke$arity$2 ? pred__62073.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"name","name",1843675177),expr__62074) : pred__62073.call(null,new cljs.core.Keyword(null,"name","name",1843675177),expr__62074)))){
-return (new datascript.pull_parser.PullAttr(self__.as,self__.default$,self__.limit,G__61993,self__.pattern,self__.recursion_limit,self__.recursive_QMARK_,self__.reverse_QMARK_,self__.xform,self__.multival_QMARK_,self__.ref_QMARK_,self__.component_QMARK_,self__.__meta,self__.__extmap,null));
+if(cljs.core.truth_((pred__62075.cljs$core$IFn$_invoke$arity$2 ? pred__62075.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"name","name",1843675177),expr__62076) : pred__62075.call(null,new cljs.core.Keyword(null,"name","name",1843675177),expr__62076)))){
+return (new datascript.pull_parser.PullAttr(self__.as,self__.default$,self__.limit,G__62030,self__.pattern,self__.recursion_limit,self__.recursive_QMARK_,self__.reverse_QMARK_,self__.xform,self__.multival_QMARK_,self__.ref_QMARK_,self__.component_QMARK_,self__.__meta,self__.__extmap,null));
 } else {
-if(cljs.core.truth_((pred__62073.cljs$core$IFn$_invoke$arity$2 ? pred__62073.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"pattern","pattern",242135423),expr__62074) : pred__62073.call(null,new cljs.core.Keyword(null,"pattern","pattern",242135423),expr__62074)))){
-return (new datascript.pull_parser.PullAttr(self__.as,self__.default$,self__.limit,self__.name,G__61993,self__.recursion_limit,self__.recursive_QMARK_,self__.reverse_QMARK_,self__.xform,self__.multival_QMARK_,self__.ref_QMARK_,self__.component_QMARK_,self__.__meta,self__.__extmap,null));
+if(cljs.core.truth_((pred__62075.cljs$core$IFn$_invoke$arity$2 ? pred__62075.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"pattern","pattern",242135423),expr__62076) : pred__62075.call(null,new cljs.core.Keyword(null,"pattern","pattern",242135423),expr__62076)))){
+return (new datascript.pull_parser.PullAttr(self__.as,self__.default$,self__.limit,self__.name,G__62030,self__.recursion_limit,self__.recursive_QMARK_,self__.reverse_QMARK_,self__.xform,self__.multival_QMARK_,self__.ref_QMARK_,self__.component_QMARK_,self__.__meta,self__.__extmap,null));
 } else {
-if(cljs.core.truth_((pred__62073.cljs$core$IFn$_invoke$arity$2 ? pred__62073.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"recursion-limit","recursion-limit",52345639),expr__62074) : pred__62073.call(null,new cljs.core.Keyword(null,"recursion-limit","recursion-limit",52345639),expr__62074)))){
-return (new datascript.pull_parser.PullAttr(self__.as,self__.default$,self__.limit,self__.name,self__.pattern,G__61993,self__.recursive_QMARK_,self__.reverse_QMARK_,self__.xform,self__.multival_QMARK_,self__.ref_QMARK_,self__.component_QMARK_,self__.__meta,self__.__extmap,null));
+if(cljs.core.truth_((pred__62075.cljs$core$IFn$_invoke$arity$2 ? pred__62075.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"recursion-limit","recursion-limit",52345639),expr__62076) : pred__62075.call(null,new cljs.core.Keyword(null,"recursion-limit","recursion-limit",52345639),expr__62076)))){
+return (new datascript.pull_parser.PullAttr(self__.as,self__.default$,self__.limit,self__.name,self__.pattern,G__62030,self__.recursive_QMARK_,self__.reverse_QMARK_,self__.xform,self__.multival_QMARK_,self__.ref_QMARK_,self__.component_QMARK_,self__.__meta,self__.__extmap,null));
 } else {
-if(cljs.core.truth_((pred__62073.cljs$core$IFn$_invoke$arity$2 ? pred__62073.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"recursive?","recursive?",1340075244),expr__62074) : pred__62073.call(null,new cljs.core.Keyword(null,"recursive?","recursive?",1340075244),expr__62074)))){
-return (new datascript.pull_parser.PullAttr(self__.as,self__.default$,self__.limit,self__.name,self__.pattern,self__.recursion_limit,G__61993,self__.reverse_QMARK_,self__.xform,self__.multival_QMARK_,self__.ref_QMARK_,self__.component_QMARK_,self__.__meta,self__.__extmap,null));
+if(cljs.core.truth_((pred__62075.cljs$core$IFn$_invoke$arity$2 ? pred__62075.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"recursive?","recursive?",1340075244),expr__62076) : pred__62075.call(null,new cljs.core.Keyword(null,"recursive?","recursive?",1340075244),expr__62076)))){
+return (new datascript.pull_parser.PullAttr(self__.as,self__.default$,self__.limit,self__.name,self__.pattern,self__.recursion_limit,G__62030,self__.reverse_QMARK_,self__.xform,self__.multival_QMARK_,self__.ref_QMARK_,self__.component_QMARK_,self__.__meta,self__.__extmap,null));
 } else {
-if(cljs.core.truth_((pred__62073.cljs$core$IFn$_invoke$arity$2 ? pred__62073.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"reverse?","reverse?",-1672868474),expr__62074) : pred__62073.call(null,new cljs.core.Keyword(null,"reverse?","reverse?",-1672868474),expr__62074)))){
-return (new datascript.pull_parser.PullAttr(self__.as,self__.default$,self__.limit,self__.name,self__.pattern,self__.recursion_limit,self__.recursive_QMARK_,G__61993,self__.xform,self__.multival_QMARK_,self__.ref_QMARK_,self__.component_QMARK_,self__.__meta,self__.__extmap,null));
+if(cljs.core.truth_((pred__62075.cljs$core$IFn$_invoke$arity$2 ? pred__62075.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"reverse?","reverse?",-1672868474),expr__62076) : pred__62075.call(null,new cljs.core.Keyword(null,"reverse?","reverse?",-1672868474),expr__62076)))){
+return (new datascript.pull_parser.PullAttr(self__.as,self__.default$,self__.limit,self__.name,self__.pattern,self__.recursion_limit,self__.recursive_QMARK_,G__62030,self__.xform,self__.multival_QMARK_,self__.ref_QMARK_,self__.component_QMARK_,self__.__meta,self__.__extmap,null));
 } else {
-if(cljs.core.truth_((pred__62073.cljs$core$IFn$_invoke$arity$2 ? pred__62073.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"xform","xform",-1725711008),expr__62074) : pred__62073.call(null,new cljs.core.Keyword(null,"xform","xform",-1725711008),expr__62074)))){
-return (new datascript.pull_parser.PullAttr(self__.as,self__.default$,self__.limit,self__.name,self__.pattern,self__.recursion_limit,self__.recursive_QMARK_,self__.reverse_QMARK_,G__61993,self__.multival_QMARK_,self__.ref_QMARK_,self__.component_QMARK_,self__.__meta,self__.__extmap,null));
+if(cljs.core.truth_((pred__62075.cljs$core$IFn$_invoke$arity$2 ? pred__62075.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"xform","xform",-1725711008),expr__62076) : pred__62075.call(null,new cljs.core.Keyword(null,"xform","xform",-1725711008),expr__62076)))){
+return (new datascript.pull_parser.PullAttr(self__.as,self__.default$,self__.limit,self__.name,self__.pattern,self__.recursion_limit,self__.recursive_QMARK_,self__.reverse_QMARK_,G__62030,self__.multival_QMARK_,self__.ref_QMARK_,self__.component_QMARK_,self__.__meta,self__.__extmap,null));
 } else {
-if(cljs.core.truth_((pred__62073.cljs$core$IFn$_invoke$arity$2 ? pred__62073.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"multival?","multival?",1072388383),expr__62074) : pred__62073.call(null,new cljs.core.Keyword(null,"multival?","multival?",1072388383),expr__62074)))){
-return (new datascript.pull_parser.PullAttr(self__.as,self__.default$,self__.limit,self__.name,self__.pattern,self__.recursion_limit,self__.recursive_QMARK_,self__.reverse_QMARK_,self__.xform,G__61993,self__.ref_QMARK_,self__.component_QMARK_,self__.__meta,self__.__extmap,null));
+if(cljs.core.truth_((pred__62075.cljs$core$IFn$_invoke$arity$2 ? pred__62075.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"multival?","multival?",1072388383),expr__62076) : pred__62075.call(null,new cljs.core.Keyword(null,"multival?","multival?",1072388383),expr__62076)))){
+return (new datascript.pull_parser.PullAttr(self__.as,self__.default$,self__.limit,self__.name,self__.pattern,self__.recursion_limit,self__.recursive_QMARK_,self__.reverse_QMARK_,self__.xform,G__62030,self__.ref_QMARK_,self__.component_QMARK_,self__.__meta,self__.__extmap,null));
 } else {
-if(cljs.core.truth_((pred__62073.cljs$core$IFn$_invoke$arity$2 ? pred__62073.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"ref?","ref?",1932693720),expr__62074) : pred__62073.call(null,new cljs.core.Keyword(null,"ref?","ref?",1932693720),expr__62074)))){
-return (new datascript.pull_parser.PullAttr(self__.as,self__.default$,self__.limit,self__.name,self__.pattern,self__.recursion_limit,self__.recursive_QMARK_,self__.reverse_QMARK_,self__.xform,self__.multival_QMARK_,G__61993,self__.component_QMARK_,self__.__meta,self__.__extmap,null));
+if(cljs.core.truth_((pred__62075.cljs$core$IFn$_invoke$arity$2 ? pred__62075.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"ref?","ref?",1932693720),expr__62076) : pred__62075.call(null,new cljs.core.Keyword(null,"ref?","ref?",1932693720),expr__62076)))){
+return (new datascript.pull_parser.PullAttr(self__.as,self__.default$,self__.limit,self__.name,self__.pattern,self__.recursion_limit,self__.recursive_QMARK_,self__.reverse_QMARK_,self__.xform,self__.multival_QMARK_,G__62030,self__.component_QMARK_,self__.__meta,self__.__extmap,null));
 } else {
-if(cljs.core.truth_((pred__62073.cljs$core$IFn$_invoke$arity$2 ? pred__62073.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"component?","component?",407783990),expr__62074) : pred__62073.call(null,new cljs.core.Keyword(null,"component?","component?",407783990),expr__62074)))){
-return (new datascript.pull_parser.PullAttr(self__.as,self__.default$,self__.limit,self__.name,self__.pattern,self__.recursion_limit,self__.recursive_QMARK_,self__.reverse_QMARK_,self__.xform,self__.multival_QMARK_,self__.ref_QMARK_,G__61993,self__.__meta,self__.__extmap,null));
+if(cljs.core.truth_((pred__62075.cljs$core$IFn$_invoke$arity$2 ? pred__62075.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"component?","component?",407783990),expr__62076) : pred__62075.call(null,new cljs.core.Keyword(null,"component?","component?",407783990),expr__62076)))){
+return (new datascript.pull_parser.PullAttr(self__.as,self__.default$,self__.limit,self__.name,self__.pattern,self__.recursion_limit,self__.recursive_QMARK_,self__.reverse_QMARK_,self__.xform,self__.multival_QMARK_,self__.ref_QMARK_,G__62030,self__.__meta,self__.__extmap,null));
 } else {
-return (new datascript.pull_parser.PullAttr(self__.as,self__.default$,self__.limit,self__.name,self__.pattern,self__.recursion_limit,self__.recursive_QMARK_,self__.reverse_QMARK_,self__.xform,self__.multival_QMARK_,self__.ref_QMARK_,self__.component_QMARK_,self__.__meta,cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(self__.__extmap,k__5332__auto__,G__61993),null));
+return (new datascript.pull_parser.PullAttr(self__.as,self__.default$,self__.limit,self__.name,self__.pattern,self__.recursion_limit,self__.recursive_QMARK_,self__.reverse_QMARK_,self__.xform,self__.multival_QMARK_,self__.ref_QMARK_,self__.component_QMARK_,self__.__meta,cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(self__.__extmap,k__5332__auto__,G__62030),null));
 }
 }
 }
@@ -268,10 +268,10 @@ var this__5336__auto____$1 = this;
 return cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 12, 5, cljs.core.PersistentVector.EMPTY_NODE, [(new cljs.core.MapEntry(new cljs.core.Keyword(null,"as","as",1148689641),self__.as,null)),(new cljs.core.MapEntry(new cljs.core.Keyword(null,"default","default",-1987822328),self__.default$,null)),(new cljs.core.MapEntry(new cljs.core.Keyword(null,"limit","limit",-1355822363),self__.limit,null)),(new cljs.core.MapEntry(new cljs.core.Keyword(null,"name","name",1843675177),self__.name,null)),(new cljs.core.MapEntry(new cljs.core.Keyword(null,"pattern","pattern",242135423),self__.pattern,null)),(new cljs.core.MapEntry(new cljs.core.Keyword(null,"recursion-limit","recursion-limit",52345639),self__.recursion_limit,null)),(new cljs.core.MapEntry(new cljs.core.Keyword(null,"recursive?","recursive?",1340075244),self__.recursive_QMARK_,null)),(new cljs.core.MapEntry(new cljs.core.Keyword(null,"reverse?","reverse?",-1672868474),self__.reverse_QMARK_,null)),(new cljs.core.MapEntry(new cljs.core.Keyword(null,"xform","xform",-1725711008),self__.xform,null)),(new cljs.core.MapEntry(new cljs.core.Keyword(null,"multival?","multival?",1072388383),self__.multival_QMARK_,null)),(new cljs.core.MapEntry(new cljs.core.Keyword(null,"ref?","ref?",1932693720),self__.ref_QMARK_,null)),(new cljs.core.MapEntry(new cljs.core.Keyword(null,"component?","component?",407783990),self__.component_QMARK_,null))], null),self__.__extmap));
 }));
 
-(datascript.pull_parser.PullAttr.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (this__5322__auto__,G__61993){
+(datascript.pull_parser.PullAttr.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (this__5322__auto__,G__62030){
 var self__ = this;
 var this__5322__auto____$1 = this;
-return (new datascript.pull_parser.PullAttr(self__.as,self__.default$,self__.limit,self__.name,self__.pattern,self__.recursion_limit,self__.recursive_QMARK_,self__.reverse_QMARK_,self__.xform,self__.multival_QMARK_,self__.ref_QMARK_,self__.component_QMARK_,G__61993,self__.__extmap,self__.__hash));
+return (new datascript.pull_parser.PullAttr(self__.as,self__.default$,self__.limit,self__.name,self__.pattern,self__.recursion_limit,self__.recursive_QMARK_,self__.reverse_QMARK_,self__.xform,self__.multival_QMARK_,self__.ref_QMARK_,self__.component_QMARK_,G__62030,self__.__extmap,self__.__hash));
 }));
 
 (datascript.pull_parser.PullAttr.prototype.cljs$core$ICollection$_conj$arity$2 = (function (this__5328__auto__,entry__5329__auto__){
@@ -308,15 +308,15 @@ return (new datascript.pull_parser.PullAttr(as,default$,limit,name,pattern,recur
 /**
  * Factory function for datascript.pull-parser/PullAttr, taking a map of keywords to field values.
  */
-datascript.pull_parser.map__GT_PullAttr = (function datascript$pull_parser$map__GT_PullAttr(G__61999){
-var extmap__5365__auto__ = (function (){var G__62078 = cljs.core.dissoc.cljs$core$IFn$_invoke$arity$variadic(G__61999,new cljs.core.Keyword(null,"as","as",1148689641),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"default","default",-1987822328),new cljs.core.Keyword(null,"limit","limit",-1355822363),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"pattern","pattern",242135423),new cljs.core.Keyword(null,"recursion-limit","recursion-limit",52345639),new cljs.core.Keyword(null,"recursive?","recursive?",1340075244),new cljs.core.Keyword(null,"reverse?","reverse?",-1672868474),new cljs.core.Keyword(null,"xform","xform",-1725711008),new cljs.core.Keyword(null,"multival?","multival?",1072388383),new cljs.core.Keyword(null,"ref?","ref?",1932693720),new cljs.core.Keyword(null,"component?","component?",407783990)], 0));
-if(cljs.core.record_QMARK_(G__61999)){
-return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentArrayMap.EMPTY,G__62078);
+datascript.pull_parser.map__GT_PullAttr = (function datascript$pull_parser$map__GT_PullAttr(G__62036){
+var extmap__5365__auto__ = (function (){var G__62080 = cljs.core.dissoc.cljs$core$IFn$_invoke$arity$variadic(G__62036,new cljs.core.Keyword(null,"as","as",1148689641),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"default","default",-1987822328),new cljs.core.Keyword(null,"limit","limit",-1355822363),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"pattern","pattern",242135423),new cljs.core.Keyword(null,"recursion-limit","recursion-limit",52345639),new cljs.core.Keyword(null,"recursive?","recursive?",1340075244),new cljs.core.Keyword(null,"reverse?","reverse?",-1672868474),new cljs.core.Keyword(null,"xform","xform",-1725711008),new cljs.core.Keyword(null,"multival?","multival?",1072388383),new cljs.core.Keyword(null,"ref?","ref?",1932693720),new cljs.core.Keyword(null,"component?","component?",407783990)], 0));
+if(cljs.core.record_QMARK_(G__62036)){
+return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentArrayMap.EMPTY,G__62080);
 } else {
-return G__62078;
+return G__62080;
 }
 })();
-return (new datascript.pull_parser.PullAttr(new cljs.core.Keyword(null,"as","as",1148689641).cljs$core$IFn$_invoke$arity$1(G__61999),new cljs.core.Keyword(null,"default","default",-1987822328).cljs$core$IFn$_invoke$arity$1(G__61999),new cljs.core.Keyword(null,"limit","limit",-1355822363).cljs$core$IFn$_invoke$arity$1(G__61999),new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(G__61999),new cljs.core.Keyword(null,"pattern","pattern",242135423).cljs$core$IFn$_invoke$arity$1(G__61999),new cljs.core.Keyword(null,"recursion-limit","recursion-limit",52345639).cljs$core$IFn$_invoke$arity$1(G__61999),new cljs.core.Keyword(null,"recursive?","recursive?",1340075244).cljs$core$IFn$_invoke$arity$1(G__61999),new cljs.core.Keyword(null,"reverse?","reverse?",-1672868474).cljs$core$IFn$_invoke$arity$1(G__61999),new cljs.core.Keyword(null,"xform","xform",-1725711008).cljs$core$IFn$_invoke$arity$1(G__61999),new cljs.core.Keyword(null,"multival?","multival?",1072388383).cljs$core$IFn$_invoke$arity$1(G__61999),new cljs.core.Keyword(null,"ref?","ref?",1932693720).cljs$core$IFn$_invoke$arity$1(G__61999),new cljs.core.Keyword(null,"component?","component?",407783990).cljs$core$IFn$_invoke$arity$1(G__61999),null,cljs.core.not_empty(extmap__5365__auto__),null));
+return (new datascript.pull_parser.PullAttr(new cljs.core.Keyword(null,"as","as",1148689641).cljs$core$IFn$_invoke$arity$1(G__62036),new cljs.core.Keyword(null,"default","default",-1987822328).cljs$core$IFn$_invoke$arity$1(G__62036),new cljs.core.Keyword(null,"limit","limit",-1355822363).cljs$core$IFn$_invoke$arity$1(G__62036),new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(G__62036),new cljs.core.Keyword(null,"pattern","pattern",242135423).cljs$core$IFn$_invoke$arity$1(G__62036),new cljs.core.Keyword(null,"recursion-limit","recursion-limit",52345639).cljs$core$IFn$_invoke$arity$1(G__62036),new cljs.core.Keyword(null,"recursive?","recursive?",1340075244).cljs$core$IFn$_invoke$arity$1(G__62036),new cljs.core.Keyword(null,"reverse?","reverse?",-1672868474).cljs$core$IFn$_invoke$arity$1(G__62036),new cljs.core.Keyword(null,"xform","xform",-1725711008).cljs$core$IFn$_invoke$arity$1(G__62036),new cljs.core.Keyword(null,"multival?","multival?",1072388383).cljs$core$IFn$_invoke$arity$1(G__62036),new cljs.core.Keyword(null,"ref?","ref?",1932693720).cljs$core$IFn$_invoke$arity$1(G__62036),new cljs.core.Keyword(null,"component?","component?",407783990).cljs$core$IFn$_invoke$arity$1(G__62036),null,cljs.core.not_empty(extmap__5365__auto__),null));
 });
 
 
@@ -356,12 +356,12 @@ var this__5323__auto____$1 = this;
 return this__5323__auto____$1.cljs$core$ILookup$_lookup$arity$3(null,k__5324__auto__,null);
 }));
 
-(datascript.pull_parser.PullPattern.prototype.cljs$core$ILookup$_lookup$arity$3 = (function (this__5325__auto__,k62081,else__5326__auto__){
+(datascript.pull_parser.PullPattern.prototype.cljs$core$ILookup$_lookup$arity$3 = (function (this__5325__auto__,k62082,else__5326__auto__){
 var self__ = this;
 var this__5325__auto____$1 = this;
-var G__62085 = k62081;
-var G__62085__$1 = (((G__62085 instanceof cljs.core.Keyword))?G__62085.fqn:null);
-switch (G__62085__$1) {
+var G__62091 = k62082;
+var G__62091__$1 = (((G__62091 instanceof cljs.core.Keyword))?G__62091.fqn:null);
+switch (G__62091__$1) {
 case "attrs":
 return self__.attrs;
 
@@ -383,7 +383,7 @@ return self__.wildcard_QMARK_;
 
 break;
 default:
-return cljs.core.get.cljs$core$IFn$_invoke$arity$3(self__.__extmap,k62081,else__5326__auto__);
+return cljs.core.get.cljs$core$IFn$_invoke$arity$3(self__.__extmap,k62082,else__5326__auto__);
 
 }
 }));
@@ -391,10 +391,10 @@ return cljs.core.get.cljs$core$IFn$_invoke$arity$3(self__.__extmap,k62081,else__
 (datascript.pull_parser.PullPattern.prototype.cljs$core$IKVReduce$_kv_reduce$arity$3 = (function (this__5343__auto__,f__5344__auto__,init__5345__auto__){
 var self__ = this;
 var this__5343__auto____$1 = this;
-return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (ret__5346__auto__,p__62086){
-var vec__62087 = p__62086;
-var k__5347__auto__ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__62087,(0),null);
-var v__5348__auto__ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__62087,(1),null);
+return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (ret__5346__auto__,p__62092){
+var vec__62093 = p__62092;
+var k__5347__auto__ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__62093,(0),null);
+var v__5348__auto__ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__62093,(1),null);
 return (f__5344__auto__.cljs$core$IFn$_invoke$arity$3 ? f__5344__auto__.cljs$core$IFn$_invoke$arity$3(ret__5346__auto__,k__5347__auto__,v__5348__auto__) : f__5344__auto__.call(null,ret__5346__auto__,k__5347__auto__,v__5348__auto__));
 }),init__5345__auto__,this__5343__auto____$1);
 }));
@@ -408,10 +408,10 @@ return cljs.core.pr_sequential_writer(writer__5339__auto__,cljs.core.pr_writer,"
 return cljs.core.pr_sequential_writer(writer__5339__auto__,pr_pair__5341__auto__,"#datascript.pull-parser.PullPattern{",", ","}",opts__5340__auto__,cljs.core.concat.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"attrs","attrs",-2090668713),self__.attrs],null)),(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"first-attr","first-attr",-1993039831),self__.first_attr],null)),(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"last-attr","last-attr",-526000708),self__.last_attr],null)),(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"reverse-attrs","reverse-attrs",630097702),self__.reverse_attrs],null)),(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"wildcard?","wildcard?",-686044101),self__.wildcard_QMARK_],null))], null),self__.__extmap));
 }));
 
-(datascript.pull_parser.PullPattern.prototype.cljs$core$IIterable$_iterator$arity$1 = (function (G__62080){
+(datascript.pull_parser.PullPattern.prototype.cljs$core$IIterable$_iterator$arity$1 = (function (G__62081){
 var self__ = this;
-var G__62080__$1 = this;
-return (new cljs.core.RecordIter((0),G__62080__$1,5,new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"attrs","attrs",-2090668713),new cljs.core.Keyword(null,"first-attr","first-attr",-1993039831),new cljs.core.Keyword(null,"last-attr","last-attr",-526000708),new cljs.core.Keyword(null,"reverse-attrs","reverse-attrs",630097702),new cljs.core.Keyword(null,"wildcard?","wildcard?",-686044101)], null),(cljs.core.truth_(self__.__extmap)?cljs.core._iterator(self__.__extmap):cljs.core.nil_iter())));
+var G__62081__$1 = this;
+return (new cljs.core.RecordIter((0),G__62081__$1,5,new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"attrs","attrs",-2090668713),new cljs.core.Keyword(null,"first-attr","first-attr",-1993039831),new cljs.core.Keyword(null,"last-attr","last-attr",-526000708),new cljs.core.Keyword(null,"reverse-attrs","reverse-attrs",630097702),new cljs.core.Keyword(null,"wildcard?","wildcard?",-686044101)], null),(cljs.core.truth_(self__.__extmap)?cljs.core._iterator(self__.__extmap):cljs.core.nil_iter())));
 }));
 
 (datascript.pull_parser.PullPattern.prototype.cljs$core$IMeta$_meta$arity$1 = (function (this__5321__auto__){
@@ -448,10 +448,10 @@ return h__5134__auto____$1;
 }
 }));
 
-(datascript.pull_parser.PullPattern.prototype.cljs$core$IEquiv$_equiv$arity$2 = (function (this62082,other62083){
+(datascript.pull_parser.PullPattern.prototype.cljs$core$IEquiv$_equiv$arity$2 = (function (this62084,other62085){
 var self__ = this;
-var this62082__$1 = this;
-return (((!((other62083 == null)))) && ((((this62082__$1.constructor === other62083.constructor)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this62082__$1.attrs,other62083.attrs)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this62082__$1.first_attr,other62083.first_attr)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this62082__$1.last_attr,other62083.last_attr)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this62082__$1.reverse_attrs,other62083.reverse_attrs)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this62082__$1.wildcard_QMARK_,other62083.wildcard_QMARK_)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this62082__$1.__extmap,other62083.__extmap)))))))))))))));
+var this62084__$1 = this;
+return (((!((other62085 == null)))) && ((((this62084__$1.constructor === other62085.constructor)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this62084__$1.attrs,other62085.attrs)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this62084__$1.first_attr,other62085.first_attr)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this62084__$1.last_attr,other62085.last_attr)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this62084__$1.reverse_attrs,other62085.reverse_attrs)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this62084__$1.wildcard_QMARK_,other62085.wildcard_QMARK_)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this62084__$1.__extmap,other62085.__extmap)))))))))))))));
 }));
 
 (datascript.pull_parser.PullPattern.prototype.cljs$core$IMap$_dissoc$arity$2 = (function (this__5333__auto__,k__5334__auto__){
@@ -464,12 +464,12 @@ return (new datascript.pull_parser.PullPattern(self__.attrs,self__.first_attr,se
 }
 }));
 
-(datascript.pull_parser.PullPattern.prototype.cljs$core$IAssociative$_contains_key_QMARK_$arity$2 = (function (this__5330__auto__,k62081){
+(datascript.pull_parser.PullPattern.prototype.cljs$core$IAssociative$_contains_key_QMARK_$arity$2 = (function (this__5330__auto__,k62082){
 var self__ = this;
 var this__5330__auto____$1 = this;
-var G__62091 = k62081;
-var G__62091__$1 = (((G__62091 instanceof cljs.core.Keyword))?G__62091.fqn:null);
-switch (G__62091__$1) {
+var G__62102 = k62082;
+var G__62102__$1 = (((G__62102 instanceof cljs.core.Keyword))?G__62102.fqn:null);
+switch (G__62102__$1) {
 case "attrs":
 case "first-attr":
 case "last-attr":
@@ -479,32 +479,32 @@ return true;
 
 break;
 default:
-return cljs.core.contains_QMARK_(self__.__extmap,k62081);
+return cljs.core.contains_QMARK_(self__.__extmap,k62082);
 
 }
 }));
 
-(datascript.pull_parser.PullPattern.prototype.cljs$core$IAssociative$_assoc$arity$3 = (function (this__5331__auto__,k__5332__auto__,G__62080){
+(datascript.pull_parser.PullPattern.prototype.cljs$core$IAssociative$_assoc$arity$3 = (function (this__5331__auto__,k__5332__auto__,G__62081){
 var self__ = this;
 var this__5331__auto____$1 = this;
-var pred__62092 = cljs.core.keyword_identical_QMARK_;
-var expr__62093 = k__5332__auto__;
-if(cljs.core.truth_((pred__62092.cljs$core$IFn$_invoke$arity$2 ? pred__62092.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"attrs","attrs",-2090668713),expr__62093) : pred__62092.call(null,new cljs.core.Keyword(null,"attrs","attrs",-2090668713),expr__62093)))){
-return (new datascript.pull_parser.PullPattern(G__62080,self__.first_attr,self__.last_attr,self__.reverse_attrs,self__.wildcard_QMARK_,self__.__meta,self__.__extmap,null));
+var pred__62107 = cljs.core.keyword_identical_QMARK_;
+var expr__62108 = k__5332__auto__;
+if(cljs.core.truth_((pred__62107.cljs$core$IFn$_invoke$arity$2 ? pred__62107.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"attrs","attrs",-2090668713),expr__62108) : pred__62107.call(null,new cljs.core.Keyword(null,"attrs","attrs",-2090668713),expr__62108)))){
+return (new datascript.pull_parser.PullPattern(G__62081,self__.first_attr,self__.last_attr,self__.reverse_attrs,self__.wildcard_QMARK_,self__.__meta,self__.__extmap,null));
 } else {
-if(cljs.core.truth_((pred__62092.cljs$core$IFn$_invoke$arity$2 ? pred__62092.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"first-attr","first-attr",-1993039831),expr__62093) : pred__62092.call(null,new cljs.core.Keyword(null,"first-attr","first-attr",-1993039831),expr__62093)))){
-return (new datascript.pull_parser.PullPattern(self__.attrs,G__62080,self__.last_attr,self__.reverse_attrs,self__.wildcard_QMARK_,self__.__meta,self__.__extmap,null));
+if(cljs.core.truth_((pred__62107.cljs$core$IFn$_invoke$arity$2 ? pred__62107.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"first-attr","first-attr",-1993039831),expr__62108) : pred__62107.call(null,new cljs.core.Keyword(null,"first-attr","first-attr",-1993039831),expr__62108)))){
+return (new datascript.pull_parser.PullPattern(self__.attrs,G__62081,self__.last_attr,self__.reverse_attrs,self__.wildcard_QMARK_,self__.__meta,self__.__extmap,null));
 } else {
-if(cljs.core.truth_((pred__62092.cljs$core$IFn$_invoke$arity$2 ? pred__62092.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"last-attr","last-attr",-526000708),expr__62093) : pred__62092.call(null,new cljs.core.Keyword(null,"last-attr","last-attr",-526000708),expr__62093)))){
-return (new datascript.pull_parser.PullPattern(self__.attrs,self__.first_attr,G__62080,self__.reverse_attrs,self__.wildcard_QMARK_,self__.__meta,self__.__extmap,null));
+if(cljs.core.truth_((pred__62107.cljs$core$IFn$_invoke$arity$2 ? pred__62107.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"last-attr","last-attr",-526000708),expr__62108) : pred__62107.call(null,new cljs.core.Keyword(null,"last-attr","last-attr",-526000708),expr__62108)))){
+return (new datascript.pull_parser.PullPattern(self__.attrs,self__.first_attr,G__62081,self__.reverse_attrs,self__.wildcard_QMARK_,self__.__meta,self__.__extmap,null));
 } else {
-if(cljs.core.truth_((pred__62092.cljs$core$IFn$_invoke$arity$2 ? pred__62092.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"reverse-attrs","reverse-attrs",630097702),expr__62093) : pred__62092.call(null,new cljs.core.Keyword(null,"reverse-attrs","reverse-attrs",630097702),expr__62093)))){
-return (new datascript.pull_parser.PullPattern(self__.attrs,self__.first_attr,self__.last_attr,G__62080,self__.wildcard_QMARK_,self__.__meta,self__.__extmap,null));
+if(cljs.core.truth_((pred__62107.cljs$core$IFn$_invoke$arity$2 ? pred__62107.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"reverse-attrs","reverse-attrs",630097702),expr__62108) : pred__62107.call(null,new cljs.core.Keyword(null,"reverse-attrs","reverse-attrs",630097702),expr__62108)))){
+return (new datascript.pull_parser.PullPattern(self__.attrs,self__.first_attr,self__.last_attr,G__62081,self__.wildcard_QMARK_,self__.__meta,self__.__extmap,null));
 } else {
-if(cljs.core.truth_((pred__62092.cljs$core$IFn$_invoke$arity$2 ? pred__62092.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"wildcard?","wildcard?",-686044101),expr__62093) : pred__62092.call(null,new cljs.core.Keyword(null,"wildcard?","wildcard?",-686044101),expr__62093)))){
-return (new datascript.pull_parser.PullPattern(self__.attrs,self__.first_attr,self__.last_attr,self__.reverse_attrs,G__62080,self__.__meta,self__.__extmap,null));
+if(cljs.core.truth_((pred__62107.cljs$core$IFn$_invoke$arity$2 ? pred__62107.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"wildcard?","wildcard?",-686044101),expr__62108) : pred__62107.call(null,new cljs.core.Keyword(null,"wildcard?","wildcard?",-686044101),expr__62108)))){
+return (new datascript.pull_parser.PullPattern(self__.attrs,self__.first_attr,self__.last_attr,self__.reverse_attrs,G__62081,self__.__meta,self__.__extmap,null));
 } else {
-return (new datascript.pull_parser.PullPattern(self__.attrs,self__.first_attr,self__.last_attr,self__.reverse_attrs,self__.wildcard_QMARK_,self__.__meta,cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(self__.__extmap,k__5332__auto__,G__62080),null));
+return (new datascript.pull_parser.PullPattern(self__.attrs,self__.first_attr,self__.last_attr,self__.reverse_attrs,self__.wildcard_QMARK_,self__.__meta,cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(self__.__extmap,k__5332__auto__,G__62081),null));
 }
 }
 }
@@ -518,10 +518,10 @@ var this__5336__auto____$1 = this;
 return cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [(new cljs.core.MapEntry(new cljs.core.Keyword(null,"attrs","attrs",-2090668713),self__.attrs,null)),(new cljs.core.MapEntry(new cljs.core.Keyword(null,"first-attr","first-attr",-1993039831),self__.first_attr,null)),(new cljs.core.MapEntry(new cljs.core.Keyword(null,"last-attr","last-attr",-526000708),self__.last_attr,null)),(new cljs.core.MapEntry(new cljs.core.Keyword(null,"reverse-attrs","reverse-attrs",630097702),self__.reverse_attrs,null)),(new cljs.core.MapEntry(new cljs.core.Keyword(null,"wildcard?","wildcard?",-686044101),self__.wildcard_QMARK_,null))], null),self__.__extmap));
 }));
 
-(datascript.pull_parser.PullPattern.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (this__5322__auto__,G__62080){
+(datascript.pull_parser.PullPattern.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (this__5322__auto__,G__62081){
 var self__ = this;
 var this__5322__auto____$1 = this;
-return (new datascript.pull_parser.PullPattern(self__.attrs,self__.first_attr,self__.last_attr,self__.reverse_attrs,self__.wildcard_QMARK_,G__62080,self__.__extmap,self__.__hash));
+return (new datascript.pull_parser.PullPattern(self__.attrs,self__.first_attr,self__.last_attr,self__.reverse_attrs,self__.wildcard_QMARK_,G__62081,self__.__extmap,self__.__hash));
 }));
 
 (datascript.pull_parser.PullPattern.prototype.cljs$core$ICollection$_conj$arity$2 = (function (this__5328__auto__,entry__5329__auto__){
@@ -558,15 +558,15 @@ return (new datascript.pull_parser.PullPattern(attrs,first_attr,last_attr,revers
 /**
  * Factory function for datascript.pull-parser/PullPattern, taking a map of keywords to field values.
  */
-datascript.pull_parser.map__GT_PullPattern = (function datascript$pull_parser$map__GT_PullPattern(G__62084){
-var extmap__5365__auto__ = (function (){var G__62095 = cljs.core.dissoc.cljs$core$IFn$_invoke$arity$variadic(G__62084,new cljs.core.Keyword(null,"attrs","attrs",-2090668713),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"first-attr","first-attr",-1993039831),new cljs.core.Keyword(null,"last-attr","last-attr",-526000708),new cljs.core.Keyword(null,"reverse-attrs","reverse-attrs",630097702),new cljs.core.Keyword(null,"wildcard?","wildcard?",-686044101)], 0));
-if(cljs.core.record_QMARK_(G__62084)){
-return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentArrayMap.EMPTY,G__62095);
+datascript.pull_parser.map__GT_PullPattern = (function datascript$pull_parser$map__GT_PullPattern(G__62087){
+var extmap__5365__auto__ = (function (){var G__62116 = cljs.core.dissoc.cljs$core$IFn$_invoke$arity$variadic(G__62087,new cljs.core.Keyword(null,"attrs","attrs",-2090668713),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"first-attr","first-attr",-1993039831),new cljs.core.Keyword(null,"last-attr","last-attr",-526000708),new cljs.core.Keyword(null,"reverse-attrs","reverse-attrs",630097702),new cljs.core.Keyword(null,"wildcard?","wildcard?",-686044101)], 0));
+if(cljs.core.record_QMARK_(G__62087)){
+return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentArrayMap.EMPTY,G__62116);
 } else {
-return G__62095;
+return G__62116;
 }
 })();
-return (new datascript.pull_parser.PullPattern(new cljs.core.Keyword(null,"attrs","attrs",-2090668713).cljs$core$IFn$_invoke$arity$1(G__62084),new cljs.core.Keyword(null,"first-attr","first-attr",-1993039831).cljs$core$IFn$_invoke$arity$1(G__62084),new cljs.core.Keyword(null,"last-attr","last-attr",-526000708).cljs$core$IFn$_invoke$arity$1(G__62084),new cljs.core.Keyword(null,"reverse-attrs","reverse-attrs",630097702).cljs$core$IFn$_invoke$arity$1(G__62084),new cljs.core.Keyword(null,"wildcard?","wildcard?",-686044101).cljs$core$IFn$_invoke$arity$1(G__62084),null,cljs.core.not_empty(extmap__5365__auto__),null));
+return (new datascript.pull_parser.PullPattern(new cljs.core.Keyword(null,"attrs","attrs",-2090668713).cljs$core$IFn$_invoke$arity$1(G__62087),new cljs.core.Keyword(null,"first-attr","first-attr",-1993039831).cljs$core$IFn$_invoke$arity$1(G__62087),new cljs.core.Keyword(null,"last-attr","last-attr",-526000708).cljs$core$IFn$_invoke$arity$1(G__62087),new cljs.core.Keyword(null,"reverse-attrs","reverse-attrs",630097702).cljs$core$IFn$_invoke$arity$1(G__62087),new cljs.core.Keyword(null,"wildcard?","wildcard?",-686044101).cljs$core$IFn$_invoke$arity$1(G__62087),null,cljs.core.not_empty(extmap__5365__auto__),null));
 });
 
 datascript.pull_parser.default_db_id_attr = datascript.pull_parser.map__GT_PullAttr(new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword("db","id","db/id",-1388397098),new cljs.core.Keyword(null,"as","as",1148689641),new cljs.core.Keyword("db","id","db/id",-1388397098),new cljs.core.Keyword(null,"xform","xform",-1725711008),cljs.core.identity], null));
@@ -613,9 +613,9 @@ throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(["Can't resolve symbol ",c
 }
 });
 datascript.pull_parser.parse_attr_expr = (function datascript$pull_parser$parse_attr_expr(db,attr_spec){
-var temp__5829__auto__ = (function (){var G__62096 = db;
-var G__62097 = cljs.core.first(attr_spec);
-return (datascript.pull_parser.parse_attr_spec.cljs$core$IFn$_invoke$arity$2 ? datascript.pull_parser.parse_attr_spec.cljs$core$IFn$_invoke$arity$2(G__62096,G__62097) : datascript.pull_parser.parse_attr_spec.call(null,G__62096,G__62097));
+var temp__5829__auto__ = (function (){var G__62127 = db;
+var G__62128 = cljs.core.first(attr_spec);
+return (datascript.pull_parser.parse_attr_spec.cljs$core$IFn$_invoke$arity$2 ? datascript.pull_parser.parse_attr_spec.cljs$core$IFn$_invoke$arity$2(G__62127,G__62128) : datascript.pull_parser.parse_attr_spec.call(null,G__62127,G__62128));
 })();
 if((temp__5829__auto__ == null)){
 return null;
@@ -623,13 +623,13 @@ return null;
 var pull_attr = temp__5829__auto__;
 datascript.pull_parser.check(cljs.core.even_QMARK_(cljs.core.count(cljs.core.next(attr_spec))),"even number of opts",attr_spec);
 
-return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (pull_attr__$1,p__62098){
-var vec__62099 = p__62098;
-var key = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__62099,(0),null);
-var value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__62099,(1),null);
-var G__62102 = key;
-var G__62102__$1 = (((G__62102 instanceof cljs.core.Keyword))?G__62102.fqn:null);
-switch (G__62102__$1) {
+return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (pull_attr__$1,p__62131){
+var vec__62132 = p__62131;
+var key = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__62132,(0),null);
+var value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__62132,(1),null);
+var G__62137 = key;
+var G__62137__$1 = (((G__62137 instanceof cljs.core.Keyword))?G__62137.fqn:null);
+switch (G__62137__$1) {
 case "as":
 return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(pull_attr__$1,new cljs.core.Keyword(null,"as","as",1148689641),value);
 
@@ -657,16 +657,16 @@ return datascript.pull_parser.check(false,"one of :as, :limit, :default, :xform"
 });
 datascript.pull_parser.parse_legacy_limit_expr = (function datascript$pull_parser$parse_legacy_limit_expr(db,attr_spec){
 var expected = "['limit attr-name (positive-number | nil)]";
-if(cljs.core.truth_((function (){var G__62104 = cljs.core.first(attr_spec);
-var fexpr__62103 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Symbol(null,"limit","limit",284709164,null),null,"limit",null], null), null);
-return (fexpr__62103.cljs$core$IFn$_invoke$arity$1 ? fexpr__62103.cljs$core$IFn$_invoke$arity$1(G__62104) : fexpr__62103.call(null,G__62104));
+if(cljs.core.truth_((function (){var G__62141 = cljs.core.first(attr_spec);
+var fexpr__62140 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Symbol(null,"limit","limit",284709164,null),null,"limit",null], null), null);
+return (fexpr__62140.cljs$core$IFn$_invoke$arity$1 ? fexpr__62140.cljs$core$IFn$_invoke$arity$1(G__62141) : fexpr__62140.call(null,G__62141));
 })())){
 datascript.pull_parser.check(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.count(attr_spec),(3)),expected,attr_spec);
 
-var vec__62105 = attr_spec;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__62105,(0),null);
-var attr = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__62105,(1),null);
-var limit = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__62105,(2),null);
+var vec__62142 = attr_spec;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__62142,(0),null);
+var attr = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__62142,(1),null);
+var limit = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__62142,(2),null);
 var pull_attr = (datascript.pull_parser.parse_attr_spec.cljs$core$IFn$_invoke$arity$2 ? datascript.pull_parser.parse_attr_spec.cljs$core$IFn$_invoke$arity$2(db,attr) : datascript.pull_parser.parse_attr_spec.call(null,db,attr));
 datascript.pull_parser.check_limit(db,pull_attr,limit);
 
@@ -677,16 +677,16 @@ return null;
 });
 datascript.pull_parser.parse_legacy_default_expr = (function datascript$pull_parser$parse_legacy_default_expr(db,attr_spec){
 var expected = "['default attr-name any-value]";
-if(cljs.core.truth_((function (){var G__62109 = cljs.core.first(attr_spec);
-var fexpr__62108 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Symbol(null,"default","default",-347290801,null),null,"default",null], null), null);
-return (fexpr__62108.cljs$core$IFn$_invoke$arity$1 ? fexpr__62108.cljs$core$IFn$_invoke$arity$1(G__62109) : fexpr__62108.call(null,G__62109));
+if(cljs.core.truth_((function (){var G__62148 = cljs.core.first(attr_spec);
+var fexpr__62147 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Symbol(null,"default","default",-347290801,null),null,"default",null], null), null);
+return (fexpr__62147.cljs$core$IFn$_invoke$arity$1 ? fexpr__62147.cljs$core$IFn$_invoke$arity$1(G__62148) : fexpr__62147.call(null,G__62148));
 })())){
 datascript.pull_parser.check(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.count(attr_spec),(3)),expected,attr_spec);
 
-var vec__62110 = attr_spec;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__62110,(0),null);
-var attr = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__62110,(1),null);
-var default$ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__62110,(2),null);
+var vec__62151 = attr_spec;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__62151,(0),null);
+var attr = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__62151,(1),null);
+var default$ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__62151,(2),null);
 var pull_attr = (datascript.pull_parser.parse_attr_spec.cljs$core$IFn$_invoke$arity$2 ? datascript.pull_parser.parse_attr_spec.cljs$core$IFn$_invoke$arity$2(db,attr) : datascript.pull_parser.parse_attr_spec.call(null,db,attr));
 return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(pull_attr,new cljs.core.Keyword(null,"default","default",-1987822328),default$);
 } else {
@@ -694,8 +694,8 @@ return null;
 }
 });
 datascript.pull_parser.parse_attr_spec = (function datascript$pull_parser$parse_attr_spec(db,attr_spec){
-if((((attr_spec instanceof cljs.core.Keyword)) || (((typeof attr_spec === 'string') && (cljs.core.not((function (){var fexpr__62113 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, ["limit",null,"default",null], null), null);
-return (fexpr__62113.cljs$core$IFn$_invoke$arity$1 ? fexpr__62113.cljs$core$IFn$_invoke$arity$1(attr_spec) : fexpr__62113.call(null,attr_spec));
+if((((attr_spec instanceof cljs.core.Keyword)) || (((typeof attr_spec === 'string') && (cljs.core.not((function (){var fexpr__62158 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, ["limit",null,"default",null], null), null);
+return (fexpr__62158.cljs$core$IFn$_invoke$arity$1 ? fexpr__62158.cljs$core$IFn$_invoke$arity$1(attr_spec) : fexpr__62158.call(null,attr_spec));
 })())))))){
 return datascript.pull_parser.parse_attr_name(db,attr_spec);
 } else {
@@ -742,10 +742,10 @@ return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(pull_attr,new cljs.core.Key
 }
 });
 datascript.pull_parser.index_of = (function datascript$pull_parser$index_of(pred,xs){
-return cljs.core.some((function (p__62114){
-var vec__62115 = p__62114;
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__62115,(0),null);
-var idx = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__62115,(1),null);
+return cljs.core.some((function (p__62172){
+var vec__62173 = p__62172;
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__62173,(0),null);
+var idx = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__62173,(1),null);
 if(cljs.core.truth_((pred.cljs$core$IFn$_invoke$arity$1 ? pred.cljs$core$IFn$_invoke$arity$1(x) : pred.call(null,x)))){
 return idx;
 } else {
@@ -755,8 +755,8 @@ return null;
 });
 datascript.pull_parser.conj_attr = (function datascript$pull_parser$conj_attr(pull_pattern,pull_attr){
 var pattern_attr = (cljs.core.truth_(new cljs.core.Keyword(null,"reverse?","reverse?",-1672868474).cljs$core$IFn$_invoke$arity$1(pull_attr))?new cljs.core.Keyword(null,"reverse-attrs","reverse-attrs",630097702):new cljs.core.Keyword(null,"attrs","attrs",-2090668713));
-var temp__5827__auto__ = datascript.pull_parser.index_of((function (p1__62118_SHARP_){
-return cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"as","as",1148689641).cljs$core$IFn$_invoke$arity$1(p1__62118_SHARP_),new cljs.core.Keyword(null,"as","as",1148689641).cljs$core$IFn$_invoke$arity$1(pull_attr));
+var temp__5827__auto__ = datascript.pull_parser.index_of((function (p1__62176_SHARP_){
+return cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"as","as",1148689641).cljs$core$IFn$_invoke$arity$1(p1__62176_SHARP_),new cljs.core.Keyword(null,"as","as",1148689641).cljs$core$IFn$_invoke$arity$1(pull_attr));
 }),cljs.core.get.cljs$core$IFn$_invoke$arity$2(pull_pattern,pattern_attr));
 if((temp__5827__auto__ == null)){
 return cljs.core.update.cljs$core$IFn$_invoke$arity$4(pull_pattern,pattern_attr,cljs.core.conj,pull_attr);
@@ -775,9 +775,9 @@ if(cljs.core.empty_QMARK_(pattern__$1)){
 var attrs = result.attrs;
 var db_id_QMARK_ = ((function (pattern__$1,result,attrs){
 return (function (attr){
-var G__62122 = attr.name;
-var fexpr__62121 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword("db","id","db/id",-1388397098),null,":db/id",null], null), null);
-return (fexpr__62121.cljs$core$IFn$_invoke$arity$1 ? fexpr__62121.cljs$core$IFn$_invoke$arity$1(G__62122) : fexpr__62121.call(null,G__62122));
+var G__62184 = attr.name;
+var fexpr__62183 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword("db","id","db/id",-1388397098),null,":db/id",null], null), null);
+return (fexpr__62183.cljs$core$IFn$_invoke$arity$1 ? fexpr__62183.cljs$core$IFn$_invoke$arity$1(G__62184) : fexpr__62183.call(null,G__62184));
 });})(pattern__$1,result,attrs))
 ;
 var key_fn = ((function (pattern__$1,result,attrs,db_id_QMARK_){
@@ -810,10 +810,10 @@ return datascript.pull_parser.map__GT_PullPattern(new cljs.core.PersistentArrayM
 } else {
 var attr_spec = cljs.core.first(pattern__$1);
 if(((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Symbol(null,"*","*",345799209,null),attr_spec)) || (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2("*",attr_spec)) || (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"*","*",-1294732318),attr_spec)))))){
-var G__62173 = cljs.core.next(pattern__$1);
-var G__62174 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(result,new cljs.core.Keyword(null,"wildcard?","wildcard?",-686044101),true);
-pattern__$1 = G__62173;
-result = G__62174;
+var G__62206 = cljs.core.next(pattern__$1);
+var G__62207 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(result,new cljs.core.Keyword(null,"wildcard?","wildcard?",-686044101),true);
+pattern__$1 = G__62206;
+result = G__62207;
 continue;
 } else {
 if(cljs.core.map_QMARK_(attr_spec)){
@@ -822,20 +822,20 @@ return (function (result__$1,attr_spec__$1,pattern__$2){
 return datascript.pull_parser.conj_attr(result__$1,datascript.pull_parser.parse_map_spec(db,attr_spec__$1,pattern__$2));
 });})(pattern__$1,result,attr_spec))
 ,result,attr_spec);
-var G__62178 = cljs.core.next(pattern__$1);
-var G__62179 = result_SINGLEQUOTE_;
-pattern__$1 = G__62178;
-result = G__62179;
+var G__62209 = cljs.core.next(pattern__$1);
+var G__62210 = result_SINGLEQUOTE_;
+pattern__$1 = G__62209;
+result = G__62210;
 continue;
 } else {
 var pull_attr = datascript.pull_parser.parse_attr_spec(db,attr_spec);
 if((pull_attr == null)){
 return datascript.pull_parser.check(false,"attr-name | attr-expr | map-spec | *",attr_spec);
 } else {
-var G__62181 = cljs.core.next(pattern__$1);
-var G__62182 = datascript.pull_parser.conj_attr(result,pull_attr);
-pattern__$1 = G__62181;
-result = G__62182;
+var G__62211 = cljs.core.next(pattern__$1);
+var G__62212 = datascript.pull_parser.conj_attr(result,pull_attr);
+pattern__$1 = G__62211;
+result = G__62212;
 continue;
 
 }
