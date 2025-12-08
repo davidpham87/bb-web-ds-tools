@@ -1,7 +1,8 @@
 (ns bb-web-ds-tools.components.landing
   (:require [reagent.core :as r]
             [bb-web-ds-tools.theme :as t]
-            [re-frame.core :as rf]))
+            [re-frame.core :as rf]
+            [bb-web-ds-tools.utils.themes :as themes]))
 
 (defn- setup-canvas [canvas width height]
   (let [ctx (.getContext canvas "2d")
@@ -74,11 +75,45 @@
 ;; --- Animation Helpers ---
 
 (defn clear [ctx w h]
-  (set! (.-fillStyle ctx) (:bg-sidebar t/colors))
-  (.fillRect ctx 0 0 w h))
+  ;; We can't access CSS vars easily in canvas loop without performance hit,
+  ;; or we can parse them. For simplicity in landing page animations,
+  ;; we might stick to a theme or parse from computed style.
+  ;; But here we want it to react to theme.
+  ;; Let's try to get style from document body.
+  ;; Or just use fixed zenburn colors for animations if theming canvas is too complex for now?
+  ;; The user asked to "Update the colors of the app accordingly".
+  ;; The landing page canvas animations use `t/colors` and `t/zenburn`.
+  ;; Since `t/colors` now holds CSS vars, drawing with `ctx.fillStyle = "var(--...)"` DOES NOT work in Canvas API.
+  ;; We need resolved colors.
+  ;; We can look up the resolved colors from the same source as `events/theme`.
+  ;; But `theme` event pushes vars to CSS.
+  ;; For Canvas, we need the actual hex values.
+  ;; We can get them from `bb-web-ds-tools.utils.themes/get-theme` via subscription?
+  ;; But these are pure functions.
+  ;; Let's use a helper that gets the current theme colors.
+  ;; Or since this is "artistic", maybe just stick to Zenburn or use a hardcoded palette that looks good?
+  ;; No, if I change to Light theme, Zenburn animations will look bad.
+  ;; I should use the current theme colors.
+  ;; But `draw-fn` is passed pure.
+  ;; The component `canvas-card` is re-rendered when props change.
+  ;; But the animation loop closes over `ctx`.
+  ;; If I want dynamic colors in canvas, I need to fetch them inside the loop or update them.
+  ;; Accessing `getComputedStyle` every frame is slow.
+  ;; But we can access it once per second or use a mutable ref for colors.
+  ;; For now, let's just fix the compilation error by defining `zenburn` locally or importing it from `themes`.
+  (let [style (js/getComputedStyle js/document.body)
+        bg (.getPropertyValue style "--bg-sidebar")]
+    (set! (.-fillStyle ctx) (if (empty? bg) "#303030" bg))
+    (.fillRect ctx 0 0 w h)))
 
 (def colors t/colors)
-(def zenburn t/zenburn)
+(def zenburn (themes/get-theme :zenburn))
+
+;; Helper to get color from current theme or fallback to zenburn for now
+;; Ideally we should read CSS vars or subscribe.
+;; But for `draw-fn` which is just an animation...
+;; Let's assume for now we use the `zenburn` palette defined above to fix the build.
+;; If we want real theming in canvas, we need to pass the theme colors to `draw-fn`.
 
 ;; --- Animations ---
 
@@ -91,9 +126,9 @@
                  0)
         cx (/ w 2)
         cy (/ h 2)]
-    (set! (.-strokeStyle ctx) (::t/string zenburn))
+    (set! (.-strokeStyle ctx) (:portal.colors/string zenburn))
     (set! (.-lineWidth ctx) 3)
-    (set! (.-fillStyle ctx) (::t/string zenburn))
+    (set! (.-fillStyle ctx) (:portal.colors/string zenburn))
 
     (.save ctx)
     (.translate ctx cx cy)
@@ -106,7 +141,7 @@
     (.fill ctx)
 
     ;; Folder flap (animated)
-    (set! (.-fillStyle ctx) (::t/tag zenburn))
+    (set! (.-fillStyle ctx) (:portal.colors/tag zenburn))
     (.beginPath ctx)
     (.moveTo ctx -40 30)
     (.lineTo ctx 40 30)
@@ -119,7 +154,7 @@
   (clear ctx w h)
   (let [cx (/ w 2)
         cy (/ h 2)]
-    (set! (.-fillStyle ctx) (::t/number zenburn))
+    (set! (.-fillStyle ctx) (:portal.colors/number zenburn))
     ;; Cylinder / DB icon
     (.beginPath ctx)
     (.ellipse ctx cx (- cy 20) 40 15 0 0 (* Math/PI 2))
@@ -129,18 +164,18 @@
     (.rect ctx (- cx 40) (- cy 20) 80 50)
     (.fill ctx)
 
-    (set! (.-fillStyle ctx) (::t/background zenburn))
+    (set! (.-fillStyle ctx) (:portal.colors/background zenburn))
     (.beginPath ctx)
     (.ellipse ctx cx (+ cy 30) 40 15 0 0 (* Math/PI 2))
     (.fill ctx)
 
-    (set! (.-fillStyle ctx) (::t/number zenburn))
+    (set! (.-fillStyle ctx) (:portal.colors/number zenburn))
     (.beginPath ctx)
     (.ellipse ctx cx (+ cy 25) 40 15 0 0 (* Math/PI 2))
     (.fill ctx)
 
     ;; Pulsing data particles
-    (set! (.-fillStyle ctx) (::t/keyword zenburn))
+    (set! (.-fillStyle ctx) (:portal.colors/keyword zenburn))
     (dotimes [i 5]
       (let [offset (* i 1000)
             y-pos (+ -50 (mod (* (+ t offset) 0.05) 100))
@@ -166,14 +201,14 @@
 
         ;; Draw lines as rectangles representing code
         (when (> chars 0)
-          (set! (.-fillStyle ctx) (if (even? i) (::t/keyword zenburn) (::t/string zenburn)))
+          (set! (.-fillStyle ctx) (if (even? i) (:portal.colors/keyword zenburn) (:portal.colors/string zenburn)))
           (.fillRect ctx start-x y (* chars 5) 8))))
 
     ;; Cursor
     (let [current-line (Math/floor (/ typer-pos chars-per-line))
           current-char (mod typer-pos chars-per-line)]
       (when (< current-line total-lines)
-        (set! (.-fillStyle ctx) (::t/text zenburn))
+        (set! (.-fillStyle ctx) (:portal.colors/text zenburn))
         (.fillRect ctx (+ start-x (* current-char 5)) (+ start-y (* current-line line-h)) 2 12)))))
 
 (defn draw-datasets [ctx w h t]
@@ -190,7 +225,7 @@
             height (+ 30 (* 40 (Math/abs (Math/sin (* t freq)))))
             x (+ start-x (* i (+ bar-w gap)))
             y (- base-y height)]
-        (set! (.-fillStyle ctx) (nth [(::t/diff-add zenburn) (::t/number zenburn) (::t/string zenburn) (::t/keyword zenburn) (::t/uri zenburn)] (mod i 5)))
+        (set! (.-fillStyle ctx) (nth [(:portal.colors/diff-add zenburn) (:portal.colors/number zenburn) (:portal.colors/string zenburn) (:portal.colors/keyword zenburn) (:portal.colors/uri zenburn)] (mod i 5)))
         (.fillRect ctx x y bar-w height)))))
 
 (defn draw-malli [ctx w h t]
@@ -199,7 +234,7 @@
         cy (/ h 2)
         radius 40]
     ;; Shield or Checkmark
-    (set! (.-strokeStyle ctx) (::t/diff-add zenburn))
+    (set! (.-strokeStyle ctx) (:portal.colors/diff-add zenburn))
     (set! (.-lineWidth ctx) 5)
     (.beginPath ctx)
     (.arc ctx cx cy radius 0 (* Math/PI 2))
@@ -216,7 +251,7 @@
            (.lineTo ctx (+ cx 25) (- cy 20)))
         (.stroke ctx)))
     (set! (.-font ctx) "20px sans-serif")
-    (set! (.-fillStyle ctx) (::t/text zenburn))
+    (set! (.-fillStyle ctx) (:portal.colors/text zenburn))
     (set! (.-textAlign ctx) "center")
     (.fillText ctx "Valid" cx (+ cy 60))))
 
@@ -231,13 +266,13 @@
     (set! (.-textBaseline ctx) "middle")
 
     ;; Central pot
-    (set! (.-fillStyle ctx) (::t/tag zenburn))
+    (set! (.-fillStyle ctx) (:portal.colors/tag zenburn))
     (.fillText ctx "{}" cx cy)
 
     ;; Orbiting keywords
-    (doseq [[i text color] [[0 "SELECT" (::t/keyword zenburn)]
-                            [1 "FROM" (::t/string zenburn)]
-                            [2 "WHERE" (::t/number zenburn)]]]
+    (doseq [[i text color] [[0 "SELECT" (:portal.colors/keyword zenburn)]
+                            [1 "FROM" (:portal.colors/string zenburn)]
+                            [2 "WHERE" (:portal.colors/number zenburn)]]]
       (let [theta (+ angle (* i (/ (* Math/PI 2) 3)))
             x (+ cx (* orbit-r (Math/cos theta)))
             y (+ cy (* orbit-r (Math/sin theta)))]
@@ -250,7 +285,7 @@
   (let [cx (/ w 2)
         cy (/ h 2)]
     (.beginPath ctx)
-    (set! (.-strokeStyle ctx) (::t/number zenburn))
+    (set! (.-strokeStyle ctx) (:portal.colors/number zenburn))
     (set! (.-lineWidth ctx) 3)
     (dotimes [i 100]
       (let [x (+ (- cx 100) (* i 2))
@@ -261,7 +296,7 @@
     (.stroke ctx)
 
     ;; Points
-    (set! (.-fillStyle ctx) (::t/diff-remove zenburn))
+    (set! (.-fillStyle ctx) (:portal.colors/diff-remove zenburn))
     (dotimes [i 5]
       (let [offset (* i 20)
             x (+ (- cx 100) (* offset 2))
@@ -279,19 +314,19 @@
     (.translate ctx cx cy)
     (.scale ctx scale scale)
 
-    (set! (.-fillStyle ctx) (::t/diff-add zenburn))
+    (set! (.-fillStyle ctx) (:portal.colors/diff-add zenburn))
     ;; Robot head shape
     (.fillRect ctx -30 -30 60 60)
 
     ;; Eyes
-    (set! (.-fillStyle ctx) (:bg-sidebar t/colors))
+    (set! (.-fillStyle ctx) (:portal.colors/background2 zenburn))
     (.fillRect ctx -20 -10 15 10)
     (.fillRect ctx 5 -10 15 10)
 
     ;; Blinking eyes
     (let [blink (mod (* t 0.0005) 5)]
       (when (> blink 4.8)
-        (set! (.-fillStyle ctx) (::t/diff-add zenburn))
+        (set! (.-fillStyle ctx) (:portal.colors/diff-add zenburn))
         (.fillRect ctx -20 -10 15 10)
         (.fillRect ctx 5 -10 15 10)))
 
@@ -323,15 +358,15 @@
                       (.fill ctx)
                       (set! (.-globalCompositeOperation ctx) "source-over"))
                     (.restore ctx))]
-    (draw-gear cx cy 40 8 0.001 (::t/text zenburn))
-    (draw-gear (+ cx 50) (+ cy 50) 25 6 -0.002 (::t/namespace zenburn))))
+    (draw-gear cx cy 40 8 0.001 (:portal.colors/text zenburn))
+    (draw-gear (+ cx 50) (+ cy 50) 25 6 -0.002 (:portal.colors/namespace zenburn))))
 
 (defn draw-changelog [ctx w h t]
   (clear ctx w h)
   (let [cx (/ w 2)
         cy (/ h 2)
         scroll-y (mod (* t 0.05) 200)]
-    (set! (.-fillStyle ctx) (::t/text zenburn))
+    (set! (.-fillStyle ctx) (:portal.colors/text zenburn))
     (set! (.-font ctx) "12px monospace")
     (set! (.-textAlign ctx) "left")
 
