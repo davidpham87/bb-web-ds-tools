@@ -2,6 +2,7 @@
  :deps
  {cheshire/cheshire                {:mvn/version "5.13.0"}
   cljs-bean/cljs-bean              {:mvn/version "1.9.0"}
+  com.cognitect/transit-cljs       {:mvn/version "0.8.280"}
   com.github.seancorfield/honeysql {:mvn/version "2.7.1350"}
   datascript/datascript            {:mvn/version "1.5.4"}
   day8.re-frame/test               {:mvn/version "0.1.7"}

@@ -7,7 +7,9 @@
             [bb-web-ds-tools.components.layout :as l]
             [bb-web-ds-tools.portal :as portal :refer [portal-frame portal-panel]]
             [bb-web-ds-tools.theme :as t]
-            [bb-web-ds-tools.utils.dataset-processing :as dp]))
+            [bb-web-ds-tools.utils.dataset-processing :as dp]
+            ;; Ensure persistence namespace is loaded for event handling
+            [bb-web-ds-tools.workspaces.persistence :as wp]))
 
 ;; --- Utilities ---
 
@@ -515,8 +517,20 @@
     (fn []
       (let [{:keys [items active-id]} @state-sub]
         [:div {:class (str "h-full w-full " t/bg-sidebar " flex flex-col p-4 border-r border-[#3f3f3f]")}
-         [:div {:class (str "pb-4 border-b " t/border-main)}
-          [:h3 {:class (str "text-lg font-semibold " t/text-accent " mb-4")} "Datasets"]
+         [:div {:class (str "pb-4 border-b " t/border-main " flex flex-col gap-2")}
+          [:h3 {:class (str "text-lg font-semibold " t/text-accent)} "Datasets"]
+
+          ;; Persistence Controls
+          [l/flex-row {:class "gap-2"}
+           [c/button-xs {:class (str "flex-1 " t/bg-button " " t/bg-button-hover)
+                         :title "Save all datasets to browser storage"
+                         :on-click #(rf/dispatch [::wp/save-datasets])}
+            "Save All"]
+           [c/button-xs {:class (str "flex-1 " t/bg-button " " t/bg-button-hover)
+                         :title "Load datasets from browser storage"
+                         :on-click #(rf/dispatch [::wp/load-datasets])}
+            "Load All"]]
+
           [c/button-xs {:class (str "w-full " t/bg-button " " t/bg-button-hover " justify-center")
                         :on-click #(rf/dispatch [::set-active-dataset-id :new])}
            "+ New Dataset"]]
