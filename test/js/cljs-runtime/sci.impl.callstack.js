@@ -76,16 +76,16 @@ return [cljs.core.str.cljs$core$IFn$_invoke$arity$1(s),clojure.string.join.cljs$
 });
 sci.impl.callstack.format_stacktrace = (function sci$impl$callstack$format_stacktrace(st){
 var st__$1 = cljs.core.force(st);
-var data = cljs.core.keep.cljs$core$IFn$_invoke$arity$2((function (p__36291){
-var map__36292 = p__36291;
-var map__36292__$1 = cljs.core.__destructure_map(map__36292);
-var nom = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36292__$1,new cljs.core.Keyword(null,"name","name",1843675177));
-var file = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36292__$1,new cljs.core.Keyword(null,"file","file",-1269645878));
-var ns = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36292__$1,new cljs.core.Keyword(null,"ns","ns",441598760));
-var line = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36292__$1,new cljs.core.Keyword(null,"line","line",212345235));
-var column = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36292__$1,new cljs.core.Keyword(null,"column","column",2078222095));
-var built_in = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36292__$1,new cljs.core.Keyword("sci","built-in","sci/built-in",1244659599));
-var local = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36292__$1,new cljs.core.Keyword(null,"local","local",-1497766724));
+var data = cljs.core.keep.cljs$core$IFn$_invoke$arity$2((function (p__36293){
+var map__36294 = p__36293;
+var map__36294__$1 = cljs.core.__destructure_map(map__36294);
+var nom = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36294__$1,new cljs.core.Keyword(null,"name","name",1843675177));
+var file = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36294__$1,new cljs.core.Keyword(null,"file","file",-1269645878));
+var ns = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36294__$1,new cljs.core.Keyword(null,"ns","ns",441598760));
+var line = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36294__$1,new cljs.core.Keyword(null,"line","line",212345235));
+var column = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36294__$1,new cljs.core.Keyword(null,"column","column",2078222095));
+var built_in = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36294__$1,new cljs.core.Keyword("sci","built-in","sci/built-in",1244659599));
+var local = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36294__$1,new cljs.core.Keyword(null,"local","local",-1497766724));
 if(cljs.core.truth_((function (){var or__5025__auto__ = line;
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
@@ -110,10 +110,10 @@ return null;
 }),st__$1);
 var max_name = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(cljs.core.max,(0),cljs.core.map.cljs$core$IFn$_invoke$arity$2(cljs.core.comp.cljs$core$IFn$_invoke$arity$2(cljs.core.count,new cljs.core.Keyword(null,"name","name",1843675177)),data));
 return cljs.core.mapv.cljs$core$IFn$_invoke$arity$2((function (p__36295){
-var map__36296 = p__36295;
-var map__36296__$1 = cljs.core.__destructure_map(map__36296);
-var name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36296__$1,new cljs.core.Keyword(null,"name","name",1843675177));
-var loc = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36296__$1,new cljs.core.Keyword(null,"loc","loc",-584284901));
+var map__36297 = p__36295;
+var map__36297__$1 = cljs.core.__destructure_map(map__36297);
+var name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36297__$1,new cljs.core.Keyword(null,"name","name",1843675177));
+var loc = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36297__$1,new cljs.core.Keyword(null,"loc","loc",-584284901));
 return [sci.impl.callstack.right_pad(name,max_name)," - ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(loc)].join('');
 }),data);
 });

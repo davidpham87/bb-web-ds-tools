@@ -8,25 +8,25 @@ cljs.analyzer.impl.namespaces.check_and_remove_as_alias = (function cljs$analyze
 if((((libspec instanceof cljs.core.Symbol)) || ((libspec instanceof cljs.core.Keyword)))){
 return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"libspec","libspec",1228503756),libspec], null);
 } else {
-var vec__53027 = libspec;
-var seq__53028 = cljs.core.seq(vec__53027);
-var first__53029 = cljs.core.first(seq__53028);
-var seq__53028__$1 = cljs.core.next(seq__53028);
-var lib = first__53029;
-var spec = seq__53028__$1;
-var libspec__$1 = vec__53027;
-var vec__53030 = cljs.core.split_with(cljs.core.complement(new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"as-alias","as-alias",82482467),null], null), null)),spec);
-var pre_spec = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__53030,(0),null);
-var vec__53033 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__53030,(1),null);
-var seq__53034 = cljs.core.seq(vec__53033);
-var first__53035 = cljs.core.first(seq__53034);
-var seq__53034__$1 = cljs.core.next(seq__53034);
-var _ = first__53035;
-var first__53035__$1 = cljs.core.first(seq__53034__$1);
-var seq__53034__$2 = cljs.core.next(seq__53034__$1);
-var alias = first__53035__$1;
-var post_spec = seq__53034__$2;
-var post = vec__53033;
+var vec__53012 = libspec;
+var seq__53013 = cljs.core.seq(vec__53012);
+var first__53014 = cljs.core.first(seq__53013);
+var seq__53013__$1 = cljs.core.next(seq__53013);
+var lib = first__53014;
+var spec = seq__53013__$1;
+var libspec__$1 = vec__53012;
+var vec__53015 = cljs.core.split_with(cljs.core.complement(new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"as-alias","as-alias",82482467),null], null), null)),spec);
+var pre_spec = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__53015,(0),null);
+var vec__53018 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__53015,(1),null);
+var seq__53019 = cljs.core.seq(vec__53018);
+var first__53020 = cljs.core.first(seq__53019);
+var seq__53019__$1 = cljs.core.next(seq__53019);
+var _ = first__53020;
+var first__53020__$1 = cljs.core.first(seq__53019__$1);
+var seq__53019__$2 = cljs.core.next(seq__53019__$1);
+var alias = first__53020__$1;
+var post_spec = seq__53019__$2;
+var post = vec__53018;
 if(cljs.core.seq(post)){
 var libspec_SINGLEQUOTE_ = cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [lib], null),cljs.core.concat.cljs$core$IFn$_invoke$arity$2(pre_spec,post_spec));
 if((alias instanceof cljs.core.Symbol)){
@@ -34,11 +34,11 @@ if((alias instanceof cljs.core.Symbol)){
 throw (new Error(["Assert failed: ",[":as-alias must be followed by a symbol, got: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(alias)].join(''),"\n","(symbol? alias)"].join('')));
 }
 
-var G__53039 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"as-alias","as-alias",82482467),cljs.core.PersistentArrayMap.createAsIfByAssoc([alias,lib])], null);
+var G__53021 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"as-alias","as-alias",82482467),cljs.core.PersistentArrayMap.createAsIfByAssoc([alias,lib])], null);
 if((cljs.core.count(libspec_SINGLEQUOTE_) > (1))){
-return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(G__53039,new cljs.core.Keyword(null,"libspec","libspec",1228503756),libspec_SINGLEQUOTE_);
+return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(G__53021,new cljs.core.Keyword(null,"libspec","libspec",1228503756),libspec_SINGLEQUOTE_);
 } else {
-return G__53039;
+return G__53021;
 }
 } else {
 return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"libspec","libspec",1228503756),libspec__$1], null);
@@ -46,63 +46,63 @@ return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"li
 }
 });
 cljs.analyzer.impl.namespaces.check_as_alias_duplicates = (function cljs$analyzer$impl$namespaces$check_as_alias_duplicates(as_aliases,new_as_aliases){
-var seq__53043 = cljs.core.seq(new_as_aliases);
-var chunk__53044 = null;
-var count__53045 = (0);
-var i__53046 = (0);
+var seq__53022 = cljs.core.seq(new_as_aliases);
+var chunk__53023 = null;
+var count__53024 = (0);
+var i__53025 = (0);
 while(true){
-if((i__53046 < count__53045)){
-var vec__53056 = chunk__53044.cljs$core$IIndexed$_nth$arity$2(null,i__53046);
-var alias = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__53056,(0),null);
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__53056,(1),null);
+if((i__53025 < count__53024)){
+var vec__53032 = chunk__53023.cljs$core$IIndexed$_nth$arity$2(null,i__53025);
+var alias = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__53032,(0),null);
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__53032,(1),null);
 if((!(cljs.core.contains_QMARK_(as_aliases,alias)))){
 } else {
 throw (new Error(["Assert failed: ",["Duplicate :as-alias ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(alias),", already in use for lib ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.get.cljs$core$IFn$_invoke$arity$2(as_aliases,alias))].join(''),"\n","(not (contains? as-aliases alias))"].join('')));
 }
 
 
-var G__53079 = seq__53043;
-var G__53080 = chunk__53044;
-var G__53081 = count__53045;
-var G__53082 = (i__53046 + (1));
-seq__53043 = G__53079;
-chunk__53044 = G__53080;
-count__53045 = G__53081;
-i__53046 = G__53082;
+var G__53063 = seq__53022;
+var G__53064 = chunk__53023;
+var G__53065 = count__53024;
+var G__53066 = (i__53025 + (1));
+seq__53022 = G__53063;
+chunk__53023 = G__53064;
+count__53024 = G__53065;
+i__53025 = G__53066;
 continue;
 } else {
-var temp__5825__auto__ = cljs.core.seq(seq__53043);
+var temp__5825__auto__ = cljs.core.seq(seq__53022);
 if(temp__5825__auto__){
-var seq__53043__$1 = temp__5825__auto__;
-if(cljs.core.chunked_seq_QMARK_(seq__53043__$1)){
-var c__5548__auto__ = cljs.core.chunk_first(seq__53043__$1);
-var G__53083 = cljs.core.chunk_rest(seq__53043__$1);
-var G__53084 = c__5548__auto__;
-var G__53085 = cljs.core.count(c__5548__auto__);
-var G__53086 = (0);
-seq__53043 = G__53083;
-chunk__53044 = G__53084;
-count__53045 = G__53085;
-i__53046 = G__53086;
+var seq__53022__$1 = temp__5825__auto__;
+if(cljs.core.chunked_seq_QMARK_(seq__53022__$1)){
+var c__5548__auto__ = cljs.core.chunk_first(seq__53022__$1);
+var G__53067 = cljs.core.chunk_rest(seq__53022__$1);
+var G__53068 = c__5548__auto__;
+var G__53069 = cljs.core.count(c__5548__auto__);
+var G__53070 = (0);
+seq__53022 = G__53067;
+chunk__53023 = G__53068;
+count__53024 = G__53069;
+i__53025 = G__53070;
 continue;
 } else {
-var vec__53059 = cljs.core.first(seq__53043__$1);
-var alias = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__53059,(0),null);
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__53059,(1),null);
+var vec__53035 = cljs.core.first(seq__53022__$1);
+var alias = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__53035,(0),null);
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__53035,(1),null);
 if((!(cljs.core.contains_QMARK_(as_aliases,alias)))){
 } else {
 throw (new Error(["Assert failed: ",["Duplicate :as-alias ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(alias),", already in use for lib ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.get.cljs$core$IFn$_invoke$arity$2(as_aliases,alias))].join(''),"\n","(not (contains? as-aliases alias))"].join('')));
 }
 
 
-var G__53087 = cljs.core.next(seq__53043__$1);
-var G__53088 = null;
-var G__53089 = (0);
-var G__53090 = (0);
-seq__53043 = G__53087;
-chunk__53044 = G__53088;
-count__53045 = G__53089;
-i__53046 = G__53090;
+var G__53072 = cljs.core.next(seq__53022__$1);
+var G__53073 = null;
+var G__53074 = (0);
+var G__53075 = (0);
+seq__53022 = G__53072;
+chunk__53023 = G__53073;
+count__53024 = G__53074;
+i__53025 = G__53075;
 continue;
 }
 } else {
@@ -117,8 +117,8 @@ break;
  * and :as-aliases.
  */
 cljs.analyzer.impl.namespaces.elide_aliases_from_libspecs = (function cljs$analyzer$impl$namespaces$elide_aliases_from_libspecs(var_args){
-var G__53063 = arguments.length;
-switch (G__53063) {
+var G__53040 = arguments.length;
+switch (G__53040) {
 case 1:
 return cljs.analyzer.impl.namespaces.elide_aliases_from_libspecs.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -140,18 +140,18 @@ return cljs.analyzer.impl.namespaces.elide_aliases_from_libspecs.cljs$core$IFn$_
 (cljs.analyzer.impl.namespaces.elide_aliases_from_libspecs.cljs$core$IFn$_invoke$arity$2 = (function (libspecs,as_aliases){
 var ret = new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"as-aliases","as-aliases",1485064798),as_aliases,new cljs.core.Keyword(null,"libspecs","libspecs",59807195),cljs.core.PersistentVector.EMPTY], null);
 return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (ret__$1,libspec){
-var map__53064 = cljs.analyzer.impl.namespaces.check_and_remove_as_alias(libspec);
-var map__53064__$1 = cljs.core.__destructure_map(map__53064);
-var as_alias = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__53064__$1,new cljs.core.Keyword(null,"as-alias","as-alias",82482467));
-var libspec__$1 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__53064__$1,new cljs.core.Keyword(null,"libspec","libspec",1228503756));
+var map__53042 = cljs.analyzer.impl.namespaces.check_and_remove_as_alias(libspec);
+var map__53042__$1 = cljs.core.__destructure_map(map__53042);
+var as_alias = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__53042__$1,new cljs.core.Keyword(null,"as-alias","as-alias",82482467));
+var libspec__$1 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__53042__$1,new cljs.core.Keyword(null,"libspec","libspec",1228503756));
 cljs.analyzer.impl.namespaces.check_as_alias_duplicates(new cljs.core.Keyword(null,"as-aliases","as-aliases",1485064798).cljs$core$IFn$_invoke$arity$1(ret__$1),as_alias);
 
-var G__53065 = ret__$1;
-var G__53065__$1 = (cljs.core.truth_(libspec__$1)?cljs.core.update.cljs$core$IFn$_invoke$arity$4(G__53065,new cljs.core.Keyword(null,"libspecs","libspecs",59807195),cljs.core.conj,libspec__$1):G__53065);
+var G__53046 = ret__$1;
+var G__53046__$1 = (cljs.core.truth_(libspec__$1)?cljs.core.update.cljs$core$IFn$_invoke$arity$4(G__53046,new cljs.core.Keyword(null,"libspecs","libspecs",59807195),cljs.core.conj,libspec__$1):G__53046);
 if(cljs.core.truth_(as_alias)){
-return cljs.core.update.cljs$core$IFn$_invoke$arity$4(G__53065__$1,new cljs.core.Keyword(null,"as-aliases","as-aliases",1485064798),cljs.core.merge,as_alias);
+return cljs.core.update.cljs$core$IFn$_invoke$arity$4(G__53046__$1,new cljs.core.Keyword(null,"as-aliases","as-aliases",1485064798),cljs.core.merge,as_alias);
 } else {
-return G__53065__$1;
+return G__53046__$1;
 }
 }),ret,libspecs);
 }));
@@ -161,28 +161,28 @@ return G__53065__$1;
 cljs.analyzer.impl.namespaces.elide_aliases_from_ns_specs = (function cljs$analyzer$impl$namespaces$elide_aliases_from_ns_specs(ns_specs){
 
 var ret = new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"as-aliases","as-aliases",1485064798),cljs.core.PersistentArrayMap.EMPTY,new cljs.core.Keyword(null,"libspecs","libspecs",59807195),cljs.core.PersistentVector.EMPTY], null);
-return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (p__53066,p__53067){
-var map__53069 = p__53066;
-var map__53069__$1 = cljs.core.__destructure_map(map__53069);
-var ret__$1 = map__53069__$1;
-var as_aliases = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__53069__$1,new cljs.core.Keyword(null,"as-aliases","as-aliases",1485064798));
-var vec__53071 = p__53067;
-var seq__53072 = cljs.core.seq(vec__53071);
-var first__53073 = cljs.core.first(seq__53072);
-var seq__53072__$1 = cljs.core.next(seq__53072);
-var spec_key = first__53073;
-var libspecs = seq__53072__$1;
+return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (p__53054,p__53055){
+var map__53056 = p__53054;
+var map__53056__$1 = cljs.core.__destructure_map(map__53056);
+var ret__$1 = map__53056__$1;
+var as_aliases = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__53056__$1,new cljs.core.Keyword(null,"as-aliases","as-aliases",1485064798));
+var vec__53057 = p__53055;
+var seq__53058 = cljs.core.seq(vec__53057);
+var first__53059 = cljs.core.first(seq__53058);
+var seq__53058__$1 = cljs.core.next(seq__53058);
+var spec_key = first__53059;
+var libspecs = seq__53058__$1;
 if((!(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"refer-clojure","refer-clojure",813784440),spec_key)))){
-var map__53076 = cljs.analyzer.impl.namespaces.elide_aliases_from_libspecs.cljs$core$IFn$_invoke$arity$2(libspecs,as_aliases);
-var map__53076__$1 = cljs.core.__destructure_map(map__53076);
-var as_aliases__$1 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__53076__$1,new cljs.core.Keyword(null,"as-aliases","as-aliases",1485064798));
-var libspecs__$1 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__53076__$1,new cljs.core.Keyword(null,"libspecs","libspecs",59807195));
-var G__53078 = ret__$1;
-var G__53078__$1 = (((!(cljs.core.empty_QMARK_(as_aliases__$1))))?cljs.core.update.cljs$core$IFn$_invoke$arity$4(G__53078,new cljs.core.Keyword(null,"as-aliases","as-aliases",1485064798),cljs.core.merge,as_aliases__$1):G__53078);
+var map__53060 = cljs.analyzer.impl.namespaces.elide_aliases_from_libspecs.cljs$core$IFn$_invoke$arity$2(libspecs,as_aliases);
+var map__53060__$1 = cljs.core.__destructure_map(map__53060);
+var as_aliases__$1 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__53060__$1,new cljs.core.Keyword(null,"as-aliases","as-aliases",1485064798));
+var libspecs__$1 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__53060__$1,new cljs.core.Keyword(null,"libspecs","libspecs",59807195));
+var G__53061 = ret__$1;
+var G__53061__$1 = (((!(cljs.core.empty_QMARK_(as_aliases__$1))))?cljs.core.update.cljs$core$IFn$_invoke$arity$4(G__53061,new cljs.core.Keyword(null,"as-aliases","as-aliases",1485064798),cljs.core.merge,as_aliases__$1):G__53061);
 if((!(cljs.core.empty_QMARK_(libspecs__$1)))){
-return cljs.core.update.cljs$core$IFn$_invoke$arity$4(G__53078__$1,new cljs.core.Keyword(null,"libspecs","libspecs",59807195),cljs.core.conj,cljs.core.list_STAR_.cljs$core$IFn$_invoke$arity$2(spec_key,libspecs__$1));
+return cljs.core.update.cljs$core$IFn$_invoke$arity$4(G__53061__$1,new cljs.core.Keyword(null,"libspecs","libspecs",59807195),cljs.core.conj,cljs.core.list_STAR_.cljs$core$IFn$_invoke$arity$2(spec_key,libspecs__$1));
 } else {
-return G__53078__$1;
+return G__53061__$1;
 }
 } else {
 return cljs.core.update.cljs$core$IFn$_invoke$arity$4(ret__$1,new cljs.core.Keyword(null,"libspecs","libspecs",59807195),cljs.core.conj,cljs.core.list_STAR_.cljs$core$IFn$_invoke$arity$2(spec_key,libspecs));

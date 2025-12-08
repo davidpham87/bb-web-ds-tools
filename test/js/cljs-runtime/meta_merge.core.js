@@ -121,8 +121,8 @@ return null;
  * Recursively merge values based on the information in their metadata.
  */
 meta_merge.core.meta_merge = (function meta_merge$core$meta_merge(var_args){
-var G__26941 = arguments.length;
-switch (G__26941) {
+var G__26939 = arguments.length;
+switch (G__26939) {
 case 0:
 return meta_merge.core.meta_merge.cljs$core$IFn$_invoke$arity$0();
 
@@ -201,13 +201,13 @@ return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(meta_merge.core.meta_merge
 }));
 
 /** @this {Function} */
-(meta_merge.core.meta_merge.cljs$lang$applyTo = (function (seq26938){
-var G__26939 = cljs.core.first(seq26938);
-var seq26938__$1 = cljs.core.next(seq26938);
-var G__26940 = cljs.core.first(seq26938__$1);
-var seq26938__$2 = cljs.core.next(seq26938__$1);
+(meta_merge.core.meta_merge.cljs$lang$applyTo = (function (seq26936){
+var G__26937 = cljs.core.first(seq26936);
+var seq26936__$1 = cljs.core.next(seq26936);
+var G__26938 = cljs.core.first(seq26936__$1);
+var seq26936__$2 = cljs.core.next(seq26936__$1);
 var self__5734__auto__ = this;
-return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__26939,G__26940,seq26938__$2);
+return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__26937,G__26938,seq26936__$2);
 }));
 
 (meta_merge.core.meta_merge.cljs$lang$maxFixedArity = (2));

@@ -76,8 +76,8 @@ if(cljs.core.truth_(temp__5823__auto__)){
 var g = temp__5823__auto__;
 return (new datascript.lru.LRU(key_value,cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(cljs.core.dissoc.cljs$core$IFn$_invoke$arity$2(gen_key,g),gen,k),cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(key_gen,k,gen),(gen + (1)),limit));
 } else {
-var G__60032 = (new datascript.lru.LRU(cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(key_value,k,v),cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(gen_key,gen,k),cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(key_gen,k,gen),(gen + (1)),limit));
-return (datascript.lru.cleanup_lru.cljs$core$IFn$_invoke$arity$1 ? datascript.lru.cleanup_lru.cljs$core$IFn$_invoke$arity$1(G__60032) : datascript.lru.cleanup_lru.call(null,G__60032));
+var G__60031 = (new datascript.lru.LRU(cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(key_value,k,v),cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(gen_key,gen,k),cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(key_gen,k,gen),(gen + (1)),limit));
+return (datascript.lru.cleanup_lru.cljs$core$IFn$_invoke$arity$1 ? datascript.lru.cleanup_lru.cljs$core$IFn$_invoke$arity$1(G__60031) : datascript.lru.cleanup_lru.call(null,G__60031));
 }
 });
 datascript.lru.cleanup_lru = (function datascript$lru$cleanup_lru(lru){
@@ -87,9 +87,9 @@ var gen_key = lru.gen_key;
 var key_gen = lru.key_gen;
 var gen = lru.gen;
 var limit = lru.limit;
-var vec__60036 = cljs.core.first(gen_key);
-var g = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__60036,(0),null);
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__60036,(1),null);
+var vec__60039 = cljs.core.first(gen_key);
+var g = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__60039,(0),null);
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__60039,(1),null);
 return (new datascript.lru.LRU(cljs.core.dissoc.cljs$core$IFn$_invoke$arity$2(key_value,k),cljs.core.dissoc.cljs$core$IFn$_invoke$arity$2(gen_key,g),cljs.core.dissoc.cljs$core$IFn$_invoke$arity$2(key_gen,k),gen,limit));
 } else {
 return lru;
@@ -104,7 +104,7 @@ return (new datascript.lru.LRU(cljs.core.PersistentArrayMap.EMPTY,cljs.core.sort
  */
 datascript.lru.ICache = function(){};
 
-var datascript$lru$ICache$_get$dyn_60086 = (function (this$,key,compute_fn){
+var datascript$lru$ICache$_get$dyn_60062 = (function (this$,key,compute_fn){
 var x__5373__auto__ = (((this$ == null))?null:this$);
 var m__5374__auto__ = (datascript.lru._get[goog.typeOf(x__5373__auto__)]);
 if((!((m__5374__auto__ == null)))){
@@ -122,7 +122,7 @@ datascript.lru._get = (function datascript$lru$_get(this$,key,compute_fn){
 if((((!((this$ == null)))) && ((!((this$.datascript$lru$ICache$_get$arity$3 == null)))))){
 return this$.datascript$lru$ICache$_get$arity$3(this$,key,compute_fn);
 } else {
-return datascript$lru$ICache$_get$dyn_60086(this$,key,compute_fn);
+return datascript$lru$ICache$_get$dyn_60062(this$,key,compute_fn);
 }
 });
 
