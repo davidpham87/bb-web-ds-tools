@@ -15,7 +15,10 @@
                          :else :portal.viewer/edn))
                      (#{:stdout :stderr :error} (:type value)) :portal.viewer/text
                      :else nil))]
-    (rf/dispatch [::portal/submit (or [:portal.viewer/markdown text] (:value value)) viewer])))
+    (rf/dispatch 
+    [::portal/submit (cond 
+                      text [:portal.viewer/markdown text] 
+                      :else (:value value)) viewer])))
 
 (defn- image-bitmap->data-url [^js image-bitmap]
   (let [canvas (.createElement js/document "canvas")
@@ -90,8 +93,7 @@
                                  (js/Promise.reject (js/Error. "Shelter not found on WebR instance")))))]
         (-> (create-shelter)
             (.then (fn [^js shelter]
-                     (-> (.captureR shelter code (clj->js {:autoprint true 
-                                                           :captureGraphics {:width 320 :height 240}}))
+                     (-> (.captureR shelter code (clj->js {:autoprint true}))
                          (.then (fn [^js res]
                                   (let [output (.-output res)
                                         images (.-images res)
@@ -104,11 +106,12 @@
 
                                                  (doseq [img (array-seq images)]
                                                    (let [data-url (image-bitmap->data-url img)
-                                                         canvas-hiccup [:canvas
-                                                                         {:width (.-width img)
-                                                                          :height (.-height img)
-                                                                          :style {:background-image (str "url(" data-url ")")
-                                                                                  :background-size "cover"}}]]
+                                                         canvas-hiccup [:div {:style {:width 720 :height 640}} 
+                                                                         [:canvas
+                                                                           {:width (.-width img)
+                                                                            :height (.-height img)
+                                                                            :style {:background-image (str "url(" data-url ")")
+                                                                                    :background-size "cover"}}]]]
                                                     (rf/dispatch [::portal/submit canvas-hiccup :portal.viewer/hiccup])))
 
                                                  (let [js-val (.toJs result)]
