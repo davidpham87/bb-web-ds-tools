@@ -118,8 +118,8 @@ return re_frame.router.dispatch_sync(event);
  *   
  */
 re_frame.core.reg_event_db = (function re_frame$core$reg_event_db(var_args){
-var G__24710 = arguments.length;
-switch (G__24710) {
+var G__24698 = arguments.length;
+switch (G__24698) {
 case 2:
 return re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -174,8 +174,8 @@ return re_frame.events.register(id,new cljs.core.PersistentVector(null, 5, 5, cl
  *   
  */
 re_frame.core.reg_event_fx = (function re_frame$core$reg_event_fx(var_args){
-var G__24712 = arguments.length;
-switch (G__24712) {
+var G__24709 = arguments.length;
+switch (G__24709) {
 case 2:
 return re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -1013,14 +1013,14 @@ re_frame.core.debug = re_frame.std_interceptors.debug;
  */
 re_frame.core.path = (function re_frame$core$path(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___24764 = arguments.length;
-var i__5750__auto___24765 = (0);
+var len__5749__auto___24766 = arguments.length;
+var i__5750__auto___24767 = (0);
 while(true){
-if((i__5750__auto___24765 < len__5749__auto___24764)){
-args__5755__auto__.push((arguments[i__5750__auto___24765]));
+if((i__5750__auto___24767 < len__5749__auto___24766)){
+args__5755__auto__.push((arguments[i__5750__auto___24767]));
 
-var G__24766 = (i__5750__auto___24765 + (1));
-i__5750__auto___24765 = G__24766;
+var G__24768 = (i__5750__auto___24767 + (1));
+i__5750__auto___24767 = G__24768;
 continue;
 } else {
 }

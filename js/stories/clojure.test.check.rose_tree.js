@@ -113,9 +113,9 @@ var s = temp__5825__auto__;
 if((n === (0))){
 return cljs.core.rest(coll);
 } else {
-return cljs.core.cons(cljs.core.first(s),(function (){var G__30033 = (n - (1));
-var G__30034 = cljs.core.rest(s);
-return (clojure.test.check.rose_tree.exclude_nth.cljs$core$IFn$_invoke$arity$2 ? clojure.test.check.rose_tree.exclude_nth.cljs$core$IFn$_invoke$arity$2(G__30033,G__30034) : clojure.test.check.rose_tree.exclude_nth.call(null,G__30033,G__30034));
+return cljs.core.cons(cljs.core.first(s),(function (){var G__30210 = (n - (1));
+var G__30211 = cljs.core.rest(s);
+return (clojure.test.check.rose_tree.exclude_nth.cljs$core$IFn$_invoke$arity$2 ? clojure.test.check.rose_tree.exclude_nth.cljs$core$IFn$_invoke$arity$2(G__30210,G__30211) : clojure.test.check.rose_tree.exclude_nth.call(null,G__30210,G__30211));
 })());
 }
 } else {
@@ -144,10 +144,10 @@ return clojure.test.check.rose_tree.make_rose(x,cljs.core.PersistentVector.EMPTY
  * Applies functions `f` to all values in the tree.
  */
 clojure.test.check.rose_tree.fmap = (function clojure$test$check$rose_tree$fmap(f,rose){
-return clojure.test.check.rose_tree.make_rose((function (){var G__30037 = clojure.test.check.rose_tree.root(rose);
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__30037) : f.call(null,G__30037));
-})(),cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__30036_SHARP_){
-return (clojure.test.check.rose_tree.fmap.cljs$core$IFn$_invoke$arity$2 ? clojure.test.check.rose_tree.fmap.cljs$core$IFn$_invoke$arity$2(f,p1__30036_SHARP_) : clojure.test.check.rose_tree.fmap.call(null,f,p1__30036_SHARP_));
+return clojure.test.check.rose_tree.make_rose((function (){var G__30214 = clojure.test.check.rose_tree.root(rose);
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__30214) : f.call(null,G__30214));
+})(),cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__30213_SHARP_){
+return (clojure.test.check.rose_tree.fmap.cljs$core$IFn$_invoke$arity$2 ? clojure.test.check.rose_tree.fmap.cljs$core$IFn$_invoke$arity$2(f,p1__30213_SHARP_) : clojure.test.check.rose_tree.fmap.call(null,f,p1__30213_SHARP_));
 }),clojure.test.check.rose_tree.children(rose)));
 });
 /**
@@ -163,11 +163,11 @@ return clojure.test.check.rose_tree.join(clojure.test.check.rose_tree.fmap(k,m))
  *   do not pass `pred` have their children cut out as well.
  */
 clojure.test.check.rose_tree.filter = (function clojure$test$check$rose_tree$filter(pred,rose){
-return clojure.test.check.rose_tree.make_rose(clojure.test.check.rose_tree.root(rose),cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__30038_SHARP_){
-return (clojure.test.check.rose_tree.filter.cljs$core$IFn$_invoke$arity$2 ? clojure.test.check.rose_tree.filter.cljs$core$IFn$_invoke$arity$2(pred,p1__30038_SHARP_) : clojure.test.check.rose_tree.filter.call(null,pred,p1__30038_SHARP_));
-}),cljs.core.filter.cljs$core$IFn$_invoke$arity$2((function (p1__30039_SHARP_){
-var G__30040 = clojure.test.check.rose_tree.root(p1__30039_SHARP_);
-return (pred.cljs$core$IFn$_invoke$arity$1 ? pred.cljs$core$IFn$_invoke$arity$1(G__30040) : pred.call(null,G__30040));
+return clojure.test.check.rose_tree.make_rose(clojure.test.check.rose_tree.root(rose),cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__30215_SHARP_){
+return (clojure.test.check.rose_tree.filter.cljs$core$IFn$_invoke$arity$2 ? clojure.test.check.rose_tree.filter.cljs$core$IFn$_invoke$arity$2(pred,p1__30215_SHARP_) : clojure.test.check.rose_tree.filter.call(null,pred,p1__30215_SHARP_));
+}),cljs.core.filter.cljs$core$IFn$_invoke$arity$2((function (p1__30216_SHARP_){
+var G__30222 = clojure.test.check.rose_tree.root(p1__30216_SHARP_);
+return (pred.cljs$core$IFn$_invoke$arity$1 ? pred.cljs$core$IFn$_invoke$arity$1(G__30222) : pred.call(null,G__30222));
 }),clojure.test.check.rose_tree.children(rose))));
 });
 /**
@@ -175,37 +175,37 @@ return (pred.cljs$core$IFn$_invoke$arity$1 ? pred.cljs$core$IFn$_invoke$arity$1(
  *   by its children.
  */
 clojure.test.check.rose_tree.permutations = (function clojure$test$check$rose_tree$permutations(roses){
-var iter__5503__auto__ = (function clojure$test$check$rose_tree$permutations_$_iter__30042(s__30043){
+var iter__5503__auto__ = (function clojure$test$check$rose_tree$permutations_$_iter__30224(s__30225){
 return (new cljs.core.LazySeq(null,(function (){
-var s__30043__$1 = s__30043;
+var s__30225__$1 = s__30225;
 while(true){
-var temp__5825__auto__ = cljs.core.seq(s__30043__$1);
+var temp__5825__auto__ = cljs.core.seq(s__30225__$1);
 if(temp__5825__auto__){
 var xs__6385__auto__ = temp__5825__auto__;
-var vec__30048 = cljs.core.first(xs__6385__auto__);
-var rose = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30048,(0),null);
-var index = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30048,(1),null);
-var iterys__5499__auto__ = ((function (s__30043__$1,vec__30048,rose,index,xs__6385__auto__,temp__5825__auto__){
-return (function clojure$test$check$rose_tree$permutations_$_iter__30042_$_iter__30044(s__30045){
-return (new cljs.core.LazySeq(null,((function (s__30043__$1,vec__30048,rose,index,xs__6385__auto__,temp__5825__auto__){
+var vec__30231 = cljs.core.first(xs__6385__auto__);
+var rose = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30231,(0),null);
+var index = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30231,(1),null);
+var iterys__5499__auto__ = ((function (s__30225__$1,vec__30231,rose,index,xs__6385__auto__,temp__5825__auto__){
+return (function clojure$test$check$rose_tree$permutations_$_iter__30224_$_iter__30226(s__30227){
+return (new cljs.core.LazySeq(null,((function (s__30225__$1,vec__30231,rose,index,xs__6385__auto__,temp__5825__auto__){
 return (function (){
-var s__30045__$1 = s__30045;
+var s__30227__$1 = s__30227;
 while(true){
-var temp__5825__auto____$1 = cljs.core.seq(s__30045__$1);
+var temp__5825__auto____$1 = cljs.core.seq(s__30227__$1);
 if(temp__5825__auto____$1){
-var s__30045__$2 = temp__5825__auto____$1;
-if(cljs.core.chunked_seq_QMARK_(s__30045__$2)){
-var c__5501__auto__ = cljs.core.chunk_first(s__30045__$2);
+var s__30227__$2 = temp__5825__auto____$1;
+if(cljs.core.chunked_seq_QMARK_(s__30227__$2)){
+var c__5501__auto__ = cljs.core.chunk_first(s__30227__$2);
 var size__5502__auto__ = cljs.core.count(c__5501__auto__);
-var b__30047 = cljs.core.chunk_buffer(size__5502__auto__);
-if((function (){var i__30046 = (0);
+var b__30229 = cljs.core.chunk_buffer(size__5502__auto__);
+if((function (){var i__30228 = (0);
 while(true){
-if((i__30046 < size__5502__auto__)){
-var child = cljs.core._nth(c__5501__auto__,i__30046);
-cljs.core.chunk_append(b__30047,cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(roses,index,child));
+if((i__30228 < size__5502__auto__)){
+var child = cljs.core._nth(c__5501__auto__,i__30228);
+cljs.core.chunk_append(b__30229,cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(roses,index,child));
 
-var G__30067 = (i__30046 + (1));
-i__30046 = G__30067;
+var G__30248 = (i__30228 + (1));
+i__30228 = G__30248;
 continue;
 } else {
 return true;
@@ -213,29 +213,29 @@ return true;
 break;
 }
 })()){
-return cljs.core.chunk_cons(cljs.core.chunk(b__30047),clojure$test$check$rose_tree$permutations_$_iter__30042_$_iter__30044(cljs.core.chunk_rest(s__30045__$2)));
+return cljs.core.chunk_cons(cljs.core.chunk(b__30229),clojure$test$check$rose_tree$permutations_$_iter__30224_$_iter__30226(cljs.core.chunk_rest(s__30227__$2)));
 } else {
-return cljs.core.chunk_cons(cljs.core.chunk(b__30047),null);
+return cljs.core.chunk_cons(cljs.core.chunk(b__30229),null);
 }
 } else {
-var child = cljs.core.first(s__30045__$2);
-return cljs.core.cons(cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(roses,index,child),clojure$test$check$rose_tree$permutations_$_iter__30042_$_iter__30044(cljs.core.rest(s__30045__$2)));
+var child = cljs.core.first(s__30227__$2);
+return cljs.core.cons(cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(roses,index,child),clojure$test$check$rose_tree$permutations_$_iter__30224_$_iter__30226(cljs.core.rest(s__30227__$2)));
 }
 } else {
 return null;
 }
 break;
 }
-});})(s__30043__$1,vec__30048,rose,index,xs__6385__auto__,temp__5825__auto__))
+});})(s__30225__$1,vec__30231,rose,index,xs__6385__auto__,temp__5825__auto__))
 ,null,null));
-});})(s__30043__$1,vec__30048,rose,index,xs__6385__auto__,temp__5825__auto__))
+});})(s__30225__$1,vec__30231,rose,index,xs__6385__auto__,temp__5825__auto__))
 ;
 var fs__5500__auto__ = cljs.core.seq(iterys__5499__auto__(clojure.test.check.rose_tree.children(rose)));
 if(fs__5500__auto__){
-return cljs.core.concat.cljs$core$IFn$_invoke$arity$2(fs__5500__auto__,clojure$test$check$rose_tree$permutations_$_iter__30042(cljs.core.rest(s__30043__$1)));
+return cljs.core.concat.cljs$core$IFn$_invoke$arity$2(fs__5500__auto__,clojure$test$check$rose_tree$permutations_$_iter__30224(cljs.core.rest(s__30225__$1)));
 } else {
-var G__30069 = cljs.core.rest(s__30043__$1);
-s__30043__$1 = G__30069;
+var G__30249 = cljs.core.rest(s__30225__$1);
+s__30225__$1 = G__30249;
 continue;
 }
 } else {
@@ -251,8 +251,8 @@ return iter__5503__auto__(cljs.core.map.cljs$core$IFn$_invoke$arity$3(cljs.core.
  * Apply `f` to the sequence of Rose trees `roses`.
  */
 clojure.test.check.rose_tree.zip = (function clojure$test$check$rose_tree$zip(f,roses){
-return clojure.test.check.rose_tree.make_rose(cljs.core.apply.cljs$core$IFn$_invoke$arity$2(f,cljs.core.map.cljs$core$IFn$_invoke$arity$2(clojure.test.check.rose_tree.root,roses)),cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__30052_SHARP_){
-return (clojure.test.check.rose_tree.zip.cljs$core$IFn$_invoke$arity$2 ? clojure.test.check.rose_tree.zip.cljs$core$IFn$_invoke$arity$2(f,p1__30052_SHARP_) : clojure.test.check.rose_tree.zip.call(null,f,p1__30052_SHARP_));
+return clojure.test.check.rose_tree.make_rose(cljs.core.apply.cljs$core$IFn$_invoke$arity$2(f,cljs.core.map.cljs$core$IFn$_invoke$arity$2(clojure.test.check.rose_tree.root,roses)),cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__30241_SHARP_){
+return (clojure.test.check.rose_tree.zip.cljs$core$IFn$_invoke$arity$2 ? clojure.test.check.rose_tree.zip.cljs$core$IFn$_invoke$arity$2(f,p1__30241_SHARP_) : clojure.test.check.rose_tree.zip.call(null,f,p1__30241_SHARP_));
 }),clojure.test.check.rose_tree.permutations(roses)));
 });
 clojure.test.check.rose_tree.remove = (function clojure$test$check$rose_tree$remove(roses){
@@ -268,8 +268,8 @@ return cljs.core.take.cljs$core$IFn$_invoke$arity$2(Infinity,a_lazy_seq);
 });
 clojure.test.check.rose_tree.shrink = (function clojure$test$check$rose_tree$shrink(f,roses){
 if(cljs.core.seq(roses)){
-return clojure.test.check.rose_tree.make_rose(cljs.core.apply.cljs$core$IFn$_invoke$arity$2(f,cljs.core.map.cljs$core$IFn$_invoke$arity$2(clojure.test.check.rose_tree.root,roses)),cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__30054_SHARP_){
-return (clojure.test.check.rose_tree.shrink.cljs$core$IFn$_invoke$arity$2 ? clojure.test.check.rose_tree.shrink.cljs$core$IFn$_invoke$arity$2(f,p1__30054_SHARP_) : clojure.test.check.rose_tree.shrink.call(null,f,p1__30054_SHARP_));
+return clojure.test.check.rose_tree.make_rose(cljs.core.apply.cljs$core$IFn$_invoke$arity$2(f,cljs.core.map.cljs$core$IFn$_invoke$arity$2(clojure.test.check.rose_tree.root,roses)),cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__30243_SHARP_){
+return (clojure.test.check.rose_tree.shrink.cljs$core$IFn$_invoke$arity$2 ? clojure.test.check.rose_tree.shrink.cljs$core$IFn$_invoke$arity$2(f,p1__30243_SHARP_) : clojure.test.check.rose_tree.shrink.call(null,f,p1__30243_SHARP_));
 }),clojure.test.check.rose_tree.remove(clojure.test.check.rose_tree.unchunk(roses))));
 } else {
 return clojure.test.check.rose_tree.make_rose((f.cljs$core$IFn$_invoke$arity$0 ? f.cljs$core$IFn$_invoke$arity$0() : f.call(null)),cljs.core.PersistentVector.EMPTY);
@@ -283,13 +283,13 @@ clojure.test.check.rose_tree.bifurcate = (function clojure$test$check$rose_tree$
 if(((4) <= cljs.core.count(roses))){
 var left_count = cljs.core.quot(cljs.core.count(roses),(2));
 return (new cljs.core.LazySeq(null,(function (){
-return cljs.core.cons((function (){var G__30056 = f;
-var G__30057 = cljs.core.subvec.cljs$core$IFn$_invoke$arity$3(roses,(0),left_count);
-return (clojure.test.check.rose_tree.shrink_vector_STAR_.cljs$core$IFn$_invoke$arity$2 ? clojure.test.check.rose_tree.shrink_vector_STAR_.cljs$core$IFn$_invoke$arity$2(G__30056,G__30057) : clojure.test.check.rose_tree.shrink_vector_STAR_.call(null,G__30056,G__30057));
+return cljs.core.cons((function (){var G__30244 = f;
+var G__30245 = cljs.core.subvec.cljs$core$IFn$_invoke$arity$3(roses,(0),left_count);
+return (clojure.test.check.rose_tree.shrink_vector_STAR_.cljs$core$IFn$_invoke$arity$2 ? clojure.test.check.rose_tree.shrink_vector_STAR_.cljs$core$IFn$_invoke$arity$2(G__30244,G__30245) : clojure.test.check.rose_tree.shrink_vector_STAR_.call(null,G__30244,G__30245));
 })(),(new cljs.core.LazySeq(null,(function (){
-return (new cljs.core.List(null,(function (){var G__30059 = f;
-var G__30060 = cljs.core.subvec.cljs$core$IFn$_invoke$arity$2(roses,left_count);
-return (clojure.test.check.rose_tree.shrink_vector_STAR_.cljs$core$IFn$_invoke$arity$2 ? clojure.test.check.rose_tree.shrink_vector_STAR_.cljs$core$IFn$_invoke$arity$2(G__30059,G__30060) : clojure.test.check.rose_tree.shrink_vector_STAR_.call(null,G__30059,G__30060));
+return (new cljs.core.List(null,(function (){var G__30246 = f;
+var G__30247 = cljs.core.subvec.cljs$core$IFn$_invoke$arity$2(roses,left_count);
+return (clojure.test.check.rose_tree.shrink_vector_STAR_.cljs$core$IFn$_invoke$arity$2 ? clojure.test.check.rose_tree.shrink_vector_STAR_.cljs$core$IFn$_invoke$arity$2(G__30246,G__30247) : clojure.test.check.rose_tree.shrink_vector_STAR_.call(null,G__30246,G__30247));
 })(),null,(1),null));
 }),null,null)));
 }),null,null));

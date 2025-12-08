@@ -658,8 +658,8 @@ return (new cljs.tools.reader.reader_types.StringReader(s,cljs.core.count(s),(0)
  * Creates a PushbackReader from a given string
  */
 cljs.tools.reader.reader_types.string_push_back_reader = (function cljs$tools$reader$reader_types$string_push_back_reader(var_args){
-var G__30283 = arguments.length;
-switch (G__30283) {
+var G__30284 = arguments.length;
+switch (G__30284) {
 case 1:
 return cljs.tools.reader.reader_types.string_push_back_reader.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -773,10 +773,10 @@ while(true){
 if(cljs.tools.reader.impl.utils.newline_QMARK_(c)){
 return cljs.core.str.cljs$core$IFn$_invoke$arity$1(s);
 } else {
-var G__30302 = rdr.cljs$tools$reader$reader_types$Reader$read_char$arity$1(null);
-var G__30303 = s.append(c);
-c = G__30302;
-s = G__30303;
+var G__30308 = rdr.cljs$tools$reader$reader_types$Reader$read_char$arity$1(null);
+var G__30309 = s.append(c);
+c = G__30308;
+s = G__30309;
 continue;
 }
 break;

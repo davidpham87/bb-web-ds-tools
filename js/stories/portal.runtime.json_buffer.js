@@ -44,34 +44,34 @@ portal.runtime.json_buffer.__GT_reader = (function portal$runtime$json_buffer$__
 return portal.runtime.json_buffer.shifter(JSON.parse(data));
 });
 portal.runtime.json_buffer.push_null = (function portal$runtime$json_buffer$push_null(buffer){
-var G__36643 = buffer;
-G__36643.push(null);
-
-return G__36643;
-});
-portal.runtime.json_buffer.push_bool = (function portal$runtime$json_buffer$push_bool(buffer,value){
-var G__36644 = buffer;
-G__36644.push(value);
-
-return G__36644;
-});
-portal.runtime.json_buffer.push_long = (function portal$runtime$json_buffer$push_long(buffer,value){
-var G__36648 = buffer;
-G__36648.push(value);
-
-return G__36648;
-});
-portal.runtime.json_buffer.push_double = (function portal$runtime$json_buffer$push_double(buffer,value){
 var G__36650 = buffer;
-G__36650.push(value);
+G__36650.push(null);
 
 return G__36650;
 });
-portal.runtime.json_buffer.push_string = (function portal$runtime$json_buffer$push_string(buffer,value){
-var G__36651 = buffer;
-G__36651.push(value);
+portal.runtime.json_buffer.push_bool = (function portal$runtime$json_buffer$push_bool(buffer,value){
+var G__36655 = buffer;
+G__36655.push(value);
 
-return G__36651;
+return G__36655;
+});
+portal.runtime.json_buffer.push_long = (function portal$runtime$json_buffer$push_long(buffer,value){
+var G__36656 = buffer;
+G__36656.push(value);
+
+return G__36656;
+});
+portal.runtime.json_buffer.push_double = (function portal$runtime$json_buffer$push_double(buffer,value){
+var G__36657 = buffer;
+G__36657.push(value);
+
+return G__36657;
+});
+portal.runtime.json_buffer.push_string = (function portal$runtime$json_buffer$push_string(buffer,value){
+var G__36658 = buffer;
+G__36658.push(value);
+
+return G__36658;
 });
 portal.runtime.json_buffer.push_value = (function portal$runtime$json_buffer$push_value(buffer,value){
 if((value == null)){
@@ -115,9 +115,9 @@ portal.runtime.json_buffer.next_value = (function portal$runtime$json_buffer$nex
 return portal.runtime.json_buffer._shift(buffer);
 });
 portal.runtime.json_buffer.with_buffer = (function portal$runtime$json_buffer$with_buffer(f,value){
-return JSON.stringify((function (){var G__36652 = (new Array());
-var G__36653 = value;
-return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__36652,G__36653) : f.call(null,G__36652,G__36653));
+return JSON.stringify((function (){var G__36659 = (new Array());
+var G__36660 = value;
+return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__36659,G__36660) : f.call(null,G__36659,G__36660));
 })());
 });
 

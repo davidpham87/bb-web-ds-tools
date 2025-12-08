@@ -38,25 +38,25 @@ bb_web_ds_tools.views.landing.github_icon = new cljs.core.PersistentVector(null,
  *  vector: A hiccup vector.
  */
 bb_web_ds_tools.views.landing.landing_page = (function bb_web_ds_tools$views$landing$landing_page(){
-return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"min-h-full p-8 flex flex-col items-center"], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"max-w-7xl w-full flex-grow flex flex-col justify-center"], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"text-center mb-12"], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h1","h1",-1896887462),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),["text-5xl font-extrabold mb-4 ",bb_web_ds_tools.theme.text_accent," tracking-tight"].join('')], null),"The \"Swiss Army Knife\" of Data Science"], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),["text-xl ",bb_web_ds_tools.theme.text_secondary," max-w-3xl mx-auto leading-relaxed"].join('')], null),"Because sometimes you just want to run Python, R, Clojure, and a Large Language Model in your browser simultaneously while editing SQL and validating JSON schemas, and you don't want to open a new tab."], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"], null),(function (){var iter__5503__auto__ = (function bb_web_ds_tools$views$landing$landing_page_$_iter__24999(s__25000){
+return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"min-h-full p-8 flex flex-col items-center"], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"max-w-7xl w-full flex-grow flex flex-col justify-center"], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"text-center mb-12"], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h1","h1",-1896887462),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),["text-5xl font-extrabold mb-4 ",bb_web_ds_tools.theme.text_accent," tracking-tight"].join('')], null),"The \"Swiss Army Knife\" of Data Science"], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),["text-xl ",bb_web_ds_tools.theme.text_secondary," max-w-3xl mx-auto leading-relaxed"].join('')], null),"Because sometimes you just want to run Python, R, Clojure, and a Large Language Model in your browser simultaneously while editing SQL and validating JSON schemas, and you don't want to open a new tab."], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"], null),(function (){var iter__5503__auto__ = (function bb_web_ds_tools$views$landing$landing_page_$_iter__24961(s__24962){
 return (new cljs.core.LazySeq(null,(function (){
-var s__25000__$1 = s__25000;
+var s__24962__$1 = s__24962;
 while(true){
-var temp__5825__auto__ = cljs.core.seq(s__25000__$1);
+var temp__5825__auto__ = cljs.core.seq(s__24962__$1);
 if(temp__5825__auto__){
-var s__25000__$2 = temp__5825__auto__;
-if(cljs.core.chunked_seq_QMARK_(s__25000__$2)){
-var c__5501__auto__ = cljs.core.chunk_first(s__25000__$2);
+var s__24962__$2 = temp__5825__auto__;
+if(cljs.core.chunked_seq_QMARK_(s__24962__$2)){
+var c__5501__auto__ = cljs.core.chunk_first(s__24962__$2);
 var size__5502__auto__ = cljs.core.count(c__5501__auto__);
-var b__25002 = cljs.core.chunk_buffer(size__5502__auto__);
-if((function (){var i__25001 = (0);
+var b__24964 = cljs.core.chunk_buffer(size__5502__auto__);
+if((function (){var i__24963 = (0);
 while(true){
-if((i__25001 < size__5502__auto__)){
-var card = cljs.core._nth(c__5501__auto__,i__25001);
-cljs.core.chunk_append(b__25002,cljs.core.with_meta(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.landing.canvas_card,card], null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"key","key",-1516042587),new cljs.core.Keyword(null,"route","route",329891309).cljs$core$IFn$_invoke$arity$1(card)], null)));
+if((i__24963 < size__5502__auto__)){
+var card = cljs.core._nth(c__5501__auto__,i__24963);
+cljs.core.chunk_append(b__24964,cljs.core.with_meta(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.landing.canvas_card,card], null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"key","key",-1516042587),new cljs.core.Keyword(null,"route","route",329891309).cljs$core$IFn$_invoke$arity$1(card)], null)));
 
-var G__25044 = (i__25001 + (1));
-i__25001 = G__25044;
+var G__24971 = (i__24963 + (1));
+i__24963 = G__24971;
 continue;
 } else {
 return true;
@@ -64,13 +64,13 @@ return true;
 break;
 }
 })()){
-return cljs.core.chunk_cons(cljs.core.chunk(b__25002),bb_web_ds_tools$views$landing$landing_page_$_iter__24999(cljs.core.chunk_rest(s__25000__$2)));
+return cljs.core.chunk_cons(cljs.core.chunk(b__24964),bb_web_ds_tools$views$landing$landing_page_$_iter__24961(cljs.core.chunk_rest(s__24962__$2)));
 } else {
-return cljs.core.chunk_cons(cljs.core.chunk(b__25002),null);
+return cljs.core.chunk_cons(cljs.core.chunk(b__24964),null);
 }
 } else {
-var card = cljs.core.first(s__25000__$2);
-return cljs.core.cons(cljs.core.with_meta(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.landing.canvas_card,card], null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"key","key",-1516042587),new cljs.core.Keyword(null,"route","route",329891309).cljs$core$IFn$_invoke$arity$1(card)], null)),bb_web_ds_tools$views$landing$landing_page_$_iter__24999(cljs.core.rest(s__25000__$2)));
+var card = cljs.core.first(s__24962__$2);
+return cljs.core.cons(cljs.core.with_meta(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.landing.canvas_card,card], null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"key","key",-1516042587),new cljs.core.Keyword(null,"route","route",329891309).cljs$core$IFn$_invoke$arity$1(card)], null)),bb_web_ds_tools$views$landing$landing_page_$_iter__24961(cljs.core.rest(s__24962__$2)));
 }
 } else {
 return null;

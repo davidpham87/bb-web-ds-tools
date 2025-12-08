@@ -7,11 +7,11 @@ bb_web_ds_tools.runtime_test.test_sci_main_eval.cljs$lang$test = (function (){
 cljs.test.update_current_env_BANG_.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"testing-contexts","testing-contexts",-1485646523)], null),cljs.core.conj,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2(["eval-in-main executes code"], 0));
 
 try{var results = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentVector.EMPTY);
-var submit_orig_val__57571 = portal.web.submit;
-var submit_temp_val__57572 = (function (res){
+var submit_orig_val__57672 = portal.web.submit;
+var submit_temp_val__57673 = (function (res){
 return cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$3(results,cljs.core.conj,res);
 });
-(portal.web.submit = submit_temp_val__57572);
+(portal.web.submit = submit_temp_val__57673);
 
 try{bb_web_ds_tools.runtime.sci.eval_in_main("(+ 1 2)");
 
@@ -24,9 +24,9 @@ cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core
 }
 
 return result__11366__auto__;
-}catch (e57577){var t__11416__auto__ = e57577;
+}catch (e57675){var t__11416__auto__ = e57675;
 return cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/runtime_test.cljs",45,new cljs.core.Keyword(null,"error","error",-978969032),13,14,cljs.core.list(new cljs.core.Symbol(null,"=","=",-1501502141,null),"3",cljs.core.list(new cljs.core.Keyword(null,"value","value",305978217),cljs.core.list(new cljs.core.Symbol(null,"last","last",-1548700637,null),cljs.core.list(new cljs.core.Symbol("clojure.core","deref","clojure.core/deref",188719157,null),new cljs.core.Symbol(null,"results","results",506361414,null))))),14,t__11416__auto__,null]));
-}}finally {(portal.web.submit = submit_orig_val__57571);
+}}finally {(portal.web.submit = submit_orig_val__57672);
 }}finally {cljs.test.update_current_env_BANG_(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"testing-contexts","testing-contexts",-1485646523)], null),cljs.core.rest);
 }});
 
