@@ -2,23 +2,25 @@
   (:require
    [portal.web :as p]
    [re-frame.core :as rf]
-   [reagent.core :as r]))
+   [reagent.core :as r]
+   [bb-web-ds-tools.events.theme :as theme-events]))
 
 (rf/reg-fx
  :portal/open
- (fn [iframe-parent-id]
+ (fn [{:keys [iframe-parent-id theme]}]
    (tap> iframe-parent-id)
-   (if iframe-parent-id
-     (let [iframe-parent (.getElementById js/document iframe-parent-id)]
-       (p/open {:launcher :iframe
-                :iframe-parent iframe-parent
-                :theme :portal.colors/zenburn}))
-     (p/open {:theme :portal.colors/zenburn}))))
+   (let [options (cond-> {:theme (or (keyword "portal.colors" (name theme)) :portal.colors/zenburn)}
+                   iframe-parent-id
+                   (assoc :launcher :iframe
+                          :iframe-parent (.getElementById js/document iframe-parent-id)))]
+     (p/open options))))
 
 (rf/reg-event-fx
  ::open
- (fn [_ [_ {:keys [node-id]}]]
-   {:portal/open node-id}))
+ (fn [{:keys [db]} [_ {:keys [node-id] :as opts}]]
+   (let [theme (get db ::theme-events/current-theme :zenburn)]
+     {:portal/open {:iframe-parent-id node-id
+                    :theme theme}})))
 
 (rf/reg-fx
  :portal/submit
@@ -41,13 +43,14 @@
   Returns:
     vector: A hiccup vector representing the portal container."
   []
-  [:div {:class "w-full"
-         :style {:height "100%" :margin 0 :padding 0}
-         :ref (fn [el]
-                (when el
-                  (p/open {:launcher :iframe
-                           :iframe-parent el
-                           :theme :portal.colors/zenburn})))}])
+  (let [current-theme @(rf/subscribe [::theme-events/current-theme])]
+    [:div {:class "w-full"
+           :style {:height "100%" :margin 0 :padding 0}
+           :ref (fn [el]
+                  (when el
+                    (p/open {:launcher :iframe
+                             :iframe-parent el
+                             :theme (keyword "portal.colors" (name current-theme))})))}]))
 
 (defn portal-panel
   "A Reagent component that renders a Portal inspector and automatically submits data to it.
