@@ -176,25 +176,25 @@ return self__.meta;
 (sci.lang.Var.prototype.sci$impl$vars$IVar$bindRoot$arity$2 = (function (this$,v){
 var self__ = this;
 var this$__$1 = this;
-var old_root_36118 = this$__$1.root;
-var vm__35999__auto___36119 = self__.meta;
+var old_root_36137 = this$__$1.root;
+var vm__35963__auto___36138 = self__.meta;
 if(cljs.core.truth_((function (){var or__5025__auto__ = sci.impl.unrestrict._STAR_unrestricted_STAR_;
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
 } else {
-return cljs.core.not(new cljs.core.Keyword("sci","built-in","sci/built-in",1244659599).cljs$core$IFn$_invoke$arity$1(vm__35999__auto___36119));
+return cljs.core.not(new cljs.core.Keyword("sci","built-in","sci/built-in",1244659599).cljs$core$IFn$_invoke$arity$1(vm__35963__auto___36138));
 }
 })())){
 (self__.root = v);
 } else {
-var the_var__36000__auto___36120 = this$__$1;
-var ns__36001__auto___36121 = new cljs.core.Keyword(null,"ns","ns",441598760).cljs$core$IFn$_invoke$arity$1(vm__35999__auto___36119);
-var ns_name__36002__auto___36122 = sci.impl.types.getName(ns__36001__auto___36121);
-var name__36003__auto___36123 = the_var__36000__auto___36120.sci$impl$types$HasName$getName$arity$1(null);
-throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(["Built-in var #'",cljs.core.str.cljs$core$IFn$_invoke$arity$1(ns_name__36002__auto___36122),"/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(name__36003__auto___36123)," is read-only."].join(''),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"var","var",-769682797),this$__$1], null));
+var the_var__35964__auto___36140 = this$__$1;
+var ns__35965__auto___36141 = new cljs.core.Keyword(null,"ns","ns",441598760).cljs$core$IFn$_invoke$arity$1(vm__35963__auto___36138);
+var ns_name__35966__auto___36142 = sci.impl.types.getName(ns__35965__auto___36141);
+var name__35967__auto___36143 = the_var__35964__auto___36140.sci$impl$types$HasName$getName$arity$1(null);
+throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(["Built-in var #'",cljs.core.str.cljs$core$IFn$_invoke$arity$1(ns_name__35966__auto___36142),"/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(name__35967__auto___36143)," is read-only."].join(''),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"var","var",-769682797),this$__$1], null));
 }
 
-sci.lang.notify_watches(this$__$1,self__.watches,old_root_36118,v);
+sci.lang.notify_watches(this$__$1,self__.watches,old_root_36137,v);
 
 return v;
 }));
@@ -208,21 +208,21 @@ return self__.root;
 (sci.lang.Var.prototype.sci$impl$vars$IVar$toSymbol$arity$1 = (function (_this){
 var self__ = this;
 var _this__$1 = this;
-var temp__5823__auto__ = (function (){var G__36085 = new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(self__.meta);
-if((G__36085 == null)){
+var temp__5823__auto__ = (function (){var G__36094 = new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(self__.meta);
+if((G__36094 == null)){
 return null;
 } else {
-return cljs.core.name(G__36085);
+return cljs.core.name(G__36094);
 }
 })();
 if(cljs.core.truth_(temp__5823__auto__)){
 var sym_name = temp__5823__auto__;
-return cljs.core.symbol.cljs$core$IFn$_invoke$arity$2((function (){var G__36086 = new cljs.core.Keyword(null,"ns","ns",441598760).cljs$core$IFn$_invoke$arity$1(self__.meta);
-var G__36086__$1 = (((G__36086 == null))?null:sci.impl.types.getName(G__36086));
-if((G__36086__$1 == null)){
+return cljs.core.symbol.cljs$core$IFn$_invoke$arity$2((function (){var G__36095 = new cljs.core.Keyword(null,"ns","ns",441598760).cljs$core$IFn$_invoke$arity$1(self__.meta);
+var G__36095__$1 = (((G__36095 == null))?null:sci.impl.types.getName(G__36095));
+if((G__36095__$1 == null)){
 return null;
 } else {
-return cljs.core.name(G__36086__$1);
+return cljs.core.name(G__36095__$1);
 }
 })(),sym_name);
 } else {
@@ -256,21 +256,21 @@ return (this$__$1.thread_bound = v);
 (sci.lang.Var.prototype.sci$impl$vars$IVar$unbind$arity$1 = (function (this$){
 var self__ = this;
 var this$__$1 = this;
-var vm__35999__auto__ = self__.meta;
+var vm__35963__auto__ = self__.meta;
 if(cljs.core.truth_((function (){var or__5025__auto__ = sci.impl.unrestrict._STAR_unrestricted_STAR_;
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
 } else {
-return cljs.core.not(new cljs.core.Keyword("sci","built-in","sci/built-in",1244659599).cljs$core$IFn$_invoke$arity$1(vm__35999__auto__));
+return cljs.core.not(new cljs.core.Keyword("sci","built-in","sci/built-in",1244659599).cljs$core$IFn$_invoke$arity$1(vm__35963__auto__));
 }
 })())){
 return (this$__$1.root = (new sci.impl.vars.SciUnbound(this$__$1)));
 } else {
-var the_var__36000__auto__ = this$__$1;
-var ns__36001__auto__ = new cljs.core.Keyword(null,"ns","ns",441598760).cljs$core$IFn$_invoke$arity$1(vm__35999__auto__);
-var ns_name__36002__auto__ = sci.impl.types.getName(ns__36001__auto__);
-var name__36003__auto__ = the_var__36000__auto__.sci$impl$types$HasName$getName$arity$1(null);
-throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(["Built-in var #'",cljs.core.str.cljs$core$IFn$_invoke$arity$1(ns_name__36002__auto__),"/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(name__36003__auto__)," is read-only."].join(''),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"var","var",-769682797),this$__$1], null));
+var the_var__35964__auto__ = this$__$1;
+var ns__35965__auto__ = new cljs.core.Keyword(null,"ns","ns",441598760).cljs$core$IFn$_invoke$arity$1(vm__35963__auto__);
+var ns_name__35966__auto__ = sci.impl.types.getName(ns__35965__auto__);
+var name__35967__auto__ = the_var__35964__auto__.sci$impl$types$HasName$getName$arity$1(null);
+throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(["Built-in var #'",cljs.core.str.cljs$core$IFn$_invoke$arity$1(ns_name__35966__auto__),"/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(name__35967__auto__)," is read-only."].join(''),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"var","var",-769682797),this$__$1], null));
 }
 }));
 
@@ -334,8 +334,8 @@ return (self__.needs_ctx = true);
 (sci.lang.Var.prototype.call = (function (unused__11801__auto__){
 var self__ = this;
 var self__ = this;
-var G__36091 = (arguments.length - (1));
-switch (G__36091) {
+var G__36097 = (arguments.length - (1));
+switch (G__36097) {
 case (0):
 return self__.cljs$core$IFn$_invoke$arity$0();
 
@@ -430,157 +430,157 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 }
 }));
 
-(sci.lang.Var.prototype.apply = (function (self__,args36084){
+(sci.lang.Var.prototype.apply = (function (self__,args36088){
 var self__ = this;
 var self____$1 = this;
-return self____$1.call.apply(self____$1,[self____$1].concat(cljs.core.aclone(args36084)));
+return self____$1.call.apply(self____$1,[self____$1].concat(cljs.core.aclone(args36088)));
 }));
 
 (sci.lang.Var.prototype.cljs$core$IFn$_invoke$arity$0 = (function (){
 var self__ = this;
 var this$ = this;
-var fexpr__36092 = cljs.core.deref(this$);
-return (fexpr__36092.cljs$core$IFn$_invoke$arity$0 ? fexpr__36092.cljs$core$IFn$_invoke$arity$0() : fexpr__36092.call(null));
+var fexpr__36103 = cljs.core.deref(this$);
+return (fexpr__36103.cljs$core$IFn$_invoke$arity$0 ? fexpr__36103.cljs$core$IFn$_invoke$arity$0() : fexpr__36103.call(null));
 }));
 
 (sci.lang.Var.prototype.cljs$core$IFn$_invoke$arity$1 = (function (a){
 var self__ = this;
 var this$ = this;
-var fexpr__36093 = cljs.core.deref(this$);
-return (fexpr__36093.cljs$core$IFn$_invoke$arity$1 ? fexpr__36093.cljs$core$IFn$_invoke$arity$1(a) : fexpr__36093.call(null,a));
+var fexpr__36104 = cljs.core.deref(this$);
+return (fexpr__36104.cljs$core$IFn$_invoke$arity$1 ? fexpr__36104.cljs$core$IFn$_invoke$arity$1(a) : fexpr__36104.call(null,a));
 }));
 
 (sci.lang.Var.prototype.cljs$core$IFn$_invoke$arity$2 = (function (a,b){
 var self__ = this;
 var this$ = this;
-var fexpr__36094 = cljs.core.deref(this$);
-return (fexpr__36094.cljs$core$IFn$_invoke$arity$2 ? fexpr__36094.cljs$core$IFn$_invoke$arity$2(a,b) : fexpr__36094.call(null,a,b));
+var fexpr__36105 = cljs.core.deref(this$);
+return (fexpr__36105.cljs$core$IFn$_invoke$arity$2 ? fexpr__36105.cljs$core$IFn$_invoke$arity$2(a,b) : fexpr__36105.call(null,a,b));
 }));
 
 (sci.lang.Var.prototype.cljs$core$IFn$_invoke$arity$3 = (function (a,b,c){
 var self__ = this;
 var this$ = this;
-var fexpr__36095 = cljs.core.deref(this$);
-return (fexpr__36095.cljs$core$IFn$_invoke$arity$3 ? fexpr__36095.cljs$core$IFn$_invoke$arity$3(a,b,c) : fexpr__36095.call(null,a,b,c));
+var fexpr__36106 = cljs.core.deref(this$);
+return (fexpr__36106.cljs$core$IFn$_invoke$arity$3 ? fexpr__36106.cljs$core$IFn$_invoke$arity$3(a,b,c) : fexpr__36106.call(null,a,b,c));
 }));
 
 (sci.lang.Var.prototype.cljs$core$IFn$_invoke$arity$4 = (function (a,b,c,d){
 var self__ = this;
 var this$ = this;
-var fexpr__36096 = cljs.core.deref(this$);
-return (fexpr__36096.cljs$core$IFn$_invoke$arity$4 ? fexpr__36096.cljs$core$IFn$_invoke$arity$4(a,b,c,d) : fexpr__36096.call(null,a,b,c,d));
+var fexpr__36107 = cljs.core.deref(this$);
+return (fexpr__36107.cljs$core$IFn$_invoke$arity$4 ? fexpr__36107.cljs$core$IFn$_invoke$arity$4(a,b,c,d) : fexpr__36107.call(null,a,b,c,d));
 }));
 
 (sci.lang.Var.prototype.cljs$core$IFn$_invoke$arity$5 = (function (a,b,c,d,e){
 var self__ = this;
 var this$ = this;
-var fexpr__36097 = cljs.core.deref(this$);
-return (fexpr__36097.cljs$core$IFn$_invoke$arity$5 ? fexpr__36097.cljs$core$IFn$_invoke$arity$5(a,b,c,d,e) : fexpr__36097.call(null,a,b,c,d,e));
+var fexpr__36108 = cljs.core.deref(this$);
+return (fexpr__36108.cljs$core$IFn$_invoke$arity$5 ? fexpr__36108.cljs$core$IFn$_invoke$arity$5(a,b,c,d,e) : fexpr__36108.call(null,a,b,c,d,e));
 }));
 
 (sci.lang.Var.prototype.cljs$core$IFn$_invoke$arity$6 = (function (a,b,c,d,e,f){
 var self__ = this;
 var this$ = this;
-var fexpr__36098 = cljs.core.deref(this$);
-return (fexpr__36098.cljs$core$IFn$_invoke$arity$6 ? fexpr__36098.cljs$core$IFn$_invoke$arity$6(a,b,c,d,e,f) : fexpr__36098.call(null,a,b,c,d,e,f));
+var fexpr__36109 = cljs.core.deref(this$);
+return (fexpr__36109.cljs$core$IFn$_invoke$arity$6 ? fexpr__36109.cljs$core$IFn$_invoke$arity$6(a,b,c,d,e,f) : fexpr__36109.call(null,a,b,c,d,e,f));
 }));
 
 (sci.lang.Var.prototype.cljs$core$IFn$_invoke$arity$7 = (function (a,b,c,d,e,f,g){
 var self__ = this;
 var this$ = this;
-var fexpr__36099 = cljs.core.deref(this$);
-return (fexpr__36099.cljs$core$IFn$_invoke$arity$7 ? fexpr__36099.cljs$core$IFn$_invoke$arity$7(a,b,c,d,e,f,g) : fexpr__36099.call(null,a,b,c,d,e,f,g));
+var fexpr__36110 = cljs.core.deref(this$);
+return (fexpr__36110.cljs$core$IFn$_invoke$arity$7 ? fexpr__36110.cljs$core$IFn$_invoke$arity$7(a,b,c,d,e,f,g) : fexpr__36110.call(null,a,b,c,d,e,f,g));
 }));
 
 (sci.lang.Var.prototype.cljs$core$IFn$_invoke$arity$8 = (function (a,b,c,d,e,f,g,h){
 var self__ = this;
 var this$ = this;
-var fexpr__36100 = cljs.core.deref(this$);
-return (fexpr__36100.cljs$core$IFn$_invoke$arity$8 ? fexpr__36100.cljs$core$IFn$_invoke$arity$8(a,b,c,d,e,f,g,h) : fexpr__36100.call(null,a,b,c,d,e,f,g,h));
+var fexpr__36115 = cljs.core.deref(this$);
+return (fexpr__36115.cljs$core$IFn$_invoke$arity$8 ? fexpr__36115.cljs$core$IFn$_invoke$arity$8(a,b,c,d,e,f,g,h) : fexpr__36115.call(null,a,b,c,d,e,f,g,h));
 }));
 
 (sci.lang.Var.prototype.cljs$core$IFn$_invoke$arity$9 = (function (a,b,c,d,e,f,g,h,i){
 var self__ = this;
 var this$ = this;
-var fexpr__36101 = cljs.core.deref(this$);
-return (fexpr__36101.cljs$core$IFn$_invoke$arity$9 ? fexpr__36101.cljs$core$IFn$_invoke$arity$9(a,b,c,d,e,f,g,h,i) : fexpr__36101.call(null,a,b,c,d,e,f,g,h,i));
+var fexpr__36120 = cljs.core.deref(this$);
+return (fexpr__36120.cljs$core$IFn$_invoke$arity$9 ? fexpr__36120.cljs$core$IFn$_invoke$arity$9(a,b,c,d,e,f,g,h,i) : fexpr__36120.call(null,a,b,c,d,e,f,g,h,i));
 }));
 
 (sci.lang.Var.prototype.cljs$core$IFn$_invoke$arity$10 = (function (a,b,c,d,e,f,g,h,i,j){
 var self__ = this;
 var this$ = this;
-var fexpr__36102 = cljs.core.deref(this$);
-return (fexpr__36102.cljs$core$IFn$_invoke$arity$10 ? fexpr__36102.cljs$core$IFn$_invoke$arity$10(a,b,c,d,e,f,g,h,i,j) : fexpr__36102.call(null,a,b,c,d,e,f,g,h,i,j));
+var fexpr__36121 = cljs.core.deref(this$);
+return (fexpr__36121.cljs$core$IFn$_invoke$arity$10 ? fexpr__36121.cljs$core$IFn$_invoke$arity$10(a,b,c,d,e,f,g,h,i,j) : fexpr__36121.call(null,a,b,c,d,e,f,g,h,i,j));
 }));
 
 (sci.lang.Var.prototype.cljs$core$IFn$_invoke$arity$11 = (function (a,b,c,d,e,f,g,h,i,j,k){
 var self__ = this;
 var this$ = this;
-var fexpr__36103 = cljs.core.deref(this$);
-return (fexpr__36103.cljs$core$IFn$_invoke$arity$11 ? fexpr__36103.cljs$core$IFn$_invoke$arity$11(a,b,c,d,e,f,g,h,i,j,k) : fexpr__36103.call(null,a,b,c,d,e,f,g,h,i,j,k));
+var fexpr__36122 = cljs.core.deref(this$);
+return (fexpr__36122.cljs$core$IFn$_invoke$arity$11 ? fexpr__36122.cljs$core$IFn$_invoke$arity$11(a,b,c,d,e,f,g,h,i,j,k) : fexpr__36122.call(null,a,b,c,d,e,f,g,h,i,j,k));
 }));
 
 (sci.lang.Var.prototype.cljs$core$IFn$_invoke$arity$12 = (function (a,b,c,d,e,f,g,h,i,j,k,l){
 var self__ = this;
 var this$ = this;
-var fexpr__36104 = cljs.core.deref(this$);
-return (fexpr__36104.cljs$core$IFn$_invoke$arity$12 ? fexpr__36104.cljs$core$IFn$_invoke$arity$12(a,b,c,d,e,f,g,h,i,j,k,l) : fexpr__36104.call(null,a,b,c,d,e,f,g,h,i,j,k,l));
+var fexpr__36123 = cljs.core.deref(this$);
+return (fexpr__36123.cljs$core$IFn$_invoke$arity$12 ? fexpr__36123.cljs$core$IFn$_invoke$arity$12(a,b,c,d,e,f,g,h,i,j,k,l) : fexpr__36123.call(null,a,b,c,d,e,f,g,h,i,j,k,l));
 }));
 
 (sci.lang.Var.prototype.cljs$core$IFn$_invoke$arity$13 = (function (a,b,c,d,e,f,g,h,i,j,k,l,m){
 var self__ = this;
 var this$ = this;
-var fexpr__36105 = cljs.core.deref(this$);
-return (fexpr__36105.cljs$core$IFn$_invoke$arity$13 ? fexpr__36105.cljs$core$IFn$_invoke$arity$13(a,b,c,d,e,f,g,h,i,j,k,l,m) : fexpr__36105.call(null,a,b,c,d,e,f,g,h,i,j,k,l,m));
+var fexpr__36124 = cljs.core.deref(this$);
+return (fexpr__36124.cljs$core$IFn$_invoke$arity$13 ? fexpr__36124.cljs$core$IFn$_invoke$arity$13(a,b,c,d,e,f,g,h,i,j,k,l,m) : fexpr__36124.call(null,a,b,c,d,e,f,g,h,i,j,k,l,m));
 }));
 
 (sci.lang.Var.prototype.cljs$core$IFn$_invoke$arity$14 = (function (a,b,c,d,e,f,g,h,i,j,k,l,m,n){
 var self__ = this;
 var this$ = this;
-var fexpr__36106 = cljs.core.deref(this$);
-return (fexpr__36106.cljs$core$IFn$_invoke$arity$14 ? fexpr__36106.cljs$core$IFn$_invoke$arity$14(a,b,c,d,e,f,g,h,i,j,k,l,m,n) : fexpr__36106.call(null,a,b,c,d,e,f,g,h,i,j,k,l,m,n));
+var fexpr__36127 = cljs.core.deref(this$);
+return (fexpr__36127.cljs$core$IFn$_invoke$arity$14 ? fexpr__36127.cljs$core$IFn$_invoke$arity$14(a,b,c,d,e,f,g,h,i,j,k,l,m,n) : fexpr__36127.call(null,a,b,c,d,e,f,g,h,i,j,k,l,m,n));
 }));
 
 (sci.lang.Var.prototype.cljs$core$IFn$_invoke$arity$15 = (function (a,b,c,d,e,f,g,h,i,j,k,l,m,n,o){
 var self__ = this;
 var this$ = this;
-var fexpr__36107 = cljs.core.deref(this$);
-return (fexpr__36107.cljs$core$IFn$_invoke$arity$15 ? fexpr__36107.cljs$core$IFn$_invoke$arity$15(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o) : fexpr__36107.call(null,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o));
+var fexpr__36128 = cljs.core.deref(this$);
+return (fexpr__36128.cljs$core$IFn$_invoke$arity$15 ? fexpr__36128.cljs$core$IFn$_invoke$arity$15(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o) : fexpr__36128.call(null,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o));
 }));
 
 (sci.lang.Var.prototype.cljs$core$IFn$_invoke$arity$16 = (function (a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p){
 var self__ = this;
 var this$ = this;
-var fexpr__36108 = cljs.core.deref(this$);
-return (fexpr__36108.cljs$core$IFn$_invoke$arity$16 ? fexpr__36108.cljs$core$IFn$_invoke$arity$16(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p) : fexpr__36108.call(null,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p));
+var fexpr__36129 = cljs.core.deref(this$);
+return (fexpr__36129.cljs$core$IFn$_invoke$arity$16 ? fexpr__36129.cljs$core$IFn$_invoke$arity$16(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p) : fexpr__36129.call(null,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p));
 }));
 
 (sci.lang.Var.prototype.cljs$core$IFn$_invoke$arity$17 = (function (a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q){
 var self__ = this;
 var this$ = this;
-var fexpr__36109 = cljs.core.deref(this$);
-return (fexpr__36109.cljs$core$IFn$_invoke$arity$17 ? fexpr__36109.cljs$core$IFn$_invoke$arity$17(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q) : fexpr__36109.call(null,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q));
+var fexpr__36130 = cljs.core.deref(this$);
+return (fexpr__36130.cljs$core$IFn$_invoke$arity$17 ? fexpr__36130.cljs$core$IFn$_invoke$arity$17(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q) : fexpr__36130.call(null,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q));
 }));
 
 (sci.lang.Var.prototype.cljs$core$IFn$_invoke$arity$18 = (function (a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r){
 var self__ = this;
 var this$ = this;
-var fexpr__36110 = cljs.core.deref(this$);
-return (fexpr__36110.cljs$core$IFn$_invoke$arity$18 ? fexpr__36110.cljs$core$IFn$_invoke$arity$18(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r) : fexpr__36110.call(null,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r));
+var fexpr__36131 = cljs.core.deref(this$);
+return (fexpr__36131.cljs$core$IFn$_invoke$arity$18 ? fexpr__36131.cljs$core$IFn$_invoke$arity$18(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r) : fexpr__36131.call(null,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r));
 }));
 
 (sci.lang.Var.prototype.cljs$core$IFn$_invoke$arity$19 = (function (a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s){
 var self__ = this;
 var this$ = this;
-var fexpr__36111 = cljs.core.deref(this$);
-return (fexpr__36111.cljs$core$IFn$_invoke$arity$19 ? fexpr__36111.cljs$core$IFn$_invoke$arity$19(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s) : fexpr__36111.call(null,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s));
+var fexpr__36132 = cljs.core.deref(this$);
+return (fexpr__36132.cljs$core$IFn$_invoke$arity$19 ? fexpr__36132.cljs$core$IFn$_invoke$arity$19(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s) : fexpr__36132.call(null,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s));
 }));
 
 (sci.lang.Var.prototype.cljs$core$IFn$_invoke$arity$20 = (function (a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t){
 var self__ = this;
 var this$ = this;
-var fexpr__36112 = cljs.core.deref(this$);
-return (fexpr__36112.cljs$core$IFn$_invoke$arity$20 ? fexpr__36112.cljs$core$IFn$_invoke$arity$20(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t) : fexpr__36112.call(null,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t));
+var fexpr__36133 = cljs.core.deref(this$);
+return (fexpr__36133.cljs$core$IFn$_invoke$arity$20 ? fexpr__36133.cljs$core$IFn$_invoke$arity$20(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t) : fexpr__36133.call(null,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t));
 }));
 
 (sci.lang.Var.prototype.cljs$core$IFn$_invoke$arity$21 = (function (a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,rest){

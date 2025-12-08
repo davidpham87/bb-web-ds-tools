@@ -12,10 +12,10 @@ var total = cljs.core.reduce.cljs$core$IFn$_invoke$arity$2(cljs.core._PLUS_,cljs
 if((total === (0))){
 return weights;
 } else {
-return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentArrayMap.EMPTY,cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p__57480){
-var vec__57481 = p__57480;
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57481,(0),null);
-var w = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57481,(1),null);
+return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentArrayMap.EMPTY,cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p__57463){
+var vec__57464 = p__57463;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57464,(0),null);
+var w = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57464,(1),null);
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [k,bb_web_ds_tools.events.journeys.round_2((w / total))], null);
 }),weights));
 }
@@ -101,17 +101,17 @@ var opts = cljs.core.seq(weights);
 var acc = (0);
 while(true){
 if(cljs.core.seq(opts)){
-var vec__57492 = cljs.core.first(opts);
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57492,(0),null);
-var w = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57492,(1),null);
+var vec__57469 = cljs.core.first(opts);
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57469,(0),null);
+var w = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57469,(1),null);
 var acc__$1 = (acc + w);
 if((r < acc__$1)){
 return k;
 } else {
-var G__57527 = cljs.core.rest(opts);
-var G__57528 = acc__$1;
-opts = G__57527;
-acc = G__57528;
+var G__57488 = cljs.core.rest(opts);
+var G__57489 = acc__$1;
+opts = G__57488;
+acc = G__57489;
 continue;
 }
 } else {
@@ -130,8 +130,8 @@ break;
  *     :max-steps (int) - Limit the sequence (default: infinity).
  */
 bb_web_ds_tools.events.journeys.generate_journey = (function bb_web_ds_tools$events$journeys$generate_journey(var_args){
-var G__57498 = arguments.length;
-switch (G__57498) {
+var G__57473 = arguments.length;
+switch (G__57473) {
 case 2:
 return bb_web_ds_tools.events.journeys.generate_journey.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -150,11 +150,11 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 return bb_web_ds_tools.events.journeys.generate_journey.cljs$core$IFn$_invoke$arity$3(fsm,events,cljs.core.PersistentArrayMap.EMPTY);
 }));
 
-(bb_web_ds_tools.events.journeys.generate_journey.cljs$core$IFn$_invoke$arity$3 = (function (fsm,events,p__57500){
-var map__57501 = p__57500;
-var map__57501__$1 = cljs.core.__destructure_map(map__57501);
-var start_event = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__57501__$1,new cljs.core.Keyword(null,"start-event","start-event",1795223119));
-var max_steps = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__57501__$1,new cljs.core.Keyword(null,"max-steps","max-steps",1553604741));
+(bb_web_ds_tools.events.journeys.generate_journey.cljs$core$IFn$_invoke$arity$3 = (function (fsm,events,p__57475){
+var map__57476 = p__57475;
+var map__57476__$1 = cljs.core.__destructure_map(map__57476);
+var start_event = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__57476__$1,new cljs.core.Keyword(null,"start-event","start-event",1795223119));
+var max_steps = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__57476__$1,new cljs.core.Keyword(null,"max-steps","max-steps",1553604741));
 var start = (function (){var or__5025__auto__ = start_event;
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
@@ -168,10 +168,10 @@ if((((max_steps == null)) || ((steps_taken < max_steps)))){
 var args = malli.generator.generate.cljs$core$IFn$_invoke$arity$1(new cljs.core.Keyword(null,"args-gen","args-gen",305577864).cljs$core$IFn$_invoke$arity$1(cljs.core.get.cljs$core$IFn$_invoke$arity$2(events,current_event)));
 var new_route = ((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(current_event,bb_web_ds_tools.events.journeys.nav_event))?cljs.core.first(args):current_route);
 var candidates_map = cljs.core.get.cljs$core$IFn$_invoke$arity$2(fsm,current_event);
-var valid_entries = cljs.core.filter.cljs$core$IFn$_invoke$arity$2((function (p__57504){
-var vec__57505 = p__57504;
-var evt = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57505,(0),null);
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57505,(1),null);
+var valid_entries = cljs.core.filter.cljs$core$IFn$_invoke$arity$2((function (p__57479){
+var vec__57480 = p__57479;
+var evt = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57480,(0),null);
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57480,(1),null);
 var evt_route = new cljs.core.Keyword(null,"route","route",329891309).cljs$core$IFn$_invoke$arity$1(cljs.core.get.cljs$core$IFn$_invoke$arity$2(events,evt));
 return ((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(evt,bb_web_ds_tools.events.journeys.nav_event)) || (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(evt_route,new cljs.core.Keyword(null,"global","global",93595047))) || (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(evt_route,new_route)))));
 }),candidates_map);

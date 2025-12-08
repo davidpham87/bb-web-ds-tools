@@ -5,7 +5,7 @@ var orig_warn = cljs.core.get.cljs$core$IFn$_invoke$arity$2(re_frame.loggers.get
 cljs.core.reset_BANG_(bb_web_ds_tools.test_setup.saved_warn_logger,orig_warn);
 
 return re_frame.loggers.set_loggers_BANG_(new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"warn","warn",-436710552),(function() { 
-var G__56163__delegate = function (args){
+var G__56164__delegate = function (args){
 var msg = cljs.core.first(args);
 if(((typeof msg === 'string') && (clojure.string.includes_QMARK_(msg,"Subscribe was called outside of a reactive context")))){
 return null;
@@ -17,21 +17,21 @@ return console.warn(cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.str,
 }
 }
 };
-var G__56163 = function (var_args){
+var G__56164 = function (var_args){
 var args = null;
 if (arguments.length > 0) {
-var G__56164__i = 0, G__56164__a = new Array(arguments.length -  0);
-while (G__56164__i < G__56164__a.length) {G__56164__a[G__56164__i] = arguments[G__56164__i + 0]; ++G__56164__i;}
-  args = new cljs.core.IndexedSeq(G__56164__a,0,null);
+var G__56166__i = 0, G__56166__a = new Array(arguments.length -  0);
+while (G__56166__i < G__56166__a.length) {G__56166__a[G__56166__i] = arguments[G__56166__i + 0]; ++G__56166__i;}
+  args = new cljs.core.IndexedSeq(G__56166__a,0,null);
 } 
-return G__56163__delegate.call(this,args);};
-G__56163.cljs$lang$maxFixedArity = 0;
-G__56163.cljs$lang$applyTo = (function (arglist__56165){
-var args = cljs.core.seq(arglist__56165);
-return G__56163__delegate(args);
+return G__56164__delegate.call(this,args);};
+G__56164.cljs$lang$maxFixedArity = 0;
+G__56164.cljs$lang$applyTo = (function (arglist__56167){
+var args = cljs.core.seq(arglist__56167);
+return G__56164__delegate(args);
 });
-G__56163.cljs$core$IFn$_invoke$arity$variadic = G__56163__delegate;
-return G__56163;
+G__56164.cljs$core$IFn$_invoke$arity$variadic = G__56164__delegate;
+return G__56164;
 })()
 ], null));
 }),new cljs.core.Keyword(null,"after","after",594996914),(function (){

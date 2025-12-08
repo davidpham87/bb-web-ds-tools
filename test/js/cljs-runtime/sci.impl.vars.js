@@ -327,10 +327,10 @@ return false;
 sci.impl.vars.push_thread_bindings = (function sci$impl$vars$push_thread_bindings(bindings){
 var frame = sci.impl.vars.get_thread_binding_frame();
 var bmap = frame.bindings;
-var bmap__$1 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (acc,p__36040){
-var vec__36041 = p__36040;
-var var_STAR_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36041,(0),null);
-var val_STAR_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36041,(1),null);
+var bmap__$1 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (acc,p__36042){
+var vec__36043 = p__36042;
+var var_STAR_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36043,(0),null);
+var val_STAR_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36043,(1),null);
 if(cljs.core.not(sci.impl.vars.dynamic_QMARK_(var_STAR_))){
 throw (new Error(["Can't dynamically bind non-dynamic var ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(var_STAR_)].join('')));
 } else {
@@ -772,14 +772,14 @@ return sci.impl.vars.alter_var_root.cljs$core$IFn$_invoke$arity$2((arguments[(0)
 break;
 default:
 var args_arr__5774__auto__ = [];
-var len__5749__auto___36088 = arguments.length;
-var i__5750__auto___36089 = (0);
+var len__5749__auto___36085 = arguments.length;
+var i__5750__auto___36086 = (0);
 while(true){
-if((i__5750__auto___36089 < len__5749__auto___36088)){
-args_arr__5774__auto__.push((arguments[i__5750__auto___36089]));
+if((i__5750__auto___36086 < len__5749__auto___36085)){
+args_arr__5774__auto__.push((arguments[i__5750__auto___36086]));
 
-var G__36090 = (i__5750__auto___36089 + (1));
-i__5750__auto___36089 = G__36090;
+var G__36087 = (i__5750__auto___36086 + (1));
+i__5750__auto___36086 = G__36087;
 continue;
 } else {
 }

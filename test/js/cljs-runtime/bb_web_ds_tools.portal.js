@@ -1,12 +1,12 @@
 goog.provide('bb_web_ds_tools.portal');
-re_frame.core.reg_fx(new cljs.core.Keyword("portal","open","portal/open",1349656052),(function (p__30230){
-var map__30231 = p__30230;
-var map__30231__$1 = cljs.core.__destructure_map(map__30231);
-var iframe_parent_id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30231__$1,new cljs.core.Keyword(null,"iframe-parent-id","iframe-parent-id",-1242074886));
-var theme = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30231__$1,new cljs.core.Keyword(null,"theme","theme",-1247880880));
+re_frame.core.reg_fx(new cljs.core.Keyword("portal","open","portal/open",1349656052),(function (p__30220){
+var map__30221 = p__30220;
+var map__30221__$1 = cljs.core.__destructure_map(map__30221);
+var iframe_parent_id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30221__$1,new cljs.core.Keyword(null,"iframe-parent-id","iframe-parent-id",-1242074886));
+var theme = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30221__$1,new cljs.core.Keyword(null,"theme","theme",-1247880880));
 cljs.core.tap_GT_(iframe_parent_id);
 
-var options = (function (){var G__30233 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"theme","theme",-1247880880),(function (){var or__5025__auto__ = cljs.core.keyword.cljs$core$IFn$_invoke$arity$2("portal.colors",cljs.core.name(theme));
+var options = (function (){var G__30222 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"theme","theme",-1247880880),(function (){var or__5025__auto__ = cljs.core.keyword.cljs$core$IFn$_invoke$arity$2("portal.colors",cljs.core.name(theme));
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
 } else {
@@ -14,34 +14,34 @@ return new cljs.core.Keyword("portal.colors","zenburn","portal.colors/zenburn",-
 }
 })()], null);
 if(cljs.core.truth_(iframe_parent_id)){
-return cljs.core.assoc.cljs$core$IFn$_invoke$arity$variadic(G__30233,new cljs.core.Keyword(null,"launcher","launcher",-1380803777),new cljs.core.Keyword(null,"iframe","iframe",884422026),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"iframe-parent","iframe-parent",-2133134058),document.getElementById(iframe_parent_id)], 0));
+return cljs.core.assoc.cljs$core$IFn$_invoke$arity$variadic(G__30222,new cljs.core.Keyword(null,"launcher","launcher",-1380803777),new cljs.core.Keyword(null,"iframe","iframe",884422026),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"iframe-parent","iframe-parent",-2133134058),document.getElementById(iframe_parent_id)], 0));
 } else {
-return G__30233;
+return G__30222;
 }
 })();
 return portal.web.open.cljs$core$IFn$_invoke$arity$1(options);
 }));
-re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.portal","open","bb-web-ds-tools.portal/open",1274924169),(function (p__30237,p__30238){
-var map__30239 = p__30237;
-var map__30239__$1 = cljs.core.__destructure_map(map__30239);
-var db = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30239__$1,new cljs.core.Keyword(null,"db","db",993250759));
-var vec__30240 = p__30238;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30240,(0),null);
-var map__30243 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30240,(1),null);
-var map__30243__$1 = cljs.core.__destructure_map(map__30243);
-var opts = map__30243__$1;
-var node_id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30243__$1,new cljs.core.Keyword(null,"node-id","node-id",779482292));
+re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.portal","open","bb-web-ds-tools.portal/open",1274924169),(function (p__30226,p__30227){
+var map__30228 = p__30226;
+var map__30228__$1 = cljs.core.__destructure_map(map__30228);
+var db = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30228__$1,new cljs.core.Keyword(null,"db","db",993250759));
+var vec__30229 = p__30227;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30229,(0),null);
+var map__30232 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30229,(1),null);
+var map__30232__$1 = cljs.core.__destructure_map(map__30232);
+var opts = map__30232__$1;
+var node_id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30232__$1,new cljs.core.Keyword(null,"node-id","node-id",779482292));
 var theme = cljs.core.get.cljs$core$IFn$_invoke$arity$3(db,new cljs.core.Keyword("bb-web-ds-tools.events.theme","current-theme","bb-web-ds-tools.events.theme/current-theme",-1882747906),new cljs.core.Keyword(null,"zenburn","zenburn",-688714384));
 return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword("portal","open","portal/open",1349656052),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"iframe-parent-id","iframe-parent-id",-1242074886),node_id,new cljs.core.Keyword(null,"theme","theme",-1247880880),theme], null)], null);
 }));
 re_frame.core.reg_fx(new cljs.core.Keyword("portal","submit","portal/submit",861997951),(function (value){
 return portal.web.submit(value);
 }));
-re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.portal","submit","bb-web-ds-tools.portal/submit",1366041846),(function (_,p__30244){
-var vec__30245 = p__30244;
-var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30245,(0),null);
-var value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30245,(1),null);
-var viewer = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30245,(2),null);
+re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.portal","submit","bb-web-ds-tools.portal/submit",1366041846),(function (_,p__30234){
+var vec__30235 = p__30234;
+var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30235,(0),null);
+var value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30235,(1),null);
+var viewer = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30235,(2),null);
 return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword("portal","submit","portal/submit",861997951),(cljs.core.truth_(viewer)?(((((!((value == null))))?(((((value.cljs$lang$protocol_mask$partition0$ & (262144))) || ((cljs.core.PROTOCOL_SENTINEL === value.cljs$core$IWithMeta$))))?true:(((!value.cljs$lang$protocol_mask$partition0$))?cljs.core.native_satisfies_QMARK_(cljs.core.IWithMeta,value):false)):cljs.core.native_satisfies_QMARK_(cljs.core.IWithMeta,value)))?cljs.core.with_meta(value,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword("portal.viewer","default","portal.viewer/default",-1985169620),viewer], null)):new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [viewer,value], null)):value)], null);
 }));
 /**
@@ -72,14 +72,14 @@ return null;
  */
 bb_web_ds_tools.portal.portal_panel = (function bb_web_ds_tools$portal$portal_panel(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___30296 = arguments.length;
-var i__5750__auto___30297 = (0);
+var len__5749__auto___30274 = arguments.length;
+var i__5750__auto___30279 = (0);
 while(true){
-if((i__5750__auto___30297 < len__5749__auto___30296)){
-args__5755__auto__.push((arguments[i__5750__auto___30297]));
+if((i__5750__auto___30279 < len__5749__auto___30274)){
+args__5755__auto__.push((arguments[i__5750__auto___30279]));
 
-var G__30298 = (i__5750__auto___30297 + (1));
-i__5750__auto___30297 = G__30298;
+var G__30280 = (i__5750__auto___30279 + (1));
+i__5750__auto___30279 = G__30280;
 continue;
 } else {
 }
@@ -90,24 +90,24 @@ var argseq__5756__auto__ = ((((1) < args__5755__auto__.length))?(new cljs.core.I
 return bb_web_ds_tools.portal.portal_panel.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),argseq__5756__auto__);
 });
 
-(bb_web_ds_tools.portal.portal_panel.cljs$core$IFn$_invoke$arity$variadic = (function (value,p__30256){
-var vec__30258 = p__30256;
-var viewer = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30258,(0),null);
+(bb_web_ds_tools.portal.portal_panel.cljs$core$IFn$_invoke$arity$variadic = (function (value,p__30242){
+var vec__30243 = p__30242;
+var viewer = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30243,(0),null);
 return reagent.core.create_class.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"component-did-mount","component-did-mount",-1126910518),(function (this$){
-var vec__30266 = reagent.core.argv(this$);
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30266,(0),null);
-var value__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30266,(1),null);
-var viewer__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30266,(2),null);
+var vec__30258 = reagent.core.argv(this$);
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30258,(0),null);
+var value__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30258,(1),null);
+var viewer__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30258,(2),null);
 return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.portal","submit","bb-web-ds-tools.portal/submit",1366041846),value__$1,viewer__$1], null));
-}),new cljs.core.Keyword(null,"component-did-update","component-did-update",-1468549173),(function (this$,p__30269){
-var vec__30270 = p__30269;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30270,(0),null);
-var old_value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30270,(1),null);
-var old_viewer = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30270,(2),null);
-var vec__30274 = reagent.core.argv(this$);
-var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30274,(0),null);
-var value__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30274,(1),null);
-var viewer__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30274,(2),null);
+}),new cljs.core.Keyword(null,"component-did-update","component-did-update",-1468549173),(function (this$,p__30261){
+var vec__30262 = p__30261;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30262,(0),null);
+var old_value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30262,(1),null);
+var old_viewer = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30262,(2),null);
+var vec__30265 = reagent.core.argv(this$);
+var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30265,(0),null);
+var value__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30265,(1),null);
+var viewer__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30265,(2),null);
 if(((cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(value__$1,old_value)) || (cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(viewer__$1,old_viewer)))){
 return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.portal","submit","bb-web-ds-tools.portal/submit",1366041846),value__$1,viewer__$1], null));
 } else {
@@ -121,11 +121,11 @@ return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMP
 (bb_web_ds_tools.portal.portal_panel.cljs$lang$maxFixedArity = (1));
 
 /** @this {Function} */
-(bb_web_ds_tools.portal.portal_panel.cljs$lang$applyTo = (function (seq30254){
-var G__30255 = cljs.core.first(seq30254);
-var seq30254__$1 = cljs.core.next(seq30254);
+(bb_web_ds_tools.portal.portal_panel.cljs$lang$applyTo = (function (seq30240){
+var G__30241 = cljs.core.first(seq30240);
+var seq30240__$1 = cljs.core.next(seq30240);
 var self__5734__auto__ = this;
-return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__30255,seq30254__$1);
+return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__30241,seq30240__$1);
 }));
 
 

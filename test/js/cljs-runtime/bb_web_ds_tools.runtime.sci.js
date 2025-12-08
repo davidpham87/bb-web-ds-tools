@@ -13,15 +13,15 @@ bb_web_ds_tools.runtime.sci.sci_worker = cljs.core.atom.cljs$core$IFn$_invoke$ar
  *  nil: Performs side-effects (dispatch or console log).
  */
 bb_web_ds_tools.runtime.sci.default_on_message = (function bb_web_ds_tools$runtime$sci$default_on_message(msg){
-var map__43593 = msg;
-var map__43593__$1 = cljs.core.__destructure_map(map__43593);
-var type = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__43593__$1,new cljs.core.Keyword(null,"type","type",1174270348));
-var event = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__43593__$1,new cljs.core.Keyword(null,"event","event",301435442));
-var value = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__43593__$1,new cljs.core.Keyword(null,"value","value",305978217));
-var text = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__43593__$1,new cljs.core.Keyword(null,"text","text",-1790561697));
-var G__43594 = cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(type);
-var G__43594__$1 = (((G__43594 instanceof cljs.core.Keyword))?G__43594.fqn:null);
-switch (G__43594__$1) {
+var map__43599 = msg;
+var map__43599__$1 = cljs.core.__destructure_map(map__43599);
+var type = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__43599__$1,new cljs.core.Keyword(null,"type","type",1174270348));
+var event = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__43599__$1,new cljs.core.Keyword(null,"event","event",301435442));
+var value = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__43599__$1,new cljs.core.Keyword(null,"value","value",305978217));
+var text = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__43599__$1,new cljs.core.Keyword(null,"text","text",-1790561697));
+var G__43601 = cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(type);
+var G__43601__$1 = (((G__43601 instanceof cljs.core.Keyword))?G__43601.fqn:null);
+switch (G__43601__$1) {
 case "dispatch":
 return re_frame.core.dispatch(event);
 
@@ -79,9 +79,9 @@ var argseq__5756__auto__ = ((((0) < args__5755__auto__.length))?(new cljs.core.I
 return bb_web_ds_tools.runtime.sci.init_BANG_.cljs$core$IFn$_invoke$arity$variadic(argseq__5756__auto__);
 });
 
-(bb_web_ds_tools.runtime.sci.init_BANG_.cljs$core$IFn$_invoke$arity$variadic = (function (p__43610){
-var vec__43611 = p__43610;
-var on_message = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43611,(0),null);
+(bb_web_ds_tools.runtime.sci.init_BANG_.cljs$core$IFn$_invoke$arity$variadic = (function (p__43616){
+var vec__43617 = p__43616;
+var on_message = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43617,(0),null);
 if(cljs.core.truth_(cljs.core.deref(bb_web_ds_tools.runtime.sci.sci_worker))){
 return null;
 } else {
@@ -100,9 +100,9 @@ return bb_web_ds_tools.runtime.sci.sync_datasets_BANG_();
 (bb_web_ds_tools.runtime.sci.init_BANG_.cljs$lang$maxFixedArity = (0));
 
 /** @this {Function} */
-(bb_web_ds_tools.runtime.sci.init_BANG_.cljs$lang$applyTo = (function (seq43607){
+(bb_web_ds_tools.runtime.sci.init_BANG_.cljs$lang$applyTo = (function (seq43615){
 var self__5735__auto__ = this;
-return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq43607));
+return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq43615));
 }));
 
 /**
@@ -173,8 +173,8 @@ return and__5023__auto__;
 })())){
 portal.web.submit(new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"error","error",-978969032),new cljs.core.Keyword(null,"text","text",-1790561697),new cljs.core.Keyword(null,"error","error",-978969032).cljs$core$IFn$_invoke$arity$1(form)], null));
 
-var G__43652 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(acc,form);
-acc = G__43652;
+var G__43644 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(acc,form);
+acc = G__43644;
 continue;
 } else {
 var res = (function (){try{return sci.core.eval_form(bb_web_ds_tools.runtime.sci.sci_ctx,form);
@@ -183,8 +183,8 @@ return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"er
 }})();
 portal.web.submit(new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"result","result",1415092211),new cljs.core.Keyword(null,"value","value",305978217),cljs.core.str.cljs$core$IFn$_invoke$arity$1(res)], null));
 
-var G__43653 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(acc,res);
-acc = G__43653;
+var G__43645 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(acc,res);
+acc = G__43645;
 continue;
 }
 }

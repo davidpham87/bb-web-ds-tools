@@ -37,8 +37,8 @@ while(true){
 if((i__5750__auto___42253 < len__5749__auto___42252)){
 args__5755__auto__.push((arguments[i__5750__auto___42253]));
 
-var G__42256 = (i__5750__auto___42253 + (1));
-i__5750__auto___42253 = G__42256;
+var G__42254 = (i__5750__auto___42253 + (1));
+i__5750__auto___42253 = G__42254;
 continue;
 } else {
 }
@@ -64,34 +64,34 @@ return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__42186,seq42185
 }));
 
 sci.impl.opts.default_classes = new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Symbol(null,"Error","Error",-1692662047,null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"class","class",-2030961996),Error,new cljs.core.Keyword(null,"constructor","constructor",-1953928811),(function() {
-var G__42258 = null;
-var G__42258__1 = (function (msg){
+var G__42255 = null;
+var G__42255__1 = (function (msg){
 return (new Error(msg));
 });
-var G__42258__2 = (function (msg,filename){
+var G__42255__2 = (function (msg,filename){
 return (new Error(msg,filename));
 });
-var G__42258__3 = (function (msg,filename,line){
+var G__42255__3 = (function (msg,filename,line){
 return (new Error(msg,filename,line));
 });
-G__42258 = function(msg,filename,line){
+G__42255 = function(msg,filename,line){
 switch(arguments.length){
 case 1:
-return G__42258__1.call(this,msg);
+return G__42255__1.call(this,msg);
 case 2:
-return G__42258__2.call(this,msg,filename);
+return G__42255__2.call(this,msg,filename);
 case 3:
-return G__42258__3.call(this,msg,filename,line);
+return G__42255__3.call(this,msg,filename,line);
 }
 throw(new Error('Invalid arity: ' + arguments.length));
 };
-G__42258.cljs$core$IFn$_invoke$arity$1 = G__42258__1;
-G__42258.cljs$core$IFn$_invoke$arity$2 = G__42258__2;
-G__42258.cljs$core$IFn$_invoke$arity$3 = G__42258__3;
-return G__42258;
+G__42255.cljs$core$IFn$_invoke$arity$1 = G__42255__1;
+G__42255.cljs$core$IFn$_invoke$arity$2 = G__42255__2;
+G__42255.cljs$core$IFn$_invoke$arity$3 = G__42255__3;
+return G__42255;
 })()
-], null),new cljs.core.Symbol(null,"cljs.core.PersistentQueue.EMPTY","cljs.core.PersistentQueue.EMPTY",399917828,null),cljs.core.PersistentQueue.EMPTY,new cljs.core.Symbol(null,"goog.string.StringBuffer","goog.string.StringBuffer",-1220229842,null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"class","class",-2030961996),goog.string.StringBuffer,new cljs.core.Keyword(null,"constructor","constructor",-1953928811),(function (p1__42190_SHARP_){
-return (new goog.string.StringBuffer(p1__42190_SHARP_));
+], null),new cljs.core.Symbol(null,"cljs.core.PersistentQueue.EMPTY","cljs.core.PersistentQueue.EMPTY",399917828,null),cljs.core.PersistentQueue.EMPTY,new cljs.core.Symbol(null,"goog.string.StringBuffer","goog.string.StringBuffer",-1220229842,null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"class","class",-2030961996),goog.string.StringBuffer,new cljs.core.Keyword(null,"constructor","constructor",-1953928811),(function (p1__42192_SHARP_){
+return (new goog.string.StringBuffer(p1__42192_SHARP_));
 })], null),new cljs.core.Symbol(null,"sci.lang.Type","sci.lang.Type",-534180168,null),sci.lang.Type], null);
 sci.impl.opts.default_imports = cljs.core.PersistentArrayMap.EMPTY;
 sci.impl.opts.stringify_keys = (function sci$impl$opts$stringify_keys(m){
@@ -105,10 +105,10 @@ var kvs = classes;
 while(true){
 var temp__5823__auto__ = cljs.core.first(kvs);
 if(cljs.core.truth_(temp__5823__auto__)){
-var vec__42210 = temp__5823__auto__;
-var sym = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__42210,(0),null);
-var class_opts = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__42210,(1),null);
-var G__42259 = ((cljs.core.map_QMARK_(class_opts))?(function (){var temp__5823__auto____$1 = new cljs.core.Keyword(null,"static-methods","static-methods",-599124455).cljs$core$IFn$_invoke$arity$1(class_opts);
+var vec__42201 = temp__5823__auto__;
+var sym = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__42201,(0),null);
+var class_opts = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__42201,(1),null);
+var G__42262 = ((cljs.core.map_QMARK_(class_opts))?(function (){var temp__5823__auto____$1 = new cljs.core.Keyword(null,"static-methods","static-methods",-599124455).cljs$core$IFn$_invoke$arity$1(class_opts);
 if(cljs.core.truth_(temp__5823__auto____$1)){
 var sm = temp__5823__auto____$1;
 return cljs.core.assoc_BANG_.cljs$core$IFn$_invoke$arity$3(cljs.core.assoc_BANG_.cljs$core$IFn$_invoke$arity$3(class__GT_opts,sym,class_opts),new cljs.core.Keyword(null,"static-methods","static-methods",-599124455),cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(new cljs.core.Keyword(null,"static-methods","static-methods",-599124455).cljs$core$IFn$_invoke$arity$1(class__GT_opts),cljs.core.str.cljs$core$IFn$_invoke$arity$1(sym),sm));
@@ -116,9 +116,9 @@ return cljs.core.assoc_BANG_.cljs$core$IFn$_invoke$arity$3(cljs.core.assoc_BANG_
 return cljs.core.assoc_BANG_.cljs$core$IFn$_invoke$arity$3(class__GT_opts,sym,class_opts);
 }
 })():cljs.core.assoc_BANG_.cljs$core$IFn$_invoke$arity$3(class__GT_opts,sym,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),class_opts], null)));
-var G__42260 = cljs.core.rest(kvs);
-class__GT_opts = G__42259;
-kvs = G__42260;
+var G__42263 = cljs.core.rest(kvs);
+class__GT_opts = G__42262;
+kvs = G__42263;
 continue;
 } else {
 return new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"public-class","public-class",1127293019),new cljs.core.Keyword(null,"public-class","public-class",1127293019).cljs$core$IFn$_invoke$arity$1(classes),new cljs.core.Keyword(null,"class->opts","class->opts",2061906477),cljs.core.persistent_BANG_(class__GT_opts)], null);
@@ -186,22 +186,22 @@ return ctx;
 sci.impl.opts.merge_opts = (function sci$impl$opts$merge_opts(ctx,opts){
 var _BANG_env = new cljs.core.Keyword(null,"env","env",-1815813235).cljs$core$IFn$_invoke$arity$1(ctx);
 var env = cljs.core.deref(_BANG_env);
-var map__42242 = opts;
-var map__42242__$1 = cljs.core.__destructure_map(map__42242);
-var features = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__42242__$1,new cljs.core.Keyword(null,"features","features",-1146962336));
-var namespaces = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__42242__$1,new cljs.core.Keyword(null,"namespaces","namespaces",-1444157469));
-var ns_aliases = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__42242__$1,new cljs.core.Keyword(null,"ns-aliases","ns-aliases",1290254821));
-var js_libs = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__42242__$1,new cljs.core.Keyword(null,"js-libs","js-libs",-502933721));
-var bindings = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__42242__$1,new cljs.core.Keyword(null,"bindings","bindings",1271397192));
-var readers = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__42242__$1,new cljs.core.Keyword(null,"readers","readers",-2118263030));
-var reify_fn = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__42242__$1,new cljs.core.Keyword(null,"reify-fn","reify-fn",-1360983316));
-var imports = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__42242__$1,new cljs.core.Keyword(null,"imports","imports",-1249933394));
-var allow = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__42242__$1,new cljs.core.Keyword(null,"allow","allow",-1857325745));
-var load_fn = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__42242__$1,new cljs.core.Keyword(null,"load-fn","load-fn",-2121144334),new cljs.core.Keyword(null,"load-fn","load-fn",-2121144334).cljs$core$IFn$_invoke$arity$1(env));
-var async_load_fn = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__42242__$1,new cljs.core.Keyword(null,"async-load-fn","async-load-fn",-472170029),new cljs.core.Keyword(null,"async-load-fn","async-load-fn",-472170029).cljs$core$IFn$_invoke$arity$1(env));
-var aliases = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__42242__$1,new cljs.core.Keyword(null,"aliases","aliases",1346874714));
-var deny = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__42242__$1,new cljs.core.Keyword(null,"deny","deny",1589338523));
-var classes = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__42242__$1,new cljs.core.Keyword(null,"classes","classes",2037804510));
+var map__42239 = opts;
+var map__42239__$1 = cljs.core.__destructure_map(map__42239);
+var features = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__42239__$1,new cljs.core.Keyword(null,"features","features",-1146962336));
+var namespaces = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__42239__$1,new cljs.core.Keyword(null,"namespaces","namespaces",-1444157469));
+var ns_aliases = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__42239__$1,new cljs.core.Keyword(null,"ns-aliases","ns-aliases",1290254821));
+var js_libs = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__42239__$1,new cljs.core.Keyword(null,"js-libs","js-libs",-502933721));
+var bindings = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__42239__$1,new cljs.core.Keyword(null,"bindings","bindings",1271397192));
+var readers = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__42239__$1,new cljs.core.Keyword(null,"readers","readers",-2118263030));
+var reify_fn = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__42239__$1,new cljs.core.Keyword(null,"reify-fn","reify-fn",-1360983316));
+var imports = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__42239__$1,new cljs.core.Keyword(null,"imports","imports",-1249933394));
+var allow = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__42239__$1,new cljs.core.Keyword(null,"allow","allow",-1857325745));
+var load_fn = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__42239__$1,new cljs.core.Keyword(null,"load-fn","load-fn",-2121144334),new cljs.core.Keyword(null,"load-fn","load-fn",-2121144334).cljs$core$IFn$_invoke$arity$1(env));
+var async_load_fn = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__42239__$1,new cljs.core.Keyword(null,"async-load-fn","async-load-fn",-472170029),new cljs.core.Keyword(null,"async-load-fn","async-load-fn",-472170029).cljs$core$IFn$_invoke$arity$1(env));
+var aliases = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__42239__$1,new cljs.core.Keyword(null,"aliases","aliases",1346874714));
+var deny = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__42239__$1,new cljs.core.Keyword(null,"deny","deny",1589338523));
+var classes = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__42239__$1,new cljs.core.Keyword(null,"classes","classes",2037804510));
 var raw_classes = cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"raw-classes","raw-classes",1669916511).cljs$core$IFn$_invoke$arity$1(cljs.core.deref(_BANG_env)),classes], 0));
 var classes__$1 = sci.impl.opts.normalize_classes(raw_classes);
 var _ = sci.impl.opts.init_env_BANG_(_BANG_env,bindings,aliases,namespaces,classes__$1,raw_classes,imports,load_fn,async_load_fn,js_libs,ns_aliases);
