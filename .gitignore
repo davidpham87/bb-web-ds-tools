@@ -45,3 +45,4 @@ docs/test/
 docs/blogs
 .work
 templates/
+docs/js/*.wasm

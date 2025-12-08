@@ -8,8 +8,7 @@
             [bb-web-ds-tools.portal :as portal :refer [portal-frame portal-panel]]
             [bb-web-ds-tools.theme :as t]
             [bb-web-ds-tools.utils.dataset-processing :as dp]
-            ;; Ensure persistence namespace is loaded for event handling
-            [bb-web-ds-tools.workspaces.persistence :as wp]))
+            [bb-web-ds-tools.workspaces.persistence :as wp])) ;; Uncommented
 
 ;; --- Utilities ---
 
