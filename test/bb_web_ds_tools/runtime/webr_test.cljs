@@ -21,7 +21,7 @@
        :images #js []})
 
 (defn MockShelter []
-  (this-as this
+  (this-as ^js this
     (set! (.-captureR this) (fn [_ _] (js/Promise.resolve mock-capture-output)))
     (set! (.-purge this) (fn [] (js/Promise.resolve)))
     this))
