@@ -4,7 +4,7 @@
 
 (defonce webr-instance (atom nil))
 
-(defn- portal-submit [value & [viewer]]
+(defn- portal-submit [{:keys [text] :as value} & [viewer]]
   (let [viewer (or viewer
                    (cond
                      (= (:type value) :code) :portal.viewer/code
@@ -15,7 +15,7 @@
                          :else :portal.viewer/edn))
                      (#{:stdout :stderr :error} (:type value)) :portal.viewer/text
                      :else nil))]
-    (rf/dispatch [::portal/submit value viewer])))
+    (rf/dispatch [::portal/submit (or text (:value value)) viewer])))
 
 (defn- image-bitmap->data-url [^js image-bitmap]
   (let [canvas (.createElement js/document "canvas")
@@ -102,14 +102,13 @@
                                                    (when res (portal-submit res)))
 
                                                  (doseq [img (array-seq images)]
-                                                   (let [data-url (image-bitmap->data-url img)]
-                                                     (portal-submit
-                                                      {:type :result :value [:canvas
-                                                                             {:width (.-width img)
-                                                                              :height (.-height img)
-                                                                              :style {:background-image (str "url(" data-url ")")
-                                                                                      :background-size "cover"}}]}
-                                                      :portal.viewer/hiccup)))
+                                                   (let [data-url (image-bitmap->data-url img)
+                                                         canvas-hiccup [:canvas
+                                                                         {:width (.-width img)
+                                                                          :height (.-height img)
+                                                                          :style {:background-image (str "url(" data-url ")")
+                                                                                  :background-size "cover"}}]]
+                                                    (rf/dispatch [::portal/submit canvas-hiccup :portal.viewer/hiccup])))
 
                                                  (let [js-val (.toJs result)]
                                                    (if (instance? js/Promise js-val)
