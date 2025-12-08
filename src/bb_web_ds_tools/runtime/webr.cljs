@@ -15,7 +15,7 @@
                          :else :portal.viewer/edn))
                      (#{:stdout :stderr :error} (:type value)) :portal.viewer/text
                      :else nil))]
-    (rf/dispatch [::portal/submit (or text (:value value)) viewer])))
+    (rf/dispatch [::portal/submit (or [:portal.viewer/markdown text] (:value value)) viewer])))
 
 (defn- image-bitmap->data-url [^js image-bitmap]
   (let [canvas (.createElement js/document "canvas")
