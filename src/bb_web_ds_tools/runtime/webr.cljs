@@ -1,24 +1,43 @@
 (ns bb-web-ds-tools.runtime.webr
-  (:require [re-frame.core :as rf]
-            [bb-web-ds-tools.portal :as portal]))
+  (:require
+   [bb-web-ds-tools.components.async-buffer :as ab]
+   [bb-web-ds-tools.portal :as portal]
+   [cljs.core.async :as a]
+   [clojure.string :as str]
+   [re-frame.core :as rf]))
 
 (defonce webr-instance (atom nil))
 
+(def input-buffer (a/chan 1000))
+(def flush!
+  (ab/create
+   {:input-chan input-buffer
+    :flush-interval-ms 50
+    :on-flush
+    (fn [xs]
+      (rf/dispatch
+       [::portal/submit [:portal.viewer/code (str/join "\n" xs)] :portal.viewer/hiccup]))}))
+
 (defn- portal-submit [{:keys [text] :as value} & [viewer]]
-  (let [viewer (or viewer
-                   (cond
-                     (= (:type value) :code) :portal.viewer/hiccup
-                     (= (:type value) :result)
-                     (let [v (:value value)]
-                       (cond
-                         (and (map? v) (or (:image v) (:beatmap v))) :portal.viewer/image
-                         :else :portal.viewer/edn))
-                     (#{:stdout :stderr :error} (:type value)) :portal.viewer/hiccup
-                     :else nil))]
-    (rf/dispatch 
-    [::portal/submit (cond 
-                      text [:portal.viewer/code text] 
-                      :else (:value value)) viewer])))
+  (let [viewer
+        (or viewer
+            (cond
+              (= (:type value) :code) :portal.viewer/code
+              (= (:type value) :result)
+              (let [v (:value value)]
+                (cond
+                  (and (map? v) (or (:image v) (:beatmap v))) :portal.viewer/image
+                  :else :portal.viewer/edn))
+              (#{:stdout :stderr :error} (:type value)) :portal.viewer/hiccup
+              :else nil))]
+    (cond
+      (and (= (:type value) :code) text)
+      (rf/dispatch [::portal/submit text viewer])
+
+      text (a/go (a/>! input-buffer text))
+
+      :else
+      (rf/dispatch [::portal/submit (:value value) viewer]))))
 
 (defn- image-bitmap->data-url [^js image-bitmap]
   (let [canvas (.createElement js/document "canvas")
@@ -92,43 +111,47 @@
                                          (js/Promise.resolve s))))
                                  (js/Promise.reject (js/Error. "Shelter not found on WebR instance")))))]
         (-> (create-shelter)
-            (.then (fn [^js shelter]
-                     (-> (.captureR shelter code (clj->js {:autoprint true}))
-                         (.then (fn [^js res]
-                                  (let [output (.-output res)
-                                        images (.-images res)
-                                        result (.-result res)]
+            (.then
+             (fn [^js shelter]
+               (-> (.captureR shelter code (clj->js {:autoprint true}))
+                   (.then (fn [^js res]
+                            (let [output (.-output res)
+                                  images (.-images res)
+                                  result (.-result res)]
 
-                                    (-> (js/Promise.all (into-array (map process-output-msg (array-seq output))))
-                                        (.then (fn [results]
-                                                 (doseq [res results]
-                                                   (when res (portal-submit res)))
+                              (-> (js/Promise.all (into-array (map process-output-msg (array-seq output))))
+                                  (.then
 
-                                                 (doseq [img (array-seq images)]
-                                                   (let [data-url (image-bitmap->data-url img)
-                                                         canvas-hiccup [:div {:style {:width 720 :height 640}} 
-                                                                         [:canvas
-                                                                           {:width (.-width img)
-                                                                            :height (.-height img)
-                                                                            :style {:background-image (str "url(" data-url ")")
-                                                                                    :background-size "cover"}}]]]
-                                                    (rf/dispatch [::portal/submit canvas-hiccup :portal.viewer/hiccup])))
+                                   (fn [results]
+                                     (doseq [res results]
+                                       (when res (portal-submit res)))
 
-                                                 (let [js-val (.toJs result)]
-                                                   (if (instance? js/Promise js-val)
-                                                     (-> js-val
-                                                         (.then (fn [v]
-                                                                  (let [val (try (js->clj v :keywordize-keys true)
-                                                                                 (catch js/Error _ (str v)))]
-                                                                    (portal-submit {:type :result :value val}))))
-                                                         (.catch (fn [e] (portal-submit {:type :error :text (str e)}))))
-                                                     (let [val (try (js->clj js-val :keywordize-keys true)
-                                                                    (catch js/Error _ (str result)))]
-                                                       (portal-submit {:type :result :value val}))))))
-                                        (.finally (fn [] (.purge shelter)))))))
-                         (.catch (fn [e]
-                                   (.purge shelter)
-                                   (portal-submit {:type :error :text (str e)}))))))
+                                     (doseq [img (array-seq images)]
+                                       (let [data-url (image-bitmap->data-url img)
+                                             canvas-hiccup [:div {:style {:width 720 :height 800}}
+                                                            [:canvas
+                                                             {:width (int (* (.-width img) 0.72))
+                                                              :height (int (* (.-height img) 0.72))
+                                                              :style {:background-image (str "url(" data-url ")")
+                                                                      :background-size "cover"}}]]]
+                                         (rf/dispatch [::portal/submit canvas-hiccup :portal.viewer/hiccup])))
+
+                                     (let [js-val (.toJs result)]
+                                       (if (instance? js/Promise js-val)
+                                         (-> js-val
+                                             (.then (fn [v]
+                                                      (let [val (try (js->clj v :keywordize-keys true)
+                                                                     (catch js/Error _ (str v)))]
+                                                        (portal-submit {:type :result :value val}))))
+                                             (.catch (fn [e] (portal-submit {:type :error :text (str e)}))))
+                                         (let [val (try (js->clj js-val :keywordize-keys true)
+                                                        (catch js/Error _ (str result)))]
+                                           (portal-submit {:type :result :value val}))))))
+
+                                  (.finally (fn [] (.purge shelter)))))))
+                   (.catch (fn [e]
+                             (.purge shelter)
+                             (portal-submit {:type :error :text (str e)}))))))
             (.catch (fn [e] (portal-submit {:type :error :text (str e)})))))
       (catch js/Error e
         (portal-submit {:type :error :text (str e)})))

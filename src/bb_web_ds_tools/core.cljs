@@ -22,7 +22,7 @@
    [bb-web-ds-tools.views.vega-lite :as vega-lite]
    ;; [bb-web-ds-tools.views.workspaces :as workspaces]
    ;; [bb-web-ds-tools.workspaces.core :as ws]
-   ;; [bb-web-ds-tools.workspaces.persistence :as wp]
+   [bb-web-ds-tools.workspaces.persistence :as wp]
    [malli.core :as m]
    [malli.registry :as mr]
    [malli.experimental.time :as met]
@@ -232,6 +232,8 @@
     (met/schemas)))
 
   (rf/dispatch-sync [::initialize-db])
+  ;; Initialize persistence
+  (rf/dispatch [::wp/init-persistence])
   (rf/dispatch [::theme-events/set-theme :zenburn]) ;; Initialize theme
   ;; #_(rf/dispatch [::ws/init])
   ;; #_(rf/dispatch [::wp/init-persistence])

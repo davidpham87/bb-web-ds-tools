@@ -1,6 +1,6 @@
 (ns bb-web-ds-tools.workers.pyodide
   (:require
-   [cljs-bean.core :refer (->js ->clj)]
+   [cognitect.transit :as t]
    [goog.object :as gobj]))
 
 (defonce pyodide-instance (atom nil))
@@ -15,11 +15,15 @@
     nil."
   [msg]
   (try
-    (js/postMessage (->js msg))
+    (let [w (t/writer :json)
+          payload (t/write w msg)]
+      (js/postMessage payload))
     (catch :default e
       (js/console.error "Worker postMessage failed:" e)
       (try
-        (js/postMessage (->js {:type :error :text (str "Worker Communication Error: " (.-message e))}))
+        (let [w (t/writer :json)
+              payload (t/write w {:type :error :text (str "Worker Communication Error: " (.-message e))})]
+          (js/postMessage payload))
         (catch :default _
           (js/console.error "Fatal: Could not send error message."))))))
 
@@ -40,7 +44,7 @@
              (post-msg
               {:type :result
                :value (cond
-                        (and res (.-toJs res)) (.toJs ^js res #js {"create_pyproxies" false})
+                        (and res (.-toJs res)) (js->clj (.toJs ^js res #js {"create_pyproxies" false}))
                         (nil? res) "None"
                         :else res)})))
           (.catch
@@ -58,7 +62,7 @@
     (js/importScripts "https://cdn.jsdelivr.net/pyodide/v0.29.0/full/pyodide.js")
     (-> (js/loadPyodide
          (clj->js {:indexURL "https://cdn.jsdelivr.net/pyodide/v0.29.0/full/"
-                   :stdout (fn [text] (post-msg #js {"type" "stdout" "text" (str text)}))
+                   :stdout (fn [text] (post-msg {:type "stdout" :text (str text)}))
                    :stderr (fn [text] (post-msg {:type :error :text (str text)}))}))
         (.then (fn [p]
                  (reset! pyodide-instance p)
@@ -76,7 +80,8 @@
   (js/self.addEventListener
    "message"
    (fn [e]
-     (let [data (->clj (.-data e) :keywordize-keys true)
+     (let [r (t/reader :json)
+           data (t/read r (.-data e))
            {:keys [type code]} data]
        (case type
          "load" (load-runtime)
