@@ -65,8 +65,8 @@ return cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$3(portal.runtime.default
  * Open a new inspector window.
  */
 portal.web.open = (function portal$web$open(var_args){
-var G__37840 = arguments.length;
-switch (G__37840) {
+var G__37826 = arguments.length;
+switch (G__37826) {
 case 0:
 return portal.web.open.cljs$core$IFn$_invoke$arity$0();
 

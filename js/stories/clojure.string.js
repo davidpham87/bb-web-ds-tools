@@ -54,11 +54,11 @@ return (function() {
 var G__21632__delegate = function (args){
 var matches = cljs.core.drop_last.cljs$core$IFn$_invoke$arity$2((2),args);
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.count(matches),(1))){
-var G__21619 = cljs.core.first(matches);
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__21619) : f.call(null,G__21619));
+var G__21611 = cljs.core.first(matches);
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__21611) : f.call(null,G__21611));
 } else {
-var G__21620 = cljs.core.vec(matches);
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__21620) : f.call(null,G__21620));
+var G__21612 = cljs.core.vec(matches);
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__21612) : f.call(null,G__21612));
 }
 };
 var G__21632 = function (var_args){
@@ -300,12 +300,12 @@ return cljs.core.conj.cljs$core$IFn$_invoke$arity$2(parts,s__$1);
 var m = cljs.core.re_find(re,s__$1);
 if((!((m == null)))){
 var index = s__$1.indexOf(m);
-var G__21643 = s__$1.substring((index + cljs.core.count(m)));
-var G__21644 = (limit__$1 - (1));
-var G__21645 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(parts,s__$1.substring((0),index));
-s__$1 = G__21643;
-limit__$1 = G__21644;
-parts = G__21645;
+var G__21652 = s__$1.substring((index + cljs.core.count(m)));
+var G__21653 = (limit__$1 - (1));
+var G__21654 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(parts,s__$1.substring((0),index));
+s__$1 = G__21652;
+limit__$1 = G__21653;
+parts = G__21654;
 continue;
 } else {
 return cljs.core.conj.cljs$core$IFn$_invoke$arity$2(parts,s__$1);
@@ -354,8 +354,8 @@ return "";
 } else {
 var ch = cljs.core.get.cljs$core$IFn$_invoke$arity$2(s,(index - (1)));
 if(((("\n" === ch)) || (("\r" === ch)))){
-var G__21661 = (index - (1));
-index = G__21661;
+var G__21660 = (index - (1));
+index = G__21660;
 continue;
 } else {
 return s.substring((0),index);
@@ -393,8 +393,8 @@ buffer.append(cljs.core.str.cljs$core$IFn$_invoke$arity$1(replacement));
 buffer.append(ch);
 }
 
-var G__21681 = (index + (1));
-index = G__21681;
+var G__21663 = (index + (1));
+index = G__21663;
 continue;
 }
 break;

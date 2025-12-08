@@ -82,19 +82,19 @@ return cljs.core.apply.cljs$core$IFn$_invoke$arity$variadic(cljs.core.str,a,b,c,
 }));
 
 /** @this {Function} */
-(honey.sql.util.str.cljs$lang$applyTo = (function (seq43872){
-var G__43873 = cljs.core.first(seq43872);
-var seq43872__$1 = cljs.core.next(seq43872);
-var G__43874 = cljs.core.first(seq43872__$1);
-var seq43872__$2 = cljs.core.next(seq43872__$1);
-var G__43875 = cljs.core.first(seq43872__$2);
-var seq43872__$3 = cljs.core.next(seq43872__$2);
-var G__43876 = cljs.core.first(seq43872__$3);
-var seq43872__$4 = cljs.core.next(seq43872__$3);
-var G__43877 = cljs.core.first(seq43872__$4);
-var seq43872__$5 = cljs.core.next(seq43872__$4);
+(honey.sql.util.str.cljs$lang$applyTo = (function (seq43871){
+var G__43872 = cljs.core.first(seq43871);
+var seq43871__$1 = cljs.core.next(seq43871);
+var G__43873 = cljs.core.first(seq43871__$1);
+var seq43871__$2 = cljs.core.next(seq43871__$1);
+var G__43874 = cljs.core.first(seq43871__$2);
+var seq43871__$3 = cljs.core.next(seq43871__$2);
+var G__43875 = cljs.core.first(seq43871__$3);
+var seq43871__$4 = cljs.core.next(seq43871__$3);
+var G__43876 = cljs.core.first(seq43871__$4);
+var seq43871__$5 = cljs.core.next(seq43871__$4);
 var self__5734__auto__ = this;
-return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__43873,G__43874,G__43875,G__43876,G__43877,seq43872__$5);
+return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__43872,G__43873,G__43874,G__43875,G__43876,seq43871__$5);
 }));
 
 (honey.sql.util.str.cljs$lang$maxFixedArity = (5));

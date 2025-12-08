@@ -75,14 +75,14 @@ return null;
 if(cljs.core.truth_(or__5025__auto____$1)){
 return or__5025__auto____$1;
 } else {
-var or__5025__auto____$2 = ((((((cljs.core.contains_QMARK_(cljs.core.get.cljs$core$IFn$_invoke$arity$2(namespaces,new cljs.core.Symbol(null,"clojure.core","clojure.core",-189332625,null)),sym__$1)) && (cljs.core.not((function (){var G__40639 = the_current_ns;
-var G__40639__$1 = (((G__40639 == null))?null:new cljs.core.Keyword(null,"refer","refer",-964295553).cljs$core$IFn$_invoke$arity$1(G__40639));
-var G__40639__$2 = (((G__40639__$1 == null))?null:cljs.core.get.cljs$core$IFn$_invoke$arity$2(G__40639__$1,new cljs.core.Symbol(null,"clojure.core","clojure.core",-189332625,null)));
-var G__40639__$3 = (((G__40639__$2 == null))?null:new cljs.core.Keyword(null,"exclude","exclude",-1230250334).cljs$core$IFn$_invoke$arity$1(G__40639__$2));
-if((G__40639__$3 == null)){
+var or__5025__auto____$2 = ((((((cljs.core.contains_QMARK_(cljs.core.get.cljs$core$IFn$_invoke$arity$2(namespaces,new cljs.core.Symbol(null,"clojure.core","clojure.core",-189332625,null)),sym__$1)) && (cljs.core.not((function (){var G__40637 = the_current_ns;
+var G__40637__$1 = (((G__40637 == null))?null:new cljs.core.Keyword(null,"refer","refer",-964295553).cljs$core$IFn$_invoke$arity$1(G__40637));
+var G__40637__$2 = (((G__40637__$1 == null))?null:cljs.core.get.cljs$core$IFn$_invoke$arity$2(G__40637__$1,new cljs.core.Symbol(null,"clojure.core","clojure.core",-189332625,null)));
+var G__40637__$3 = (((G__40637__$2 == null))?null:new cljs.core.Keyword(null,"exclude","exclude",-1230250334).cljs$core$IFn$_invoke$arity$1(G__40637__$2));
+if((G__40637__$3 == null)){
 return null;
 } else {
-return cljs.core.contains_QMARK_(G__40639__$3,sym__$1);
+return cljs.core.contains_QMARK_(G__40637__$3,sym__$1);
 }
 })())))) || (cljs.core.contains_QMARK_(sci.impl.utils.ana_macros,sym__$1))))?cljs.core.symbol.cljs$core$IFn$_invoke$arity$2("clojure.core",sym_name_str):null);
 if(cljs.core.truth_(or__5025__auto____$2)){

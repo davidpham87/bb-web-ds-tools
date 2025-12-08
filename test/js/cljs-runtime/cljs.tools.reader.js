@@ -446,14 +446,14 @@ return or__5025__auto__;
 return cljs.tools.reader.impl.errors.throw_invalid_number(rdr,s);
 }
 } else {
-var G__30522 = (function (){var G__30415 = sb;
+var G__30521 = (function (){var G__30415 = sb;
 G__30415.append(ch);
 
 return G__30415;
 })();
-var G__30523 = rdr.cljs$tools$reader$reader_types$Reader$read_char$arity$1(null);
-sb = G__30522;
-ch = G__30523;
+var G__30522 = rdr.cljs$tools$reader$reader_types$Reader$read_char$arity$1(null);
+sb = G__30521;
+ch = G__30522;
 continue;
 }
 break;
@@ -1138,10 +1138,10 @@ if(s__$1){
 var item = cljs.core.first(s__$1);
 var ret = cljs.core.conj_BANG_.cljs$core$IFn$_invoke$arity$2(r,((cljs.tools.reader.unquote_QMARK_(item))?(new cljs.core.List(null,new cljs.core.Symbol("clojure.core","list","clojure.core/list",-1119203325,null),(new cljs.core.List(null,cljs.core.second(item),null,(1),null)),(2),null)):((cljs.tools.reader.unquote_splicing_QMARK_(item))?cljs.core.second(item):(new cljs.core.List(null,new cljs.core.Symbol("clojure.core","list","clojure.core/list",-1119203325,null),(new cljs.core.List(null,(cljs.tools.reader.syntax_quote_STAR_.cljs$core$IFn$_invoke$arity$1 ? cljs.tools.reader.syntax_quote_STAR_.cljs$core$IFn$_invoke$arity$1(item) : cljs.tools.reader.syntax_quote_STAR_.call(null,item)),null,(1),null)),(2),null))
 )));
-var G__30551 = cljs.core.next(s__$1);
-var G__30552 = ret;
-s__$1 = G__30551;
-r = G__30552;
+var G__30554 = cljs.core.next(s__$1);
+var G__30555 = ret;
+s__$1 = G__30554;
+r = G__30555;
 continue;
 } else {
 return cljs.core.seq(cljs.core.persistent_BANG_(r));
@@ -1158,10 +1158,10 @@ var key_vals = cljs.core.transient$(cljs.core.PersistentVector.EMPTY);
 while(true){
 if(s){
 var e = cljs.core.first(s);
-var G__30553 = cljs.core.next(s);
-var G__30554 = cljs.core.conj_BANG_.cljs$core$IFn$_invoke$arity$2(cljs.core.conj_BANG_.cljs$core$IFn$_invoke$arity$2(key_vals,cljs.core.key(e)),cljs.core.val(e));
-s = G__30553;
-key_vals = G__30554;
+var G__30556 = cljs.core.next(s);
+var G__30557 = cljs.core.conj_BANG_.cljs$core$IFn$_invoke$arity$2(cljs.core.conj_BANG_.cljs$core$IFn$_invoke$arity$2(key_vals,cljs.core.key(e)),cljs.core.val(e));
+s = G__30556;
+key_vals = G__30557;
 continue;
 } else {
 return cljs.core.seq(cljs.core.persistent_BANG_(key_vals));

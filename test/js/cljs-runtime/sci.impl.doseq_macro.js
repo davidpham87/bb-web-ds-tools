@@ -13,14 +13,14 @@ throw (new Error("doseq requires an even number of forms in binding vector"));
 });
 sci.impl.doseq_macro.expand_doseq = (function sci$impl$doseq_macro$expand_doseq(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___40481 = arguments.length;
-var i__5750__auto___40482 = (0);
+var len__5749__auto___40424 = arguments.length;
+var i__5750__auto___40425 = (0);
 while(true){
-if((i__5750__auto___40482 < len__5749__auto___40481)){
-args__5755__auto__.push((arguments[i__5750__auto___40482]));
+if((i__5750__auto___40425 < len__5749__auto___40424)){
+args__5755__auto__.push((arguments[i__5750__auto___40425]));
 
-var G__40483 = (i__5750__auto___40482 + (1));
-i__5750__auto___40482 = G__40483;
+var G__40426 = (i__5750__auto___40425 + (1));
+i__5750__auto___40425 = G__40426;
 continue;
 } else {
 }
@@ -79,15 +79,15 @@ return cljs.core.nth.cljs$core$IFn$_invoke$arity$2(step(null,cljs.core.seq(seq_e
 (sci.impl.doseq_macro.expand_doseq.cljs$lang$maxFixedArity = (3));
 
 /** @this {Function} */
-(sci.impl.doseq_macro.expand_doseq.cljs$lang$applyTo = (function (seq40366){
-var G__40367 = cljs.core.first(seq40366);
-var seq40366__$1 = cljs.core.next(seq40366);
-var G__40368 = cljs.core.first(seq40366__$1);
-var seq40366__$2 = cljs.core.next(seq40366__$1);
-var G__40369 = cljs.core.first(seq40366__$2);
-var seq40366__$3 = cljs.core.next(seq40366__$2);
+(sci.impl.doseq_macro.expand_doseq.cljs$lang$applyTo = (function (seq40342){
+var G__40343 = cljs.core.first(seq40342);
+var seq40342__$1 = cljs.core.next(seq40342);
+var G__40344 = cljs.core.first(seq40342__$1);
+var seq40342__$2 = cljs.core.next(seq40342__$1);
+var G__40345 = cljs.core.first(seq40342__$2);
+var seq40342__$3 = cljs.core.next(seq40342__$2);
 var self__5734__auto__ = this;
-return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__40367,G__40368,G__40369,seq40366__$3);
+return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__40343,G__40344,G__40345,seq40342__$3);
 }));
 
 
