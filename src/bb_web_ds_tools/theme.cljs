@@ -96,19 +96,20 @@
 (def outline-none "focus:outline-none")
 
 (def zenburn
-  {::text        "#dcdccc"
+  {::text        "#ffffff"
    ::background  "#383838"
    ::background2 "#303030"
    ::boolean     "#bfebbf"
-   ::string      "#cc9393"
-   ::keyword     "#afd8af"
-   ::namespace   "#5c888b"
-   ::tag         "#f0dfaf"
-   ::symbol      "#dcdccc"
-   ::number      "#8cd0d3"
-   ::uri         "#dfaf8f"
+   ::string      "#ffcfcf"
+   ::keyword     "#d0ffd0"
+   ::namespace   "#8cd0d3"
+   ::tag         "#fffacd"
+   ::symbol      "#ffffff"
+   ::number      "#bfefff"
+   ::uri         "#ffe4b5"
    ::border      "#4f4f4f"
-   ::package     "#8cd0d3"
-   ::exception   "#cc9393"
+   ::package     "#bfefff"
+   ::exception   "#ffcfcf"
    ::diff-add    "#9fc59f"
-   ::diff-remove "#cc9393"})
+   ::diff-remove "#ffcfcf"
+   ::comment     "#9faf9f"})

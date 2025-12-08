@@ -15,7 +15,17 @@
      (clj->js {:base "vs-dark"
                :inherit true
                :rules [{:background (t/color :bg-page)
-                        :foreground (t/color :text-primary)}]
+                        :foreground (t/color :text-primary)}
+                       {:token "comment" :foreground (::t/comment t/zenburn)}
+                       {:token "keyword" :foreground (::t/keyword t/zenburn)}
+                       {:token "string" :foreground (::t/string t/zenburn)}
+                       {:token "number" :foreground (::t/number t/zenburn)}
+                       {:token "delimiter" :foreground (::t/text t/zenburn)}
+                       {:token "operator" :foreground (::t/text t/zenburn)}
+                       {:token "identifier" :foreground (::t/text t/zenburn)}
+                       {:token "type" :foreground (::t/tag t/zenburn)}
+                       {:token "function" :foreground (::t/namespace t/zenburn)}
+                       {:token "variable" :foreground (::t/symbol t/zenburn)}]
                :colors {:editor.background (t/color :bg-page)
                         :editor.foreground (t/color :text-primary)
                         :editorCursor.foreground (t/color :text-muted)
