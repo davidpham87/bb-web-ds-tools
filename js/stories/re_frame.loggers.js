@@ -3,6 +3,7 @@ var $jscomp = $CLJS.$jscomp;
 var COMPILED = false;
 require("./cljs.core.js");
 require("./clojure.set.js");
+var cognitect=$CLJS.cognitect || ($CLJS.cognitect = {});
 var borkdude=$CLJS.borkdude || ($CLJS.borkdude = {});
 var re_frame=$CLJS.re_frame || ($CLJS.re_frame = {});
 var module$shadow_js_shim_module$react=$CLJS.module$shadow_js_shim_module$react || ($CLJS.module$shadow_js_shim_module$react = {});
@@ -21,9 +22,12 @@ var portal=$CLJS.portal || ($CLJS.portal = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contribution = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution = {});
+var datascript=$CLJS.datascript || ($CLJS.datascript = {});
 var malli=$CLJS.malli || ($CLJS.malli = {});
 var fork=$CLJS.fork || ($CLJS.fork = {});
+var me=$CLJS.me || ($CLJS.me = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api = {});
+var com=$CLJS.com || ($CLJS.com = {});
 
 $CLJS.SHADOW_ENV.setLoaded("re_frame.loggers.js");
 
@@ -39,14 +43,14 @@ return cljs.core.List.EMPTY;
 }))], null));
 re_frame.loggers.console = (function re_frame$loggers$console(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___23030 = arguments.length;
-var i__5750__auto___23031 = (0);
+var len__5749__auto___22940 = arguments.length;
+var i__5750__auto___22941 = (0);
 while(true){
-if((i__5750__auto___23031 < len__5749__auto___23030)){
-args__5755__auto__.push((arguments[i__5750__auto___23031]));
+if((i__5750__auto___22941 < len__5749__auto___22940)){
+args__5755__auto__.push((arguments[i__5750__auto___22941]));
 
-var G__23032 = (i__5750__auto___23031 + (1));
-i__5750__auto___23031 = G__23032;
+var G__22942 = (i__5750__auto___22941 + (1));
+i__5750__auto___22941 = G__22942;
 continue;
 } else {
 }
@@ -63,19 +67,19 @@ if(cljs.core.contains_QMARK_(cljs.core.deref(re_frame.loggers.loggers),level)){
 throw (new Error(["Assert failed: ",["re-frame: log called with unknown level: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(level)].join(''),"\n","(contains? (clojure.core/deref loggers) level)"].join('')));
 }
 
-return cljs.core.apply.cljs$core$IFn$_invoke$arity$2((function (){var G__23020 = cljs.core.deref(re_frame.loggers.loggers);
-return (level.cljs$core$IFn$_invoke$arity$1 ? level.cljs$core$IFn$_invoke$arity$1(G__23020) : level.call(null,G__23020));
+return cljs.core.apply.cljs$core$IFn$_invoke$arity$2((function (){var G__22929 = cljs.core.deref(re_frame.loggers.loggers);
+return (level.cljs$core$IFn$_invoke$arity$1 ? level.cljs$core$IFn$_invoke$arity$1(G__22929) : level.call(null,G__22929));
 })(),args);
 }));
 
 (re_frame.loggers.console.cljs$lang$maxFixedArity = (1));
 
 /** @this {Function} */
-(re_frame.loggers.console.cljs$lang$applyTo = (function (seq23017){
-var G__23018 = cljs.core.first(seq23017);
-var seq23017__$1 = cljs.core.next(seq23017);
+(re_frame.loggers.console.cljs$lang$applyTo = (function (seq22922){
+var G__22923 = cljs.core.first(seq22922);
+var seq22922__$1 = cljs.core.next(seq22922);
 var self__5734__auto__ = this;
-return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__23018,seq23017__$1);
+return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__22923,seq22922__$1);
 }));
 
 re_frame.loggers.set_loggers_BANG_ = (function re_frame$loggers$set_loggers_BANG_(new_loggers){

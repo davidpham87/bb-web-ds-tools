@@ -16,10 +16,10 @@ if(s__$1){
 var item = cljs.core.first(s__$1);
 var ret = cljs.core.conj_BANG_.cljs$core$IFn$_invoke$arity$2(r,((edamame.impl.syntax_quote.unquote_QMARK_(item))?(new cljs.core.List(null,new cljs.core.Symbol("clojure.core","list","clojure.core/list",-1119203325,null),(new cljs.core.List(null,cljs.core.second(item),null,(1),null)),(2),null)):((edamame.impl.syntax_quote.unquote_splicing_QMARK_(item))?cljs.core.second(item):(new cljs.core.List(null,new cljs.core.Symbol("clojure.core","list","clojure.core/list",-1119203325,null),(new cljs.core.List(null,(edamame.impl.syntax_quote.syntax_quote.cljs$core$IFn$_invoke$arity$3 ? edamame.impl.syntax_quote.syntax_quote.cljs$core$IFn$_invoke$arity$3(ctx,reader,item) : edamame.impl.syntax_quote.syntax_quote.call(null,ctx,reader,item)),null,(1),null)),(2),null))
 )));
-var G__34715 = cljs.core.next(s__$1);
-var G__34716 = ret;
-s__$1 = G__34715;
-r = G__34716;
+var G__40360 = cljs.core.next(s__$1);
+var G__40361 = ret;
+s__$1 = G__40360;
+r = G__40361;
 continue;
 } else {
 return cljs.core.seq(cljs.core.persistent_BANG_(r));
@@ -54,10 +54,10 @@ var key_vals = cljs.core.transient$(cljs.core.PersistentVector.EMPTY);
 while(true){
 if(s){
 var e = cljs.core.first(s);
-var G__34717 = cljs.core.next(s);
-var G__34718 = cljs.core.conj_BANG_.cljs$core$IFn$_invoke$arity$2(cljs.core.conj_BANG_.cljs$core$IFn$_invoke$arity$2(key_vals,cljs.core.key(e)),cljs.core.val(e));
-s = G__34717;
-key_vals = G__34718;
+var G__40364 = cljs.core.next(s);
+var G__40365 = cljs.core.conj_BANG_.cljs$core$IFn$_invoke$arity$2(cljs.core.conj_BANG_.cljs$core$IFn$_invoke$arity$2(key_vals,cljs.core.key(e)),cljs.core.val(e));
+s = G__40364;
+key_vals = G__40365;
 continue;
 } else {
 return cljs.core.seq(cljs.core.persistent_BANG_(key_vals));
@@ -65,11 +65,11 @@ return cljs.core.seq(cljs.core.persistent_BANG_(key_vals));
 break;
 }
 });
-edamame.impl.syntax_quote.syntax_quote_STAR_ = (function edamame$impl$syntax_quote$syntax_quote_STAR_(p__34701,reader,form){
-var map__34702 = p__34701;
-var map__34702__$1 = cljs.core.__destructure_map(map__34702);
-var ctx = map__34702__$1;
-var gensyms = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__34702__$1,new cljs.core.Keyword(null,"gensyms","gensyms",248713782));
+edamame.impl.syntax_quote.syntax_quote_STAR_ = (function edamame$impl$syntax_quote$syntax_quote_STAR_(p__40348,reader,form){
+var map__40349 = p__40348;
+var map__40349__$1 = cljs.core.__destructure_map(map__40349);
+var ctx = map__40349__$1;
+var gensyms = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__40349__$1,new cljs.core.Keyword(null,"gensyms","gensyms",248713782));
 if(cljs.core.special_symbol_QMARK_(form)){
 return (new cljs.core.List(null,new cljs.core.Symbol(null,"quote","quote",1377916282,null),(new cljs.core.List(null,form,null,(1),null)),(2),null));
 } else {
@@ -97,22 +97,22 @@ var f__$1 = (function (){var or__5025__auto__ = f;
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
 } else {
-var temp__5823__auto__ = (function (){var G__34707 = ctx;
-var G__34707__$1 = (((G__34707 == null))?null:new cljs.core.Keyword(null,"ns-state","ns-state",-532270771).cljs$core$IFn$_invoke$arity$1(G__34707));
-if((G__34707__$1 == null)){
+var temp__5823__auto__ = (function (){var G__40350 = ctx;
+var G__40350__$1 = (((G__40350 == null))?null:new cljs.core.Keyword(null,"ns-state","ns-state",-532270771).cljs$core$IFn$_invoke$arity$1(G__40350));
+if((G__40350__$1 == null)){
 return null;
 } else {
-return cljs.core.deref(G__34707__$1);
+return cljs.core.deref(G__40350__$1);
 }
 })();
 if(cljs.core.truth_(temp__5823__auto__)){
 var ns_state = temp__5823__auto__;
 return (function (sym){
-var temp__5823__auto____$1 = (function (){var G__34708 = cljs.core.namespace(sym);
-if((G__34708 == null)){
+var temp__5823__auto____$1 = (function (){var G__40351 = cljs.core.namespace(sym);
+if((G__40351 == null)){
 return null;
 } else {
-return cljs.core.symbol.cljs$core$IFn$_invoke$arity$1(G__34708);
+return cljs.core.symbol.cljs$core$IFn$_invoke$arity$1(G__40351);
 }
 })();
 if(cljs.core.truth_(temp__5823__auto____$1)){

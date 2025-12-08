@@ -3,6 +3,7 @@ var $jscomp = $CLJS.$jscomp;
 var COMPILED = false;
 require("./cljs.core.js");
 require("./borkdude.dynaload.js");
+var cognitect=$CLJS.cognitect || ($CLJS.cognitect = {});
 var borkdude=$CLJS.borkdude || ($CLJS.borkdude = {});
 var re_frame=$CLJS.re_frame || ($CLJS.re_frame = {});
 var module$shadow_js_shim_module$react=$CLJS.module$shadow_js_shim_module$react || ($CLJS.module$shadow_js_shim_module$react = {});
@@ -21,9 +22,12 @@ var portal=$CLJS.portal || ($CLJS.portal = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contribution = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution = {});
+var datascript=$CLJS.datascript || ($CLJS.datascript = {});
 var malli=$CLJS.malli || ($CLJS.malli = {});
 var fork=$CLJS.fork || ($CLJS.fork = {});
+var me=$CLJS.me || ($CLJS.me = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api = {});
+var com=$CLJS.com || ($CLJS.com = {});
 
 $CLJS.SHADOW_ENV.setLoaded("malli.sci.js");
 
@@ -35,8 +39,8 @@ return sci.core.eval_string_STAR_;
 } else {
 var temp__5823__auto__ = cljs.core.find(new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"default","default",-1987822328),null], null),new cljs.core.Keyword(null,"default","default",-1987822328));
 if(cljs.core.truth_(temp__5823__auto__)){
-var e__25357__auto__ = temp__5823__auto__;
-return cljs.core.val(e__25357__auto__);
+var e__25464__auto__ = temp__5823__auto__;
+return cljs.core.val(e__25464__auto__);
 } else {
 throw (new Error(["Var ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(new cljs.core.Symbol("sci.core","eval-string*","sci.core/eval-string*",2134763594,null))," does not exist, ",cljs.core.namespace(new cljs.core.Symbol("sci.core","eval-string*","sci.core/eval-string*",2134763594,null))," never required"].join('')));
 }
@@ -48,8 +52,8 @@ return sci.core.init;
 } else {
 var temp__5823__auto__ = cljs.core.find(new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"default","default",-1987822328),null], null),new cljs.core.Keyword(null,"default","default",-1987822328));
 if(cljs.core.truth_(temp__5823__auto__)){
-var e__25357__auto__ = temp__5823__auto__;
-return cljs.core.val(e__25357__auto__);
+var e__25464__auto__ = temp__5823__auto__;
+return cljs.core.val(e__25464__auto__);
 } else {
 throw (new Error(["Var ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(new cljs.core.Symbol("sci.core","init","sci.core/init",-622666095,null))," does not exist, ",cljs.core.namespace(new cljs.core.Symbol("sci.core","init","sci.core/init",-622666095,null))," never required"].join('')));
 }
@@ -61,8 +65,8 @@ return sci.core.fork;
 } else {
 var temp__5823__auto__ = cljs.core.find(new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"default","default",-1987822328),null], null),new cljs.core.Keyword(null,"default","default",-1987822328));
 if(cljs.core.truth_(temp__5823__auto__)){
-var e__25357__auto__ = temp__5823__auto__;
-return cljs.core.val(e__25357__auto__);
+var e__25464__auto__ = temp__5823__auto__;
+return cljs.core.val(e__25464__auto__);
 } else {
 throw (new Error(["Var ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(new cljs.core.Symbol("sci.core","fork","sci.core/fork",-1806691042,null))," does not exist, ",cljs.core.namespace(new cljs.core.Symbol("sci.core","fork","sci.core/fork",-1806691042,null))," never required"].join('')));
 }
@@ -85,9 +89,9 @@ var ctx = (init.cljs$core$IFn$_invoke$arity$1 ? init.cljs$core$IFn$_invoke$arity
 (eval_string_STAR_.cljs$core$IFn$_invoke$arity$2 ? eval_string_STAR_.cljs$core$IFn$_invoke$arity$2(ctx,"(alias 'm 'malli.core)") : eval_string_STAR_.call(null,ctx,"(alias 'm 'malli.core)"));
 
 return (function malli$sci$evaluator_$_eval(s){
-var G__25501 = (fork__$1.cljs$core$IFn$_invoke$arity$1 ? fork__$1.cljs$core$IFn$_invoke$arity$1(ctx) : fork__$1.call(null,ctx));
-var G__25502 = cljs.core.str.cljs$core$IFn$_invoke$arity$1(s);
-return (eval_string_STAR_.cljs$core$IFn$_invoke$arity$2 ? eval_string_STAR_.cljs$core$IFn$_invoke$arity$2(G__25501,G__25502) : eval_string_STAR_.call(null,G__25501,G__25502));
+var G__25589 = (fork__$1.cljs$core$IFn$_invoke$arity$1 ? fork__$1.cljs$core$IFn$_invoke$arity$1(ctx) : fork__$1.call(null,ctx));
+var G__25590 = cljs.core.str.cljs$core$IFn$_invoke$arity$1(s);
+return (eval_string_STAR_.cljs$core$IFn$_invoke$arity$2 ? eval_string_STAR_.cljs$core$IFn$_invoke$arity$2(G__25589,G__25590) : eval_string_STAR_.call(null,G__25589,G__25590));
 });
 } else {
 return fail_BANG_;

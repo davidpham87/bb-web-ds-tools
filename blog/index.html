@@ -60,6 +60,36 @@
 
       
     <div>
+        <h1><a href="2025-12-08-themes-and-r-graphics.html">Themes, Dreams, and R Graphics: A Visual Awakening</a></h1>
+        <div><hr /><p><em>By The &quot;We Only Code in Dark Mode&quot; Team</em></p><p>Greetings, fellow data wranglers and pixel pushers.</p><p>We come to you today with an announcement that will shake the very foundations of your browser tab (assuming you have less than 50 open, which we know you don&apos;t). We have made changes. Are they groundbreaking? Debatable. Are they visible? Yes, very.</p><h2 id="zenburn:-because-bright-white-is-an-act-of-aggression">Zenburn: Because Bright White is an Act of Aggression</h2><p>First up, let&apos;s talk about aesthetics.</p><p>For too long, software tools have defaulted to blinding white backgrounds, presumably to simulate the experience of staring directly into the sun while trying to debug a race condition. We say: No more.</p><p>We have fully embraced the <strong>Zenburn</strong> theme. Not just because it sounds like a yoga studio for burned-out developers, but because it’s soothing. It’s calm. It’s a mix of <code>#3f3f3f</code> and <code>#dcdccc</code> that says, &quot;It’s okay, that null pointer exception can’t hurt you here.&quot;</p><p>Every button, every panel, every scrollbar has been meticulously styled to ensure that your eyes don’t bleed after a 4-hour coding session. We’ve aligned the pixels. We’ve harmonized the contrasts. We probably spent more time on the color of the &quot;Delete&quot; button than the actual deletion logic. Priorities.</p><h2 id="r-graphics-in-portal:-pictures-&gt;-text">R Graphics in Portal: Pictures &gt; Text</h2><p>Now, the main event.</p><p>We have an R runtime (<code>WebR</code>) in the browser. It’s amazing. It’s magical. But until recently, if you plotted something, you had to use your imagination. You’d run <code>plot(mtcars)</code>, and the console would stare back at you, blank and judging.</p><p>Well, we fixed it.</p><p>Thanks to our obsession with <strong>Portal</strong>, when you generate a plot in R, we now intercept it, wrap it in a warm embrace, and display it directly in the Portal viewer.</p><p>You run the code. You get the chart. Instant gratification.</p><p>Why read a summary statistic when you can look at a scatter plot and pretend you see a correlation? Why look at a table of numbers when you can generate a histogram that proves your data is completely skewed?</p><p>We’re giving you the power to create beautiful, informative graphics that you can then screenshot and put in a slide deck that nobody will read. And really, isn’t that what Data Science is all about?</p><h2 id="conclusion">Conclusion</h2><p>So, enjoy the new theme. Enjoy the R graphics. And please, for the love of all that is holy, close some tabs.</p></div>
+        
+        
+        <p><i>Published: 2025-12-08</i></p>
+        
+            <p><i>
+                Tagged:
+                
+                    <span class="tag">
+                        <a href="tags/clojure.html">clojure</a>
+                    </span>
+                
+                    <span class="tag">
+                        <a href="tags/visualization.html">visualization</a>
+                    </span>
+                
+                    <span class="tag">
+                        <a href="tags/r.html">r</a>
+                    </span>
+                
+                    <span class="tag">
+                        <a href="tags/theme.html">theme</a>
+                    </span>
+                
+            </i></p>
+        
+    </div>
+
+    <div>
         <h1><a href="2025-12-06-cli-tools.html">CLI Tools for Data Science</a></h1>
         <div><h1 id="cli-tools-for-data-science:-because-clicking-is-hard">CLI Tools for Data Science: Because clicking is hard</h1><p>Sometimes you just want to pipe data around in your terminal like a plumber from the 80s. We get it. That&apos;s why we&apos;ve exposed the core functionality of <code>bb-web-ds-tools</code> as a CLI library compatible with <a href="https://babashka.org">Babashka</a>.</p><h2 id="setup">Setup</h2><p>First, make sure you have Babashka installed. Then, you can run these tools directly from the source or by adding this repo as a dependency.</p><pre><code class="language-bash"># Clone the repo
 git clone https://github.com/my-org/bb-web-ds-tools.git
@@ -120,44 +150,6 @@ cat data.csv | bb -cp src -x bb-web-ds-tools.cli.datasets/convert --format csv -
         
         
         <p><i>Published: 2025-12-05</i></p>
-        
-            <p><i>
-                Tagged:
-                
-                    <span class="tag">
-                        <a href="tags/clojure.html">clojure</a>
-                    </span>
-                
-                    <span class="tag">
-                        <a href="tags/data-science.html">data-science</a>
-                    </span>
-                
-            </i></p>
-        
-    </div>
-
-    <div>
-        <h1><a href="2025-11-25-automation-is-your-friend.html">Automation: Because Typing is for Peasants</a></h1>
-        <div><hr /><p><em>By The &quot;My Fingers Hurt&quot; Team</em></p><p>CAVEAT: This is just satirical, the app is doing nothing like that, LLMs like to hallucinate a lot xD.</p><p>Welcome back! Today we are talking about automation. Specifically, why you are still typing code like a medieval monk transcribing the Bible by candlelight. It is 2025! We have self-driving cars (mostly), we have robots that can do backflips, and yet you are manually writing SQL queries? Stop it. Stop it right now.</p><h2 id="the-horror-of-manual-&quot;coding&quot;">The Horror of Manual &quot;Coding&quot;</h2><p>Look at this. Just look at it. This is what you do when you try to write a query manually. It is disgusting.</p><pre><code class="language-clojure">;; The &quot;I hate myself&quot; method
-(def query
-  {:select [:*]
-   :from [:users]
-   :where [:and
-           [:= :active true]
-           [:&gt; :age 18]
-           [:like :name &quot;%Smith%&quot;]]})
-</code></pre><p>It’s tedious. It’s prone to errors. You miss one bracket and the whole thing explodes like a glitter bomb in a library.</p><p>Now, look at what our UI does. You click a few buttons—&quot;Select&quot;, &quot;From&quot;, &quot;Where&quot;—and the machine spits this out perfectly, every time. It’s like having a very smart, very quiet assistant who doesn&apos;t judge your variable naming conventions or your lack of unit tests.</p><p>Human: Actually, writing code is much better haha.</p><h2 id="datasets:-because-&quot;csv&quot;-stands-for-&quot;can&apos;t-stand-verification&quot;">Datasets: Because &quot;CSV&quot; Stands for &quot;Can&apos;t Stand Verification&quot;</h2><p>And then there’s data. Oh, data. You get a CSV file. It has dates in three different formats. The &quot;Amount&quot; column contains the string &quot;Five Dollars&quot;. It is a garbage fire of entropy.</p><p>In the old days (yesterday), you would write a parser. You would cry. You would write regex. You would cry more.</p><p>Now? You drag the file into the <strong>Datasets</strong> view.</p><p>Let&apos;s say you have a list of &apos;Penguin Sizes&apos;.</p><ul><li><strong>Step 1:</strong> Drop file.</li><li><strong>Step 2:</strong> The UI says, &quot;Ah, &apos;Flipper Length&apos;. That is an Integer. &apos;Sex&apos;? That is a Keyword.&quot;</li><li><strong>Step 3:</strong> It generates the <code>malli</code> schema automatically.</li></ul><pre><code class="language-clojure">[:map
- [:species :string]
- [:island :string]
- [:bill_length_mm :double]
- [:bill_depth_mm :double]
- [:flipper_length_mm :int]
- [:body_mass_g :int]
- [:sex :keyword]]
-</code></pre><p>It infers the schema. It detects the types. It generates the parsing code. It practically offers to pick up your dry cleaning.</p><p>Author: Actually, the app is doing that.</p><h2 id="the-&quot;code&quot;-tab">The &quot;Code&quot; Tab</h2><p>&quot;But I want to see the code!&quot; I hear you whine. &quot;I need control!&quot;</p><p>Fine. Go to the &quot;Code&quot; tab. It’s all there. The UI generated it for you. You can copy it. You can paste it. You can claim you wrote it. We won&apos;t tell anyone. We don&apos;t care. We just want you to be happy and stop complaining about syntax errors.</p><p>So please, for the love of all that is holy, use the automation. Save your keystrokes for something that matters. Like arguing with strangers on the internet about which Batman movie was the &quot;gritty&quot; one.</p><p>Author: Good idea of feature actually. Let&apos;s put it in the log.</p></div>
-        
-        
-        <p><i>Published: 2025-11-25</i></p>
         
             <p><i>
                 Tagged:

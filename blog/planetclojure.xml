@@ -3,11 +3,18 @@
   <title>bb-web-ds-tools</title>
   <link href="https://github.com/borkdude/quickblog/atom.xml" rel="self"/>
   <link href="https://github.com/borkdude/quickblog"/>
-  <updated>2025-12-08T14:23:23+00:00</updated>
+  <updated>2025-12-08T23:51:59+00:00</updated>
   <id>https://github.com/borkdude/quickblog</id>
   <author>
     <name>Quick Blogger</name>
   </author>
+  <entry>
+    <id>https://github.com/borkdude/quickblog/2025-12-08-themes-and-r-graphics.html</id>
+    <link href="https://github.com/borkdude/quickblog/2025-12-08-themes-and-r-graphics.html"/>
+    <title>Themes, Dreams, and R Graphics: A Visual Awakening</title>
+    <updated>2025-12-08T23:59:59+00:00</updated>
+    <content type="html"><![CDATA[<div><hr /><p><em>By The &quot;We Only Code in Dark Mode&quot; Team</em></p><p>Greetings, fellow data wranglers and pixel pushers.</p><p>We come to you today with an announcement that will shake the very foundations of your browser tab (assuming you have less than 50 open, which we know you don&apos;t). We have made changes. Are they groundbreaking? Debatable. Are they visible? Yes, very.</p><h2 id="zenburn:-because-bright-white-is-an-act-of-aggression">Zenburn: Because Bright White is an Act of Aggression</h2><p>First up, let&apos;s talk about aesthetics.</p><p>For too long, software tools have defaulted to blinding white backgrounds, presumably to simulate the experience of staring directly into the sun while trying to debug a race condition. We say: No more.</p><p>We have fully embraced the <strong>Zenburn</strong> theme. Not just because it sounds like a yoga studio for burned-out developers, but because it’s soothing. It’s calm. It’s a mix of <code>#3f3f3f</code> and <code>#dcdccc</code> that says, &quot;It’s okay, that null pointer exception can’t hurt you here.&quot;</p><p>Every button, every panel, every scrollbar has been meticulously styled to ensure that your eyes don’t bleed after a 4-hour coding session. We’ve aligned the pixels. We’ve harmonized the contrasts. We probably spent more time on the color of the &quot;Delete&quot; button than the actual deletion logic. Priorities.</p><h2 id="r-graphics-in-portal:-pictures-&gt;-text">R Graphics in Portal: Pictures &gt; Text</h2><p>Now, the main event.</p><p>We have an R runtime (<code>WebR</code>) in the browser. It’s amazing. It’s magical. But until recently, if you plotted something, you had to use your imagination. You’d run <code>plot(mtcars)</code>, and the console would stare back at you, blank and judging.</p><p>Well, we fixed it.</p><p>Thanks to our obsession with <strong>Portal</strong>, when you generate a plot in R, we now intercept it, wrap it in a warm embrace, and display it directly in the Portal viewer.</p><p>You run the code. You get the chart. Instant gratification.</p><p>Why read a summary statistic when you can look at a scatter plot and pretend you see a correlation? Why look at a table of numbers when you can generate a histogram that proves your data is completely skewed?</p><p>We’re giving you the power to create beautiful, informative graphics that you can then screenshot and put in a slide deck that nobody will read. And really, isn’t that what Data Science is all about?</p><h2 id="conclusion">Conclusion</h2><p>So, enjoy the new theme. Enjoy the R graphics. And please, for the love of all that is holy, close some tabs.</p></div>]]></content>
+  </entry>
   <entry>
     <id>https://github.com/borkdude/quickblog/2025-12-06-cli-tools.html</id>
     <link href="https://github.com/borkdude/quickblog/2025-12-06-cli-tools.html"/>
