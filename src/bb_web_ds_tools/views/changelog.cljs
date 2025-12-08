@@ -5,8 +5,11 @@
   [{:version "0.9.0"
     :date "2025-12-08"
     :sections [{:title "Added"
-                :items ["R Graphics in Portal: Enabled direct visualization of R plots within the Portal inspector."
-                        "Theme Updates: Enhanced Zenburn theme consistency across the application."]}]}
+                :items ["Documentation Overhaul: Added comprehensive documentation in the `wiki/` directory covering Datasets, Code Environments, Gemma, HoneySQL, Malli, and Vega-Lite."
+                        "R Graphics in Portal: Enabled direct visualization of R plots within the Portal inspector."
+                        "Blog: Added 'Themes, Dreams, and R Graphics: A Visual Awakening'."]}
+               {:title "Changed"
+                :items ["Theme Updates: Enhanced Zenburn theme consistency across the application."]}]}
    {:version "0.8.0"
     :date "2025-12-05"
     :sections [{:title "Added"
