@@ -2,7 +2,12 @@
   (:require [bb-web-ds-tools.components.common :as c]))
 
 (def changelog-data
-  [{:version "0.8.0"
+  [{:version "0.9.0"
+    :date "2025-12-08"
+    :sections [{:title "Added"
+                :items ["R Graphics in Portal: Enabled direct visualization of R plots within the Portal inspector."
+                        "Theme Updates: Enhanced Zenburn theme consistency across the application."]}]}
+   {:version "0.8.0"
     :date "2025-12-05"
     :sections [{:title "Added"
                 :items ["Malli Time Schemas and Min/Max Inference (e029186)."]}]}
