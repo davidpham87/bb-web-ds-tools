@@ -1,14 +1,16 @@
 (ns bb-web-ds-tools.workspaces.persistence-fx
-  (:require [re-frame.core :as rf]
-            [datascript.core :as d]
-            [cognitect.transit :as t]
-            [bb-web-ds-tools.workspaces.core :as ws]
-            [cljs.core.async :refer [go]]
-            [cljs.core.async.interop :refer-macros [<p!]]
-            [clojure.string :as str]))
+  (:require
+   [bb-web-ds-tools.workspaces.core :as ws]
+   [cljs.core.async :refer [go]]
+   [cljs.core.async.interop :refer-macros [<p!]]
+   [clojure.string :as str]
+   [cognitect.transit :as t]
+   [datascript.core :as d]
+   [re-frame.core :as rf]))
 
 (defonce sqlite-lib (atom nil))
 (defonce sql-db (atom nil))
+(defonce worker (atom nil))
 
 ;; --- Transit Helpers ---
 
@@ -122,7 +124,7 @@
   [db]
   (persist-all! db) ;; Persist workspaces implicitly
   (let [capi (.. ^js @sqlite-lib -capi)
-        p-db (.-pointer db)
+        p-db (.-pointer ^js db)
         bytes (.sqlite3_js_db_export ^js capi p-db)
         blob (new js/Blob (clj->js [bytes]) (clj->js {:type "application/x-sqlite3"}))]
     blob))
@@ -130,31 +132,13 @@
 ;; --- Init ---
 
 (defn init-db!
-  "Initializes the SQLite database."
+  "Initializes the SQLite database via Web Worker."
   []
-  (go
-    (try
-      (let [sqlite3-init (if (and (exists? js/window) (aget js/window "sqlite3InitModule"))
-                           (aget js/window "sqlite3InitModule")
-                           (try (js/require "@sqlite.org/sqlite-wasm") (catch :default _ nil)))
-            init-fn (if (and sqlite3-init (.-default sqlite3InitModule))
-                      (.-default sqlite3InitModule)
-                      sqlite3InitModule)
-             ;; In browser context, we need to load from window or module
-            ^js sqlite3 (<p! (init-fn (clj->js {:locateFile (fn [file] (str "js/libs/" file))
-                                                :print js/console.log
-                                                :printErr js/console.error})))]
-        (reset! sqlite-lib sqlite3)
-        (let [^js oo1 (.-oo1 ^js sqlite3)
-              ^js JsStorageDb (.-JsStorageDb ^js oo1)
-              db-mode (if JsStorageDb "local" "memory")
-              ^js db (if JsStorageDb
-                       (new JsStorageDb "local")
-                       (new (.-DB oo1) ":memory:" "ct"))]
-           (reset! sql-db db)
-           (println (str "SQLite3 initialized in " db-mode " mode."))))
-      (catch :default e
-        (js/console.error "Failed to initialize SQLite3" e)))))
+  (let [w (new js/Worker "js/compiled/persistence-worker.js" (clj->js {:type "module"}))]
+    (reset! worker w)
+    (set! (.-onmessage w) (fn [e] (js/console.log "Msg from worker:" (.-data e))))
+    (js/console.log "Worker started.")))
+
 
 ;; --- Effects Registration ---
 

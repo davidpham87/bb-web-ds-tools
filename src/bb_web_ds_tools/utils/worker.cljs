@@ -1,5 +1,6 @@
 (ns bb-web-ds-tools.utils.worker
-  (:require [clojure.core.async :as a]))
+  (:require [clojure.core.async :as a]
+            [cognitect.transit :as t]))
 
 (defn create-worker
   "Creates a web worker from the given URL.
@@ -12,7 +13,8 @@
          out-chan (when-not on-message (a/chan))]
      (set! (.-onmessage worker)
            (fn [e]
-             (let [data (js->clj (.-data e) :keywordize-keys true)]
+             (let [r (t/reader :json)
+                   data (t/read r (.-data e))]
                (if on-message
                  (on-message data)
                  (a/put! out-chan data)))))
@@ -29,7 +31,9 @@
 (defn post-message
   "Sends a message to the worker."
   [{:keys [worker]} message]
-  (.postMessage worker (clj->js message)))
+  (let [w (t/writer :json)
+        payload (t/write w message)]
+    (.postMessage worker payload)))
 
 (defn terminate
   "Terminates the worker."

@@ -1,11 +1,11 @@
-;; shadow-cljs configuration
 {:source-paths
  ["src" "test" "src/stories"]
 
  :deps true
 
- :dev-http {8080 "docs"
-            8081 "docs/test"}
+ :dev-http {8080 {:root "docs"
+                  :headers {"Cross-Origin-Opener-Policy" "same-origin"
+                            "Cross-Origin-Embedder-Policy" "require-corp"}}}
 
  :nrepl {:middleware
          [cider.nrepl/cider-middleware
@@ -17,63 +17,69 @@
    :output-dir "docs/js/compiled"
    :asset-path "/js/compiled"
    :init-fn bb-web-ds-tools.core/init
-
    :js-options {:js-provider :external
                 :external-index "target/index.js"
                 :keep-as-import #{"pyodide" "@sqlite.org/sqlite-wasm"}}
 
-   :compiler-options {:optimizations :advanced
+   :compiler-options {:optimizations :simple
                       :output-feature-set :es-next
-                      :externs ["src/externs/webr.js" "src/externs/datascript.js"]}
+                      :externs ["src/externs/webr.js"]}
 
    :dev {:compiler-options {:source-map true
                             :pretty-print true
                             :pseudo-names true}}
 
-   :devtools {:http-root   "docs"
-              :http-port   8080}
 
-   :modules {:shared {:entries []}
-             :main {:init-fn bb-web-ds-tools.core/init
-                    :depends-on #{:shared}}
-             :sci-worker {:init-fn bb-web-ds-tools.workers.sci/init
-                          :depends-on #{:shared}
-                          :web-worker true}
-             :pyodide-worker {:init-fn bb-web-ds-tools.workers.pyodide/init
-                              :depends-on #{:shared}
-                              :web-worker true}}}
-  
-  :test-interactive    
+   :devtools {:http-root   "docs"
+              :http-port   8080
+              :autobuild true
+              :reload-strategy :full}
+
+   :modules {:shared             {:entries []}
+             :main               {:init-fn    bb-web-ds-tools.core/init
+                                  :depends-on #{:shared}}
+             :sci-worker         {:init-fn    bb-web-ds-tools.workers.sci/init
+                                  :depends-on #{:shared}
+                                  :web-worker true}
+             :pyodide-worker     {:init-fn    bb-web-ds-tools.workers.pyodide/init
+                                  :depends-on #{:shared}
+                                  :web-worker true}
+             :persistence-worker {:init-fn    bb-web-ds-tools.workers.persistence/init
+                                  :depends-on #{:shared}
+                                  :web-worker true}}}
+
+  :test-interactive
   {:target :browser-test
-    :test-dir "docs/test"
-    :js-options {:js-provider :external
-                 :external-index "target/index.js"}
-    :compiler-options {:pretty-print true}}
-  
+   :test-dir "docs/test"
+   :asset-path "js/"
+   :js-options {:js-provider :external
+                :external-index "target/index.js"}
+   :compiler-options {:pretty-print true}}
+
   :test-node
   {:target    :node-test
    :output-to "target/node-tests.js"
    :ns-regexp "-spec$"
    :autorun   true
    :js-options {:js-provider :external
-                 :external-index "target/index.js"}}
-    
+                :external-index "target/index.js"}}
+
   :test
-   {:target :browser-test
-    :ns-regexp "-test$"
-    :runner-ns shadow.test.karma
-    :output-to "target/test/core.js"
-    :test-dir "target/test"
-    :js-options {:js-provider :external
-                 :external-index "target/test/npm-index.js"}
-    :module-loader true
-    :compiler-options {:pretty-print true}
-    :devtools {:autotest true}}
-  
-   :stories
-   {:target :npm-module
-    :output-dir "docs/js/stories"
-    :entries [bb-web-ds-tools.stories.common-stories
-              bb-web-ds-tools.stories.editor-stories
-              bb-web-ds-tools.stories.view-stories
-              bb-web-ds-tools.stories.layout-stories]}}}
+  {:target :browser-test
+   :ns-regexp "-test$"
+   :runner-ns shadow.test.karma
+   :output-to "target/test/core.js"
+   :test-dir "target/test"
+   :js-options {:js-provider :external
+                :external-index "target/test/npm-index.js"}
+   :module-loader true
+   :compiler-options {:pretty-print true}
+   :devtools {:autotest true}}
+
+  :stories
+  {:target :npm-module
+   :output-dir "docs/js/stories"
+   :entries [bb-web-ds-tools.stories.common-stories
+             bb-web-ds-tools.stories.editor-stories
+             bb-web-ds-tools.stories.view-stories
+             bb-web-ds-tools.stories.layout-stories]}}}
