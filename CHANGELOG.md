@@ -2,6 +2,24 @@
 
 All notable changes to a project will be documented in this file.
 
+## [0.9.0] - 2025-12-08
+
+### Added
+- **CLI Tools**: Added CLI tools for datasets, malli, and honeysql (e000518, cafebb5).
+- **SQL Persistence**: Reintroduced SQL WASM and added dataset persistence (cf6130f).
+- **Theme Support**: Allow users to change theme (737f0c2).
+- **SCI Context**: Expose datasets and aliases in SCI context (d610a20).
+- **Blog**: Migrate blog to quickblog and separate content directory (3915ed0).
+
+### Changed
+- **Editor Theme**: Update editor theme colors for better contrast (7464e2c).
+- **Layout**: Standardize Main Container Padding (b474846) and allow overflow-y on landing page (b02cf07).
+
+### Fixed
+- **WebR**: Fix WebR runtime tests to match new event structure (0704331).
+- **REPL**: Fix advanced compilation issue in REPL by adding Datascript externs (ba0641a).
+- **Landing Page**: Fix canvas animations using ResizeObserver (affc403).
+
 ## [0.8.0] - 2025-12-05
 
 ### Added
