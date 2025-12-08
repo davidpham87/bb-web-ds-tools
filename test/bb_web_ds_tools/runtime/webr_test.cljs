@@ -72,15 +72,14 @@
         (-> (webr/eval-in-main "1 + 1")
             (.then (fn []
                      (is (some #(and (= (first %) :bb-web-ds-tools.portal/submit)
-                                     (= (:type (second %)) :code)
+                                     (= (second %) "1 + 1")
                                      (= (nth % 2) :portal.viewer/code))
                                @dispatched) "Code should be submitted")
                      (let [res-event (last @dispatched)
                            res-val (second res-event)
                            res-viewer (nth res-event 2)]
                        (is (= (first res-event) :bb-web-ds-tools.portal/submit))
-                       (is (= (:type res-val) :result))
-                       (is (= (:value res-val) 42))
+                       (is (= res-val 42))
                        (is (= res-viewer :portal.viewer/edn)))
                      (set! rf/dispatch orig-dispatch)
                      (done)))
