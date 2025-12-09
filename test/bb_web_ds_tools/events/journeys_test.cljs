@@ -19,7 +19,8 @@
             [bb-web-ds-tools.views.repl]
             [bb-web-ds-tools.views.editor]
             [bb-web-ds-tools.views.pyodide]
-            [bb-web-ds-tools.events.theme]))
+            [bb-web-ds-tools.events.theme]
+            [bb-web-ds-tools.events.settings]))
 
 (def view-subscriptions
   "Map of route names to a list of critical subscriptions for that view.
@@ -42,18 +43,20 @@
            :bb-web-ds-tools.views.gemma/component-root
            :bb-web-ds-tools.views.gemma/messages]
    :code [:bb-web-ds-tools.views.code/active-tab
-          :bb-web-ds-tools.views.repl/user-input-root
-          :bb-web-ds-tools.views.r-repl/root
-          :bb-web-ds-tools.views.pyodide/user-input-root
-          :bb-web-ds-tools.views.editor/user-input-root]
+          :bb-web-ds-tools.views.repl/instances
+          :bb-web-ds-tools.views.r-repl/code
+          :bb-web-ds-tools.views.pyodide/code
+          :bb-web-ds-tools.core/code]
    :datasets [:bb-web-ds-tools.views.datasets/user-input-root
               :bb-web-ds-tools.views.datasets/component-root
               :bb-web-ds-tools.views.datasets/items
               :bb-web-ds-tools.views.datasets/active-dataset-id]
    :app-db [:bb-web-ds-tools.views.app-db/user-input-root
             :bb-web-ds-tools.views.app-db/watched-paths]
-   :changelog [:bb-web-ds-tools.views.changelog/entries]
-   :settings [:bb-web-ds-tools.views.settings/user-input-root]})
+   ;; Changelog is static, no specific subscriptions
+   :changelog []
+   :settings [:bb-web-ds-tools.events.theme/current-theme
+              :bb-web-ds-tools.events.settings/column-normalizer]})
 
 (deftest generate-journey-test
   (testing "Generates a valid sequence of events"
