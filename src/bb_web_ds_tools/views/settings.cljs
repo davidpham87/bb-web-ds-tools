@@ -32,7 +32,7 @@
         {:class "bg-[#3f3f3f] text-white rounded px-3 py-2 w-full max-w-xs border border-[#4f4f4f] focus:outline-none focus:border-[#8cd0d3]"
          :value (name current-theme)
          :on-change #(rf/dispatch [::theme-events/set-theme (keyword (.. % -target -value))])}
-        (for [theme-name (keys themes/themes)]
+        (for [theme-name (sort (keys themes/themes))]
           ^{:key theme-name}
           [:option {:value (name theme-name)} (name theme-name)])]]]
      [c/card {:class "p-6 space-y-4 mt-6"}
