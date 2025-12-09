@@ -224,3 +224,110 @@ _Disclaimer: We are not responsible for any browser crashes caused by loading
 1GB CSV files into the main thread._
 
 Happy Hacking! 👩‍💻👨‍💻
+
+---
+
+## 🛠️ CLI Tools
+
+This project isn't just a web app; it exposes its internal logic as CLI tools via Babashka. You can run these commands locally to process data, format SQL, or work with schemas.
+
+### 1. 📊 Datasets CLI
+Convert between formats (CSV, JSON, EDN, YAML) and data structures (Row Maps, Columnar, Rows).
+
+**Command:**
+```bash
+# Convert CSV to JSON
+bb -m bb-web-ds-tools.cli.datasets convert --file data.csv --to json
+
+# Convert Row Maps to Columnar (JSON to JSON)
+bb -m bb-web-ds-tools.cli.datasets convert --file data.json --input-struct row-maps --output-struct columnar
+```
+
+**Equivalent Internal API:**
+```clojure
+(require '[bb-web-ds-tools.impl.datasets :as datasets])
+(require '[bb-web-ds-tools.impl.io :as io])
+
+(let [parsed (io/parse-string :csv "id,name\n1,Alice")]
+  (-> parsed
+      (datasets/transform :row-maps :columnar)
+      (io/write-string :json)))
+```
+
+### 2. 🍯 HoneySQL CLI
+Convert HoneySQL EDN data structures into raw SQL strings.
+
+**Command:**
+```bash
+bb -m bb-web-ds-tools.cli.honeysql convert --file query.edn
+```
+
+**Equivalent Internal API:**
+```clojure
+(require '[bb-web-ds-tools.components.honeysql :as h])
+
+;; The internal API evaluates the string using SCI
+(h/convert-to-sql "{:select [:*] :from [:users]}")
+;; => {:success true, :output "SELECT * FROM users", ...}
+```
+
+**Direct Library Usage ():**
+The internal tool wraps HoneySQL to allow safe evaluation of EDN strings. If you are using the library directly in Clojure, you don't need the SCI layer.
+```clojure
+(require '[honey.sql :as sql])
+
+;; Pass data directly
+(sql/format {:select [:*] :from [:users]} {:inline true})
+;; => ["SELECT * FROM users"]
+```
+
+### 3. 🧩 Malli CLI
+Perform schema inference, data generation, and validation from the command line.
+
+**Infer Schema:**
+```bash
+# Infer schema from a JSON/EDN file
+bb -m bb-web-ds-tools.cli.malli infer --file data.json --max-enum 10
+```
+
+**Generate Data:**
+```bash
+# Generate 5 samples from a schema file
+bb -m bb-web-ds-tools.cli.malli generate --file schema.edn --samples 5 --format json
+```
+
+**Validate Data:**
+```bash
+bb -m bb-web-ds-tools.cli.malli validate --schema schema.edn --file data.edn
+```
+
+**Equivalent Internal API:**
+```clojure
+(require '[bb-web-ds-tools.components.malli :as m])
+
+;; Infer
+(m/infer-schema [{:a 1} {:a 2}])
+
+;; Generate
+(m/generate-data [:map [:a int?]] 5 :edn)
+
+;; Validate
+(m/validate-data [:map [:a int?]] {:a 1})
+```
+
+**Direct Library Usage ():**
+The  wrapper adds convenience (like auto-parsing strings, inferring enums/ranges). Here is how to do it with raw Malli:
+```clojure
+(require '[malli.provider :as mp])
+(require '[malli.generator :as mg])
+(require '[malli.core :as mc])
+
+;; Infer
+(mp/provide [{:a 1} {:a 2}])
+
+;; Generate
+(mg/generate [:map [:a int?]])
+
+;; Validate
+(mc/validate [:map [:a int?]] {:a 1})
+```
