@@ -31,3 +31,6 @@ clojure -M -e "(+ 1 1)"
 echo "\n--- Installation and verification complete! ---"
 
 npm install
+
+# cljfmt to help jules
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/weavejester/cljfmt/HEAD/install.sh)"

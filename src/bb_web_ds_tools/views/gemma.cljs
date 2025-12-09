@@ -140,7 +140,7 @@
            [:form {:on-submit handle-submit :class "max-w-2xl mx-auto"}
             [c/card {}
              [:div
-              [:h3 {:class "text-xl font-bold text-[#f0dfaf] mb-2"} "Load Gemma Model"]
+              [c/section-header "Load Gemma Model"]
               [:p {:class "text-[#dcdccc] mb-4 text-sm"} "Enter the URL to the .bin model file (e.g., from Kaggle or Hugging Face)."]
               [:input {:type "text"
                        :name "url"

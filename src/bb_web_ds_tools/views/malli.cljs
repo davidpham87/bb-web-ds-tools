@@ -295,26 +295,6 @@
 
 ;; UI components
 
-(defn btn
-  "Renders a consistent button component.
-
-  Args:
-    props (map): Props.
-    children (rest): Children.
-
-  Returns:
-    vector: A hiccup vector."
-  [props & children]
-  (let [{:keys [primary active class]} props
-        clean-props (dissoc props :primary :active :class)
-        computed-class (str "!py-1 !px-3 !text-sm !font-medium "
-                            (cond
-                              primary (str "!" t/bg-button-primary " !" t/text-button-primary)
-                              active (str "!" t/bg-button-primary " !" t/text-button-primary)
-                              :else "")
-                            " " class)]
-    (into [c/button (assoc clean-props :class computed-class)] children)))
-
 (defn unified-view
   "A unified view component for Malli sub-views to prevent unmounting and ensure consistency.
 
@@ -351,14 +331,18 @@
   {:controls [:<>
               [c/label "Input Data"]
               [l/flex-row {:class "space-x-2 items-center"}
-               [btn {:active (= input-format :edn)
-                     :on-click #(rf/dispatch [:malli/set-input-format :edn])} "EDN"]
-               [btn {:active (= input-format :csv)
-                     :on-click #(rf/dispatch [:malli/set-input-format :csv])} "CSV"]
-               [btn {:active (= input-format :tsv)
-                     :on-click #(rf/dispatch [:malli/set-input-format :tsv])} "TSV"]
-               [btn {:active (= input-format :json)
-                     :on-click #(rf/dispatch [:malli/set-input-format :json])} "JSON"]
+               [c/button {:size :sm
+                          :variant (if (= input-format :edn) :primary nil)
+                          :on-click #(rf/dispatch [:malli/set-input-format :edn])} "EDN"]
+               [c/button {:size :sm
+                          :variant (if (= input-format :csv) :primary nil)
+                          :on-click #(rf/dispatch [:malli/set-input-format :csv])} "CSV"]
+               [c/button {:size :sm
+                          :variant (if (= input-format :tsv) :primary nil)
+                          :on-click #(rf/dispatch [:malli/set-input-format :tsv])} "TSV"]
+               [c/button {:size :sm
+                          :variant (if (= input-format :json) :primary nil)
+                          :on-click #(rf/dispatch [:malli/set-input-format :json])} "JSON"]
                (when (seq datasets)
                  [:div {:class "flex items-center space-x-2"}
                   [:span {:class (str "text-xs " t/text-secondary)} "Load:"]
@@ -378,8 +362,9 @@
                           :value max-enum-values
                           :on-change #(rf/dispatch [:malli/set-max-enum-values (.. % -target -value)])}]]
 
-               [btn {:primary true
-                     :on-click #(rf/dispatch [:malli/infer-schema])} "Infer Schema"]
+               [c/button {:size :sm
+                          :variant :primary
+                          :on-click #(rf/dispatch [:malli/infer-schema])} "Infer Schema"]
 
                [:div {:class (str "ml-4 text-xs " t/text-secondary)}
                 "CLI: " [:code {:class "bg-black/20 p-1 rounded"} "bb -x bb-web-ds-tools.cli.malli/infer"]]]]
@@ -417,9 +402,11 @@
                  [:option {:value "edn"} "EDN"]
                  [:option {:value "json"} "JSON"]]]
                ;; Generate Button
-               [btn {:primary true
-                     :on-click #(rf/dispatch [:malli/parse-schema-and-generate])} "Generate"]
-               [btn {:on-click #(rf/dispatch [:malli/save-dataset])} "Save to Datasets"]
+               [c/button {:size :sm
+                          :variant :primary
+                          :on-click #(rf/dispatch [:malli/parse-schema-and-generate])} "Generate"]
+               [c/button {:size :sm
+                          :on-click #(rf/dispatch [:malli/save-dataset])} "Save to Datasets"]
 
                [:div {:class (str "ml-4 text-xs " t/text-secondary)}
                 "CLI: " [:code {:class "bg-black/20 p-1 rounded"} "bb -x bb-web-ds-tools.cli.malli/generate"]]]]
@@ -435,8 +422,9 @@
   [{:keys [schema-text inference-input input-format validation-result]}]
   {:controls [:<>
               [c/label "Schema (EDN)"]
-              [btn {:primary true
-                    :on-click #(rf/dispatch [:malli/validate])} "Validate"]
+              [c/button {:size :sm
+                         :variant :primary
+                         :on-click #(rf/dispatch [:malli/validate])} "Validate"]
 
               [:div {:class (str "ml-4 text-xs " t/text-secondary)}
                "CLI: " [:code {:class "bg-black/20 p-1 rounded"} "bb -x bb-web-ds-tools.cli.malli/validate"]]]
@@ -458,8 +446,9 @@
   [{:keys [schema-text json-schema-result]}]
   {:controls [:<>
               [c/label "Schema (EDN)"]
-              [btn {:primary true
-                    :on-click #(rf/dispatch [:malli/transform-json])} "Transform to JSON Schema"]]
+              [c/button {:size :sm
+                         :variant :primary
+                         :on-click #(rf/dispatch [:malli/transform-json])} "Transform to JSON Schema"]]
    :editors [{:value schema-text
               :language "clojure"
               :options {:rulers [80]}

@@ -1,5 +1,5 @@
 {:source-paths
- ["src" "test" "src/stories"]
+ ["src" "test" "src/stories" "verification/cljs"]
 
  :deps true
 
@@ -82,4 +82,10 @@
    :entries [bb-web-ds-tools.stories.common-stories
              bb-web-ds-tools.stories.editor-stories
              bb-web-ds-tools.stories.view-stories
-             bb-web-ds-tools.stories.layout-stories]}}}
+             bb-web-ds-tools.stories.layout-stories]}
+
+  :e2e
+  {:target :node-script
+   :output-to "target/e2e.js"
+   :main verification.e2e.runner/-main
+   :devtools {:autorun true}}}}

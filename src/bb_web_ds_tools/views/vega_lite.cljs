@@ -4,6 +4,7 @@
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.editor :as editor]
             [bb-web-ds-tools.components.layout :as l]
+            [bb-web-ds-tools.components.navigation :as nav]
             [bb-web-ds-tools.theme :as t]
             [bb-web-ds-tools.portal :as portal]
             [bb-web-ds-tools.views.datasets :as datasets]
@@ -98,6 +99,12 @@
  :<- [::component-root]
  (fn [root]
    (::parsed-data root)))
+
+(rf/reg-sub
+ ::inferred-schema
+ :<- [::component-root]
+ (fn [root]
+   (::inferred-schema root)))
 
 (rf/reg-sub
  ::active-left-tab
@@ -319,7 +326,8 @@
         name-input (r/atom "")]
     (fn []
       [:div {:class "relative inline-block"}
-       [c/button-xs {:on-click #(reset! open? true)} "Save"]
+       [c/button {:size :sm
+                  :on-click #(reset! open? true)} "Save"]
        (when @open?
          [:div {:class (str "absolute top-8 right-0 z-50 p-2 rounded shadow-lg border "
                             t/bg-input " " t/border-default " flex items-center space-x-2")}
@@ -327,12 +335,14 @@
                     :placeholder "Name"
                     :value @name-input
                     :on-change #(reset! name-input (.. % -target -value))}]
-          [c/button-xs {:class "text-green-400"
-                        :on-click #(do (rf/dispatch [::save-config @name-input])
-                                       (reset! open? false))}
+          [c/button {:size :sm
+                     :class "text-green-400 !px-2"
+                     :on-click #(do (rf/dispatch [::save-config @name-input])
+                                    (reset! open? false))}
            "✓"]
-          [c/button-xs {:class "text-red-400"
-                        :on-click #(reset! open? false)}
+          [c/button {:size :sm
+                     :class "text-red-400 !px-2"
+                     :on-click #(reset! open? false)}
            "✗"]])])))
 
 (defn panel-render
@@ -351,7 +361,8 @@
         saved-configs @(rf/subscribe [::saved-configs])
         active-config-name @(rf/subscribe [::active-config-name])
         parsed-config-obj @(rf/subscribe [::parsed-config-obj])
-        format @(rf/subscribe [::format])]
+        format @(rf/subscribe [::format])
+        inferred-schema @(rf/subscribe [::inferred-schema])]
     [:div {:class "flex flex-col md:flex-row h-full w-full overflow-hidden"}
      ;; Left Column (Inputs)
      [:div {:class "h-1/2 md:h-full overflow-auto border-b md:border-b-0 md:border-r border-[#3f3f3f] w-full md:max-w-3xl flex-shrink-0"}
@@ -368,16 +379,17 @@
           :data
           [l/flex-col {:class "h-full"}
            [l/flex-row {:class "p-2 gap-2 flex-wrap border-b border-[#3f3f3f] bg-[#1c2128] items-center"}
-            [c/button-info {:on-click #(load-example :csv :columnar)} "CSV"]
-            [c/button-info {:on-click #(load-example :tsv :columnar)} "TSV"]
-            [c/button-info {:on-click #(load-example :markdown :columnar)} "MD"]
-            [c/button-info {:on-click #(load-example :json :row-maps)} "JSON Maps"]
-            [c/button-info {:on-click #(load-example :json :row-arrays)} "JSON Arrays"]
-            [c/button-info {:on-click #(load-example :edn :row-maps)} "EDN Maps"]
-            [c/button-info {:on-click #(load-example :edn :columnar)} "EDN Col"]
+            [c/button {:size :sm :on-click #(load-example :csv :columnar)} "CSV"]
+            [c/button {:size :sm :on-click #(load-example :tsv :columnar)} "TSV"]
+            [c/button {:size :sm :on-click #(load-example :markdown :columnar)} "MD"]
+            [c/button {:size :sm :on-click #(load-example :json :row-maps)} "JSON Maps"]
+            [c/button {:size :sm :on-click #(load-example :json :row-arrays)} "JSON Arrays"]
+            [c/button {:size :sm :on-click #(load-example :edn :row-maps)} "EDN Maps"]
+            [c/button {:size :sm :on-click #(load-example :edn :columnar)} "EDN Col"]
             ;; Dataset Import
             [:div {:class "relative group ml-auto"}
-             [c/button-info {:class "border-dashed border-white/50"} "Import Dataset ▼"]
+             [c/button {:size :sm
+                        :class "border-dashed border-white/50"} "Import Dataset ▼"]
              [:div {:class (str "absolute hidden group-hover:block right-0 " t/bg-input " border " t/border-default " p-1 rounded shadow-lg z-10 w-48 max-h-60 overflow-y-auto")}
               (if (seq datasets)
                 (for [[id ds] datasets]
@@ -421,8 +433,9 @@
                   [:option {:key name :value name} name])])
              [save-config-modal]
              (when active-config-name
-               [c/button-xs {:class "text-red-400"
-                             :on-click #(rf/dispatch [::delete-config active-config-name])}
+               [c/button {:size :sm
+                          :class "text-red-400 !px-2"
+                          :on-click #(rf/dispatch [::delete-config active-config-name])}
                 [c/dustbin-icon]])]]
 
            [:div {:class "flex-grow relative"}
@@ -440,10 +453,12 @@
        [l/flex-row {:class (str "justify-between border-b " t/border-default " px-2 " t/bg-toolbar)}
         [l/flex-row {:class "space-x-2"}
          [tab-button (= active-right-tab :plot) "Plot" #(rf/dispatch [::set-active-right-tab :plot])]
-         [tab-button (= active-right-tab :parsed) "Parsed Data" #(rf/dispatch [::set-active-right-tab :parsed])]]
+         [tab-button (= active-right-tab :parsed) "Parsed Data" #(rf/dispatch [::set-active-right-tab :parsed])]
+         [tab-button (= active-right-tab :schema) "Schema" #(rf/dispatch [::set-active-right-tab :schema])]]
         ;; Send to Portal
         (when (= active-right-tab :plot)
-          [c/button-xs {:on-click #(let [config-edn (js->clj parsed-config-obj :keywordize-keys true)
+          [c/button {:size :sm
+                     :on-click #(let [config-edn (js->clj parsed-config-obj :keywordize-keys true)
                                      final-edn (assoc config-edn :data {:values parsed-data})]
                                   (rf/dispatch [::portal/submit final-edn]))}
            "Send to Portal"])]
@@ -461,6 +476,16 @@
             {:value (with-out-str (pprint parsed-data))
              :language "clojure"
              :options {:readOnly true :minimap {:enabled false}}}]]
+
+          :schema
+          (if (seq parsed-data)
+            [:div {:class (str "h-full w-full " t/bg-page)}
+             [editor/monaco-editor
+              {:value (with-out-str (pprint inferred-schema))
+               :language "clojure"
+               :options {:readOnly true :minimap {:enabled false}}}]]
+            [:div {:class (str "h-full w-full flex items-center justify-center " t/bg-page " " t/text-secondary)}
+             "No data available to infer schema."])
           nil)]]]]))
 
 (defn panel
