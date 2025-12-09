@@ -55,6 +55,12 @@ jobs:
     - name: Render Blog
       run: bb render
 
+    - name: Install MkDocs
+      run: pip install mkdocs
+
+    - name: Build Wiki
+      run: mkdocs build
+
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:

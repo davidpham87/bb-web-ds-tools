@@ -6,6 +6,7 @@
             [bb-web-ds-tools.components.editor :as editor]
             [bb-web-ds-tools.components.layout :as l]
             [bb-web-ds-tools.portal :as portal :refer [portal-frame portal-panel]]
+            [bb-web-ds-tools.events.settings :as settings-events]
             [bb-web-ds-tools.theme :as t]
             [bb-web-ds-tools.utils.dataset-processing :as dp]
             [bb-web-ds-tools.workspaces.persistence :as wp])) ;; Uncommented
@@ -32,7 +33,7 @@
  (fn [db _]
    (-> db
        (update-in [:user-input :datasets] #(deep-merge % {:items {}
-                                                          :new-dataset-state {:name "New Dataset" :text "" :format :csv :structure :columnar}}))
+                                                          :new-dataset-state {:name "New Dataset" :text "" :format :csv :structure :columnar :override-norm? false}}))
        (assoc ::datasets {:active-dataset-id :new}))))
 
 (rf/reg-sub
@@ -117,7 +118,7 @@
 
 (rf/reg-event-db
  ::add-dataset
- (fn [db [_ {:keys [name data]}]]
+ (fn [db [_ {:keys [name data norm-config]}]]
    (let [id (str (random-uuid))
          valid-data (cond
                       (map? data) [data]
@@ -125,9 +126,18 @@
                                    data
                                    (mapv (fn [row] {:value row}) data))
                       :else [])
-         data-with-ids (mapv #(assoc % :_uuid (str (random-uuid))) valid-data)
-         columns (if (seq valid-data)
-                   (keys (first valid-data))
+         ;; Apply normalization
+         normalized-data (if norm-config
+                           (mapv (fn [row]
+                                   (reduce-kv (fn [m k v]
+                                                (assoc m (dp/normalize-column-name k norm-config) v))
+                                              {}
+                                              row))
+                                 valid-data)
+                           valid-data)
+         data-with-ids (mapv #(assoc % :_uuid (str (random-uuid))) normalized-data)
+         columns (if (seq normalized-data)
+                   (keys (first normalized-data))
                    [])]
      (-> db
          (assoc-in [:user-input :datasets :items id]
@@ -149,6 +159,11 @@
  ::update-dataset-name
  (fn [db [_ id name]]
    (assoc-in db [:user-input :datasets :items id :name] name)))
+
+(rf/reg-event-db
+ ::patch-datasets
+ (fn [db [_ patch]]
+   (update-in db [:user-input :datasets :items] merge patch)))
 
 (rf/reg-event-db
  ::update-cell
@@ -253,13 +268,19 @@
     vector: A hiccup vector."
   []
   (let [state (rf/subscribe [::new-dataset-state])
+        default-norm-config (rf/subscribe [::settings-events/column-normalizer])
         vega-list (rf/subscribe [::vega-datasets-list])
         loading-list? (rf/subscribe [::loading-vega-list?])
         loading-dataset? (rf/subscribe [::loading-vega-dataset?])]
     (fn []
-      (let [{:keys [text structure] fmt :format name-val :name} @state
+      (let [{:keys [text structure override-norm? norm-case norm-output] fmt :format name-val :name} @state
             structure (or structure :columnar)
             dataset-name (or name-val "New Dataset")
+
+            norm-config (if override-norm?
+                          {:case (or norm-case (:case @default-norm-config))
+                           :output (or norm-output (:output @default-norm-config))}
+                          @default-norm-config)
 
             set-state (fn [k v] (rf/dispatch [::update-new-dataset-state k v]))
 
@@ -330,8 +351,34 @@
              "CLI: " [:code {:class "bg-black/20 p-1 rounded"} "bb -x bb-web-ds-tools.cli.datasets/convert"]]
             [c/button-xs {:class (str t/bg-button-primary " " t/bg-button-primary-hover " text-white px-4")
                           :on-click #(let [parsed (dp/parse-dataset fmt structure text)]
-                                       (rf/dispatch [::add-dataset {:name dataset-name :data parsed}]))}
+                                        (rf/dispatch [::add-dataset {:name dataset-name :data parsed :norm-config norm-config}]))}
              "Create"]]]
+
+         ;; Normalization Settings
+         [c/card {:class "p-2 space-y-2"}
+          [l/flex-row {:class "items-center space-x-2 mb-2"}
+           [c/input {:type "checkbox"
+                     :class "w-auto"
+                     :checked override-norm?
+                     :on-change #(set-state :override-norm? (not override-norm?))}]
+           [:span {:class "text-sm font-bold"} "Override Column Normalization"]]
+
+          (when override-norm?
+            [l/flex-row {:class "items-center space-x-4"}
+             [:div
+              [:span {:class "text-xs block mb-1 text-gray-400"} "Case"]
+              [:select {:class (str "text-sm border rounded p-1 " t/bg-input " " t/text-primary " " t/border-default)
+                        :value (name (:case norm-config))
+                        :on-change #(set-state :norm-case (keyword (.. % -target -value)))}
+               (for [c [:snake_case :CamelCase :kebab-case]]
+                 [:option {:key c :value (name c)} (name c)])]]
+             [:div
+              [:span {:class "text-xs block mb-1 text-gray-400"} "Output"]
+              [:select {:class (str "text-sm border rounded p-1 " t/bg-input " " t/text-primary " " t/border-default)
+                        :value (name (:output norm-config))
+                        :on-change #(set-state :norm-output (keyword (.. % -target -value)))}
+               (for [o [:string :keyword :symbol]]
+                 [:option {:key o :value (name o)} (name o)])]]])]
 
          [:div {:class (str "flex-grow " t/bg-input " rounded overflow-hidden shadow-inner border " t/border-default)}
           [editor/monaco-editor
@@ -343,6 +390,18 @@
                         "plaintext")
             :on-change [::update-new-dataset-state :text]}]]]))))
 
+(defn data-row
+  "Renders a single data row."
+  [id row visible-columns]
+  (let [row-uuid (:_uuid row)]
+    [c/tr {:key row-uuid}
+     (for [col visible-columns]
+       [c/td {:key col}
+        [c/input {:class (str "bg-transparent focus:" t/bg-input " focus:ring-1 " t/ring-focus
+                              " rounded px-1 outline-none border-0")
+                  :value (get row col "")
+                  :on-change #(rf/dispatch [::update-cell id row-uuid col (.. % -target -value)])}]])]))
+
 (defn data-table
   "Renders the interactive data table for a dataset.
 
@@ -352,69 +411,94 @@
   Returns:
     vector: A hiccup vector."
   [dataset]
-  (let [{:keys [id data columns view-state]} dataset
-        {:keys [page rows-per-page filters hidden-columns sort-col sort-dir]} view-state
-        {:keys [page-data total-rows start-idx end-idx visible-columns]}
-        (dp/process-table-data data (assoc view-state :columns columns))]
+  (let [save-modal-open? (r/atom false)
+        new-dataset-name (r/atom (str (:name dataset) " (filtered)"))]
+    (fn [dataset]
+      (let [{:keys [id data columns view-state]} dataset
+            {:keys [page rows-per-page filters hidden-columns sort-col sort-dir]} view-state
+            {:keys [page-data total-rows start-idx end-idx visible-columns filtered-data]}
+            (dp/process-table-data data (assoc view-state :columns columns))]
 
-    [l/flex-col {:class "space-y-4 p-4"}
-     ;; Toolbar
-     [l/flex-row {:class (str "flex-wrap gap-4 items-end " t/bg-toolbar " p-2 rounded shadow-sm")}
-      [:div
-       [c/label "Rows"]
-       [c/select {:class "py-1"
-                  :value rows-per-page
-                  :on-change #(rf/dispatch [::update-view-state id :rows-per-page (js/parseInt (.. % -target -value))])}
-        [:option {:value 5} "5"]
-        [:option {:value 10} "10"]
-        [:option {:value 25} "25"]
-        [:option {:value 50} "50"]]]
-      [:div
-       [c/label "Columns"]
-       [column-toggle-dropdown id columns hidden-columns]]
-      [:div {:class "flex-grow"}]
-      [:div {:class (str "text-sm " t/text-secondary)}
-       (str (inc start-idx) "-" end-idx " of " total-rows)]
-      [l/flex-row {:class "space-x-2"}
-       [c/button-xs {:on-click #(rf/dispatch [::update-view-state id :page (dec page)])
-                     :disabled (zero? page)} "Prev"]
-       [c/button-xs {:on-click #(rf/dispatch [::update-view-state id :page (inc page)])
-                     :disabled (>= end-idx total-rows)} "Next"]]]
+        [l/flex-col {:class "space-y-4 p-4"}
+         ;; Save Filtered Modal
+         (when @save-modal-open?
+           [:div {:class "fixed inset-0 z-50 flex items-center justify-center bg-black/50"}
+            [c/card {:class "p-6 space-y-4 w-96 shadow-xl border border-gray-600"}
+             [:h3 {:class "text-lg font-bold"} "Save Filtered Data"]
+             [:div
+              [:label {:class "block text-sm font-medium mb-1"} "New Dataset Name"]
+              [c/input {:value @new-dataset-name
+                        :auto-focus true
+                        :on-change #(reset! new-dataset-name (.. % -target -value))
+                        :on-key-down #(when (= "Enter" (.-key %))
+                                        (rf/dispatch [::add-dataset {:name @new-dataset-name :data filtered-data}])
+                                        (reset! save-modal-open? false))}]]
+             [l/flex-row {:class "justify-end space-x-2"}
+              [c/button {:class "bg-gray-600 hover:bg-gray-500 text-white"
+                         :on-click #(reset! save-modal-open? false)}
+               "Cancel"]
+              [c/button {:class (str t/bg-button-primary " " t/bg-button-primary-hover " text-white")
+                         :on-click #(do (rf/dispatch [::add-dataset {:name @new-dataset-name :data filtered-data}])
+                                        (reset! save-modal-open? false))}
+               "Save"]]]])
 
-     ;; Table
-     [c/table-container {}
-      [c/table {}
-       [c/thead {}
-        [c/tr {}
-         (for [col visible-columns]
-           [c/th {:key col
-                  :class (str "cursor-pointer " t/bg-item-hover)
-                  :on-click #(let [new-dir (if (and (= sort-col col) (= sort-dir :asc)) :desc :asc)]
-                               (rf/dispatch [::update-view-state id :sort-col col])
-                               (rf/dispatch [::update-view-state id :sort-dir new-dir]))}
-            [:div {:class "flex items-center space-x-1"}
-             [:span (name col)]
-             (when (= sort-col col)
-               [:span {:class "text-[10px] transform translate-y-px"} (if (= sort-dir :asc) "▲" "▼")])]])]]
-       [c/tbody {}
-        ;; Filter Row
-        [c/tr {}
-         (for [col visible-columns]
-           [c/td {:key (str "filter-" col) :class "px-3 py-1.5"}
-            [c/input {:class "text-sm"
-                      :placeholder (str "Filter " (name col))
-                      :value (get filters col "")
-                      :on-change #(rf/dispatch [::update-view-state id :filters (assoc filters col (.. % -target -value))])}]])]
-        ;; Data Rows
-        (for [row page-data]
-          (let [row-uuid (:_uuid row)]
-            [c/tr {:key row-uuid}
+         ;; Toolbar
+         [l/flex-row {:class (str "flex-wrap gap-4 items-end " t/bg-toolbar " p-2 rounded shadow-sm")}
+          [:div
+           [c/label "Rows"]
+           [c/select {:class "py-1"
+                      :value rows-per-page
+                      :on-change #(rf/dispatch [::update-view-state id :rows-per-page (js/parseInt (.. % -target -value))])}
+            [:option {:value 5} "5"]
+            [:option {:value 10} "10"]
+            [:option {:value 25} "25"]
+            [:option {:value 50} "50"]]]
+          [:div
+           [c/label "Columns"]
+           [column-toggle-dropdown id columns hidden-columns]]
+          [:div {:class "flex-grow"}]
+          [c/button-xs {:class (if (seq filters) (str t/bg-button-primary " text-white") "opacity-50 cursor-not-allowed")
+                        :disabled (empty? filters)
+                        :title "Save current filtered results as a new dataset"
+                        :on-click #(do (reset! new-dataset-name (str (:name dataset) " (filtered)"))
+                                       (reset! save-modal-open? true))}
+           "Save Filtered"]
+          [:div {:class (str "text-sm " t/text-secondary)}
+           (str (inc start-idx) "-" end-idx " of " total-rows)]
+          [l/flex-row {:class "space-x-2"}
+           [c/button-xs {:on-click #(rf/dispatch [::update-view-state id :page (dec page)])
+                         :disabled (zero? page)} "Prev"]
+           [c/button-xs {:on-click #(rf/dispatch [::update-view-state id :page (inc page)])
+                         :disabled (>= end-idx total-rows)} "Next"]]]
+
+         ;; Table
+         [c/table-container {}
+          [c/table {}
+           [c/thead {}
+            [c/tr {}
              (for [col visible-columns]
-               [c/td {:key col}
-                [c/input {:class (str "bg-transparent focus:" t/bg-input " focus:ring-1 " t/ring-focus
-                                      " rounded px-1 outline-none border-0")
-                          :value (get row col "")
-                          :on-change #(rf/dispatch [::update-cell id row-uuid col (.. % -target -value)])}]])]))]]]]))
+               [c/th {:key col
+                      :class (str "cursor-pointer " t/bg-item-hover)
+                      :on-click #(let [new-dir (if (and (= sort-col col) (= sort-dir :asc)) :desc :asc)]
+                                   (rf/dispatch [::update-view-state id :sort-col col])
+                                   (rf/dispatch [::update-view-state id :sort-dir new-dir]))}
+                [:div {:class "flex items-center space-x-1"}
+                 [:span (name col)]
+                 (when (= sort-col col)
+                  [:span {:class "text-[10px] transform translate-y-px"} (if (= sort-dir :asc) "▲" "▼")])]])]]
+           [c/tbody {}
+            ;; Filter Row
+            [c/tr {}
+             (for [col visible-columns]
+               [c/td {:key (str "filter-" col) :class "px-3 py-1.5"}
+                [c/input {:class "text-sm"
+                          :placeholder (str "Filter " (name col) " (expr)")
+                          :title "Enter a value or a Clojure expression (e.g. #(> % 10))"
+                          :value (get filters col "")
+                          :on-change #(rf/dispatch [::update-view-state id :filters (assoc filters col (.. % -target -value))])}]])]
+            ;; Data Rows
+            (for [row page-data]
+              [data-row id row visible-columns])]]]]))))
 
 (defn dataset-view
   "Renders the main view for a single dataset (table or portal).

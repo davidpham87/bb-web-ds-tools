@@ -3,6 +3,7 @@
    [bb-web-ds-tools.components.common :refer (nav-items)]
    [bb-web-ds-tools.components.layout :as layout]
    [bb-web-ds-tools.components.navigation :as nav]
+   [bb-web-ds-tools.events.settings :as settings-events]
    [bb-web-ds-tools.events.theme :as theme-events] ;; Import theme events
    [bb-web-ds-tools.portal :as portal]
    [bb-web-ds-tools.theme :as t]
@@ -235,6 +236,7 @@
   ;; Initialize persistence
   (rf/dispatch [::wp/init-persistence])
   (rf/dispatch [::theme-events/set-theme :zenburn]) ;; Initialize theme
+  (rf/dispatch [::settings-events/initialize])
   ;; #_(rf/dispatch [::ws/init])
   ;; #_(rf/dispatch [::wp/init-persistence])
   (init-routes!)

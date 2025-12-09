@@ -66,8 +66,7 @@ chart.to_html()")
   (let [{:keys [type text value]} msg]
     (case (keyword type)
       :ready (rf/dispatch [::on-ready])
-      :error (do (rf/dispatch [::set-error text])
-                 (rf/dispatch [::portal/submit msg]))
+      :error (rf/dispatch [::portal/submit msg])
       :result (rf/dispatch [::portal/submit value])
       :stdout (rf/dispatch [::portal/submit text])
       (js/console.warn "Unknown worker msg:" msg))))
@@ -109,11 +108,6 @@ chart.to_html()")
  (fn [root] (::ready? root)))
 
 (rf/reg-sub
- ::error
- :<- [::pyodide]
- (fn [root] (::error root)))
-
-(rf/reg-sub
  ::mac-os?
  (fn [db _] (get-in db [:platform :mac-os?])))
 
@@ -131,11 +125,6 @@ chart.to_html()")
  ::set-ready
  (fn [db [_ v]]
    (assoc-in db [:pyodide ::ready?] v)))
-
-(rf/reg-event-db
- ::set-error
- (fn [db [_ v]]
-   (assoc-in db [:pyodide ::error] v)))
 
 (rf/reg-event-fx
  ::on-ready
@@ -171,15 +160,13 @@ chart.to_html()")
       (let [code @code-sub
             mac-os? @(rf/subscribe [::mac-os?])
             loading? @(rf/subscribe [::loading?])
-            ready? @(rf/subscribe [::ready?])
-            error @(rf/subscribe [::error])]
+            ready? @(rf/subscribe [::ready?])]
         [:div {:class "w-full border border-gray-700 rounded mb-4"}
          [l/flex-col {:class "h-full w-full"}
           [l/flex-row {:class "justify-between py-4"}
            [c/label "Python Code"]
            [l/flex-row {:class "space-x-4"}
             (when loading? [:div "Loading Pyodide..."])
-            (when error [:div {:class "text-red-500"} (str "Error: " error)])
             [c/button {:on-click #(rf/dispatch [::run-code code])} "Run"]]]
           [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)
                  :style {:height "85vh"}}
