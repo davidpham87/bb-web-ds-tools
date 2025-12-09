@@ -161,6 +161,11 @@
    (assoc-in db [:user-input :datasets :items id :name] name)))
 
 (rf/reg-event-db
+ ::patch-datasets
+ (fn [db [_ patch]]
+   (update-in db [:user-input :datasets :items] merge patch)))
+
+(rf/reg-event-db
  ::update-cell
  (fn [db [_ dataset-id row-uuid col-key value]]
    (update-in db [:user-input :datasets :items dataset-id :data]
