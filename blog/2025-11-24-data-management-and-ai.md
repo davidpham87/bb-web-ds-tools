@@ -1,6 +1,6 @@
-Title: Data Management & AI: Now 100% Less Creepy Date: 2025-11-24 Tags:
-clojure, data-science
-
+Title: Data Management & AI: Now 100% Less Creepy
+Date: 2025-11-24
+Tags: clojure, data-science
 ---
 
 Let’s talk about your data. Specifically, let’s talk about where it goes.
