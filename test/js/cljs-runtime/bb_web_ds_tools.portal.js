@@ -37,11 +37,11 @@ return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword("portal"
 re_frame.core.reg_fx(new cljs.core.Keyword("portal","submit","portal/submit",861997951),(function (value){
 return portal.web.submit(value);
 }));
-re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.portal","submit","bb-web-ds-tools.portal/submit",1366041846),(function (_,p__22486){
-var vec__22487 = p__22486;
-var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22487,(0),null);
-var value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22487,(1),null);
-var viewer = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22487,(2),null);
+re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.portal","submit","bb-web-ds-tools.portal/submit",1366041846),(function (_,p__22492){
+var vec__22493 = p__22492;
+var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22493,(0),null);
+var value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22493,(1),null);
+var viewer = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22493,(2),null);
 return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword("portal","submit","portal/submit",861997951),(cljs.core.truth_(viewer)?(((((!((value == null))))?(((((value.cljs$lang$protocol_mask$partition0$ & (262144))) || ((cljs.core.PROTOCOL_SENTINEL === value.cljs$core$IWithMeta$))))?true:(((!value.cljs$lang$protocol_mask$partition0$))?cljs.core.native_satisfies_QMARK_(cljs.core.IWithMeta,value):false)):cljs.core.native_satisfies_QMARK_(cljs.core.IWithMeta,value)))?cljs.core.with_meta(value,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword("portal.viewer","default","portal.viewer/default",-1985169620),viewer], null)):new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [viewer,value], null)):value)], null);
 }));
 /**
@@ -72,14 +72,14 @@ return null;
  */
 bb_web_ds_tools.portal.portal_panel = (function bb_web_ds_tools$portal$portal_panel(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___22546 = arguments.length;
-var i__5750__auto___22547 = (0);
+var len__5749__auto___22551 = arguments.length;
+var i__5750__auto___22552 = (0);
 while(true){
-if((i__5750__auto___22547 < len__5749__auto___22546)){
-args__5755__auto__.push((arguments[i__5750__auto___22547]));
+if((i__5750__auto___22552 < len__5749__auto___22551)){
+args__5755__auto__.push((arguments[i__5750__auto___22552]));
 
-var G__22548 = (i__5750__auto___22547 + (1));
-i__5750__auto___22547 = G__22548;
+var G__22553 = (i__5750__auto___22552 + (1));
+i__5750__auto___22552 = G__22553;
 continue;
 } else {
 }
@@ -90,24 +90,24 @@ var argseq__5756__auto__ = ((((1) < args__5755__auto__.length))?(new cljs.core.I
 return bb_web_ds_tools.portal.portal_panel.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),argseq__5756__auto__);
 });
 
-(bb_web_ds_tools.portal.portal_panel.cljs$core$IFn$_invoke$arity$variadic = (function (value,p__22508){
-var vec__22509 = p__22508;
-var viewer = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22509,(0),null);
+(bb_web_ds_tools.portal.portal_panel.cljs$core$IFn$_invoke$arity$variadic = (function (value,p__22514){
+var vec__22515 = p__22514;
+var viewer = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22515,(0),null);
 return reagent.core.create_class.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"component-did-mount","component-did-mount",-1126910518),(function (this$){
-var vec__22512 = reagent.core.argv(this$);
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22512,(0),null);
-var value__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22512,(1),null);
-var viewer__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22512,(2),null);
+var vec__22523 = reagent.core.argv(this$);
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22523,(0),null);
+var value__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22523,(1),null);
+var viewer__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22523,(2),null);
 return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.portal","submit","bb-web-ds-tools.portal/submit",1366041846),value__$1,viewer__$1], null));
-}),new cljs.core.Keyword(null,"component-did-update","component-did-update",-1468549173),(function (this$,p__22515){
-var vec__22516 = p__22515;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22516,(0),null);
-var old_value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22516,(1),null);
-var old_viewer = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22516,(2),null);
-var vec__22526 = reagent.core.argv(this$);
-var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22526,(0),null);
-var value__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22526,(1),null);
-var viewer__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22526,(2),null);
+}),new cljs.core.Keyword(null,"component-did-update","component-did-update",-1468549173),(function (this$,p__22533){
+var vec__22536 = p__22533;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22536,(0),null);
+var old_value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22536,(1),null);
+var old_viewer = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22536,(2),null);
+var vec__22541 = reagent.core.argv(this$);
+var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22541,(0),null);
+var value__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22541,(1),null);
+var viewer__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22541,(2),null);
 if(((cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(value__$1,old_value)) || (cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(viewer__$1,old_viewer)))){
 return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.portal","submit","bb-web-ds-tools.portal/submit",1366041846),value__$1,viewer__$1], null));
 } else {

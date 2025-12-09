@@ -11,12 +11,12 @@ bb_web_ds_tools.theme_test.theme_sorting_test.cljs$lang$test = (function (){
 cljs.test.update_current_env_BANG_.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"testing-contexts","testing-contexts",-1485646523)], null),cljs.core.conj,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2(["Themes are sorted alphabetically in settings"], 0));
 
 try{var component = bb_web_ds_tools.views.settings.panel();
-var select = cljs.core.first(cljs.core.filter.cljs$core$IFn$_invoke$arity$2((function (p1__40196_SHARP_){
-return ((cljs.core.vector_QMARK_(p1__40196_SHARP_)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"select","select",1147833503),cljs.core.first(p1__40196_SHARP_))));
+var select = cljs.core.first(cljs.core.filter.cljs$core$IFn$_invoke$arity$2((function (p1__40197_SHARP_){
+return ((cljs.core.vector_QMARK_(p1__40197_SHARP_)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"select","select",1147833503),cljs.core.first(p1__40197_SHARP_))));
 }),cljs.core.tree_seq(cljs.core.vector_QMARK_,cljs.core.seq,component)));
 var options = cljs.core.last(select);
-var option_values = cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__40197_SHARP_){
-return new cljs.core.Keyword(null,"value","value",305978217).cljs$core$IFn$_invoke$arity$1(cljs.core.second(p1__40197_SHARP_));
+var option_values = cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__40198_SHARP_){
+return new cljs.core.Keyword(null,"value","value",305978217).cljs$core$IFn$_invoke$arity$1(cljs.core.second(p1__40198_SHARP_));
 }),options);
 var expected_values = cljs.core.map.cljs$core$IFn$_invoke$arity$2(cljs.core.name,cljs.core.sort.cljs$core$IFn$_invoke$arity$1(cljs.core.keys(bb_web_ds_tools.utils.themes.themes)));
 try{var values__11365__auto__ = (new cljs.core.List(null,expected_values,(new cljs.core.List(null,option_values,null,(1),null)),(2),null));
@@ -28,7 +28,7 @@ cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core
 }
 
 return result__11366__auto__;
-}catch (e40198){var t__11416__auto__ = e40198;
+}catch (e40199){var t__11416__auto__ = e40199;
 return cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/theme_test.cljs",44,new cljs.core.Keyword(null,"error","error",-978969032),11,24,cljs.core.list(new cljs.core.Symbol(null,"=","=",-1501502141,null),new cljs.core.Symbol(null,"expected-values","expected-values",-646720630,null),new cljs.core.Symbol(null,"option-values","option-values",2006633005,null)),24,t__11416__auto__,"Theme options should be sorted alphabetically"]));
 }}finally {cljs.test.update_current_env_BANG_(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"testing-contexts","testing-contexts",-1485646523)], null),cljs.core.rest);
 }});
@@ -51,7 +51,7 @@ cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core
 }
 
 return result__11366__auto__;
-}catch (e40205){var t__11416__auto__ = e40205;
+}catch (e40200){var t__11416__auto__ = e40200;
 return cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/theme_test.cljs",65,new cljs.core.Keyword(null,"error","error",-978969032),9,29,cljs.core.list(new cljs.core.Symbol(null,"=","=",-1501502141,null),new cljs.core.Keyword(null,"nord","nord",1470933315),cljs.core.list(new cljs.core.Symbol("clojure.core","deref","clojure.core/deref",188719157,null),cljs.core.list(new cljs.core.Symbol("rf","subscribe","rf/subscribe",2056788919,null),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.events.theme","current-theme","bb-web-ds-tools.events.theme/current-theme",-1882747906)], null)))),29,t__11416__auto__,null]));
 }}finally {cljs.test.update_current_env_BANG_(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"testing-contexts","testing-contexts",-1485646523)], null),cljs.core.rest);
 }});

@@ -135,23 +135,23 @@ sci.impl.io.print_readably = (new sci.lang.Var(cljs.core._STAR_print_readably_ST
 sci.impl.io.print_dup_var = (new sci.lang.Var(cljs.core._STAR_print_dup_STAR_,new cljs.core.Symbol(null,"*print-dup*","*print-dup*",103854877,null),new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol(null,"*print-dup*","*print-dup*",103854877,null),new cljs.core.Keyword(null,"arglists","arglists",1661989754),null,new cljs.core.Keyword(null,"doc","doc",1913296891),"When set to logical true, objects will be printed in a way that preserves\n  their type when read in later.\n\n  Defaults to false.",new cljs.core.Keyword(null,"dynamic","dynamic",704819571),true,new cljs.core.Keyword("sci","built-in","sci/built-in",1244659599),true,new cljs.core.Keyword(null,"ns","ns",441598760),sci.impl.utils.clojure_core_ns], null),false,null,null));
 sci.impl.io.print_newline = (new sci.lang.Var(cljs.core._STAR_print_newline_STAR_,new cljs.core.Symbol(null,"*print-newline*","*print-newline*",1478078956,null),new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol(null,"*print-newline*","*print-newline*",1478078956,null),new cljs.core.Keyword(null,"arglists","arglists",1661989754),null,new cljs.core.Keyword(null,"doc","doc",1913296891),"When set to logical false will drop newlines from printing calls.\n  This is to work around the implicit newlines emitted by standard JavaScript\n  console objects.",new cljs.core.Keyword(null,"dynamic","dynamic",704819571),true,new cljs.core.Keyword("sci","built-in","sci/built-in",1244659599),true,new cljs.core.Keyword(null,"ns","ns",441598760),sci.impl.utils.clojure_core_ns], null),false,null,null));
 sci.impl.io.string_print = (function sci$impl$io$string_print(x){
-var _STAR_print_fn_STAR__orig_val__33106 = cljs.core._STAR_print_fn_STAR_;
-var _STAR_print_fn_STAR__temp_val__33107 = cljs.core.deref(sci.impl.io.print_fn);
-(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__temp_val__33107);
+var _STAR_print_fn_STAR__orig_val__33117 = cljs.core._STAR_print_fn_STAR_;
+var _STAR_print_fn_STAR__temp_val__33118 = cljs.core.deref(sci.impl.io.print_fn);
+(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__temp_val__33118);
 
 try{return cljs.core.string_print(x);
-}finally {(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__orig_val__33106);
+}finally {(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__orig_val__33117);
 }});
 sci.impl.io.pr = (function sci$impl$io$pr(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___33292 = arguments.length;
-var i__5750__auto___33293 = (0);
+var len__5749__auto___33313 = arguments.length;
+var i__5750__auto___33314 = (0);
 while(true){
-if((i__5750__auto___33293 < len__5749__auto___33292)){
-args__5755__auto__.push((arguments[i__5750__auto___33293]));
+if((i__5750__auto___33314 < len__5749__auto___33313)){
+args__5755__auto__.push((arguments[i__5750__auto___33314]));
 
-var G__33294 = (i__5750__auto___33293 + (1));
-i__5750__auto___33293 = G__33294;
+var G__33315 = (i__5750__auto___33314 + (1));
+i__5750__auto___33314 = G__33315;
 continue;
 } else {
 }
@@ -163,88 +163,88 @@ return sci.impl.io.pr.cljs$core$IFn$_invoke$arity$variadic(argseq__5756__auto__)
 });
 
 (sci.impl.io.pr.cljs$core$IFn$_invoke$arity$variadic = (function (objs){
-var _STAR_print_fn_STAR__orig_val__33109 = cljs.core._STAR_print_fn_STAR_;
-var _STAR_print_length_STAR__orig_val__33110 = cljs.core._STAR_print_length_STAR_;
-var _STAR_print_level_STAR__orig_val__33111 = cljs.core._STAR_print_level_STAR_;
-var _STAR_print_meta_STAR__orig_val__33112 = cljs.core._STAR_print_meta_STAR_;
-var _STAR_print_namespace_maps_STAR__orig_val__33113 = cljs.core._STAR_print_namespace_maps_STAR_;
-var _STAR_print_readably_STAR__orig_val__33114 = cljs.core._STAR_print_readably_STAR_;
-var _STAR_print_newline_STAR__orig_val__33115 = cljs.core._STAR_print_newline_STAR_;
-var _STAR_print_dup_STAR__orig_val__33116 = cljs.core._STAR_print_dup_STAR_;
-var _STAR_print_fn_STAR__temp_val__33117 = cljs.core.deref(sci.impl.io.print_fn);
-var _STAR_print_length_STAR__temp_val__33118 = cljs.core.deref(sci.impl.io.print_length);
-var _STAR_print_level_STAR__temp_val__33119 = cljs.core.deref(sci.impl.io.print_level);
-var _STAR_print_meta_STAR__temp_val__33120 = cljs.core.deref(sci.impl.io.print_meta);
-var _STAR_print_namespace_maps_STAR__temp_val__33121 = cljs.core.deref(sci.impl.io.print_namespace_maps);
-var _STAR_print_readably_STAR__temp_val__33122 = cljs.core.deref(sci.impl.io.print_readably);
-var _STAR_print_newline_STAR__temp_val__33123 = cljs.core.deref(sci.impl.io.print_newline);
-var _STAR_print_dup_STAR__temp_val__33124 = cljs.core.deref(sci.impl.io.print_dup_var);
-(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__temp_val__33117);
+var _STAR_print_fn_STAR__orig_val__33121 = cljs.core._STAR_print_fn_STAR_;
+var _STAR_print_length_STAR__orig_val__33122 = cljs.core._STAR_print_length_STAR_;
+var _STAR_print_level_STAR__orig_val__33123 = cljs.core._STAR_print_level_STAR_;
+var _STAR_print_meta_STAR__orig_val__33124 = cljs.core._STAR_print_meta_STAR_;
+var _STAR_print_namespace_maps_STAR__orig_val__33125 = cljs.core._STAR_print_namespace_maps_STAR_;
+var _STAR_print_readably_STAR__orig_val__33126 = cljs.core._STAR_print_readably_STAR_;
+var _STAR_print_newline_STAR__orig_val__33127 = cljs.core._STAR_print_newline_STAR_;
+var _STAR_print_dup_STAR__orig_val__33128 = cljs.core._STAR_print_dup_STAR_;
+var _STAR_print_fn_STAR__temp_val__33129 = cljs.core.deref(sci.impl.io.print_fn);
+var _STAR_print_length_STAR__temp_val__33130 = cljs.core.deref(sci.impl.io.print_length);
+var _STAR_print_level_STAR__temp_val__33131 = cljs.core.deref(sci.impl.io.print_level);
+var _STAR_print_meta_STAR__temp_val__33132 = cljs.core.deref(sci.impl.io.print_meta);
+var _STAR_print_namespace_maps_STAR__temp_val__33133 = cljs.core.deref(sci.impl.io.print_namespace_maps);
+var _STAR_print_readably_STAR__temp_val__33134 = cljs.core.deref(sci.impl.io.print_readably);
+var _STAR_print_newline_STAR__temp_val__33135 = cljs.core.deref(sci.impl.io.print_newline);
+var _STAR_print_dup_STAR__temp_val__33136 = cljs.core.deref(sci.impl.io.print_dup_var);
+(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__temp_val__33129);
 
-(cljs.core._STAR_print_length_STAR_ = _STAR_print_length_STAR__temp_val__33118);
+(cljs.core._STAR_print_length_STAR_ = _STAR_print_length_STAR__temp_val__33130);
 
-(cljs.core._STAR_print_level_STAR_ = _STAR_print_level_STAR__temp_val__33119);
+(cljs.core._STAR_print_level_STAR_ = _STAR_print_level_STAR__temp_val__33131);
 
-(cljs.core._STAR_print_meta_STAR_ = _STAR_print_meta_STAR__temp_val__33120);
+(cljs.core._STAR_print_meta_STAR_ = _STAR_print_meta_STAR__temp_val__33132);
 
-(cljs.core._STAR_print_namespace_maps_STAR_ = _STAR_print_namespace_maps_STAR__temp_val__33121);
+(cljs.core._STAR_print_namespace_maps_STAR_ = _STAR_print_namespace_maps_STAR__temp_val__33133);
 
-(cljs.core._STAR_print_readably_STAR_ = _STAR_print_readably_STAR__temp_val__33122);
+(cljs.core._STAR_print_readably_STAR_ = _STAR_print_readably_STAR__temp_val__33134);
 
-(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__temp_val__33123);
+(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__temp_val__33135);
 
-(cljs.core._STAR_print_dup_STAR_ = _STAR_print_dup_STAR__temp_val__33124);
+(cljs.core._STAR_print_dup_STAR_ = _STAR_print_dup_STAR__temp_val__33136);
 
 try{return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.pr,objs);
-}finally {(cljs.core._STAR_print_dup_STAR_ = _STAR_print_dup_STAR__orig_val__33116);
+}finally {(cljs.core._STAR_print_dup_STAR_ = _STAR_print_dup_STAR__orig_val__33128);
 
-(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__orig_val__33115);
+(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__orig_val__33127);
 
-(cljs.core._STAR_print_readably_STAR_ = _STAR_print_readably_STAR__orig_val__33114);
+(cljs.core._STAR_print_readably_STAR_ = _STAR_print_readably_STAR__orig_val__33126);
 
-(cljs.core._STAR_print_namespace_maps_STAR_ = _STAR_print_namespace_maps_STAR__orig_val__33113);
+(cljs.core._STAR_print_namespace_maps_STAR_ = _STAR_print_namespace_maps_STAR__orig_val__33125);
 
-(cljs.core._STAR_print_meta_STAR_ = _STAR_print_meta_STAR__orig_val__33112);
+(cljs.core._STAR_print_meta_STAR_ = _STAR_print_meta_STAR__orig_val__33124);
 
-(cljs.core._STAR_print_level_STAR_ = _STAR_print_level_STAR__orig_val__33111);
+(cljs.core._STAR_print_level_STAR_ = _STAR_print_level_STAR__orig_val__33123);
 
-(cljs.core._STAR_print_length_STAR_ = _STAR_print_length_STAR__orig_val__33110);
+(cljs.core._STAR_print_length_STAR_ = _STAR_print_length_STAR__orig_val__33122);
 
-(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__orig_val__33109);
+(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__orig_val__33121);
 }}));
 
 (sci.impl.io.pr.cljs$lang$maxFixedArity = (0));
 
 /** @this {Function} */
-(sci.impl.io.pr.cljs$lang$applyTo = (function (seq33108){
+(sci.impl.io.pr.cljs$lang$applyTo = (function (seq33119){
 var self__5735__auto__ = this;
-return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq33108));
+return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq33119));
 }));
 
 sci.impl.io.flush = (function sci$impl$io$flush(){
 return null;
 });
 sci.impl.io.newline = (function sci$impl$io$newline(){
-var _STAR_print_fn_STAR__orig_val__33130 = cljs.core._STAR_print_fn_STAR_;
-var _STAR_print_fn_STAR__temp_val__33131 = cljs.core.deref(sci.impl.io.print_fn);
-(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__temp_val__33131);
+var _STAR_print_fn_STAR__orig_val__33143 = cljs.core._STAR_print_fn_STAR_;
+var _STAR_print_fn_STAR__temp_val__33144 = cljs.core.deref(sci.impl.io.print_fn);
+(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__temp_val__33144);
 
 try{return cljs.core.newline.cljs$core$IFn$_invoke$arity$0();
-}finally {(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__orig_val__33130);
+}finally {(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__orig_val__33143);
 }});
 /**
  * pr to a string, returning it
  */
 sci.impl.io.pr_str = (function sci$impl$io$pr_str(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___33295 = arguments.length;
-var i__5750__auto___33296 = (0);
+var len__5749__auto___33317 = arguments.length;
+var i__5750__auto___33318 = (0);
 while(true){
-if((i__5750__auto___33296 < len__5749__auto___33295)){
-args__5755__auto__.push((arguments[i__5750__auto___33296]));
+if((i__5750__auto___33318 < len__5749__auto___33317)){
+args__5755__auto__.push((arguments[i__5750__auto___33318]));
 
-var G__33297 = (i__5750__auto___33296 + (1));
-i__5750__auto___33296 = G__33297;
+var G__33319 = (i__5750__auto___33318 + (1));
+i__5750__auto___33318 = G__33319;
 continue;
 } else {
 }
@@ -256,68 +256,68 @@ return sci.impl.io.pr_str.cljs$core$IFn$_invoke$arity$variadic(argseq__5756__aut
 });
 
 (sci.impl.io.pr_str.cljs$core$IFn$_invoke$arity$variadic = (function (objs){
-var _STAR_print_length_STAR__orig_val__33135 = cljs.core._STAR_print_length_STAR_;
-var _STAR_print_level_STAR__orig_val__33136 = cljs.core._STAR_print_level_STAR_;
-var _STAR_print_meta_STAR__orig_val__33137 = cljs.core._STAR_print_meta_STAR_;
-var _STAR_print_namespace_maps_STAR__orig_val__33138 = cljs.core._STAR_print_namespace_maps_STAR_;
-var _STAR_print_readably_STAR__orig_val__33139 = cljs.core._STAR_print_readably_STAR_;
-var _STAR_print_newline_STAR__orig_val__33140 = cljs.core._STAR_print_newline_STAR_;
-var _STAR_print_dup_STAR__orig_val__33141 = cljs.core._STAR_print_dup_STAR_;
-var _STAR_print_length_STAR__temp_val__33142 = cljs.core.deref(sci.impl.io.print_length);
-var _STAR_print_level_STAR__temp_val__33143 = cljs.core.deref(sci.impl.io.print_level);
-var _STAR_print_meta_STAR__temp_val__33144 = cljs.core.deref(sci.impl.io.print_meta);
-var _STAR_print_namespace_maps_STAR__temp_val__33145 = cljs.core.deref(sci.impl.io.print_namespace_maps);
-var _STAR_print_readably_STAR__temp_val__33146 = cljs.core.deref(sci.impl.io.print_readably);
-var _STAR_print_newline_STAR__temp_val__33147 = cljs.core.deref(sci.impl.io.print_newline);
-var _STAR_print_dup_STAR__temp_val__33148 = cljs.core.deref(sci.impl.io.print_dup_var);
-(cljs.core._STAR_print_length_STAR_ = _STAR_print_length_STAR__temp_val__33142);
+var _STAR_print_length_STAR__orig_val__33165 = cljs.core._STAR_print_length_STAR_;
+var _STAR_print_level_STAR__orig_val__33166 = cljs.core._STAR_print_level_STAR_;
+var _STAR_print_meta_STAR__orig_val__33167 = cljs.core._STAR_print_meta_STAR_;
+var _STAR_print_namespace_maps_STAR__orig_val__33168 = cljs.core._STAR_print_namespace_maps_STAR_;
+var _STAR_print_readably_STAR__orig_val__33169 = cljs.core._STAR_print_readably_STAR_;
+var _STAR_print_newline_STAR__orig_val__33170 = cljs.core._STAR_print_newline_STAR_;
+var _STAR_print_dup_STAR__orig_val__33171 = cljs.core._STAR_print_dup_STAR_;
+var _STAR_print_length_STAR__temp_val__33172 = cljs.core.deref(sci.impl.io.print_length);
+var _STAR_print_level_STAR__temp_val__33173 = cljs.core.deref(sci.impl.io.print_level);
+var _STAR_print_meta_STAR__temp_val__33174 = cljs.core.deref(sci.impl.io.print_meta);
+var _STAR_print_namespace_maps_STAR__temp_val__33175 = cljs.core.deref(sci.impl.io.print_namespace_maps);
+var _STAR_print_readably_STAR__temp_val__33176 = cljs.core.deref(sci.impl.io.print_readably);
+var _STAR_print_newline_STAR__temp_val__33177 = cljs.core.deref(sci.impl.io.print_newline);
+var _STAR_print_dup_STAR__temp_val__33178 = cljs.core.deref(sci.impl.io.print_dup_var);
+(cljs.core._STAR_print_length_STAR_ = _STAR_print_length_STAR__temp_val__33172);
 
-(cljs.core._STAR_print_level_STAR_ = _STAR_print_level_STAR__temp_val__33143);
+(cljs.core._STAR_print_level_STAR_ = _STAR_print_level_STAR__temp_val__33173);
 
-(cljs.core._STAR_print_meta_STAR_ = _STAR_print_meta_STAR__temp_val__33144);
+(cljs.core._STAR_print_meta_STAR_ = _STAR_print_meta_STAR__temp_val__33174);
 
-(cljs.core._STAR_print_namespace_maps_STAR_ = _STAR_print_namespace_maps_STAR__temp_val__33145);
+(cljs.core._STAR_print_namespace_maps_STAR_ = _STAR_print_namespace_maps_STAR__temp_val__33175);
 
-(cljs.core._STAR_print_readably_STAR_ = _STAR_print_readably_STAR__temp_val__33146);
+(cljs.core._STAR_print_readably_STAR_ = _STAR_print_readably_STAR__temp_val__33176);
 
-(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__temp_val__33147);
+(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__temp_val__33177);
 
-(cljs.core._STAR_print_dup_STAR_ = _STAR_print_dup_STAR__temp_val__33148);
+(cljs.core._STAR_print_dup_STAR_ = _STAR_print_dup_STAR__temp_val__33178);
 
 try{return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.pr_str,objs);
-}finally {(cljs.core._STAR_print_dup_STAR_ = _STAR_print_dup_STAR__orig_val__33141);
+}finally {(cljs.core._STAR_print_dup_STAR_ = _STAR_print_dup_STAR__orig_val__33171);
 
-(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__orig_val__33140);
+(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__orig_val__33170);
 
-(cljs.core._STAR_print_readably_STAR_ = _STAR_print_readably_STAR__orig_val__33139);
+(cljs.core._STAR_print_readably_STAR_ = _STAR_print_readably_STAR__orig_val__33169);
 
-(cljs.core._STAR_print_namespace_maps_STAR_ = _STAR_print_namespace_maps_STAR__orig_val__33138);
+(cljs.core._STAR_print_namespace_maps_STAR_ = _STAR_print_namespace_maps_STAR__orig_val__33168);
 
-(cljs.core._STAR_print_meta_STAR_ = _STAR_print_meta_STAR__orig_val__33137);
+(cljs.core._STAR_print_meta_STAR_ = _STAR_print_meta_STAR__orig_val__33167);
 
-(cljs.core._STAR_print_level_STAR_ = _STAR_print_level_STAR__orig_val__33136);
+(cljs.core._STAR_print_level_STAR_ = _STAR_print_level_STAR__orig_val__33166);
 
-(cljs.core._STAR_print_length_STAR_ = _STAR_print_length_STAR__orig_val__33135);
+(cljs.core._STAR_print_length_STAR_ = _STAR_print_length_STAR__orig_val__33165);
 }}));
 
 (sci.impl.io.pr_str.cljs$lang$maxFixedArity = (0));
 
 /** @this {Function} */
-(sci.impl.io.pr_str.cljs$lang$applyTo = (function (seq33133){
+(sci.impl.io.pr_str.cljs$lang$applyTo = (function (seq33151){
 var self__5735__auto__ = this;
-return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq33133));
+return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq33151));
 }));
 
 sci.impl.io.prn = (function sci$impl$io$prn(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___33299 = arguments.length;
-var i__5750__auto___33300 = (0);
+var len__5749__auto___33327 = arguments.length;
+var i__5750__auto___33328 = (0);
 while(true){
-if((i__5750__auto___33300 < len__5749__auto___33299)){
-args__5755__auto__.push((arguments[i__5750__auto___33300]));
+if((i__5750__auto___33328 < len__5749__auto___33327)){
+args__5755__auto__.push((arguments[i__5750__auto___33328]));
 
-var G__33301 = (i__5750__auto___33300 + (1));
-i__5750__auto___33300 = G__33301;
+var G__33329 = (i__5750__auto___33328 + (1));
+i__5750__auto___33328 = G__33329;
 continue;
 } else {
 }
@@ -329,62 +329,62 @@ return sci.impl.io.prn.cljs$core$IFn$_invoke$arity$variadic(argseq__5756__auto__
 });
 
 (sci.impl.io.prn.cljs$core$IFn$_invoke$arity$variadic = (function (objs){
-var _STAR_print_fn_STAR__orig_val__33154 = cljs.core._STAR_print_fn_STAR_;
-var _STAR_print_length_STAR__orig_val__33155 = cljs.core._STAR_print_length_STAR_;
-var _STAR_print_level_STAR__orig_val__33156 = cljs.core._STAR_print_level_STAR_;
-var _STAR_print_meta_STAR__orig_val__33157 = cljs.core._STAR_print_meta_STAR_;
-var _STAR_print_namespace_maps_STAR__orig_val__33158 = cljs.core._STAR_print_namespace_maps_STAR_;
-var _STAR_print_readably_STAR__orig_val__33159 = cljs.core._STAR_print_readably_STAR_;
-var _STAR_print_newline_STAR__orig_val__33160 = cljs.core._STAR_print_newline_STAR_;
-var _STAR_print_dup_STAR__orig_val__33161 = cljs.core._STAR_print_dup_STAR_;
-var _STAR_print_fn_STAR__temp_val__33162 = cljs.core.deref(sci.impl.io.print_fn);
-var _STAR_print_length_STAR__temp_val__33163 = cljs.core.deref(sci.impl.io.print_length);
-var _STAR_print_level_STAR__temp_val__33164 = cljs.core.deref(sci.impl.io.print_level);
-var _STAR_print_meta_STAR__temp_val__33165 = cljs.core.deref(sci.impl.io.print_meta);
-var _STAR_print_namespace_maps_STAR__temp_val__33166 = cljs.core.deref(sci.impl.io.print_namespace_maps);
-var _STAR_print_readably_STAR__temp_val__33167 = cljs.core.deref(sci.impl.io.print_readably);
-var _STAR_print_newline_STAR__temp_val__33168 = cljs.core.deref(sci.impl.io.print_newline);
-var _STAR_print_dup_STAR__temp_val__33169 = cljs.core.deref(sci.impl.io.print_dup_var);
-(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__temp_val__33162);
+var _STAR_print_fn_STAR__orig_val__33184 = cljs.core._STAR_print_fn_STAR_;
+var _STAR_print_length_STAR__orig_val__33185 = cljs.core._STAR_print_length_STAR_;
+var _STAR_print_level_STAR__orig_val__33186 = cljs.core._STAR_print_level_STAR_;
+var _STAR_print_meta_STAR__orig_val__33187 = cljs.core._STAR_print_meta_STAR_;
+var _STAR_print_namespace_maps_STAR__orig_val__33188 = cljs.core._STAR_print_namespace_maps_STAR_;
+var _STAR_print_readably_STAR__orig_val__33189 = cljs.core._STAR_print_readably_STAR_;
+var _STAR_print_newline_STAR__orig_val__33190 = cljs.core._STAR_print_newline_STAR_;
+var _STAR_print_dup_STAR__orig_val__33191 = cljs.core._STAR_print_dup_STAR_;
+var _STAR_print_fn_STAR__temp_val__33192 = cljs.core.deref(sci.impl.io.print_fn);
+var _STAR_print_length_STAR__temp_val__33193 = cljs.core.deref(sci.impl.io.print_length);
+var _STAR_print_level_STAR__temp_val__33194 = cljs.core.deref(sci.impl.io.print_level);
+var _STAR_print_meta_STAR__temp_val__33195 = cljs.core.deref(sci.impl.io.print_meta);
+var _STAR_print_namespace_maps_STAR__temp_val__33196 = cljs.core.deref(sci.impl.io.print_namespace_maps);
+var _STAR_print_readably_STAR__temp_val__33197 = cljs.core.deref(sci.impl.io.print_readably);
+var _STAR_print_newline_STAR__temp_val__33198 = cljs.core.deref(sci.impl.io.print_newline);
+var _STAR_print_dup_STAR__temp_val__33199 = cljs.core.deref(sci.impl.io.print_dup_var);
+(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__temp_val__33192);
 
-(cljs.core._STAR_print_length_STAR_ = _STAR_print_length_STAR__temp_val__33163);
+(cljs.core._STAR_print_length_STAR_ = _STAR_print_length_STAR__temp_val__33193);
 
-(cljs.core._STAR_print_level_STAR_ = _STAR_print_level_STAR__temp_val__33164);
+(cljs.core._STAR_print_level_STAR_ = _STAR_print_level_STAR__temp_val__33194);
 
-(cljs.core._STAR_print_meta_STAR_ = _STAR_print_meta_STAR__temp_val__33165);
+(cljs.core._STAR_print_meta_STAR_ = _STAR_print_meta_STAR__temp_val__33195);
 
-(cljs.core._STAR_print_namespace_maps_STAR_ = _STAR_print_namespace_maps_STAR__temp_val__33166);
+(cljs.core._STAR_print_namespace_maps_STAR_ = _STAR_print_namespace_maps_STAR__temp_val__33196);
 
-(cljs.core._STAR_print_readably_STAR_ = _STAR_print_readably_STAR__temp_val__33167);
+(cljs.core._STAR_print_readably_STAR_ = _STAR_print_readably_STAR__temp_val__33197);
 
-(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__temp_val__33168);
+(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__temp_val__33198);
 
-(cljs.core._STAR_print_dup_STAR_ = _STAR_print_dup_STAR__temp_val__33169);
+(cljs.core._STAR_print_dup_STAR_ = _STAR_print_dup_STAR__temp_val__33199);
 
 try{return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.prn,objs);
-}finally {(cljs.core._STAR_print_dup_STAR_ = _STAR_print_dup_STAR__orig_val__33161);
+}finally {(cljs.core._STAR_print_dup_STAR_ = _STAR_print_dup_STAR__orig_val__33191);
 
-(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__orig_val__33160);
+(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__orig_val__33190);
 
-(cljs.core._STAR_print_readably_STAR_ = _STAR_print_readably_STAR__orig_val__33159);
+(cljs.core._STAR_print_readably_STAR_ = _STAR_print_readably_STAR__orig_val__33189);
 
-(cljs.core._STAR_print_namespace_maps_STAR_ = _STAR_print_namespace_maps_STAR__orig_val__33158);
+(cljs.core._STAR_print_namespace_maps_STAR_ = _STAR_print_namespace_maps_STAR__orig_val__33188);
 
-(cljs.core._STAR_print_meta_STAR_ = _STAR_print_meta_STAR__orig_val__33157);
+(cljs.core._STAR_print_meta_STAR_ = _STAR_print_meta_STAR__orig_val__33187);
 
-(cljs.core._STAR_print_level_STAR_ = _STAR_print_level_STAR__orig_val__33156);
+(cljs.core._STAR_print_level_STAR_ = _STAR_print_level_STAR__orig_val__33186);
 
-(cljs.core._STAR_print_length_STAR_ = _STAR_print_length_STAR__orig_val__33155);
+(cljs.core._STAR_print_length_STAR_ = _STAR_print_length_STAR__orig_val__33185);
 
-(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__orig_val__33154);
+(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__orig_val__33184);
 }}));
 
 (sci.impl.io.prn.cljs$lang$maxFixedArity = (0));
 
 /** @this {Function} */
-(sci.impl.io.prn.cljs$lang$applyTo = (function (seq33153){
+(sci.impl.io.prn.cljs$lang$applyTo = (function (seq33181){
 var self__5735__auto__ = this;
-return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq33153));
+return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq33181));
 }));
 
 /**
@@ -392,14 +392,14 @@ return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq
  */
 sci.impl.io.prn_str = (function sci$impl$io$prn_str(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___33302 = arguments.length;
-var i__5750__auto___33303 = (0);
+var len__5749__auto___33331 = arguments.length;
+var i__5750__auto___33333 = (0);
 while(true){
-if((i__5750__auto___33303 < len__5749__auto___33302)){
-args__5755__auto__.push((arguments[i__5750__auto___33303]));
+if((i__5750__auto___33333 < len__5749__auto___33331)){
+args__5755__auto__.push((arguments[i__5750__auto___33333]));
 
-var G__33304 = (i__5750__auto___33303 + (1));
-i__5750__auto___33303 = G__33304;
+var G__33335 = (i__5750__auto___33333 + (1));
+i__5750__auto___33333 = G__33335;
 continue;
 } else {
 }
@@ -411,68 +411,68 @@ return sci.impl.io.prn_str.cljs$core$IFn$_invoke$arity$variadic(argseq__5756__au
 });
 
 (sci.impl.io.prn_str.cljs$core$IFn$_invoke$arity$variadic = (function (objs){
-var _STAR_print_length_STAR__orig_val__33171 = cljs.core._STAR_print_length_STAR_;
-var _STAR_print_level_STAR__orig_val__33172 = cljs.core._STAR_print_level_STAR_;
-var _STAR_print_meta_STAR__orig_val__33173 = cljs.core._STAR_print_meta_STAR_;
-var _STAR_print_namespace_maps_STAR__orig_val__33174 = cljs.core._STAR_print_namespace_maps_STAR_;
-var _STAR_print_readably_STAR__orig_val__33175 = cljs.core._STAR_print_readably_STAR_;
-var _STAR_print_newline_STAR__orig_val__33176 = cljs.core._STAR_print_newline_STAR_;
-var _STAR_print_dup_STAR__orig_val__33177 = cljs.core._STAR_print_dup_STAR_;
-var _STAR_print_length_STAR__temp_val__33178 = cljs.core.deref(sci.impl.io.print_length);
-var _STAR_print_level_STAR__temp_val__33179 = cljs.core.deref(sci.impl.io.print_level);
-var _STAR_print_meta_STAR__temp_val__33180 = cljs.core.deref(sci.impl.io.print_meta);
-var _STAR_print_namespace_maps_STAR__temp_val__33181 = cljs.core.deref(sci.impl.io.print_namespace_maps);
-var _STAR_print_readably_STAR__temp_val__33182 = cljs.core.deref(sci.impl.io.print_readably);
-var _STAR_print_newline_STAR__temp_val__33183 = cljs.core.deref(sci.impl.io.print_newline);
-var _STAR_print_dup_STAR__temp_val__33184 = cljs.core.deref(sci.impl.io.print_dup_var);
-(cljs.core._STAR_print_length_STAR_ = _STAR_print_length_STAR__temp_val__33178);
+var _STAR_print_length_STAR__orig_val__33218 = cljs.core._STAR_print_length_STAR_;
+var _STAR_print_level_STAR__orig_val__33219 = cljs.core._STAR_print_level_STAR_;
+var _STAR_print_meta_STAR__orig_val__33220 = cljs.core._STAR_print_meta_STAR_;
+var _STAR_print_namespace_maps_STAR__orig_val__33221 = cljs.core._STAR_print_namespace_maps_STAR_;
+var _STAR_print_readably_STAR__orig_val__33222 = cljs.core._STAR_print_readably_STAR_;
+var _STAR_print_newline_STAR__orig_val__33223 = cljs.core._STAR_print_newline_STAR_;
+var _STAR_print_dup_STAR__orig_val__33224 = cljs.core._STAR_print_dup_STAR_;
+var _STAR_print_length_STAR__temp_val__33225 = cljs.core.deref(sci.impl.io.print_length);
+var _STAR_print_level_STAR__temp_val__33226 = cljs.core.deref(sci.impl.io.print_level);
+var _STAR_print_meta_STAR__temp_val__33227 = cljs.core.deref(sci.impl.io.print_meta);
+var _STAR_print_namespace_maps_STAR__temp_val__33228 = cljs.core.deref(sci.impl.io.print_namespace_maps);
+var _STAR_print_readably_STAR__temp_val__33229 = cljs.core.deref(sci.impl.io.print_readably);
+var _STAR_print_newline_STAR__temp_val__33230 = cljs.core.deref(sci.impl.io.print_newline);
+var _STAR_print_dup_STAR__temp_val__33231 = cljs.core.deref(sci.impl.io.print_dup_var);
+(cljs.core._STAR_print_length_STAR_ = _STAR_print_length_STAR__temp_val__33225);
 
-(cljs.core._STAR_print_level_STAR_ = _STAR_print_level_STAR__temp_val__33179);
+(cljs.core._STAR_print_level_STAR_ = _STAR_print_level_STAR__temp_val__33226);
 
-(cljs.core._STAR_print_meta_STAR_ = _STAR_print_meta_STAR__temp_val__33180);
+(cljs.core._STAR_print_meta_STAR_ = _STAR_print_meta_STAR__temp_val__33227);
 
-(cljs.core._STAR_print_namespace_maps_STAR_ = _STAR_print_namespace_maps_STAR__temp_val__33181);
+(cljs.core._STAR_print_namespace_maps_STAR_ = _STAR_print_namespace_maps_STAR__temp_val__33228);
 
-(cljs.core._STAR_print_readably_STAR_ = _STAR_print_readably_STAR__temp_val__33182);
+(cljs.core._STAR_print_readably_STAR_ = _STAR_print_readably_STAR__temp_val__33229);
 
-(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__temp_val__33183);
+(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__temp_val__33230);
 
-(cljs.core._STAR_print_dup_STAR_ = _STAR_print_dup_STAR__temp_val__33184);
+(cljs.core._STAR_print_dup_STAR_ = _STAR_print_dup_STAR__temp_val__33231);
 
 try{return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.prn_str,objs);
-}finally {(cljs.core._STAR_print_dup_STAR_ = _STAR_print_dup_STAR__orig_val__33177);
+}finally {(cljs.core._STAR_print_dup_STAR_ = _STAR_print_dup_STAR__orig_val__33224);
 
-(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__orig_val__33176);
+(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__orig_val__33223);
 
-(cljs.core._STAR_print_readably_STAR_ = _STAR_print_readably_STAR__orig_val__33175);
+(cljs.core._STAR_print_readably_STAR_ = _STAR_print_readably_STAR__orig_val__33222);
 
-(cljs.core._STAR_print_namespace_maps_STAR_ = _STAR_print_namespace_maps_STAR__orig_val__33174);
+(cljs.core._STAR_print_namespace_maps_STAR_ = _STAR_print_namespace_maps_STAR__orig_val__33221);
 
-(cljs.core._STAR_print_meta_STAR_ = _STAR_print_meta_STAR__orig_val__33173);
+(cljs.core._STAR_print_meta_STAR_ = _STAR_print_meta_STAR__orig_val__33220);
 
-(cljs.core._STAR_print_level_STAR_ = _STAR_print_level_STAR__orig_val__33172);
+(cljs.core._STAR_print_level_STAR_ = _STAR_print_level_STAR__orig_val__33219);
 
-(cljs.core._STAR_print_length_STAR_ = _STAR_print_length_STAR__orig_val__33171);
+(cljs.core._STAR_print_length_STAR_ = _STAR_print_length_STAR__orig_val__33218);
 }}));
 
 (sci.impl.io.prn_str.cljs$lang$maxFixedArity = (0));
 
 /** @this {Function} */
-(sci.impl.io.prn_str.cljs$lang$applyTo = (function (seq33170){
+(sci.impl.io.prn_str.cljs$lang$applyTo = (function (seq33203){
 var self__5735__auto__ = this;
-return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq33170));
+return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq33203));
 }));
 
 sci.impl.io.print = (function sci$impl$io$print(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___33308 = arguments.length;
-var i__5750__auto___33309 = (0);
+var len__5749__auto___33340 = arguments.length;
+var i__5750__auto___33341 = (0);
 while(true){
-if((i__5750__auto___33309 < len__5749__auto___33308)){
-args__5755__auto__.push((arguments[i__5750__auto___33309]));
+if((i__5750__auto___33341 < len__5749__auto___33340)){
+args__5755__auto__.push((arguments[i__5750__auto___33341]));
 
-var G__33310 = (i__5750__auto___33309 + (1));
-i__5750__auto___33309 = G__33310;
+var G__33342 = (i__5750__auto___33341 + (1));
+i__5750__auto___33341 = G__33342;
 continue;
 } else {
 }
@@ -484,56 +484,56 @@ return sci.impl.io.print.cljs$core$IFn$_invoke$arity$variadic(argseq__5756__auto
 });
 
 (sci.impl.io.print.cljs$core$IFn$_invoke$arity$variadic = (function (objs){
-var _STAR_print_fn_STAR__orig_val__33191 = cljs.core._STAR_print_fn_STAR_;
-var _STAR_print_length_STAR__orig_val__33192 = cljs.core._STAR_print_length_STAR_;
-var _STAR_print_level_STAR__orig_val__33193 = cljs.core._STAR_print_level_STAR_;
-var _STAR_print_namespace_maps_STAR__orig_val__33194 = cljs.core._STAR_print_namespace_maps_STAR_;
-var _STAR_print_readably_STAR__orig_val__33195 = cljs.core._STAR_print_readably_STAR_;
-var _STAR_print_newline_STAR__orig_val__33196 = cljs.core._STAR_print_newline_STAR_;
-var _STAR_print_dup_STAR__orig_val__33197 = cljs.core._STAR_print_dup_STAR_;
-var _STAR_print_fn_STAR__temp_val__33198 = cljs.core.deref(sci.impl.io.print_fn);
-var _STAR_print_length_STAR__temp_val__33199 = cljs.core.deref(sci.impl.io.print_length);
-var _STAR_print_level_STAR__temp_val__33200 = cljs.core.deref(sci.impl.io.print_level);
-var _STAR_print_namespace_maps_STAR__temp_val__33201 = cljs.core.deref(sci.impl.io.print_namespace_maps);
-var _STAR_print_readably_STAR__temp_val__33202 = null;
-var _STAR_print_newline_STAR__temp_val__33203 = cljs.core.deref(sci.impl.io.print_newline);
-var _STAR_print_dup_STAR__temp_val__33204 = cljs.core.deref(sci.impl.io.print_dup_var);
-(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__temp_val__33198);
+var _STAR_print_fn_STAR__orig_val__33236 = cljs.core._STAR_print_fn_STAR_;
+var _STAR_print_length_STAR__orig_val__33237 = cljs.core._STAR_print_length_STAR_;
+var _STAR_print_level_STAR__orig_val__33238 = cljs.core._STAR_print_level_STAR_;
+var _STAR_print_namespace_maps_STAR__orig_val__33239 = cljs.core._STAR_print_namespace_maps_STAR_;
+var _STAR_print_readably_STAR__orig_val__33240 = cljs.core._STAR_print_readably_STAR_;
+var _STAR_print_newline_STAR__orig_val__33241 = cljs.core._STAR_print_newline_STAR_;
+var _STAR_print_dup_STAR__orig_val__33242 = cljs.core._STAR_print_dup_STAR_;
+var _STAR_print_fn_STAR__temp_val__33243 = cljs.core.deref(sci.impl.io.print_fn);
+var _STAR_print_length_STAR__temp_val__33244 = cljs.core.deref(sci.impl.io.print_length);
+var _STAR_print_level_STAR__temp_val__33245 = cljs.core.deref(sci.impl.io.print_level);
+var _STAR_print_namespace_maps_STAR__temp_val__33246 = cljs.core.deref(sci.impl.io.print_namespace_maps);
+var _STAR_print_readably_STAR__temp_val__33247 = null;
+var _STAR_print_newline_STAR__temp_val__33248 = cljs.core.deref(sci.impl.io.print_newline);
+var _STAR_print_dup_STAR__temp_val__33249 = cljs.core.deref(sci.impl.io.print_dup_var);
+(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__temp_val__33243);
 
-(cljs.core._STAR_print_length_STAR_ = _STAR_print_length_STAR__temp_val__33199);
+(cljs.core._STAR_print_length_STAR_ = _STAR_print_length_STAR__temp_val__33244);
 
-(cljs.core._STAR_print_level_STAR_ = _STAR_print_level_STAR__temp_val__33200);
+(cljs.core._STAR_print_level_STAR_ = _STAR_print_level_STAR__temp_val__33245);
 
-(cljs.core._STAR_print_namespace_maps_STAR_ = _STAR_print_namespace_maps_STAR__temp_val__33201);
+(cljs.core._STAR_print_namespace_maps_STAR_ = _STAR_print_namespace_maps_STAR__temp_val__33246);
 
-(cljs.core._STAR_print_readably_STAR_ = _STAR_print_readably_STAR__temp_val__33202);
+(cljs.core._STAR_print_readably_STAR_ = _STAR_print_readably_STAR__temp_val__33247);
 
-(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__temp_val__33203);
+(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__temp_val__33248);
 
-(cljs.core._STAR_print_dup_STAR_ = _STAR_print_dup_STAR__temp_val__33204);
+(cljs.core._STAR_print_dup_STAR_ = _STAR_print_dup_STAR__temp_val__33249);
 
 try{return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.print,objs);
-}finally {(cljs.core._STAR_print_dup_STAR_ = _STAR_print_dup_STAR__orig_val__33197);
+}finally {(cljs.core._STAR_print_dup_STAR_ = _STAR_print_dup_STAR__orig_val__33242);
 
-(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__orig_val__33196);
+(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__orig_val__33241);
 
-(cljs.core._STAR_print_readably_STAR_ = _STAR_print_readably_STAR__orig_val__33195);
+(cljs.core._STAR_print_readably_STAR_ = _STAR_print_readably_STAR__orig_val__33240);
 
-(cljs.core._STAR_print_namespace_maps_STAR_ = _STAR_print_namespace_maps_STAR__orig_val__33194);
+(cljs.core._STAR_print_namespace_maps_STAR_ = _STAR_print_namespace_maps_STAR__orig_val__33239);
 
-(cljs.core._STAR_print_level_STAR_ = _STAR_print_level_STAR__orig_val__33193);
+(cljs.core._STAR_print_level_STAR_ = _STAR_print_level_STAR__orig_val__33238);
 
-(cljs.core._STAR_print_length_STAR_ = _STAR_print_length_STAR__orig_val__33192);
+(cljs.core._STAR_print_length_STAR_ = _STAR_print_length_STAR__orig_val__33237);
 
-(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__orig_val__33191);
+(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__orig_val__33236);
 }}));
 
 (sci.impl.io.print.cljs$lang$maxFixedArity = (0));
 
 /** @this {Function} */
-(sci.impl.io.print.cljs$lang$applyTo = (function (seq33190){
+(sci.impl.io.print.cljs$lang$applyTo = (function (seq33234){
 var self__5735__auto__ = this;
-return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq33190));
+return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq33234));
 }));
 
 /**
@@ -541,14 +541,14 @@ return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq
  */
 sci.impl.io.print_str = (function sci$impl$io$print_str(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___33311 = arguments.length;
-var i__5750__auto___33312 = (0);
+var len__5749__auto___33343 = arguments.length;
+var i__5750__auto___33344 = (0);
 while(true){
-if((i__5750__auto___33312 < len__5749__auto___33311)){
-args__5755__auto__.push((arguments[i__5750__auto___33312]));
+if((i__5750__auto___33344 < len__5749__auto___33343)){
+args__5755__auto__.push((arguments[i__5750__auto___33344]));
 
-var G__33313 = (i__5750__auto___33312 + (1));
-i__5750__auto___33312 = G__33313;
+var G__33345 = (i__5750__auto___33344 + (1));
+i__5750__auto___33344 = G__33345;
 continue;
 } else {
 }
@@ -560,68 +560,68 @@ return sci.impl.io.print_str.cljs$core$IFn$_invoke$arity$variadic(argseq__5756__
 });
 
 (sci.impl.io.print_str.cljs$core$IFn$_invoke$arity$variadic = (function (objs){
-var _STAR_print_length_STAR__orig_val__33211 = cljs.core._STAR_print_length_STAR_;
-var _STAR_print_level_STAR__orig_val__33212 = cljs.core._STAR_print_level_STAR_;
-var _STAR_print_meta_STAR__orig_val__33213 = cljs.core._STAR_print_meta_STAR_;
-var _STAR_print_namespace_maps_STAR__orig_val__33214 = cljs.core._STAR_print_namespace_maps_STAR_;
-var _STAR_print_readably_STAR__orig_val__33215 = cljs.core._STAR_print_readably_STAR_;
-var _STAR_print_newline_STAR__orig_val__33216 = cljs.core._STAR_print_newline_STAR_;
-var _STAR_print_dup_STAR__orig_val__33217 = cljs.core._STAR_print_dup_STAR_;
-var _STAR_print_length_STAR__temp_val__33221 = cljs.core.deref(sci.impl.io.print_length);
-var _STAR_print_level_STAR__temp_val__33222 = cljs.core.deref(sci.impl.io.print_level);
-var _STAR_print_meta_STAR__temp_val__33223 = cljs.core.deref(sci.impl.io.print_meta);
-var _STAR_print_namespace_maps_STAR__temp_val__33224 = cljs.core.deref(sci.impl.io.print_namespace_maps);
-var _STAR_print_readably_STAR__temp_val__33225 = cljs.core.deref(sci.impl.io.print_readably);
-var _STAR_print_newline_STAR__temp_val__33226 = cljs.core.deref(sci.impl.io.print_newline);
-var _STAR_print_dup_STAR__temp_val__33227 = cljs.core.deref(sci.impl.io.print_dup_var);
-(cljs.core._STAR_print_length_STAR_ = _STAR_print_length_STAR__temp_val__33221);
+var _STAR_print_length_STAR__orig_val__33252 = cljs.core._STAR_print_length_STAR_;
+var _STAR_print_level_STAR__orig_val__33253 = cljs.core._STAR_print_level_STAR_;
+var _STAR_print_meta_STAR__orig_val__33254 = cljs.core._STAR_print_meta_STAR_;
+var _STAR_print_namespace_maps_STAR__orig_val__33255 = cljs.core._STAR_print_namespace_maps_STAR_;
+var _STAR_print_readably_STAR__orig_val__33256 = cljs.core._STAR_print_readably_STAR_;
+var _STAR_print_newline_STAR__orig_val__33257 = cljs.core._STAR_print_newline_STAR_;
+var _STAR_print_dup_STAR__orig_val__33258 = cljs.core._STAR_print_dup_STAR_;
+var _STAR_print_length_STAR__temp_val__33259 = cljs.core.deref(sci.impl.io.print_length);
+var _STAR_print_level_STAR__temp_val__33260 = cljs.core.deref(sci.impl.io.print_level);
+var _STAR_print_meta_STAR__temp_val__33261 = cljs.core.deref(sci.impl.io.print_meta);
+var _STAR_print_namespace_maps_STAR__temp_val__33262 = cljs.core.deref(sci.impl.io.print_namespace_maps);
+var _STAR_print_readably_STAR__temp_val__33263 = cljs.core.deref(sci.impl.io.print_readably);
+var _STAR_print_newline_STAR__temp_val__33264 = cljs.core.deref(sci.impl.io.print_newline);
+var _STAR_print_dup_STAR__temp_val__33265 = cljs.core.deref(sci.impl.io.print_dup_var);
+(cljs.core._STAR_print_length_STAR_ = _STAR_print_length_STAR__temp_val__33259);
 
-(cljs.core._STAR_print_level_STAR_ = _STAR_print_level_STAR__temp_val__33222);
+(cljs.core._STAR_print_level_STAR_ = _STAR_print_level_STAR__temp_val__33260);
 
-(cljs.core._STAR_print_meta_STAR_ = _STAR_print_meta_STAR__temp_val__33223);
+(cljs.core._STAR_print_meta_STAR_ = _STAR_print_meta_STAR__temp_val__33261);
 
-(cljs.core._STAR_print_namespace_maps_STAR_ = _STAR_print_namespace_maps_STAR__temp_val__33224);
+(cljs.core._STAR_print_namespace_maps_STAR_ = _STAR_print_namespace_maps_STAR__temp_val__33262);
 
-(cljs.core._STAR_print_readably_STAR_ = _STAR_print_readably_STAR__temp_val__33225);
+(cljs.core._STAR_print_readably_STAR_ = _STAR_print_readably_STAR__temp_val__33263);
 
-(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__temp_val__33226);
+(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__temp_val__33264);
 
-(cljs.core._STAR_print_dup_STAR_ = _STAR_print_dup_STAR__temp_val__33227);
+(cljs.core._STAR_print_dup_STAR_ = _STAR_print_dup_STAR__temp_val__33265);
 
 try{return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.print_str,objs);
-}finally {(cljs.core._STAR_print_dup_STAR_ = _STAR_print_dup_STAR__orig_val__33217);
+}finally {(cljs.core._STAR_print_dup_STAR_ = _STAR_print_dup_STAR__orig_val__33258);
 
-(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__orig_val__33216);
+(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__orig_val__33257);
 
-(cljs.core._STAR_print_readably_STAR_ = _STAR_print_readably_STAR__orig_val__33215);
+(cljs.core._STAR_print_readably_STAR_ = _STAR_print_readably_STAR__orig_val__33256);
 
-(cljs.core._STAR_print_namespace_maps_STAR_ = _STAR_print_namespace_maps_STAR__orig_val__33214);
+(cljs.core._STAR_print_namespace_maps_STAR_ = _STAR_print_namespace_maps_STAR__orig_val__33255);
 
-(cljs.core._STAR_print_meta_STAR_ = _STAR_print_meta_STAR__orig_val__33213);
+(cljs.core._STAR_print_meta_STAR_ = _STAR_print_meta_STAR__orig_val__33254);
 
-(cljs.core._STAR_print_level_STAR_ = _STAR_print_level_STAR__orig_val__33212);
+(cljs.core._STAR_print_level_STAR_ = _STAR_print_level_STAR__orig_val__33253);
 
-(cljs.core._STAR_print_length_STAR_ = _STAR_print_length_STAR__orig_val__33211);
+(cljs.core._STAR_print_length_STAR_ = _STAR_print_length_STAR__orig_val__33252);
 }}));
 
 (sci.impl.io.print_str.cljs$lang$maxFixedArity = (0));
 
 /** @this {Function} */
-(sci.impl.io.print_str.cljs$lang$applyTo = (function (seq33206){
+(sci.impl.io.print_str.cljs$lang$applyTo = (function (seq33251){
 var self__5735__auto__ = this;
-return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq33206));
+return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq33251));
 }));
 
 sci.impl.io.println = (function sci$impl$io$println(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___33314 = arguments.length;
-var i__5750__auto___33315 = (0);
+var len__5749__auto___33349 = arguments.length;
+var i__5750__auto___33350 = (0);
 while(true){
-if((i__5750__auto___33315 < len__5749__auto___33314)){
-args__5755__auto__.push((arguments[i__5750__auto___33315]));
+if((i__5750__auto___33350 < len__5749__auto___33349)){
+args__5755__auto__.push((arguments[i__5750__auto___33350]));
 
-var G__33316 = (i__5750__auto___33315 + (1));
-i__5750__auto___33315 = G__33316;
+var G__33351 = (i__5750__auto___33350 + (1));
+i__5750__auto___33350 = G__33351;
 continue;
 } else {
 }
@@ -633,74 +633,74 @@ return sci.impl.io.println.cljs$core$IFn$_invoke$arity$variadic(argseq__5756__au
 });
 
 (sci.impl.io.println.cljs$core$IFn$_invoke$arity$variadic = (function (objs){
-var _STAR_print_fn_STAR__orig_val__33239 = cljs.core._STAR_print_fn_STAR_;
-var _STAR_print_length_STAR__orig_val__33240 = cljs.core._STAR_print_length_STAR_;
-var _STAR_print_level_STAR__orig_val__33241 = cljs.core._STAR_print_level_STAR_;
-var _STAR_print_meta_STAR__orig_val__33242 = cljs.core._STAR_print_meta_STAR_;
-var _STAR_print_namespace_maps_STAR__orig_val__33243 = cljs.core._STAR_print_namespace_maps_STAR_;
-var _STAR_print_readably_STAR__orig_val__33244 = cljs.core._STAR_print_readably_STAR_;
-var _STAR_print_newline_STAR__orig_val__33245 = cljs.core._STAR_print_newline_STAR_;
-var _STAR_print_dup_STAR__orig_val__33246 = cljs.core._STAR_print_dup_STAR_;
-var _STAR_print_fn_STAR__temp_val__33247 = cljs.core.deref(sci.impl.io.print_fn);
-var _STAR_print_length_STAR__temp_val__33248 = cljs.core.deref(sci.impl.io.print_length);
-var _STAR_print_level_STAR__temp_val__33249 = cljs.core.deref(sci.impl.io.print_level);
-var _STAR_print_meta_STAR__temp_val__33250 = cljs.core.deref(sci.impl.io.print_meta);
-var _STAR_print_namespace_maps_STAR__temp_val__33251 = cljs.core.deref(sci.impl.io.print_namespace_maps);
-var _STAR_print_readably_STAR__temp_val__33252 = cljs.core.deref(sci.impl.io.print_readably);
-var _STAR_print_newline_STAR__temp_val__33253 = cljs.core.deref(sci.impl.io.print_newline);
-var _STAR_print_dup_STAR__temp_val__33254 = cljs.core.deref(sci.impl.io.print_dup_var);
-(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__temp_val__33247);
+var _STAR_print_fn_STAR__orig_val__33268 = cljs.core._STAR_print_fn_STAR_;
+var _STAR_print_length_STAR__orig_val__33269 = cljs.core._STAR_print_length_STAR_;
+var _STAR_print_level_STAR__orig_val__33270 = cljs.core._STAR_print_level_STAR_;
+var _STAR_print_meta_STAR__orig_val__33271 = cljs.core._STAR_print_meta_STAR_;
+var _STAR_print_namespace_maps_STAR__orig_val__33272 = cljs.core._STAR_print_namespace_maps_STAR_;
+var _STAR_print_readably_STAR__orig_val__33273 = cljs.core._STAR_print_readably_STAR_;
+var _STAR_print_newline_STAR__orig_val__33274 = cljs.core._STAR_print_newline_STAR_;
+var _STAR_print_dup_STAR__orig_val__33275 = cljs.core._STAR_print_dup_STAR_;
+var _STAR_print_fn_STAR__temp_val__33276 = cljs.core.deref(sci.impl.io.print_fn);
+var _STAR_print_length_STAR__temp_val__33277 = cljs.core.deref(sci.impl.io.print_length);
+var _STAR_print_level_STAR__temp_val__33278 = cljs.core.deref(sci.impl.io.print_level);
+var _STAR_print_meta_STAR__temp_val__33279 = cljs.core.deref(sci.impl.io.print_meta);
+var _STAR_print_namespace_maps_STAR__temp_val__33280 = cljs.core.deref(sci.impl.io.print_namespace_maps);
+var _STAR_print_readably_STAR__temp_val__33281 = cljs.core.deref(sci.impl.io.print_readably);
+var _STAR_print_newline_STAR__temp_val__33282 = cljs.core.deref(sci.impl.io.print_newline);
+var _STAR_print_dup_STAR__temp_val__33283 = cljs.core.deref(sci.impl.io.print_dup_var);
+(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__temp_val__33276);
 
-(cljs.core._STAR_print_length_STAR_ = _STAR_print_length_STAR__temp_val__33248);
+(cljs.core._STAR_print_length_STAR_ = _STAR_print_length_STAR__temp_val__33277);
 
-(cljs.core._STAR_print_level_STAR_ = _STAR_print_level_STAR__temp_val__33249);
+(cljs.core._STAR_print_level_STAR_ = _STAR_print_level_STAR__temp_val__33278);
 
-(cljs.core._STAR_print_meta_STAR_ = _STAR_print_meta_STAR__temp_val__33250);
+(cljs.core._STAR_print_meta_STAR_ = _STAR_print_meta_STAR__temp_val__33279);
 
-(cljs.core._STAR_print_namespace_maps_STAR_ = _STAR_print_namespace_maps_STAR__temp_val__33251);
+(cljs.core._STAR_print_namespace_maps_STAR_ = _STAR_print_namespace_maps_STAR__temp_val__33280);
 
-(cljs.core._STAR_print_readably_STAR_ = _STAR_print_readably_STAR__temp_val__33252);
+(cljs.core._STAR_print_readably_STAR_ = _STAR_print_readably_STAR__temp_val__33281);
 
-(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__temp_val__33253);
+(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__temp_val__33282);
 
-(cljs.core._STAR_print_dup_STAR_ = _STAR_print_dup_STAR__temp_val__33254);
+(cljs.core._STAR_print_dup_STAR_ = _STAR_print_dup_STAR__temp_val__33283);
 
 try{return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.println,objs);
-}finally {(cljs.core._STAR_print_dup_STAR_ = _STAR_print_dup_STAR__orig_val__33246);
+}finally {(cljs.core._STAR_print_dup_STAR_ = _STAR_print_dup_STAR__orig_val__33275);
 
-(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__orig_val__33245);
+(cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR__orig_val__33274);
 
-(cljs.core._STAR_print_readably_STAR_ = _STAR_print_readably_STAR__orig_val__33244);
+(cljs.core._STAR_print_readably_STAR_ = _STAR_print_readably_STAR__orig_val__33273);
 
-(cljs.core._STAR_print_namespace_maps_STAR_ = _STAR_print_namespace_maps_STAR__orig_val__33243);
+(cljs.core._STAR_print_namespace_maps_STAR_ = _STAR_print_namespace_maps_STAR__orig_val__33272);
 
-(cljs.core._STAR_print_meta_STAR_ = _STAR_print_meta_STAR__orig_val__33242);
+(cljs.core._STAR_print_meta_STAR_ = _STAR_print_meta_STAR__orig_val__33271);
 
-(cljs.core._STAR_print_level_STAR_ = _STAR_print_level_STAR__orig_val__33241);
+(cljs.core._STAR_print_level_STAR_ = _STAR_print_level_STAR__orig_val__33270);
 
-(cljs.core._STAR_print_length_STAR_ = _STAR_print_length_STAR__orig_val__33240);
+(cljs.core._STAR_print_length_STAR_ = _STAR_print_length_STAR__orig_val__33269);
 
-(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__orig_val__33239);
+(cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR__orig_val__33268);
 }}));
 
 (sci.impl.io.println.cljs$lang$maxFixedArity = (0));
 
 /** @this {Function} */
-(sci.impl.io.println.cljs$lang$applyTo = (function (seq33235){
+(sci.impl.io.println.cljs$lang$applyTo = (function (seq33267){
 var self__5735__auto__ = this;
-return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq33235));
+return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq33267));
 }));
 
 sci.impl.io.with_out_str = (function sci$impl$io$with_out_str(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___33319 = arguments.length;
-var i__5750__auto___33320 = (0);
+var len__5749__auto___33352 = arguments.length;
+var i__5750__auto___33353 = (0);
 while(true){
-if((i__5750__auto___33320 < len__5749__auto___33319)){
-args__5755__auto__.push((arguments[i__5750__auto___33320]));
+if((i__5750__auto___33353 < len__5749__auto___33352)){
+args__5755__auto__.push((arguments[i__5750__auto___33353]));
 
-var G__33321 = (i__5750__auto___33320 + (1));
-i__5750__auto___33320 = G__33321;
+var G__33354 = (i__5750__auto___33353 + (1));
+i__5750__auto___33353 = G__33354;
 continue;
 } else {
 }
@@ -712,19 +712,19 @@ return sci.impl.io.with_out_str.cljs$core$IFn$_invoke$arity$variadic((arguments[
 });
 
 (sci.impl.io.with_out_str.cljs$core$IFn$_invoke$arity$variadic = (function (_,___$1,body){
-return cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","let","cljs.core/let",-308701135,null),null,(1),null)),(new cljs.core.List(null,cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol(null,"s__33262__auto__","s__33262__auto__",1668164758,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol(null,"new","new",-444906321,null),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol(null,"goog.string.StringBuffer","goog.string.StringBuffer",-1220229842,null),null,(1),null))))),null,(1),null)))))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","binding","cljs.core/binding",2050379843,null),null,(1),null)),(new cljs.core.List(null,cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","*print-newline*","cljs.core/*print-newline*",6231625,null),null,(1),null)),(new cljs.core.List(null,true,null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,new cljs.core.Symbol("cljs.core","*print-fn*","cljs.core/*print-fn*",1342365176,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","fn","cljs.core/fn",-1065745098,null),null,(1),null)),(new cljs.core.List(null,cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$1((new cljs.core.List(null,new cljs.core.Symbol(null,"x__33263__auto__","x__33263__auto__",-633507515,null),null,(1),null)))))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol(null,".",".",1975675962,null),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol(null,"s__33262__auto__","s__33262__auto__",1668164758,null),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,sci.impl.utils.allowed_append,null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol(null,"x__33263__auto__","x__33263__auto__",-633507515,null),null,(1),null))], 0)))),null,(1),null))], 0)))),null,(1),null))], 0))))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([body,(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","str","cljs.core/str",-1971828991,null),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol(null,"s__33262__auto__","s__33262__auto__",1668164758,null),null,(1),null))))),null,(1),null))], 0)))),null,(1),null))], 0))));
+return cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","let","cljs.core/let",-308701135,null),null,(1),null)),(new cljs.core.List(null,cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol(null,"s__33290__auto__","s__33290__auto__",809512422,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol(null,"new","new",-444906321,null),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol(null,"goog.string.StringBuffer","goog.string.StringBuffer",-1220229842,null),null,(1),null))))),null,(1),null)))))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","binding","cljs.core/binding",2050379843,null),null,(1),null)),(new cljs.core.List(null,cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","*print-newline*","cljs.core/*print-newline*",6231625,null),null,(1),null)),(new cljs.core.List(null,true,null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,new cljs.core.Symbol("cljs.core","*print-fn*","cljs.core/*print-fn*",1342365176,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","fn","cljs.core/fn",-1065745098,null),null,(1),null)),(new cljs.core.List(null,cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$1((new cljs.core.List(null,new cljs.core.Symbol(null,"x__33291__auto__","x__33291__auto__",-1263852243,null),null,(1),null)))))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol(null,".",".",1975675962,null),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol(null,"s__33290__auto__","s__33290__auto__",809512422,null),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,sci.impl.utils.allowed_append,null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol(null,"x__33291__auto__","x__33291__auto__",-1263852243,null),null,(1),null))], 0)))),null,(1),null))], 0)))),null,(1),null))], 0))))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([body,(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","str","cljs.core/str",-1971828991,null),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol(null,"s__33290__auto__","s__33290__auto__",809512422,null),null,(1),null))))),null,(1),null))], 0)))),null,(1),null))], 0))));
 }));
 
 (sci.impl.io.with_out_str.cljs$lang$maxFixedArity = (2));
 
 /** @this {Function} */
-(sci.impl.io.with_out_str.cljs$lang$applyTo = (function (seq33266){
-var G__33267 = cljs.core.first(seq33266);
-var seq33266__$1 = cljs.core.next(seq33266);
-var G__33268 = cljs.core.first(seq33266__$1);
-var seq33266__$2 = cljs.core.next(seq33266__$1);
+(sci.impl.io.with_out_str.cljs$lang$applyTo = (function (seq33292){
+var G__33293 = cljs.core.first(seq33292);
+var seq33292__$1 = cljs.core.next(seq33292);
+var G__33294 = cljs.core.first(seq33292__$1);
+var seq33292__$2 = cljs.core.next(seq33292__$1);
 var self__5734__auto__ = this;
-return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__33267,G__33268,seq33266__$2);
+return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__33293,G__33294,seq33292__$2);
 }));
 
 

@@ -17,7 +17,7 @@ return process.env.PUPPETEER_EXECUTABLE_PATH;
 }
 })();
 var launch_options = (cljs.core.truth_(executable_path)?({"headless": true, "executablePath": executable_path}):({"headless": true}));
-return promesa.core.catch$.cljs$core$IFn$_invoke$arity$2(promesa.protocols._mcat(promesa.protocols._promise(null),(function (___43595__auto__){
+return promesa.core.catch$.cljs$core$IFn$_invoke$arity$2(promesa.protocols._mcat(promesa.protocols._promise(null),(function (___43596__auto__){
 return promesa.protocols._mcat(promesa.protocols._promise(shadow.js.shim.module$playwright.chromium.launch(launch_options)),(function (browser){
 return promesa.protocols._mcat(promesa.protocols._promise(browser.newContext()),(function (context){
 return promesa.protocols._mcat(promesa.protocols._promise(context.newPage()),(function (page){
@@ -35,7 +35,7 @@ return verification.e2e.theme_test.check(false,["Error: ",cljs.core.str.cljs$cor
 });
 verification.e2e.theme_test.theme_verification_test = (function verification$e2e$theme_test$theme_verification_test(){
 return verification.e2e.theme_test.with_page((function (page){
-return promesa.protocols._mcat(promesa.protocols._promise(null),(function (___43595__auto__){
+return promesa.protocols._mcat(promesa.protocols._promise(null),(function (___43596__auto__){
 return promesa.protocols._mcat(promesa.protocols._promise(cljs.core.println.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2(["Navigating to Settings"], 0))),(function (_){
 return promesa.protocols._mcat(promesa.protocols._promise(page.goto("http://localhost:8080/#/settings")),(function (___$1){
 return promesa.protocols._mcat(promesa.protocols._promise(page.waitForSelector("h2:has-text('Settings')")),(function (___$2){

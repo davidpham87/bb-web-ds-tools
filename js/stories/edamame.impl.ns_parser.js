@@ -52,14 +52,14 @@ return cljs.core.concat.cljs$core$IFn$_invoke$arity$2(x,coll);
 });
 edamame.impl.ns_parser.load_lib = (function edamame$impl$ns_parser$load_lib(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___27277 = arguments.length;
-var i__5750__auto___27278 = (0);
+var len__5749__auto___27272 = arguments.length;
+var i__5750__auto___27273 = (0);
 while(true){
-if((i__5750__auto___27278 < len__5749__auto___27277)){
-args__5755__auto__.push((arguments[i__5750__auto___27278]));
+if((i__5750__auto___27273 < len__5749__auto___27272)){
+args__5755__auto__.push((arguments[i__5750__auto___27273]));
 
-var G__27279 = (i__5750__auto___27278 + (1));
-i__5750__auto___27278 = G__27279;
+var G__27274 = (i__5750__auto___27273 + (1));
+i__5750__auto___27273 = G__27274;
 continue;
 } else {
 }
@@ -79,13 +79,13 @@ return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(opts,new cljs.core.Keyword(
 (edamame.impl.ns_parser.load_lib.cljs$lang$maxFixedArity = (2));
 
 /** @this {Function} */
-(edamame.impl.ns_parser.load_lib.cljs$lang$applyTo = (function (seq27200){
-var G__27201 = cljs.core.first(seq27200);
-var seq27200__$1 = cljs.core.next(seq27200);
-var G__27202 = cljs.core.first(seq27200__$1);
-var seq27200__$2 = cljs.core.next(seq27200__$1);
+(edamame.impl.ns_parser.load_lib.cljs$lang$applyTo = (function (seq27193){
+var G__27194 = cljs.core.first(seq27193);
+var seq27193__$1 = cljs.core.next(seq27193);
+var G__27195 = cljs.core.first(seq27193__$1);
+var seq27193__$2 = cljs.core.next(seq27193__$1);
 var self__5734__auto__ = this;
-return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__27201,G__27202,seq27200__$2);
+return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__27194,G__27195,seq27193__$2);
 }));
 
 edamame.impl.ns_parser.load_libs = (function edamame$impl$ns_parser$load_libs(kw,args){
@@ -97,12 +97,12 @@ return cljs.core.mapcat.cljs$core$IFn$_invoke$arity$variadic((function (arg){
 if(edamame.impl.ns_parser.libspec_QMARK_(arg)){
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.apply.cljs$core$IFn$_invoke$arity$3(edamame.impl.ns_parser.load_lib,null,edamame.impl.ns_parser.prependss(arg,opts))], null);
 } else {
-var vec__27232 = arg;
-var seq__27233 = cljs.core.seq(vec__27232);
-var first__27234 = cljs.core.first(seq__27233);
-var seq__27233__$1 = cljs.core.next(seq__27233);
-var prefix = first__27234;
-var args_STAR___$2 = seq__27233__$1;
+var vec__27227 = arg;
+var seq__27228 = cljs.core.seq(vec__27227);
+var first__27229 = cljs.core.first(seq__27228);
+var seq__27228__$1 = cljs.core.next(seq__27228);
+var prefix = first__27229;
+var args_STAR___$2 = seq__27228__$1;
 if((prefix == null)){
 throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2("prefix cannot be nil",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"args","args",1315556576),args], null));
 } else {
@@ -147,12 +147,12 @@ var last_dot_idx = clojure.string.last_index_of.cljs$core$IFn$_invoke$arity$2(cl
 var spec_str = cljs.core.str.cljs$core$IFn$_invoke$arity$1(spec);
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"full-classname","full-classname",-750434875),spec,new cljs.core.Keyword(null,"classname","classname",777390796),(cljs.core.truth_(last_dot_idx)?cljs.core.symbol.cljs$core$IFn$_invoke$arity$1(cljs.core.subs.cljs$core$IFn$_invoke$arity$2(spec_str,(last_dot_idx + (1)))):spec),new cljs.core.Keyword(null,"package","package",1189062786),(cljs.core.truth_(last_dot_idx)?cljs.core.symbol.cljs$core$IFn$_invoke$arity$1(cljs.core.subs.cljs$core$IFn$_invoke$arity$3(spec_str,(0),last_dot_idx)):null)], null)], null);
 } else {
-var vec__27256 = spec;
-var seq__27257 = cljs.core.seq(vec__27256);
-var first__27258 = cljs.core.first(seq__27257);
-var seq__27257__$1 = cljs.core.next(seq__27257);
-var pkg = first__27258;
-var classes = seq__27257__$1;
+var vec__27265 = spec;
+var seq__27266 = cljs.core.seq(vec__27265);
+var first__27267 = cljs.core.first(seq__27266);
+var seq__27266__$1 = cljs.core.next(seq__27266);
+var pkg = first__27267;
+var classes = seq__27266__$1;
 return cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (clazz){
 return new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"full-classname","full-classname",-750434875),cljs.core.symbol.cljs$core$IFn$_invoke$arity$1([cljs.core.str.cljs$core$IFn$_invoke$arity$1(pkg),".",cljs.core.str.cljs$core$IFn$_invoke$arity$1(clazz)].join('')),new cljs.core.Keyword(null,"package","package",1189062786),pkg,new cljs.core.Keyword(null,"classname","classname",777390796),clazz], null);
 }),classes);
