@@ -93,8 +93,7 @@
         [l/flex-row {:class "h-full items-start gap-0"}
          ;; LEFT: Input
          [l/flex-col {:class "gap-4 w-full max-w-3xl h-full p-4 border-r border-[#3f3f3f]"}
-          [:h3 {:class (str "text-xl font-semibold " t/text-accent " flex items-center gap-2")}
-           [:span "🍯"] "Convert to SQL"]
+          [c/section-header "Convert to SQL" [:span {:class "ml-2"} "🍯"]]
           [c/label "Clojure Code (Last value must be HoneySQL Map)"]
           [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
            [editor/monaco-editor {:value input

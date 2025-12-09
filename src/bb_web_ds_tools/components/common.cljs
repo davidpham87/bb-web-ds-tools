@@ -255,15 +255,32 @@
         children))
 
 (defn page-header
-  "Deprecated. Renders nothing.
+  "Renders a standard page header.
 
   Args:
-    _ (any): Unused.
+    text (string): Header text.
+    children (rest): Optional additional content (e.g., buttons) to place on the right.
 
   Returns:
-    nil."
-  [_]
-  nil)
+    vector: A hiccup vector."
+  [text & children]
+  (into [:div {:class (str "flex items-center justify-between mb-6 pb-2 border-b " t/border-main)}
+         [:h2 {:class (str "text-2xl font-bold " t/text-accent)} text]]
+        children))
+
+(defn section-header
+  "Renders a standard section header.
+
+  Args:
+    text (string): Header text.
+    children (rest): Optional additional content.
+
+  Returns:
+    vector: A hiccup vector."
+  [text & children]
+  (into [:div {:class "flex items-center justify-between mb-4"}
+         [:h3 {:class (str "text-xl font-semibold " t/text-accent)} text]]
+        children))
 
 (defn label
   "Renders a label element.

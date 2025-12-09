@@ -97,8 +97,7 @@
   []
   [:div {:class "h-full w-full bg-[#3f3f3f] py-12 px-4 overflow-y-auto"}
    [:div {:class "container mx-auto max-w-3xl"}
-    ;; [c/page-header "Changelog"] ;; Removed as per request
-    [:h2 {:class "text-3xl font-bold text-[#f0dfaf] text-center mb-8"} "Changelog"]
+    [c/page-header "Changelog"]
     [:div
      (for [item changelog-data]
        ^{:key (:version item)}

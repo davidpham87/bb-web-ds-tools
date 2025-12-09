@@ -276,7 +276,8 @@
 
         [l/flex-col {:class "h-full space-y-4 p-4"}
          [l/flex-row {:class "justify-between items-center"}
-          [:h3 {:class (str "text-xl font-bold " t/text-accent)} "Create New Dataset"]
+          [:div {:class "flex-grow"}
+           [c/section-header "Create New Dataset"]]
 
           [l/flex-row {:class "space-x-4 items-center"}
            ;; Vega Dataset Selector
@@ -428,7 +429,7 @@
     [l/flex-col {:class "h-full"}
      [l/flex-row {:class (str "justify-between " t/bg-toolbar " p-2 rounded shadow-sm m-4 mt-0 mb-0")}
       [l/flex-row {:class "items-baseline space-x-4"}
-       [:input {:class (str "text-xl font-bold bg-transparent " t/text-accent " border-b border-transparent "
+       [:input {:class (str "text-2xl font-bold bg-transparent " t/text-accent " border-b border-transparent "
                             t/border-focus-accent " " t/outline-none)
                 :value (:name dataset)
                 :on-change #(rf/dispatch [::update-dataset-name (:id dataset) (.. % -target -value)])}]
@@ -517,7 +518,7 @@
       (let [{:keys [items active-id]} @state-sub]
         [:div {:class (str "h-full w-full " t/bg-sidebar " flex flex-col p-4 border-r border-[#3f3f3f]")}
          [:div {:class (str "pb-4 border-b " t/border-main " flex flex-col gap-2")}
-          [:h3 {:class (str "text-lg font-semibold " t/text-accent)} "Datasets"]
+          [c/section-header "Datasets"]
 
           ;; Persistence Controls
           [l/flex-row {:class "gap-2"}
