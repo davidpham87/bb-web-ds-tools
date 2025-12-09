@@ -9,7 +9,7 @@
             [bb-web-ds-tools.events.settings :as settings-events]
             [bb-web-ds-tools.theme :as t]
             [bb-web-ds-tools.utils.dataset-processing :as dp]
-            [bb-web-ds-tools.workspaces.persistence :as wp])) ;; Uncommented
+            [bb-web-ds-tools.workspaces.persistence :as wp]))
 
 ;; --- Utilities ---
 
@@ -66,6 +66,12 @@
    (:new-dataset-state root)))
 
 (rf/reg-sub
+ ::url-import-text
+ :<- [::user-input-root]
+ (fn [root]
+   (get root :url-import-text "")))
+
+(rf/reg-sub
  ::active-dataset
  :<- [::items]
  :<- [::active-dataset-id]
@@ -117,36 +123,45 @@
    (assoc-in db [:user-input :datasets :new-dataset-state k] v)))
 
 (rf/reg-event-db
+ ::set-url-import-text
+ (fn [db [_ text]]
+   (assoc-in db [:user-input :datasets :url-import-text] text)))
+
+(rf/reg-event-db
  ::add-dataset
  (fn [db [_ {:keys [name data norm-config]}]]
-   (let [id (str (random-uuid))
-         valid-data (cond
-                      (map? data) [data]
-                      (seq data) (if (map? (first data))
-                                   data
-                                   (mapv (fn [row] {:value row}) data))
-                      :else [])
-         ;; Apply normalization
-         normalized-data (if norm-config
-                           (mapv (fn [row]
-                                   (reduce-kv (fn [m k v]
-                                                (assoc m (dp/normalize-column-name k norm-config) v))
-                                              {}
-                                              row))
-                                 valid-data)
-                           valid-data)
-         data-with-ids (mapv #(assoc % :_uuid (str (random-uuid))) normalized-data)
-         columns (if (seq normalized-data)
-                   (keys (first normalized-data))
-                   [])]
-     (-> db
-         (assoc-in [:user-input :datasets :items id]
-                   {:id id
-                    :name (or name "Untitled Dataset")
-                    :data data-with-ids
-                    :columns columns
-                    :view-state {:page 0 :rows-per-page 10 :filters {} :hidden-columns {} :mode :table}})
-         (assoc-in [::datasets :active-dataset-id] id)))))
+   (let [dataset-name (or name "Untitled Dataset")
+         id dataset-name ;; Use name as ID (key)
+         existing? (get-in db [:user-input :datasets :items id])]
+     (if existing?
+       (throw (ex-info (str "Dataset with name '" dataset-name "' already exists.") {:name dataset-name}))
+       (let [valid-data (cond
+                          (map? data) [data]
+                          (seq data) (if (map? (first data))
+                                       data
+                                       (mapv (fn [row] {:value row}) data))
+                          :else [])
+             ;; Apply normalization
+             normalized-data (if norm-config
+                               (mapv (fn [row]
+                                       (reduce-kv (fn [m k v]
+                                                    (assoc m (dp/normalize-column-name k norm-config) v))
+                                                  {}
+                                                  row))
+                                     valid-data)
+                               valid-data)
+             data-with-ids (mapv #(assoc % :_uuid (str (random-uuid))) normalized-data)
+             columns (if (seq normalized-data)
+                       (keys (first normalized-data))
+                       [])]
+         (-> db
+             (assoc-in [:user-input :datasets :items id]
+                       {:id id
+                        :name dataset-name
+                        :data data-with-ids
+                        :columns columns
+                        :view-state {:page 0 :rows-per-page 10 :filters {} :hidden-columns {} :mode :table}})
+             (assoc-in [::datasets :active-dataset-id] id)))))))
 
 (rf/reg-event-db
  ::delete-dataset
@@ -157,8 +172,19 @@
 
 (rf/reg-event-db
  ::update-dataset-name
- (fn [db [_ id name]]
-   (assoc-in db [:user-input :datasets :items id :name] name)))
+ (fn [db [_ old-id new-name]]
+   (if (= old-id new-name)
+     db ;; No change
+     (if (get-in db [:user-input :datasets :items new-name])
+       (throw (ex-info (str "Dataset with name '" new-name "' already exists.") {:name new-name}))
+       (let [dataset (get-in db [:user-input :datasets :items old-id])
+             new-dataset (assoc dataset :name new-name :id new-name)
+             active-id (get-in db [::datasets :active-dataset-id])]
+         (-> db
+             (update-in [:user-input :datasets :items] dissoc old-id)
+             (assoc-in [:user-input :datasets :items new-name] new-dataset)
+             (cond-> (= active-id old-id)
+                     (assoc-in [::datasets :active-dataset-id] new-name))))))))
 
 (rf/reg-event-db
  ::patch-datasets
@@ -233,6 +259,43 @@
                    (if (#{:csv :tsv :markdown} format) :columnar :row-maps))
          (assoc-in [::datasets :loading-vega-dataset?] false)))))
 
+(rf/reg-event-fx
+ ::process-url-dataset-response
+ (fn [_ [_ url content]]
+   (let [filename (last (str/split url #"/"))
+         extension (last (str/split filename #"\."))
+         format (case extension
+                  "json" :json
+                  "csv" :csv
+                  "tsv" :tsv
+                  "md" :markdown
+                  :csv)
+         structure (if (#{:csv :tsv :markdown} format) :columnar :row-maps)
+         parsed (dp/parse-dataset format structure content)
+         name (or filename url)]
+     {:dispatch [::add-dataset {:name name :data parsed}]})))
+
+(rf/reg-event-fx
+ ::fetch-single-url-dataset
+ (fn [_ [_ url]]
+   (-> (js/fetch url)
+       (.then (fn [resp]
+                (if (.ok resp)
+                  (.text resp)
+                  (js/Promise.reject (str "Failed to load " url)))))
+       (.then #(rf/dispatch [::process-url-dataset-response url %]))
+       (.catch #(js/console.error "Failed to fetch" url %)))
+   nil))
+
+(rf/reg-event-fx
+ ::fetch-datasets-from-urls
+ (fn [_ [_ urls-text]]
+   (let [urls (->> (str/split-lines urls-text)
+                   (map str/trim)
+                   (remove str/blank?))]
+     {:dispatch-n (for [url urls]
+                    [::fetch-single-url-dataset url])})))
+
 ;; --- Helper Components ---
 
 (defn column-toggle-dropdown
@@ -268,6 +331,7 @@
     vector: A hiccup vector."
   []
   (let [state (rf/subscribe [::new-dataset-state])
+        url-text (rf/subscribe [::url-import-text])
         default-norm-config (rf/subscribe [::settings-events/column-normalizer])
         vega-list (rf/subscribe [::vega-datasets-list])
         loading-list? (rf/subscribe [::loading-vega-list?])
@@ -295,7 +359,7 @@
         (when (and (nil? @vega-list) (not @loading-list?))
           (rf/dispatch [::fetch-vega-datasets]))
 
-        [l/flex-col {:class "h-full space-y-4 p-4"}
+        [l/flex-col {:class "h-full space-y-4 p-4 overflow-y-auto"}
          [l/flex-row {:class "justify-between items-center"}
           [:div {:class "flex-grow"}
            [c/section-header "Create New Dataset"]]
@@ -311,34 +375,39 @@
                                       (rf/dispatch [::fetch-vega-dataset (.. % -target -value)]))}
                [:option {:value ""} "Select Example Data..."]
                (for [ds @vega-list]
-                 [:option {:key ds :value ds} ds])])]
-
-           [l/flex-row {:class "space-x-2"}
-            (for [f [:csv :tsv :json :edn :markdown]]
-              [c/button-xs {:key f
-                            :class (if (= fmt f) (str t/bg-button-primary " text-white") "")
-                            :on-click #(do (set-state :format f)
-                                           (when (#{:csv :tsv :markdown} f)
-                                             (set-state :structure :columnar)))}
-               (if (= f :markdown) "MD" (str/upper-case (name f)))])]]]
+                 [:option {:key ds :value ds} ds])])]]]
 
          [c/input {:value dataset-name
                    :placeholder "Dataset Name"
                    :on-change #(set-state :name (.. % -target -value))}]
 
          [l/flex-row {:class "items-center space-x-4 flex-wrap gap-y-2"}
-          [l/flex-row {:class "items-baseline space-x-2"}
-           [:span {:class (str "text-sm " t/text-primary)} "Structure:"]
-           (for [s [:columnar :row-maps :row-arrays]]
-             [c/button-xs {:key s
-                           :disabled (not (contains? supported-structures s))
-                           :class (if (= structure s)
-                                    (str t/bg-button-primary " text-white")
-                                    (if (not (contains? supported-structures s)) "opacity-50 cursor-not-allowed" ""))
-                           :on-click #(set-state :structure s)}
-              (get struct-labels s)])]
 
-          [l/flex-row {:class (str "space-x-2 text-sm " t/text-primary " items-center")}
+          ;; Format Selection
+          [l/flex-col {:class "space-y-1"}
+            [:span {:class (str "text-xs " t/text-secondary)} "Format"]
+            [:select {:class (str "text-sm border rounded p-1 " t/bg-input " " t/text-primary " " t/border-default)
+                      :value (name fmt)
+                      :on-change #(let [val (keyword (.. % -target -value))]
+                                    (set-state :format val)
+                                    (when (#{:csv :tsv :markdown} val)
+                                      (set-state :structure :columnar)))}
+             (for [f [:csv :tsv :json :edn :markdown]]
+               [:option {:key f :value (name f)} (if (= f :markdown) "MD" (str/upper-case (name f)))])]]
+
+          ;; Structure Selection
+          [l/flex-col {:class "space-y-1"}
+             [:span {:class (str "text-xs " t/text-secondary)} "Structure"]
+             [:select {:class (str "text-sm border rounded p-1 " t/bg-input " " t/text-primary " " t/border-default)
+                       :value (name structure)
+                       :on-change #(set-state :structure (keyword (.. % -target -value)))}
+              (for [s [:columnar :row-maps :row-arrays]]
+                [:option {:key s
+                          :value (name s)
+                          :disabled (not (contains? supported-structures s))}
+                 (get struct-labels s)])]]
+
+          [l/flex-row {:class (str "space-x-2 text-sm " t/text-primary " items-center mt-4")}
            [c/button-info {:on-click #(set-state :text (dp/example-data fmt structure))}
             "Load Local Example"]
            (when @loading-dataset?
@@ -346,7 +415,7 @@
 
           [:div {:class "flex-grow"}]
 
-           [l/flex-row {:class "items-center gap-2"}
+           [l/flex-row {:class "items-center gap-2 mt-4"}
             [:div {:class (str "text-xs " t/text-secondary)}
              "CLI: " [:code {:class "bg-black/20 p-1 rounded"} "bb -x bb-web-ds-tools.cli.datasets/convert"]]
             [c/button-xs {:class (str t/bg-button-primary " " t/bg-button-primary-hover " text-white px-4")
@@ -380,7 +449,7 @@
                (for [o [:string :keyword :symbol]]
                  [:option {:key o :value (name o)} (name o)])]]])]
 
-         [:div {:class (str "flex-grow " t/bg-input " rounded overflow-hidden shadow-inner border " t/border-default)}
+         [:div {:class (str "flex-grow " t/bg-input " rounded overflow-hidden shadow-inner border " t/border-default " min-h-[300px]")}
           [editor/monaco-editor
            {:value text
             :language (case fmt
@@ -388,7 +457,21 @@
                         :edn "clojure"
                         :markdown "markdown"
                         "plaintext")
-            :on-change [::update-new-dataset-state :text]}]]]))))
+            :on-change [::update-new-dataset-state :text]}]]
+
+         ;; URL Import Section
+         [c/card {:class "p-4 space-y-2"}
+          [c/section-header "Download from URLs"]
+          [:div {:class (str "text-xs " t/text-secondary)} "Enter URLs separated by new lines."]
+          [c/textarea {:value @url-text
+                       :rows 3
+                       :class (str "w-full font-mono text-sm " t/bg-input " " t/text-primary)
+                       :placeholder "https://example.com/data.csv\nhttps://example.com/data.json"
+                       :on-change #(rf/dispatch [::set-url-import-text (.. % -target -value)])}]
+          [c/button {:class (str t/bg-button-primary " " t/bg-button-primary-hover " text-white")
+                     :on-click #(rf/dispatch [::fetch-datasets-from-urls @url-text])}
+           "Download & Import"]]
+         ]))))
 
 (defn data-row
   "Renders a single data row."
@@ -509,33 +592,39 @@
   Returns:
     vector: A hiccup vector."
   [dataset]
-  (let [view-mode (get-in dataset [:view-state :mode] :table)]
-    [l/flex-col {:class "h-full"}
-     [l/flex-row {:class (str "justify-between " t/bg-toolbar " p-2 rounded shadow-sm m-4 mt-0 mb-0")}
-      [l/flex-row {:class "items-baseline space-x-4"}
-       [:input {:class (str "text-2xl font-bold bg-transparent " t/text-accent " border-b border-transparent "
-                            t/border-focus-accent " " t/outline-none)
-                :value (:name dataset)
-                :on-change #(rf/dispatch [::update-dataset-name (:id dataset) (.. % -target -value)])}]
-       [:span {:class (str t/text-secondary " text-sm")} (str (count (:data dataset)) " rows")]]
+  (let [temp-name (r/atom (:name dataset))]
+    (fn [dataset]
+      (let [view-mode (get-in dataset [:view-state :mode] :table)] ;; Moved inside the fn
+        [l/flex-col {:class "h-full"}
+         [l/flex-row {:class (str "justify-between " t/bg-toolbar " p-2 rounded shadow-sm m-4 mt-0 mb-0")}
+          [l/flex-row {:class "items-baseline space-x-4"}
+           [:input {:class (str "text-2xl font-bold bg-transparent " t/text-accent " border-b border-transparent "
+                                t/border-focus-accent " " t/outline-none)
+                    :value @temp-name
+                    :on-change #(reset! temp-name (.. % -target -value))
+                    :on-blur #(when (not= @temp-name (:name dataset))
+                                (rf/dispatch [::update-dataset-name (:id dataset) @temp-name]))
+                    :on-key-down #(when (= "Enter" (.-key %))
+                                    (.blur (.-target %)))}]
+           [:span {:class (str t/text-secondary " text-sm")} (str (count (:data dataset)) " rows")]]
 
-      [l/flex-row {:class "space-x-2 items-center"}
-       ;; View Toggles
-       [:div {:class "flex rounded bg-black/20 p-1 space-x-1"}
-        [c/button-xs {:class (if (= view-mode :table) (str t/bg-button-primary " text-white") "opacity-50 hover:opacity-100")
-                      :on-click #(rf/dispatch [::update-view-state (:id dataset) :mode :table])}
-         "Table"]
-        [c/button-xs {:class (if (= view-mode :portal) (str t/bg-button-primary " text-white") "opacity-50 hover:opacity-100")
-                      :on-click #(rf/dispatch [::update-view-state (:id dataset) :mode :portal])}
-         "Portal"]]
+          [l/flex-row {:class "space-x-2 items-center"}
+           ;; View Toggles
+           [:div {:class "flex rounded bg-black/20 p-1 space-x-1"}
+            [c/button-xs {:class (if (= view-mode :table) (str t/bg-button-primary " text-white") "opacity-50 hover:opacity-100")
+                          :on-click #(rf/dispatch [::update-view-state (:id dataset) :mode :table])}
+             "Table"]
+            [c/button-xs {:class (if (= view-mode :portal) (str t/bg-button-primary " text-white") "opacity-50 hover:opacity-100")
+                          :on-click #(rf/dispatch [::update-view-state (:id dataset) :mode :portal])}
+             "Portal"]]
 
-       [c/button {:class (str t/bg-button-danger " " t/bg-button-danger-hover " " t/text-button-primary)
-                  :on-click #(rf/dispatch [::delete-dataset (:id dataset)])}
-        [c/dustbin-icon {:class "w-5 h-5"}]]]]
+           [c/button {:class (str t/bg-button-danger " " t/bg-button-danger-hover " " t/text-button-primary)
+                      :on-click #(rf/dispatch [::delete-dataset (:id dataset)])}
+            [c/dustbin-icon {:class "w-5 h-5"}]]]]
 
-     (if (= view-mode :portal)
-       [portal-panel dataset]
-       [data-table dataset])]))
+         (if (= view-mode :portal)
+           [portal-panel dataset]
+           [data-table dataset])]))))
 
 (defn dataset-list-item
   "Renders a single dataset item in the sidebar list.
@@ -638,7 +727,7 @@
          (if (= active-id :new)
            [importer-view]
            (if active-dataset
-             [dataset-view active-dataset]
+             ^{:key (:id active-dataset)} [dataset-view active-dataset]
              [:div {:class (str "text-center " t/text-muted " mt-20")} "Select a dataset."]))]))))
 
 (defn panel
