@@ -4,6 +4,7 @@
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.editor :as editor]
             [bb-web-ds-tools.components.layout :as l]
+            [bb-web-ds-tools.components.navigation :as nav]
             [bb-web-ds-tools.theme :as t]
             [bb-web-ds-tools.portal :as portal]
             [bb-web-ds-tools.views.datasets :as datasets]
