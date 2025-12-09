@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Gemma - BB Web DS Tools Wiki</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Gemma";
+        var mkdocs_page_input_path = "gemma.md";
+        var mkdocs_page_url = null;
+      </script>
+
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script>
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> BB Web DS Tools Wiki
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../app_db/">App DB</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../changelog/">Changelog</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cli_tools/">CLI Tools</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../code_environments/">Code Environments</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../datasets/">Datasets</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Gemma</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#why">Why?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#features">Features</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-by-step-usage">Step-by-Step Usage</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-load-the-model">1. Load the Model</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-chatting">2. Chatting</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-coding-assistance">3. Coding Assistance</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../honeysql/">HoneySQL</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../malli/">Malli</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../vega_lite/">Vega Lite</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">BB Web DS Tools Wiki</a>
+
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Gemma</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+
+                <h1 id="gemma-view">Gemma View</h1>
+<h2 id="why">Why?</h2>
+<p>Because talking to real humans is exhausting, overrated, and often requires
+"pants." Gemma is here to validate your poor coding decisions and generate
+hallucinatory facts with absolute confidence, all without leaving your browser
+or judging your search history.</p>
+<p>The <strong>Gemma View</strong> demonstrates the capability of running Large Language Models
+(LLMs) entirely within the browser using WebGPU and the MediaPipe GenAI Tasks
+API. It specifically targets the Google Gemma model (e.g., Gemma 2B).</p>
+<h2 id="features">Features</h2>
+<ul>
+<li><strong>Client-Side Inference</strong>: No server-side processing; the model runs locally
+  on your device.</li>
+<li><strong>WebGPU Acceleration</strong>: Utilizes the GPU for efficient performance.</li>
+<li><strong>Chat Interface</strong>: A familiar conversational UI for interacting with the
+  model.</li>
+</ul>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>A browser with WebGPU support (e.g., recent Chrome/Edge).</li>
+<li>A compatible GPU.</li>
+<li>The model weights file (e.g., <code>gemma-2b-it-gpu-int4.bin</code>) must be available to
+  the application (usually served from the root).</li>
+</ul>
+<h2 id="step-by-step-usage">Step-by-Step Usage</h2>
+<h3 id="1-load-the-model">1. Load the Model</h3>
+<ol>
+<li>Navigate to the <strong>Gemma</strong> view.</li>
+<li>If the model is not yet loaded, you will see a "Load Model" button or a
+    loading indicator.</li>
+<li>Click the button to initiate the download and initialization.<ul>
+<li><em>Note: This downloads a large file (~1.5GB) and may take some time
+  depending on your connection.</em></li>
+</ul>
+</li>
+</ol>
+<h3 id="2-chatting">2. Chatting</h3>
+<ol>
+<li>Once initialized, the chat input field at the bottom becomes active.</li>
+<li>Type a prompt related to data science or coding. For example:
+    &gt; "Explain the difference between a list and a vector in Clojure."</li>
+<li>Press <strong>Enter</strong>.</li>
+<li>The model will stream its response into the chat history window.</li>
+</ol>
+<h3 id="3-coding-assistance">3. Coding Assistance</h3>
+<p>You can use Gemma to help write code for other views.</p>
+<p><strong>Example Prompt:</strong></p>
+<blockquote>
+<p>"Generate a JSON dataset with 5 rows containing id, score, and category
+fields."</p>
+</blockquote>
+<p><strong>Expected Output:</strong></p>
+<pre><code class="language-json">[
+  { &quot;id&quot;: 1, &quot;score&quot;: 85, &quot;category&quot;: &quot;A&quot; },
+  { &quot;id&quot;: 2, &quot;score&quot;: 90, &quot;category&quot;: &quot;B&quot; },
+  { &quot;id&quot;: 3, &quot;score&quot;: 78, &quot;category&quot;: &quot;A&quot; },
+  { &quot;id&quot;: 4, &quot;score&quot;: 92, &quot;category&quot;: &quot;C&quot; },
+  { &quot;id&quot;: 5, &quot;score&quot;: 88, &quot;category&quot;: &quot;B&quot; }
+]
+</code></pre>
+<p>You can then copy this output to the <strong>Datasets</strong> view.</p>
+
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../datasets/" class="btn btn-neutral float-left" title="Datasets"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../honeysql/" class="btn btn-neutral float-right" title="HoneySQL">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+
+
+      <span><a href="../datasets/" style="color: #fcfcfc">&laquo; Previous</a></span>
+
+
+      <span><a href="../honeysql/" style="color: #fcfcfc">Next &raquo;</a></span>
+
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

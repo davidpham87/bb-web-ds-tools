@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Datasets - BB Web DS Tools Wiki</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Datasets";
+        var mkdocs_page_input_path = "datasets.md";
+        var mkdocs_page_url = null;
+      </script>
+
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script>
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> BB Web DS Tools Wiki
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../app_db/">App DB</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../changelog/">Changelog</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cli_tools/">CLI Tools</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../code_environments/">Code Environments</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Datasets</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#why">Why?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#features">Features</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dataset-structure">Dataset Structure</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-by-step-examples">Step-by-Step Examples</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-loading-data">1. Loading Data</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-renaming-a-dataset">2. Renaming a Dataset</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-editing-data">3. Editing Data</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-filtering-and-sorting">4. Filtering and Sorting</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5-exporting-data">5. Exporting Data</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../gemma/">Gemma</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../honeysql/">HoneySQL</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../malli/">Malli</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../vega_lite/">Vega Lite</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">BB Web DS Tools Wiki</a>
+
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Datasets</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+
+                <h1 id="datasets-view">Datasets View</h1>
+<h2 id="why">Why?</h2>
+<p>Because manual data entry is a form of torture banned by the Geneva Convention.
+You're here because you have data in a format that looks like it was generated
+by a drunk typewriter, and you need it to look like a respectable table before
+your boss asks why the Q3 projections are written in Sanskrit.</p>
+<p>The <strong>Datasets View</strong> is the central hub for managing tabular data within the
+application. It provides tools to import, visualize, edit, and export datasets
+in various formats (CSV, JSON, EDN, Markdown). Imported datasets are stored in
+the application state and can be accessed by other views, such as Vega-Lite for
+visualization or the Code environments (Clojure, Python, R) for analysis.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li><strong>Multi-Format Import</strong>: Support for CSV, TSV, JSON, EDN, and Markdown tables.</li>
+<li><strong>Structure Normalization</strong>: Automatically converts various data shapes
+  (row-maps, columnar, row-arrays) into a unified internal format.</li>
+<li><strong>Data Editing</strong>: Inline editing of cell values.</li>
+<li><strong>Data Exploration</strong>: Sortable and filterable table view with pagination.</li>
+<li><strong>Dataset Management</strong>: Rename, delete, and switch between multiple active
+  datasets.</li>
+<li><strong>Export</strong>: Copy data to clipboard or save in different formats.</li>
+</ul>
+<h2 id="dataset-structure">Dataset Structure</h2>
+<p>The application standardizes on <strong>Row Maps</strong> for internal processing, but
+supports importing and exporting three common structures:</p>
+<ol>
+<li><strong>Row Maps</strong>: A sequence of maps, where keys are column names.<ul>
+<li><em>Default for JSON/EDN.</em></li>
+<li><code>[{:col1 1} {:col1 2}]</code></li>
+</ul>
+</li>
+<li><strong>Columnar</strong>: A map of vectors, where keys are column names and values are
+    columns.<ul>
+<li><em>Default for CSV/TSV/Markdown.</em></li>
+<li><code>{:col1 [1 2]}</code></li>
+</ul>
+</li>
+<li><strong>Row Arrays</strong>: A sequence of vectors, with the first vector as the header.<ul>
+<li><code>[["col1"] [1] [2]]</code></li>
+</ul>
+</li>
+</ol>
+<h2 id="step-by-step-examples">Step-by-Step Examples</h2>
+<h3 id="1-loading-data">1. Loading Data</h3>
+<p>You can import data by pasting text or selecting a file. The system will attempt
+to infer the format, but you can also specify it manually.</p>
+<p><strong>Example Dataset:</strong> We will use the standard example dataset with columns:
+<code>id</code>, <code>score</code>, <code>category</code>, and <code>date</code>.</p>
+<p><strong>JSON Format:</strong></p>
+<pre><code class="language-json">[
+  { &quot;id&quot;: 1, &quot;score&quot;: 12.5, &quot;category&quot;: &quot;a&quot;, &quot;date&quot;: &quot;2023-01-01&quot; },
+  { &quot;id&quot;: 2, &quot;score&quot;: 10.2, &quot;category&quot;: &quot;b&quot;, &quot;date&quot;: &quot;2023-01-02&quot; },
+  { &quot;id&quot;: 3, &quot;score&quot;: 8.7, &quot;category&quot;: &quot;c&quot;, &quot;date&quot;: &quot;2023-01-03&quot; },
+  { &quot;id&quot;: 4, &quot;score&quot;: 15.0, &quot;category&quot;: &quot;a&quot;, &quot;date&quot;: &quot;2023-01-04&quot; },
+  { &quot;id&quot;: 5, &quot;score&quot;: 9.9, &quot;category&quot;: &quot;b&quot;, &quot;date&quot;: &quot;2023-01-05&quot; }
+]
+</code></pre>
+<p><strong>CSV Format:</strong></p>
+<pre><code class="language-csv">id,score,category,date
+1,12.5,a,2023-01-01
+2,10.2,b,2023-01-02
+3,8.7,c,2023-01-03
+4,15.0,a,2023-01-04
+5,9.9,b,2023-01-05
+</code></pre>
+<p><strong>Steps:</strong></p>
+<ol>
+<li>Navigate to the <strong>Datasets</strong> view.</li>
+<li>Click the <strong>Add Dataset</strong> button (or <strong>Import</strong> tab).</li>
+<li>In the editor, paste the example JSON or CSV data above.</li>
+<li>Select the <strong>Format</strong> dropdown (e.g., <code>:json</code> or <code>:csv</code>).</li>
+<li>(Optional) Select the <strong>Structure</strong> if the default inference is incorrect
+    (e.g., <code>:row-maps</code> for JSON, <code>:columnar</code> for CSV).</li>
+<li>Click <strong>Import</strong>.</li>
+<li>The new dataset will appear in the sidebar list, and the table will populate
+    with the data.</li>
+</ol>
+<h3 id="2-renaming-a-dataset">2. Renaming a Dataset</h3>
+<ol>
+<li>In the sidebar, find the dataset you just imported (it will have a default
+    name like "Dataset 1").</li>
+<li>Click the <strong>Edit</strong> (pencil) icon next to the name.</li>
+<li>Type a new name, e.g., <code>example-data</code>.</li>
+<li>Press <strong>Enter</strong> or click the checkmark to save.</li>
+</ol>
+<h3 id="3-editing-data">3. Editing Data</h3>
+<ol>
+<li>Locate a cell in the table you wish to change (e.g., change the score of id
+    1 from <code>12.5</code> to <code>20.0</code>).</li>
+<li>Double-click the cell.</li>
+<li>Enter the new value.</li>
+<li>Press <strong>Enter</strong> or click away to commit the change.</li>
+</ol>
+<h3 id="4-filtering-and-sorting">4. Filtering and Sorting</h3>
+<p><strong>Sorting:</strong></p>
+<ol>
+<li>Click on the column header <code>score</code>.</li>
+<li>The table will toggle between Ascending (<code>▲</code>) and Descending (<code>▼</code>) order.</li>
+</ol>
+<p><strong>Filtering:</strong></p>
+<ol>
+<li>Type <code>a</code> into the filter input box below the <code>category</code> header.</li>
+<li>The table will update to show only rows where the category contains "a" (ids
+    1 and 4).</li>
+</ol>
+<h3 id="5-exporting-data">5. Exporting Data</h3>
+<ol>
+<li>With the <code>example-data</code> dataset active, click the <strong>Export</strong> button/tab.</li>
+<li>Choose your desired output format (e.g., <code>:edn</code> or <code>:markdown</code>).</li>
+<li>Choose the desired structure (e.g., <code>:columnar</code>).</li>
+<li>Copy the generated text from the output editor.</li>
+</ol>
+
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../code_environments/" class="btn btn-neutral float-left" title="Code Environments"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../gemma/" class="btn btn-neutral float-right" title="Gemma">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+
+
+      <span><a href="../code_environments/" style="color: #fcfcfc">&laquo; Previous</a></span>
+
+
+      <span><a href="../gemma/" style="color: #fcfcfc">Next &raquo;</a></span>
+
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
