@@ -38,13 +38,16 @@ structure.
 1.  Navigate to the **Malli** view and select the **Inference** tab.
 2.  In the input editor, paste the following sample data (a subset of our
     standard example):
+
     ```clojure
     [{:id 1 :score 12.5 :category "a" :date "2023-01-01"}
      {:id 2 :score 10.2 :category "b" :date "2023-01-02"}]
     ```
+
 3.  The view will automatically process the input.
 4.  Observe the **Inferred Schema** in the right-hand panel. It should look
     similar to:
+
     ```clojure
     [:vector
      [:map
@@ -53,6 +56,7 @@ structure.
       [:category :string]
       [:date :string]]]
     ```
+
     _(Note: The system may infer more specific types or enums depending on the
     data variety.)_
 
@@ -65,6 +69,7 @@ data.
 
 1.  Switch to the **Generation** tab.
 2.  In the **Schema** editor, enter the schema for our example dataset:
+
     ```clojure
     [:vector
      [:map
@@ -73,6 +78,7 @@ data.
       [:category [:enum "a" "b" "c"]]
       [:date :string]]]
     ```
+
 3.  Click the **Generate** button.
 4.  A list of randomly generated maps matching the schema will appear in the
     output panel.
@@ -87,16 +93,20 @@ Use the validation tool to debug why a specific value doesn't match a schema.
 
 1.  Switch to the **Validation** tab.
 2.  In the **Schema** editor, enter:
+
     ```clojure
     [:map
      [:id :int]
      [:score :double]]
     ```
+
 3.  In the **Value** editor, enter an invalid value (e.g., `score` as a string):
+
     ```clojure
     {:id 1
      :score "12.5"}
     ```
+
 4.  The output panel will display `Valid: false` and provide a detailed error
     explanation, highlighting that `:score` expected a `:double` but got a
     string.
