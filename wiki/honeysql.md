@@ -2,23 +2,31 @@
 
 ## Why?
 
-Because writing raw SQL strings is so 1999, and we prefer our SQL injection vulnerabilities to be at least slightly more difficult to achieve. Also, because you secretly love Lisp parentheses more than you love readable query languages.
+Because writing raw SQL strings is so 1999, and we prefer our SQL injection
+vulnerabilities to be at least slightly more difficult to achieve. Also, because
+you secretly love Lisp parentheses more than you love readable query languages.
 
-The **HoneySQL View** provides an interactive playground for [HoneySQL v2](https://github.com/seancorfield/honeysql), a library that allows you to represent SQL queries as Clojure data structures. This view enables real-time compilation of these data structures into standard SQL strings.
+The **HoneySQL View** provides an interactive playground for
+[HoneySQL v2](https://github.com/seancorfield/honeysql), a library that allows
+you to represent SQL queries as Clojure data structures. This view enables
+real-time compilation of these data structures into standard SQL strings.
 
 ## Features
 
--   **Real-time Compilation**: As you type your HoneySQL map, the corresponding SQL string is generated instantly.
--   **Syntax Highlighting**: Dedicated editors for Clojure input and SQL output.
--   **Formatted Output**: The generated SQL is pretty-printed for readability.
+- **Real-time Compilation**: As you type your HoneySQL map, the corresponding
+  SQL string is generated instantly.
+- **Syntax Highlighting**: Dedicated editors for Clojure input and SQL output.
+- **Formatted Output**: The generated SQL is pretty-printed for readability.
 
 ## Step-by-Step Examples
 
 ### 1. Simple Select
 
-Let's write a query to select columns from our example dataset, assuming it exists in a database table named `dataset`.
+Let's write a query to select columns from our example dataset, assuming it
+exists in a database table named `dataset`.
 
 **Steps:**
+
 1.  Navigate to the **HoneySQL** view.
 2.  In the left-hand editor, paste the following Clojure map:
     ```clojure
@@ -32,9 +40,11 @@ Let's write a query to select columns from our example dataset, assuming it exis
 
 ### 2. Filtering and Sorting
 
-Now we will add conditions to filter by `category` and `score`, and sort by `date`, mirroring a typical data analysis task.
+Now we will add conditions to filter by `category` and `score`, and sort by
+`date`, mirroring a typical data analysis task.
 
 **Steps:**
+
 1.  Update the input map to include `:where` and `:order-by` clauses:
     ```clojure
     {:select [:id :score]
@@ -57,6 +67,7 @@ Now we will add conditions to filter by `category` and `score`, and sort by `dat
 Let's calculate the average score per category.
 
 **Steps:**
+
 1.  Enter the following aggregation query:
     ```clojure
     {:select   [:category [[:avg :score] :avg_score]]
