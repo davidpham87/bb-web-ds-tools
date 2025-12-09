@@ -1,4 +1,4 @@
-{:paths ["src" "test" "src/stories"]
+{:paths ["src" "test" "src/stories" "verification/cljs"]
  :deps
  {babashka/fs                      {:mvn/version "0.5.20"}
   org.babashka/cli                 {:mvn/version "0.8.58"}

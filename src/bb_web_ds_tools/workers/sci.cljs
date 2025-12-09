@@ -10,6 +10,8 @@
    [sci.core :as sci]))
 
 (def datasets-atom (atom {}))
+(def datasets-sci-var (sci/new-var 'datasets datasets-atom))
+
 
 (defn post-msg
   "Posts a message back to the main thread.
@@ -35,7 +37,7 @@
                               'subscribe (fn [_]
                                            (post-msg {:type :stderr
                                                       :text "rf/subscribe is not supported in the worker."}))}
-             'user {'datasets datasets-atom}}}))
+              'user {'datasets datasets-sci-var}}}))
 
 ;; Initialize aliases
 (sci/eval-string* sci-ctx "(require '[clojure.string :as str] '[clojure.set :as set] '[clojure.edn :as edn])")
