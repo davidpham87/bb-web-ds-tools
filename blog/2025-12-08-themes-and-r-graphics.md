@@ -1,6 +1,6 @@
-Title: Themes, Dreams, and R Graphics: A Visual Awakening Date: 2025-12-08 Tags:
-clojure, r, theme, visualization
-
+Title: Themes, Dreams, and R Graphics: A Visual Awakening
+Date: 2025-12-08
+Tags: clojure, r, theme, visualization
 ---
 
 _By The "We Only Code in Dark Mode" Team_

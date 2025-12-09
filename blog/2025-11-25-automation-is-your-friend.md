@@ -1,6 +1,6 @@
-Title: Automation: Because Typing is for Peasants Date: 2025-11-25 Tags:
-clojure, data-science
-
+Title: Automation: Because Typing is for Peasants
+Date: 2025-11-25
+Tags: clojure, data-science
 ---
 
 _By The "My Fingers Hurt" Team_
