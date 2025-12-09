@@ -57,19 +57,6 @@
                                class)})]
           children)))
 
-(defn button
-  "Renders a styled button component.
-   Defaults to button-md.
-
-  Args:
-    props (map): Standard HTML attributes.
-    children (rest): Child elements.
-
-  Returns:
-    vector: A hiccup vector."
-  [props & children]
-  (into [button-md props] children))
-
 (defn button-xs
   "Renders an extra small styled button component.
    Style: text-xs px-2 py-1.
@@ -86,6 +73,27 @@
                  :on-click (:on-click props)}
                 (dissoc props :class :on-click))]
         children))
+
+(defn button
+  "Renders a styled button component.
+   Dispatches to specific button components based on :size prop.
+   Defaults to :md.
+
+  Args:
+    props (map): Standard HTML attributes.
+      - :size (keyword): :sm, :xs, or :md (default).
+    children (rest): Child elements.
+
+  Returns:
+    vector: A hiccup vector."
+  [props & children]
+  (let [size (:size props)
+        clean-props (dissoc props :size)]
+    (case size
+      :sm (into [button-sm clean-props] children)
+      :xs (into [button-xs clean-props] children)
+      ;; Default to medium
+      (into [button-md clean-props] children))))
 
 (defn button-info
   "Renders an informational button (blue style).

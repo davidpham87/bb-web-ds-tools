@@ -331,14 +331,18 @@
   {:controls [:<>
               [c/label "Input Data"]
               [l/flex-row {:class "space-x-2 items-center"}
-               [c/button-sm {:variant (if (= input-format :edn) :primary nil)
-                             :on-click #(rf/dispatch [:malli/set-input-format :edn])} "EDN"]
-               [c/button-sm {:variant (if (= input-format :csv) :primary nil)
-                             :on-click #(rf/dispatch [:malli/set-input-format :csv])} "CSV"]
-               [c/button-sm {:variant (if (= input-format :tsv) :primary nil)
-                             :on-click #(rf/dispatch [:malli/set-input-format :tsv])} "TSV"]
-               [c/button-sm {:variant (if (= input-format :json) :primary nil)
-                             :on-click #(rf/dispatch [:malli/set-input-format :json])} "JSON"]
+               [c/button {:size :sm
+                          :variant (if (= input-format :edn) :primary nil)
+                          :on-click #(rf/dispatch [:malli/set-input-format :edn])} "EDN"]
+               [c/button {:size :sm
+                          :variant (if (= input-format :csv) :primary nil)
+                          :on-click #(rf/dispatch [:malli/set-input-format :csv])} "CSV"]
+               [c/button {:size :sm
+                          :variant (if (= input-format :tsv) :primary nil)
+                          :on-click #(rf/dispatch [:malli/set-input-format :tsv])} "TSV"]
+               [c/button {:size :sm
+                          :variant (if (= input-format :json) :primary nil)
+                          :on-click #(rf/dispatch [:malli/set-input-format :json])} "JSON"]
                (when (seq datasets)
                  [:div {:class "flex items-center space-x-2"}
                   [:span {:class (str "text-xs " t/text-secondary)} "Load:"]
@@ -358,8 +362,9 @@
                           :value max-enum-values
                           :on-change #(rf/dispatch [:malli/set-max-enum-values (.. % -target -value)])}]]
 
-               [c/button-sm {:variant :primary
-                             :on-click #(rf/dispatch [:malli/infer-schema])} "Infer Schema"]
+               [c/button {:size :sm
+                          :variant :primary
+                          :on-click #(rf/dispatch [:malli/infer-schema])} "Infer Schema"]
 
                [:div {:class (str "ml-4 text-xs " t/text-secondary)}
                 "CLI: " [:code {:class "bg-black/20 p-1 rounded"} "bb -x bb-web-ds-tools.cli.malli/infer"]]]]
@@ -397,9 +402,11 @@
                  [:option {:value "edn"} "EDN"]
                  [:option {:value "json"} "JSON"]]]
                ;; Generate Button
-               [c/button-sm {:variant :primary
-                             :on-click #(rf/dispatch [:malli/parse-schema-and-generate])} "Generate"]
-               [c/button-sm {:on-click #(rf/dispatch [:malli/save-dataset])} "Save to Datasets"]
+               [c/button {:size :sm
+                          :variant :primary
+                          :on-click #(rf/dispatch [:malli/parse-schema-and-generate])} "Generate"]
+               [c/button {:size :sm
+                          :on-click #(rf/dispatch [:malli/save-dataset])} "Save to Datasets"]
 
                [:div {:class (str "ml-4 text-xs " t/text-secondary)}
                 "CLI: " [:code {:class "bg-black/20 p-1 rounded"} "bb -x bb-web-ds-tools.cli.malli/generate"]]]]
@@ -415,8 +422,9 @@
   [{:keys [schema-text inference-input input-format validation-result]}]
   {:controls [:<>
               [c/label "Schema (EDN)"]
-              [c/button-sm {:variant :primary
-                            :on-click #(rf/dispatch [:malli/validate])} "Validate"]
+              [c/button {:size :sm
+                         :variant :primary
+                         :on-click #(rf/dispatch [:malli/validate])} "Validate"]
 
               [:div {:class (str "ml-4 text-xs " t/text-secondary)}
                "CLI: " [:code {:class "bg-black/20 p-1 rounded"} "bb -x bb-web-ds-tools.cli.malli/validate"]]]
@@ -438,8 +446,9 @@
   [{:keys [schema-text json-schema-result]}]
   {:controls [:<>
               [c/label "Schema (EDN)"]
-              [c/button-sm {:variant :primary
-                            :on-click #(rf/dispatch [:malli/transform-json])} "Transform to JSON Schema"]]
+              [c/button {:size :sm
+                         :variant :primary
+                         :on-click #(rf/dispatch [:malli/transform-json])} "Transform to JSON Schema"]]
    :editors [{:value schema-text
               :language "clojure"
               :options {:rulers [80]}
