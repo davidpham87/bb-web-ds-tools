@@ -100,6 +100,12 @@
    (::parsed-data root)))
 
 (rf/reg-sub
+ ::inferred-schema
+ :<- [::component-root]
+ (fn [root]
+   (::inferred-schema root)))
+
+(rf/reg-sub
  ::active-left-tab
  :<- [::component-root]
  (fn [root]
@@ -351,7 +357,8 @@
         saved-configs @(rf/subscribe [::saved-configs])
         active-config-name @(rf/subscribe [::active-config-name])
         parsed-config-obj @(rf/subscribe [::parsed-config-obj])
-        format @(rf/subscribe [::format])]
+        format @(rf/subscribe [::format])
+        inferred-schema @(rf/subscribe [::inferred-schema])]
     [:div {:class "flex flex-col md:flex-row h-full w-full overflow-hidden"}
      ;; Left Column (Inputs)
      [:div {:class "h-1/2 md:h-full overflow-auto border-b md:border-b-0 md:border-r border-[#3f3f3f] w-full md:max-w-3xl flex-shrink-0"}
@@ -440,7 +447,8 @@
        [l/flex-row {:class (str "justify-between border-b " t/border-default " px-2 " t/bg-toolbar)}
         [l/flex-row {:class "space-x-2"}
          [tab-button (= active-right-tab :plot) "Plot" #(rf/dispatch [::set-active-right-tab :plot])]
-         [tab-button (= active-right-tab :parsed) "Parsed Data" #(rf/dispatch [::set-active-right-tab :parsed])]]
+         [tab-button (= active-right-tab :parsed) "Parsed Data" #(rf/dispatch [::set-active-right-tab :parsed])]
+         [tab-button (= active-right-tab :schema) "Schema" #(rf/dispatch [::set-active-right-tab :schema])]]
         ;; Send to Portal
         (when (= active-right-tab :plot)
           [c/button-xs {:on-click #(let [config-edn (js->clj parsed-config-obj :keywordize-keys true)
@@ -461,6 +469,16 @@
             {:value (with-out-str (pprint parsed-data))
              :language "clojure"
              :options {:readOnly true :minimap {:enabled false}}}]]
+
+          :schema
+          (if (seq parsed-data)
+            [:div {:class (str "h-full w-full " t/bg-page)}
+             [editor/monaco-editor
+              {:value (with-out-str (pprint inferred-schema))
+               :language "clojure"
+               :options {:readOnly true :minimap {:enabled false}}}]]
+            [:div {:class (str "h-full w-full flex items-center justify-center " t/bg-page " " t/text-secondary)}
+             "No data available to infer schema."])
           nil)]]]]))
 
 (defn panel
