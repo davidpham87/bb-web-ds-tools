@@ -5,7 +5,7 @@
             [re-frame.core :as rf]
             [day8.re-frame.test :as rf-test]
             [bb-web-ds-tools.core :as core]
-            ;; Require views to ensure event handlers are registered
+            ;; Require views to ensure event handlers and subscriptions are registered
             [bb-web-ds-tools.views.malli]
             [bb-web-ds-tools.views.honeysql]
             [bb-web-ds-tools.views.datasets]
@@ -20,6 +20,40 @@
             [bb-web-ds-tools.views.editor]
             [bb-web-ds-tools.views.pyodide]
             [bb-web-ds-tools.events.theme]))
+
+(def view-subscriptions
+  "Map of route names to a list of critical subscriptions for that view.
+   Used to verify that the view state is accessible and consistent."
+  {:malli [:malli/user-input-root
+           :malli/component-root
+           :malli/schema-text
+           :malli/inference-input
+           :malli/active-tab
+           :malli/inference-view-state]
+   :honeysql [:honeysql/user-input-root
+              :honeysql/component-root
+              :honeysql/input-text
+              :honeysql/sql-output]
+   :vega-lite [:bb-web-ds-tools.views.vega-lite/user-input-root
+               :bb-web-ds-tools.views.vega-lite/component-root
+               :bb-web-ds-tools.views.vega-lite/data-input
+               :bb-web-ds-tools.views.vega-lite/config-input]
+   :gemma [:bb-web-ds-tools.views.gemma/user-input-root
+           :bb-web-ds-tools.views.gemma/component-root
+           :bb-web-ds-tools.views.gemma/messages]
+   :code [:bb-web-ds-tools.views.code/active-tab
+          :bb-web-ds-tools.views.repl/user-input-root
+          :bb-web-ds-tools.views.r-repl/root
+          :bb-web-ds-tools.views.pyodide/user-input-root
+          :bb-web-ds-tools.views.editor/user-input-root]
+   :datasets [:bb-web-ds-tools.views.datasets/user-input-root
+              :bb-web-ds-tools.views.datasets/component-root
+              :bb-web-ds-tools.views.datasets/items
+              :bb-web-ds-tools.views.datasets/active-dataset-id]
+   :app-db [:bb-web-ds-tools.views.app-db/user-input-root
+            :bb-web-ds-tools.views.app-db/watched-paths]
+   :changelog [:bb-web-ds-tools.views.changelog/entries]
+   :settings [:bb-web-ds-tools.views.settings/user-input-root]})
 
 (deftest generate-journey-test
   (testing "Generates a valid sequence of events"
@@ -93,4 +127,10 @@
 
             (when (and expected-route (not= expected-route :global))
                (is (= expected-route current-route-name)
-                   (str "Event " event " expects route " expected-route " but got " current-route-name)))))))))
+                   (str "Event " event " expects route " expected-route " but got " current-route-name)))
+
+            ;; Verify subscriptions for the current route
+            (when-let [subs (get view-subscriptions current-route-name)]
+              (doseq [sub subs]
+                (let [val @(rf/subscribe [sub])]
+                  (is (not (nil? val)) (str "Subscription " sub " should return a value for route " current-route-name)))))))))))
