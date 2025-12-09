@@ -52,7 +52,7 @@
                            :automaticLayout true
                            :minimap {:enabled false}
                            :scrollBeyondLastLine false
-                           :fontFamily "Menlo, Monaco, 'Courier New', monospace"
+                           :fontFamily "'Source Code Pro', monospace"
                            :fontSize 14}
                           options)))]
 
