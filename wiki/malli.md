@@ -1,5 +1,9 @@
 # Malli View
 
+## Why?
+
+Because your data is messy, unorganized, and frankly, a little embarrassing. It's time to bring some law and order to that wild west of a map you call a "data structure." Think of Malli as the strict librarian who shushes your data into compliance.
+
 The **Malli View** provides a comprehensive toolkit for working with [Malli](https://github.com/metosin/malli), a data-driven schema library for Clojure/Script. It enables you to infer schemas from data, generate synthetic data from schemas, validate values, and convert schemas to other formats like JSON Schema.
 
 ## Features

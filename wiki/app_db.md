@@ -1,5 +1,9 @@
 # App DB View
 
+## Why?
+
+Because you broke the state again, didn't you? It's okay. We all do it. This view is your confession booth, where you can stare directly into the soul of your application and realize that `nil` is not, in fact, a valid map key, no matter how much you wish it were.
+
 The **App DB View** is a powerful debugging and introspection tool designed for developers. It provides a direct window into the `re-frame` application database (`app-db`), which holds the entire client-side state of the application.
 
 ## Features

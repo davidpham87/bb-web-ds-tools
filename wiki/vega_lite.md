@@ -1,5 +1,9 @@
 # Vega-Lite View
 
+## Why?
+
+Because looking at raw numbers makes your eyes bleed, and you need a pretty chart to distract your manager from the fact that revenue is down. Or maybe you just like pretty colors. We don't judge. Much.
+
 The **Vega-Lite View** is a powerful environment for creating declarative statistical visualizations using [Vega-Lite](https://vega.github.io/vega-lite/). It supports specifications written in both JSON (the native format) and EDN (Clojure data format), with automatic bidirectional conversion.
 
 ## Features

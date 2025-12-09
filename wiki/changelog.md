@@ -1,5 +1,9 @@
 # Changelog View
 
+## Why?
+
+So you can reminisce about the bugs we used to have before we replaced them with new, more exciting bugs. It's a historical record of our failures and occasional triumphs, mostly failures. Read it and weep.
+
 The **Changelog View** provides a chronological record of changes made to the application, helping users stay informed about new features, improvements, and bug fixes.
 
 ## Features

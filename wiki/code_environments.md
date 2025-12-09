@@ -1,5 +1,9 @@
 # Code Environments
 
+## Why?
+
+Because you clearly can't decide which language is superior, so we gave you all of them to fail in simultaneously. Whether you're a Pythonista, a recovering R user, or a Clojure purist who thinks syntax is for the weak, we have a padded cell waiting for you.
+
 The **Code View** acts as a unified polyglot notebook environment. It integrates multiple language runtimes (Clojure, Python, R) directly in the browser, all connected to a shared [Portal](https://github.com/djblue/portal) inspector for rich data visualization.
 
 ## Features

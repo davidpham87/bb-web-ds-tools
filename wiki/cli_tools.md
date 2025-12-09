@@ -1,5 +1,9 @@
 # CLI Tools Documentation
 
+## Why?
+
+Because using a mouse is for casuals. Real engineers prefer to type obscure commands into a black box and pretend to understand the error messages. This is for when you want to look busy in a coffee shop without actually accomplishing anything visible.
+
 The application exposes its core logic as a suite of Command Line Interface (CLI) tools, powered by [Babashka](https://babashka.org/). These tools allow you to perform data processing, schema validation, and SQL generation directly from your terminal, enabling automation and scripting.
 
 ## Installation / Setup

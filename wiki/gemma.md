@@ -1,5 +1,9 @@
 # Gemma View
 
+## Why?
+
+Because talking to real humans is exhausting, overrated, and often requires "pants." Gemma is here to validate your poor coding decisions and generate hallucinatory facts with absolute confidence, all without leaving your browser or judging your search history.
+
 The **Gemma View** demonstrates the capability of running Large Language Models (LLMs) entirely within the browser using WebGPU and the MediaPipe GenAI Tasks API. It specifically targets the Google Gemma model (e.g., Gemma 2B).
 
 ## Features

@@ -1,5 +1,9 @@
 # HoneySQL View
 
+## Why?
+
+Because writing raw SQL strings is so 1999, and we prefer our SQL injection vulnerabilities to be at least slightly more difficult to achieve. Also, because you secretly love Lisp parentheses more than you love readable query languages.
+
 The **HoneySQL View** provides an interactive playground for [HoneySQL v2](https://github.com/seancorfield/honeysql), a library that allows you to represent SQL queries as Clojure data structures. This view enables real-time compilation of these data structures into standard SQL strings.
 
 ## Features
