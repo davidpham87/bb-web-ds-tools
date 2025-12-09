@@ -33,6 +33,7 @@ embedded directly in the specification.
 1.  Navigate to the **Vega-Lite** view.
 2.  Ensure the format toggle (top right of the editor) is set to **EDN**.
 3.  Paste the following code:
+
     ```clojure
     {:data {:values [{:id 1 :score 12.5 :category "a" :date "2023-01-01"}
                      {:id 2 :score 10.2 :category "b" :date "2023-01-02"}
@@ -43,6 +44,7 @@ embedded directly in the specification.
      :encoding {:x {:field "category" :type "nominal" :axis {:title "Category"}}
                 :y {:field "score"    :type "quantitative" :axis {:title "Score"}}}}
     ```
+
 4.  The bar chart will render in the right-hand panel.
 
 ### 2. Using Global Datasets
@@ -62,6 +64,7 @@ Instead of hardcoding data, you can reference a dataset you imported in the
     - _Note: The specific syntax for referencing global named datasets depends
       on the implementation. Typically, you use the `name` property in the data
       object._
+
     ```clojure
     {:data {:name "example-data"}
      :mark :point
@@ -69,6 +72,7 @@ Instead of hardcoding data, you can reference a dataset you imported in the
                 :y {:field "score" :type "quantitative"}
                 :color {:field "category" :type "nominal"}}}
     ```
+
 2.  If the dataset is correctly loaded in the system, the scatter plot will
     appear.
 
@@ -79,6 +83,7 @@ Instead of hardcoding data, you can reference a dataset you imported in the
 1.  With the EDN specification from Example 1 or 2 in the editor, click the
     **JSON** toggle button.
 2.  The code will automatically convert to standard JSON:
+
     ```json
     {
       "data": { "name": "example-data" },
@@ -90,4 +95,5 @@ Instead of hardcoding data, you can reference a dataset you imported in the
       }
     }
     ```
+
 3.  You can edit in JSON and switch back to EDN at any time.

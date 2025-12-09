@@ -29,11 +29,14 @@ exists in a database table named `dataset`.
 
 1.  Navigate to the **HoneySQL** view.
 2.  In the left-hand editor, paste the following Clojure map:
+
     ```clojure
     {:select [:id :score :category :date]
      :from   [:dataset]}
     ```
+
 3.  Observe the output in the right-hand panel:
+
     ```sql
     SELECT id, score, category, date FROM dataset
     ```
@@ -46,6 +49,7 @@ Now we will add conditions to filter by `category` and `score`, and sort by
 **Steps:**
 
 1.  Update the input map to include `:where` and `:order-by` clauses:
+
     ```clojure
     {:select [:id :score]
      :from   [:dataset]
@@ -54,7 +58,9 @@ Now we will add conditions to filter by `category` and `score`, and sort by
               [:> :score 10.0]]
      :order-by [[:date :desc]]}
     ```
+
 2.  The output will update to:
+
     ```sql
     SELECT id, score
     FROM dataset
@@ -69,13 +75,16 @@ Let's calculate the average score per category.
 **Steps:**
 
 1.  Enter the following aggregation query:
+
     ```clojure
     {:select   [:category [[:avg :score] :avg_score]]
      :from     [:dataset]
      :group-by [:category]
      :having   [:> [[:avg :score]] 10.0]}
     ```
+
 2.  The output will be:
+
     ```sql
     SELECT category, AVG(score) AS avg_score
     FROM dataset
