@@ -2,25 +2,77 @@
   (:require [bb-web-ds-tools.theme :as t]
             [re-frame.core :as rf]))
 
-(defn button
-  "Renders a styled button component.
+(defn- get-button-classes
+  "Returns CSS classes for a button based on variant and disabled state."
+  [variant disabled?]
+  (let [base (str "rounded shadow-sm transition-all duration-200 "
+                  (if disabled?
+                    (str t/bg-button-disabled " " t/text-disabled " cursor-not-allowed")
+                    (case variant
+                      :primary (str t/bg-button-primary " " t/bg-button-primary-hover " " t/text-button-primary)
+                      :danger (str t/bg-button-danger " " t/bg-button-danger-hover " text-white") ;; Assuming white text for danger
+                      ;; Default
+                      (str t/bg-button " " t/bg-button-hover " " t/text-button))))]
+    base))
+
+(defn button-sm
+  "Renders a small styled button component.
+   Style: py-1 px-3 text-sm font-medium.
 
   Args:
-    props (map): Standard HTML attributes (on-click, class, disabled, etc.).
+    props (map): Standard HTML attributes.
+      - :variant (keyword): :primary, :danger, or nil (default).
     children (rest): Child elements.
 
   Returns:
     vector: A hiccup vector."
   [props & children]
-  (into [:button
-         (merge {:class (str t/bg-button " " t/bg-button-hover " " t/text-button " font-bold py-2 px-6 rounded shadow-sm transition-all duration-200 " t/bg-button-disabled " " t/text-disabled " disabled:cursor-not-allowed " (:class props))
-                 :on-click (:on-click props)
-                 :disabled (:disabled props)}
-                (dissoc props :class :on-click :disabled))]
-        children))
+  (let [{:keys [variant disabled class]} props
+        clean-props (dissoc props :variant :class)]
+    (into [:button
+           (merge clean-props
+                  {:class (str "py-1 px-3 text-sm font-medium "
+                               (get-button-classes variant disabled) " "
+                               class)})]
+          children)))
+
+(defn button-md
+  "Renders a medium (standard) styled button component.
+   Style: py-2 px-4 text-sm font-bold.
+
+  Args:
+    props (map): Standard HTML attributes.
+      - :variant (keyword): :primary, :danger, or nil (default).
+    children (rest): Child elements.
+
+  Returns:
+    vector: A hiccup vector."
+  [props & children]
+  (let [{:keys [variant disabled class]} props
+        clean-props (dissoc props :variant :class)]
+    (into [:button
+           (merge clean-props
+                  {:class (str "py-2 px-4 text-sm font-bold "
+                               (get-button-classes variant disabled) " "
+                               class)})]
+          children)))
+
+(defn button
+  "Renders a styled button component.
+   Defaults to button-md.
+
+  Args:
+    props (map): Standard HTML attributes.
+    children (rest): Child elements.
+
+  Returns:
+    vector: A hiccup vector."
+  [props & children]
+  (into [button-md props] children))
 
 (defn button-xs
-  "Renders a small styled button component.
+  "Renders an extra small styled button component.
+   Style: text-xs px-2 py-1.
 
   Args:
     props (map): Standard HTML attributes.

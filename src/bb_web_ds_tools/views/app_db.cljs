@@ -110,7 +110,7 @@
                                    "Escape" (do (reset! temp-path path)
                                                 (reset! editing? false))
                                    nil)}]
-         [c/button-xs {:on-click #(do (rf/dispatch [::update-watch-path path @temp-path])
+         [c/button-sm {:on-click #(do (rf/dispatch [::update-watch-path path @temp-path])
                                       (reset! editing? false))} "Save"]]
         [:div {:class (str "group flex items-center justify-between p-3 rounded cursor-pointer transition-colors text-sm font-medium "
                            (if active?
@@ -148,7 +148,7 @@
     [:div {:class (str "h-full " t/bg-sidebar " flex flex-col")}
      [:div {:class (str "p-4 border-b " t/border-main)}
       [:h3 {:class (str "text-lg font-semibold " t/text-accent " mb-4")} "App DB"]
-      [c/button-xs {:class (str "w-full " t/bg-button " " t/bg-button-hover " justify-center")
+      [c/button-sm {:class (str "w-full " t/bg-button " " t/bg-button-hover " justify-center")
                     :on-click #(rf/dispatch [::set-active-path :new])}
        "+ New Watch"]]
      [:div {:class "flex-grow overflow-y-auto p-2 space-y-1"}
