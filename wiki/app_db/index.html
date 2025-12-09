@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>App DB View - BB Web DS Tools Wiki</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "App DB View";
+        var mkdocs_page_input_path = "app_db.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> BB Web DS Tools Wiki
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">BB Web DS Tools Wiki</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">App DB View</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="app-db-view">App DB View</h1>
+<h2 id="why">Why?</h2>
+<p>Because you broke the state again, didn't you? It's okay. We all do it. This
+view is your confession booth, where you can stare directly into the soul of
+your application and realize that <code>nil</code> is not, in fact, a valid map key, no
+matter how much you wish it were.</p>
+<p>The <strong>App DB View</strong> is a powerful debugging and introspection tool designed for
+developers. It provides a direct window into the <code>re-frame</code> application database
+(<code>app-db</code>), which holds the entire client-side state of the application.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li><strong>Path Watching</strong>: Subscribe to specific paths within the state tree to
+  monitor changes in real-time.</li>
+<li><strong>Portal Integration</strong>: Inspect state values using the rich data visualization
+  capabilities of Portal.</li>
+<li><strong>History/Diffs</strong>: (If enabled) Track how the state changes over time.</li>
+</ul>
+<h2 id="step-by-step-examples">Step-by-Step Examples</h2>
+<h3 id="1-inspecting-global-datasets">1. Inspecting Global Datasets</h3>
+<p>To see what datasets are currently loaded in memory:</p>
+<p><strong>Steps:</strong></p>
+<ol>
+<li>Navigate to the <strong>App DB</strong> view.</li>
+<li>In the "Watch Path" input (sidebar), type or select the path where datasets
+    are stored.<ul>
+<li><em>Typically: <code>[:bb-web-ds-tools.views.datasets/datasets]</code> or similar,
+  depending on the internal key structure.</em></li>
+</ul>
+</li>
+<li>Click <strong>Add Watch</strong>.</li>
+<li>The right-hand Portal panel will display the current value of that path.</li>
+<li>Expand the map to see the details of loaded datasets (rows, metadata, etc.).</li>
+</ol>
+<h3 id="2-monitoring-user-input">2. Monitoring User Input</h3>
+<p>To debug a form input issue:</p>
+<p><strong>Steps:</strong></p>
+<ol>
+<li>Add a watch for the user input path, e.g., <code>[:user-input]</code>.</li>
+<li>Open the application in a separate window or split view (if available).</li>
+<li>Type into a text field in another view (e.g., the Malli editor).</li>
+<li>Observe the <code>[:user-input]</code> value updating in the App DB view in real-time.</li>
+</ol>
+<h3 id="3-runtime-state">3. Runtime State</h3>
+<p>To check the status of background workers (Pyodide, WebR, SCI):</p>
+<p><strong>Steps:</strong></p>
+<ol>
+<li>Add a watch for <code>[:runtime]</code>.</li>
+<li>Inspect the resulting map to see keys like <code>:sci</code>, <code>:pyodide</code>, or <code>:webr</code>.</li>
+<li>You can verify flags like <code>:ready?</code> or <code>:loading?</code> to diagnose
+    initialization issues.</li>
+</ol>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

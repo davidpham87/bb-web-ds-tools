@@ -17,7 +17,7 @@ return process.env.PUPPETEER_EXECUTABLE_PATH;
 }
 })();
 var launch_options = (cljs.core.truth_(executable_path)?({"headless": true, "executablePath": executable_path}):({"headless": true}));
-return promesa.core.catch$.cljs$core$IFn$_invoke$arity$2(promesa.protocols._mcat(promesa.protocols._promise(null),(function (___68222__auto__){
+return promesa.core.catch$.cljs$core$IFn$_invoke$arity$2(promesa.protocols._mcat(promesa.protocols._promise(null),(function (___43595__auto__){
 return promesa.protocols._mcat(promesa.protocols._promise(shadow.js.shim.module$playwright.chromium.launch(launch_options)),(function (browser){
 return promesa.protocols._mcat(promesa.protocols._promise(browser.newContext()),(function (context){
 return promesa.protocols._mcat(promesa.protocols._promise(context.newPage()),(function (page){
@@ -40,7 +40,7 @@ return verification.e2e.sample_test.check(true,"Sync test runs");
 verification.e2e.core.register(new cljs.core.Symbol(null,"simple-sync-test","simple-sync-test",320672860,null),verification.e2e.sample_test.simple_sync_test);
 verification.e2e.sample_test.navigate_tabs_test = (function verification$e2e$sample_test$navigate_tabs_test(){
 return verification.e2e.sample_test.with_page((function (page){
-return promesa.protocols._mcat(promesa.protocols._promise(null),(function (___68222__auto__){
+return promesa.protocols._mcat(promesa.protocols._promise(null),(function (___43595__auto__){
 return promesa.protocols._mcat(promesa.protocols._promise(cljs.core.println.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2(["Navigating to http://localhost:8080"], 0))),(function (_){
 return promesa.protocols._mcat(promesa.protocols._promise(page.goto("http://localhost:8080")),(function (___$1){
 return promesa.protocols._mcat(promesa.protocols._promise(page.waitForLoadState("networkidle")),(function (___$2){
@@ -52,12 +52,14 @@ cljs.core.println.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$c
 return menu_btn.click();
 })()
 :null)),(function (___$3){
-return promesa.protocols._mcat(promesa.protocols._promise(cljs.core.println.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2(["Clicking Settings"], 0))),(function (___$4){
-return promesa.protocols._mcat(promesa.protocols._promise(page.click("text=Settings")),(function (___$5){
-return promesa.protocols._mcat(promesa.protocols._promise(page.waitForSelector("h2:has-text('Settings')")),(function (___$6){
+return promesa.protocols._mcat(promesa.protocols._promise(page.waitForTimeout((1000))),(function (___$4){
+return promesa.protocols._mcat(promesa.protocols._promise(cljs.core.println.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2(["Clicking Settings"], 0))),(function (___$5){
+return promesa.protocols._mcat(promesa.protocols._promise(page.click("a[href='#/settings']")),(function (___$6){
+return promesa.protocols._mcat(promesa.protocols._promise(page.waitForSelector("h2:has-text('Settings')")),(function (___$7){
 return promesa.protocols._mcat(promesa.protocols._promise(page.url()),(function (url){
-return promesa.protocols._mcat(promesa.protocols._promise(verification.e2e.sample_test.check(clojure.string.includes_QMARK_(url,"settings"),"URL should contain 'settings'")),(function (___68190__auto__){
+return promesa.protocols._mcat(promesa.protocols._promise(verification.e2e.sample_test.check(clojure.string.includes_QMARK_(url,"settings"),"URL should contain 'settings'")),(function (___43563__auto__){
 return promesa.protocols._promise(cljs.core.println.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2(["Navigation test passed"], 0)));
+}));
 }));
 }));
 }));
@@ -76,16 +78,18 @@ return promesa.protocols._promise(cljs.core.println.cljs$core$IFn$_invoke$arity$
 verification.e2e.core.register(new cljs.core.Symbol(null,"navigate-tabs-test","navigate-tabs-test",454216799,null),verification.e2e.sample_test.navigate_tabs_test);
 verification.e2e.sample_test.change_theme_test = (function verification$e2e$sample_test$change_theme_test(){
 return verification.e2e.sample_test.with_page((function (page){
-return promesa.protocols._mcat(promesa.protocols._promise(null),(function (___68222__auto__){
+return promesa.protocols._mcat(promesa.protocols._promise(null),(function (___43595__auto__){
 return promesa.protocols._mcat(promesa.protocols._promise(cljs.core.println.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2(["Navigating to Settings directly"], 0))),(function (_){
 return promesa.protocols._mcat(promesa.protocols._promise(page.goto("http://localhost:8080/#/settings")),(function (___$1){
 return promesa.protocols._mcat(promesa.protocols._promise(page.waitForSelector("h2:has-text('Settings')")),(function (___$2){
 return promesa.protocols._mcat(promesa.protocols._promise(page.waitForSelector("select")),(function (___$3){
 return promesa.protocols._mcat(promesa.protocols._promise(cljs.core.println.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2(["Changing theme to 'nord'"], 0))),(function (___$4){
 return promesa.protocols._mcat(promesa.protocols._promise(page.selectOption("select","nord")),(function (___$5){
+return promesa.protocols._mcat(promesa.protocols._promise(page.waitForTimeout((500))),(function (___$6){
 return promesa.protocols._mcat(promesa.protocols._promise(page.inputValue("select")),(function (val){
-return promesa.protocols._mcat(promesa.protocols._promise(verification.e2e.sample_test.check(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2("nord",val),"Selected theme should be 'nord'")),(function (___68190__auto__){
+return promesa.protocols._mcat(promesa.protocols._promise(verification.e2e.sample_test.check(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2("nord",val),"Selected theme should be 'nord'")),(function (___43563__auto__){
 return promesa.protocols._promise(cljs.core.println.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2(["Theme test passed"], 0)));
+}));
 }));
 }));
 }));

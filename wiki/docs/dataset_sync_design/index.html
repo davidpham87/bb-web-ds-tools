@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Dataset Synchronization Design - BB Web DS Tools Wiki</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Dataset Synchronization Design";
+        var mkdocs_page_input_path = "docs/dataset_sync_design.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> BB Web DS Tools Wiki
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">BB Web DS Tools Wiki</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Dataset Synchronization Design</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="dataset-synchronization-design">Dataset Synchronization Design</h1>
+<p>This document describes the design of the dataset synchronization mechanism between the main thread and web workers (specifically the SCI worker).</p>
+<h2 id="overview">Overview</h2>
+<p>The application maintains a global state of datasets in the main thread (re-frame <code>app-db</code>). Workers need to access and potentially modify these datasets. The synchronization mechanism ensures that changes in the main thread are propagated to the worker, and changes in the worker are propagated back to the main thread.</p>
+<h2 id="mechanism">Mechanism</h2>
+<h3 id="main-thread-worker">Main Thread -&gt; Worker</h3>
+<p>The <code>bb-web-ds-tools.runtime.sci</code> namespace subscribes to <code>::datasets/items</code>. A watcher on this subscription sends an <code>update-datasets</code> message to the worker whenever the datasets change.</p>
+<pre><code class="language-clojure">;; bb-web-ds-tools.runtime.sci
+(worker/post-message @sci-worker {:type &quot;update-datasets&quot; :datasets new-val})
+</code></pre>
+<h3 id="worker-main-thread">Worker -&gt; Main Thread</h3>
+<p>The worker (<code>bb-web-ds-tools.workers.sci</code>) maintains a <code>datasets-atom</code> which is exposed to the SCI context as <code>user/datasets</code>.</p>
+<ol>
+<li><strong>Watch</strong>: A watcher is added to <code>datasets-atom</code> to detect changes.</li>
+<li><strong>Diff</strong>: When the atom changes, the watcher calculates the difference (added or updated keys) between the old and new state.</li>
+<li><strong>Patch</strong>: A <code>:patch-datasets</code> message containing only the changed datasets is sent to the main thread.</li>
+<li><strong>Suppression</strong>: To prevent infinite loops, updates originating from the main thread (via <code>update-datasets</code> message) are applied within a dynamic binding <code>*suppress-sync*</code> set to true, which prevents the watcher from triggering a feedback loop.</li>
+</ol>
+<pre><code class="language-clojure">;; bb-web-ds-tools.workers.sci
+(add-watch datasets-atom :sync-main
+  (fn [_ _ old-state new-state]
+    (when-not *suppress-sync*
+      (let [patch (calculate-diff old-state new-state)]
+        (post-msg {:type :patch-datasets :patch patch})))))
+</code></pre>
+<h3 id="main-thread-handling">Main Thread Handling</h3>
+<p>The main thread receives the <code>:patch-datasets</code> message and dispatches <code>::datasets/patch-datasets</code> event, which merges the patch into the app-db.</p>
+<h2 id="sql-wasm-integration-extendability">SQL WASM Integration (Extendability)</h2>
+<p>This mechanism is extendable to support workflows where a worker uses SQL WASM to persist data and notify the main thread.</p>
+<h3 id="workflow">Workflow</h3>
+<ol>
+<li><strong>Worker Write</strong>: The worker (e.g., executing user code via SCI) writes data to a local SQL WASM database (backed by OPFS or memory).</li>
+<li><strong>Dataset Update</strong>: After writing, the worker updates the <code>user/datasets</code> atom. This can be done by:<ul>
+<li>Reading the data back from SQL and putting it into the dataset map.</li>
+<li>Or, if the data is large, creating a dataset entry that contains metadata or a reference (e.g., file path) pointing to the SQL resource.</li>
+</ul>
+</li>
+<li><strong>Sync</strong>: The <code>datasets-atom</code> watcher detects this change and syncs the new dataset entry (containing the data or reference) to the main thread.</li>
+<li><strong>Main Thread Action</strong>: The main thread receives the update. If the dataset contains a reference (e.g., <code>{:type :sql-ref :path "/mydb.sqlite3"}</code>), the main thread can then act on it (e.g., if it has access to the same OPFS, it can read the file, or it can display a UI element indicating the data is in SQL).</li>
+</ol>
+<h3 id="example-worker-code">Example: Worker Code</h3>
+<pre><code class="language-clojure">;; In the SCI REPL (Worker)
+(require '[bb-web-ds-tools.workers.persistence :as p]) ;; Assuming persistence is exposed
+
+;; 1. Write to SQL
+(p/execute! &quot;INSERT INTO results (val) VALUES (42)&quot;)
+
+;; 2. Read back
+(let [results (p/query &quot;SELECT * FROM results&quot;)]
+  ;; 3. Update datasets
+  (swap! user/datasets assoc :sql-results {:name &quot;SQL Results&quot; :data results}))
+
+;; The watcher automatically syncs :sql-results to main thread.
+</code></pre>
+<p>To fully enable this, <code>bb-web-ds-tools.workers.sci</code> would need to expose the SQL functions (from <code>persistence.cljs</code>) in the SCI context. Currently, <code>persistence.cljs</code> is a separate module, but the synchronization pattern described above handles the communication aspect regardless of how the data is generated.</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
