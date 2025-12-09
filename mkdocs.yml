@@ -3,14 +3,5 @@ docs_dir: wiki
 site_dir: docs/wiki
 nav:
   - Home: index.md
-  - App DB: app_db.md
-  - Changelog: changelog.md
-  - CLI Tools: cli_tools.md
-  - Code Environments: code_environments.md
-  - Datasets: datasets.md
-  - Gemma: gemma.md
-  - HoneySQL: honeysql.md
-  - Malli: malli.md
-  - Vega Lite: vega_lite.md
 theme:
   name: readthedocs
