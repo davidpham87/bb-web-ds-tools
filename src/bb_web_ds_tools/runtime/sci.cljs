@@ -18,9 +18,10 @@
   Returns:
     nil: Performs side-effects (dispatch or console log)."
   [msg]
-  (let [{:keys [type event value text]} msg]
+  (let [{:keys [type event value text patch]} msg]
     (case (keyword type)
       :dispatch (rf/dispatch event)
+      :patch-datasets (rf/dispatch [::datasets/patch-datasets patch])
       (js/console.warn "Unknown worker msg:" msg))))
 
 (defn sync-datasets!

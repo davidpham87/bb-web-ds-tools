@@ -11,6 +11,7 @@
 
 (def datasets-atom (atom {}))
 (def datasets-sci-var (sci/new-var 'datasets datasets-atom))
+(def ^:dynamic *suppress-sync* false)
 
 
 (defn post-msg
@@ -25,6 +26,18 @@
   (let [w (t/writer :json)
         payload (t/write w (if (seq msg) msg "nil"))]
     (js/postMessage payload)))
+
+(add-watch datasets-atom :sync-main
+           (fn [_ _ old-state new-state]
+             (when-not *suppress-sync*
+               (let [keys-old (set (keys old-state))
+                     keys-new (set (keys new-state))
+                     added (set/difference keys-new keys-old)
+                     common (set/intersection keys-new keys-old)
+                     changed (filter #(not= (get old-state %) (get new-state %)) common)
+                     patch (select-keys new-state (concat added changed))]
+                 (when (seq patch)
+                   (post-msg {:type :patch-datasets :patch patch}))))))
 
 (def sci-ctx
   (sci/init {:namespaces
@@ -97,8 +110,8 @@
      (let [r (t/reader :json)
            data (t/read r (.-data e))
            {:keys [type code datasets]} data]
-       (println (->clj datasets))
        (case type
          "eval" (eval-code code)
-         "update-datasets" (reset! datasets-atom (->clj datasets))
+         "update-datasets" (binding [*suppress-sync* true]
+                             (reset! datasets-atom (->clj datasets)))
          (js/console.warn "Unknown message type:" type))))))
