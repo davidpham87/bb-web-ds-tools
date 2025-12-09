@@ -46,3 +46,4 @@ docs/blogs
 .work
 templates/
 docs/js/*.wasm
+docs/wiki/

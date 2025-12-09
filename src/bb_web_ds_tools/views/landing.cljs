@@ -27,7 +27,13 @@
        [landing/canvas-card card])]]
 
    [:footer {:class (str "w-full py-6 mt-12 border-t " t/border-default)}
-    [:div {:class "flex justify-center items-center"}
+    [:div {:class "flex justify-center items-center gap-8"}
+     [:a {:href "wiki/"
+          :class (str "flex items-center gap-2 " t/text-secondary " hover:text-white transition-colors")}
+      "Wiki"]
+     [:a {:href "blog/"
+          :class (str "flex items-center gap-2 " t/text-secondary " hover:text-white transition-colors")}
+      "Blog"]
      [:a {:href "https://github.com/davidpham87/bb-web-ds-tools"
           :target "_blank"
           :class (str "flex items-center gap-2 " t/text-secondary " hover:text-white transition-colors")}
