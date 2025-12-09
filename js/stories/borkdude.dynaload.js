@@ -62,8 +62,8 @@ return x;
 (borkdude.dynaload.LazyVar.prototype.call = (function (unused__11801__auto__){
 var self__ = this;
 var self__ = this;
-var G__25498 = (arguments.length - (1));
-switch (G__25498) {
+var G__25411 = (arguments.length - (1));
+switch (G__25411) {
 case (0):
 return self__.cljs$core$IFn$_invoke$arity$0();
 
@@ -158,157 +158,157 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 }
 }));
 
-(borkdude.dynaload.LazyVar.prototype.apply = (function (self__,args25494){
+(borkdude.dynaload.LazyVar.prototype.apply = (function (self__,args25406){
 var self__ = this;
 var self____$1 = this;
-return self____$1.call.apply(self____$1,[self____$1].concat(cljs.core.aclone(args25494)));
+return self____$1.call.apply(self____$1,[self____$1].concat(cljs.core.aclone(args25406)));
 }));
 
 (borkdude.dynaload.LazyVar.prototype.cljs$core$IFn$_invoke$arity$0 = (function (){
 var self__ = this;
 var this$ = this;
-var fexpr__25521 = cljs.core.deref(this$);
-return (fexpr__25521.cljs$core$IFn$_invoke$arity$0 ? fexpr__25521.cljs$core$IFn$_invoke$arity$0() : fexpr__25521.call(null));
+var fexpr__25446 = cljs.core.deref(this$);
+return (fexpr__25446.cljs$core$IFn$_invoke$arity$0 ? fexpr__25446.cljs$core$IFn$_invoke$arity$0() : fexpr__25446.call(null));
 }));
 
 (borkdude.dynaload.LazyVar.prototype.cljs$core$IFn$_invoke$arity$1 = (function (a){
 var self__ = this;
 var this$ = this;
-var fexpr__25522 = cljs.core.deref(this$);
-return (fexpr__25522.cljs$core$IFn$_invoke$arity$1 ? fexpr__25522.cljs$core$IFn$_invoke$arity$1(a) : fexpr__25522.call(null,a));
+var fexpr__25447 = cljs.core.deref(this$);
+return (fexpr__25447.cljs$core$IFn$_invoke$arity$1 ? fexpr__25447.cljs$core$IFn$_invoke$arity$1(a) : fexpr__25447.call(null,a));
 }));
 
 (borkdude.dynaload.LazyVar.prototype.cljs$core$IFn$_invoke$arity$2 = (function (a,b){
 var self__ = this;
 var this$ = this;
-var fexpr__25528 = cljs.core.deref(this$);
-return (fexpr__25528.cljs$core$IFn$_invoke$arity$2 ? fexpr__25528.cljs$core$IFn$_invoke$arity$2(a,b) : fexpr__25528.call(null,a,b));
+var fexpr__25448 = cljs.core.deref(this$);
+return (fexpr__25448.cljs$core$IFn$_invoke$arity$2 ? fexpr__25448.cljs$core$IFn$_invoke$arity$2(a,b) : fexpr__25448.call(null,a,b));
 }));
 
 (borkdude.dynaload.LazyVar.prototype.cljs$core$IFn$_invoke$arity$3 = (function (a,b,c){
 var self__ = this;
 var this$ = this;
-var fexpr__25529 = cljs.core.deref(this$);
-return (fexpr__25529.cljs$core$IFn$_invoke$arity$3 ? fexpr__25529.cljs$core$IFn$_invoke$arity$3(a,b,c) : fexpr__25529.call(null,a,b,c));
+var fexpr__25449 = cljs.core.deref(this$);
+return (fexpr__25449.cljs$core$IFn$_invoke$arity$3 ? fexpr__25449.cljs$core$IFn$_invoke$arity$3(a,b,c) : fexpr__25449.call(null,a,b,c));
 }));
 
 (borkdude.dynaload.LazyVar.prototype.cljs$core$IFn$_invoke$arity$4 = (function (a,b,c,d){
 var self__ = this;
 var this$ = this;
-var fexpr__25530 = cljs.core.deref(this$);
-return (fexpr__25530.cljs$core$IFn$_invoke$arity$4 ? fexpr__25530.cljs$core$IFn$_invoke$arity$4(a,b,c,d) : fexpr__25530.call(null,a,b,c,d));
+var fexpr__25453 = cljs.core.deref(this$);
+return (fexpr__25453.cljs$core$IFn$_invoke$arity$4 ? fexpr__25453.cljs$core$IFn$_invoke$arity$4(a,b,c,d) : fexpr__25453.call(null,a,b,c,d));
 }));
 
 (borkdude.dynaload.LazyVar.prototype.cljs$core$IFn$_invoke$arity$5 = (function (a,b,c,d,e){
 var self__ = this;
 var this$ = this;
-var fexpr__25532 = cljs.core.deref(this$);
-return (fexpr__25532.cljs$core$IFn$_invoke$arity$5 ? fexpr__25532.cljs$core$IFn$_invoke$arity$5(a,b,c,d,e) : fexpr__25532.call(null,a,b,c,d,e));
+var fexpr__25460 = cljs.core.deref(this$);
+return (fexpr__25460.cljs$core$IFn$_invoke$arity$5 ? fexpr__25460.cljs$core$IFn$_invoke$arity$5(a,b,c,d,e) : fexpr__25460.call(null,a,b,c,d,e));
 }));
 
 (borkdude.dynaload.LazyVar.prototype.cljs$core$IFn$_invoke$arity$6 = (function (a,b,c,d,e,f__$1){
 var self__ = this;
 var this$ = this;
-var fexpr__25534 = cljs.core.deref(this$);
-return (fexpr__25534.cljs$core$IFn$_invoke$arity$6 ? fexpr__25534.cljs$core$IFn$_invoke$arity$6(a,b,c,d,e,f__$1) : fexpr__25534.call(null,a,b,c,d,e,f__$1));
+var fexpr__25461 = cljs.core.deref(this$);
+return (fexpr__25461.cljs$core$IFn$_invoke$arity$6 ? fexpr__25461.cljs$core$IFn$_invoke$arity$6(a,b,c,d,e,f__$1) : fexpr__25461.call(null,a,b,c,d,e,f__$1));
 }));
 
 (borkdude.dynaload.LazyVar.prototype.cljs$core$IFn$_invoke$arity$7 = (function (a,b,c,d,e,f__$1,g){
 var self__ = this;
 var this$ = this;
-var fexpr__25535 = cljs.core.deref(this$);
-return (fexpr__25535.cljs$core$IFn$_invoke$arity$7 ? fexpr__25535.cljs$core$IFn$_invoke$arity$7(a,b,c,d,e,f__$1,g) : fexpr__25535.call(null,a,b,c,d,e,f__$1,g));
+var fexpr__25462 = cljs.core.deref(this$);
+return (fexpr__25462.cljs$core$IFn$_invoke$arity$7 ? fexpr__25462.cljs$core$IFn$_invoke$arity$7(a,b,c,d,e,f__$1,g) : fexpr__25462.call(null,a,b,c,d,e,f__$1,g));
 }));
 
 (borkdude.dynaload.LazyVar.prototype.cljs$core$IFn$_invoke$arity$8 = (function (a,b,c,d,e,f__$1,g,h){
 var self__ = this;
 var this$ = this;
-var fexpr__25536 = cljs.core.deref(this$);
-return (fexpr__25536.cljs$core$IFn$_invoke$arity$8 ? fexpr__25536.cljs$core$IFn$_invoke$arity$8(a,b,c,d,e,f__$1,g,h) : fexpr__25536.call(null,a,b,c,d,e,f__$1,g,h));
+var fexpr__25463 = cljs.core.deref(this$);
+return (fexpr__25463.cljs$core$IFn$_invoke$arity$8 ? fexpr__25463.cljs$core$IFn$_invoke$arity$8(a,b,c,d,e,f__$1,g,h) : fexpr__25463.call(null,a,b,c,d,e,f__$1,g,h));
 }));
 
 (borkdude.dynaload.LazyVar.prototype.cljs$core$IFn$_invoke$arity$9 = (function (a,b,c,d,e,f__$1,g,h,i){
 var self__ = this;
 var this$ = this;
-var fexpr__25537 = cljs.core.deref(this$);
-return (fexpr__25537.cljs$core$IFn$_invoke$arity$9 ? fexpr__25537.cljs$core$IFn$_invoke$arity$9(a,b,c,d,e,f__$1,g,h,i) : fexpr__25537.call(null,a,b,c,d,e,f__$1,g,h,i));
+var fexpr__25468 = cljs.core.deref(this$);
+return (fexpr__25468.cljs$core$IFn$_invoke$arity$9 ? fexpr__25468.cljs$core$IFn$_invoke$arity$9(a,b,c,d,e,f__$1,g,h,i) : fexpr__25468.call(null,a,b,c,d,e,f__$1,g,h,i));
 }));
 
 (borkdude.dynaload.LazyVar.prototype.cljs$core$IFn$_invoke$arity$10 = (function (a,b,c,d,e,f__$1,g,h,i,j){
 var self__ = this;
 var this$ = this;
-var fexpr__25543 = cljs.core.deref(this$);
-return (fexpr__25543.cljs$core$IFn$_invoke$arity$10 ? fexpr__25543.cljs$core$IFn$_invoke$arity$10(a,b,c,d,e,f__$1,g,h,i,j) : fexpr__25543.call(null,a,b,c,d,e,f__$1,g,h,i,j));
+var fexpr__25480 = cljs.core.deref(this$);
+return (fexpr__25480.cljs$core$IFn$_invoke$arity$10 ? fexpr__25480.cljs$core$IFn$_invoke$arity$10(a,b,c,d,e,f__$1,g,h,i,j) : fexpr__25480.call(null,a,b,c,d,e,f__$1,g,h,i,j));
 }));
 
 (borkdude.dynaload.LazyVar.prototype.cljs$core$IFn$_invoke$arity$11 = (function (a,b,c,d,e,f__$1,g,h,i,j,k){
 var self__ = this;
 var this$ = this;
-var fexpr__25544 = cljs.core.deref(this$);
-return (fexpr__25544.cljs$core$IFn$_invoke$arity$11 ? fexpr__25544.cljs$core$IFn$_invoke$arity$11(a,b,c,d,e,f__$1,g,h,i,j,k) : fexpr__25544.call(null,a,b,c,d,e,f__$1,g,h,i,j,k));
+var fexpr__25484 = cljs.core.deref(this$);
+return (fexpr__25484.cljs$core$IFn$_invoke$arity$11 ? fexpr__25484.cljs$core$IFn$_invoke$arity$11(a,b,c,d,e,f__$1,g,h,i,j,k) : fexpr__25484.call(null,a,b,c,d,e,f__$1,g,h,i,j,k));
 }));
 
 (borkdude.dynaload.LazyVar.prototype.cljs$core$IFn$_invoke$arity$12 = (function (a,b,c,d,e,f__$1,g,h,i,j,k,l){
 var self__ = this;
 var this$ = this;
-var fexpr__25545 = cljs.core.deref(this$);
-return (fexpr__25545.cljs$core$IFn$_invoke$arity$12 ? fexpr__25545.cljs$core$IFn$_invoke$arity$12(a,b,c,d,e,f__$1,g,h,i,j,k,l) : fexpr__25545.call(null,a,b,c,d,e,f__$1,g,h,i,j,k,l));
+var fexpr__25491 = cljs.core.deref(this$);
+return (fexpr__25491.cljs$core$IFn$_invoke$arity$12 ? fexpr__25491.cljs$core$IFn$_invoke$arity$12(a,b,c,d,e,f__$1,g,h,i,j,k,l) : fexpr__25491.call(null,a,b,c,d,e,f__$1,g,h,i,j,k,l));
 }));
 
 (borkdude.dynaload.LazyVar.prototype.cljs$core$IFn$_invoke$arity$13 = (function (a,b,c,d,e,f__$1,g,h,i,j,k,l,m){
 var self__ = this;
 var this$ = this;
-var fexpr__25546 = cljs.core.deref(this$);
-return (fexpr__25546.cljs$core$IFn$_invoke$arity$13 ? fexpr__25546.cljs$core$IFn$_invoke$arity$13(a,b,c,d,e,f__$1,g,h,i,j,k,l,m) : fexpr__25546.call(null,a,b,c,d,e,f__$1,g,h,i,j,k,l,m));
+var fexpr__25492 = cljs.core.deref(this$);
+return (fexpr__25492.cljs$core$IFn$_invoke$arity$13 ? fexpr__25492.cljs$core$IFn$_invoke$arity$13(a,b,c,d,e,f__$1,g,h,i,j,k,l,m) : fexpr__25492.call(null,a,b,c,d,e,f__$1,g,h,i,j,k,l,m));
 }));
 
 (borkdude.dynaload.LazyVar.prototype.cljs$core$IFn$_invoke$arity$14 = (function (a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n){
 var self__ = this;
 var this$ = this;
-var fexpr__25550 = cljs.core.deref(this$);
-return (fexpr__25550.cljs$core$IFn$_invoke$arity$14 ? fexpr__25550.cljs$core$IFn$_invoke$arity$14(a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n) : fexpr__25550.call(null,a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n));
+var fexpr__25493 = cljs.core.deref(this$);
+return (fexpr__25493.cljs$core$IFn$_invoke$arity$14 ? fexpr__25493.cljs$core$IFn$_invoke$arity$14(a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n) : fexpr__25493.call(null,a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n));
 }));
 
 (borkdude.dynaload.LazyVar.prototype.cljs$core$IFn$_invoke$arity$15 = (function (a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o){
 var self__ = this;
 var this$ = this;
-var fexpr__25551 = cljs.core.deref(this$);
-return (fexpr__25551.cljs$core$IFn$_invoke$arity$15 ? fexpr__25551.cljs$core$IFn$_invoke$arity$15(a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o) : fexpr__25551.call(null,a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o));
+var fexpr__25494 = cljs.core.deref(this$);
+return (fexpr__25494.cljs$core$IFn$_invoke$arity$15 ? fexpr__25494.cljs$core$IFn$_invoke$arity$15(a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o) : fexpr__25494.call(null,a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o));
 }));
 
 (borkdude.dynaload.LazyVar.prototype.cljs$core$IFn$_invoke$arity$16 = (function (a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o,p){
 var self__ = this;
 var this$ = this;
-var fexpr__25552 = cljs.core.deref(this$);
-return (fexpr__25552.cljs$core$IFn$_invoke$arity$16 ? fexpr__25552.cljs$core$IFn$_invoke$arity$16(a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o,p) : fexpr__25552.call(null,a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o,p));
+var fexpr__25497 = cljs.core.deref(this$);
+return (fexpr__25497.cljs$core$IFn$_invoke$arity$16 ? fexpr__25497.cljs$core$IFn$_invoke$arity$16(a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o,p) : fexpr__25497.call(null,a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o,p));
 }));
 
 (borkdude.dynaload.LazyVar.prototype.cljs$core$IFn$_invoke$arity$17 = (function (a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o,p,q){
 var self__ = this;
 var this$ = this;
-var fexpr__25558 = cljs.core.deref(this$);
-return (fexpr__25558.cljs$core$IFn$_invoke$arity$17 ? fexpr__25558.cljs$core$IFn$_invoke$arity$17(a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o,p,q) : fexpr__25558.call(null,a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o,p,q));
+var fexpr__25498 = cljs.core.deref(this$);
+return (fexpr__25498.cljs$core$IFn$_invoke$arity$17 ? fexpr__25498.cljs$core$IFn$_invoke$arity$17(a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o,p,q) : fexpr__25498.call(null,a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o,p,q));
 }));
 
 (borkdude.dynaload.LazyVar.prototype.cljs$core$IFn$_invoke$arity$18 = (function (a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o,p,q,r){
 var self__ = this;
 var this$ = this;
-var fexpr__25559 = cljs.core.deref(this$);
-return (fexpr__25559.cljs$core$IFn$_invoke$arity$18 ? fexpr__25559.cljs$core$IFn$_invoke$arity$18(a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o,p,q,r) : fexpr__25559.call(null,a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o,p,q,r));
+var fexpr__25499 = cljs.core.deref(this$);
+return (fexpr__25499.cljs$core$IFn$_invoke$arity$18 ? fexpr__25499.cljs$core$IFn$_invoke$arity$18(a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o,p,q,r) : fexpr__25499.call(null,a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o,p,q,r));
 }));
 
 (borkdude.dynaload.LazyVar.prototype.cljs$core$IFn$_invoke$arity$19 = (function (a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o,p,q,r,s){
 var self__ = this;
 var this$ = this;
-var fexpr__25560 = cljs.core.deref(this$);
-return (fexpr__25560.cljs$core$IFn$_invoke$arity$19 ? fexpr__25560.cljs$core$IFn$_invoke$arity$19(a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o,p,q,r,s) : fexpr__25560.call(null,a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o,p,q,r,s));
+var fexpr__25501 = cljs.core.deref(this$);
+return (fexpr__25501.cljs$core$IFn$_invoke$arity$19 ? fexpr__25501.cljs$core$IFn$_invoke$arity$19(a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o,p,q,r,s) : fexpr__25501.call(null,a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o,p,q,r,s));
 }));
 
 (borkdude.dynaload.LazyVar.prototype.cljs$core$IFn$_invoke$arity$20 = (function (a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o,p,q,r,s,t){
 var self__ = this;
 var this$ = this;
-var fexpr__25561 = cljs.core.deref(this$);
-return (fexpr__25561.cljs$core$IFn$_invoke$arity$20 ? fexpr__25561.cljs$core$IFn$_invoke$arity$20(a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o,p,q,r,s,t) : fexpr__25561.call(null,a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o,p,q,r,s,t));
+var fexpr__25505 = cljs.core.deref(this$);
+return (fexpr__25505.cljs$core$IFn$_invoke$arity$20 ? fexpr__25505.cljs$core$IFn$_invoke$arity$20(a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o,p,q,r,s,t) : fexpr__25505.call(null,a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o,p,q,r,s,t));
 }));
 
 (borkdude.dynaload.LazyVar.prototype.cljs$core$IFn$_invoke$arity$21 = (function (a,b,c,d,e,f__$1,g,h,i,j,k,l,m,n,o,p,q,r,s,t,rest){
