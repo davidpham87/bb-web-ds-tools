@@ -1,8 +1,39 @@
 (ns bb-web-ds-tools.utils.dataset-processing
   (:require ["papaparse" :as Papa]
+            [sci.core :as sci]
             [clojure.string :as str]
             [clojure.edn :as edn]
             [cljs.pprint :as pprint]))
+
+(defn to-snake-case [s]
+  (-> s
+      (str/replace #"([a-z])([A-Z])" "$1_$2")
+      (str/replace #"[\s-]" "_")
+      (str/lower-case)))
+
+(defn to-camel-case [s]
+  (let [parts (str/split (str/replace s #"[\s-_]" " ") #" ")]
+    (str/join (map str/capitalize parts))))
+
+(defn to-kebab-case [s]
+  (-> s
+      (str/replace #"([a-z])([A-Z])" "$1-$2")
+      (str/replace #"[\s_]" "-")
+      (str/lower-case)))
+
+(defn normalize-column-name [col-name {:keys [case output]}]
+  (let [s (name col-name)
+        s-case (condp = case
+                 :snake_case (to-snake-case s)
+                 :CamelCase (to-camel-case s)
+                 :kebab-case (to-kebab-case s)
+                 s) ;; default to identity if unknown
+        final-val (condp = output
+                    :string s-case
+                    :keyword (keyword s-case)
+                    :symbol (symbol s-case)
+                    s-case)]
+    final-val))
 
 (def config
   {:markdown {:cell-separator " | "
@@ -214,6 +245,41 @@
 
 ;; --- Table Processing ---
 
+(def filter-ctx
+  (sci/init {:classes {'js goog/global :allow :all}
+             :namespaces {'clojure.core {'= =
+                                         '> >
+                                         '< <
+                                         '>= >=
+                                         '<= <=
+                                         'count count
+                                         'not not
+                                         'inc inc
+                                         'dec dec
+                                         'first first
+                                         'last last
+                                         'nth nth
+                                         'subs subs}
+                          'clojure.string {'includes? str/includes?
+                                           'lower-case str/lower-case
+                                           'upper-case str/upper-case
+                                           'starts-with? str/starts-with?
+                                           'ends-with? str/ends-with?}}}))
+
+(defn compile-filter [expression-str]
+  (try
+    (if (str/blank? expression-str)
+      nil
+      (let [res (sci/eval-string expression-str filter-ctx)]
+        (if (fn? res)
+          res
+          (fn [val] (= val res)))))
+    (catch :default _
+      (fn [val]
+        (let [val-str (str val)
+              input-str (str expression-str)]
+          (= val-str input-str))))))
+
 (defn process-table-data
   "Processes dataset data for display in a table: filtering, sorting, and pagination.
 
@@ -242,11 +308,21 @@
         ;; Assuming data is a vector of maps.
         all-columns (or columns (keys (first data)))
 
-        filtered-data (if (seq filters)
+        compiled-filters (when (seq filters)
+                           (reduce-kv (fn [m k v]
+                                        (if (str/blank? v)
+                                          m
+                                          (assoc m k (compile-filter v))))
+                                      {}
+                                      filters))
+
+        filtered-data (if (seq compiled-filters)
                         (filter (fn [row]
-                                  (every? (fn [[k v]]
-                                            (str/includes? (str/lower-case (str (get row k))) (str/lower-case v)))
-                                          filters))
+                                  (every? (fn [[k f]]
+                                            (try
+                                              (f (get row k))
+                                              (catch :default _ false)))
+                                          compiled-filters))
                                 data)
                         data)
         sorted-data (if sort-col
