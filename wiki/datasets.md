@@ -109,9 +109,17 @@ id,score,category,date
 
 **Filtering:**
 
-1.  Type `a` into the filter input box below the `category` header.
-2.  The table will update to show only rows where the category contains "a" (ids
-    1 and 4).
+The filter inputs accept arbitrary Clojure expressions, which are evaluated
+using SCI (Small Clojure Interpreter).
+
+1.  **Exact Match**: Type a value like `10` or `"a"` (strings must be quoted for
+    Clojure evaluation, but unquoted strings fall back to equality checks).
+    - Example: `12.5` matches rows where the column value is `12.5`.
+    - Example: `a` matches rows where the column value is `"a"` (fallback behavior).
+2.  **Predicates**: Type a function literal to filter values.
+    - Example: `#(> % 10)` matches rows where the value is greater than 10.
+    - Example: `even?` matches rows where the value is even.
+    - Example: `#(str/starts-with? % "2023")` for date strings.
 
 ### 5. Exporting Data
 
