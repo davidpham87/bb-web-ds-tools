@@ -1,16 +1,16 @@
-Title: Automation: Because Typing is for Peasants
-Date: 2025-11-25
-Tags: clojure, data-science
+Title: Automation: Because Typing is for Peasants Date: 2025-11-25 Tags:
+clojure, data-science
+
 ---
 
-*By The "My Fingers Hurt" Team*
+_By The "My Fingers Hurt" Team_
 
-CAVEAT: This is just satirical, the app is doing nothing like that, LLMs like
-to hallucinate a lot xD.
+CAVEAT: This is just satirical, the app is doing nothing like that, LLMs like to
+hallucinate a lot xD.
 
 Welcome back! Today we are talking about automation. Specifically, why you are
-still typing code like a medieval monk transcribing the Bible by candlelight.
-It is 2025! We have self-driving cars (mostly), we have robots that can do
+still typing code like a medieval monk transcribing the Bible by candlelight. It
+is 2025! We have self-driving cars (mostly), we have robots that can do
 backflips, and yet you are manually writing SQL queries? Stop it. Stop it right
 now.
 
@@ -52,10 +52,11 @@ write regex. You would cry more.
 Now? You drag the file into the **Datasets** view.
 
 Let's say you have a list of 'Penguin Sizes'.
-*   **Step 1:** Drop file.
-*   **Step 2:** The UI says, "Ah, 'Flipper Length'. That is an Integer. 'Sex'?
-    That is a Keyword."
-*   **Step 3:** It generates the `malli` schema automatically.
+
+- **Step 1:** Drop file.
+- **Step 2:** The UI says, "Ah, 'Flipper Length'. That is an Integer. 'Sex'?
+  That is a Keyword."
+- **Step 3:** It generates the `malli` schema automatically.
 
 ```clojure
 [:map

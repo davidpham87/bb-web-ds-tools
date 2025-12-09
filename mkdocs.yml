@@ -1,0 +1,7 @@
+site_name: BB Web DS Tools Wiki
+docs_dir: wiki
+site_dir: docs/wiki
+nav:
+  - Home: index.md
+theme:
+  name: readthedocs

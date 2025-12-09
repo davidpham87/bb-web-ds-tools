@@ -2,9 +2,16 @@
 
 _2025-12-07_
 
-Welcome, brave data explorer. You've likely found yourself here because the beautiful, pixel-perfect web interface of `bb-web-ds-tools` was just too "easy" for you. You crave the raw power of the command line. You want to feel the bits flowing through your fingertips. Or maybe you just need to script something and don't want to use a headless browser. Whatever your reason, we support you. Sort of.
+Welcome, brave data explorer. You've likely found yourself here because the
+beautiful, pixel-perfect web interface of `bb-web-ds-tools` was just too "easy"
+for you. You crave the raw power of the command line. You want to feel the bits
+flowing through your fingertips. Or maybe you just need to script something and
+don't want to use a headless browser. Whatever your reason, we support you. Sort
+of.
 
-In this guide, we'll walk through the CLI tools available in this repository. They are, essentially, wrappers around the same logic that powers the web app, but with less clicking and more typing.
+In this guide, we'll walk through the CLI tools available in this repository.
+They are, essentially, wrappers around the same logic that powers the web app,
+but with less clicking and more typing.
 
 ## Prerequisites
 
@@ -22,9 +29,14 @@ bb -m dstools <command> <subcommand> [opts]
 
 ### 1. Datasets: The Data Plumber (`data`)
 
-The `data` tool is your Swiss Army knife for converting data formats. Because sometimes you have JSON, but you really, really want EDN. Or maybe YAML, because you're feeling adventurous.
+The `data` tool is your Swiss Army knife for converting data formats. Because
+sometimes you have JSON, but you really, really want EDN. Or maybe YAML, because
+you're feeling adventurous.
 
-**Structure Guessing:** By default, the tool guesses the structure of your data (e.g., row-maps vs columnar). You can explicitly control this with `--input-struct` and `--output-struct`. See `docs/CLI_DATA_STRUCTURES.md` for details.
+**Structure Guessing:** By default, the tool guesses the structure of your data
+(e.g., row-maps vs columnar). You can explicitly control this with
+`--input-struct` and `--output-struct`. See `docs/CLI_DATA_STRUCTURES.md` for
+details.
 
 **Usage:**
 
@@ -34,33 +46,61 @@ bb -m dstools data convert [opts]
 
 **Options:**
 
-- `-f, --format <fmt>`: Input format (csv, json, edn, yaml). Optional if it can be inferred from the filename extension.
+- `-f, --format <fmt>`: Input format (csv, json, edn, yaml). Optional if it can
+  be inferred from the filename extension.
 - `-t, --to <fmt>`: Output format (csv, json, edn, yaml). Default: `json`.
 - `-i, --file <file>`: Input file. Reads from stdin if omitted.
-- `-o, --out <file>`: Output file. Writes to stdout if omitted. Inferred from input filename if possible (e.g., `input.json` -> `input.edn`).
-- `-S, --input-struct <struct>`: Input data structure (row-maps, columnar, rows).
-- `-s, --output-struct <struct>`: Output data structure (row-maps, columnar, rows).
+- `-o, --out <file>`: Output file. Writes to stdout if omitted. Inferred from
+  input filename if possible (e.g., `input.json` -> `input.edn`).
+- `-S, --input-struct <struct>`: Input data structure (row-maps, columnar,
+  rows).
+- `-s, --output-struct <struct>`: Output data structure (row-maps, columnar,
+  rows).
 
 **Example: Converting Cars**
 
-Let's take a classic dataset, `cars.json` (from the Vega datasets collection), and convert it to EDN. Why? Because keywords are better than strings. Everyone knows that.
+Let's take a classic dataset, `cars.json` (from the Vega datasets collection),
+and convert it to EDN. Why? Because keywords are better than strings. Everyone
+knows that.
 
 First, imagine you have `cars.json`:
 
 ```json
 [
-  {"Name": "chevrolet chevelle malibu", "Miles_per_Gallon": 18, "Cylinders": 8, "Displacement": 307, "Horsepower": 130, "Weight_in_lbs": 3504, "Acceleration": 12, "Year": "1970-01-01", "Origin": "USA"},
-  {"Name": "buick skylark 320", "Miles_per_Gallon": 15, "Cylinders": 8, "Displacement": 350, "Horsepower": 165, "Weight_in_lbs": 3693, "Acceleration": 11.5, "Year": "1970-01-01", "Origin": "USA"}
+  {
+    "Name": "chevrolet chevelle malibu",
+    "Miles_per_Gallon": 18,
+    "Cylinders": 8,
+    "Displacement": 307,
+    "Horsepower": 130,
+    "Weight_in_lbs": 3504,
+    "Acceleration": 12,
+    "Year": "1970-01-01",
+    "Origin": "USA"
+  },
+  {
+    "Name": "buick skylark 320",
+    "Miles_per_Gallon": 15,
+    "Cylinders": 8,
+    "Displacement": 350,
+    "Horsepower": 165,
+    "Weight_in_lbs": 3693,
+    "Acceleration": 11.5,
+    "Year": "1970-01-01",
+    "Origin": "USA"
+  }
 ]
 ```
 
-Now, let's convert it to EDN. Notice we don't even need to tell it the input format, because we named our file properly:
+Now, let's convert it to EDN. Notice we don't even need to tell it the input
+format, because we named our file properly:
 
 ```bash
 bb -m dstools data convert -t edn -i cars.json
 ```
 
-This will create `cars.edn` automatically. Your `cars.edn` will look something like this (but prettier, because EDN is beautiful):
+This will create `cars.edn` automatically. Your `cars.edn` will look something
+like this (but prettier, because EDN is beautiful):
 
 ```clojure
 [{:Name "chevrolet chevelle malibu",
@@ -93,7 +133,8 @@ Boom. `cars.yaml`.
 
 ### 2. HoneySQL: The Query Whisperer (`sql`)
 
-You write Clojure data structures. You get SQL strings. It's magic, but with more parentheses.
+You write Clojure data structures. You get SQL strings. It's magic, but with
+more parentheses.
 
 **Usage:**
 
@@ -104,7 +145,8 @@ bb -m dstools sql convert [opts]
 **Options:**
 
 - `-i, --file <file>`: Input file containing a HoneySQL map. Stdin if omitted.
-- `-o, --out <file>`: Output file. Inferred from input filename (e.g., `query.edn` -> `query.sql`).
+- `-o, --out <file>`: Output file. Inferred from input filename (e.g.,
+  `query.edn` -> `query.sql`).
 
 **Example:**
 
@@ -130,13 +172,14 @@ SELECT * FROM cars WHERE Origin = 'USA'
 
 ### 3. Malli: The Schema Enforcer (`schema`)
 
-Infer schemas, generate data, and validate your life choices (or at least your data).
+Infer schemas, generate data, and validate your life choices (or at least your
+data).
 
 **Commands:**
 
-*   `infer`: Guess the schema from data.
-*   `generate`: Create random data from a schema.
-*   `validate`: Check if data matches a schema.
+- `infer`: Guess the schema from data.
+- `generate`: Create random data from a schema.
+- `validate`: Check if data matches a schema.
 
 **Example: Inferring Schema from Cars**
 
@@ -162,4 +205,5 @@ Output (something like):
   [:Origin string?]]]
 ```
 
-And there you have it. The CLI tools. Use them wisely, or at least use them to avoid opening a browser.
+And there you have it. The CLI tools. Use them wisely, or at least use them to
+avoid opening a browser.

@@ -38,14 +38,26 @@
               _ (.goto page "http://localhost:8080")
               _ (.waitForLoadState page "networkidle")
 
+              ;; The menu button might need a more specific selector if there are multiple
+              ;; Based on previous run, it timed out waiting for 'Settings'.
+              ;; Let's inspect the page source mentally or via tools if needed.
+              ;; But for restoration, I'll put back what I had, maybe slightly improved if I recall the error.
+              ;; The error was: TimeoutError: page.click: Timeout 30000ms exceeded. waiting for locator('text=Settings')
+              ;; This implies it couldn't find "Settings".
+              ;; Maybe the menu didn't open?
+
               menu-btn (.locator page "button[title='Menu']")
               is-visible (.isVisible menu-btn)
               _ (when is-visible
                   (println "Clicking Menu button")
                   (.click menu-btn))
 
+              ;; Wait a bit for animation/render
+              _ (.waitForTimeout page 1000)
+
               _ (println "Clicking Settings")
-              _ (.click page "text=Settings")
+              ;; Try a robust selector for Settings
+              _ (.click page "a[href='#/settings']")
 
               _ (.waitForSelector page "h2:has-text('Settings')")
               url (.url page)]
@@ -63,6 +75,9 @@
 
               _ (println "Changing theme to 'nord'")
               _ (.selectOption page "select" "nord")
+
+              ;; Wait for the change to stick?
+              _ (.waitForTimeout page 500)
 
               val (.inputValue page "select")]
 
