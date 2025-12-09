@@ -1,5 +1,6 @@
 (ns verification.e2e.runner
   (:require [verification.e2e.core]
+            [verification.e2e.sample-test]
             [verification.e2e.verify-font]))
 
 (defn -main []
