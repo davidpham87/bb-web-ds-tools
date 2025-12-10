@@ -120,10 +120,12 @@
 
   Args:
     code (string): The R code to evaluate.
+    opts (map, optional): Options.
+      - :webr (map): Settings for WebR (container-width, container-height, canvas-scale).
 
   Returns:
     nil: Submits results to Portal."
-  [code]
+  [code & [opts]]
   (if @webr-instance
     (go
       (try
@@ -155,7 +157,14 @@
                                         (if more
                                           (recur more new-acc)
                                           new-acc)))
-                                    [])]
+                                    [])
+                      ;; Default settings
+                      webr-settings (get opts :webr {:container-width 720
+                                                     :container-height 800
+                                                     :canvas-scale 0.72})
+                      container-width (:container-width webr-settings)
+                      container-height (:container-height webr-settings)
+                      canvas-scale (:canvas-scale webr-settings)]
 
                   (doseq [res output-msgs]
                     ;; Fix for null safety: explicitly check for non-nil results
@@ -164,10 +173,10 @@
 
                   (doseq [img (array-seq images)]
                     (let [data-url (image-bitmap->data-url img)
-                          canvas-hiccup [:div {:style {:width 720 :height 800}}
+                          canvas-hiccup [:div {:style {:width container-width :height container-height}}
                                          [:canvas
-                                          {:width (int (* (get-width img) 0.72))
-                                           :height (int (* (get-height img) 0.72))
+                                          {:width (int (* (get-width img) canvas-scale))
+                                           :height (int (* (get-height img) canvas-scale))
                                            :style {:background-image (str "url(" data-url ")")
                                                    :background-size "cover"}}]]]
                       (rf/dispatch [::portal/submit canvas-hiccup :portal.viewer/hiccup])))
