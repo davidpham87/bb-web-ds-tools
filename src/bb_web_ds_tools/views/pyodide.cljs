@@ -179,7 +179,11 @@ chart.to_html()")
   [datasets]
   (let [code-sub (rf/subscribe [::code])]
     (r/create-class
-     {:component-did-update
+     {:component-did-mount
+      (fn [this]
+        (let [datasets (second (r/argv this))]
+          (pyodide-runtime/sync-datasets datasets)))
+      :component-did-update
       (fn [this [_ old-datasets]]
         (let [new-datasets (second (r/argv this))]
           (when (not= old-datasets new-datasets)
