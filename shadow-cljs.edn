@@ -1,5 +1,5 @@
 {:source-paths
- ["src" "test" "src/stories" "verification/cljs"]
+ ["src" "test" "src/stories"]
 
  :deps true
 
