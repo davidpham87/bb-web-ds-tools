@@ -89,50 +89,62 @@ exists in a database table named <code>dataset</code>.</p>
 <p><strong>Steps:</strong></p>
 <ol>
 <li>Navigate to the <strong>HoneySQL</strong> view.</li>
-<li>In the left-hand editor, paste the following Clojure map:
-    <code>clojure
-    {:select [:id :score :category :date]
-     :from   [:dataset]}</code></li>
-<li>Observe the output in the right-hand panel:
-    <code>sql
-    SELECT id, score, category, date FROM dataset</code></li>
+<li>
+<p>In the left-hand editor, paste the following Clojure map:</p>
+<p><code>clojure
+{:select [:id :score :category :date]
+ :from   [:dataset]}</code></p>
+</li>
+<li>
+<p>Observe the output in the right-hand panel:</p>
+<p><code>sql
+SELECT id, score, category, date FROM dataset</code></p>
+</li>
 </ol>
 <h3 id="2-filtering-and-sorting">2. Filtering and Sorting</h3>
 <p>Now we will add conditions to filter by <code>category</code> and <code>score</code>, and sort by
 <code>date</code>, mirroring a typical data analysis task.</p>
 <p><strong>Steps:</strong></p>
 <ol>
-<li>Update the input map to include <code>:where</code> and <code>:order-by</code> clauses:
-    <code>clojure
-    {:select [:id :score]
-     :from   [:dataset]
-     :where  [:and
-              [:= :category "a"]
-              [:&gt; :score 10.0]]
-     :order-by [[:date :desc]]}</code></li>
-<li>The output will update to:
-    <code>sql
-    SELECT id, score
-    FROM dataset
-    WHERE (category = 'a') AND (score &gt; 10.0)
-    ORDER BY date DESC</code></li>
+<li>
+<p>Update the input map to include <code>:where</code> and <code>:order-by</code> clauses:</p>
+<p><code>clojure
+{:select [:id :score]
+ :from   [:dataset]
+ :where  [:and
+          [:= :category "a"]
+          [:&gt; :score 10.0]]
+ :order-by [[:date :desc]]}</code></p>
+</li>
+<li>
+<p>The output will update to:</p>
+<p><code>sql
+SELECT id, score
+FROM dataset
+WHERE (category = 'a') AND (score &gt; 10.0)
+ORDER BY date DESC</code></p>
+</li>
 </ol>
 <h3 id="3-aggregation-group-by">3. Aggregation (Group By)</h3>
 <p>Let's calculate the average score per category.</p>
 <p><strong>Steps:</strong></p>
 <ol>
-<li>Enter the following aggregation query:
-    <code>clojure
-    {:select   [:category [[:avg :score] :avg_score]]
-     :from     [:dataset]
-     :group-by [:category]
-     :having   [:&gt; [[:avg :score]] 10.0]}</code></li>
-<li>The output will be:
-    <code>sql
-    SELECT category, AVG(score) AS avg_score
-    FROM dataset
-    GROUP BY category
-    HAVING AVG(score) &gt; 10.0</code></li>
+<li>
+<p>Enter the following aggregation query:</p>
+<p><code>clojure
+{:select   [:category [[:avg :score] :avg_score]]
+ :from     [:dataset]
+ :group-by [:category]
+ :having   [:&gt; [[:avg :score]] 10.0]}</code></p>
+</li>
+<li>
+<p>The output will be:</p>
+<p><code>sql
+SELECT category, AVG(score) AS avg_score
+FROM dataset
+GROUP BY category
+HAVING AVG(score) &gt; 10.0</code></p>
+</li>
 </ol>
               
             </div>

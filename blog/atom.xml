@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>bb-web-ds-tools</title>
+  <link href="https://github.com/borkdude/quickblog/atom.xml" rel="self"/>
+  <link href="https://github.com/borkdude/quickblog"/>
+  <updated>2025-12-10T08:35:17+00:00</updated>
+  <id>https://github.com/borkdude/quickblog</id>
+  <author>
+    <name>Quick Blogger</name>
+  </author>
+  <entry>
+    <id>https://github.com/borkdude/quickblog/2025-12-08-themes-and-r-graphics.html</id>
+    <link href="https://github.com/borkdude/quickblog/2025-12-08-themes-and-r-graphics.html"/>
+    <title>Themes, Dreams, and R Graphics: A Visual Awakening</title>
+    <updated>2025-12-08T23:59:59+00:00</updated>
+    <content type="html"><![CDATA[<div><hr /><p><em>By The &quot;We Only Code in Dark Mode&quot; Team</em></p><p>Greetings, fellow data wranglers and pixel pushers.</p><p>We come to you today with an announcement that will shake the very foundations of your browser tab (assuming you have less than 50 open, which we know you don&apos;t). We have made changes. Are they groundbreaking? Debatable. Are they visible? Yes, very.</p><h2 id="zenburn:-because-bright-white-is-an-act-of-aggression">Zenburn: Because Bright White is an Act of Aggression</h2><p>First up, let&apos;s talk about aesthetics.</p><p>For too long, software tools have defaulted to blinding white backgrounds, presumably to simulate the experience of staring directly into the sun while trying to debug a race condition. We say: No more.</p><p>We have fully embraced the <strong>Zenburn</strong> theme. Not just because it sounds like a yoga studio for burned-out developers, but because it’s soothing. It’s calm. It’s a mix of <code>#3f3f3f</code> and <code>#dcdccc</code> that says, &quot;It’s okay, that null pointer exception can’t hurt you here.&quot;</p><p>Every button, every panel, every scrollbar has been meticulously styled to ensure that your eyes don’t bleed after a 4-hour coding session. We’ve aligned the pixels. We’ve harmonized the contrasts. We probably spent more time on the color of the &quot;Delete&quot; button than the actual deletion logic. Priorities.</p><h2 id="r-graphics-in-portal:-pictures-&gt;-text">R Graphics in Portal: Pictures &gt; Text</h2><p>Now, the main event.</p><p>We have an R runtime (<code>WebR</code>) in the browser. It’s amazing. It’s magical. But until recently, if you plotted something, you had to use your imagination. You’d run <code>plot(mtcars)</code>, and the console would stare back at you, blank and judging.</p><p>Well, we fixed it.</p><p>Thanks to our obsession with <strong>Portal</strong>, when you generate a plot in R, we now intercept it, wrap it in a warm embrace, and display it directly in the Portal viewer.</p><p>You run the code. You get the chart. Instant gratification.</p><p>Why read a summary statistic when you can look at a scatter plot and pretend you see a correlation? Why look at a table of numbers when you can generate a histogram that proves your data is completely skewed?</p><p>We’re giving you the power to create beautiful, informative graphics that you can then screenshot and put in a slide deck that nobody will read. And really, isn’t that what Data Science is all about?</p><h2 id="conclusion">Conclusion</h2><p>So, enjoy the new theme. Enjoy the R graphics. And please, for the love of all that is holy, close some tabs.</p></div>]]></content>
+  </entry>
+  <entry>
+    <id>https://github.com/borkdude/quickblog/2025-12-07-cli-tools-guide.html</id>
+    <link href="https://github.com/borkdude/quickblog/2025-12-07-cli-tools-guide.html"/>
+    <title>CLI Tools Guide: Or How I Learned to Stop Worrying and Love the Terminal</title>
+    <updated>2025-12-07T23:59:59+00:00</updated>
+    <content type="html"><![CDATA[<div><hr /><h1 id="cli-tools-guide:-or-how-i-learned-to-stop-worrying-and-love-the-terminal">CLI Tools Guide: Or How I Learned to Stop Worrying and Love the Terminal</h1><p><em>2025-12-07</em></p><p>Welcome, brave data explorer. You&apos;ve likely found yourself here because the beautiful, pixel-perfect web interface of <code>bb-web-ds-tools</code> was just too &quot;easy&quot; for you. You crave the raw power of the command line. You want to feel the bits flowing through your fingertips. Or maybe you just need to script something and don&apos;t want to use a headless browser. Whatever your reason, we support you. Sort of.</p><p>In this guide, we&apos;ll walk through the CLI tools available in this repository. They are, essentially, wrappers around the same logic that powers the web app, but with less clicking and more typing.</p><h2 id="prerequisites">Prerequisites</h2><p>You&apos;ll need <code>babashka</code> installed. If you don&apos;t have it, go get it. We&apos;ll wait.</p><h2 id="the-tools">The Tools</h2><p>We have three main tools for your enjoyment: <code>data</code>, <code>sql</code>, and <code>schema</code>.</p><p>You can access them all via the <code>dstools</code> entry point:</p><pre><code class="language-bash">bb -m dstools &lt;command&gt; &lt;subcommand&gt; [opts]
+</code></pre><h3 id="1.-datasets:-the-data-plumber-(data)">1. Datasets: The Data Plumber (<code>data</code>)</h3><p>The <code>data</code> tool is your Swiss Army knife for converting data formats. Because sometimes you have JSON, but you really, really want EDN. Or maybe YAML, because you&apos;re feeling adventurous.</p><p><strong>Structure Guessing:</strong> By default, the tool guesses the structure of your data (e.g., row-maps vs columnar). You can explicitly control this with <code>--input-struct</code> and <code>--output-struct</code>. See <code>docs/CLI_DATA_STRUCTURES.md</code> for details.</p><p><strong>Usage:</strong></p><pre><code class="language-bash">bb -m dstools data convert [opts]
+</code></pre><p><strong>Options:</strong></p><ul><li><code>-f, --format &lt;fmt&gt;</code>: Input format (csv, json, edn, yaml). Optional if it can be inferred from the filename extension.</li><li><code>-t, --to &lt;fmt&gt;</code>: Output format (csv, json, edn, yaml). Default: <code>json</code>.</li><li><code>-i, --file &lt;file&gt;</code>: Input file. Reads from stdin if omitted.</li><li><code>-o, --out &lt;file&gt;</code>: Output file. Writes to stdout if omitted. Inferred from input filename if possible (e.g., <code>input.json</code> -&gt; <code>input.edn</code>).</li><li><code>-S, --input-struct &lt;struct&gt;</code>: Input data structure (row-maps, columnar, rows).</li><li><code>-s, --output-struct &lt;struct&gt;</code>: Output data structure (row-maps, columnar, rows).</li></ul><p><strong>Example: Converting Cars</strong></p><p>Let&apos;s take a classic dataset, <code>cars.json</code> (from the Vega datasets collection), and convert it to EDN. Why? Because keywords are better than strings. Everyone knows that.</p><p>First, imagine you have <code>cars.json</code>:</p><pre><code class="language-json">[
+  {
+    &quot;Name&quot;: &quot;chevrolet chevelle malibu&quot;,
+    &quot;Miles_per_Gallon&quot;: 18,
+    &quot;Cylinders&quot;: 8,
+    &quot;Displacement&quot;: 307,
+    &quot;Horsepower&quot;: 130,
+    &quot;Weight_in_lbs&quot;: 3504,
+    &quot;Acceleration&quot;: 12,
+    &quot;Year&quot;: &quot;1970-01-01&quot;,
+    &quot;Origin&quot;: &quot;USA&quot;
+  },
+  {
+    &quot;Name&quot;: &quot;buick skylark 320&quot;,
+    &quot;Miles_per_Gallon&quot;: 15,
+    &quot;Cylinders&quot;: 8,
+    &quot;Displacement&quot;: 350,
+    &quot;Horsepower&quot;: 165,
+    &quot;Weight_in_lbs&quot;: 3693,
+    &quot;Acceleration&quot;: 11.5,
+    &quot;Year&quot;: &quot;1970-01-01&quot;,
+    &quot;Origin&quot;: &quot;USA&quot;
+  }
+]
+</code></pre><p>Now, let&apos;s convert it to EDN. Notice we don&apos;t even need to tell it the input format, because we named our file properly:</p><pre><code class="language-bash">bb -m dstools data convert -t edn -i cars.json
+</code></pre><p>This will create <code>cars.edn</code> automatically. Your <code>cars.edn</code> will look something like this (but prettier, because EDN is beautiful):</p><pre><code class="language-clojure">[{:Name &quot;chevrolet chevelle malibu&quot;,
+  :Miles_per_Gallon 18,
+  :Cylinders 8,
+  :Displacement 307,
+  :Horsepower 130,
+  :Weight_in_lbs 3504,
+  :Acceleration 12,
+  :Year &quot;1970-01-01&quot;,
+  :Origin &quot;USA&quot;}
+ {:Name &quot;buick skylark 320&quot;,
+  :Miles_per_Gallon 15,
+  :Cylinders 8,
+  :Displacement 350,
+  :Horsepower 165,
+  :Weight_in_lbs 3693,
+  :Acceleration 11.5,
+  :Year &quot;1970-01-01&quot;,
+  :Origin &quot;USA&quot;}]
+</code></pre><p>And if you want to join the YAML revolution:</p><pre><code class="language-bash">bb -m dstools data convert -t yaml -i cars.edn
+</code></pre><p>Boom. <code>cars.yaml</code>.</p><h3 id="2.-honeysql:-the-query-whisperer-(sql)">2. HoneySQL: The Query Whisperer (<code>sql</code>)</h3><p>You write Clojure data structures. You get SQL strings. It&apos;s magic, but with more parentheses.</p><p><strong>Usage:</strong></p><pre><code class="language-bash">bb -m dstools sql convert [opts]
+</code></pre><p><strong>Options:</strong></p><ul><li><code>-i, --file &lt;file&gt;</code>: Input file containing a HoneySQL map. Stdin if omitted.</li><li><code>-o, --out &lt;file&gt;</code>: Output file. Inferred from input filename (e.g., <code>query.edn</code> -&gt; <code>query.sql</code>).</li></ul><p><strong>Example:</strong></p><p>Input <code>query.edn</code>:</p><pre><code class="language-clojure">{:select [:*]
+ :from [:cars]
+ :where [:= :Origin &quot;USA&quot;]}
+</code></pre><p>Command:</p><pre><code class="language-bash">bb -m dstools sql convert -i query.edn
+</code></pre><p>Output (to <code>query.sql</code>):</p><pre><code class="language-sql">SELECT * FROM cars WHERE Origin = &apos;USA&apos;
+</code></pre><h3 id="3.-malli:-the-schema-enforcer-(schema)">3. Malli: The Schema Enforcer (<code>schema</code>)</h3><p>Infer schemas, generate data, and validate your life choices (or at least your data).</p><p><strong>Commands:</strong></p><ul><li><code>infer</code>: Guess the schema from data.</li><li><code>generate</code>: Create random data from a schema.</li><li><code>validate</code>: Check if data matches a schema.</li></ul><p><strong>Example: Inferring Schema from Cars</strong></p><p>Remember that <code>cars.edn</code> file? Let&apos;s see what Malli thinks of it.</p><pre><code class="language-bash">bb -m dstools schema infer -i cars.edn
+</code></pre><p>Output (something like):</p><pre><code class="language-clojure">[:vector
+ [:map
+  [:Name string?]
+  [:Miles_per_Gallon int?]
+  [:Cylinders int?]
+  [:Displacement int?]
+  [:Horsepower int?]
+  [:Weight_in_lbs int?]
+  [:Acceleration double?]
+  [:Year string?]
+  [:Origin string?]]]
+</code></pre><p>And there you have it. The CLI tools. Use them wisely, or at least use them to avoid opening a browser.</p></div>]]></content>
+  </entry>
+  <entry>
+    <id>https://github.com/borkdude/quickblog/2025-12-06-cli-tools.html</id>
+    <link href="https://github.com/borkdude/quickblog/2025-12-06-cli-tools.html"/>
+    <title>CLI Tools for Data Science</title>
+    <updated>2025-12-06T23:59:59+00:00</updated>
+    <content type="html"><![CDATA[<div><hr /><h1 id="cli-tools-for-data-science:-because-clicking-is-hard">CLI Tools for Data Science: Because clicking is hard</h1><p>Sometimes you just want to pipe data around in your terminal like a plumber from the 80s. We get it. That&apos;s why we&apos;ve exposed the core functionality of <code>bb-web-ds-tools</code> as a CLI library compatible with <a href="https://babashka.org">Babashka</a>.</p><h2 id="setup">Setup</h2><p>First, make sure you have Babashka installed. Then, you can run these tools directly from the source or by adding this repo as a dependency.</p><pre><code class="language-bash"># Clone the repo
+git clone https://github.com/my-org/bb-web-ds-tools.git
+cd bb-web-ds-tools
+
+# Add deps (if not using bb directly with classpath)
+# You might need to set up your bb.edn to include paths &quot;src&quot;
+</code></pre><p>You can use the <code>-x</code> flag in Babashka to execute a function directly from the CLI.</p><h2 id="datasets">Datasets</h2><p>Convert between CSV, JSON, and EDN without opening Excel.</p><h3 id="example:-csv-to-json">Example: CSV to JSON</h3><pre><code class="language-bash"># Convert a CSV file to JSON
+bb -cp src -x bb-web-ds-tools.cli.datasets/convert --format csv --to json --file data.csv
+
+# Or pipe it
+cat data.csv | bb -cp src -x bb-web-ds-tools.cli.datasets/convert --format csv --to json
+</code></pre><h3 id="example:-edn-to-csv">Example: EDN to CSV</h3><pre><code class="language-bash">echo &apos;[{:a 1 :b 2} {:a 3 :b 4}]&apos; | bb -cp src -x bb-web-ds-tools.cli.datasets/convert --format edn --to csv
+</code></pre><h2 id="malli">Malli</h2><p>Validate data and infer schemas from the comfort of your shell.</p><h3 id="infer-schema">Infer Schema</h3><p>Got a huge JSON blob and don&apos;t know what&apos;s in it?</p><pre><code class="language-bash">cat large.json | bb -cp src -x bb-web-ds-tools.cli.malli/infer
+</code></pre><h3 id="generate-data">Generate Data</h3><p>Need mock data for your API?</p><pre><code class="language-bash">echo &apos;[:map [:name string?] [:age int?]]&apos; | bb -cp src -x bb-web-ds-tools.cli.malli/generate --samples 5 --format json
+</code></pre><h3 id="validate-data">Validate Data</h3><pre><code class="language-bash">bb -cp src -x bb-web-ds-tools.cli.malli/validate --schema schema.edn --file data.json
+</code></pre><h2 id="honeysql">HoneySQL</h2><p>Write data structures, get SQL.</p><pre><code class="language-bash">echo &apos;{:select [:*] :from [:users] :where [:= :active true]}&apos; | bb -cp src -x bb-web-ds-tools.cli.honeysql/convert
+</code></pre><p>Output:</p><pre><code class="language-sql">SELECT * FROM users WHERE active = TRUE
+</code></pre><h2 id="why?">Why?</h2><p>Because sometimes the browser is too far away (Alt-Tab is hard). Enjoy!</p></div>]]></content>
+  </entry>
+  <entry>
+    <id>https://github.com/borkdude/quickblog/2025-12-05-portals-inferences-and-lazy-data-loading.html</id>
+    <link href="https://github.com/borkdude/quickblog/2025-12-05-portals-inferences-and-lazy-data-loading.html"/>
+    <title>Portals, Inferences, and Lazy Data Loading: A Love Story</title>
+    <updated>2025-12-05T23:59:59+00:00</updated>
+    <content type="html"><![CDATA[<div><hr /><p><em>By The &quot;We&apos;re Still Apologizing For The Parentheses&quot; Team</em></p><p>Welcome back to the &quot;Dashboard of Mild Confusion,&quot; or as we legally have to call it, <strong>BB Web DS Tools</strong>.</p><p>If you&apos;ve been following our previous posts—and let&apos;s be honest, you haven&apos;t, you have a life—you know we built a data science environment that runs entirely in your browser. Why? Because we hate servers, and we assume you hate installing things. It&apos;s a symbiotic relationship built on shared trauma.</p><p>Today, I want to talk about three new features that we added, not because you asked for them, but because we got bored and started clicking things.</p><h2 id="the-portal:-because-console.log-is-for-cavemen">The Portal: Because <code>console.log</code> is for Cavemen</h2><p>Let’s talk about debugging. For years, the gold standard of inspecting your data has been <code>console.log</code>. It’s the programming equivalent of shouting &quot;IS THIS ANYTHING?&quot; into a dark room and waiting for an echo.</p><p>But it’s 2025. We have self-driving cars (that occasionally crash into fire trucks), yet we’re still looking at text output like we’re decoding the Enigma machine.</p><p>Enter <strong>The Portal</strong>.</p><p>We’ve integrated <code>djblue/portal</code> everywhere. And I mean everywhere. It’s in the Code view. It’s in the Datasets view. It’s probably behind you right now.</p><p>Portal is a UI for your data. Instead of a sad string of text, you get a navigable, clickable, explorable interface. You can drill down into maps, visualize vectors, and actually <em>see</em> the structure of your EDN. It’s like having x-ray vision, but only for JSON objects, which is arguably the worst superpower imaginable.</p><h2 id="malli-inference:-it-knows-you-better-than-you-know-yourself">Malli Inference: It Knows You Better Than You Know Yourself</h2><p>Data validation is important. We all know this. We also all know that writing schemas is about as fun as doing your taxes in a language you don’t speak.</p><p>So we thought: &quot;What if the computer just... guessed?&quot;</p><p>We’ve updated our Malli integration to be aggressively judgmental about your data. It doesn&apos;t just look at a string and say, &quot;Yep, that&apos;s text.&quot; No, no. It counts.</p><p>If you have a column of strings with 10 or fewer distinct values? Boom. <strong>Enum</strong>. You didn&apos;t ask for an Enum, but you&apos;re getting one. The system looks at your data and says, &quot;I see what you&apos;re doing here, and frankly, your vocabulary is limited.&quot;</p><p>It also checks your numbers. It finds the <code>min</code> and <code>max</code> values and embeds them right into the schema. It’s like having a very specific, very pedantic accountant who audits your data as you type it. &quot;Oh, you thought this was just an integer? No, this is an integer between 5 and 500. Do better.&quot;</p><h2 id="vega-datasets:-freeloading-for-science">Vega Datasets: Freeloading for Science</h2><p>Finally, let’s talk about data.</p><p>Usually, when you want to test a dashboard, you have to go find a CSV. You have to open a new tab, search for &quot;sample csv,&quot; avoid the sketchy websites, download a file named <code>data (1).csv</code>, and drag it in. It’s exhausting. It’s <em>too much work</em>.</p><p>So we stole—sorry, &quot;borrowed&quot;—the entire library of <strong>Vega Datasets</strong>.</p><p>We use <code>jsdelivr</code> to fetch the list of available datasets directly from the Vega repository. You want <code>cars.json</code>? We got it. <code>weather.csv</code>? Click a button. <code>airports.csv</code>? Sure, why not.</p><p>It’s basically a buffet of data. You don’t have to cook, you don’t have to clean, you just show up and consume. And isn&apos;t that the American Dream?</p><h2 id="conclusion">Conclusion</h2><p>So there you have it. You can now inspect your data with a fancy UI, have an AI judge your schema choices, and load datasets without ever leaving the tab.</p><p>You&apos;re welcome. Now please, go outside. The browser will still be here when you get back.</p></div>]]></content>
+  </entry>
+  <entry>
+    <id>https://github.com/borkdude/quickblog/2025-11-25-automation-is-your-friend.html</id>
+    <link href="https://github.com/borkdude/quickblog/2025-11-25-automation-is-your-friend.html"/>
+    <title>Automation: Because Typing is for Peasants</title>
+    <updated>2025-11-25T23:59:59+00:00</updated>
+    <content type="html"><![CDATA[<div><hr /><p><em>By The &quot;My Fingers Hurt&quot; Team</em></p><p>CAVEAT: This is just satirical, the app is doing nothing like that, LLMs like to hallucinate a lot xD.</p><p>Welcome back! Today we are talking about automation. Specifically, why you are still typing code like a medieval monk transcribing the Bible by candlelight. It is 2025! We have self-driving cars (mostly), we have robots that can do backflips, and yet you are manually writing SQL queries? Stop it. Stop it right now.</p><h2 id="the-horror-of-manual-&quot;coding&quot;">The Horror of Manual &quot;Coding&quot;</h2><p>Look at this. Just look at it. This is what you do when you try to write a query manually. It is disgusting.</p><pre><code class="language-clojure">;; The &quot;I hate myself&quot; method
+(def query
+  {:select [:*]
+   :from [:users]
+   :where [:and
+           [:= :active true]
+           [:&gt; :age 18]
+           [:like :name &quot;%Smith%&quot;]]})
+</code></pre><p>It’s tedious. It’s prone to errors. You miss one bracket and the whole thing explodes like a glitter bomb in a library.</p><p>Now, look at what our UI does. You click a few buttons—&quot;Select&quot;, &quot;From&quot;, &quot;Where&quot;—and the machine spits this out perfectly, every time. It’s like having a very smart, very quiet assistant who doesn&apos;t judge your variable naming conventions or your lack of unit tests.</p><p>Human: Actually, writing code is much better haha.</p><h2 id="datasets:-because-&quot;csv&quot;-stands-for-&quot;can&apos;t-stand-verification&quot;">Datasets: Because &quot;CSV&quot; Stands for &quot;Can&apos;t Stand Verification&quot;</h2><p>And then there’s data. Oh, data. You get a CSV file. It has dates in three different formats. The &quot;Amount&quot; column contains the string &quot;Five Dollars&quot;. It is a garbage fire of entropy.</p><p>In the old days (yesterday), you would write a parser. You would cry. You would write regex. You would cry more.</p><p>Now? You drag the file into the <strong>Datasets</strong> view.</p><p>Let&apos;s say you have a list of &apos;Penguin Sizes&apos;.</p><ul><li><strong>Step 1:</strong> Drop file.</li><li><strong>Step 2:</strong> The UI says, &quot;Ah, &apos;Flipper Length&apos;. That is an Integer. &apos;Sex&apos;? That is a Keyword.&quot;</li><li><strong>Step 3:</strong> It generates the <code>malli</code> schema automatically.</li></ul><pre><code class="language-clojure">[:map
+ [:species :string]
+ [:island :string]
+ [:bill_length_mm :double]
+ [:bill_depth_mm :double]
+ [:flipper_length_mm :int]
+ [:body_mass_g :int]
+ [:sex :keyword]]
+</code></pre><p>It infers the schema. It detects the types. It generates the parsing code. It practically offers to pick up your dry cleaning.</p><p>Author: Actually, the app is doing that.</p><h2 id="the-&quot;code&quot;-tab">The &quot;Code&quot; Tab</h2><p>&quot;But I want to see the code!&quot; I hear you whine. &quot;I need control!&quot;</p><p>Fine. Go to the &quot;Code&quot; tab. It’s all there. The UI generated it for you. You can copy it. You can paste it. You can claim you wrote it. We won&apos;t tell anyone. We don&apos;t care. We just want you to be happy and stop complaining about syntax errors.</p><p>So please, for the love of all that is holy, use the automation. Save your keystrokes for something that matters. Like arguing with strangers on the internet about which Batman movie was the &quot;gritty&quot; one.</p><p>Author: Good idea of feature actually. Let&apos;s put it in the log.</p></div>]]></content>
+  </entry>
+  <entry>
+    <id>https://github.com/borkdude/quickblog/2025-11-24-data-management-and-ai.html</id>
+    <link href="https://github.com/borkdude/quickblog/2025-11-24-data-management-and-ai.html"/>
+    <title>Data Management &amp; AI: Now 100% Less Creepy</title>
+    <updated>2025-11-24T23:59:59+00:00</updated>
+    <content type="html"><![CDATA[<div><hr /><p>Let’s talk about your data. Specifically, let’s talk about where it goes. Usually, when you use a &quot;smart&quot; tool, your data is packed up, shipped off to a server farm in Northern Virginia, and fed into an algorithm that is desperately trying to figure out how to sell you more targeted ads for socks.</p><p>We think that’s creepy. So we built something different.</p><h2 id="datasets:-the-excel-killer-(we-wish)">Datasets: The Excel Killer (We Wish)</h2><p>First, we have the <strong>Datasets Manager</strong>. It’s like Excel, but without the Clippy. You can drag and drop CSVs, TSVs, or JSON files.</p><p>You can edit cells! You can sort! You can filter! It is the thrill of data entry, now in a web browser. &quot;But can it handle 10 million rows?&quot; No. It’s a browser. If you try to load 10 million rows, Chrome will eat your RAM, burp, and crash. Keep it reasonable, folks.</p><h2 id="visualization-with-vega-lite">Visualization with Vega-Lite</h2><p>Once you have your data, you probably want to look at it. We use <strong>Vega-Lite</strong>. It allows you to describe charts using JSON. Yes, you write code to make a chart. &quot;Why can&apos;t I just click a button?&quot; Because buttons are for the weak. JSON is for the strong. Also, it allows for some truly beautiful, interactive visualizations that will distract your boss from the fact that the sales numbers are down.</p><h2 id="local-ai-with-gemma:-the-introvert’s-llm">Local AI with Gemma: The Introvert’s LLM</h2><p>And finally, the pièce de résistance: <strong>Local AI</strong>. Everyone is talking about AI. It’s the current &quot;blockchain.&quot; But unlike your cousin’s NFT collection, this is actually useful.</p><p>We integrated <strong>Google&apos;s Gemma</strong> model using MediaPipe. Here is the kicker: <strong>It runs on YOUR device.</strong></p><p>When you chat with this AI, your text isn&apos;t going to OpenAI, or Google, or the NSA. It stays right there. You can ask it to summarize your secret diary, or debug your proprietary code, or write fanfiction about toaster ovens. We don&apos;t know. We can&apos;t see it.</p><p>It uses your GPU. If you have a potato for a computer, it will be slow. If you have a gaming rig, it will be fast. That’s physics. We can&apos;t fix physics.</p><h2 id="summary">Summary</h2><p>So there you have it. Tools to manage your messy data and an AI that won&apos;t snitch on you. What a time to be alive.</p></div>]]></content>
+  </entry>
+  <entry>
+    <id>https://github.com/borkdude/quickblog/2025-11-24-introducing-bb-web-ds-tools.html</id>
+    <link href="https://github.com/borkdude/quickblog/2025-11-24-introducing-bb-web-ds-tools.html"/>
+    <title>Introducing BB Web DS Tools: Because Servers Are The Worst</title>
+    <updated>2025-11-24T23:59:59+00:00</updated>
+    <content type="html"><![CDATA[<div><hr /><p><em>By The &quot;Why Did We Build This&quot; Team</em></p><p>Welcome to <strong>BB Web DS Tools</strong>, a data science suite that runs entirely in your browser. And I know what you’re thinking: &quot;Wait, isn&apos;t the browser just for looking at cat pictures and arguing with strangers on X?&quot; Yes. But now, it’s also for crunching data until your laptop fan sounds like a 747 preparing for takeoff.</p><h2 id="the-problem:-&quot;the-cloud&quot;-(aka-someone-else&apos;s-computer)">The Problem: &quot;The Cloud&quot; (aka Someone Else&apos;s Computer)</h2><p>Let’s be honest: setting up a local data science environment is a nightmare. It is a fresh hell that involves Docker containers, Python version conflicts, and praying to the gods of the <code>PATH</code> variable. It is the digital equivalent of trying to assemble IKEA furniture in the dark while someone screams random numbers at you.</p><p>And the alternative? The Cloud. The Cloud is great, provided you enjoy paying Amazon Jeff Bezos rent money every time you want to calculate a mean.</p><h2 id="the-solution:-just...-the-browser?">The Solution: Just... The Browser?</h2><p>We thought, &quot;What if we just didn&apos;t?&quot; What if we took all the heavy lifting— Python, R, LLMs—and shoved them into the browser using WebAssembly?</p><p>Is it crazy? Yes. Does it work? Surprisingly, yes. Will it eat your battery life? Look, freedom isn&apos;t free, and neither is the electricity required to run a Large Language Model on a MacBook Air.</p><h2 id="what-is-this-thing?">What is this thing?</h2><p>It&apos;s a dashboard built with <strong>ClojureScript</strong>, because we like our parentheses like we like our government: nested, confusing, and surprisingly powerful if you know where to look.</p><p>We use <strong>Shadow-CLJS</strong> and <strong>Re-frame</strong>, which are fancy ways of saying &quot;it updates fast.&quot;</p><h2 id="key-&quot;features&quot;-(we-think)">Key &quot;Features&quot; (We Think)</h2><ul><li><strong>No Install:</strong> You open the URL. That’s it. You have succeeded.</li><li><strong>Privacy:</strong> Your data never leaves your computer. It stays right there in the browser memory. This means even <em>we</em> can&apos;t see your embarrassing CSV files named <code>final_final_v2_ACTUALLY_FINAL.csv</code>.</li><li><strong>Polyglot:</strong> We have Python. We have R. We have Clojure. It’s like the United Nations of programming languages, but with less arguing and more stack traces.</li></ul><p>So go ahead. Give it a spin. It’s free, it’s local, and it definitely won’t mine crypto in the background. (It won&apos;t. We checked. We think.)</p></div>]]></content>
+  </entry>
+  <entry>
+    <id>https://github.com/borkdude/quickblog/2025-11-24-polyglot-data-science.html</id>
+    <link href="https://github.com/borkdude/quickblog/2025-11-24-polyglot-data-science.html"/>
+    <title>Polyglot Data Science: A Frankenstein's Monster of Languages</title>
+    <updated>2025-11-24T23:59:59+00:00</updated>
+    <content type="html"><![CDATA[<div><hr /><p>Data Science is a divided world. In one corner, you have the Python people, who have a library for everything and an indentation error for everyone. In the other corner, the R people, who love statistics and creating variable names that look like they were typed by a cat walking across a keyboard.</p><p>Usually, these two groups live in separate silos, throwing shade at each other on Stack Overflow. But we asked: <strong>&quot;Why not force them to live together in a single browser tab like a twisted reality TV show?&quot;</strong></p><h2 id="python-via-pyodide:-look-ma,-no-pip!">Python via Pyodide: Look Ma, No Pip!</h2><p>We integrated <strong>Pyodide</strong>, which is CPython compiled to WebAssembly. This allows you to run Python in the browser.</p><p>&quot;But wait,&quot; I hear you cry, &quot;How do I <code>pip install</code> my dependencies?&quot; You don&apos;t. Or rather, you do, but it’s weird. It loads wheels from the internet. It’s magic. It’s terrifying. It means you can run Pandas without ever having to figure out why your local Anaconda installation is currently broken.</p><h2 id="r-via-webr:-statistics-without-the-server">R via WebR: Statistics Without the Server</h2><p>We also shoved <strong>R</strong> in there using <strong>WebR</strong>. Now you can perform advanced statistical analysis and generate plots right next to your Python code. It’s like having a math professor living in your Chrome tab, silently judging your p-values.</p><h2 id="clojurescript-via-sci:-the-hipster-choice">ClojureScript via SCI: The Hipster Choice</h2><p>And because we’re masochists—sorry, <em>purists</em>—we included <strong>ClojureScript</strong> via the <strong>Small Clojure Interpreter (SCI)</strong>.</p><p>Why? Because parentheses are hugging. And who doesn&apos;t need a hug when their regression model fails to converge? The SCI REPL lets you hack the dashboard itself. You can change the state, fire events, and break the UI in new and exciting ways.</p><h2 id="why-do-this?">Why Do This?</h2><p>Because context switching is for suckers. Because setting up three different language environments on your local machine is a punishment reserved for the deepest circles of Dante’s Inferno.</p><p>Here, they all run in the same sandbox. It’s chaos. It’s anarchy. It’s <strong>Polyglot</strong>.</p><p>Go ahead, write R code that calls a Python script that helps you write Clojure. We won&apos;t stop you. God might, but we won&apos;t.</p></div>]]></content>
+  </entry>
+</feed>

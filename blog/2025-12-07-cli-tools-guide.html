@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CLI Tools Guide: Or How I Learned to Stop Worrying and Love the Terminal</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="application/atom+xml" rel="alternate" href="atom.xml" title="CLI Tools Guide: Or How I Learned to Stop Worrying and Love the Terminal">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-clojure.min.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism.min.css">
+
+
+
+    <!-- Social sharing (Facebook, Twitter, LinkedIn, etc.) -->
+    <meta name="title" content="CLI Tools Guide: Or How I Learned to Stop Worrying and Love the Terminal">
+    <meta name="twitter:title" content="CLI Tools Guide: Or How I Learned to Stop Worrying and Love the Terminal">
+    <meta property="og:title" content="CLI Tools Guide: Or How I Learned to Stop Worrying and Love the Terminal">
+    <meta property="og:type" content="website">
+
+
+    <meta name="twitter:url" content="https://github.com/borkdude/quickblog/2025-12-07-cli-tools-guide.html">
+    <meta property="og:url" content="https://github.com/borkdude/quickblog/2025-12-07-cli-tools-guide.html">
+
+
+    <meta name="twitter:card" content="summary">
+
+
+
+  </head>
+  <body>
+
+    <div class="site-header">
+      <div class="wrapper">
+        <div class="site-nav">
+          <a class="page-link" href="archive.html">Archive</a>
+          <a class="page-link" href="tags/index.html">Tags</a>
+          
+	  <a class="page-link" href="atom.xml">
+            Feed
+          </a>
+	  
+	  
+        </div>
+        <div>
+          <h1 class="site-title">
+            <a class="page-link" href="index.html">bb-web-ds-tools</a>
+          </h1>
+	  <p>A data science suite that runs entirely in your browser.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrapper">
+
+      <h1>
+  
+  CLI Tools Guide: Or How I Learned to Stop Worrying and Love the Terminal
+  
+</h1>
+<div><hr /><h1 id="cli-tools-guide:-or-how-i-learned-to-stop-worrying-and-love-the-terminal">CLI Tools Guide: Or How I Learned to Stop Worrying and Love the Terminal</h1><p><em>2025-12-07</em></p><p>Welcome, brave data explorer. You&apos;ve likely found yourself here because the beautiful, pixel-perfect web interface of <code>bb-web-ds-tools</code> was just too &quot;easy&quot; for you. You crave the raw power of the command line. You want to feel the bits flowing through your fingertips. Or maybe you just need to script something and don&apos;t want to use a headless browser. Whatever your reason, we support you. Sort of.</p><p>In this guide, we&apos;ll walk through the CLI tools available in this repository. They are, essentially, wrappers around the same logic that powers the web app, but with less clicking and more typing.</p><h2 id="prerequisites">Prerequisites</h2><p>You&apos;ll need <code>babashka</code> installed. If you don&apos;t have it, go get it. We&apos;ll wait.</p><h2 id="the-tools">The Tools</h2><p>We have three main tools for your enjoyment: <code>data</code>, <code>sql</code>, and <code>schema</code>.</p><p>You can access them all via the <code>dstools</code> entry point:</p><pre><code class="language-bash">bb -m dstools &lt;command&gt; &lt;subcommand&gt; [opts]
+</code></pre><h3 id="1.-datasets:-the-data-plumber-(data)">1. Datasets: The Data Plumber (<code>data</code>)</h3><p>The <code>data</code> tool is your Swiss Army knife for converting data formats. Because sometimes you have JSON, but you really, really want EDN. Or maybe YAML, because you&apos;re feeling adventurous.</p><p><strong>Structure Guessing:</strong> By default, the tool guesses the structure of your data (e.g., row-maps vs columnar). You can explicitly control this with <code>--input-struct</code> and <code>--output-struct</code>. See <code>docs/CLI_DATA_STRUCTURES.md</code> for details.</p><p><strong>Usage:</strong></p><pre><code class="language-bash">bb -m dstools data convert [opts]
+</code></pre><p><strong>Options:</strong></p><ul><li><code>-f, --format &lt;fmt&gt;</code>: Input format (csv, json, edn, yaml). Optional if it can be inferred from the filename extension.</li><li><code>-t, --to &lt;fmt&gt;</code>: Output format (csv, json, edn, yaml). Default: <code>json</code>.</li><li><code>-i, --file &lt;file&gt;</code>: Input file. Reads from stdin if omitted.</li><li><code>-o, --out &lt;file&gt;</code>: Output file. Writes to stdout if omitted. Inferred from input filename if possible (e.g., <code>input.json</code> -&gt; <code>input.edn</code>).</li><li><code>-S, --input-struct &lt;struct&gt;</code>: Input data structure (row-maps, columnar, rows).</li><li><code>-s, --output-struct &lt;struct&gt;</code>: Output data structure (row-maps, columnar, rows).</li></ul><p><strong>Example: Converting Cars</strong></p><p>Let&apos;s take a classic dataset, <code>cars.json</code> (from the Vega datasets collection), and convert it to EDN. Why? Because keywords are better than strings. Everyone knows that.</p><p>First, imagine you have <code>cars.json</code>:</p><pre><code class="language-json">[
+  {
+    &quot;Name&quot;: &quot;chevrolet chevelle malibu&quot;,
+    &quot;Miles_per_Gallon&quot;: 18,
+    &quot;Cylinders&quot;: 8,
+    &quot;Displacement&quot;: 307,
+    &quot;Horsepower&quot;: 130,
+    &quot;Weight_in_lbs&quot;: 3504,
+    &quot;Acceleration&quot;: 12,
+    &quot;Year&quot;: &quot;1970-01-01&quot;,
+    &quot;Origin&quot;: &quot;USA&quot;
+  },
+  {
+    &quot;Name&quot;: &quot;buick skylark 320&quot;,
+    &quot;Miles_per_Gallon&quot;: 15,
+    &quot;Cylinders&quot;: 8,
+    &quot;Displacement&quot;: 350,
+    &quot;Horsepower&quot;: 165,
+    &quot;Weight_in_lbs&quot;: 3693,
+    &quot;Acceleration&quot;: 11.5,
+    &quot;Year&quot;: &quot;1970-01-01&quot;,
+    &quot;Origin&quot;: &quot;USA&quot;
+  }
+]
+</code></pre><p>Now, let&apos;s convert it to EDN. Notice we don&apos;t even need to tell it the input format, because we named our file properly:</p><pre><code class="language-bash">bb -m dstools data convert -t edn -i cars.json
+</code></pre><p>This will create <code>cars.edn</code> automatically. Your <code>cars.edn</code> will look something like this (but prettier, because EDN is beautiful):</p><pre><code class="language-clojure">[{:Name &quot;chevrolet chevelle malibu&quot;,
+  :Miles_per_Gallon 18,
+  :Cylinders 8,
+  :Displacement 307,
+  :Horsepower 130,
+  :Weight_in_lbs 3504,
+  :Acceleration 12,
+  :Year &quot;1970-01-01&quot;,
+  :Origin &quot;USA&quot;}
+ {:Name &quot;buick skylark 320&quot;,
+  :Miles_per_Gallon 15,
+  :Cylinders 8,
+  :Displacement 350,
+  :Horsepower 165,
+  :Weight_in_lbs 3693,
+  :Acceleration 11.5,
+  :Year &quot;1970-01-01&quot;,
+  :Origin &quot;USA&quot;}]
+</code></pre><p>And if you want to join the YAML revolution:</p><pre><code class="language-bash">bb -m dstools data convert -t yaml -i cars.edn
+</code></pre><p>Boom. <code>cars.yaml</code>.</p><h3 id="2.-honeysql:-the-query-whisperer-(sql)">2. HoneySQL: The Query Whisperer (<code>sql</code>)</h3><p>You write Clojure data structures. You get SQL strings. It&apos;s magic, but with more parentheses.</p><p><strong>Usage:</strong></p><pre><code class="language-bash">bb -m dstools sql convert [opts]
+</code></pre><p><strong>Options:</strong></p><ul><li><code>-i, --file &lt;file&gt;</code>: Input file containing a HoneySQL map. Stdin if omitted.</li><li><code>-o, --out &lt;file&gt;</code>: Output file. Inferred from input filename (e.g., <code>query.edn</code> -&gt; <code>query.sql</code>).</li></ul><p><strong>Example:</strong></p><p>Input <code>query.edn</code>:</p><pre><code class="language-clojure">{:select [:*]
+ :from [:cars]
+ :where [:= :Origin &quot;USA&quot;]}
+</code></pre><p>Command:</p><pre><code class="language-bash">bb -m dstools sql convert -i query.edn
+</code></pre><p>Output (to <code>query.sql</code>):</p><pre><code class="language-sql">SELECT * FROM cars WHERE Origin = &apos;USA&apos;
+</code></pre><h3 id="3.-malli:-the-schema-enforcer-(schema)">3. Malli: The Schema Enforcer (<code>schema</code>)</h3><p>Infer schemas, generate data, and validate your life choices (or at least your data).</p><p><strong>Commands:</strong></p><ul><li><code>infer</code>: Guess the schema from data.</li><li><code>generate</code>: Create random data from a schema.</li><li><code>validate</code>: Check if data matches a schema.</li></ul><p><strong>Example: Inferring Schema from Cars</strong></p><p>Remember that <code>cars.edn</code> file? Let&apos;s see what Malli thinks of it.</p><pre><code class="language-bash">bb -m dstools schema infer -i cars.edn
+</code></pre><p>Output (something like):</p><pre><code class="language-clojure">[:vector
+ [:map
+  [:Name string?]
+  [:Miles_per_Gallon int?]
+  [:Cylinders int?]
+  [:Displacement int?]
+  [:Horsepower int?]
+  [:Weight_in_lbs int?]
+  [:Acceleration double?]
+  [:Year string?]
+  [:Origin string?]]]
+</code></pre><p>And there you have it. The CLI tools. Use them wisely, or at least use them to avoid opening a browser.</p></div>
+
+<p><i>Published: 2025-12-07</i></p>
+
+<p>
+  <i>
+  Tagged:
+  
+  <span class="tag">
+    <a href="tags/clojure.html">clojure</a>
+  </span>
+  
+  <span class="tag">
+    <a href="tags/cli.html">cli</a>
+  </span>
+  
+  <span class="tag">
+    <a href="tags/babashka.html">babashka</a>
+  </span>
+  
+  </i>
+</p>
+
+
+
+      
+      <div style="margin-bottom: 20px; float: right;">
+        <a class="page-link" href="archive.html">Archive</a>
+      </div>
+      
+    </div>
+  </body>
+</html>

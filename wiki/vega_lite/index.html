@@ -93,17 +93,21 @@ embedded directly in the specification.</p>
 <ol>
 <li>Navigate to the <strong>Vega-Lite</strong> view.</li>
 <li>Ensure the format toggle (top right of the editor) is set to <strong>EDN</strong>.</li>
-<li>Paste the following code:
-    <code>clojure
-    {:data {:values [{:id 1 :score 12.5 :category "a" :date "2023-01-01"}
-                     {:id 2 :score 10.2 :category "b" :date "2023-01-02"}
-                     {:id 3 :score 8.7  :category "c" :date "2023-01-03"}
-                     {:id 4 :score 15.0 :category "a" :date "2023-01-04"}
-                     {:id 5 :score 9.9  :category "b" :date "2023-01-05"}]}
-     :mark :bar
-     :encoding {:x {:field "category" :type "nominal" :axis {:title "Category"}}
-                :y {:field "score"    :type "quantitative" :axis {:title "Score"}}}}</code></li>
-<li>The bar chart will render in the right-hand panel.</li>
+<li>
+<p>Paste the following code:</p>
+<p><code>clojure
+{:data {:values [{:id 1 :score 12.5 :category "a" :date "2023-01-01"}
+                 {:id 2 :score 10.2 :category "b" :date "2023-01-02"}
+                 {:id 3 :score 8.7  :category "c" :date "2023-01-03"}
+                 {:id 4 :score 15.0 :category "a" :date "2023-01-04"}
+                 {:id 5 :score 9.9  :category "b" :date "2023-01-05"}]}
+ :mark :bar
+ :encoding {:x {:field "category" :type "nominal" :axis {:title "Category"}}
+            :y {:field "score"    :type "quantitative" :axis {:title "Score"}}}}</code></p>
+</li>
+<li>
+<p>The bar chart will render in the right-hand panel.</p>
+</li>
 </ol>
 <h3 id="2-using-global-datasets">2. Using Global Datasets</h3>
 <p>Instead of hardcoding data, you can reference a dataset you imported in the
@@ -115,39 +119,47 @@ embedded directly in the specification.</p>
 </ul>
 <p><strong>Steps:</strong></p>
 <ol>
-<li>In the <strong>Vega-Lite</strong> editor, replace the <code>:data</code> map with a reference to the
-    named dataset.<ul>
+<li>
+<p>In the <strong>Vega-Lite</strong> editor, replace the <code>:data</code> map with a reference to the
+    named dataset.</p>
+<ul>
 <li><em>Note: The specific syntax for referencing global named datasets depends
   on the implementation. Typically, you use the <code>name</code> property in the data
-  object.</em>
-<code>clojure
+  object.</em></li>
+</ul>
+<p><code>clojure
 {:data {:name "example-data"}
  :mark :point
  :encoding {:x {:field "date"  :type "temporal"}
             :y {:field "score" :type "quantitative"}
-            :color {:field "category" :type "nominal"}}}</code></li>
-</ul>
+            :color {:field "category" :type "nominal"}}}</code></p>
 </li>
-<li>If the dataset is correctly loaded in the system, the scatter plot will
-    appear.</li>
+<li>
+<p>If the dataset is correctly loaded in the system, the scatter plot will
+    appear.</p>
+</li>
 </ol>
 <h3 id="3-converting-formats">3. Converting Formats</h3>
 <p><strong>Steps:</strong></p>
 <ol>
 <li>With the EDN specification from Example 1 or 2 in the editor, click the
     <strong>JSON</strong> toggle button.</li>
-<li>The code will automatically convert to standard JSON:
-    <code>json
-    {
-      "data": { "name": "example-data" },
-      "mark": "point",
-      "encoding": {
-        "x": { "field": "date", "type": "temporal" },
-        "y": { "field": "score", "type": "quantitative" },
-        "color": { "field": "category", "type": "nominal" }
-      }
-    }</code></li>
-<li>You can edit in JSON and switch back to EDN at any time.</li>
+<li>
+<p>The code will automatically convert to standard JSON:</p>
+<p><code>json
+{
+  "data": { "name": "example-data" },
+  "mark": "point",
+  "encoding": {
+    "x": { "field": "date", "type": "temporal" },
+    "y": { "field": "score", "type": "quantitative" },
+    "color": { "field": "category", "type": "nominal" }
+  }
+}</code></p>
+</li>
+<li>
+<p>You can edit in JSON and switch back to EDN at any time.</p>
+</li>
 </ol>
               
             </div>

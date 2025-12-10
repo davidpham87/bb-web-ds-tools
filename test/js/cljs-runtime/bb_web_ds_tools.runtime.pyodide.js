@@ -24,13 +24,13 @@ bb_web_ds_tools.runtime.pyodide.main_loading = cljs.core.atom.cljs$core$IFn$_inv
  *  nil: Side-effects (logging).
  */
 bb_web_ds_tools.runtime.pyodide.default_on_message = (function bb_web_ds_tools$runtime$pyodide$default_on_message(msg){
-var map__34131 = msg;
-var map__34131__$1 = cljs.core.__destructure_map(map__34131);
-var type = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__34131__$1,new cljs.core.Keyword(null,"type","type",1174270348));
-var text = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__34131__$1,new cljs.core.Keyword(null,"text","text",-1790561697));
-var G__34133 = cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(type);
-var G__34133__$1 = (((G__34133 instanceof cljs.core.Keyword))?G__34133.fqn:null);
-switch (G__34133__$1) {
+var map__24388 = msg;
+var map__24388__$1 = cljs.core.__destructure_map(map__24388);
+var type = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24388__$1,new cljs.core.Keyword(null,"type","type",1174270348));
+var text = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24388__$1,new cljs.core.Keyword(null,"text","text",-1790561697));
+var G__24389 = cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(type);
+var G__24389__$1 = (((G__24389 instanceof cljs.core.Keyword))?G__24389.fqn:null);
+switch (G__24389__$1) {
 case "ready":
 return console.log("Pyodide worker ready");
 
@@ -55,14 +55,14 @@ return console.warn("Unknown worker msg:",msg);
  */
 bb_web_ds_tools.runtime.pyodide.init_worker_BANG_ = (function bb_web_ds_tools$runtime$pyodide$init_worker_BANG_(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___34225 = arguments.length;
-var i__5750__auto___34226 = (0);
+var len__5749__auto___24458 = arguments.length;
+var i__5750__auto___24459 = (0);
 while(true){
-if((i__5750__auto___34226 < len__5749__auto___34225)){
-args__5755__auto__.push((arguments[i__5750__auto___34226]));
+if((i__5750__auto___24459 < len__5749__auto___24458)){
+args__5755__auto__.push((arguments[i__5750__auto___24459]));
 
-var G__34227 = (i__5750__auto___34226 + (1));
-i__5750__auto___34226 = G__34227;
+var G__24460 = (i__5750__auto___24459 + (1));
+i__5750__auto___24459 = G__24460;
 continue;
 } else {
 }
@@ -73,9 +73,9 @@ var argseq__5756__auto__ = ((((0) < args__5755__auto__.length))?(new cljs.core.I
 return bb_web_ds_tools.runtime.pyodide.init_worker_BANG_.cljs$core$IFn$_invoke$arity$variadic(argseq__5756__auto__);
 });
 
-(bb_web_ds_tools.runtime.pyodide.init_worker_BANG_.cljs$core$IFn$_invoke$arity$variadic = (function (p__34141){
-var vec__34143 = p__34141;
-var on_message = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__34143,(0),null);
+(bb_web_ds_tools.runtime.pyodide.init_worker_BANG_.cljs$core$IFn$_invoke$arity$variadic = (function (p__24411){
+var vec__24412 = p__24411;
+var on_message = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24412,(0),null);
 if(cljs.core.truth_(cljs.core.deref(bb_web_ds_tools.runtime.pyodide.pyodide_worker))){
 return null;
 } else {
@@ -92,9 +92,9 @@ return bb_web_ds_tools.runtime.pyodide.default_on_message;
 (bb_web_ds_tools.runtime.pyodide.init_worker_BANG_.cljs$lang$maxFixedArity = (0));
 
 /** @this {Function} */
-(bb_web_ds_tools.runtime.pyodide.init_worker_BANG_.cljs$lang$applyTo = (function (seq34137){
+(bb_web_ds_tools.runtime.pyodide.init_worker_BANG_.cljs$lang$applyTo = (function (seq24401){
 var self__5735__auto__ = this;
-return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq34137));
+return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq24401));
 }));
 
 /**
@@ -121,6 +121,20 @@ bb_web_ds_tools.runtime.pyodide.eval_in_worker = (function bb_web_ds_tools$runti
 bb_web_ds_tools.runtime.pyodide.init_worker_BANG_();
 
 return bb_web_ds_tools.utils.worker.post_message(cljs.core.deref(bb_web_ds_tools.runtime.pyodide.pyodide_worker),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),"run",new cljs.core.Keyword(null,"code","code",1586293142),code], null));
+});
+/**
+ * Syncs datasets to the Pyodide worker.
+ * 
+ *   Args:
+ *  datasets (map): The datasets map.
+ * 
+ *   Returns:
+ *  nil: Posts a message.
+ */
+bb_web_ds_tools.runtime.pyodide.sync_datasets = (function bb_web_ds_tools$runtime$pyodide$sync_datasets(datasets){
+bb_web_ds_tools.runtime.pyodide.init_worker_BANG_();
+
+return bb_web_ds_tools.utils.worker.post_message(cljs.core.deref(bb_web_ds_tools.runtime.pyodide.pyodide_worker),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),"update-datasets",new cljs.core.Keyword(null,"datasets","datasets",1896364419),datasets], null));
 });
 /**
  * Dynamically loads a script tag into the document.
@@ -178,14 +192,14 @@ return (on_ready.cljs$core$IFn$_invoke$arity$0 ? on_ready.cljs$core$IFn$_invoke$
 })).catch((function (e){
 cljs.core.reset_BANG_(bb_web_ds_tools.runtime.pyodide.main_loading,false);
 
-var G__34194 = ["Load Error: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(e)].join('');
-return (on_error.cljs$core$IFn$_invoke$arity$1 ? on_error.cljs$core$IFn$_invoke$arity$1(G__34194) : on_error.call(null,G__34194));
+var G__24430 = ["Load Error: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(e)].join('');
+return (on_error.cljs$core$IFn$_invoke$arity$1 ? on_error.cljs$core$IFn$_invoke$arity$1(G__24430) : on_error.call(null,G__24430));
 }));
 }),(function (e){
 cljs.core.reset_BANG_(bb_web_ds_tools.runtime.pyodide.main_loading,false);
 
-var G__34198 = ["Script Load Error: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(e)].join('');
-return (on_error.cljs$core$IFn$_invoke$arity$1 ? on_error.cljs$core$IFn$_invoke$arity$1(G__34198) : on_error.call(null,G__34198));
+var G__24432 = ["Script Load Error: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(e)].join('');
+return (on_error.cljs$core$IFn$_invoke$arity$1 ? on_error.cljs$core$IFn$_invoke$arity$1(G__24432) : on_error.call(null,G__24432));
 }));
 
 }

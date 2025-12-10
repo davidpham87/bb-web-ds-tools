@@ -97,23 +97,29 @@ structure.</p>
 <p><strong>Steps:</strong></p>
 <ol>
 <li>Navigate to the <strong>Malli</strong> view and select the <strong>Inference</strong> tab.</li>
-<li>In the input editor, paste the following sample data (a subset of our
-    standard example):
-    <code>clojure
-    [{:id 1 :score 12.5 :category "a" :date "2023-01-01"}
-     {:id 2 :score 10.2 :category "b" :date "2023-01-02"}]</code></li>
-<li>The view will automatically process the input.</li>
-<li>Observe the <strong>Inferred Schema</strong> in the right-hand panel. It should look
-    similar to:
-    <code>clojure
-    [:vector
-     [:map
-      [:id :int]
-      [:score :double]
-      [:category :string]
-      [:date :string]]]</code>
-    <em>(Note: The system may infer more specific types or enums depending on the
-    data variety.)</em></li>
+<li>
+<p>In the input editor, paste the following sample data (a subset of our
+    standard example):</p>
+<p><code>clojure
+[{:id 1 :score 12.5 :category "a" :date "2023-01-01"}
+ {:id 2 :score 10.2 :category "b" :date "2023-01-02"}]</code></p>
+</li>
+<li>
+<p>The view will automatically process the input.</p>
+</li>
+<li>
+<p>Observe the <strong>Inferred Schema</strong> in the right-hand panel. It should look
+    similar to:</p>
+<p><code>clojure
+[:vector
+ [:map
+  [:id :int]
+  [:score :double]
+  [:category :string]
+  [:date :string]]]</code></p>
+<p><em>(Note: The system may infer more specific types or enums depending on the
+data variety.)</em></p>
+</li>
 </ol>
 <h3 id="2-data-generation">2. Data Generation</h3>
 <p>You can use the inferred schema (or write your own) to generate more synthetic
@@ -121,15 +127,19 @@ data.</p>
 <p><strong>Steps:</strong></p>
 <ol>
 <li>Switch to the <strong>Generation</strong> tab.</li>
-<li>In the <strong>Schema</strong> editor, enter the schema for our example dataset:
-    <code>clojure
-    [:vector
-     [:map
-      [:id :int]
-      [:score :double]
-      [:category [:enum "a" "b" "c"]]
-      [:date :string]]]</code></li>
-<li>Click the <strong>Generate</strong> button.</li>
+<li>
+<p>In the <strong>Schema</strong> editor, enter the schema for our example dataset:</p>
+<p><code>clojure
+[:vector
+ [:map
+  [:id :int]
+  [:score :double]
+  [:category [:enum "a" "b" "c"]]
+  [:date :string]]]</code></p>
+</li>
+<li>
+<p>Click the <strong>Generate</strong> button.</p>
+</li>
 <li>A list of randomly generated maps matching the schema will appear in the
     output panel.</li>
 <li>(Optional) Click <strong>Save to Datasets</strong> to import this generated data into the
@@ -140,18 +150,24 @@ data.</p>
 <p><strong>Steps:</strong></p>
 <ol>
 <li>Switch to the <strong>Validation</strong> tab.</li>
-<li>In the <strong>Schema</strong> editor, enter:
-    <code>clojure
-    [:map
-     [:id :int]
-     [:score :double]]</code></li>
-<li>In the <strong>Value</strong> editor, enter an invalid value (e.g., <code>score</code> as a string):
-    <code>clojure
-    {:id 1
-     :score "12.5"}</code></li>
-<li>The output panel will display <code>Valid: false</code> and provide a detailed error
+<li>
+<p>In the <strong>Schema</strong> editor, enter:</p>
+<p><code>clojure
+[:map
+ [:id :int]
+ [:score :double]]</code></p>
+</li>
+<li>
+<p>In the <strong>Value</strong> editor, enter an invalid value (e.g., <code>score</code> as a string):</p>
+<p><code>clojure
+{:id 1
+ :score "12.5"}</code></p>
+</li>
+<li>
+<p>The output panel will display <code>Valid: false</code> and provide a detailed error
     explanation, highlighting that <code>:score</code> expected a <code>:double</code> but got a
-    string.</li>
+    string.</p>
+</li>
 </ol>
 <h3 id="4-json-schema-export">4. JSON Schema Export</h3>
 <p><strong>Steps:</strong></p>

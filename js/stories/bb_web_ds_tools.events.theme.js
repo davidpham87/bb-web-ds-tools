@@ -112,14 +112,14 @@ var v_20846 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20819_20844,(1),n
 root_20824.style.setProperty(k_20845,v_20846);
 
 
-var G__20847 = cljs.core.next(seq__20806_20838__$1);
-var G__20848 = null;
-var G__20849 = (0);
-var G__20850 = (0);
-seq__20806_20826 = G__20847;
-chunk__20807_20827 = G__20848;
-count__20808_20828 = G__20849;
-i__20809_20829 = G__20850;
+var G__20849 = cljs.core.next(seq__20806_20838__$1);
+var G__20850 = null;
+var G__20851 = (0);
+var G__20852 = (0);
+seq__20806_20826 = G__20849;
+chunk__20807_20827 = G__20850;
+count__20808_20828 = G__20851;
+i__20809_20829 = G__20852;
 continue;
 }
 } else {

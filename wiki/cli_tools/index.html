@@ -114,9 +114,9 @@ structures (Row Maps, Columnar, Row Arrays).</p>
 dstools data convert -i data.json -t edn -s columnar</code></p>
 </li>
 <li>
-<p><strong>Convert CSV to Markdown Table</strong>
-    <code>bash
-    dstools data convert -i data.csv -t markdown</code></p>
+<p><strong>Convert CSV to Markdown Table</strong></p>
+<p><code>bash
+dstools data convert -i data.csv -t markdown</code></p>
 </li>
 </ol>
 <h3 id="2-honeysql-sql">2. HoneySQL (<code>sql</code>)</h3>
@@ -135,11 +135,15 @@ into standard SQL.</p>
 </ul>
 <p><strong>Example:</strong></p>
 <ol>
-<li><strong>Compile a Query</strong><ul>
+<li>
+<p><strong>Compile a Query</strong></p>
+<ul>
 <li>Input (<code>query.edn</code>): <code>{:select [:*] :from [:users]}</code></li>
-<li>Command:
-  <code>bash
-  dstools sql convert -i query.edn</code></li>
+<li>Command:</li>
+</ul>
+<p><code>bash
+  dstools sql convert -i query.edn</code></p>
+<ul>
 <li>Output (<code>query.sql</code>): <code>SELECT * FROM users</code></li>
 </ul>
 </li>
@@ -172,9 +176,9 @@ dstools schema infer -i data.json &gt; schema.edn</code></p>
 dstools schema generate -i schema.edn --samples 10 --format json</code></p>
 </li>
 <li>
-<p><strong>Validate Data</strong>
-    <code>bash
-    dstools schema validate -i data.json -s schema.edn</code></p>
+<p><strong>Validate Data</strong></p>
+<p><code>bash
+dstools schema validate -i data.json -s schema.edn</code></p>
 </li>
 </ol>
               

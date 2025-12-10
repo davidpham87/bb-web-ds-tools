@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CLI Tools for Data Science</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="application/atom+xml" rel="alternate" href="atom.xml" title="CLI Tools for Data Science">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-clojure.min.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism.min.css">
+
+
+
+    <!-- Social sharing (Facebook, Twitter, LinkedIn, etc.) -->
+    <meta name="title" content="CLI Tools for Data Science">
+    <meta name="twitter:title" content="CLI Tools for Data Science">
+    <meta property="og:title" content="CLI Tools for Data Science">
+    <meta property="og:type" content="website">
+
+
+    <meta name="twitter:url" content="https://github.com/borkdude/quickblog/2025-12-06-cli-tools.html">
+    <meta property="og:url" content="https://github.com/borkdude/quickblog/2025-12-06-cli-tools.html">
+
+
+    <meta name="twitter:card" content="summary">
+
+
+
+  </head>
+  <body>
+
+    <div class="site-header">
+      <div class="wrapper">
+        <div class="site-nav">
+          <a class="page-link" href="archive.html">Archive</a>
+          <a class="page-link" href="tags/index.html">Tags</a>
+          
+	  <a class="page-link" href="atom.xml">
+            Feed
+          </a>
+	  
+	  
+        </div>
+        <div>
+          <h1 class="site-title">
+            <a class="page-link" href="index.html">bb-web-ds-tools</a>
+          </h1>
+	  <p>A data science suite that runs entirely in your browser.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrapper">
+
+      <h1>
+  
+  CLI Tools for Data Science
+  
+</h1>
+<div><hr /><h1 id="cli-tools-for-data-science:-because-clicking-is-hard">CLI Tools for Data Science: Because clicking is hard</h1><p>Sometimes you just want to pipe data around in your terminal like a plumber from the 80s. We get it. That&apos;s why we&apos;ve exposed the core functionality of <code>bb-web-ds-tools</code> as a CLI library compatible with <a href="https://babashka.org">Babashka</a>.</p><h2 id="setup">Setup</h2><p>First, make sure you have Babashka installed. Then, you can run these tools directly from the source or by adding this repo as a dependency.</p><pre><code class="language-bash"># Clone the repo
+git clone https://github.com/my-org/bb-web-ds-tools.git
+cd bb-web-ds-tools
+
+# Add deps (if not using bb directly with classpath)
+# You might need to set up your bb.edn to include paths &quot;src&quot;
+</code></pre><p>You can use the <code>-x</code> flag in Babashka to execute a function directly from the CLI.</p><h2 id="datasets">Datasets</h2><p>Convert between CSV, JSON, and EDN without opening Excel.</p><h3 id="example:-csv-to-json">Example: CSV to JSON</h3><pre><code class="language-bash"># Convert a CSV file to JSON
+bb -cp src -x bb-web-ds-tools.cli.datasets/convert --format csv --to json --file data.csv
+
+# Or pipe it
+cat data.csv | bb -cp src -x bb-web-ds-tools.cli.datasets/convert --format csv --to json
+</code></pre><h3 id="example:-edn-to-csv">Example: EDN to CSV</h3><pre><code class="language-bash">echo &apos;[{:a 1 :b 2} {:a 3 :b 4}]&apos; | bb -cp src -x bb-web-ds-tools.cli.datasets/convert --format edn --to csv
+</code></pre><h2 id="malli">Malli</h2><p>Validate data and infer schemas from the comfort of your shell.</p><h3 id="infer-schema">Infer Schema</h3><p>Got a huge JSON blob and don&apos;t know what&apos;s in it?</p><pre><code class="language-bash">cat large.json | bb -cp src -x bb-web-ds-tools.cli.malli/infer
+</code></pre><h3 id="generate-data">Generate Data</h3><p>Need mock data for your API?</p><pre><code class="language-bash">echo &apos;[:map [:name string?] [:age int?]]&apos; | bb -cp src -x bb-web-ds-tools.cli.malli/generate --samples 5 --format json
+</code></pre><h3 id="validate-data">Validate Data</h3><pre><code class="language-bash">bb -cp src -x bb-web-ds-tools.cli.malli/validate --schema schema.edn --file data.json
+</code></pre><h2 id="honeysql">HoneySQL</h2><p>Write data structures, get SQL.</p><pre><code class="language-bash">echo &apos;{:select [:*] :from [:users] :where [:= :active true]}&apos; | bb -cp src -x bb-web-ds-tools.cli.honeysql/convert
+</code></pre><p>Output:</p><pre><code class="language-sql">SELECT * FROM users WHERE active = TRUE
+</code></pre><h2 id="why?">Why?</h2><p>Because sometimes the browser is too far away (Alt-Tab is hard). Enjoy!</p></div>
+
+<p><i>Published: 2025-12-06</i></p>
+
+<p>
+  <i>
+  Tagged:
+  
+  <span class="tag">
+    <a href="tags/clojure.html">clojure</a>
+  </span>
+  
+  <span class="tag">
+    <a href="tags/cli.html">cli</a>
+  </span>
+  
+  <span class="tag">
+    <a href="tags/babashka.html">babashka</a>
+  </span>
+  
+  <span class="tag">
+    <a href="tags/honeysql.html">honeysql</a>
+  </span>
+  
+  <span class="tag">
+    <a href="tags/datasets.html">datasets</a>
+  </span>
+  
+  <span class="tag">
+    <a href="tags/malli.html">malli</a>
+  </span>
+  
+  </i>
+</p>
+
+
+
+      
+      <div style="margin-bottom: 20px; float: right;">
+        <a class="page-link" href="archive.html">Archive</a>
+      </div>
+      
+    </div>
+  </body>
+</html>
