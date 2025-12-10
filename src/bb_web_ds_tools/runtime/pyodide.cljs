@@ -56,6 +56,18 @@
   (init-worker!)
   (worker/post-message @pyodide-worker {:type "run" :code code}))
 
+(defn sync-datasets
+  "Syncs datasets to the Pyodide worker.
+
+  Args:
+    datasets (map): The datasets map.
+
+  Returns:
+    nil: Posts a message."
+  [datasets]
+  (init-worker!)
+  (worker/post-message @pyodide-worker {:type "update-datasets" :datasets datasets}))
+
 (defn- load-script
   "Dynamically loads a script tag into the document.
 
