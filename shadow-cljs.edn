@@ -1,5 +1,5 @@
 {:source-paths
- ["src" "test" "src/stories" "verification/cljs"]
+ ["src" "test" "src/stories"]
 
  :deps true
 
@@ -87,5 +87,5 @@
   :e2e
   {:target :node-script
    :output-to "target/e2e.js"
-   :main verify-datasets/main
+   :main verification.e2e.runner/-main
    :devtools {:autorun true}}}}
