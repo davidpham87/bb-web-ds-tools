@@ -2,6 +2,21 @@
 
 All notable changes to a project will be documented in this file.
 
+## [0.10.0] - 2025-12-10
+
+### Added
+
+- **Wiki**: Comprehensive documentation added in `wiki/` covering App DB, CLI Tools, Datasets, Gemma, HoneySQL, Malli, and Vega-Lite (118c26e).
+- **R Runtime**: Enhanced R runtime integration with bidirectional dataset synchronization (118c26e).
+- **Design Docs**: Added design documentation for Client-Side Filesystem, FSM Logic, and Dataset Sync (118c26e).
+- **Visual Testing**: Added visual bug reporting and verification scripts (118c26e).
+
+### Changed
+
+- **Refactoring**: Massive codebase refactoring to support unified worker-main thread dataset synchronization (118c26e).
+- **Documentation**: Migrated and updated blog posts (118c26e).
+- **Styles**: Updated editor and xterm CSS handling (118c26e).
+
 ## [0.9.0] - 2025-12-08
 
 ### Added

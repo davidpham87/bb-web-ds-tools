@@ -2,7 +2,18 @@
   (:require [bb-web-ds-tools.components.common :as c]))
 
 (def changelog-data
-  [{:version "0.9.0"
+  [{:version "0.10.0"
+    :date "2025-12-10"
+    :sections [{:title "Added"
+                :items ["Wiki: Comprehensive documentation added in `wiki/` covering App DB, CLI Tools, Datasets, Gemma, HoneySQL, Malli, and Vega-Lite (118c26e)."
+                        "R Runtime: Enhanced R runtime integration with bidirectional dataset synchronization (118c26e)."
+                        "Design Docs: Added design documentation for Client-Side Filesystem, FSM Logic, and Dataset Sync (118c26e)."
+                        "Visual Testing: Added visual bug reporting and verification scripts (118c26e)."]}
+               {:title "Changed"
+                :items ["Refactoring: Massive codebase refactoring to support unified worker-main thread dataset synchronization (118c26e)."
+                        "Documentation: Migrated and updated blog posts (118c26e)."
+                        "Styles: Updated editor and xterm CSS handling (118c26e)."]}]}
+   {:version "0.9.0"
     :date "2025-12-08"
     :sections [{:title "Added"
                 :items ["CLI Tools: Added CLI tools for datasets, malli, and honeysql (e000518, cafebb5)."
