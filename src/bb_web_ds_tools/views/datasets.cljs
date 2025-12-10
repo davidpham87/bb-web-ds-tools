@@ -166,6 +166,38 @@
    (update-in db [:user-input :datasets :items] merge patch)))
 
 (rf/reg-event-db
+ ::patch-datasets-from-r
+ (fn [db [_ r-datasets]]
+   (let [current-items (get-in db [:user-input :datasets :items])
+         ;; Create a map of name -> id for existing items to preserve IDs
+         name-to-id (reduce (fn [acc [id item]] (assoc acc (:name item) id)) {} current-items)
+
+         updates (reduce (fn [acc [ds-name data]]
+                           (let [existing-id (get name-to-id ds-name)
+                                 id (or existing-id (str (random-uuid)))
+                                 ;; Data from R is typically columnar (named list/map of arrays) if it was a data frame.
+                                 ;; Or it might be row-maps if we just bound what we sent.
+                                 ;; But user might have modified it.
+                                 ;; If it's a map (columnar), normalize to row-maps.
+                                 normalized-data (cond
+                                                   (map? data) (dp/normalize-columnar data)
+                                                   (sequential? data) (vec data)
+                                                   :else [])
+                                 ;; Ensure UUIDs
+                                 data-with-ids (mapv #(if (:_uuid %) % (assoc % :_uuid (str (random-uuid)))) normalized-data)
+                                 columns (if (seq data-with-ids) (keys (first data-with-ids)) [])]
+                             (assoc acc id {:id id
+                                            :name ds-name
+                                            :data data-with-ids
+                                            :columns columns
+                                            ;; Preserve view state if exists, else default
+                                            :view-state (get-in current-items [id :view-state]
+                                                                {:page 0 :rows-per-page 10 :filters {} :hidden-columns {} :mode :table})})))
+                         {}
+                         r-datasets)]
+     (update-in db [:user-input :datasets :items] merge updates))))
+
+(rf/reg-event-db
  ::update-cell
  (fn [db [_ dataset-id row-uuid col-key value]]
    (update-in db [:user-input :datasets :items dataset-id :data]

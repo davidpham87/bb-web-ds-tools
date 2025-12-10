@@ -107,8 +107,9 @@
 
 (rf/reg-event-fx
  ::run-code
- (fn [_ [_ code]]
-   {:fx [[::execute-r code]]}))
+ (fn [{:keys [db]} [_ code]]
+   (let [datasets (get-in db [:user-input :datasets :items])]
+     {:fx [[::execute-r {:code code :datasets datasets}]]})))
 
 ;; View
 (defn panel-render

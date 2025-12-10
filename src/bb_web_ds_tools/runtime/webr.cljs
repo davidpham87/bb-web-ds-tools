@@ -115,21 +115,78 @@
             (on-error (str "WebR Init failed: " e))))
         (on-error "WebR script not loaded")))))
 
+(defn- datasets->js
+  "Converts CLJS datasets (map of UUID -> map) to a JS object
+   suitable for binding in R (named list of row-array objects).
+
+   Args:
+     datasets (map): The app-db datasets map.
+
+   Returns:
+     js/Object: JS object { name: [row-objects], ... }"
+  [datasets]
+  (let [ds-map (reduce (fn [acc [_ {:keys [name data]}]]
+                         (assoc acc name data))
+                       {}
+                       datasets)]
+    (clj->js ds-map)))
+
+(defn- bind-datasets
+  "Binds the datasets to the R global environment.
+
+   Args:
+     webr (js/WebR): The WebR instance.
+     datasets (map): The datasets from app-db."
+  [^js webr datasets]
+  (go
+    (try
+      (let [js-datasets (datasets->js datasets)]
+        ;; .bind typically returns a Promise
+        (<p! (.bind (.-globalEnv webr) "datasets" js-datasets)))
+      (catch :default e
+        (js/console.error "Failed to bind datasets to R:" e)))))
+
+(defn- sync-datasets
+  "Retrieves the 'datasets' variable from R, converts it back to CLJS,
+   and dispatches an update event if found.
+
+   Args:
+     webr (js/WebR): The WebR instance."
+  [^js webr]
+  (go
+    (try
+      ;; .get returns a Promise
+      (let [r-datasets (try (<p! (.get (.-globalEnv webr) "datasets"))
+                            (catch :default _ nil))]
+        (when r-datasets
+          (let [js-val (<p! (.toJs r-datasets))
+                clj-datasets (js->clj js-val :keywordize-keys true)]
+            ;; We assume the R user might have returned a named list of data frames (or lists).
+            ;; We need to sync this back to app-db.
+            ;; Dispatching an event to patch datasets.
+            ;; We wrap it in a map for the event handler.
+            (rf/dispatch [:bb-web-ds-tools.views.datasets/patch-datasets-from-r clj-datasets]))))
+      (catch :default e
+        (js/console.error "Failed to sync datasets from R:" e)))))
+
 (defn eval-in-main
   "Evaluates R code in the main thread using WebR.
 
   Args:
     code (string): The R code to evaluate.
+    datasets (map): Optional map of datasets to bind in R.
 
   Returns:
     nil: Submits results to Portal."
-  [code]
+  [code & [datasets]]
   (if @webr-instance
     (go
       (try
         (portal-submit {:type :code :text code})
         (let [webr @webr-instance
               shelter-class (get-shelter-class webr)]
+          (when datasets
+            (<! (bind-datasets webr datasets)))
           (if shelter-class
             (let [s (new shelter-class)
                   shelter (try
@@ -178,7 +235,8 @@
                               js-val)
                         clj-val (try (js->clj val :keywordize-keys true)
                                      (catch js/Error _ (str result)))]
-                    (portal-submit {:type :result :value clj-val})))
+                    (portal-submit {:type :result :value clj-val})
+                    (<! (sync-datasets webr))))
                 (catch :default e
                   (portal-submit {:type :error :text (str e)}))
                 (finally
