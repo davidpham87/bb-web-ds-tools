@@ -106,6 +106,16 @@
  (fn [[code opts]]
    (webr/eval-in-main code opts)))
 
+(rf/reg-fx
+ ::bind-datasets
+ (fn [{:keys [datasets keys-to-bind]}]
+   (webr/bind-datasets datasets keys-to-bind)))
+
+(rf/reg-fx
+ ::sync-datasets
+ (fn [_]
+   (webr/sync-datasets)))
+
 (rf/reg-event-fx
  ::run-code
  (fn [{:keys [db]} [_ code]]
@@ -113,6 +123,18 @@
                                                      :container-height 800
                                                      :canvas-scale 0.72})]
      {:fx [[::execute-r [code {:webr webr-settings}]]]})))
+
+(rf/reg-event-fx
+ ::on-mount
+ (fn [{:keys [db]} _]
+   (let [datasets (get-in db [:user-input :datasets :items])]
+     {:fx [[:dispatch [::initialize]]
+           [::bind-datasets {:datasets datasets}]]})))
+
+(rf/reg-event-fx
+ ::on-unmount
+ (fn [_ _]
+   {:fx [[::sync-datasets]]}))
 
 ;; View
 (defn panel-render
