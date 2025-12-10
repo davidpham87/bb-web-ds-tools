@@ -6,6 +6,7 @@
    [bb-web-ds-tools.portal :as portal]
    [bb-web-ds-tools.runtime.pyodide :as pyodide-runtime]
    [bb-web-ds-tools.theme :as t]
+   [bb-web-ds-tools.views.datasets :as datasets]
    [clojure.string :as str]
    [re-frame.core :as rf]
    [reagent.core :as r]))
@@ -36,6 +37,7 @@ chart.to_html()")
     (str/join
      "\n"
      ["import micropip"
+      "from datasets import datasets"
       ""
       (str/join "\n" (mapv install-fn packages))
       ""
@@ -54,6 +56,16 @@ chart.to_html()")
        "\n"
        initial-code))
 
+(rf/reg-event-fx
+ ::handle-dataset-update
+ (fn [{:keys [db]} [_ {:keys [key value]}]]
+   {:fx [[:dispatch [::datasets/add-dataset {:name key :data value}]]]}))
+
+(rf/reg-event-fx
+ ::handle-dataset-delete
+ (fn [{:keys [db]} [_ {:keys [key]}]]
+   {:fx [[:dispatch [::datasets/delete-dataset key]]]}))
+
 (defn on-worker-message
   "Handles messages from the Pyodide worker.
 
@@ -63,12 +75,14 @@ chart.to_html()")
   Returns:
     nil: Dispatches events."
   [msg]
-  (let [{:keys [type text value]} msg]
+  (let [{:keys [type text value key]} msg]
     (case (keyword type)
       :ready (rf/dispatch [::on-ready])
       :error (rf/dispatch [::portal/submit msg])
       :result (rf/dispatch [::portal/submit value])
-      :stdout (rf/dispatch [::portal/submit text])
+      :stdout (rf/dispatch [::portal/submit text :code])
+      :dataset-update (rf/dispatch [::handle-dataset-update {:key key :value value}])
+      :dataset-delete (rf/dispatch [::handle-dataset-delete {:key key}])
       (js/console.warn "Unknown worker msg:" msg))))
 
 (rf/reg-event-fx
@@ -144,6 +158,11 @@ chart.to_html()")
  (fn [code]
    (pyodide-runtime/eval-in-worker code)))
 
+(rf/reg-fx
+ ::sync-datasets
+ (fn [datasets]
+   (pyodide-runtime/sync-datasets datasets)))
+
 (rf/reg-event-fx
  ::run-code
  (fn [_ [_ code]]
@@ -152,32 +171,42 @@ chart.to_html()")
 (defn internal-view
   "Renders the internal Pyodide view content.
 
+  Args:
+    datasets (map): The datasets map.
+
   Returns:
     vector: A hiccup vector."
-  []
+  [datasets]
   (let [code-sub (rf/subscribe [::code])]
-    (fn []
-      (let [code @code-sub
-            mac-os? @(rf/subscribe [::mac-os?])
-            loading? @(rf/subscribe [::loading?])
-            ready? @(rf/subscribe [::ready?])]
-        [:div {:class "w-full border border-gray-700 rounded mb-4"}
-         [l/flex-col {:class "h-full w-full"}
-          [l/flex-row {:class "justify-between py-4"}
-           [c/label "Python Code"]
-           [l/flex-row {:class "space-x-4"}
-            (when loading? [:div "Loading Pyodide..."])
-            [c/button {:on-click #(rf/dispatch [::run-code code])} "Run"]]]
-          [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)
-                 :style {:height "85vh"}}
-           [editor/monaco-editor
-            {:value code
-             :language "python"
-             :options {:rulers [80] :lineNumbers "off"}
-             :on-change #(rf/dispatch [::set-code %])
-             :on-mount #(editor/setup-editor-actions
-                         % mac-os?
-                         (fn [c] (rf/dispatch [::run-code c])))}]]]]))))
+    (r/create-class
+     {:component-did-update
+      (fn [this [_ old-datasets]]
+        (let [new-datasets (second (r/argv this))]
+          (when (not= old-datasets new-datasets)
+            (pyodide-runtime/sync-datasets new-datasets))))
+      :reagent-render
+      (fn [datasets]
+        (let [code @code-sub
+              mac-os? @(rf/subscribe [::mac-os?])
+              loading? @(rf/subscribe [::loading?])
+              ready? @(rf/subscribe [::ready?])]
+          [:div {:class "w-full border border-gray-700 rounded mb-4"}
+           [l/flex-col {:class "h-full w-full"}
+            [l/flex-row {:class "justify-between py-4"}
+             [c/label "Python Code"]
+             [l/flex-row {:class "space-x-4"}
+              (when loading? [:div "Loading Pyodide..."])
+              [c/button {:on-click #(rf/dispatch [::run-code code])} "Run"]]]
+            [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)
+                   :style {:height "85vh"}}
+             [editor/monaco-editor
+              {:value code
+               :language "python"
+               :options {:rulers [80] :lineNumbers "off"}
+               :on-change #(rf/dispatch [::set-code %])
+               :on-mount #(editor/setup-editor-actions
+                           % mac-os?
+                           (fn [c] (rf/dispatch [::run-code c])))}]]]]))})))
 
 (defn panel
   "Main component for the Pyodide view. Initializes on mount.
@@ -185,6 +214,8 @@ chart.to_html()")
   Returns:
     vector: A hiccup vector."
   []
-  (r/create-class
-   {:component-did-mount #(rf/dispatch [::initialize])
-    :reagent-render internal-view}))
+  (let [datasets-sub (rf/subscribe [::datasets/items])]
+    (r/create-class
+     {:component-did-mount #(rf/dispatch [::initialize])
+      :reagent-render (fn []
+                        [internal-view @datasets-sub])})))
