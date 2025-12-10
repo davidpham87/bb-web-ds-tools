@@ -85,6 +85,16 @@
       ;; Initialize the DB
       (rf/dispatch-sync [::core/initialize-db])
 
+      ;; Initialize all view states (simulating component mounts)
+      ;; This prevents subscription failures due to missing state
+      (rf/dispatch-sync [:malli/initialize])
+      (rf/dispatch-sync [:honeysql/initialize])
+      (rf/dispatch-sync [:bb-web-ds-tools.views.vega-lite/initialize])
+      (rf/dispatch-sync [:bb-web-ds-tools.views.gemma/initialize])
+      (rf/dispatch-sync [:bb-web-ds-tools.views.datasets/initialize])
+      (rf/dispatch-sync [:bb-web-ds-tools.views.code/initialize])
+      (rf/dispatch-sync [:bb-web-ds-tools.events.settings/initialize])
+
       ;; Mock navigation to avoid side effects
       (rf/reg-fx :navigate (fn [_] nil))
 
@@ -93,14 +103,22 @@
        :bb-web-ds-tools.portal/submit
        (fn [db _] db))
 
+      ;; Mock Theme Application (prevents DOM access failure)
+      (rf/reg-fx :theme/apply (fn [_] nil))
+      (rf/dispatch-sync [:bb-web-ds-tools.events.theme/set-theme :zenburn])
+
       ;; Mock Runtime and External Side Effects
       ;; R-REPL
       (rf/reg-fx :bb-web-ds-tools.views.r-repl/load-runtime (fn [_] nil))
       (rf/reg-fx :bb-web-ds-tools.views.r-repl/execute-r (fn [_] nil))
+      ;; Trigger R-REPL init after mock
+      (rf/dispatch-sync [:bb-web-ds-tools.views.r-repl/initialize])
 
       ;; Pyodide
       (rf/reg-fx :bb-web-ds-tools.views.pyodide/load-runtime (fn [_] nil))
       (rf/reg-fx :bb-web-ds-tools.views.pyodide/execute-python (fn [_] nil))
+      ;; Trigger Pyodide init after mock
+      (rf/dispatch-sync [:bb-web-ds-tools.views.pyodide/initialize])
 
       ;; Gemma
       (rf/reg-fx :bb-web-ds-tools.views.gemma/load-model-fx (fn [_] nil))
