@@ -2,6 +2,29 @@
 
 All notable changes to a project will be documented in this file.
 
+## [0.10.0] - 2025-12-10
+
+### Added
+
+- **Wiki**: Comprehensive documentation added in `wiki/` covering App DB, CLI Tools, Datasets, Gemma, HoneySQL, Malli, and Vega-Lite (118c26e).
+- **R Runtime**: Enhanced R runtime integration with bidirectional dataset synchronization (118c26e).
+- **Design Docs**: Added design documentation for Client-Side Filesystem, FSM Logic, and Dataset Sync (118c26e).
+- **Visual Testing**: Added visual bug reporting and verification scripts (118c26e).
+- **Integration Tests**: Added `cljs/verification/e2e` for end-to-end testing of datasets, navigation, release, and themes.
+- **Storybook**: Added `preview-head.html` and `main.js` configuration for Storybook integration.
+- **Externs**: Added externs for `webr.js` and `datascript.js` to support advanced compilation.
+- **Workspaces**: Added persistence and schema logic for workspaces in `src/bb_web_ds_tools/workspaces`.
+
+### Changed
+
+- **Refactoring**: Massive codebase refactoring to support unified worker-main thread dataset synchronization (118c26e).
+- **Documentation**: Migrated and updated blog posts (118c26e).
+- **Styles**: Updated editor and xterm CSS handling (118c26e).
+- **Build**: Updated `webpack.config.js` and `shadow-cljs.edn` to support new assets and externs.
+- **CLI**: Refactored CLI tools for datasets, malli, and honeysql into `src/bb_web_ds_tools/cli/`.
+- **Runtime Protocol**: Updated runtime protocol to handle new message types and synchronization logic.
+- **Dependencies**: Updated `deps.edn` and `package.json` dependencies.
+
 ## [0.9.0] - 2025-12-08
 
 ### Added
