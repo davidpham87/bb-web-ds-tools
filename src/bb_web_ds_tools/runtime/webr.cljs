@@ -115,15 +115,80 @@
             (on-error (str "WebR Init failed: " e))))
         (on-error "WebR script not loaded")))))
 
+(defn- datasets->js
+  "Converts CLJS datasets (map of UUID -> map) to a JS object
+   suitable for binding in R (named list of row-array objects).
+
+   Args:
+     datasets (map): The app-db datasets map.
+     keys-to-bind (set/seq): Optional. Keys (names) of datasets to bind.
+
+   Returns:
+     js/Object: JS object { name: [row-objects], ... }"
+  [datasets keys-to-bind]
+  (let [filter-fn (if (seq keys-to-bind)
+                    (set keys-to-bind)
+                    (constantly true))
+        ds-map (reduce (fn [acc [_ {:keys [name data]}]]
+                         (if (filter-fn name)
+                           (assoc acc name data)
+                           acc))
+                       {}
+                       datasets)]
+    (clj->js ds-map)))
+
+(defn bind-datasets
+  "Binds the datasets to the R global environment.
+
+   Args:
+     datasets (map): The datasets from app-db.
+     keys-to-bind (seq): Optional keys to filter."
+  [datasets & [keys-to-bind]]
+  (if @webr-instance
+    (go
+      (try
+        (let [webr @webr-instance
+              js-datasets (datasets->js datasets keys-to-bind)]
+          ;; .bind typically returns a Promise
+          (<p! (.bind (.-globalEnv webr) "datasets" js-datasets)))
+        (catch :default e
+          (js/console.error "Failed to bind datasets to R:" e))))
+    (go (js/console.warn "WebR not loaded, cannot bind datasets"))))
+
+(defn sync-datasets
+  "Retrieves the 'datasets' variable from R, converts it back to CLJS,
+   and dispatches an update event if found."
+  []
+  (if @webr-instance
+    (go
+      (try
+        (let [webr @webr-instance
+              ;; .get returns a Promise
+              r-datasets (try (<p! (.get (.-globalEnv webr) "datasets"))
+                              (catch :default _ nil))]
+          (when r-datasets
+            (let [js-val (<p! (.toJs r-datasets))
+                  clj-datasets (js->clj js-val :keywordize-keys true)]
+              ;; We assume the R user might have returned a named list of data frames (or lists).
+              ;; We need to sync this back to app-db.
+              ;; Dispatching an event to patch datasets.
+              ;; We wrap it in a map for the event handler.
+              (rf/dispatch [:bb-web-ds-tools.views.datasets/patch-datasets-from-r clj-datasets]))))
+        (catch :default e
+          (js/console.error "Failed to sync datasets from R:" e))))
+    (go (js/console.warn "WebR not loaded, cannot sync datasets"))))
+
 (defn eval-in-main
   "Evaluates R code in the main thread using WebR.
 
   Args:
     code (string): The R code to evaluate.
+    opts (map, optional): Options.
+      - :webr (map): Settings for WebR (container-width, container-height, canvas-scale).
 
   Returns:
     nil: Submits results to Portal."
-  [code]
+  [code & [opts]]
   (if @webr-instance
     (go
       (try
@@ -155,7 +220,14 @@
                                         (if more
                                           (recur more new-acc)
                                           new-acc)))
-                                    [])]
+                                    [])
+                      ;; Default settings
+                      webr-settings (get opts :webr {:container-width 720
+                                                     :container-height 800
+                                                     :canvas-scale 0.72})
+                      container-width (:container-width webr-settings)
+                      container-height (:container-height webr-settings)
+                      canvas-scale (:canvas-scale webr-settings)]
 
                   (doseq [res output-msgs]
                     ;; Fix for null safety: explicitly check for non-nil results
@@ -164,10 +236,10 @@
 
                   (doseq [img (array-seq images)]
                     (let [data-url (image-bitmap->data-url img)
-                          canvas-hiccup [:div {:style {:width 720 :height 800}}
+                          canvas-hiccup [:div {:style {:width container-width :height container-height}}
                                          [:canvas
-                                          {:width (int (* (get-width img) 0.72))
-                                           :height (int (* (get-height img) 0.72))
+                                          {:width (int (* (get-width img) canvas-scale))
+                                           :height (int (* (get-height img) canvas-scale))
                                            :style {:background-image (str "url(" data-url ")")
                                                    :background-size "cover"}}]]]
                       (rf/dispatch [::portal/submit canvas-hiccup :portal.viewer/hiccup])))

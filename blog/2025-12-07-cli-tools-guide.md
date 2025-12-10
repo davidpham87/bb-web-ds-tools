@@ -1,3 +1,8 @@
+Title: CLI Tools Guide: Or How I Learned to Stop Worrying and Love the Terminal
+Date: 2025-12-07
+Tags: clojure, babashka, cli
+---
+
 # CLI Tools Guide: Or How I Learned to Stop Worrying and Love the Terminal
 
 _2025-12-07_

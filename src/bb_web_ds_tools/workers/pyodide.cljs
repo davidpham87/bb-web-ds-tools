@@ -52,6 +52,35 @@
              (.log js/console err)
              (post-msg {:type :error :text (str err)})))))))
 
+(def datasets-target (js-obj))
+
+(defn update-datasets
+  "Updates the shared datasets object.
+
+  Args:
+    new-datasets (map): The new datasets map."
+  [new-datasets]
+  ;; Clear existing keys
+  (doseq [k (js/Object.keys datasets-target)]
+    (js/Reflect.deleteProperty datasets-target k))
+  ;; Populate new keys
+  (doseq [[k v] new-datasets]
+    (js/Reflect.set datasets-target k (clj->js v))))
+
+(defn create-datasets-proxy []
+  (js/Proxy. datasets-target
+             (clj->js {:set (fn [obj prop value receiver]
+                              (let [js-val (if (and value (.-toJs value))
+                                           (.toJs ^js value #js {"create_pyproxies" false})
+                                             value)]
+                                (js/Reflect.set obj prop js-val receiver)
+                                (post-msg {:type "dataset-update" :key prop :value js-val})
+                                true))
+                       :deleteProperty (fn [obj prop]
+                                         (js/Reflect.deleteProperty obj prop)
+                                         (post-msg {:type "dataset-delete" :key prop})
+                                         true)})))
+
 (defn load-runtime
   "Loads the Pyodide runtime.
 
@@ -66,6 +95,7 @@
                    :stderr (fn [text] (post-msg {:type :error :text (str text)}))}))
         (.then (fn [p]
                  (reset! pyodide-instance p)
+                 (.registerJsModule ^js p "datasets" (clj->js {:datasets (create-datasets-proxy)}))
                  (post-msg {:type :ready})))
         (.catch (fn [e] (post-msg {:type :error :text (str "Load Error: " e)}))))
     (catch :default e
@@ -82,8 +112,9 @@
    (fn [e]
      (let [r (t/reader :json)
            data (t/read r (.-data e))
-           {:keys [type code]} data]
+           {:keys [type code datasets]} data]
        (case type
          "load" (load-runtime)
          "run" (run-code code)
+         "update-datasets" (update-datasets datasets)
          (js/console.warn "Unknown message type:" type))))))

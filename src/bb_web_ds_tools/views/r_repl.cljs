@@ -6,7 +6,8 @@
             [bb-web-ds-tools.components.layout :as l]
             [bb-web-ds-tools.theme :as t]
             [bb-web-ds-tools.portal :as portal]
-            [bb-web-ds-tools.runtime.webr :as webr]))
+            [bb-web-ds-tools.runtime.webr :as webr]
+            [bb-web-ds-tools.events.settings :as settings-events]))
 
 ;; State initialization
 (rf/reg-event-fx
@@ -75,7 +76,7 @@
 (rf/reg-event-db
  ::set-error
  (fn [db [_ v]]
-   (update-in db [:user-input :r-repl :default] assoc ::error v ::loading? false)))
+   (update-in db [:user-input :r-repl :default] assoc ::error v ::loading? false ::ready? false)))
 
 (rf/reg-event-db
  ::set-code
@@ -102,13 +103,38 @@
 ;; Execution
 (rf/reg-fx
  ::execute-r
- (fn [code]
-   (webr/eval-in-main code)))
+ (fn [[code opts]]
+   (webr/eval-in-main code opts)))
+
+(rf/reg-fx
+ ::bind-datasets
+ (fn [{:keys [datasets keys-to-bind]}]
+   (webr/bind-datasets datasets keys-to-bind)))
+
+(rf/reg-fx
+ ::sync-datasets
+ (fn [_]
+   (webr/sync-datasets)))
 
 (rf/reg-event-fx
  ::run-code
- (fn [_ [_ code]]
-   {:fx [[::execute-r code]]}))
+ (fn [{:keys [db]} [_ code]]
+   (let [webr-settings (get-in db [:settings :webr] {:container-width 720
+                                                     :container-height 800
+                                                     :canvas-scale 0.72})]
+     {:fx [[::execute-r [code {:webr webr-settings}]]]})))
+
+(rf/reg-event-fx
+ ::on-mount
+ (fn [{:keys [db]} _]
+   (let [datasets (get-in db [:user-input :datasets :items])]
+     {:fx [[:dispatch [::initialize]]
+           [::bind-datasets {:datasets datasets}]]})))
+
+(rf/reg-event-fx
+ ::on-unmount
+ (fn [_ _]
+   {:fx [[::sync-datasets]]}))
 
 ;; View
 (defn panel-render

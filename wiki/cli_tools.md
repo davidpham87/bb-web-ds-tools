@@ -61,6 +61,7 @@ structures (Row Maps, Columnar, Row Arrays).
     ```
 
 2.  **Convert CSV to Markdown Table**
+
     ```bash
     dstools data convert -i data.csv -t markdown
     ```
@@ -87,9 +88,11 @@ into standard SQL.
 1.  **Compile a Query**
     - Input (`query.edn`): `{:select [:*] :from [:users]}`
     - Command:
+
       ```bash
       dstools sql convert -i query.edn
       ```
+
     - Output (`query.sql`): `SELECT * FROM users`
 
 ### 3. Malli (`schema`)
@@ -124,6 +127,7 @@ inference, and generation.
     ```
 
 3.  **Validate Data**
+
     ```bash
     dstools schema validate -i data.json -s schema.edn
     ```
