@@ -1,0 +1,92 @@
+[#:snapshot{:author "Jules",
+             :date #inst "2024-10-25T00:00:00.000-00:00",
+             :tags ["directives" "principles"],
+             :topic "Core Directives",
+             :title "Core Directives and Principles",
+             :memories [{:memory/title "Form State Management",
+                         :memory/description "Aggressively use `fork.re-frame` for form state management when refactoring or building new components. Use `fork.reagent` for pure Reagent components and `fork.re-frame` for re-frame integration."}
+                        {:memory/title "Documentation & Examples",
+                         :memory/description "Project documentation is in `wiki/`. Consistently use the example dataset (id, score, category, date) from `bb-web-ds-tools.utils.dataset-processing` for all code and usage examples."}
+                        {:memory/title "Verification",
+                         :memory/description "Always Verify Your Work. Edit Source, Not Artifacts. Practice Proactive Testing."}
+                        {:memory/title "Environment",
+                         :memory/description "Do not add benchmarks (unstable env). Direct execution of sudo/interactive scripts is blocked."}
+                        {:memory/title "Git & File Operations",
+                         :memory/description "`overwrite_file_with_block` may auto-commit. `package-lock.json` is ignored. `quickblog` must be a pinned git dependency."}
+                        {:memory/title "Code Style",
+                         :memory/description "Top-level forms in CLJS must be separated by at least one blank line. Docstrings required for public functions."}]}
+ #:snapshot{:author "Jules",
+             :date #inst "2024-10-25T00:00:00.000-00:00",
+             :tags ["testing" "verification" "strategy"],
+             :topic "Testing Strategy",
+             :title "Testing and Verification Strategy",
+             :memories [{:memory/title "E2E Tests",
+                         :memory/description "Success is defined as rendering non-blank screen after 5s. Run with `test/e2e/verify_release.py`. Requires production build (`npx shadow-cljs release app && npx webpack --config-name app`)."}
+                        {:memory/title "Frontend Verification",
+                         :memory/description "Use Python Playwright scripts. `frontend_verification_complete` requires screenshots in root."}
+                        {:memory/title "Re-frame Testing",
+                         :memory/description "Warnings suppressed via `suppress-re-frame-warnings` fixture. Verify state using `re-frame/subscribe` (dereferenced). Use `day8.re-frame/test` for sync testing."}
+                        {:memory/title "Playwright",
+                         :memory/description "Target scrollable containers for scrolling verification. Use `page.keyboard.insert_text` for Monaco. Check for `popup` events for new windows. Use role-based locators for tabs."}
+                        {:memory/title "Karma",
+                         :memory/description "`npm test` runs `shadow-cljs compile test`. Requires `chromium-browser` and `--no-sandbox` in Docker. `shadow-cljs watch test` intercepts failures faster."}
+                        {:memory/title "Visual Reports",
+                         :memory/description "Documented in `docs/visual_report.md`."}]}
+ #:snapshot{:author "Jules",
+             :date #inst "2024-10-25T00:00:00.000-00:00",
+             :tags ["build" "deployment" "runtime"],
+             :topic "Build & Runtime",
+             :title "Build, Deployment, and Runtime",
+             :memories [{:memory/title "Build Output",
+                         :memory/description "`docs/` is the build output and web root. `shadow-cljs watch app` may fail to serve despite starting."}
+                        {:memory/title "Compilation",
+                         :memory/description "CLJS changes need explicit recompilation to update `docs`. `shadow-cljs` build `:app` uses `:js-provider :external` with Webpack."}
+                        {:memory/title "Dependencies",
+                         :memory/description "`npm install` handles vendoring via `postinstall` (e.g., Monaco, Pyodide)."}
+                        {:memory/title "Runtime Layers",
+                         :memory/description "WebR: Submission via `[::portal/submit value viewer]`. `autoprint: true` in `.evalR()`. Managed in `bb-web-ds-tools.runtime.webr`. Pyodide: Initialized in dedicated Web Worker. Managed in `bb-web-ds-tools.runtime.pyodide`. SCI: Exposes `user/datasets` atom. Supports `eval-in-worker` and `eval-in-main`."}
+                        {:memory/title "CI/CD",
+                         :memory/description "`deploy.yml` on push to `releases`. Custom Docker image with pre-installed deps."}
+                        {:memory/title "Storybook",
+                         :memory/description "Output to `docs/js/stories`. Story namespaces must export metadata to `js/module.exports.default`."}]}
+ #:snapshot{:author "Jules",
+             :date #inst "2024-10-25T00:00:00.000-00:00",
+             :tags ["cli" "architecture"],
+             :topic "CLI Architecture",
+             :title "CLI Tools Architecture",
+             :memories [{:memory/title "Unified Entry",
+                         :memory/description "`src/dstools.clj` via `bb -m dstools`. Dispatches subcommands (data, sql, schema)."}
+                        {:memory/title "Features",
+                         :memory/description "Datasets: Infers structure if not provided. Honeysql: Integrates `cli-specs`. Malli: Uses `cli-specs`."}
+                        {:memory/title "Implementation",
+                         :memory/description "`babashka.cli/dispatch`. Handlers accept context map `{:keys [opts]}`. Custom `show-help`."}]}
+ #:snapshot{:author "Jules",
+             :date #inst "2024-10-25T00:00:00.000-00:00",
+             :tags ["ui" "components" "react"],
+             :topic "UI Components",
+             :title "User Interface and Components",
+             :memories [{:memory/title "Layout",
+                         :memory/description "`h-screen overflow-hidden` mostly. `top-bar` external to content. `split-view` (ratios: :2-1, :1-2, :1-3)."}
+                        {:memory/title "Components",
+                         :memory/description "Dense Data Grid, Card, Monaco Editor, Portal, Vega-Lite, Malli."}
+                        {:memory/title "Styling",
+                         :memory/description "Tailwind. Dark Mode (Zenburn). Font stack: Inter (UI), JetBrains Mono (Code)."}
+                        {:memory/title "Reagent/React",
+                         :memory/description "React 18. Form-3 `component-did-update` usage. `component-did-mount` for one-time init."}]}
+ #:snapshot{:author "Jules",
+             :date #inst "2024-10-25T00:00:00.000-00:00",
+             :tags ["conventions" "codebase"],
+             :topic "Codebase Conventions",
+             :title "Codebase Conventions and Specifics",
+             :memories [{:memory/title "Structure",
+                         :memory/description "`src/bb_web_ds_tools/` -> `views/`, `components/`, `utils/`, `events/`, `core.cljs`."}
+                        {:memory/title "Naming",
+                         :memory/description "Directories use underscores. Avoid shadowing `clojure.core/name`."}
+                        {:memory/title "Data Processing",
+                         :memory/description "`bb-web-ds-tools.utils.dataset-processing`. `parse-dataset` multimethod."}
+                        {:memory/title "Re-frame",
+                         :memory/description "Events: `::navigate`, `::portal/submit`. State: User input vs Derived. Effects: Return effect map, use `:dispatch`."}
+                        {:memory/title "Interop",
+                         :memory/description "Use `^js` hints. `clj->js` options. `js->clj` for Portal."}
+                        {:memory/title "Navigation",
+                         :memory/description "`reitit` with hash history. `::navigate` event `[route-name params query]`."}]}]
