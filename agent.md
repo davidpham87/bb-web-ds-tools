@@ -29,8 +29,11 @@ following core technologies:
 
 1.  **Install dependencies:**
 
+    This will download clojure, babashka and node depdencies. Check if bb or
+    clojure are installed before executing.
+
     ```bash
-    npm install
+    ./scripts/vm_setup.sh
     ```
 
 2.  **Start the development server:** Conect to localhost:8080 to see the app
