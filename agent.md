@@ -173,3 +173,8 @@ the
 ## Markdown Formatting
 
 - All Markdown files should have a maximum line width of 80 characters.
+
+## End 2 End Test
+
+Write your E2E test in clojuresript using playwright in the test/verification/e2e
+folder.

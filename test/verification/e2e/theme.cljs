@@ -1,8 +1,10 @@
-(ns verification.e2e.theme-test
-  (:require-macros [verification.e2e.macros :refer [def-e2e-test]])
-  (:require [clojure.string :as str]
-            [verification.e2e.core :refer [with-page check]]
-            [promesa.core :as p]))
+(ns verification.e2e.theme
+  (:require-macros
+   [verification.e2e.macros :refer [def-e2e-test]])
+  (:require
+   [clojure.string :as str]
+   [verification.e2e.core :refer [with-page check]]
+   [promesa.core :as p]))
 
 (def-e2e-test verify-theme
   (with-page
