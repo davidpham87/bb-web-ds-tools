@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.components.layout
-  (:require [bb-web-ds-tools.theme :as t]))
+  (:require [bb-web-ds-tools.theme :as t]
+            [reagent.core :as r]
+            [re-frame.core :as rf]))
 
 (defn page-container
   "Renders the top-level page container.
@@ -170,3 +172,20 @@
       left]
      [:div {:class (str "h-1/2 md:h-full overflow-auto " right-width)}
       right]]))
+
+(defn create-panel
+  "Creates a React component that dispatches an initialization event on mount.
+
+  Args:
+    props (map): Properties. Keys:
+      - :display-name (string): Component name for debugging.
+      - :init-event (vector): Re-frame event vector to dispatch on mount.
+      - :render-fn (fn): Render function returning hiccup.
+
+  Returns:
+    React component."
+  [{:keys [display-name init-event render-fn]}]
+  (r/create-class
+   {:display-name (or display-name "panel")
+    :component-did-mount (when init-event #(rf/dispatch init-event))
+    :reagent-render render-fn}))

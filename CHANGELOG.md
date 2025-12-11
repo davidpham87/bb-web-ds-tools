@@ -2,6 +2,14 @@
 
 All notable changes to a project will be documented in this file.
 
+## [0.11.0] - 2025-12-12
+
+### Added
+
+- **Documentation**: Added comprehensive docstrings to `impl/datasets.cljc`, `views/settings.cljs`, and other view components.
+- **Refactoring**: Introduced `create-panel` helper in `components/layout.cljs` to standardize view initialization.
+- **Vega-Lite**: Refactored Vega-Lite render panel into smaller, maintainable components.
+
 ## [0.10.0] - 2025-12-10
 
 ### Added

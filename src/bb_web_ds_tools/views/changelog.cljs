@@ -2,7 +2,13 @@
   (:require [bb-web-ds-tools.components.common :as c]))
 
 (def changelog-data
-  [{:version "0.10.0"
+  [{:version "0.11.0"
+    :date "2025-12-12"
+    :sections [{:title "Added"
+                :items ["Documentation: Added comprehensive docstrings to `impl/datasets.cljc`, `views/settings.cljs`, and other view components."
+                        "Refactoring: Introduced `create-panel` helper in `components/layout.cljs` to standardize view initialization."
+                        "Vega-Lite: Refactored Vega-Lite render panel into smaller, maintainable components."]}]}
+   {:version "0.10.0"
     :date "2025-12-10"
     :sections [{:title "Added"
                 :items ["Wiki: Comprehensive documentation added in `wiki/` covering App DB, CLI Tools, Datasets, Gemma, HoneySQL, Malli, and Vega-Lite (118c26e)."
