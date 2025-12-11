@@ -498,7 +498,6 @@
   Returns:
     vector: A hiccup vector."
   []
-  (r/create-class
-   {:display-name "vega-lite-panel"
-    :component-did-mount #(rf/dispatch [::initialize])
-    :reagent-render panel-render}))
+  [l/create-panel {:display-name "vega-lite-panel"
+                   :init-event [::initialize]
+                   :render-fn panel-render}])

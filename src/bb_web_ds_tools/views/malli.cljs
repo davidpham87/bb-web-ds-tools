@@ -490,7 +490,6 @@
   Returns:
     vector: A hiccup vector."
   []
-  (r/create-class
-   {:display-name "malli-panel"
-    :component-did-mount #(rf/dispatch [:malli/initialize])
-    :reagent-render panel-render}))
+  [l/create-panel {:display-name "malli-panel"
+                   :init-event [:malli/initialize]
+                   :render-fn panel-render}])

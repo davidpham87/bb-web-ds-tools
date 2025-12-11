@@ -23,6 +23,13 @@
     :children [{:id :webr-settings :label "WebR"}]}])
 
 (defn sidebar-item
+  "Renders a sidebar item.
+
+  Args:
+    props (map): Contains :item, :active-id, :expanded-ids, :on-select, :on-toggle.
+
+  Returns:
+    vector: A hiccup vector."
   [{:keys [item active-id expanded-ids on-select on-toggle]}]
   (let [has-children? (seq (:children item))
         expanded? (contains? expanded-ids (:id item))
@@ -48,7 +55,12 @@
                  :on-click #(on-select (:id child))}
            (:label child)])])]))
 
-(defn general-settings []
+(defn general-settings
+  "Renders the general settings view.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (let [current-theme @(rf/subscribe [::theme-events/current-theme])]
     [c/card {:class "p-6 space-y-6"}
      [:h3 {:class "text-xl font-bold"} "General Settings"]
@@ -62,10 +74,20 @@
          ^{:key theme-name}
          [:option {:value (name theme-name)} (name theme-name)])]]]))
 
-(defn appearance-settings []
+(defn appearance-settings
+  "Renders the appearance settings view.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   [general-settings])
 
-(defn development-settings []
+(defn development-settings
+  "Renders the development settings view.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   [c/card {:class "p-6 space-y-4"}
    [:h3 {:class "text-xl font-bold"} "Development Tools"]
    [:p {:class "text-sm text-gray-400"} "Tools to assist with debugging and development."]
@@ -75,7 +97,12 @@
       :on-click #(rf/dispatch [::portal/open])}
      "Open Portal"]]])
 
-(defn dataset-import-settings []
+(defn dataset-import-settings
+  "Renders the dataset import settings view.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (let [col-norm @(rf/subscribe [::settings-events/column-normalizer])]
     [c/card {:class "p-6 space-y-4"}
      [:h3 {:class "text-xl font-bold"} "Dataset Import Defaults"]
@@ -98,7 +125,12 @@
          ^{:key o}
          [:option {:value (name o)} (name o)])]]]))
 
-(defn webr-settings []
+(defn webr-settings
+  "Renders the WebR settings view.
+
+  Returns:
+    vector: A hiccup vector."
+  []
   (let [settings @(rf/subscribe [::settings-events/webr-settings])]
     [c/card {:class "p-6 space-y-6"}
      [:h3 {:class "text-xl font-bold"} "WebR Settings"]
@@ -122,7 +154,15 @@
                 :on-change-event [::settings-events/set-webr-setting :canvas-scale]
                 :class "w-full max-w-xs"}]]]))
 
-(defn content-panel [active-view]
+(defn content-panel
+  "Renders the content panel based on the active view.
+
+  Args:
+    active-view (keyword): The active settings view ID.
+
+  Returns:
+    vector: A hiccup vector."
+  [active-view]
   [:div {:class "p-6 h-full overflow-y-auto"}
    (case active-view
      :general [general-settings]
@@ -135,7 +175,10 @@
      [:div "Select a setting"])])
 
 (defn panel
-  "Renders the settings panel with a sidebar layout."
+  "Renders the settings panel with a sidebar layout.
+
+  Returns:
+    vector: A hiccup vector."
   []
   (let [active-view @(rf/subscribe [::settings-events/active-view])
         expanded-views @(rf/subscribe [::settings-events/expanded-views])]

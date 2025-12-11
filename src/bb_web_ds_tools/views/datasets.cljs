@@ -679,7 +679,6 @@
   Returns:
     vector: A hiccup vector."
   []
-  (r/create-class
-   {:display-name "datasets-panel"
-    :component-did-mount #(rf/dispatch [::initialize])
-    :reagent-render panel-render}))
+  [l/create-panel {:display-name "datasets-panel"
+                   :init-event [::initialize]
+                   :render-fn panel-render}])
