@@ -47,3 +47,4 @@ docs/blogs
 templates/
 docs/js/*.wasm
 docs/wiki/
+docs/assets/*.task
