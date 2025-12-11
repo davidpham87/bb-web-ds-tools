@@ -1,10 +1,11 @@
 (ns bb-web-ds-tools.events.journeys-test
-  (:require [cljs.test :refer [deftest is testing]]
+  (:require [cljs.test :refer [deftest is testing use-fixtures]]
             [bb-web-ds-tools.events.journeys :as sut]
             [malli.core :as m]
             [re-frame.core :as rf]
             [day8.re-frame.test :as rf-test]
             [bb-web-ds-tools.core :as core]
+            [bb-web-ds-tools.test-setup :as setup]
             ;; Require views to ensure event handlers and subscriptions are registered
             [bb-web-ds-tools.views.malli]
             [bb-web-ds-tools.views.honeysql]
@@ -21,6 +22,8 @@
             [bb-web-ds-tools.views.pyodide]
             [bb-web-ds-tools.events.theme]
             [bb-web-ds-tools.events.settings]))
+
+(use-fixtures :each setup/suppress-re-frame-warnings)
 
 (def view-subscriptions
   "Map of route names to a list of critical subscriptions for that view.
@@ -94,6 +97,9 @@
      (rf/dispatch-sync [:bb-web-ds-tools.views.datasets/initialize])
      (rf/dispatch-sync [:bb-web-ds-tools.views.code/initialize])
      (rf/dispatch-sync [:bb-web-ds-tools.events.settings/initialize])
+
+      ;; Removed offending dispatch to non-existent initialization event for app-db
+      ;; (rf/dispatch-sync [:bb-web-ds-tools.views.app-db/initialize])
 
       ;; Mock navigation to avoid side effects
      (rf/reg-fx :navigate (fn [_] nil))
