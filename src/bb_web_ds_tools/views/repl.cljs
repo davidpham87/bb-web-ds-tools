@@ -210,9 +210,7 @@
                  ^{:key instance-id}
                  [repl-instance {:instance-id instance-id}]))]))}))
 
-
 (comment
   (rf/dispatch [:bb-web-ds-tools.portal/open {:node-id "clojure-repl"}])
   @(rf/subscribe [::eval-count])
-  (.getElementById js/document "clojure-repl")
-  )
+  (.getElementById js/document "clojure-repl"))

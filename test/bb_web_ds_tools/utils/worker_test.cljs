@@ -19,8 +19,8 @@
                  (reset! listeners {})))]
     (reset! last-worker-mock {:mock mock :listeners listeners})
     (js/Object.defineProperties mock
-      #js {:onmessage #js {:set (fn [f] (swap! listeners assoc :message f))}
-           :onerror   #js {:set (fn [f] (swap! listeners assoc :error f))}})
+                                #js {:onmessage #js {:set (fn [f] (swap! listeners assoc :message f))}
+                                     :onerror   #js {:set (fn [f] (swap! listeners assoc :error f))}})
     mock))
 
 (use-fixtures :each
@@ -30,23 +30,23 @@
 (deftest create-worker-channel-test
   (testing "Creates worker and returns channel"
     (async done
-      (let [{:keys [out-chan] :as w} (sut/create-worker "test.js")]
-        (is (some? out-chan))
-        (sut/post-message w {:type :ping})
-        (a/go
-          (let [msg (a/<! out-chan)]
-            (is (= :ping (:type msg)))
-            (sut/terminate w)
-            (done)))))))
+           (let [{:keys [out-chan] :as w} (sut/create-worker "test.js")]
+             (is (some? out-chan))
+             (sut/post-message w {:type :ping})
+             (a/go
+               (let [msg (a/<! out-chan)]
+                 (is (= :ping (:type msg)))
+                 (sut/terminate w)
+                 (done)))))))
 
 (deftest create-worker-callback-test
   (testing "Creates worker with callback"
     (async done
-      (let [received (atom nil)
-            on-msg (fn [msg]
-                     (reset! received msg)
-                     (is (= :pong (:type msg)))
-                     (done))
-            w (sut/create-worker "test.js" on-msg)]
-        (is (nil? (:out-chan w)))
-        (sut/post-message w {:type :pong})))))
+           (let [received (atom nil)
+                 on-msg (fn [msg]
+                          (reset! received msg)
+                          (is (= :pong (:type msg)))
+                          (done))
+                 w (sut/create-worker "test.js" on-msg)]
+             (is (nil? (:out-chan w)))
+             (sut/post-message w {:type :pong})))))

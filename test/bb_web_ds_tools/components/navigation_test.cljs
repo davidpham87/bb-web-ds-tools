@@ -15,20 +15,20 @@
       ((:before setup/suppress-re-frame-warnings))
 
       ;; Clean up potentially previous state
-      (rf/dispatch-sync [::nav/set-top-bar-ref nil])
+           (rf/dispatch-sync [::nav/set-top-bar-ref nil])
 
-      (rdom/render [:div
-                    [nav/top-bar {:open-tabs [] :active-tab-id nil}]
-                    [nav/portal-to-top-bar [:div {:id "portal-content"} "Hello"]]]
-                   div)
+           (rdom/render [:div
+                         [nav/top-bar {:open-tabs [] :active-tab-id nil}]
+                         [nav/portal-to-top-bar [:div {:id "portal-content"} "Hello"]]]
+                        div)
 
       ;; Give it a tick to mount and dispatch
-      (js/setTimeout
-       (fn []
-         (let [ref @(rf/subscribe [::nav/top-bar-ref])]
-           (is (some? ref) "Top bar ref should be set")
-           (when ref
-             (is (some? (.querySelector ref "#portal-content")) "Portal content should be rendered in top bar"))
+           (js/setTimeout
+            (fn []
+              (let [ref @(rf/subscribe [::nav/top-bar-ref])]
+                (is (some? ref) "Top bar ref should be set")
+                (when ref
+                  (is (some? (.querySelector ref "#portal-content")) "Portal content should be rendered in top bar"))
 
            (rdom/unmount-component-at-node div)
 

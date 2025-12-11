@@ -13,7 +13,6 @@
 (def datasets-sci-var (sci/new-var 'datasets datasets-atom))
 (def ^:dynamic *suppress-sync* false)
 
-
 (defn post-msg
   "Posts a message back to the main thread.
 

@@ -246,7 +246,7 @@
 ;; --- Table Processing ---
 
 (def filter-ctx
-  (sci/init {:classes {'js goog/global :allow :all}
+  (sci/init {:classes {}
              :namespaces {'clojure.core {'= =
                                          '> >
                                          '< <

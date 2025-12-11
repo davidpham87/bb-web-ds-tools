@@ -23,9 +23,9 @@
 
 (defn MockShelter []
   (this-as ^js this
-    (set! (.-captureR this) (fn [_ _] (js/Promise.resolve mock-capture-output)))
-    (set! (.-purge this) (fn [] (js/Promise.resolve)))
-    this))
+           (set! (.-captureR this) (fn [_ _] (js/Promise.resolve mock-capture-output)))
+           (set! (.-purge this) (fn [] (js/Promise.resolve)))
+           this))
 
 (def mock-webr-proto
   #js {:init (fn [] (js/Promise.resolve))
@@ -50,17 +50,17 @@
       (set! js/WebR mock-WebR)
       (set! p/submit mock-submit)
       (async done
-        (webr/load-runtime-main
-         (fn []
-           (is (some? @webr/webr-instance))
-           (set! js/WebR orig-webr)
-           (set! p/submit orig-submit)
-           (done))
-         (fn [err]
-           (is (nil? err))
-           (set! js/WebR orig-webr)
-           (set! p/submit orig-submit)
-           (done)))))))
+             (webr/load-runtime-main
+              (fn []
+                (is (some? @webr/webr-instance))
+                (set! js/WebR orig-webr)
+                (set! p/submit orig-submit)
+                (done))
+              (fn [err]
+                (is (nil? err))
+                (set! js/WebR orig-webr)
+                (set! p/submit orig-submit)
+                (done)))))))
 
 (deftest eval-in-main-test
   (testing "WebR evaluation"
@@ -70,17 +70,17 @@
           orig-dispatch rf/dispatch]
       (set! rf/dispatch mock-dispatch)
       (async done
-        (a/take! (webr/eval-in-main "1 + 1")
-                 (fn [_]
-                   (is (some #(and (= (first %) :bb-web-ds-tools.portal/submit)
-                                   (= (second %) "1 + 1")
-                                   (= (nth % 2) :portal.viewer/code))
-                             @dispatched) "Code should be submitted")
-                   (let [res-event (last @dispatched)
-                         res-val (second res-event)
-                         res-viewer (nth res-event 2)]
-                     (is (= (first res-event) :bb-web-ds-tools.portal/submit))
-                     (is (= res-val 42))
-                     (is (= res-viewer :portal.viewer/edn)))
-                   (set! rf/dispatch orig-dispatch)
-                   (done)))))))
+             (a/take! (webr/eval-in-main "1 + 1")
+                      (fn [_]
+                        (is (some #(and (= (first %) :bb-web-ds-tools.portal/submit)
+                                        (= (second %) "1 + 1")
+                                        (= (nth % 2) :portal.viewer/code))
+                                  @dispatched) "Code should be submitted")
+                        (let [res-event (last @dispatched)
+                              res-val (second res-event)
+                              res-viewer (nth res-event 2)]
+                          (is (= (first res-event) :bb-web-ds-tools.portal/submit))
+                          (is (= res-val 42))
+                          (is (= res-viewer :portal.viewer/edn)))
+                        (set! rf/dispatch orig-dispatch)
+                        (done)))))))

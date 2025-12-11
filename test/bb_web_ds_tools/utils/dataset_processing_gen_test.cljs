@@ -22,18 +22,18 @@
 
 (def json-round-trip-prop
   (prop/for-all [dataset dataset-gen]
-    (let [json-str (js/JSON.stringify (clj->js dataset))
-          parsed (dp/parse-dataset :json :row-maps json-str)
+                (let [json-str (js/JSON.stringify (clj->js dataset))
+                      parsed (dp/parse-dataset :json :row-maps json-str)
           ;; Normalize original dataset to what we expect from JSON parsing
           ;; 1. Convert to JS and back to handling keyword conversion
-          normalized (js->clj (clj->js dataset) :keywordize-keys true)]
-      (= normalized parsed))))
+                      normalized (js->clj (clj->js dataset) :keywordize-keys true)]
+                  (= normalized parsed))))
 
 (def edn-round-trip-prop
   (prop/for-all [dataset dataset-gen]
-    (let [edn-str (pr-str dataset)
-          parsed (dp/parse-dataset :edn :row-maps edn-str)]
-      (= dataset parsed))))
+                (let [edn-str (pr-str dataset)
+                      parsed (dp/parse-dataset :edn :row-maps edn-str)]
+                  (= dataset parsed))))
 
 ;; --- Tests ---
 

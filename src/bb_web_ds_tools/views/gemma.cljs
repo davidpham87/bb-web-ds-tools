@@ -55,13 +55,13 @@
  ::set-error
  (fn [db [_ error]]
    (update db ::gemma
-              assoc :error error :loading? false)))
+           assoc :error error :loading? false)))
 
 (rf/reg-event-db
  ::model-loaded
  (fn [db _]
    (update db ::gemma
-              assoc :model-loaded? true :loading? false :error nil)))
+           assoc :model-loaded? true :loading? false :error nil)))
 
 (rf/reg-event-db
  ::add-message

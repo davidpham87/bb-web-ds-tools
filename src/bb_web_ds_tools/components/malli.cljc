@@ -171,7 +171,7 @@
                        entries)})
 
     ;; Collection
-    (and (vector? schema) (#{ :vector :sequential :set } (first schema)))
+    (and (vector? schema) (#{:vector :sequential :set} (first schema)))
     (let [[type child-schema] schema
           child-data (if (every? coll? data) (mapcat identity data) data)]
       {:type :collection
@@ -196,95 +196,95 @@
   "Reconstructs schema from annotated tree using postwalk."
   [tree]
   (walk/postwalk
-    (fn [node]
-      (if (map? node)
-        (case (:type node)
-          :map (into (if (:props node) [(:schema-type node) (:props node)] [(:schema-type node)])
-                     (:children node))
-          :entry (if (:props node)
-                   [(:key node) (:props node) (:child node)]
-                   [(:key node) (:child node)])
-          :entry-raw (:original node)
-          :collection [(:collection-type node) (:child node)]
-          :wrapper [(:wrapper-type node) (:child node)]
-          :leaf (:schema node)
-          node)
-        node))
-    tree))
+   (fn [node]
+     (if (map? node)
+       (case (:type node)
+         :map (into (if (:props node) [(:schema-type node) (:props node)] [(:schema-type node)])
+                    (:children node))
+         :entry (if (:props node)
+                  [(:key node) (:props node) (:child node)]
+                  [(:key node) (:child node)])
+         :entry-raw (:original node)
+         :collection [(:collection-type node) (:child node)]
+         :wrapper [(:wrapper-type node) (:child node)]
+         :leaf (:schema node)
+         node)
+       node))
+   tree))
 
 (defn- refine-schema-with-data
   "Refines schema by replacing string types with enums and adding min/max to numbers and dates."
   [schema data max-values]
   (let [annotated (annotate-schema schema data)
         refined (walk/postwalk
-                  (fn [node]
-                    (if (and (map? node) (= :leaf (:type node)))
-                      (let [s (:schema node)
-                            d (:data node)
-                            s-type (if (vector? s) (first s) s)]
-                        (cond
+                 (fn [node]
+                   (if (and (map? node) (= :leaf (:type node)))
+                     (let [s (:schema node)
+                           d (:data node)
+                           s-type (if (vector? s) (first s) s)]
+                       (cond
                           ;; Enum Inference
-                          (or (= s-type 'string?) (= s-type :string))
-                          (let [strings (filter string? d)
-                                distinct-vals (distinct strings)
-                                cnt (count distinct-vals)]
-                            (if (and (pos? cnt) (<= cnt max-values))
-                              (assoc node :schema (into [:enum] (sort distinct-vals)))
-                              node))
+                         (or (= s-type 'string?) (= s-type :string))
+                         (let [strings (filter string? d)
+                               distinct-vals (distinct strings)
+                               cnt (count distinct-vals)]
+                           (if (and (pos? cnt) (<= cnt max-values))
+                             (assoc node :schema (into [:enum] (sort distinct-vals)))
+                             node))
 
                           ;; Min/Max Inference (Numbers)
-                          (#{:int :double :number 'int? 'double? 'number?} s-type)
-                          (let [nums (filter number? d)]
-                            (if (seq nums)
-                              (let [min-val (apply min nums)
-                                    max-val (apply max nums)
-                                    existing-props (if (and (vector? s) (map? (second s))) (second s) nil)
-                                    new-props (merge existing-props {:min min-val :max max-val})
-                                    new-schema (if (vector? s)
-                                                 (if (map? (second s))
-                                                   (assoc s 1 new-props)
-                                                   (into [(first s) new-props] (rest s)))
-                                                 [s new-props])]
-                                (assoc node :schema new-schema))
-                              node))
+                         (#{:int :double :number 'int? 'double? 'number?} s-type)
+                         (let [nums (filter number? d)]
+                           (if (seq nums)
+                             (let [min-val (apply min nums)
+                                   max-val (apply max nums)
+                                   existing-props (if (and (vector? s) (map? (second s))) (second s) nil)
+                                   new-props (merge existing-props {:min min-val :max max-val})
+                                   new-schema (if (vector? s)
+                                                (if (map? (second s))
+                                                  (assoc s 1 new-props)
+                                                  (into [(first s) new-props] (rest s)))
+                                                [s new-props])]
+                               (assoc node :schema new-schema))
+                             node))
 
                           ;; Min/Max Inference (Dates)
-                          (or (= s-type 'inst?) (= s-type :inst))
-                          (let [dates (filter inst? d)]
-                            (if (seq dates)
-                              (let [sorted (sort dates)
-                                    min-val (first sorted)
-                                    max-val (last sorted)
-                                    existing-props (if (and (vector? s) (map? (second s))) (second s) nil)
-                                    new-props (merge existing-props {:min min-val :max max-val})
-                                    new-schema (if (vector? s)
-                                                 (if (map? (second s))
-                                                   (assoc s 1 new-props)
-                                                   (into [(first s) new-props] (rest s)))
-                                                 [s new-props])]
-                                (assoc node :schema new-schema))
-                              node))
+                         (or (= s-type 'inst?) (= s-type :inst))
+                         (let [dates (filter inst? d)]
+                           (if (seq dates)
+                             (let [sorted (sort dates)
+                                   min-val (first sorted)
+                                   max-val (last sorted)
+                                   existing-props (if (and (vector? s) (map? (second s))) (second s) nil)
+                                   new-props (merge existing-props {:min min-val :max max-val})
+                                   new-schema (if (vector? s)
+                                                (if (map? (second s))
+                                                  (assoc s 1 new-props)
+                                                  (into [(first s) new-props] (rest s)))
+                                                [s new-props])]
+                               (assoc node :schema new-schema))
+                             node))
 
                           ;; Min/Max Inference (Time Types)
-                          (#{:time/instant :time/local-date :time/local-date-time} s-type)
-                          (let [times (filter #(not (nil? %)) d)]
-                            (if (seq times)
-                              (let [sorted (sort compare-time times)
-                                    min-val (first sorted)
-                                    max-val (last sorted)
-                                    existing-props (if (and (vector? s) (map? (second s))) (second s) nil)
-                                    new-props (merge existing-props {:min min-val :max max-val})
-                                    new-schema (if (vector? s)
-                                                 (if (map? (second s))
-                                                   (assoc s 1 new-props)
-                                                   (into [(first s) new-props] (rest s)))
-                                                 [s new-props])]
-                                (assoc node :schema new-schema))
-                              node))
+                         (#{:time/instant :time/local-date :time/local-date-time} s-type)
+                         (let [times (filter #(not (nil? %)) d)]
+                           (if (seq times)
+                             (let [sorted (sort compare-time times)
+                                   min-val (first sorted)
+                                   max-val (last sorted)
+                                   existing-props (if (and (vector? s) (map? (second s))) (second s) nil)
+                                   new-props (merge existing-props {:min min-val :max max-val})
+                                   new-schema (if (vector? s)
+                                                (if (map? (second s))
+                                                  (assoc s 1 new-props)
+                                                  (into [(first s) new-props] (rest s)))
+                                                [s new-props])]
+                               (assoc node :schema new-schema))
+                             node))
 
-                          :else node))
-                      node))
-                  annotated)]
+                         :else node))
+                     node))
+                 annotated)]
     (deannotate-schema refined)))
 
 (defn infer-schema
@@ -316,10 +316,10 @@
   Returns:
     any: The parsed data or nil."
   [generated-data format]
-   (case format
-      :edn (try (read-edn generated-data) (catch #?(:cljs :default :clj Exception) _ nil))
-      :json (try (parse-json generated-data) (catch #?(:cljs :default :clj Exception) _ nil))
-      nil))
+  (case format
+    :edn (try (read-edn generated-data) (catch #?(:cljs :default :clj Exception) _ nil))
+    :json (try (parse-json generated-data) (catch #?(:cljs :default :clj Exception) _ nil))
+    nil))
 
 (defn validate-data
   "Validates data against a schema.

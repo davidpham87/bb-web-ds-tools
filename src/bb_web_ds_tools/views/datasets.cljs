@@ -378,13 +378,13 @@
 
           [:div {:class "flex-grow"}]
 
-           [l/flex-row {:class "items-center gap-2"}
-            [:div {:class (str "text-xs " t/text-secondary)}
-             "CLI: " [:code {:class "bg-black/20 p-1 rounded"} "bb -x bb-web-ds-tools.cli.datasets/convert"]]
-            [c/button-xs {:class (str t/bg-button-primary " " t/bg-button-primary-hover " text-white px-4")
-                          :on-click #(let [parsed (dp/parse-dataset fmt structure text)]
-                                        (rf/dispatch [::add-dataset {:name dataset-name :data parsed :norm-config norm-config}]))}
-             "Create"]]]
+          [l/flex-row {:class "items-center gap-2"}
+           [:div {:class (str "text-xs " t/text-secondary)}
+            "CLI: " [:code {:class "bg-black/20 p-1 rounded"} "bb -x bb-web-ds-tools.cli.datasets/convert"]]
+           [c/button-xs {:class (str t/bg-button-primary " " t/bg-button-primary-hover " text-white px-4")
+                         :on-click #(let [parsed (dp/parse-dataset fmt structure text)]
+                                      (rf/dispatch [::add-dataset {:name dataset-name :data parsed :norm-config norm-config}]))}
+            "Create"]]]
 
          ;; Normalization Settings
          [c/card {:class "p-2 space-y-2"}
@@ -517,7 +517,7 @@
                 [:div {:class "flex items-center space-x-1"}
                  [:span (name col)]
                  (when (= sort-col col)
-                  [:span {:class "text-[10px] transform translate-y-px"} (if (= sort-dir :asc) "▲" "▼")])]])]]
+                   [:span {:class "text-[10px] transform translate-y-px"} (if (= sort-dir :asc) "▲" "▼")])]])]]
            [c/tbody {}
             ;; Filter Row
             [c/tr {}

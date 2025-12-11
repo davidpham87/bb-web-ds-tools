@@ -139,7 +139,6 @@
     (set! (.-onmessage w) (fn [e] (js/console.log "Msg from worker:" (.-data e))))
     (js/console.log "Worker started.")))
 
-
 ;; --- Effects Registration ---
 
 (rf/reg-fx

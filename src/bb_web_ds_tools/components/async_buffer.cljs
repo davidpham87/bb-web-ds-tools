@@ -14,7 +14,7 @@
   [{:keys [input-chan flush-interval-ms on-flush]}]
   (let [flush-ch (a/chan)]
     (a/go-loop [buffer []
-                    timer-ch nil]
+                timer-ch nil]
       (let [ports (cond-> [input-chan flush-ch]
                     timer-ch (conj timer-ch))
             [v port] (a/alts! ports)]
