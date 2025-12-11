@@ -24,21 +24,21 @@
 
 (def inference-validation-prop
   (prop/for-all [data (gen/vector (gen/map gen/keyword simple-value-gen))]
-    (if (empty? data)
-      true
-      (let [result (sut/infer-schema data)
-            schema-str (:schema-str result)
-            schema (when (:success result) (sut/read-edn schema-str))]
-        (and (:success result)
-             (every? #(m/validate schema %) data))))))
+                (if (empty? data)
+                  true
+                  (let [result (sut/infer-schema data)
+                        schema-str (:schema-str result)
+                        schema (when (:success result) (sut/read-edn schema-str))]
+                    (and (:success result)
+                         (every? #(m/validate schema %) data))))))
 
 (def generation-validation-prop
   (prop/for-all [schema map-schema-gen]
-    (let [gen-result (sut/generate-data schema 10 :edn)
-          generated-data (:data gen-result)
-          validation-results (map #(sut/validate-data schema %) generated-data)]
-      (and (:success gen-result)
-           (every? :success validation-results)))))
+                (let [gen-result (sut/generate-data schema 10 :edn)
+                      generated-data (:data gen-result)
+                      validation-results (map #(sut/validate-data schema %) generated-data)]
+                  (and (:success gen-result)
+                       (every? :success validation-results)))))
 
 ;; --- Tests ---
 

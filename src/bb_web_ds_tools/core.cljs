@@ -158,7 +158,6 @@
  (fn [db [_ new-code]]
    (assoc-in db [:user-input :editor :default :code] new-code)))
 
-
 ;; ;; --- Views ---
 
 (defmulti view
@@ -218,7 +217,6 @@
 ;; (defn app []
 ;;   [:div {:style {:color :white}}
 ;;    "Hello" " works!"])
-
 
 (defn ^:export init
   "The entry point of the application. Initializes the database, router, and mounts the React root.

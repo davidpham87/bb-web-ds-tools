@@ -21,18 +21,18 @@
 
 (defspec generate-data-test 10
   (prop/for-all [schema (gen/elements [[:map [:a int?]] [:vector string?]])]
-    (let [result (sut/generate-data schema 1 :edn)]
-      (and (:success result)
-           (string? (:output result))
-           (m/validate schema (:data result))))))
+                (let [result (sut/generate-data schema 1 :edn)]
+                  (and (:success result)
+                       (string? (:output result))
+                       (m/validate schema (:data result))))))
 
 (defspec infer-schema-test 10
   (prop/for-all [data (gen/vector (gen/map gen/keyword gen/int) 1 5)]
-    (let [result (sut/infer-schema data)]
-      (if (:success result)
-        (let [inferred-schema (sut/read-edn (:schema-str result))]
-           (every? #(m/validate inferred-schema %) data))
-        false))))
+                (let [result (sut/infer-schema data)]
+                  (if (:success result)
+                    (let [inferred-schema (sut/read-edn (:schema-str result))]
+                      (every? #(m/validate inferred-schema %) data))
+                    false))))
 
 (deftest validate-data-test
   (testing "Valid data"
@@ -75,8 +75,8 @@
         (let [entries (rest schema)
               entry-a (first (filter #(= :a (first %)) entries))
               val-schema (last entry-a)]
-           (is (= :enum (first val-schema)))
-           (is (= #{"x" "y" "z"} (set (rest val-schema))))))))
+          (is (= :enum (first val-schema)))
+          (is (= #{"x" "y" "z"} (set (rest val-schema))))))))
 
   (testing "infer-schema respects max-enum-values limit"
     (let [data [{:a "1"} {:a "2"} {:a "3"}]
@@ -87,7 +87,7 @@
       (let [entries (rest schema)
             entry-a (first (filter #(= :a (first %)) entries))
             val-schema (last entry-a)]
-         (is (or (= :string val-schema) (= 'string? val-schema)))))))
+        (is (or (= :string val-schema) (= 'string? val-schema)))))))
 
 (deftest infer-schema-min-max-test
   (testing "infer-schema adds min/max to integers"
@@ -124,8 +124,8 @@
 
         (is (= :maybe (first val-schema)))
         (let [child (second val-schema)]
-           (is (= :int (first child)))
-           (is (= {:min 1 :max 10} (second child))))))))
+          (is (= :int (first child)))
+          (is (= {:min 1 :max 10} (second child))))))))
 
 (deftest infer-schema-date-min-max-test
   (testing "infer-schema adds min/max to dates"

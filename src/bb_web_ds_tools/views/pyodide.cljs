@@ -92,7 +92,7 @@ chart.to_html()")
          ready? (get-in db [:pyodide ::ready?])]
      {:db (-> db
               (cond->
-                  (not exists?)
+               (not exists?)
                 (assoc-in [:user-input :pyodide :default ::code] initial-code))
               (assoc-in [:pyodide ::loading?] (not ready?)))
       :fx [(when-not ready? [::load-runtime])]})))

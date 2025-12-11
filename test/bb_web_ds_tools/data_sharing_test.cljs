@@ -119,9 +119,9 @@
          (testing "Navigate to R view and verify access"
            (with-redefs [webr-runtime/bind-datasets (fn [ds & _] (reset! webr-synced ds))
                          webr-runtime/eval-in-main (fn [code & args]
-                                                   (when (and (= code "names(datasets)")
-                                                              (some (fn [[_ ds]] (= (:name ds) toy-dataset-name)) @webr-synced))
-                                                     (p/submit {:value (list toy-dataset-name)})))]
+                                                     (when (and (= code "names(datasets)")
+                                                                (some (fn [[_ ds]] (= (:name ds) toy-dataset-name)) @webr-synced))
+                                                       (p/submit {:value (list toy-dataset-name)})))]
 
              ;; Mount R-REPL panel
              ;; Triggers ::on-mount event -> ::bind-datasets

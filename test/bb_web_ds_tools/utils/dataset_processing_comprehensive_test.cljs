@@ -118,9 +118,9 @@
         (is (= "Alice" (:name (first (:page-data res)))))))
 
     (testing "Complex Filtering"
-       (let [res (sut/process-table-data data (assoc base-state :filters {:score "#(> % 12)"}))]
-         (is (= 2 (:total-rows res))) ;; Bob (20) and Charlie (15)
-         (is (every? #(> (:score %) 12) (:page-data res)))))
+      (let [res (sut/process-table-data data (assoc base-state :filters {:score "#(> % 12)"}))]
+        (is (= 2 (:total-rows res))) ;; Bob (20) and Charlie (15)
+        (is (every? #(> (:score %) 12) (:page-data res)))))
 
     (testing "Hidden Columns"
       (let [res (sut/process-table-data data (assoc base-state :hidden-columns #{:score}))]
