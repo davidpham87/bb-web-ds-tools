@@ -91,3 +91,44 @@ Date: 2024-10-25
     *   Effects: Return effect map, use `:dispatch`.
 *   **Interop**: Use `^js` hints to avoid warnings. `clj->js` options (omit optional keys). `js->clj` for Portal.
 *   **Navigation**: `reitit` with hash history. `::navigate` event `[route-name params query]`.
+
+# Schema Specifications
+
+Author: Jules
+Date: 2024-10-25
+
+## Memory detail
+
+### Malli Schema
+
+```clojure
+[:map
+ [:author :string]
+ [:date inst?]
+ [:tags [:vector :string]]
+ [:topic :string]
+ [:title :string]
+ [:memories [:vector [:map [:title :string] [:description :string]]]]]
+```
+
+### DataScript Schema
+
+```clojure
+{:snapshot/author {:db/cardinality :db.cardinality/one
+                   :db/valueType :db.type/string}
+ :snapshot/date {:db/cardinality :db.cardinality/one
+                 :db/valueType :db.type/instant}
+ :snapshot/tags {:db/cardinality :db.cardinality/many
+                 :db/valueType :db.type/string}
+ :snapshot/topic {:db/cardinality :db.cardinality/one
+                  :db/valueType :db.type/string}
+ :snapshot/title {:db/cardinality :db.cardinality/one
+                  :db/valueType :db.type/string}
+ :snapshot/memories {:db/cardinality :db.cardinality/many
+                     :db/valueType :db.type/ref
+                     :db/isComponent true}
+ :memory/title {:db/cardinality :db.cardinality/one
+                :db/valueType :db.type/string}
+ :memory/description {:db/cardinality :db.cardinality/one
+                      :db/valueType :db.type/string}}
+```
