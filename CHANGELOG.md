@@ -2,16 +2,19 @@
 
 All notable changes to a project will be documented in this file.
 
-## [Unreleased] - 2025-05-23
+## [0.11.1] - 2025-05-23
 
 ### Refactoring
 
 - Refactored `bb-web-ds-tools.components.common` to consolidate button components.
 - Refactored `bb-web-ds-tools.utils.dataset-processing` to improve documentation and maintainability.
+- Replaced deprecated button components in Datasets view (`src/bb_web_ds_tools/views/datasets.cljs`).
+- Optimized landing page canvas rendering logic (`src/bb_web_ds_tools/views/landing.cljs`).
 
 ### Documentation
 
 - Added missing docstrings to `bb-web-ds-tools.views.landing`, `bb-web-ds-tools.utils.dataset-processing`, and `bb-web-ds-tools.components.common`.
+- Added docstrings to `src/bb_web_ds_tools/workspaces/persistence_fx.cljs`.
 
 ## [0.11.0] - 2025-12-12
 

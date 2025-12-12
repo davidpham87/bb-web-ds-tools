@@ -14,18 +14,37 @@
 
 ;; --- Transit Helpers ---
 
-(defn transit-encode [x]
+(defn transit-encode
+  "Encodes a Clojure data structure to a Transit JSON string.
+
+  Args:
+    x (any): The data to encode.
+
+  Returns:
+    string: The encoded JSON string."
+  [x]
   (let [w (t/writer :json)]
     (t/write w x)))
 
-(defn transit-decode [x]
+(defn transit-decode
+  "Decodes a Transit JSON string to a Clojure data structure.
+
+  Args:
+    x (string): The Transit JSON string.
+
+  Returns:
+    any: The decoded data."
+  [x]
   (let [r (t/reader :json)]
     (t/read r x)))
 
 ;; --- Persistence Logic --
 
 (defn create-tables!
-  "Creates the necessary tables in the SQLite database."
+  "Creates the necessary tables in the SQLite database.
+
+  Args:
+    db (object): The SQLite database instance."
   [db]
   (let [sql (str/join "\n"
                       ["CREATE TABLE IF NOT EXISTS workspaces (id TEXT PRIMARY KEY, name TEXT, created_at INTEGER, updated_at INTEGER);"
@@ -35,7 +54,12 @@
 
 (defn persist-all!
   "Dumps the current DataScript state to the SQLite database.
-   Returns: nil"
+
+  Args:
+    db (object): The SQLite database instance.
+
+  Returns:
+    nil: Side effect."
   [db]
   (create-tables! db)
   (let [workspaces (d/q '[:find ?id ?name ?created ?updated
@@ -87,7 +111,14 @@
     (println "Persisted to in-memory SQL DB.")))
 
 (defn persist-datasets!
-  "Persists user datasets to the SQLite DB using Transit encoding."
+  "Persists user datasets to the SQLite DB using Transit encoding.
+
+  Args:
+    db (object): The SQLite database instance.
+    datasets-map (map): The datasets map to persist.
+
+  Returns:
+    nil: Side effect."
   [db datasets-map]
   (create-tables! db)
   (let [ds-inserts (map (fn [[id dataset]]
@@ -108,7 +139,13 @@
     (println "Datasets persisted to DB.")))
 
 (defn load-datasets-from-db
-  "Loads datasets from the SQLite DB."
+  "Loads datasets from the SQLite DB.
+
+  Args:
+    db (object): The SQLite database instance.
+
+  Returns:
+    map: The loaded datasets map."
   [db]
   (let [res (atom {})
         rows (.exec db (clj->js {:sql "SELECT id, content FROM datasets"
@@ -120,7 +157,13 @@
     @res))
 
 (defn export-db
-  "Exports the SQLite database as a binary blob."
+  "Exports the SQLite database as a binary blob.
+
+  Args:
+    db (object): The SQLite database instance.
+
+  Returns:
+    Blob: The database blob."
   [db]
   (persist-all! db) ;; Persist workspaces implicitly
   (let [capi (.. ^js @sqlite-lib -capi)
@@ -132,7 +175,10 @@
 ;; --- Init ---
 
 (defn init-db!
-  "Initializes the SQLite database via Web Worker."
+  "Initializes the SQLite database via Web Worker.
+
+  Returns:
+    nil: Starts the worker."
   []
   (let [w (new js/Worker "js/compiled/persistence-worker.js" (clj->js {:type "module"}))]
     (reset! worker w)
