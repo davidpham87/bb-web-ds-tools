@@ -45,3 +45,4 @@ target/
 templates/
 test/js/
 verification/**/*.png
+gemini/*
