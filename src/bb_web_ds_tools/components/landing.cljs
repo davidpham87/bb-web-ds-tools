@@ -376,22 +376,22 @@
           (.fillText ctx (str "- Update " i " fixed stuff") 20 y))))))
 
 (def feature-cards
-  [{:label "Workspaces"
+  [#_{:label "Workspaces"
     :route :workspaces
     :description "Persist your mess. Save your scripts before you accidentally close the tab and cry."
     :draw-fn draw-workspaces}
-   {:label "App DB"
-    :route :app-db
-    :description "Inspect the state of the universe. See the matrix code behind the curtain."
-    :draw-fn draw-app-db}
-   {:label "Code"
-    :route :code
-    :description "It's VS Code, but just the editor part. Includes Python, R, and Clojure support."
-    :draw-fn draw-code}
    {:label "Datasets"
     :route :datasets
     :description "Import CSVs, TSVs, JSON. Edit in a grid. Pretend you're using Excel."
     :draw-fn draw-datasets}
+   {:label "Vega-Lite"
+    :route :vega-lite
+    :description "Charts on the fly. Paste data, write spec, boom. Interactive charts."
+    :draw-fn draw-vega-lite}
+   {:label "Code"
+    :route :code
+    :description "It's VS Code, but just the editor part. Includes Python, R, and Clojure support."
+    :draw-fn draw-code}
    {:label "Malli"
     :route :malli
     :description "Schema Inference & Generation. A spellchecker for your data structures."
@@ -400,10 +400,6 @@
     :route :honeysql
     :description "SQL for Clojurists. Because writing strings is for cavemen."
     :draw-fn draw-honeysql}
-   {:label "Vega-Lite"
-    :route :vega-lite
-    :description "Charts on the fly. Paste data, write spec, boom. Interactive charts."
-    :draw-fn draw-vega-lite}
    {:label "Gemma"
     :route :gemma
     :description "Your Private AI Buddy. Uses your local GPU. Fans will spin."
@@ -412,6 +408,10 @@
     :route :settings
     :description "Tweak the knobs. Change the font size until you can read it."
     :draw-fn draw-settings}
+   {:label "App DB"
+    :route :app-db
+    :description "Inspect the state of the universe. See the matrix code behind the curtain."
+    :draw-fn draw-app-db}
    {:label "Changelog"
     :route :changelog
     :description "What's new? Probably some bugs we fixed and some new ones we added."

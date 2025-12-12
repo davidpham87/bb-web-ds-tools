@@ -178,3 +178,7 @@ the
 
 Write your E2E test in clojuresript using playwright in the test/verification/e2e
 folder.
+
+Store your screenshots in the screenshots/ folder.
+
+DO NOT WRITE YOUR E2E TEST IN PYTHON.

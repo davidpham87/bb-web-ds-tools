@@ -162,12 +162,12 @@
   (let [state-sub (rf/subscribe [::repl-instance-state instance-id])]
     (fn []
       (let [{:keys [code mac-os?]} @state-sub]
-        [:div {:class "w-full border border-gray-700 rounded mb-4"}
-         [l/flex-col {:class "space-y-2 w-full"}
+        [:div {:class "w-full rounded mb-4"}
+         [l/flex-col {:class "space-y-2 h-full p-2"}
           [l/flex-row {:class "justify-between"}
            [c/label "Clojure Code"]
            [c/button {:on-click #(rf/dispatch [::eval-code instance-id code])} "Eval"]]
-          [:div {:class (str "flex-grow rounded overflow-hidden border w-full"
+          [:div {:class (str "flex-grow rounded overflow-hidden border space-x-4"
                              t/border-default)
                  :style {:height "85vh"}}
            [editor/monaco-editor

@@ -96,6 +96,7 @@
         (.then (fn [p]
                  (reset! pyodide-instance p)
                  (.registerJsModule ^js p "datasets" (clj->js {:datasets (create-datasets-proxy)}))
+                 (run-code "import pyodide_js\nawait pyodide_js.loadPackage('micropip')")
                  (post-msg {:type :ready})))
         (.catch (fn [e] (post-msg {:type :error :text (str "Load Error: " e)}))))
     (catch :default e
