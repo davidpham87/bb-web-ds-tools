@@ -11,6 +11,28 @@ theme:
 
 nav:
   - Home: index.md
+  - Features:
+    - App DB: app_db.md
+    - Changelog: changelog.md
+    - CLI Tools: cli_tools.md
+    - Code Environments: code_environments.md
+    - Datasets: datasets.md
+    - Gemma: gemma.md
+    - HoneySQL: honeysql.md
+    - Malli: malli.md
+    - Vega Lite: vega_lite.md
+  - Design & Documentation:
+    - CLI Data Structures: docs/CLI_DATA_STRUCTURES.md
+    - Client Side Filesystem: docs/client_side_filesystem.md
+    - Dataset Sync Design: docs/dataset_sync_design.md
+    - Design Workspaces: docs/DESIGN_WORKSPACES.md
+    - FSM Logic: docs/fsm_logic.md
+    - Maintenance: docs/maintenance.md
+    - Persistence Design: docs/persistence_design.md
+    - Post Mortem App Display: docs/POST_MORTEM_APP_DISPLAY.md
+    - R Integration: docs/r-integration.md
+    - Visual Bug Report: docs/VISUAL_BUG_REPORT.md
+    - Visual Report: docs/visual_report.md
 
 markdown_extensions:
   - admonition
