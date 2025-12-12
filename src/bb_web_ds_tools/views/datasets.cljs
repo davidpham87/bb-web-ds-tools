@@ -347,11 +347,12 @@
 
            [l/flex-row {:class "space-x-2"}
             (for [f [:csv :tsv :json :edn :markdown]]
-              [c/button-xs {:key f
-                            :class (if (= fmt f) (str t/bg-button-primary " text-white") "")
-                            :on-click #(do (set-state :format f)
-                                           (when (#{:csv :tsv :markdown} f)
-                                             (set-state :structure :columnar)))}
+              [c/button {:size :xs
+                         :key f
+                         :class (if (= fmt f) (str t/bg-button-primary " text-white") "")
+                         :on-click #(do (set-state :format f)
+                                        (when (#{:csv :tsv :markdown} f)
+                                          (set-state :structure :columnar)))}
                (if (= f :markdown) "MD" (str/upper-case (name f)))])]]]
 
          [c/input {:value dataset-name
@@ -362,12 +363,13 @@
           [l/flex-row {:class "items-baseline space-x-2"}
            [:span {:class (str "text-sm " t/text-primary)} "Structure:"]
            (for [s [:columnar :row-maps :row-arrays]]
-             [c/button-xs {:key s
-                           :disabled (not (contains? supported-structures s))
-                           :class (if (= structure s)
-                                    (str t/bg-button-primary " text-white")
-                                    (if (not (contains? supported-structures s)) "opacity-50 cursor-not-allowed" ""))
-                           :on-click #(set-state :structure s)}
+             [c/button {:size :xs
+                        :key s
+                        :disabled (not (contains? supported-structures s))
+                        :class (if (= structure s)
+                                 (str t/bg-button-primary " text-white")
+                                 (if (not (contains? supported-structures s)) "opacity-50 cursor-not-allowed" ""))
+                        :on-click #(set-state :structure s)}
               (get struct-labels s)])]
 
           [l/flex-row {:class (str "space-x-2 text-sm " t/text-primary " items-center")}
@@ -381,9 +383,10 @@
           [l/flex-row {:class "items-center gap-2"}
            [:div {:class (str "text-xs " t/text-secondary)}
             "CLI: " [:code {:class "bg-black/20 p-1 rounded"} "bb -x bb-web-ds-tools.cli.datasets/convert"]]
-           [c/button-xs {:class (str t/bg-button-primary " " t/bg-button-primary-hover " text-white px-4")
-                         :on-click #(let [parsed (dp/parse-dataset fmt structure text)]
-                                      (rf/dispatch [::add-dataset {:name dataset-name :data parsed :norm-config norm-config}]))}
+           [c/button {:size :xs
+                      :class (str t/bg-button-primary " " t/bg-button-primary-hover " text-white px-4")
+                      :on-click #(let [parsed (dp/parse-dataset fmt structure text)]
+                                   (rf/dispatch [::add-dataset {:name dataset-name :data parsed :norm-config norm-config}]))}
             "Create"]]]
 
          ;; Normalization Settings
@@ -489,19 +492,22 @@
            [c/label "Columns"]
            [column-toggle-dropdown id columns hidden-columns]]
           [:div {:class "flex-grow"}]
-          [c/button-xs {:class (if (seq filters) (str t/bg-button-primary " text-white") "opacity-50 cursor-not-allowed")
-                        :disabled (empty? filters)
-                        :title "Save current filtered results as a new dataset"
-                        :on-click #(do (reset! new-dataset-name (str (:name dataset) " (filtered)"))
-                                       (reset! save-modal-open? true))}
+          [c/button {:size :xs
+                     :class (if (seq filters) (str t/bg-button-primary " text-white") "opacity-50 cursor-not-allowed")
+                     :disabled (empty? filters)
+                     :title "Save current filtered results as a new dataset"
+                     :on-click #(do (reset! new-dataset-name (str (:name dataset) " (filtered)"))
+                                    (reset! save-modal-open? true))}
            "Save Filtered"]
           [:div {:class (str "text-sm " t/text-secondary)}
            (str (inc start-idx) "-" end-idx " of " total-rows)]
           [l/flex-row {:class "space-x-2"}
-           [c/button-xs {:on-click #(rf/dispatch [::update-view-state id :page (dec page)])
-                         :disabled (zero? page)} "Prev"]
-           [c/button-xs {:on-click #(rf/dispatch [::update-view-state id :page (inc page)])
-                         :disabled (>= end-idx total-rows)} "Next"]]]
+           [c/button {:size :xs
+                      :on-click #(rf/dispatch [::update-view-state id :page (dec page)])
+                      :disabled (zero? page)} "Prev"]
+           [c/button {:size :xs
+                      :on-click #(rf/dispatch [::update-view-state id :page (inc page)])
+                      :disabled (>= end-idx total-rows)} "Next"]]]
 
          ;; Table
          [c/table-container {}
@@ -554,11 +560,13 @@
       [l/flex-row {:class "space-x-2 items-center"}
        ;; View Toggles
        [:div {:class "flex rounded bg-black/20 p-1 space-x-1"}
-        [c/button-xs {:class (if (= view-mode :table) (str t/bg-button-primary " text-white") "opacity-50 hover:opacity-100")
-                      :on-click #(rf/dispatch [::update-view-state (:id dataset) :mode :table])}
+        [c/button {:size :xs
+                   :class (if (= view-mode :table) (str t/bg-button-primary " text-white") "opacity-50 hover:opacity-100")
+                   :on-click #(rf/dispatch [::update-view-state (:id dataset) :mode :table])}
          "Table"]
-        [c/button-xs {:class (if (= view-mode :portal) (str t/bg-button-primary " text-white") "opacity-50 hover:opacity-100")
-                      :on-click #(rf/dispatch [::update-view-state (:id dataset) :mode :portal])}
+        [c/button {:size :xs
+                   :class (if (= view-mode :portal) (str t/bg-button-primary " text-white") "opacity-50 hover:opacity-100")
+                   :on-click #(rf/dispatch [::update-view-state (:id dataset) :mode :portal])}
          "Portal"]]
 
        [c/button {:class (str t/bg-button-danger " " t/bg-button-danger-hover " " t/text-button-primary)
@@ -596,8 +604,9 @@
                                      "Escape" (do (reset! temp-name (:name ds))
                                                   (reset! editing? false))
                                      nil)}]
-           [c/button-xs {:on-click #(do (rf/dispatch [::update-dataset-name id @temp-name])
-                                        (reset! editing? false))} "Save"]]
+           [c/button {:size :xs
+                      :on-click #(do (rf/dispatch [::update-dataset-name id @temp-name])
+                                     (reset! editing? false))} "Save"]]
           [:div {:class (str "group flex items-center justify-between p-3 rounded cursor-pointer transition-colors text-sm font-medium "
                              (if active?
                                (str t/bg-card " " t/text-accent " shadow-sm")
@@ -638,17 +647,20 @@
 
           ;; Persistence Controls
           [l/flex-row {:class "gap-2"}
-           [c/button-xs {:class (str "flex-1 " t/bg-button " " t/bg-button-hover)
-                         :title "Save all datasets to browser storage"
-                         :on-click #(rf/dispatch [::wp/save-datasets])}
+           [c/button {:size :xs
+                      :class (str "flex-1 " t/bg-button " " t/bg-button-hover)
+                      :title "Save all datasets to browser storage"
+                      :on-click #(rf/dispatch [::wp/save-datasets])}
             "Save All"]
-           [c/button-xs {:class (str "flex-1 " t/bg-button " " t/bg-button-hover)
-                         :title "Load datasets from browser storage"
-                         :on-click #(rf/dispatch [::wp/load-datasets])}
+           [c/button {:size :xs
+                      :class (str "flex-1 " t/bg-button " " t/bg-button-hover)
+                      :title "Load datasets from browser storage"
+                      :on-click #(rf/dispatch [::wp/load-datasets])}
             "Load All"]]
 
-          [c/button-xs {:class (str "w-full " t/bg-button " " t/bg-button-hover " justify-center")
-                        :on-click #(rf/dispatch [::set-active-dataset-id :new])}
+          [c/button {:size :xs
+                     :class (str "w-full " t/bg-button " " t/bg-button-hover " justify-center")
+                     :on-click #(rf/dispatch [::set-active-dataset-id :new])}
            "+ New Dataset"]]
          [:div {:class "flex-grow overflow-y-auto pt-4 space-y-1"}
           (if (seq items)
