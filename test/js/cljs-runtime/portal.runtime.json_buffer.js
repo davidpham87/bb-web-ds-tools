@@ -16,34 +16,34 @@ portal.runtime.json_buffer.__GT_reader = (function portal$runtime$json_buffer$__
 return portal.runtime.json_buffer.shifter(JSON.parse(data));
 });
 portal.runtime.json_buffer.push_null = (function portal$runtime$json_buffer$push_null(buffer){
+var G__28835 = buffer;
+G__28835.push(null);
+
+return G__28835;
+});
+portal.runtime.json_buffer.push_bool = (function portal$runtime$json_buffer$push_bool(buffer,value){
+var G__28836 = buffer;
+G__28836.push(value);
+
+return G__28836;
+});
+portal.runtime.json_buffer.push_long = (function portal$runtime$json_buffer$push_long(buffer,value){
+var G__28837 = buffer;
+G__28837.push(value);
+
+return G__28837;
+});
+portal.runtime.json_buffer.push_double = (function portal$runtime$json_buffer$push_double(buffer,value){
 var G__28838 = buffer;
-G__28838.push(null);
+G__28838.push(value);
 
 return G__28838;
 });
-portal.runtime.json_buffer.push_bool = (function portal$runtime$json_buffer$push_bool(buffer,value){
-var G__28841 = buffer;
-G__28841.push(value);
-
-return G__28841;
-});
-portal.runtime.json_buffer.push_long = (function portal$runtime$json_buffer$push_long(buffer,value){
-var G__28844 = buffer;
-G__28844.push(value);
-
-return G__28844;
-});
-portal.runtime.json_buffer.push_double = (function portal$runtime$json_buffer$push_double(buffer,value){
-var G__28849 = buffer;
-G__28849.push(value);
-
-return G__28849;
-});
 portal.runtime.json_buffer.push_string = (function portal$runtime$json_buffer$push_string(buffer,value){
-var G__28850 = buffer;
-G__28850.push(value);
+var G__28839 = buffer;
+G__28839.push(value);
 
-return G__28850;
+return G__28839;
 });
 portal.runtime.json_buffer.push_value = (function portal$runtime$json_buffer$push_value(buffer,value){
 if((value == null)){
@@ -87,9 +87,9 @@ portal.runtime.json_buffer.next_value = (function portal$runtime$json_buffer$nex
 return portal.runtime.json_buffer._shift(buffer);
 });
 portal.runtime.json_buffer.with_buffer = (function portal$runtime$json_buffer$with_buffer(f,value){
-return JSON.stringify((function (){var G__28867 = (new Array());
-var G__28868 = value;
-return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__28867,G__28868) : f.call(null,G__28867,G__28868));
+return JSON.stringify((function (){var G__28846 = (new Array());
+var G__28847 = value;
+return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__28846,G__28847) : f.call(null,G__28846,G__28847));
 })());
 });
 

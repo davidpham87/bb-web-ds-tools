@@ -37,13 +37,13 @@ var com=$CLJS.com || ($CLJS.com = {});
 $CLJS.SHADOW_ENV.setLoaded("bb_web_ds_tools.events.theme.js");
 
 goog.provide('bb_web_ds_tools.events.theme');
-re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.events.theme","set-theme","bb-web-ds-tools.events.theme/set-theme",607625894),(function (p__24857,p__24858){
-var map__24859 = p__24857;
-var map__24859__$1 = cljs.core.__destructure_map(map__24859);
-var db = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24859__$1,new cljs.core.Keyword(null,"db","db",993250759));
-var vec__24860 = p__24858;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24860,(0),null);
-var theme_name = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24860,(1),null);
+re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.events.theme","set-theme","bb-web-ds-tools.events.theme/set-theme",607625894),(function (p__24858,p__24859){
+var map__24860 = p__24858;
+var map__24860__$1 = cljs.core.__destructure_map(map__24860);
+var db = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24860__$1,new cljs.core.Keyword(null,"db","db",993250759));
+var vec__24861 = p__24859;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24861,(0),null);
+var theme_name = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24861,(1),null);
 var theme = bb_web_ds_tools.utils.themes.get_theme(theme_name);
 return new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"db","db",993250759),cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(db,new cljs.core.Keyword("bb-web-ds-tools.events.theme","current-theme","bb-web-ds-tools.events.theme/current-theme",-1882747906),theme_name),new cljs.core.Keyword("theme","apply","theme/apply",1476395918),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),cljs.core.name(theme_name),new cljs.core.Keyword(null,"data","data",-232669377),theme,new cljs.core.Keyword(null,"css-vars","css-vars",57967357),bb_web_ds_tools.theme.resolve_theme_colors(theme)], null)], null);
 }));
@@ -61,12 +61,12 @@ return "vs";
 return "vs-dark";
 }
 });
-re_frame.core.reg_fx(new cljs.core.Keyword("theme","apply","theme/apply",1476395918),(function (p__24868){
-var map__24869 = p__24868;
-var map__24869__$1 = cljs.core.__destructure_map(map__24869);
-var name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24869__$1,new cljs.core.Keyword(null,"name","name",1843675177));
-var data = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24869__$1,new cljs.core.Keyword(null,"data","data",-232669377));
-var css_vars = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24869__$1,new cljs.core.Keyword(null,"css-vars","css-vars",57967357));
+re_frame.core.reg_fx(new cljs.core.Keyword("theme","apply","theme/apply",1476395918),(function (p__24866){
+var map__24867 = p__24866;
+var map__24867__$1 = cljs.core.__destructure_map(map__24867);
+var name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24867__$1,new cljs.core.Keyword(null,"name","name",1843675177));
+var data = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24867__$1,new cljs.core.Keyword(null,"data","data",-232669377));
+var css_vars = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24867__$1,new cljs.core.Keyword(null,"css-vars","css-vars",57967357));
 var root_24889 = document.documentElement;
 var body_24890 = document.body;
 var seq__24870_24891 = cljs.core.seq(css_vars);

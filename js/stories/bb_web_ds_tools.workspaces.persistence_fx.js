@@ -52,16 +52,37 @@ if((typeof bb_web_ds_tools !== 'undefined') && (typeof bb_web_ds_tools.workspace
 } else {
 bb_web_ds_tools.workspaces.persistence_fx.worker = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(null);
 }
+/**
+ * Encodes a Clojure data structure to a Transit JSON string.
+ * 
+ *   Args:
+ *  x (any): The data to encode.
+ * 
+ *   Returns:
+ *  string: The encoded JSON string.
+ */
 bb_web_ds_tools.workspaces.persistence_fx.transit_encode = (function bb_web_ds_tools$workspaces$persistence_fx$transit_encode(x){
 var w = cognitect.transit.writer.cljs$core$IFn$_invoke$arity$1(new cljs.core.Keyword(null,"json","json",1279968570));
 return cognitect.transit.write(w,x);
 });
+/**
+ * Decodes a Transit JSON string to a Clojure data structure.
+ * 
+ *   Args:
+ *  x (string): The Transit JSON string.
+ * 
+ *   Returns:
+ *  any: The decoded data.
+ */
 bb_web_ds_tools.workspaces.persistence_fx.transit_decode = (function bb_web_ds_tools$workspaces$persistence_fx$transit_decode(x){
 var r = cognitect.transit.reader.cljs$core$IFn$_invoke$arity$1(new cljs.core.Keyword(null,"json","json",1279968570));
 return cognitect.transit.read(r,x);
 });
 /**
  * Creates the necessary tables in the SQLite database.
+ * 
+ *   Args:
+ *  db (object): The SQLite database instance.
  */
 bb_web_ds_tools.workspaces.persistence_fx.create_tables_BANG_ = (function bb_web_ds_tools$workspaces$persistence_fx$create_tables_BANG_(db){
 var sql = clojure.string.join.cljs$core$IFn$_invoke$arity$2("\n",new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, ["CREATE TABLE IF NOT EXISTS workspaces (id TEXT PRIMARY KEY, name TEXT, created_at INTEGER, updated_at INTEGER);","CREATE TABLE IF NOT EXISTS inputs (id TEXT PRIMARY KEY, workspace_id TEXT, type TEXT, name TEXT, content TEXT, metadata TEXT, updated_at INTEGER);","CREATE TABLE IF NOT EXISTS datasets (id TEXT PRIMARY KEY, name TEXT, content TEXT, created_at INTEGER);"], null));
@@ -69,36 +90,41 @@ return db.exec(sql);
 });
 /**
  * Dumps the current DataScript state to the SQLite database.
- * Returns: nil
+ * 
+ *   Args:
+ *  db (object): The SQLite database instance.
+ * 
+ *   Returns:
+ *  nil: Side effect.
  */
 bb_web_ds_tools.workspaces.persistence_fx.persist_all_BANG_ = (function bb_web_ds_tools$workspaces$persistence_fx$persist_all_BANG_(db){
 bb_web_ds_tools.workspaces.persistence_fx.create_tables_BANG_(db);
 
-var workspaces = (function (){var G__55771 = new cljs.core.PersistentVector(null, 10, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"find","find",496279456),new cljs.core.Symbol(null,"?id","?id",928433279,null),new cljs.core.Symbol(null,"?name","?name",2050703390,null),new cljs.core.Symbol(null,"?created","?created",869162468,null),new cljs.core.Symbol(null,"?updated","?updated",-715859215,null),new cljs.core.Keyword(null,"where","where",-2044795965),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"?e","?e",-1194391683,null),new cljs.core.Keyword("workspace","id","workspace/id",1734778271),new cljs.core.Symbol(null,"?id","?id",928433279,null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"?e","?e",-1194391683,null),new cljs.core.Keyword("workspace","name","workspace/name",-1408521004),new cljs.core.Symbol(null,"?name","?name",2050703390,null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"?e","?e",-1194391683,null),new cljs.core.Keyword("workspace","created-at","workspace/created-at",-1131011801),new cljs.core.Symbol(null,"?created","?created",869162468,null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"?e","?e",-1194391683,null),new cljs.core.Keyword("workspace","updated-at","workspace/updated-at",1662688881),new cljs.core.Symbol(null,"?updated","?updated",-715859215,null)], null)], null);
-var G__55772 = cljs.core.deref(bb_web_ds_tools.workspaces.core.conn);
-return (datascript.core.q.cljs$core$IFn$_invoke$arity$2 ? datascript.core.q.cljs$core$IFn$_invoke$arity$2(G__55771,G__55772) : datascript.core.q.call(null,G__55771,G__55772));
+var workspaces = (function (){var G__55749 = new cljs.core.PersistentVector(null, 10, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"find","find",496279456),new cljs.core.Symbol(null,"?id","?id",928433279,null),new cljs.core.Symbol(null,"?name","?name",2050703390,null),new cljs.core.Symbol(null,"?created","?created",869162468,null),new cljs.core.Symbol(null,"?updated","?updated",-715859215,null),new cljs.core.Keyword(null,"where","where",-2044795965),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"?e","?e",-1194391683,null),new cljs.core.Keyword("workspace","id","workspace/id",1734778271),new cljs.core.Symbol(null,"?id","?id",928433279,null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"?e","?e",-1194391683,null),new cljs.core.Keyword("workspace","name","workspace/name",-1408521004),new cljs.core.Symbol(null,"?name","?name",2050703390,null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"?e","?e",-1194391683,null),new cljs.core.Keyword("workspace","created-at","workspace/created-at",-1131011801),new cljs.core.Symbol(null,"?created","?created",869162468,null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"?e","?e",-1194391683,null),new cljs.core.Keyword("workspace","updated-at","workspace/updated-at",1662688881),new cljs.core.Symbol(null,"?updated","?updated",-715859215,null)], null)], null);
+var G__55750 = cljs.core.deref(bb_web_ds_tools.workspaces.core.conn);
+return (datascript.core.q.cljs$core$IFn$_invoke$arity$2 ? datascript.core.q.cljs$core$IFn$_invoke$arity$2(G__55749,G__55750) : datascript.core.q.call(null,G__55749,G__55750));
 })();
-var inputs = (function (){var G__55775 = new cljs.core.PersistentVector(null, 17, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"find","find",496279456),new cljs.core.Symbol(null,"?id","?id",928433279,null),new cljs.core.Symbol(null,"?ws-id","?ws-id",-2043108780,null),new cljs.core.Symbol(null,"?type","?type",-1287409101,null),new cljs.core.Symbol(null,"?name","?name",2050703390,null),new cljs.core.Symbol(null,"?content","?content",-956653715,null),new cljs.core.Symbol(null,"?meta","?meta",846970754,null),new cljs.core.Symbol(null,"?updated","?updated",-715859215,null),new cljs.core.Keyword(null,"where","where",-2044795965),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"?e","?e",-1194391683,null),new cljs.core.Keyword("input","id","input/id",-1287388534),new cljs.core.Symbol(null,"?id","?id",928433279,null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"?e","?e",-1194391683,null),new cljs.core.Keyword("input","workspace","input/workspace",-660968483),new cljs.core.Symbol(null,"?ws-ref","?ws-ref",-1957705337,null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"?ws-ref","?ws-ref",-1957705337,null),new cljs.core.Keyword("workspace","id","workspace/id",1734778271),new cljs.core.Symbol(null,"?ws-id","?ws-id",-2043108780,null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"?e","?e",-1194391683,null),new cljs.core.Keyword("input","type","input/type",1543186790),new cljs.core.Symbol(null,"?type","?type",-1287409101,null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"?e","?e",-1194391683,null),new cljs.core.Keyword("input","name","input/name",1609508871),new cljs.core.Symbol(null,"?name","?name",2050703390,null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"?e","?e",-1194391683,null),new cljs.core.Keyword("input","content","input/content",-159506254),new cljs.core.Symbol(null,"?content","?content",-956653715,null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"?e","?e",-1194391683,null),new cljs.core.Keyword("input","metadata","input/metadata",1699910183),new cljs.core.Symbol(null,"?meta","?meta",846970754,null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"?e","?e",-1194391683,null),new cljs.core.Keyword("input","updated-at","input/updated-at",-1491743930),new cljs.core.Symbol(null,"?updated","?updated",-715859215,null)], null)], null);
-var G__55776 = cljs.core.deref(bb_web_ds_tools.workspaces.core.conn);
-return (datascript.core.q.cljs$core$IFn$_invoke$arity$2 ? datascript.core.q.cljs$core$IFn$_invoke$arity$2(G__55775,G__55776) : datascript.core.q.call(null,G__55775,G__55776));
+var inputs = (function (){var G__55751 = new cljs.core.PersistentVector(null, 17, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"find","find",496279456),new cljs.core.Symbol(null,"?id","?id",928433279,null),new cljs.core.Symbol(null,"?ws-id","?ws-id",-2043108780,null),new cljs.core.Symbol(null,"?type","?type",-1287409101,null),new cljs.core.Symbol(null,"?name","?name",2050703390,null),new cljs.core.Symbol(null,"?content","?content",-956653715,null),new cljs.core.Symbol(null,"?meta","?meta",846970754,null),new cljs.core.Symbol(null,"?updated","?updated",-715859215,null),new cljs.core.Keyword(null,"where","where",-2044795965),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"?e","?e",-1194391683,null),new cljs.core.Keyword("input","id","input/id",-1287388534),new cljs.core.Symbol(null,"?id","?id",928433279,null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"?e","?e",-1194391683,null),new cljs.core.Keyword("input","workspace","input/workspace",-660968483),new cljs.core.Symbol(null,"?ws-ref","?ws-ref",-1957705337,null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"?ws-ref","?ws-ref",-1957705337,null),new cljs.core.Keyword("workspace","id","workspace/id",1734778271),new cljs.core.Symbol(null,"?ws-id","?ws-id",-2043108780,null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"?e","?e",-1194391683,null),new cljs.core.Keyword("input","type","input/type",1543186790),new cljs.core.Symbol(null,"?type","?type",-1287409101,null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"?e","?e",-1194391683,null),new cljs.core.Keyword("input","name","input/name",1609508871),new cljs.core.Symbol(null,"?name","?name",2050703390,null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"?e","?e",-1194391683,null),new cljs.core.Keyword("input","content","input/content",-159506254),new cljs.core.Symbol(null,"?content","?content",-956653715,null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"?e","?e",-1194391683,null),new cljs.core.Keyword("input","metadata","input/metadata",1699910183),new cljs.core.Symbol(null,"?meta","?meta",846970754,null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"?e","?e",-1194391683,null),new cljs.core.Keyword("input","updated-at","input/updated-at",-1491743930),new cljs.core.Symbol(null,"?updated","?updated",-715859215,null)], null)], null);
+var G__55752 = cljs.core.deref(bb_web_ds_tools.workspaces.core.conn);
+return (datascript.core.q.cljs$core$IFn$_invoke$arity$2 ? datascript.core.q.cljs$core$IFn$_invoke$arity$2(G__55751,G__55752) : datascript.core.q.call(null,G__55751,G__55752));
 })();
-var ws_inserts = cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p__55780){
-var vec__55781 = p__55780;
-var id = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55781,(0),null);
-var name = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55781,(1),null);
-var created = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55781,(2),null);
-var updated = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55781,(3),null);
+var ws_inserts = cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p__55755){
+var vec__55756 = p__55755;
+var id = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55756,(0),null);
+var name = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55756,(1),null);
+var created = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55756,(2),null);
+var updated = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55756,(3),null);
 return ["INSERT INTO workspaces VALUES (","'",cljs.core.str.cljs$core$IFn$_invoke$arity$1(id),"', ","'",clojure.string.replace(name,"'","''"),"', ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(created.getTime()),", ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(updated.getTime()),");"].join('');
 }),workspaces);
-var input_inserts = cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p__55784){
-var vec__55786 = p__55784;
-var id = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55786,(0),null);
-var ws_id = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55786,(1),null);
-var type = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55786,(2),null);
-var name = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55786,(3),null);
-var content = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55786,(4),null);
-var meta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55786,(5),null);
-var updated = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55786,(6),null);
+var input_inserts = cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p__55760){
+var vec__55761 = p__55760;
+var id = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55761,(0),null);
+var ws_id = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55761,(1),null);
+var type = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55761,(2),null);
+var name = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55761,(3),null);
+var content = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55761,(4),null);
+var meta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55761,(5),null);
+var updated = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55761,(6),null);
 return ["INSERT INTO inputs VALUES (","'",cljs.core.str.cljs$core$IFn$_invoke$arity$1(id),"', ","'",cljs.core.str.cljs$core$IFn$_invoke$arity$1(ws_id),"', ","'",cljs.core.str.cljs$core$IFn$_invoke$arity$1((name.cljs$core$IFn$_invoke$arity$1 ? name.cljs$core$IFn$_invoke$arity$1(type) : name.call(null,type))),"', ","'",clojure.string.replace(name,"'","''"),"', ","'",clojure.string.replace(content,"'","''"),"', ","'",clojure.string.replace(cljs.core.pr_str.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([meta], 0)),"'","''"),"', ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(updated.getTime()),");"].join('');
 }),inputs);
 var all_sql = clojure.string.join.cljs$core$IFn$_invoke$arity$2("\n",cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, ["BEGIN TRANSACTION;","DELETE FROM workspaces;","DELETE FROM inputs;"], null),ws_inserts,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([input_inserts,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, ["COMMIT;"], null)], 0)));
@@ -108,14 +134,21 @@ return cljs.core.println.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq
 });
 /**
  * Persists user datasets to the SQLite DB using Transit encoding.
+ * 
+ *   Args:
+ *  db (object): The SQLite database instance.
+ *  datasets-map (map): The datasets map to persist.
+ * 
+ *   Returns:
+ *  nil: Side effect.
  */
 bb_web_ds_tools.workspaces.persistence_fx.persist_datasets_BANG_ = (function bb_web_ds_tools$workspaces$persistence_fx$persist_datasets_BANG_(db,datasets_map){
 bb_web_ds_tools.workspaces.persistence_fx.create_tables_BANG_(db);
 
-var ds_inserts = cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p__55792){
-var vec__55793 = p__55792;
-var id = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55793,(0),null);
-var dataset = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55793,(1),null);
+var ds_inserts = cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p__55767){
+var vec__55768 = p__55767;
+var id = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55768,(0),null);
+var dataset = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55768,(1),null);
 var encoded = bb_web_ds_tools.workspaces.persistence_fx.transit_encode(dataset);
 var created_at = Date.now();
 return ["INSERT INTO datasets VALUES (","'",cljs.core.str.cljs$core$IFn$_invoke$arity$1(id),"', ","'",clojure.string.replace(new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(dataset),"'","''"),"', ","'",clojure.string.replace(encoded,"'","''"),"', ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(created_at),");"].join('');
@@ -127,63 +160,69 @@ return cljs.core.println.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq
 });
 /**
  * Loads datasets from the SQLite DB.
+ * 
+ *   Args:
+ *  db (object): The SQLite database instance.
+ * 
+ *   Returns:
+ *  map: The loaded datasets map.
  */
 bb_web_ds_tools.workspaces.persistence_fx.load_datasets_from_db = (function bb_web_ds_tools$workspaces$persistence_fx$load_datasets_from_db(db){
 var res = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
 var rows = db.exec(cljs.core.clj__GT_js(new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"sql","sql",1251448786),"SELECT id, content FROM datasets",new cljs.core.Keyword(null,"rowMode","rowMode",812194884),"array",new cljs.core.Keyword(null,"returnValue","returnValue",1643246062),"resultRows"], null)));
-var seq__55803_55872 = cljs.core.seq(rows);
-var chunk__55804_55873 = null;
-var count__55805_55874 = (0);
-var i__55806_55875 = (0);
+var seq__55775_55840 = cljs.core.seq(rows);
+var chunk__55776_55841 = null;
+var count__55777_55842 = (0);
+var i__55778_55843 = (0);
 while(true){
-if((i__55806_55875 < count__55805_55874)){
-var vec__55818_55876 = chunk__55804_55873.cljs$core$IIndexed$_nth$arity$2(null,i__55806_55875);
-var id_55877 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55818_55876,(0),null);
-var content_55878 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55818_55876,(1),null);
-var dataset_55879 = bb_web_ds_tools.workspaces.persistence_fx.transit_decode(content_55878);
-cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$4(res,cljs.core.assoc,id_55877,dataset_55879);
+if((i__55778_55843 < count__55777_55842)){
+var vec__55793_55845 = chunk__55776_55841.cljs$core$IIndexed$_nth$arity$2(null,i__55778_55843);
+var id_55846 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55793_55845,(0),null);
+var content_55847 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55793_55845,(1),null);
+var dataset_55848 = bb_web_ds_tools.workspaces.persistence_fx.transit_decode(content_55847);
+cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$4(res,cljs.core.assoc,id_55846,dataset_55848);
 
 
-var G__55880 = seq__55803_55872;
-var G__55881 = chunk__55804_55873;
-var G__55882 = count__55805_55874;
-var G__55883 = (i__55806_55875 + (1));
-seq__55803_55872 = G__55880;
-chunk__55804_55873 = G__55881;
-count__55805_55874 = G__55882;
-i__55806_55875 = G__55883;
+var G__55849 = seq__55775_55840;
+var G__55850 = chunk__55776_55841;
+var G__55851 = count__55777_55842;
+var G__55852 = (i__55778_55843 + (1));
+seq__55775_55840 = G__55849;
+chunk__55776_55841 = G__55850;
+count__55777_55842 = G__55851;
+i__55778_55843 = G__55852;
 continue;
 } else {
-var temp__5825__auto___55885 = cljs.core.seq(seq__55803_55872);
-if(temp__5825__auto___55885){
-var seq__55803_55886__$1 = temp__5825__auto___55885;
-if(cljs.core.chunked_seq_QMARK_(seq__55803_55886__$1)){
-var c__5548__auto___55887 = cljs.core.chunk_first(seq__55803_55886__$1);
-var G__55888 = cljs.core.chunk_rest(seq__55803_55886__$1);
-var G__55889 = c__5548__auto___55887;
-var G__55890 = cljs.core.count(c__5548__auto___55887);
-var G__55891 = (0);
-seq__55803_55872 = G__55888;
-chunk__55804_55873 = G__55889;
-count__55805_55874 = G__55890;
-i__55806_55875 = G__55891;
+var temp__5825__auto___55853 = cljs.core.seq(seq__55775_55840);
+if(temp__5825__auto___55853){
+var seq__55775_55854__$1 = temp__5825__auto___55853;
+if(cljs.core.chunked_seq_QMARK_(seq__55775_55854__$1)){
+var c__5548__auto___55855 = cljs.core.chunk_first(seq__55775_55854__$1);
+var G__55856 = cljs.core.chunk_rest(seq__55775_55854__$1);
+var G__55857 = c__5548__auto___55855;
+var G__55858 = cljs.core.count(c__5548__auto___55855);
+var G__55859 = (0);
+seq__55775_55840 = G__55856;
+chunk__55776_55841 = G__55857;
+count__55777_55842 = G__55858;
+i__55778_55843 = G__55859;
 continue;
 } else {
-var vec__55825_55892 = cljs.core.first(seq__55803_55886__$1);
-var id_55893 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55825_55892,(0),null);
-var content_55894 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55825_55892,(1),null);
-var dataset_55895 = bb_web_ds_tools.workspaces.persistence_fx.transit_decode(content_55894);
-cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$4(res,cljs.core.assoc,id_55893,dataset_55895);
+var vec__55800_55860 = cljs.core.first(seq__55775_55854__$1);
+var id_55861 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55800_55860,(0),null);
+var content_55862 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55800_55860,(1),null);
+var dataset_55863 = bb_web_ds_tools.workspaces.persistence_fx.transit_decode(content_55862);
+cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$4(res,cljs.core.assoc,id_55861,dataset_55863);
 
 
-var G__55897 = cljs.core.next(seq__55803_55886__$1);
-var G__55898 = null;
-var G__55899 = (0);
-var G__55900 = (0);
-seq__55803_55872 = G__55897;
-chunk__55804_55873 = G__55898;
-count__55805_55874 = G__55899;
-i__55806_55875 = G__55900;
+var G__55864 = cljs.core.next(seq__55775_55854__$1);
+var G__55865 = null;
+var G__55866 = (0);
+var G__55867 = (0);
+seq__55775_55840 = G__55864;
+chunk__55776_55841 = G__55865;
+count__55777_55842 = G__55866;
+i__55778_55843 = G__55867;
 continue;
 }
 } else {
@@ -196,6 +235,12 @@ return cljs.core.deref(res);
 });
 /**
  * Exports the SQLite database as a binary blob.
+ * 
+ *   Args:
+ *  db (object): The SQLite database instance.
+ * 
+ *   Returns:
+ *  Blob: The database blob.
  */
 bb_web_ds_tools.workspaces.persistence_fx.export_db = (function bb_web_ds_tools$workspaces$persistence_fx$export_db(db){
 bb_web_ds_tools.workspaces.persistence_fx.persist_all_BANG_(db);
@@ -208,6 +253,9 @@ return blob;
 });
 /**
  * Initializes the SQLite database via Web Worker.
+ * 
+ *   Returns:
+ *  nil: Starts the worker.
  */
 bb_web_ds_tools.workspaces.persistence_fx.init_db_BANG_ = (function bb_web_ds_tools$workspaces$persistence_fx$init_db_BANG_(){
 var w = (new Worker("js/compiled/persistence-worker.js",cljs.core.clj__GT_js(new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"type","type",1174270348),"module"], null))));

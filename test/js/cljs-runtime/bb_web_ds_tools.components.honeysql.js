@@ -13,12 +13,12 @@ bb_web_ds_tools.components.honeysql.convert_to_sql = (function bb_web_ds_tools$c
 try{var input_data = sci.core.eval_string.cljs$core$IFn$_invoke$arity$2(input_text,bb_web_ds_tools.components.honeysql.sci_ctx);
 if(cljs.core.map_QMARK_(input_data)){
 try{return new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"success","success",1890645906),true,new cljs.core.Keyword(null,"output","output",-1105869043),cljs.core.first(honey.sql.format.cljs$core$IFn$_invoke$arity$2(input_data,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"inline","inline",1399884222),true], null)))], null);
-}catch (e52150){var e = e52150;
+}catch (e52285){var e = e52285;
 return new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"success","success",1890645906),false,new cljs.core.Keyword(null,"error","error",-978969032),["Error formatting SQL: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.ex_message(e))].join('')], null);
 }} else {
 return new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"success","success",1890645906),false,new cljs.core.Keyword(null,"error","error",-978969032),["Error: Last evaluated value must be a map. Got: ",cljs.core.pr_str.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([input_data], 0))].join('')], null);
 }
-}catch (e52149){var e = e52149;
+}catch (e52279){var e = e52279;
 return new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"success","success",1890645906),false,new cljs.core.Keyword(null,"error","error",-978969032),["Error evaluating code: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.ex_message(e))].join('')], null);
 }});
 

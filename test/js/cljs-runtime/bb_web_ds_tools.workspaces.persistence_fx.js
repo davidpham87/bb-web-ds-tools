@@ -11,16 +11,37 @@ if((typeof bb_web_ds_tools !== 'undefined') && (typeof bb_web_ds_tools.workspace
 } else {
 bb_web_ds_tools.workspaces.persistence_fx.worker = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(null);
 }
+/**
+ * Encodes a Clojure data structure to a Transit JSON string.
+ * 
+ *   Args:
+ *  x (any): The data to encode.
+ * 
+ *   Returns:
+ *  string: The encoded JSON string.
+ */
 bb_web_ds_tools.workspaces.persistence_fx.transit_encode = (function bb_web_ds_tools$workspaces$persistence_fx$transit_encode(x){
 var w = cognitect.transit.writer.cljs$core$IFn$_invoke$arity$1(new cljs.core.Keyword(null,"json","json",1279968570));
 return cognitect.transit.write(w,x);
 });
+/**
+ * Decodes a Transit JSON string to a Clojure data structure.
+ * 
+ *   Args:
+ *  x (string): The Transit JSON string.
+ * 
+ *   Returns:
+ *  any: The decoded data.
+ */
 bb_web_ds_tools.workspaces.persistence_fx.transit_decode = (function bb_web_ds_tools$workspaces$persistence_fx$transit_decode(x){
 var r = cognitect.transit.reader.cljs$core$IFn$_invoke$arity$1(new cljs.core.Keyword(null,"json","json",1279968570));
 return cognitect.transit.read(r,x);
 });
 /**
  * Creates the necessary tables in the SQLite database.
+ * 
+ *   Args:
+ *  db (object): The SQLite database instance.
  */
 bb_web_ds_tools.workspaces.persistence_fx.create_tables_BANG_ = (function bb_web_ds_tools$workspaces$persistence_fx$create_tables_BANG_(db){
 var sql = clojure.string.join.cljs$core$IFn$_invoke$arity$2("\n",new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, ["CREATE TABLE IF NOT EXISTS workspaces (id TEXT PRIMARY KEY, name TEXT, created_at INTEGER, updated_at INTEGER);","CREATE TABLE IF NOT EXISTS inputs (id TEXT PRIMARY KEY, workspace_id TEXT, type TEXT, name TEXT, content TEXT, metadata TEXT, updated_at INTEGER);","CREATE TABLE IF NOT EXISTS datasets (id TEXT PRIMARY KEY, name TEXT, content TEXT, created_at INTEGER);"], null));
@@ -28,7 +49,12 @@ return db.exec(sql);
 });
 /**
  * Dumps the current DataScript state to the SQLite database.
- * Returns: nil
+ * 
+ *   Args:
+ *  db (object): The SQLite database instance.
+ * 
+ *   Returns:
+ *  nil: Side effect.
  */
 bb_web_ds_tools.workspaces.persistence_fx.persist_all_BANG_ = (function bb_web_ds_tools$workspaces$persistence_fx$persist_all_BANG_(db){
 bb_web_ds_tools.workspaces.persistence_fx.create_tables_BANG_(db);
@@ -67,6 +93,13 @@ return cljs.core.println.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq
 });
 /**
  * Persists user datasets to the SQLite DB using Transit encoding.
+ * 
+ *   Args:
+ *  db (object): The SQLite database instance.
+ *  datasets-map (map): The datasets map to persist.
+ * 
+ *   Returns:
+ *  nil: Side effect.
  */
 bb_web_ds_tools.workspaces.persistence_fx.persist_datasets_BANG_ = (function bb_web_ds_tools$workspaces$persistence_fx$persist_datasets_BANG_(db,datasets_map){
 bb_web_ds_tools.workspaces.persistence_fx.create_tables_BANG_(db);
@@ -86,6 +119,12 @@ return cljs.core.println.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq
 });
 /**
  * Loads datasets from the SQLite DB.
+ * 
+ *   Args:
+ *  db (object): The SQLite database instance.
+ * 
+ *   Returns:
+ *  map: The loaded datasets map.
  */
 bb_web_ds_tools.workspaces.persistence_fx.load_datasets_from_db = (function bb_web_ds_tools$workspaces$persistence_fx$load_datasets_from_db(db){
 var res = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
@@ -155,6 +194,12 @@ return cljs.core.deref(res);
 });
 /**
  * Exports the SQLite database as a binary blob.
+ * 
+ *   Args:
+ *  db (object): The SQLite database instance.
+ * 
+ *   Returns:
+ *  Blob: The database blob.
  */
 bb_web_ds_tools.workspaces.persistence_fx.export_db = (function bb_web_ds_tools$workspaces$persistence_fx$export_db(db){
 bb_web_ds_tools.workspaces.persistence_fx.persist_all_BANG_(db);
@@ -167,6 +212,9 @@ return blob;
 });
 /**
  * Initializes the SQLite database via Web Worker.
+ * 
+ *   Returns:
+ *  nil: Starts the worker.
  */
 bb_web_ds_tools.workspaces.persistence_fx.init_db_BANG_ = (function bb_web_ds_tools$workspaces$persistence_fx$init_db_BANG_(){
 var w = (new Worker("js/compiled/persistence-worker.js",cljs.core.clj__GT_js(new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"type","type",1174270348),"module"], null))));
