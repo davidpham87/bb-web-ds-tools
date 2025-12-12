@@ -2,7 +2,17 @@
   (:require [bb-web-ds-tools.components.common :as c]))
 
 (def changelog-data
-  [{:version "0.11.0"
+  [{:version "0.11.1"
+    :date "2025-05-23"
+    :sections [{:title "Refactoring"
+                :items ["Refactored `bb-web-ds-tools.components.common` to consolidate button components."
+                        "Refactored `bb-web-ds-tools.utils.dataset-processing` to improve documentation and maintainability."
+                        "Replaced deprecated button components in Datasets view (`src/bb_web_ds_tools/views/datasets.cljs`)."
+                        "Optimized landing page canvas rendering logic (`src/bb_web_ds_tools/views/landing.cljs`)."]}
+               {:title "Documentation"
+                :items ["Added missing docstrings to `bb-web-ds-tools.views.landing`, `bb-web-ds-tools.utils.dataset-processing`, and `bb-web-ds-tools.components.common`."
+                        "Added docstrings to `src/bb_web_ds_tools/workspaces/persistence_fx.cljs`."]}]}
+   {:version "0.11.0"
     :date "2025-12-12"
     :sections [{:title "Added"
                 :items ["Documentation: Added comprehensive docstrings to `impl/datasets.cljc`, `views/settings.cljs`, and other view components."
