@@ -36,9 +36,6 @@ nav:
 
 markdown_extensions:
   - admonition
-  - pymdownx.highlight:
-      anchor_linenums: true
-  - pymdownx.superfences
 
 plugins:
   - search
