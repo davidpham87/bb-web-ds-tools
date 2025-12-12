@@ -4,19 +4,46 @@
 
 (defn- get-button-classes
   "Returns CSS classes for a button based on variant and disabled state."
-  [variant disabled?]
-  (let [base (str "rounded shadow-sm transition-all duration-200 "
-                  (if disabled?
-                    (str t/bg-button-disabled " " t/text-disabled " cursor-not-allowed")
-                    (case variant
-                      :primary (str t/bg-button-primary " " t/bg-button-primary-hover " " t/text-button-primary)
-                      :danger (str t/bg-button-danger " " t/bg-button-danger-hover " text-white") ;; Assuming white text for danger
-                      ;; Default
-                      (str t/bg-button " " t/bg-button-hover " " t/text-button))))]
-    base))
+  [variant disabled? size]
+  (let [size-classes (case size
+                       :xs (str "text-xs px-2 py-1 " t/bg-button-xs " " t/bg-button-xs-hover " " t/text-button " rounded transition-colors")
+                       :sm "py-1 px-3 text-sm font-medium rounded shadow-sm transition-all duration-200"
+                       ;; Default :md
+                       "py-2 px-4 text-sm font-bold rounded shadow-sm transition-all duration-200")
+        color-classes (if disabled?
+                        (str t/bg-button-disabled " " t/text-disabled " cursor-not-allowed")
+                        (case variant
+                          :primary (str t/bg-button-primary " " t/bg-button-primary-hover " " t/text-button-primary)
+                          :danger (str t/bg-button-danger " " t/bg-button-danger-hover " text-white")
+                          ;; Default
+                          (if (= size :xs)
+                            "" ;; xs handles its own colors usually or uses defaults above
+                            (str t/bg-button " " t/bg-button-hover " " t/text-button))))]
+    (str size-classes " " color-classes)))
+
+(defn button
+  "Renders a styled button component.
+   Unified component replacing button-sm, button-md, button-xs.
+
+  Args:
+    props (map): Standard HTML attributes.
+      - :size (keyword): :sm, :xs, or :md (default).
+      - :variant (keyword): :primary, :danger, or nil (default).
+    children (rest): Child elements.
+
+  Returns:
+    vector: A hiccup vector."
+  [props & children]
+  (let [{:keys [variant disabled class size] :or {size :md}} props
+        clean-props (dissoc props :variant :class :size)]
+    (into [:button
+           (merge clean-props
+                  {:class (str (get-button-classes variant disabled size) " " class)})]
+          children)))
 
 (defn button-sm
-  "Renders a small styled button component.
+  "DEPRECATED: Use (button {:size :sm} ...).
+   Renders a small styled button component.
    Style: py-1 px-3 text-sm font-medium.
 
   Args:
@@ -27,17 +54,11 @@
   Returns:
     vector: A hiccup vector."
   [props & children]
-  (let [{:keys [variant disabled class]} props
-        clean-props (dissoc props :variant :class)]
-    (into [:button
-           (merge clean-props
-                  {:class (str "py-1 px-3 text-sm font-medium "
-                               (get-button-classes variant disabled) " "
-                               class)})]
-          children)))
+  (into [button (assoc props :size :sm)] children))
 
 (defn button-md
-  "Renders a medium (standard) styled button component.
+  "DEPRECATED: Use (button {:size :md} ...).
+   Renders a medium (standard) styled button component.
    Style: py-2 px-4 text-sm font-bold.
 
   Args:
@@ -48,17 +69,11 @@
   Returns:
     vector: A hiccup vector."
   [props & children]
-  (let [{:keys [variant disabled class]} props
-        clean-props (dissoc props :variant :class)]
-    (into [:button
-           (merge clean-props
-                  {:class (str "py-2 px-4 text-sm font-bold "
-                               (get-button-classes variant disabled) " "
-                               class)})]
-          children)))
+  (into [button (assoc props :size :md)] children))
 
 (defn button-xs
-  "Renders an extra small styled button component.
+  "DEPRECATED: Use (button {:size :xs} ...).
+   Renders an extra small styled button component.
    Style: text-xs px-2 py-1.
 
   Args:
@@ -68,32 +83,7 @@
   Returns:
     vector: A hiccup vector."
   [props & children]
-  (into [:button
-         (merge {:class (str "text-xs " t/bg-button-xs " " t/bg-button-xs-hover " " t/text-button " px-2 py-1 rounded transition-colors " (:class props))
-                 :on-click (:on-click props)}
-                (dissoc props :class :on-click))]
-        children))
-
-(defn button
-  "Renders a styled button component.
-   Dispatches to specific button components based on :size prop.
-   Defaults to :md.
-
-  Args:
-    props (map): Standard HTML attributes.
-      - :size (keyword): :sm, :xs, or :md (default).
-    children (rest): Child elements.
-
-  Returns:
-    vector: A hiccup vector."
-  [props & children]
-  (let [size (:size props)
-        clean-props (dissoc props :size)]
-    (case size
-      :sm (into [button-sm clean-props] children)
-      :xs (into [button-xs clean-props] children)
-      ;; Default to medium
-      (into [button-md clean-props] children))))
+  (into [button (assoc props :size :xs)] children))
 
 (defn button-info
   "Renders an informational button (blue style).
@@ -105,7 +95,7 @@
   Returns:
     vector: A hiccup vector."
   [props & children]
-  (into [button-xs (merge props {:class (str "!bg-blue-600 hover:!bg-blue-700 !text-white " (:class props))})]
+  (into [button (merge props {:size :xs :class (str "!bg-blue-600 hover:!bg-blue-700 !text-white " (:class props))})]
         children))
 
 (defn input

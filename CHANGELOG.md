@@ -2,6 +2,17 @@
 
 All notable changes to a project will be documented in this file.
 
+## [Unreleased] - 2025-05-23
+
+### Refactoring
+
+- Refactored `bb-web-ds-tools.components.common` to consolidate button components.
+- Refactored `bb-web-ds-tools.utils.dataset-processing` to improve documentation and maintainability.
+
+### Documentation
+
+- Added missing docstrings to `bb-web-ds-tools.views.landing`, `bb-web-ds-tools.utils.dataset-processing`, and `bb-web-ds-tools.components.common`.
+
 ## [0.11.0] - 2025-12-12
 
 ### Added

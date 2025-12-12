@@ -5,23 +5,62 @@
             [clojure.edn :as edn]
             [cljs.pprint :as pprint]))
 
-(defn to-snake-case [s]
+(defn to-snake-case
+  "Converts a string to snake_case.
+   Example: 'camelCase' -> 'camel_case'
+
+  Args:
+    s (string): The input string.
+
+  Returns:
+    string: The snake_case string."
+  [s]
   (-> s
       (str/replace #"([a-z])([A-Z])" "$1_$2")
       (str/replace #"[\s-]" "_")
       (str/lower-case)))
 
-(defn to-camel-case [s]
+(defn to-camel-case
+  "Converts a string to CamelCase.
+   Example: 'snake_case' -> 'SnakeCase'
+
+  Args:
+    s (string): The input string.
+
+  Returns:
+    string: The CamelCase string."
+  [s]
   (let [parts (str/split (str/replace s #"[\s-_]" " ") #" ")]
     (str/join (map str/capitalize parts))))
 
-(defn to-kebab-case [s]
+(defn to-kebab-case
+  "Converts a string to kebab-case.
+   Example: 'camelCase' -> 'camel-case'
+
+  Args:
+    s (string): The input string.
+
+  Returns:
+    string: The kebab-case string."
+  [s]
   (-> s
       (str/replace #"([a-z])([A-Z])" "$1-$2")
       (str/replace #"[\s_]" "-")
       (str/lower-case)))
 
-(defn normalize-column-name [col-name {:keys [case output]}]
+(defn normalize-column-name
+  "Normalizes a column name based on the provided configuration.
+   Can convert case (snake, camel, kebab) and output type (string, keyword, symbol).
+
+  Args:
+    col-name (string/keyword/symbol): The column name to normalize.
+    opts (map): Configuration options.
+      - :case (keyword): :snake_case, :CamelCase, :kebab-case.
+      - :output (keyword): :string, :keyword, :symbol.
+
+  Returns:
+    The normalized column name."
+  [col-name {:keys [case output]}]
   (let [s (name col-name)
         s-case (condp = case
                  :snake_case (to-snake-case s)
@@ -266,7 +305,17 @@
                                            'starts-with? str/starts-with?
                                            'ends-with? str/ends-with?}}}))
 
-(defn compile-filter [expression-str]
+(defn compile-filter
+  "Compiles a filter string into a predicate function using SCI.
+   If the string is empty, returns nil.
+   If compilation fails, returns a string equality predicate.
+
+  Args:
+    expression-str (string): The filter expression (e.g. '(> % 10)').
+
+  Returns:
+    fn: A predicate function accepting a value and returning boolean."
+  [expression-str]
   (try
     (if (str/blank? expression-str)
       nil
