@@ -63,44 +63,18 @@
 
       :reagent-render
       (fn []
-        [:div {:class (str "flex flex-col h-full overflow-hidden rounded-xl shadow-lg transition-all duration-300 transform hover:scale-[1.02] cursor-pointer border " t/border-subtle " " t/border-hover " " t/bg-card)
+        [:div {:class (str "flex flex-col md:flex-row h-auto md:h-64 w-full overflow-hidden rounded-xl shadow-lg transition-all duration-300 transform hover:scale-[1.01] cursor-pointer border " t/border-subtle " " t/border-hover " " t/bg-card)
                :on-click #(rf/dispatch [:bb-web-ds-tools.core/navigate route nil nil])}
-         [:div {:class (str "relative h-40 w-full " t/bg-sidebar " border-b " t/border-main)}
+         [:div {:class (str "relative w-full md:w-1/3 h-48 md:h-full " t/bg-sidebar " border-b md:border-b-0 md:border-r " t/border-main)}
           [:canvas {:ref #(reset! canvas-ref %)
                     :class "w-full h-full block"}]]
-         [:div {:class "p-5 flex flex-col flex-grow"}
-          [:h3 {:class (str "text-lg font-bold mb-2 " t/text-accent)} label]
-          [:p {:class (str "text-sm leading-relaxed " t/text-primary " opacity-90")} description]]])})))
+         [:div {:class "p-6 flex flex-col justify-center w-full md:w-2/3"}
+          [:h3 {:class (str "text-2xl font-bold mb-4 " t/text-accent)} label]
+          [:p {:class (str "text-base leading-relaxed " t/text-primary " opacity-90")} description]]])})))
 
 ;; --- Animation Helpers ---
 
 (defn clear [ctx w h]
-  ;; We can't access CSS vars easily in canvas loop without performance hit,
-  ;; or we can parse them. For simplicity in landing page animations,
-  ;; we might stick to a theme or parse from computed style.
-  ;; But here we want it to react to theme.
-  ;; Let's try to get style from document body.
-  ;; Or just use fixed zenburn colors for animations if theming canvas is too complex for now?
-  ;; The user asked to "Update the colors of the app accordingly".
-  ;; The landing page canvas animations use `t/colors` and `t/zenburn`.
-  ;; Since `t/colors` now holds CSS vars, drawing with `ctx.fillStyle = "var(--...)"` DOES NOT work in Canvas API.
-  ;; We need resolved colors.
-  ;; We can look up the resolved colors from the same source as `events/theme`.
-  ;; But `theme` event pushes vars to CSS.
-  ;; For Canvas, we need the actual hex values.
-  ;; We can get them from `bb-web-ds-tools.utils.themes/get-theme` via subscription?
-  ;; But these are pure functions.
-  ;; Let's use a helper that gets the current theme colors.
-  ;; Or since this is "artistic", maybe just stick to Zenburn or use a hardcoded palette that looks good?
-  ;; No, if I change to Light theme, Zenburn animations will look bad.
-  ;; I should use the current theme colors.
-  ;; But `draw-fn` is passed pure.
-  ;; The component `canvas-card` is re-rendered when props change.
-  ;; But the animation loop closes over `ctx`.
-  ;; If I want dynamic colors in canvas, I need to fetch them inside the loop or update them.
-  ;; Accessing `getComputedStyle` every frame is slow.
-  ;; But we can access it once per second or use a mutable ref for colors.
-  ;; For now, let's just fix the compilation error by defining `zenburn` locally or importing it from `themes`.
   (let [style (js/getComputedStyle js/document.body)
         bg (.getPropertyValue style "--bg-sidebar")]
     (set! (.-fillStyle ctx) (if (empty? bg) "#303030" bg))
@@ -108,12 +82,6 @@
 
 (def colors t/colors)
 (def zenburn (themes/get-theme :zenburn))
-
-;; Helper to get color from current theme or fallback to zenburn for now
-;; Ideally we should read CSS vars or subscribe.
-;; But for `draw-fn` which is just an animation...
-;; Let's assume for now we use the `zenburn` palette defined above to fix the build.
-;; If we want real theming in canvas, we need to pass the theme colors to `draw-fn`.
 
 ;; --- Animations ---
 
@@ -188,8 +156,8 @@
 (defn draw-code [ctx w h t]
   (clear ctx w h)
   (let [line-h 14
-        start-x 40
-        start-y 40
+        start-x (- (/ w 2) 80)
+        start-y (- (/ h 2) 60)
         chars-per-line 30
         total-lines 8
         typer-pos (mod (Math/floor (/ t 50)) (* chars-per-line total-lines))]
@@ -382,37 +350,37 @@
     :draw-fn draw-workspaces}
    {:label "Datasets"
     :route :datasets
-    :description "Import CSVs, TSVs, JSON. Edit in a grid. Pretend you're using Excel."
+    :description "Because sometimes you just want to look at a CSV without firing up a Jupyter notebook that takes 3 minutes to load. It's like Excel, but you can feel superior about using it."
     :draw-fn draw-datasets}
    {:label "Vega-Lite"
     :route :vega-lite
-    :description "Charts on the fly. Paste data, write spec, boom. Interactive charts."
+    :description "Make charts that look like you spent hours on them, when in reality you just copied a JSON blob. Data visualization for the impatient and the lazy."
     :draw-fn draw-vega-lite}
    {:label "Code"
     :route :code
-    :description "It's VS Code, but just the editor part. Includes Python, R, and Clojure support."
+    :description "Write Python, R, and Clojure in the browser because installing local environments is a form of self-harm. We downloaded the internet so you don't have to."
     :draw-fn draw-code}
    {:label "Malli"
     :route :malli
-    :description "Schema Inference & Generation. A spellchecker for your data structures."
+    :description "Validate your data structures because trusting user input is a rookie mistake. It's like a strict librarian for your JSON."
     :draw-fn draw-malli}
    {:label "HoneySQL"
     :route :honeysql
-    :description "SQL for Clojurists. Because writing strings is for cavemen."
+    :description "Write SQL in Clojure data structures, because string manipulation is for people who enjoy SQL injection attacks. Be the abstraction you want to see in the world."
     :draw-fn draw-honeysql}
    {:label "Gemma"
     :route :gemma
-    :description "Your Private AI Buddy. Uses your local GPU. Fans will spin."
+    :description "Run an LLM locally and listen to your laptop fan simulate a jet engine takeoff. Ask it questions, getting answers is optional."
     :draw-fn draw-gemma}
    {:label "Settings"
     :route :settings
-    :description "Tweak the knobs. Change the font size until you can read it."
+    :description "Change the font size because you're not 20 anymore. Customize the UI until it's barely usable, we won't stop you."
     :draw-fn draw-settings}
    {:label "App DB"
     :route :app-db
-    :description "Inspect the state of the universe. See the matrix code behind the curtain."
+    :description "Stare directly into the soul of the application state. If it looks like chaos, that's because it is. Don't touch it."
     :draw-fn draw-app-db}
    {:label "Changelog"
     :route :changelog
-    :description "What's new? Probably some bugs we fixed and some new ones we added."
+    :description "A historical record of our mistakes and the heroic efforts to fix them. Read it to feel better about your own code."
     :draw-fn draw-changelog}])
