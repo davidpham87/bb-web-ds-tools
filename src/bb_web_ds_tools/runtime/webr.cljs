@@ -31,6 +31,15 @@
 (defn- get-width [^js obj] (.-width obj))
 (defn- get-height [^js obj] (.-height obj))
 
+(defn- get-global-env [^js webr]
+  (.-globalEnv webr))
+
+(defn- bind-r [^js env name val]
+  (.bind env name val))
+
+(defn- get-r [^js env name]
+  (.get env name))
+
 (def input-buffer (a/chan 1000))
 (def flush!
   (ab/create
@@ -150,7 +159,7 @@
         (let [webr @webr-instance
               js-datasets (datasets->js datasets keys-to-bind)]
           ;; .bind typically returns a Promise
-          (<p! (.bind (.-globalEnv webr) "datasets" js-datasets)))
+          (<p! (bind-r (get-global-env webr) "datasets" js-datasets)))
         (catch :default e
           (js/console.error "Failed to bind datasets to R:" e))))
     (go (js/console.warn "WebR not loaded, cannot bind datasets"))))
@@ -164,10 +173,10 @@
       (try
         (let [webr @webr-instance
               ;; .get returns a Promise
-              r-datasets (try (<p! (.get (.-globalEnv webr) "datasets"))
+              r-datasets (try (<p! (get-r (get-global-env webr) "datasets"))
                               (catch :default _ nil))]
           (when r-datasets
-            (let [js-val (<p! (.toJs r-datasets))
+            (let [js-val (<p! (to-js r-datasets))
                   clj-datasets (js->clj js-val :keywordize-keys true)]
               ;; We assume the R user might have returned a named list of data frames (or lists).
               ;; We need to sync this back to app-db.
