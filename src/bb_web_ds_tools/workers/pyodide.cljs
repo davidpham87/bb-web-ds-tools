@@ -69,9 +69,9 @@
 
 (defn create-datasets-proxy []
   (js/Proxy. datasets-target
-             (clj->js {:set (fn [obj prop value receiver]
+             (clj->js {:set (fn [obj prop ^js value receiver]
                               (let [js-val (if (and value (.-toJs value))
-                                             (.toJs ^js value #js {"create_pyproxies" false})
+                                             (.toJs value #js {"create_pyproxies" false})
                                              value)]
                                 (js/Reflect.set obj prop js-val receiver)
                                 (post-msg {:type "dataset-update" :key prop :value js-val})

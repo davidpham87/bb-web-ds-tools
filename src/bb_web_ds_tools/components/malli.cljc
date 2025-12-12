@@ -133,14 +133,17 @@
     map: {:success true :output string :data any}."
   [schema samples format]
   (if (and schema (pos? samples))
-    (let [data (if (> samples 1)
-                 (vec (repeatedly samples #(mg/generate schema)))
-                 (mg/generate schema))
-          output (case format
-                   :edn (pretty-print-str data)
-                   :json (generate-json data)
-                   (pr-str data))]
-      {:success true :output output :data data})
+    (try
+      (let [data (if (> samples 1)
+                   (vec (repeatedly samples #(mg/generate schema)))
+                   (mg/generate schema))
+            output (case format
+                     :edn (pretty-print-str data)
+                     :json (generate-json data)
+                     (pr-str data))]
+        {:success true :output output :data data})
+      (catch #?(:cljs :default :clj Exception) e
+        {:success false :error (str "Generation failed: " (ex-message e))}))
     {:success false :error "Invalid schema or samples."}))
 
 (defn- annotate-schema
@@ -332,9 +335,12 @@
     map: {:success true :result string} or error."
   [schema data]
   (if (and schema data)
-    (if (m/validate schema data)
-      {:success true :result "✅ Data is valid."}
-      {:success false :result (m/explain schema data)})
+    (try
+      (if (m/validate schema data)
+        {:success true :result "✅ Data is valid."}
+        {:success false :result (m/explain schema data)})
+      (catch #?(:cljs :default :clj Exception) e
+        {:success false :error (str "Validation failed: " (ex-message e))}))
     {:success false :error "Invalid schema or data."}))
 
 (defn transform-to-json-schema

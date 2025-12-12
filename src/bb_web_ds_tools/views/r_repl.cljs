@@ -170,5 +170,5 @@
   []
   (r/create-class
    {:display-name "r-repl-panel"
-    :component-did-mount (fn [] (rf/dispatch [::initialize]))
+    :component-did-mount (fn [] (rf/dispatch [::on-mount]))
     :reagent-render (fn [] [panel-render])}))

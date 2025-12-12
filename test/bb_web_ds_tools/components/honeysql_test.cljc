@@ -13,7 +13,5 @@
 
   (testing "Handles valid EDN but not a map"
     (is (= {:success false
-            :error (str "Error: Last evaluated value must be a map. Got: "
-                        #?(:clj "class clojure.lang.PersistentVector"
-                           :cljs "cljs.core/PersistentVector"))}
+            :error "Error: Last evaluated value must be a map. Got: [:select :*]"}
            (sut/convert-to-sql "[:select :*]")))))
