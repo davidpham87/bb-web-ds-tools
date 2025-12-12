@@ -33,9 +33,3 @@ nav:
     - R Integration: docs/r-integration.md
     - Visual Bug Report: docs/VISUAL_BUG_REPORT.md
     - Visual Report: docs/visual_report.md
-
-markdown_extensions:
-  - admonition
-
-plugins:
-  - search
