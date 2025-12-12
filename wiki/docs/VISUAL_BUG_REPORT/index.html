@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Visual Bug Report - BB Web DS Tools Wiki</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">BB Web DS Tools Wiki</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Features</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../app_db/" class="dropdown-item">App DB</a>
+</li>
+                                    
+<li>
+    <a href="../../changelog/" class="dropdown-item">Changelog</a>
+</li>
+                                    
+<li>
+    <a href="../../cli_tools/" class="dropdown-item">CLI Tools</a>
+</li>
+                                    
+<li>
+    <a href="../../code_environments/" class="dropdown-item">Code Environments</a>
+</li>
+                                    
+<li>
+    <a href="../../datasets/" class="dropdown-item">Datasets</a>
+</li>
+                                    
+<li>
+    <a href="../../gemma/" class="dropdown-item">Gemma</a>
+</li>
+                                    
+<li>
+    <a href="../../honeysql/" class="dropdown-item">HoneySQL</a>
+</li>
+                                    
+<li>
+    <a href="../../malli/" class="dropdown-item">Malli</a>
+</li>
+                                    
+<li>
+    <a href="../../vega_lite/" class="dropdown-item">Vega Lite</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Design & Documentation</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../CLI_DATA_STRUCTURES/" class="dropdown-item">CLI Data Structures</a>
+</li>
+                                    
+<li>
+    <a href="../client_side_filesystem/" class="dropdown-item">Client Side Filesystem</a>
+</li>
+                                    
+<li>
+    <a href="../dataset_sync_design/" class="dropdown-item">Dataset Sync Design</a>
+</li>
+                                    
+<li>
+    <a href="../DESIGN_WORKSPACES/" class="dropdown-item">Design Workspaces</a>
+</li>
+                                    
+<li>
+    <a href="../fsm_logic/" class="dropdown-item">FSM Logic</a>
+</li>
+                                    
+<li>
+    <a href="../maintenance/" class="dropdown-item">Maintenance</a>
+</li>
+                                    
+<li>
+    <a href="../persistence_design/" class="dropdown-item">Persistence Design</a>
+</li>
+                                    
+<li>
+    <a href="../POST_MORTEM_APP_DISPLAY/" class="dropdown-item">Post Mortem App Display</a>
+</li>
+                                    
+<li>
+    <a href="../r-integration/" class="dropdown-item">R Integration</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Visual Bug Report</a>
+</li>
+                                    
+<li>
+    <a href="../visual_report/" class="dropdown-item">Visual Report</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../r-integration/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../visual_report/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/davidpham87/bb-web-ds-tools/edit/master/docs/docs/VISUAL_BUG_REPORT.md" class="nav-link"><i class="fa-brands fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#visual-bug-report" class="nav-link">Visual Bug Report</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1-hardcoded-hex-codes" class="nav-link">1. Hardcoded Hex Codes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-grid-spacing-deviations" class="nav-link">2. Grid &amp; Spacing Deviations</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-optical-alignment-failures" class="nav-link">3. Optical Alignment Failures</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="visual-bug-report">Visual Bug Report</h1>
+<h2 id="1-hardcoded-hex-codes">1. Hardcoded Hex Codes</h2>
+<p>The following elements use undefined hex codes instead of semantic theme tokens,
+violating the design system consistency.</p>
+<ul>
+<li><strong>File:</strong> <code>src/bb_web_ds_tools/views/datasets.cljs</code></li>
+<li><strong>Element:</strong> Dataset Title Input (Focus State)</li>
+<li><strong>Issue:</strong> Uses <code>focus:border-[#f0dfaf]</code>.</li>
+<li><strong>Fix:</strong> Create/Use a theme token for the accent border color (e.g.,
+    <code>t/border-focus-accent</code>).</li>
+<li><strong>Element:</strong> Delete Dataset Button</li>
+<li><strong>Issue:</strong> Uses <code>text-[#3f3f3f]</code>.</li>
+<li><strong>Fix:</strong> Use <code>t/text-button-primary</code> (which maps to the same color but is
+    semantically defined).</li>
+</ul>
+<h2 id="2-grid-spacing-deviations">2. Grid &amp; Spacing Deviations</h2>
+<p>The "Dense Data Grid" component deviates from the "Engineering-Grade" spec.</p>
+<ul>
+<li><strong>File:</strong> <code>src/bb_web_ds_tools/components/common.cljs</code></li>
+<li><strong>Component:</strong> <code>th</code>, <code>td</code></li>
+<li><strong>Issue:</strong> Uses <code>px-6 py-3</code> (th) and <code>px-6 py-4</code> (td).</li>
+<li><strong>Spec Violation:</strong> The spec requires <code>px-3</code> padding and 32px row height.
+    The current padding results in significantly taller rows (&gt;50px) and wider
+    columns.</li>
+<li><strong>Fix:</strong> Update padding to <code>px-3</code> and adjust vertical padding (e.g.,
+    <code>py-1.5</code> or <code>py-2</code>) to match the 32px height constraint.</li>
+</ul>
+<h2 id="3-optical-alignment-failures">3. Optical Alignment Failures</h2>
+<p>Instances where elements are mathematically aligned but visually unbalanced.</p>
+<ol>
+<li>
+<p><strong>Table Header Sort Indicators:</strong></p>
+<ul>
+<li>The sort arrows (<code>▲</code>/<code>▼</code>) are appended as text characters within the <code>th</code>
+  element. Due to font metrics, these glyphs often do not align with the
+  cap-height of the header text, causing them to float or sink visually.</li>
+</ul>
+</li>
+<li>
+<p><strong>Dataset View Title vs. Row Count:</strong></p>
+<ul>
+<li>The dataset title is <code>text-xl</code> (20px/28px) and the row count is <code>text-sm</code>
+  (14px/20px). While aligned via <code>items-center</code> (flexbox), the significant
+  difference in baseline and cap-height makes the smaller text feel
+  "floating" relative to the title's baseline.</li>
+</ul>
+</li>
+<li>
+<p><strong>Importer View Buttons vs. Labels:</strong></p>
+<ul>
+<li>The <code>c/button-xs</code> components are mixed with text labels like "Load
+  Example:". The button padding (<code>py-1</code>) combined with the border and text
+  size creates a container height that may not align its text baseline with
+  the adjacent static label text, creating a "stair-step" effect.</li>
+</ul>
+</li>
+</ol></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

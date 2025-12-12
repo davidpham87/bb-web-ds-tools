@@ -46,8 +46,8 @@ return x;
 }
 });
 sci.impl.hierarchies.derive_STAR_ = (function sci$impl$hierarchies$derive_STAR_(var_args){
-var G__28912 = arguments.length;
-switch (G__28912) {
+var G__39781 = arguments.length;
+switch (G__39781) {
 case 3:
 return sci.impl.hierarchies.derive_STAR_.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -63,9 +63,9 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 });
 
 (sci.impl.hierarchies.derive_STAR_.cljs$core$IFn$_invoke$arity$3 = (function (ctx,tag,parent){
-var tag_28930__$1 = sci.impl.hierarchies.__GT_tag(tag);
+var tag_39801__$1 = sci.impl.hierarchies.__GT_tag(tag);
 sci.impl.vars.alter_var_root.cljs$core$IFn$_invoke$arity$2(sci.impl.hierarchies.global_hierarchy(ctx),(function (h){
-return cljs.core.derive.cljs$core$IFn$_invoke$arity$3(h,tag_28930__$1,parent);
+return cljs.core.derive.cljs$core$IFn$_invoke$arity$3(h,tag_39801__$1,parent);
 }));
 
 return null;
@@ -79,8 +79,8 @@ return cljs.core.derive.cljs$core$IFn$_invoke$arity$3(h,tag__$1,parent);
 (sci.impl.hierarchies.derive_STAR_.cljs$lang$maxFixedArity = 4);
 
 sci.impl.hierarchies.underive_STAR_ = (function sci$impl$hierarchies$underive_STAR_(var_args){
-var G__28914 = arguments.length;
-switch (G__28914) {
+var G__39785 = arguments.length;
+switch (G__39785) {
 case 3:
 return sci.impl.hierarchies.underive_STAR_.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -96,9 +96,9 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 });
 
 (sci.impl.hierarchies.underive_STAR_.cljs$core$IFn$_invoke$arity$3 = (function (ctx,tag,parent){
-var tag_28932__$1 = sci.impl.hierarchies.__GT_tag(tag);
+var tag_39804__$1 = sci.impl.hierarchies.__GT_tag(tag);
 sci.impl.vars.alter_var_root.cljs$core$IFn$_invoke$arity$2(sci.impl.hierarchies.global_hierarchy(ctx),(function (h){
-return cljs.core.underive.cljs$core$IFn$_invoke$arity$3(h,tag_28932__$1,parent);
+return cljs.core.underive.cljs$core$IFn$_invoke$arity$3(h,tag_39804__$1,parent);
 }));
 
 return null;
@@ -112,8 +112,8 @@ return cljs.core.underive.cljs$core$IFn$_invoke$arity$3(h,tag__$1,parent);
 (sci.impl.hierarchies.underive_STAR_.cljs$lang$maxFixedArity = 4);
 
 sci.impl.hierarchies.isa_QMARK__STAR_ = (function sci$impl$hierarchies$isa_QMARK__STAR_(var_args){
-var G__28919 = arguments.length;
-switch (G__28919) {
+var G__39788 = arguments.length;
+switch (G__39788) {
 case 3:
 return sci.impl.hierarchies.isa_QMARK__STAR_.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -140,8 +140,8 @@ return cljs.core.isa_QMARK_.cljs$core$IFn$_invoke$arity$3(h,sci.impl.hierarchies
 (sci.impl.hierarchies.isa_QMARK__STAR_.cljs$lang$maxFixedArity = 4);
 
 sci.impl.hierarchies.ancestors_STAR_ = (function sci$impl$hierarchies$ancestors_STAR_(var_args){
-var G__28921 = arguments.length;
-switch (G__28921) {
+var G__39792 = arguments.length;
+switch (G__39792) {
 case 2:
 return sci.impl.hierarchies.ancestors_STAR_.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -168,8 +168,8 @@ return cljs.core.ancestors.cljs$core$IFn$_invoke$arity$2(h,tag);
 (sci.impl.hierarchies.ancestors_STAR_.cljs$lang$maxFixedArity = 3);
 
 sci.impl.hierarchies.descendants_STAR_ = (function sci$impl$hierarchies$descendants_STAR_(var_args){
-var G__28924 = arguments.length;
-switch (G__28924) {
+var G__39795 = arguments.length;
+switch (G__39795) {
 case 2:
 return sci.impl.hierarchies.descendants_STAR_.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -196,8 +196,8 @@ return cljs.core.descendants.cljs$core$IFn$_invoke$arity$2(h,tag);
 (sci.impl.hierarchies.descendants_STAR_.cljs$lang$maxFixedArity = 3);
 
 sci.impl.hierarchies.parents_STAR_ = (function sci$impl$hierarchies$parents_STAR_(var_args){
-var G__28926 = arguments.length;
-switch (G__28926) {
+var G__39798 = arguments.length;
+switch (G__39798) {
 case 2:
 return sci.impl.hierarchies.parents_STAR_.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 

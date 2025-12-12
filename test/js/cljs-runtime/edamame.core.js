@@ -75,8 +75,8 @@ goog.provide('edamame.core');
  *   
  */
 edamame.core.parse_string = (function edamame$core$parse_string(var_args){
-var G__41701 = arguments.length;
-switch (G__41701) {
+var G__35555 = arguments.length;
+switch (G__35555) {
 case 1:
 return edamame.core.parse_string.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -106,8 +106,8 @@ return edamame.impl.parser.parse_string(s,opts);
  *   in a vector.
  */
 edamame.core.parse_string_all = (function edamame$core$parse_string_all(var_args){
-var G__41706 = arguments.length;
-switch (G__41706) {
+var G__35559 = arguments.length;
+switch (G__35559) {
 case 1:
 return edamame.core.parse_string_all.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -164,8 +164,8 @@ return edamame.impl.parser.normalize_opts(opts);
  *   but must be normalized with `normalize-opts` first.
  */
 edamame.core.parse_next = (function edamame$core$parse_next(var_args){
-var G__41712 = arguments.length;
-switch (G__41712) {
+var G__35573 = arguments.length;
+switch (G__35573) {
 case 1:
 return edamame.core.parse_next.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -186,8 +186,8 @@ return edamame.core.parse_next.cljs$core$IFn$_invoke$arity$2(reader,edamame.impl
 
 (edamame.core.parse_next.cljs$core$IFn$_invoke$arity$2 = (function (reader,normalized_opts){
 if(cljs.tools.reader.reader_types.source_logging_reader_QMARK_(reader)){
-var buf_41721 = edamame.impl.parser.buf(reader);
-buf_41721.clear();
+var buf_35605 = edamame.impl.parser.buf(reader);
+buf_35605.clear();
 } else {
 }
 
@@ -212,8 +212,8 @@ return v;
  *   Returns read value + string read (whitespace-trimmed).
  */
 edamame.core.parse_next_PLUS_string = (function edamame$core$parse_next_PLUS_string(var_args){
-var G__41715 = arguments.length;
-switch (G__41715) {
+var G__35576 = arguments.length;
+switch (G__35576) {
 case 1:
 return edamame.core.parse_next_PLUS_string.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 

@@ -71,8 +71,8 @@ return cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$3(portal.runtime.default
  * Open a new inspector window.
  */
 portal.web.open = (function portal$web$open(var_args){
-var G__37917 = arguments.length;
-switch (G__37917) {
+var G__37966 = arguments.length;
+switch (G__37966) {
 case 0:
 return portal.web.open.cljs$core$IFn$_invoke$arity$0();
 
@@ -107,8 +107,8 @@ return portal.runtime.web.launcher.open(portal.web.rename(options));
  * - options: see `portal.web/open` for options.
  */
 portal.web.inspect = (function portal$web$inspect(var_args){
-var G__37919 = arguments.length;
-switch (G__37919) {
+var G__37974 = arguments.length;
+switch (G__37974) {
 case 1:
 return portal.web.inspect.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -165,8 +165,8 @@ return null;
  * Evaluate ClojureScript source given as a string in the UI runtime.
  */
 portal.web.eval_str = (function portal$web$eval_str(var_args){
-var G__37925 = arguments.length;
-switch (G__37925) {
+var G__37979 = arguments.length;
+switch (G__37979) {
 case 1:
 return portal.web.eval_str.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -187,11 +187,11 @@ return portal.web.eval_str.cljs$core$IFn$_invoke$arity$3(new cljs.core.Keyword(n
 
 (portal.web.eval_str.cljs$core$IFn$_invoke$arity$3 = (function (_portal,code,opts){
 var result = portal.runtime.web.launcher.eval_str(cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(opts,new cljs.core.Keyword(null,"code","code",1586293142),code));
-var G__37935 = result;
+var G__37989 = result;
 if(cljs.core.not(new cljs.core.Keyword(null,"verbose","verbose",1694226060).cljs$core$IFn$_invoke$arity$1(opts))){
-return new cljs.core.Keyword(null,"value","value",305978217).cljs$core$IFn$_invoke$arity$1(G__37935);
+return new cljs.core.Keyword(null,"value","value",305978217).cljs$core$IFn$_invoke$arity$1(G__37989);
 } else {
-return G__37935;
+return G__37989;
 }
 }));
 

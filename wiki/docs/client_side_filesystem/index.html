@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Client Side Filesystem - BB Web DS Tools Wiki</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">BB Web DS Tools Wiki</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Features</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../app_db/" class="dropdown-item">App DB</a>
+</li>
+                                    
+<li>
+    <a href="../../changelog/" class="dropdown-item">Changelog</a>
+</li>
+                                    
+<li>
+    <a href="../../cli_tools/" class="dropdown-item">CLI Tools</a>
+</li>
+                                    
+<li>
+    <a href="../../code_environments/" class="dropdown-item">Code Environments</a>
+</li>
+                                    
+<li>
+    <a href="../../datasets/" class="dropdown-item">Datasets</a>
+</li>
+                                    
+<li>
+    <a href="../../gemma/" class="dropdown-item">Gemma</a>
+</li>
+                                    
+<li>
+    <a href="../../honeysql/" class="dropdown-item">HoneySQL</a>
+</li>
+                                    
+<li>
+    <a href="../../malli/" class="dropdown-item">Malli</a>
+</li>
+                                    
+<li>
+    <a href="../../vega_lite/" class="dropdown-item">Vega Lite</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Design & Documentation</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../CLI_DATA_STRUCTURES/" class="dropdown-item">CLI Data Structures</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Client Side Filesystem</a>
+</li>
+                                    
+<li>
+    <a href="../dataset_sync_design/" class="dropdown-item">Dataset Sync Design</a>
+</li>
+                                    
+<li>
+    <a href="../DESIGN_WORKSPACES/" class="dropdown-item">Design Workspaces</a>
+</li>
+                                    
+<li>
+    <a href="../fsm_logic/" class="dropdown-item">FSM Logic</a>
+</li>
+                                    
+<li>
+    <a href="../maintenance/" class="dropdown-item">Maintenance</a>
+</li>
+                                    
+<li>
+    <a href="../persistence_design/" class="dropdown-item">Persistence Design</a>
+</li>
+                                    
+<li>
+    <a href="../POST_MORTEM_APP_DISPLAY/" class="dropdown-item">Post Mortem App Display</a>
+</li>
+                                    
+<li>
+    <a href="../r-integration/" class="dropdown-item">R Integration</a>
+</li>
+                                    
+<li>
+    <a href="../VISUAL_BUG_REPORT/" class="dropdown-item">Visual Bug Report</a>
+</li>
+                                    
+<li>
+    <a href="../visual_report/" class="dropdown-item">Visual Report</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../CLI_DATA_STRUCTURES/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../dataset_sync_design/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/davidpham87/bb-web-ds-tools/edit/master/docs/docs/client_side_filesystem.md" class="nav-link"><i class="fa-brands fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#client-side-file-system-persistence-design" class="nav-link">Client-Side File System &amp; Persistence Design</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1-overview" class="nav-link">1. Overview</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-architecture" class="nav-link">2. Architecture</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-implementation-steps" class="nav-link">3. Implementation Steps</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-data-migration-schema" class="nav-link">4. Data Migration &amp; Schema</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5-challenges-mitigations" class="nav-link">5. Challenges &amp; Mitigations</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="client-side-file-system-persistence-design">Client-Side File System &amp; Persistence Design</h1>
+<h2 id="1-overview">1. Overview</h2>
+<p>This document outlines the design for implementing a persistent, client-side
+file system for <code>bb-web-ds-tools</code>. The goal is to allow users to create
+"workspaces" containing files (code, datasets, configurations) that persist
+across browser sessions and reloads, without relying on a backend server or
+manual file export/import.</p>
+<p>The solution leverages:</p>
+<ul>
+<li><strong>SQLite WASM</strong>: For robust, SQL-based storage in the browser.</li>
+<li><strong>Origin Private File System (OPFS)</strong>: For performant, persistent backing of
+  the SQLite database.</li>
+<li><strong>DataScript</strong>: For reactive, in-memory state management within the UI.</li>
+<li><strong>Web Workers</strong>: To offload database I/O from the main thread.</li>
+</ul>
+<h2 id="2-architecture">2. Architecture</h2>
+<h3 id="21-storage-layer-sqlite-opfs">2.1 Storage Layer: SQLite + OPFS</h3>
+<p>The core storage mechanism will be an SQLite database running in the browser.</p>
+<ul>
+<li><strong>Persistence</strong>: Instead of the current <code>:memory:</code> database, we will use the
+  <code>opfs</code> VFS (Virtual File System) provided by the SQLite WASM build. This
+  stores the database file in the browser's Origin Private File System, which is
+  persistent and optimized for random access.</li>
+<li><strong>File Format</strong>: Standard SQLite <code>.db</code> file.</li>
+<li><strong>Tables</strong>:</li>
+<li><code>workspaces</code>: Stores workspace metadata (id, name, dates).</li>
+<li><code>files</code>: Stores the actual user content (code, datasets). This replaces the
+    <code>inputs</code> concept to be more filesystem-like.</li>
+</ul>
+<pre><code class="language-sql">CREATE TABLE workspaces (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    created_at INTEGER,
+    updated_at INTEGER
+);
+
+CREATE TABLE files (
+    id TEXT PRIMARY KEY,
+    workspace_id TEXT NOT NULL,
+    parent_id TEXT, -- For folder structure (optional future proofing)
+    name TEXT NOT NULL,
+    type TEXT NOT NULL, -- 'dir', 'file'
+    mime_type TEXT,     -- 'text/x-clojure', 'application/json', etc.
+    content BLOB,       -- Text or binary content
+    metadata JSON,      -- Extra app-specific metadata
+    created_at INTEGER,
+    updated_at INTEGER,
+    FOREIGN KEY(workspace_id) REFERENCES workspaces(id) ON DELETE CASCADE
+);
+</code></pre>
+<h3 id="22-worker-based-io-sequential-execution">2.2 Worker-Based I/O &amp; Sequential Execution</h3>
+<p>The OPFS VFS in SQLite WASM is most performant when used from a dedicated Web
+Worker. This prevents large read/write operations from freezing the UI.</p>
+<ul>
+<li><strong>Persistence Worker</strong>: A new worker
+  (<code>src/bb_web_ds_tools/workers/persistence.cljs</code>) will be created.</li>
+<li><strong>Responsibilities</strong>:</li>
+<li>Initialize the SQLite DB with OPFS backend.</li>
+<li>Handle messages: <code>:load-all</code>, <code>:save-file</code>, <code>:delete-file</code>,
+    <code>:create-workspace</code>, etc.</li>
+<li>Post updates back to the main thread.</li>
+</ul>
+<p><strong>Sequential Execution Strategy</strong>: While the main thread communicates with the
+worker asynchronously (non-blocking), operations <em>within</em> the worker are handled
+synchronously and sequentially.</p>
+<ol>
+<li><strong>Message Queue</strong>: The worker's <code>onmessage</code> handler receives events from the
+    main thread.</li>
+<li><strong>Sequential Processing</strong>: JavaScript's single-threaded event loop ensures
+    that each message is processed to completion before the next one starts.</li>
+<li><strong>Synchronous SQLite</strong>: The worker will use the synchronous API of SQLite
+    WASM (standard for the worker build). This guarantees that a write operation
+    (e.g., <code>INSERT INTO files...</code>) is fully committed to OPFS before the next
+    operation begins.</li>
+<li><strong>Consistency</strong>: This design ensures data consistency (ACID) without race
+    conditions within the database itself, even if the user triggers multiple
+    rapid saves.</li>
+</ol>
+<h3 id="23-state-management-datascript-sqlite-sync">2.3 State Management: DataScript &lt;-&gt; SQLite Sync</h3>
+<p>The application currently uses DataScript for fast, queryable, reactive state in
+the UI. We will maintain this but treat it as a "cache" or "working copy" of the
+persistent SQLite DB.</p>
+<ul>
+<li><strong>Load Strategy</strong>: On app startup, the Persistence Worker fetches all
+  workspace/file metadata (not content) and sends it to the main thread to
+  populate DataScript. Content is lazy-loaded on demand or pre-loaded if small.</li>
+<li><strong>Write Strategy</strong>:</li>
+<li>User edits a file -&gt; Update DataScript (immediate UI feedback).</li>
+<li>Debounced effect -&gt; Send <code>:save-file</code> message to Persistence Worker.</li>
+<li>Worker writes to SQLite -&gt; Confirms save (update "saved" status in UI).</li>
+</ul>
+<h2 id="3-implementation-steps">3. Implementation Steps</h2>
+<h3 id="phase-1-persistence-worker-opfs">Phase 1: Persistence Worker &amp; OPFS</h3>
+<ol>
+<li><strong>Worker Setup</strong>: Create a generic worker infrastructure for persistence
+    (similar to <code>sci</code> or <code>pyodide</code> workers).</li>
+<li><strong>SQLite OPFS Init</strong>: Modify the SQLite initialization logic to use the
+    <code>opfs</code> pool if available (requires proper HTTP headers
+    <code>Cross-Origin-Opener-Policy: same-origin</code> and
+    <code>Cross-Origin-Embedder-Policy: require-corp</code> on the server serving the app,
+    or fallback to IndexedDB/LocalStorage if strictly necessary, though OPFS is
+    preferred).<ul>
+<li><em>Note</em>: GitHub Pages supports these headers via a hack or by using the
+  Service Worker fallback provided by SQLite WASM for environments without
+  COOP/COEP.</li>
+</ul>
+</li>
+<li><strong>CRUD Operations</strong>: Implement handlers for creating workspaces and files in
+    the worker.</li>
+</ol>
+<h3 id="phase-2-ui-integration">Phase 2: UI Integration</h3>
+<ol>
+<li><strong>Service Layer</strong>: Create <code>bb-web-ds-tools.services.persistence</code> to handle
+    <code>postMessage</code> communication with the worker.</li>
+<li><strong>Re-frame Effects</strong>: Register effects (e.g., <code>::persistence/save</code>) that
+    delegate to the service layer.</li>
+<li><strong>Boot Sequence</strong>: Update <code>core.cljs/init</code> to wait for the persistence
+    worker to signal "ready" and load initial data before rendering the main UI.</li>
+</ol>
+<h3 id="phase-3-virtual-file-system-vfs-ui">Phase 3: Virtual File System (VFS) UI</h3>
+<ol>
+<li><strong>File Explorer</strong>: Create a UI component
+    (<code>bb-web-ds-tools.views.workspaces.explorer</code>) that visualizes the
+    <code>workspaces</code> and <code>files</code> tables as a tree.</li>
+<li><strong>File Operations</strong>: Context menus for Rename, Delete, Move (changing
+    <code>parent_id</code> or <code>workspace_id</code>).</li>
+<li><strong>Editor Integration</strong>: When a file is selected, load its content into the
+    appropriate editor (Monaco, generic text, or visual editor like Malli/Vega).</li>
+</ol>
+<h2 id="4-data-migration-schema">4. Data Migration &amp; Schema</h2>
+<p>The current <code>inputs</code> schema in DataScript will be mapped to the <code>files</code> table.</p>
+<ul>
+<li><code>input/type</code> -&gt; <code>files.mime_type</code> (mapped)</li>
+<li><code>input/name</code> -&gt; <code>files.name</code></li>
+<li><code>input/content</code> -&gt; <code>files.content</code></li>
+</ul>
+<p>Since there is no existing persistent data (only manual exports), no complex
+migration strategy for existing users is needed yet.</p>
+<h2 id="5-challenges-mitigations">5. Challenges &amp; Mitigations</h2>
+<ul>
+<li><strong>Concurrency</strong>: If two tabs open the same workspace, SQLite OPFS handles
+  locking, but the UI might get out of sync.</li>
+<li><em>Mitigation</em>: Use <code>BroadcastChannel</code> in the worker to notify other tabs of
+    changes, triggering a re-fetch in DataScript.</li>
+<li><strong>Binary Data</strong>: Datasets might be binary (Parquet, Arrow).</li>
+<li><em>Mitigation</em>: Use <code>BLOB</code> storage in SQLite and transfer <code>ArrayBuffers</code>
+    between worker and main thread.</li>
+<li><strong>COOP/COEP Headers</strong>: Required for high-performance OPFS.</li>
+<li><em>Mitigation</em>: Ensure the deployment environment (GitHub Pages) is
+    compatible, or use the "promiser" API of SQLite WASM which proxies to a
+    worker that can use a slightly slower but more compatible backend if needed.</li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

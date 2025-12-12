@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Visual Report - BB Web DS Tools Wiki</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">BB Web DS Tools Wiki</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Features</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../app_db/" class="dropdown-item">App DB</a>
+</li>
+                                    
+<li>
+    <a href="../../changelog/" class="dropdown-item">Changelog</a>
+</li>
+                                    
+<li>
+    <a href="../../cli_tools/" class="dropdown-item">CLI Tools</a>
+</li>
+                                    
+<li>
+    <a href="../../code_environments/" class="dropdown-item">Code Environments</a>
+</li>
+                                    
+<li>
+    <a href="../../datasets/" class="dropdown-item">Datasets</a>
+</li>
+                                    
+<li>
+    <a href="../../gemma/" class="dropdown-item">Gemma</a>
+</li>
+                                    
+<li>
+    <a href="../../honeysql/" class="dropdown-item">HoneySQL</a>
+</li>
+                                    
+<li>
+    <a href="../../malli/" class="dropdown-item">Malli</a>
+</li>
+                                    
+<li>
+    <a href="../../vega_lite/" class="dropdown-item">Vega Lite</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Design & Documentation</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../CLI_DATA_STRUCTURES/" class="dropdown-item">CLI Data Structures</a>
+</li>
+                                    
+<li>
+    <a href="../client_side_filesystem/" class="dropdown-item">Client Side Filesystem</a>
+</li>
+                                    
+<li>
+    <a href="../dataset_sync_design/" class="dropdown-item">Dataset Sync Design</a>
+</li>
+                                    
+<li>
+    <a href="../DESIGN_WORKSPACES/" class="dropdown-item">Design Workspaces</a>
+</li>
+                                    
+<li>
+    <a href="../fsm_logic/" class="dropdown-item">FSM Logic</a>
+</li>
+                                    
+<li>
+    <a href="../maintenance/" class="dropdown-item">Maintenance</a>
+</li>
+                                    
+<li>
+    <a href="../persistence_design/" class="dropdown-item">Persistence Design</a>
+</li>
+                                    
+<li>
+    <a href="../POST_MORTEM_APP_DISPLAY/" class="dropdown-item">Post Mortem App Display</a>
+</li>
+                                    
+<li>
+    <a href="../r-integration/" class="dropdown-item">R Integration</a>
+</li>
+                                    
+<li>
+    <a href="../VISUAL_BUG_REPORT/" class="dropdown-item">Visual Bug Report</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Visual Report</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../VISUAL_BUG_REPORT/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/davidpham87/bb-web-ds-tools/edit/master/docs/docs/visual_report.md" class="nav-link"><i class="fa-brands fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#visual-verification-report" class="nav-link">Visual Verification Report</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#overview" class="nav-link">Overview</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#findings" class="nav-link">Findings</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#recommendations" class="nav-link">Recommendations</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="visual-verification-report">Visual Verification Report</h1>
+<h2 id="overview">Overview</h2>
+<p>A visual verification of the application was performed using automated
+Playwright scripts to capture screenshots of all primary views and sub-views.
+The goal was to assess layout stability, consistency of UI elements (buttons,
+panels), and overall visual coherence.</p>
+<h2 id="findings">Findings</h2>
+<h3 id="1-global-layout-instability-padding-margins">1. Global Layout Instability (Padding &amp; Margins)</h3>
+<p>There is a significant inconsistency in how views handle the main content
+container's padding, causing content to "jump" when navigating between views.</p>
+<ul>
+<li><strong>Full-Bleed Views:</strong></li>
+<li><code>Code</code>, <code>Malli</code>, <code>Vega-Lite</code>, and <code>App DB</code> use the full height and width of
+    the content area (<code>h-full w-full</code>).</li>
+<li>These views often manage their own internal padding or use split-panes that
+    touch the edges of the screen.</li>
+<li><strong>Padded Views:</strong></li>
+<li><code>HoneySQL</code>, <code>Datasets</code>, and <code>Settings</code> apply a global padding (typically
+    <code>p-4</code> or <code>p-6</code>) to their main container.</li>
+<li><code>Gemma</code> uses a centered container approach (<code>container mx-auto px-4 py-4</code>).</li>
+<li><code>Changelog</code> uses a specific background color and centered layout
+    (<code>min-h-screen bg-[#3f3f3f] py-12 px-4</code>).</li>
+</ul>
+<p><strong>Impact:</strong> The user experiences a jarring transition where the UI "breathing
+room" changes unpredictably. The dividing line between navigation and content
+shifts.</p>
+<h3 id="2-panel-alignment-split-views">2. Panel Alignment &amp; Split Views</h3>
+<p>The application uses a mix of fixed-width columns and percentage-based split
+views, leading to misalignment of the primary "editor/input" areas across tools.</p>
+<ul>
+<li><strong>Fixed Width:</strong> <code>Malli</code> and <code>HoneySQL</code> constrain their left panel
+  (input/controls) to <code>max-w-3xl</code>.</li>
+<li><strong>Percentage Split:</strong> <code>Code</code> uses a 50/50 split (<code>w-1/2</code>). <code>App DB</code> uses a
+  25/75 split (<code>:ratio :1-3</code>). <code>Vega-Lite</code> uses a 50/50 split on large screens
+  (<code>2xl:w-1/2</code>).</li>
+</ul>
+<p><strong>Impact:</strong> The vertical divider line jumps horizontally when switching between
+<code>Malli</code> -&gt; <code>Code</code> -&gt; <code>Vega-Lite</code>.</p>
+<h3 id="3-button-consistency">3. Button Consistency</h3>
+<p>Button styling is fragmented, with local overrides defeating the purpose of a
+shared design system.</p>
+<ul>
+<li><strong>Standard:</strong> <code>c/button</code> (used in <code>Gemma</code>, <code>HoneySQL</code>) appears to have default
+  padding/sizing.</li>
+<li><strong>Malli Overrides:</strong> <code>Malli</code> defines a local <code>btn</code> function that forces
+  <code>!py-1 !px-3 !text-sm</code>, resulting in significantly smaller buttons than the
+  rest of the app.</li>
+<li><strong>Vega-Lite:</strong> Uses a custom <code>tab-button</code> with <code>py-2 px-4</code>, different from
+  Malli's compressed style.</li>
+<li><strong>App DB:</strong> Uses <code>c/button-xs</code> in some places, mixing sizes.</li>
+</ul>
+<p><strong>Impact:</strong> Click targets vary in size and visual weight, reducing perceived
+polish.</p>
+<h3 id="4-navigation-headers">4. Navigation &amp; Headers</h3>
+<ul>
+<li><strong>Tabs:</strong> <code>Malli</code> and <code>Code</code> inject their sub-navigation tabs into the global
+  <strong>Top Bar</strong> (via <code>portal-to-top-bar</code>). <code>Vega-Lite</code> renders its tabs <strong>inside
+  the page content</strong>. This creates an inconsistent navigation model where "view
+  modes" sometimes appear in the chrome and sometimes in the canvas.</li>
+<li><strong>Typography:</strong> Header usage is inconsistent.</li>
+<li><code>HoneySQL</code> uses <code>h3</code> with an icon.</li>
+<li><code>Datasets</code> uses <code>h2</code>.</li>
+<li><code>Gemma</code> uses <code>h3</code> with custom colors (<code>text-[#f0dfaf]</code>).</li>
+<li><code>Changelog</code> uses <code>h2</code> centered.</li>
+</ul>
+<h3 id="5-view-specific-observations">5. View-Specific Observations</h3>
+<ul>
+<li><strong>Gemma:</strong> The layout shifts to a centered "container" mode, unlike the
+  dashboard-style layout of other tools. While potentially intentional for a
+  "chat" interface, it breaks the continuity of the "Tools" suite.</li>
+<li><strong>Vega-Lite:</strong> The internal border logic
+  (<code>border-b 2xl:border-b-0 2xl:border-r</code>) creates complex responsive behavior
+  that isn't mirrored in the <code>Code</code> view, despite similar split-pane
+  requirements.</li>
+</ul>
+<h2 id="recommendations">Recommendations</h2>
+<ol>
+<li>
+<p><strong>Standardize Main Container:</strong></p>
+<ul>
+<li>Adopt a <strong>Full-Bleed</strong> default for all tool-style views (<code>Malli</code>, <code>Code</code>,
+  <code>HoneySQL</code>, <code>Vega-Lite</code>, <code>Datasets</code>).</li>
+<li>Move the <code>p-4</code> padding <em>inside</em> the layout components (e.g., inside the
+  specific panel that needs it) rather than on the root view container. This
+  ensures the edges (scrollbars, splitters) always align.</li>
+</ul>
+</li>
+<li>
+<p><strong>Unify Button Styles:</strong></p>
+<ul>
+<li>Refactor <code>bb-web-ds-tools.components.common</code> to include standard
+  <code>button-sm</code> and <code>button-md</code> variants.</li>
+<li>Remove the local <code>btn</code> definition in <code>malli.cljs</code> and replace with a
+  standard component.</li>
+</ul>
+</li>
+<li>
+<p><strong>Consistent Split-Pane Ratios:</strong></p>
+<ul>
+<li>Standardize on a set of split ratios. For code/preview tools, a default of
+  50/50 or <code>max-w-3xl</code> (fixed) should be chosen and applied consistently. If
+  <code>Malli</code> needs <code>max-w-3xl</code>, <code>HoneySQL</code> and <code>Code</code> should likely respect a
+  similar grid or max-width for the editor column.</li>
+</ul>
+</li>
+<li>
+<p><strong>Navigation Consistency:</strong></p>
+<ul>
+<li>Move <code>Vega-Lite</code> tabs to the Top Bar using <code>portal-to-top-bar</code> to match
+  <code>Malli</code> and <code>Code</code>. This reinforces the pattern that "Sub-views live in
+  the Top Bar".</li>
+</ul>
+</li>
+<li>
+<p><strong>Typography System:</strong></p>
+<ul>
+<li>Define standard <code>page-header</code> and <code>section-header</code> components in
+  <code>common.cljs</code> to enforce font-size (<code>text-xl</code> vs <code>text-2xl</code>) and color
+  consistency.</li>
+</ul>
+</li>
+</ol></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

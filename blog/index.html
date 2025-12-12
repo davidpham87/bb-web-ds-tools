@@ -60,6 +60,36 @@
 
       
     <div>
+        <h1><a href="2025-12-10-documentation-and-r-integration.html">Documentation, R Integration, and Stability</a></h1>
+        <div><p>Today we are releasing version 0.10.0, a significant update that focuses on documentation, stability, and deepening our integration with the R ecosystem.</p><h2 id="introducing-the-wiki">Introducing the Wiki</h2><p>We have added a comprehensive <a href="/wiki/index.html">Wiki</a> to the project. This new documentation hub covers every aspect of the application, from the <strong>App DB</strong> structure to detailed guides for <strong>CLI Tools</strong>, <strong>Gemma</strong>, <strong>HoneySQL</strong>, <strong>Malli</strong>, and <strong>Vega-Lite</strong>. Whether you are a user trying to generate data with Malli or a developer looking to understand the dataset synchronization design, the Wiki has you covered.</p><h2 id="r-runtime-integration">R Runtime Integration</h2><p>The <strong>R Runtime</strong> (powered by WebR) has received a major upgrade. We have implemented bidirectional dataset synchronization between the application&apos;s global state and the R environment.</p><ul><li><strong>Read</strong>: Access your UI datasets directly in R as a named list <code>datasets</code>.</li><li><strong>Write</strong>: Create or modify data frames in R, and assign them to <code>datasets[[&quot;My Name&quot;]]</code> to see them instantly appear in the application&apos;s Datasets view.</li></ul><p>This seamless integration allows you to leverage the full power of R&apos;s statistical packages for data processing while using our modern web UI for visualization and management.</p><h2 id="refactoring-and-stability">Refactoring and Stability</h2><p>Under the hood, we&apos;ve touched almost every file in the codebase to improve stability and code health. This includes:</p><ul><li><strong>Dataset Synchronization</strong>: A robust design for syncing data between the main thread and web workers (SCI, Pyodide, WebR), ensuring consistent state across all runtimes.</li><li><strong>Component Cleanup</strong>: We&apos;ve standardized our component architecture, cleaning up technical debt in <code>async-buffer</code>, <code>editor</code>, and common UI components.</li><li><strong>Testing</strong>: We&apos;ve expanded our test suite to cover these new integration paths, ensuring that your data stays safe during round-trips.</li></ul><p>Check out the full <a href="#/changelog">Changelog</a> for a detailed list of changes.</p></div>
+        
+        
+        <p><i>Published: 2025-12-10</i></p>
+        
+            <p><i>
+                Tagged:
+                
+                    <span class="tag">
+                        <a href="tags/documentation.html">documentation</a>
+                    </span>
+                
+                    <span class="tag">
+                        <a href="tags/wiki.html">wiki</a>
+                    </span>
+                
+                    <span class="tag">
+                        <a href="tags/changelog.html">changelog</a>
+                    </span>
+                
+                    <span class="tag">
+                        <a href="tags/r.html">r</a>
+                    </span>
+                
+            </i></p>
+        
+    </div>
+
+    <div>
         <h1><a href="2025-12-08-themes-and-r-graphics.html">Themes, Dreams, and R Graphics: A Visual Awakening</a></h1>
         <div><hr /><p><em>By The &quot;We Only Code in Dark Mode&quot; Team</em></p><p>Greetings, fellow data wranglers and pixel pushers.</p><p>We come to you today with an announcement that will shake the very foundations of your browser tab (assuming you have less than 50 open, which we know you don&apos;t). We have made changes. Are they groundbreaking? Debatable. Are they visible? Yes, very.</p><h2 id="zenburn:-because-bright-white-is-an-act-of-aggression">Zenburn: Because Bright White is an Act of Aggression</h2><p>First up, let&apos;s talk about aesthetics.</p><p>For too long, software tools have defaulted to blinding white backgrounds, presumably to simulate the experience of staring directly into the sun while trying to debug a race condition. We say: No more.</p><p>We have fully embraced the <strong>Zenburn</strong> theme. Not just because it sounds like a yoga studio for burned-out developers, but because it’s soothing. It’s calm. It’s a mix of <code>#3f3f3f</code> and <code>#dcdccc</code> that says, &quot;It’s okay, that null pointer exception can’t hurt you here.&quot;</p><p>Every button, every panel, every scrollbar has been meticulously styled to ensure that your eyes don’t bleed after a 4-hour coding session. We’ve aligned the pixels. We’ve harmonized the contrasts. We probably spent more time on the color of the &quot;Delete&quot; button than the actual deletion logic. Priorities.</p><h2 id="r-graphics-in-portal:-pictures-&gt;-text">R Graphics in Portal: Pictures &gt; Text</h2><p>Now, the main event.</p><p>We have an R runtime (<code>WebR</code>) in the browser. It’s amazing. It’s magical. But until recently, if you plotted something, you had to use your imagination. You’d run <code>plot(mtcars)</code>, and the console would stare back at you, blank and judging.</p><p>Well, we fixed it.</p><p>Thanks to our obsession with <strong>Portal</strong>, when you generate a plot in R, we now intercept it, wrap it in a warm embrace, and display it directly in the Portal viewer.</p><p>You run the code. You get the chart. Instant gratification.</p><p>Why read a summary statistic when you can look at a scatter plot and pretend you see a correlation? Why look at a table of numbers when you can generate a histogram that proves your data is completely skewed?</p><p>We’re giving you the power to create beautiful, informative graphics that you can then screenshot and put in a slide deck that nobody will read. And really, isn’t that what Data Science is all about?</p><h2 id="conclusion">Conclusion</h2><p>So, enjoy the new theme. Enjoy the R graphics. And please, for the love of all that is holy, close some tabs.</p></div>
         
@@ -173,61 +203,6 @@
                 
                     <span class="tag">
                         <a href="tags/babashka.html">babashka</a>
-                    </span>
-                
-            </i></p>
-        
-    </div>
-
-    <div>
-        <h1><a href="2025-12-06-cli-tools.html">CLI Tools for Data Science</a></h1>
-        <div><hr /><h1 id="cli-tools-for-data-science:-because-clicking-is-hard">CLI Tools for Data Science: Because clicking is hard</h1><p>Sometimes you just want to pipe data around in your terminal like a plumber from the 80s. We get it. That&apos;s why we&apos;ve exposed the core functionality of <code>bb-web-ds-tools</code> as a CLI library compatible with <a href="https://babashka.org">Babashka</a>.</p><h2 id="setup">Setup</h2><p>First, make sure you have Babashka installed. Then, you can run these tools directly from the source or by adding this repo as a dependency.</p><pre><code class="language-bash"># Clone the repo
-git clone https://github.com/my-org/bb-web-ds-tools.git
-cd bb-web-ds-tools
-
-# Add deps (if not using bb directly with classpath)
-# You might need to set up your bb.edn to include paths &quot;src&quot;
-</code></pre><p>You can use the <code>-x</code> flag in Babashka to execute a function directly from the CLI.</p><h2 id="datasets">Datasets</h2><p>Convert between CSV, JSON, and EDN without opening Excel.</p><h3 id="example:-csv-to-json">Example: CSV to JSON</h3><pre><code class="language-bash"># Convert a CSV file to JSON
-bb -cp src -x bb-web-ds-tools.cli.datasets/convert --format csv --to json --file data.csv
-
-# Or pipe it
-cat data.csv | bb -cp src -x bb-web-ds-tools.cli.datasets/convert --format csv --to json
-</code></pre><h3 id="example:-edn-to-csv">Example: EDN to CSV</h3><pre><code class="language-bash">echo &apos;[{:a 1 :b 2} {:a 3 :b 4}]&apos; | bb -cp src -x bb-web-ds-tools.cli.datasets/convert --format edn --to csv
-</code></pre><h2 id="malli">Malli</h2><p>Validate data and infer schemas from the comfort of your shell.</p><h3 id="infer-schema">Infer Schema</h3><p>Got a huge JSON blob and don&apos;t know what&apos;s in it?</p><pre><code class="language-bash">cat large.json | bb -cp src -x bb-web-ds-tools.cli.malli/infer
-</code></pre><h3 id="generate-data">Generate Data</h3><p>Need mock data for your API?</p><pre><code class="language-bash">echo &apos;[:map [:name string?] [:age int?]]&apos; | bb -cp src -x bb-web-ds-tools.cli.malli/generate --samples 5 --format json
-</code></pre><h3 id="validate-data">Validate Data</h3><pre><code class="language-bash">bb -cp src -x bb-web-ds-tools.cli.malli/validate --schema schema.edn --file data.json
-</code></pre><h2 id="honeysql">HoneySQL</h2><p>Write data structures, get SQL.</p><pre><code class="language-bash">echo &apos;{:select [:*] :from [:users] :where [:= :active true]}&apos; | bb -cp src -x bb-web-ds-tools.cli.honeysql/convert
-</code></pre><p>Output:</p><pre><code class="language-sql">SELECT * FROM users WHERE active = TRUE
-</code></pre><h2 id="why?">Why?</h2><p>Because sometimes the browser is too far away (Alt-Tab is hard). Enjoy!</p></div>
-        
-        
-        <p><i>Published: 2025-12-06</i></p>
-        
-            <p><i>
-                Tagged:
-                
-                    <span class="tag">
-                        <a href="tags/clojure.html">clojure</a>
-                    </span>
-                
-                    <span class="tag">
-                        <a href="tags/cli.html">cli</a>
-                    </span>
-                
-                    <span class="tag">
-                        <a href="tags/babashka.html">babashka</a>
-                    </span>
-                
-                    <span class="tag">
-                        <a href="tags/honeysql.html">honeysql</a>
-                    </span>
-                
-                    <span class="tag">
-                        <a href="tags/datasets.html">datasets</a>
-                    </span>
-                
-                    <span class="tag">
-                        <a href="tags/malli.html">malli</a>
                     </span>
                 
             </i></p>

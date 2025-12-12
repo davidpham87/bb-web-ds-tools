@@ -3,11 +3,18 @@
   <title>bb-web-ds-tools</title>
   <link href="https://github.com/borkdude/quickblog/atom.xml" rel="self"/>
   <link href="https://github.com/borkdude/quickblog"/>
-  <updated>2025-12-10T08:35:17+00:00</updated>
+  <updated>2025-12-12T11:07:45+00:00</updated>
   <id>https://github.com/borkdude/quickblog</id>
   <author>
     <name>Quick Blogger</name>
   </author>
+  <entry>
+    <id>https://github.com/borkdude/quickblog/2025-12-10-documentation-and-r-integration.html</id>
+    <link href="https://github.com/borkdude/quickblog/2025-12-10-documentation-and-r-integration.html"/>
+    <title>Documentation, R Integration, and Stability</title>
+    <updated>2025-12-10T23:59:59+00:00</updated>
+    <content type="html"><![CDATA[<div><p>Today we are releasing version 0.10.0, a significant update that focuses on documentation, stability, and deepening our integration with the R ecosystem.</p><h2 id="introducing-the-wiki">Introducing the Wiki</h2><p>We have added a comprehensive <a href="/wiki/index.html">Wiki</a> to the project. This new documentation hub covers every aspect of the application, from the <strong>App DB</strong> structure to detailed guides for <strong>CLI Tools</strong>, <strong>Gemma</strong>, <strong>HoneySQL</strong>, <strong>Malli</strong>, and <strong>Vega-Lite</strong>. Whether you are a user trying to generate data with Malli or a developer looking to understand the dataset synchronization design, the Wiki has you covered.</p><h2 id="r-runtime-integration">R Runtime Integration</h2><p>The <strong>R Runtime</strong> (powered by WebR) has received a major upgrade. We have implemented bidirectional dataset synchronization between the application&apos;s global state and the R environment.</p><ul><li><strong>Read</strong>: Access your UI datasets directly in R as a named list <code>datasets</code>.</li><li><strong>Write</strong>: Create or modify data frames in R, and assign them to <code>datasets[[&quot;My Name&quot;]]</code> to see them instantly appear in the application&apos;s Datasets view.</li></ul><p>This seamless integration allows you to leverage the full power of R&apos;s statistical packages for data processing while using our modern web UI for visualization and management.</p><h2 id="refactoring-and-stability">Refactoring and Stability</h2><p>Under the hood, we&apos;ve touched almost every file in the codebase to improve stability and code health. This includes:</p><ul><li><strong>Dataset Synchronization</strong>: A robust design for syncing data between the main thread and web workers (SCI, Pyodide, WebR), ensuring consistent state across all runtimes.</li><li><strong>Component Cleanup</strong>: We&apos;ve standardized our component architecture, cleaning up technical debt in <code>async-buffer</code>, <code>editor</code>, and common UI components.</li><li><strong>Testing</strong>: We&apos;ve expanded our test suite to cover these new integration paths, ensuring that your data stays safe during round-trips.</li></ul><p>Check out the full <a href="#/changelog">Changelog</a> for a detailed list of changes.</p></div>]]></content>
+  </entry>
   <entry>
     <id>https://github.com/borkdude/quickblog/2025-12-08-themes-and-r-graphics.html</id>
     <link href="https://github.com/borkdude/quickblog/2025-12-08-themes-and-r-graphics.html"/>

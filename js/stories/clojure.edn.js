@@ -53,8 +53,8 @@ goog.provide('clojure.edn');
  *            be called with the tag and the value.
  */
 clojure.edn.read = (function clojure$edn$read(var_args){
-var G__37992 = arguments.length;
-switch (G__37992) {
+var G__46898 = arguments.length;
+switch (G__46898) {
 case 1:
 return clojure.edn.read.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -97,8 +97,8 @@ return cljs.reader.read.cljs$core$IFn$_invoke$arity$4(reader,eof_error_QMARK_,eo
  * opts is a map as per cljs.tools.reader.edn/read
  */
 clojure.edn.read_string = (function clojure$edn$read_string(var_args){
-var G__37994 = arguments.length;
-switch (G__37994) {
+var G__46904 = arguments.length;
+switch (G__46904) {
 case 1:
 return clojure.edn.read_string.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 

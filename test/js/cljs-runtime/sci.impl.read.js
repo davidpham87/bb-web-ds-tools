@@ -20,8 +20,8 @@ sci.impl.read.with_resolver = (function sci$impl$read$with_resolver(opts){
 return opts;
 });
 sci.impl.read.read = (function sci$impl$read$read(var_args){
-var G__46424 = arguments.length;
-switch (G__46424) {
+var G__40928 = arguments.length;
+switch (G__40928) {
 case 1:
 return sci.impl.read.read.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -75,8 +75,8 @@ return sci.impl.read.eof_or_throw(opts__$2,v);
 (sci.impl.read.read.cljs$lang$maxFixedArity = 5);
 
 sci.impl.read.read_string = (function sci$impl$read$read_string(var_args){
-var G__46437 = arguments.length;
-switch (G__46437) {
+var G__40995 = arguments.length;
+switch (G__40995) {
 case 2:
 return sci.impl.read.read_string.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -113,8 +113,8 @@ var x = sci.impl.parser.parse_next.cljs$core$IFn$_invoke$arity$2(sci_ctx,reader)
 if(cljs.core.keyword_identical_QMARK_(new cljs.core.Keyword("sci.impl.parser.edamame","eof","sci.impl.parser.edamame/eof",-917261517),x)){
 return ret;
 } else {
-var G__46448 = sci.impl.utils.eval(sci_ctx,x);
-ret = G__46448;
+var G__41046 = sci.impl.utils.eval(sci_ctx,x);
+ret = G__41046;
 continue;
 }
 break;

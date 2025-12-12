@@ -37,13 +37,13 @@ var com=$CLJS.com || ($CLJS.com = {});
 $CLJS.SHADOW_ENV.setLoaded("bb_web_ds_tools.events.theme.js");
 
 goog.provide('bb_web_ds_tools.events.theme');
-re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.events.theme","set-theme","bb-web-ds-tools.events.theme/set-theme",607625894),(function (p__20794,p__20795){
-var map__20796 = p__20794;
-var map__20796__$1 = cljs.core.__destructure_map(map__20796);
-var db = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__20796__$1,new cljs.core.Keyword(null,"db","db",993250759));
-var vec__20797 = p__20795;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20797,(0),null);
-var theme_name = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20797,(1),null);
+re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.events.theme","set-theme","bb-web-ds-tools.events.theme/set-theme",607625894),(function (p__24857,p__24858){
+var map__24859 = p__24857;
+var map__24859__$1 = cljs.core.__destructure_map(map__24859);
+var db = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24859__$1,new cljs.core.Keyword(null,"db","db",993250759));
+var vec__24860 = p__24858;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24860,(0),null);
+var theme_name = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24860,(1),null);
 var theme = bb_web_ds_tools.utils.themes.get_theme(theme_name);
 return new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"db","db",993250759),cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(db,new cljs.core.Keyword("bb-web-ds-tools.events.theme","current-theme","bb-web-ds-tools.events.theme/current-theme",-1882747906),theme_name),new cljs.core.Keyword("theme","apply","theme/apply",1476395918),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),cljs.core.name(theme_name),new cljs.core.Keyword(null,"data","data",-232669377),theme,new cljs.core.Keyword(null,"css-vars","css-vars",57967357),bb_web_ds_tools.theme.resolve_theme_colors(theme)], null)], null);
 }));
@@ -61,65 +61,65 @@ return "vs";
 return "vs-dark";
 }
 });
-re_frame.core.reg_fx(new cljs.core.Keyword("theme","apply","theme/apply",1476395918),(function (p__20804){
-var map__20805 = p__20804;
-var map__20805__$1 = cljs.core.__destructure_map(map__20805);
-var name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__20805__$1,new cljs.core.Keyword(null,"name","name",1843675177));
-var data = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__20805__$1,new cljs.core.Keyword(null,"data","data",-232669377));
-var css_vars = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__20805__$1,new cljs.core.Keyword(null,"css-vars","css-vars",57967357));
-var root_20824 = document.documentElement;
-var body_20825 = document.body;
-var seq__20806_20826 = cljs.core.seq(css_vars);
-var chunk__20807_20827 = null;
-var count__20808_20828 = (0);
-var i__20809_20829 = (0);
+re_frame.core.reg_fx(new cljs.core.Keyword("theme","apply","theme/apply",1476395918),(function (p__24868){
+var map__24869 = p__24868;
+var map__24869__$1 = cljs.core.__destructure_map(map__24869);
+var name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24869__$1,new cljs.core.Keyword(null,"name","name",1843675177));
+var data = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24869__$1,new cljs.core.Keyword(null,"data","data",-232669377));
+var css_vars = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24869__$1,new cljs.core.Keyword(null,"css-vars","css-vars",57967357));
+var root_24889 = document.documentElement;
+var body_24890 = document.body;
+var seq__24870_24891 = cljs.core.seq(css_vars);
+var chunk__24871_24892 = null;
+var count__24872_24893 = (0);
+var i__24873_24894 = (0);
 while(true){
-if((i__20809_20829 < count__20808_20828)){
-var vec__20816_20830 = chunk__20807_20827.cljs$core$IIndexed$_nth$arity$2(null,i__20809_20829);
-var k_20831 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20816_20830,(0),null);
-var v_20832 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20816_20830,(1),null);
-root_20824.style.setProperty(k_20831,v_20832);
+if((i__24873_24894 < count__24872_24893)){
+var vec__24881_24895 = chunk__24871_24892.cljs$core$IIndexed$_nth$arity$2(null,i__24873_24894);
+var k_24896 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24881_24895,(0),null);
+var v_24897 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24881_24895,(1),null);
+root_24889.style.setProperty(k_24896,v_24897);
 
 
-var G__20833 = seq__20806_20826;
-var G__20834 = chunk__20807_20827;
-var G__20835 = count__20808_20828;
-var G__20836 = (i__20809_20829 + (1));
-seq__20806_20826 = G__20833;
-chunk__20807_20827 = G__20834;
-count__20808_20828 = G__20835;
-i__20809_20829 = G__20836;
+var G__24898 = seq__24870_24891;
+var G__24899 = chunk__24871_24892;
+var G__24900 = count__24872_24893;
+var G__24901 = (i__24873_24894 + (1));
+seq__24870_24891 = G__24898;
+chunk__24871_24892 = G__24899;
+count__24872_24893 = G__24900;
+i__24873_24894 = G__24901;
 continue;
 } else {
-var temp__5825__auto___20837 = cljs.core.seq(seq__20806_20826);
-if(temp__5825__auto___20837){
-var seq__20806_20838__$1 = temp__5825__auto___20837;
-if(cljs.core.chunked_seq_QMARK_(seq__20806_20838__$1)){
-var c__5548__auto___20839 = cljs.core.chunk_first(seq__20806_20838__$1);
-var G__20840 = cljs.core.chunk_rest(seq__20806_20838__$1);
-var G__20841 = c__5548__auto___20839;
-var G__20842 = cljs.core.count(c__5548__auto___20839);
-var G__20843 = (0);
-seq__20806_20826 = G__20840;
-chunk__20807_20827 = G__20841;
-count__20808_20828 = G__20842;
-i__20809_20829 = G__20843;
+var temp__5825__auto___24902 = cljs.core.seq(seq__24870_24891);
+if(temp__5825__auto___24902){
+var seq__24870_24903__$1 = temp__5825__auto___24902;
+if(cljs.core.chunked_seq_QMARK_(seq__24870_24903__$1)){
+var c__5548__auto___24904 = cljs.core.chunk_first(seq__24870_24903__$1);
+var G__24905 = cljs.core.chunk_rest(seq__24870_24903__$1);
+var G__24906 = c__5548__auto___24904;
+var G__24907 = cljs.core.count(c__5548__auto___24904);
+var G__24908 = (0);
+seq__24870_24891 = G__24905;
+chunk__24871_24892 = G__24906;
+count__24872_24893 = G__24907;
+i__24873_24894 = G__24908;
 continue;
 } else {
-var vec__20819_20844 = cljs.core.first(seq__20806_20838__$1);
-var k_20845 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20819_20844,(0),null);
-var v_20846 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20819_20844,(1),null);
-root_20824.style.setProperty(k_20845,v_20846);
+var vec__24884_24909 = cljs.core.first(seq__24870_24903__$1);
+var k_24910 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24884_24909,(0),null);
+var v_24911 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24884_24909,(1),null);
+root_24889.style.setProperty(k_24910,v_24911);
 
 
-var G__20849 = cljs.core.next(seq__20806_20838__$1);
-var G__20850 = null;
-var G__20851 = (0);
-var G__20852 = (0);
-seq__20806_20826 = G__20849;
-chunk__20807_20827 = G__20850;
-count__20808_20828 = G__20851;
-i__20809_20829 = G__20852;
+var G__24912 = cljs.core.next(seq__24870_24903__$1);
+var G__24913 = null;
+var G__24914 = (0);
+var G__24915 = (0);
+seq__24870_24891 = G__24912;
+chunk__24871_24892 = G__24913;
+count__24872_24893 = G__24914;
+i__24873_24894 = G__24915;
 continue;
 }
 } else {
@@ -128,18 +128,18 @@ continue;
 break;
 }
 
-body_20825.style.setProperty("background-color","var(--bg-page)");
+body_24890.style.setProperty("background-color","var(--bg-page)");
 
-body_20825.style.setProperty("color","var(--text-primary)");
+body_24890.style.setProperty("color","var(--text-primary)");
 
 try{shadow.js.shim.module$monaco_editor$esm$vs$editor$editor_api.editor.defineTheme(name,cljs.core.clj__GT_js(new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"base","base",185279322),bb_web_ds_tools.events.theme.get_base_theme(new cljs.core.Keyword("portal.colors","background","portal.colors/background",-1400610375).cljs$core$IFn$_invoke$arity$1(data)),new cljs.core.Keyword(null,"inherit","inherit",-1840815422),true,new cljs.core.Keyword(null,"rules","rules",1198912366),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"background","background",-863952629),new cljs.core.Keyword("portal.colors","background","portal.colors/background",-1400610375).cljs$core$IFn$_invoke$arity$1(data),new cljs.core.Keyword(null,"foreground","foreground",499022036),new cljs.core.Keyword("portal.colors","text","portal.colors/text",1967472969).cljs$core$IFn$_invoke$arity$1(data)], null)], null),new cljs.core.Keyword(null,"colors","colors",1157174732),new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword(null,"editor.background","editor.background",2026633319),new cljs.core.Keyword("portal.colors","background","portal.colors/background",-1400610375).cljs$core$IFn$_invoke$arity$1(data),new cljs.core.Keyword(null,"editor.foreground","editor.foreground",1303499970),new cljs.core.Keyword("portal.colors","text","portal.colors/text",1967472969).cljs$core$IFn$_invoke$arity$1(data),new cljs.core.Keyword(null,"editorCursor.foreground","editorCursor.foreground",1866693001),new cljs.core.Keyword("portal.colors","namespace","portal.colors/namespace",159276238).cljs$core$IFn$_invoke$arity$1(data),new cljs.core.Keyword(null,"editor.lineHighlightBackground","editor.lineHighlightBackground",-130612686),new cljs.core.Keyword("portal.colors","background2","portal.colors/background2",-2075622390).cljs$core$IFn$_invoke$arity$1(data),new cljs.core.Keyword(null,"editor.selectionBackground","editor.selectionBackground",-454164974),new cljs.core.Keyword("portal.colors","border","portal.colors/border",-165446507).cljs$core$IFn$_invoke$arity$1(data),new cljs.core.Keyword(null,"editor.inactiveSelectionBackground","editor.inactiveSelectionBackground",997371136),new cljs.core.Keyword("portal.colors","background2","portal.colors/background2",-2075622390).cljs$core$IFn$_invoke$arity$1(data)], null)], null)));
 
 return shadow.js.shim.module$monaco_editor$esm$vs$editor$editor_api.editor.setTheme(name);
-}catch (e20822){if((e20822 instanceof Error)){
-var e = e20822;
+}catch (e24887){if((e24887 instanceof Error)){
+var e = e24887;
 return console.error("Failed to apply Monaco theme",e);
 } else {
-throw e20822;
+throw e24887;
 
 }
 }}));

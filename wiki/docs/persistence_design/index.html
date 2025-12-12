@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Persistence Design - BB Web DS Tools Wiki</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">BB Web DS Tools Wiki</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Features</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../app_db/" class="dropdown-item">App DB</a>
+</li>
+                                    
+<li>
+    <a href="../../changelog/" class="dropdown-item">Changelog</a>
+</li>
+                                    
+<li>
+    <a href="../../cli_tools/" class="dropdown-item">CLI Tools</a>
+</li>
+                                    
+<li>
+    <a href="../../code_environments/" class="dropdown-item">Code Environments</a>
+</li>
+                                    
+<li>
+    <a href="../../datasets/" class="dropdown-item">Datasets</a>
+</li>
+                                    
+<li>
+    <a href="../../gemma/" class="dropdown-item">Gemma</a>
+</li>
+                                    
+<li>
+    <a href="../../honeysql/" class="dropdown-item">HoneySQL</a>
+</li>
+                                    
+<li>
+    <a href="../../malli/" class="dropdown-item">Malli</a>
+</li>
+                                    
+<li>
+    <a href="../../vega_lite/" class="dropdown-item">Vega Lite</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Design & Documentation</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../CLI_DATA_STRUCTURES/" class="dropdown-item">CLI Data Structures</a>
+</li>
+                                    
+<li>
+    <a href="../client_side_filesystem/" class="dropdown-item">Client Side Filesystem</a>
+</li>
+                                    
+<li>
+    <a href="../dataset_sync_design/" class="dropdown-item">Dataset Sync Design</a>
+</li>
+                                    
+<li>
+    <a href="../DESIGN_WORKSPACES/" class="dropdown-item">Design Workspaces</a>
+</li>
+                                    
+<li>
+    <a href="../fsm_logic/" class="dropdown-item">FSM Logic</a>
+</li>
+                                    
+<li>
+    <a href="../maintenance/" class="dropdown-item">Maintenance</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Persistence Design</a>
+</li>
+                                    
+<li>
+    <a href="../POST_MORTEM_APP_DISPLAY/" class="dropdown-item">Post Mortem App Display</a>
+</li>
+                                    
+<li>
+    <a href="../r-integration/" class="dropdown-item">R Integration</a>
+</li>
+                                    
+<li>
+    <a href="../VISUAL_BUG_REPORT/" class="dropdown-item">Visual Bug Report</a>
+</li>
+                                    
+<li>
+    <a href="../visual_report/" class="dropdown-item">Visual Report</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../maintenance/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../POST_MORTEM_APP_DISPLAY/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/davidpham87/bb-web-ds-tools/edit/master/docs/docs/persistence_design.md" class="nav-link"><i class="fa-brands fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#persistence-design" class="nav-link">Persistence Design</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#overview" class="nav-link">Overview</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#architecture" class="nav-link">Architecture</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#performance-threading" class="nav-link">Performance &amp; Threading</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="persistence-design">Persistence Design</h1>
+<p>This document outlines the design decisions and trade-offs for the client-side
+persistence layer of <code>bb-web-ds-tools</code>.</p>
+<h2 id="overview">Overview</h2>
+<p>The application uses SQLite WASM to persist user data (specifically Datasets and
+Workspaces) in the browser. This allows users to retain their work across page
+reloads and browser sessions.</p>
+<h2 id="architecture">Architecture</h2>
+<h3 id="storage-engine">Storage Engine</h3>
+<ul>
+<li><strong>SQLite WASM</strong>: We use the official <code>@sqlite.org/sqlite-wasm</code> build.</li>
+<li><strong>Backend</strong>: We primarily target the <code>JsStorageDb</code> backend (if available),
+  which persists data to <code>localStorage</code> or <code>sessionStorage</code>. This provides a
+  simple, synchronous-like API that works well for the scale of data typical in
+  this application (up to ~5-10MB).</li>
+<li><strong>Fallback</strong>: If <code>JsStorageDb</code> is unavailable, we fall back to an in-memory
+  database (<code>:memory:</code>), where persistence is limited to the current session
+  (effectively non-persistent across reloads, but functional for the session).</li>
+</ul>
+<h3 id="serialization">Serialization</h3>
+<ul>
+<li><strong>Transit</strong>: Data stored in the SQLite database is serialized using
+  <code>cognitect.transit</code> (JSON encoding). This handles Clojure-specific types
+  (keywords, sets, dates) robustly compared to raw JSON.</li>
+<li><strong>Structure</strong>:</li>
+<li><strong>Datasets</strong>: Stored in a <code>datasets</code> table as
+    <code>(id TEXT, name TEXT, content TEXT, created_at INTEGER)</code>. The <code>content</code>
+    column holds the Transit-encoded string of the dataset map.</li>
+<li><strong>Workspaces</strong>: Stored in <code>workspaces</code> and <code>inputs</code> tables, mirroring the
+    DataScript schema.</li>
+</ul>
+<h3 id="state-management">State Management</h3>
+<ul>
+<li><strong>Re-frame Integration</strong>:</li>
+<li><strong>Pure Events</strong>: Events like <code>::save-datasets</code> are pure; they update the
+    <code>app-db</code> status (e.g., <code>:persistence/status :saving</code>) and return a
+    side-effect description.</li>
+<li><strong>Effects Handler</strong>: The actual database operations are performed in
+    <code>reg-fx</code> handlers defined in <code>bb-web-ds-tools.workspaces.persistence-fx</code>.
+    This isolates side effects.</li>
+<li><strong>Asynchrony</strong>: While <code>sqlite-wasm</code> operations in the main thread are
+    synchronous, the <code>reg-fx</code> pattern decouples the UI update cycle from the DB
+    operation.</li>
+</ul>
+<h2 id="performance-threading">Performance &amp; Threading</h2>
+<h3 id="current-implementation-main-thread">Current Implementation: Main Thread</h3>
+<p>Currently, the SQLite operations run on the main UI thread.</p>
+<p><strong>Reasoning:</strong></p>
+<ol>
+<li><strong>Complexity</strong>: Moving <code>sqlite-wasm</code> to a Web Worker involves significant
+    architectural complexity:<ul>
+<li>Asynchronous message passing (request/response correlation).</li>
+<li>Build configuration changes to output separate worker bundles and manage
+  their loading.</li>
+<li>SharedArrayBuffer requirements for some high-performance modes (OPFS),
+  which require specific HTTP headers (<code>Cross-Origin-Opener-Policy</code>,
+  <code>Cross-Origin-Embedder-Policy</code>) that may not be available in all
+  deployment environments (e.g., simple GitHub Pages hosting without
+  configuration).</li>
+</ul>
+</li>
+<li><strong>Scale</strong>: For typical usage (datasets of a few thousand rows), the
+    serialization and insertion time is negligible (&lt; 50ms).</li>
+<li><strong>Simplicity</strong>: The synchronous API of <code>JsStorageDb</code> simplifies the code
+    significantly.</li>
+</ol>
+<h3 id="optimization-batching">Optimization: Batching</h3>
+<p>To mitigate blocking the main thread, we employ <strong>SQL Batching</strong>:</p>
+<ul>
+<li>Instead of executing thousands of individual <code>INSERT</code> statements, we construct
+  a single SQL string containing a transaction:
+  <code>sql
+  BEGIN TRANSACTION;
+  INSERT INTO ... VALUES ...;
+  INSERT INTO ... VALUES ...;
+  COMMIT;</code></li>
+<li>This reduces the overhead of crossing the JS-WASM boundary and ensures atomic
+  updates.</li>
+</ul>
+<h3 id="future-work-worker-migration">Future Work: Worker Migration</h3>
+<p>If dataset sizes grow significantly (e.g., &gt; 100k rows), blocking the main
+thread becomes a concern.</p>
+<p><strong>Migration Plan:</strong></p>
+<ol>
+<li>Create a dedicated worker namespace (e.g.,
+    <code>bb-web-ds-tools.workers.persistence</code>).</li>
+<li>Move the <code>persistence-fx</code> logic into that worker.</li>
+<li>Replace the <code>reg-fx</code> handlers to post messages to the worker instead of
+    calling DB functions directly.</li>
+<li>Implement a response handler event to update <code>app-db</code> upon completion.</li>
+</ol></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

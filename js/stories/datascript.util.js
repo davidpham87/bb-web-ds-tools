@@ -52,8 +52,8 @@ return s;
 }
 });
 datascript.util.squuid = (function datascript$util$squuid(var_args){
-var G__41924 = arguments.length;
-switch (G__41924) {
+var G__50874 = arguments.length;
+switch (G__50874) {
 case 0:
 return datascript.util.squuid.cljs$core$IFn$_invoke$arity$0();
 
