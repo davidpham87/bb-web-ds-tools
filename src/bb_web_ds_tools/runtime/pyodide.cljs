@@ -32,9 +32,11 @@
   Returns:
     nil: Sets the global pyodide-worker atom."
   [& [on-message]]
-  (when-not @pyodide-worker
+  (if-not @pyodide-worker
     (reset! pyodide-worker
-            (worker/create-worker "js/compiled/pyodide-worker.js" (or on-message default-on-message)))))
+            (worker/create-worker "js/compiled/pyodide-worker.js" (or on-message default-on-message)))
+    (when on-message
+      (worker/set-handler @pyodide-worker on-message))))
 
 (defn load-runtime-worker
   "Loads the Pyodide runtime inside the worker.

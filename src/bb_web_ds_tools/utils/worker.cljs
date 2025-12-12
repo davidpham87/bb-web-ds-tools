@@ -28,6 +28,20 @@
      (cond-> {:worker worker}
        out-chan (assoc :out-chan out-chan)))))
 
+(defn set-handler
+  "Updates the message handler for an existing worker."
+  [{:keys [worker]} on-message]
+  (set! (.-onmessage worker)
+        (fn [e]
+          (let [r (t/reader :json)
+                data (t/read r (.-data e))]
+            (on-message data))))
+  (set! (.-onerror worker)
+        (fn [e]
+          (let [err {:type :error :text (str "Worker Error: " (.-message e))}]
+            (js/console.error "Worker Error" e)
+            (on-message err)))))
+
 (defn post-message
   "Sends a message to the worker."
   [{:keys [worker]} message]
