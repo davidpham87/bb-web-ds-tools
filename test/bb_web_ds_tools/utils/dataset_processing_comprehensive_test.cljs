@@ -98,19 +98,36 @@
                     :columns [:id :name :score]}]
 
     (testing "Pagination"
-      (let [res (sut/process-table-data data base-state)]
-        (is (= 2 (count (:page-data res))))
-        (is (= 1 (:id (first (:page-data res)))))
-        (is (= 4 (:total-rows res))))
-      (let [res (sut/process-table-data data (assoc base-state :page 1))]
-        (is (= 2 (count (:page-data res))))
-        (is (= 3 (:id (first (:page-data res)))))))
+      (is (= {:filtered-data data
+              :page-data [{:id 1 :name "Alice" :score 10} {:id 2 :name "Bob" :score 20}]
+              :total-rows 4
+              :start-idx 0
+              :end-idx 2
+              :visible-columns [:id :name :score]}
+             (sut/process-table-data data base-state)))
+      (is (= {:filtered-data data
+              :page-data [{:id 3 :name "Charlie" :score 15} {:id 4 :name "David" :score 5}]
+              :total-rows 4
+              :start-idx 2
+              :end-idx 4
+              :visible-columns [:id :name :score]}
+             (sut/process-table-data data (assoc base-state :page 1)))))
 
     (testing "Sorting"
-      (let [res (sut/process-table-data data (assoc base-state :sort-col :score :sort-dir :desc))]
-        (is (= 2 (:id (first (:page-data res)))) "Bob has highest score"))
-      (let [res (sut/process-table-data data (assoc base-state :sort-col :score :sort-dir :asc))]
-        (is (= 4 (:id (first (:page-data res)))) "David has lowest score")))
+      (is (= {:filtered-data data
+              :page-data [{:id 2 :name "Bob" :score 20} {:id 3 :name "Charlie" :score 15}]
+              :total-rows 4
+              :start-idx 0
+              :end-idx 2
+              :visible-columns [:id :name :score]}
+             (sut/process-table-data data (assoc base-state :sort-col :score :sort-dir :desc))))
+      (is (= {:filtered-data data
+              :page-data [{:id 4 :name "David" :score 5} {:id 1 :name "Alice" :score 10}]
+              :total-rows 4
+              :start-idx 0
+              :end-idx 2
+              :visible-columns [:id :name :score]}
+             (sut/process-table-data data (assoc base-state :sort-col :score :sort-dir :asc)))))
 
     (testing "Filtering"
       (let [res (sut/process-table-data data (assoc base-state :filters {:name "Alice"}))]
@@ -118,9 +135,9 @@
         (is (= "Alice" (:name (first (:page-data res)))))))
 
     (testing "Complex Filtering"
-       (let [res (sut/process-table-data data (assoc base-state :filters {:score "#(> % 12)"}))]
-         (is (= 2 (:total-rows res))) ;; Bob (20) and Charlie (15)
-         (is (every? #(> (:score %) 12) (:page-data res)))))
+      (let [res (sut/process-table-data data (assoc base-state :filters {:score "#(> % 12)"}))]
+        (is (= 2 (:total-rows res))) ;; Bob (20) and Charlie (15)
+        (is (every? #(> (:score %) 12) (:page-data res)))))
 
     (testing "Hidden Columns"
       (let [res (sut/process-table-data data (assoc base-state :hidden-columns #{:score}))]

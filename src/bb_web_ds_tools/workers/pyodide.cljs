@@ -69,9 +69,9 @@
 
 (defn create-datasets-proxy []
   (js/Proxy. datasets-target
-             (clj->js {:set (fn [obj prop value receiver]
+             (clj->js {:set (fn [obj prop ^js value receiver]
                               (let [js-val (if (and value (.-toJs value))
-                                           (.toJs ^js value #js {"create_pyproxies" false})
+                                             (.toJs value #js {"create_pyproxies" false})
                                              value)]
                                 (js/Reflect.set obj prop js-val receiver)
                                 (post-msg {:type "dataset-update" :key prop :value js-val})
@@ -96,6 +96,7 @@
         (.then (fn [p]
                  (reset! pyodide-instance p)
                  (.registerJsModule ^js p "datasets" (clj->js {:datasets (create-datasets-proxy)}))
+                 (run-code "import pyodide_js\nawait pyodide_js.loadPackage('micropip')")
                  (post-msg {:type :ready})))
         (.catch (fn [e] (post-msg {:type :error :text (str "Load Error: " e)}))))
     (catch :default e

@@ -1,8 +1,9 @@
-(ns verification.e2e.navigation-test
+(ns verification.e2e.navigation
   (:require-macros [verification.e2e.macros :refer [def-e2e-test]])
-  (:require [clojure.string :as str]
-            [verification.e2e.core :refer [with-page check]]
-            [promesa.core :as p]))
+  (:require
+   [clojure.string :as str]
+   [verification.e2e.core :refer [with-page check]]
+   [promesa.core :as p]))
 
 (def-e2e-test verify-direct-url-access
   (with-page

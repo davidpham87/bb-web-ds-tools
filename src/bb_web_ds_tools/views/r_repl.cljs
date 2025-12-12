@@ -22,7 +22,7 @@
                       {::loading? false
                        ::ready? false
                        ::error nil
-                       ::code "install.packages(c(\"ggplot2\", \"dplyr\"))\n\nlibrary(ggplot2)\nlibrary(dplyr)\n\nmtcars %>% \n  filter(mpg > 20) %>% \n  ggplot(aes(x = wt, y = mpg)) + \n  geom_point()"}))
+                       ::code "# To install packages use webr::install(\"package_name\")\n# Example: webr::install(\"bootstrap\")\n# Repository available here: https://repo.r-wasm.org/\n\nwebr::install(\"ggplot2\")\nwebr::install(\"dplyr\")\n\nmtcars %>% \n  filter(mpg > 20) %>% \n  ggplot(aes(x = wt, y = mpg)) + \n  geom_point() -> p\n\nprint(p)"}))
       :fx [(when (and (not ready?) (not loading?))
              [:dispatch [::initialize-runtime]])]})))
 
@@ -149,17 +149,16 @@
         code @(rf/subscribe [::code])
         mac-os? @(rf/subscribe [::mac-os?])]
     [l/flex-col {:class "h-full w-full"}
-     [l/flex-col {:class "h-full p-4 space-y-4"}
+     [l/flex-col {:class "h-full p-2 space-y-2"}
       [l/flex-row {:class "justify-between"}
-       [c/label "Code"]
+       [c/label "R Code"]
        [l/flex-row {:class "space-x-4"}
         (when loading? [:div {:class t/text-accent} "Loading WebR..."])
-        (when error [:div {:class t/text-danger} error])
-        [c/button {:on-click #(rf/dispatch [::run-code code])} "Run"]]]
+        [c/button {:on-click #(rf/dispatch [::run-code code])} "Eval"]]]
       [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
        [editor/monaco-editor {:value code
                               :language "r"
-                              :options {:rulers [80]}
+                              :options {:rulers [80] :lineNumbers "off"}
                               :on-change #(rf/dispatch [::set-code %])
                               :on-mount #(editor/setup-editor-actions % mac-os? (fn [code] (rf/dispatch [::run-code code])))}]]]]))
 
@@ -171,5 +170,5 @@
   []
   (r/create-class
    {:display-name "r-repl-panel"
-    :component-did-mount (fn [] (rf/dispatch [::initialize]))
+    :component-did-mount (fn [] (rf/dispatch [::on-mount]))
     :reagent-render (fn [] [panel-render])}))

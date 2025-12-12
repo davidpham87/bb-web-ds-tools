@@ -4,17 +4,14 @@
 
 (deftest convert-to-sql-test
   (testing "Converts valid HoneySQL map"
-    (let [res (sut/convert-to-sql "{:select [:*] :from [:users]}")]
-      (is (:success res))
-      ;; Check for partial match or specific string
-      (is (re-find #"SELECT .* FROM .*users" (:output res)))))
+    (is (= {:success true, :output "SELECT * FROM users"}
+           (sut/convert-to-sql "{:select [:*] :from [:users]}"))))
 
   (testing "Handles invalid EDN"
-    (let [res (sut/convert-to-sql "{:select")]
-      (is (not (:success res)))
-      (is (string? (:error res)))))
+    (is (= {:success false, :error "Error evaluating code: EOF while reading, expected } to match { at [1,1]"}
+           (sut/convert-to-sql "{:select"))))
 
   (testing "Handles valid EDN but not a map"
-    (let [res (sut/convert-to-sql "[:select :*]")]
-      (is (not (:success res)))
-      (is (re-find #"Last evaluated value must be a map" (:error res))))))
+    (is (= {:success false
+            :error "Error: Last evaluated value must be a map. Got: [:select :*]"}
+           (sut/convert-to-sql "[:select :*]")))))

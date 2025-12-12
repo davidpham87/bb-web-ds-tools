@@ -19,23 +19,13 @@
 
             ;; Check content of first row
             (let [sample (first parsed)]
-              (is (map? sample))
-              (is (contains? sample :id))
-              (is (contains? sample :score))
-              (is (contains? sample :category))
-              (is (contains? sample :date))
-
-              (if (= fmt :markdown)
-                (do
-                  ;; Markdown parser currently returns strings for all fields
-                  (is (string? (:id sample)))
-                  (is (string? (:score sample))))
-                (do
-                  (is (integer? (:id sample)))
-                  (is (number? (:score sample)))))
-
-              (is (string? (:category sample)))
-              (is (string? (:date sample))))))))))
+              (is (= {:id 1 :score 12.5 :category "a" :date "2023-01-01"}
+                     (if (= fmt :markdown)
+                       (-> sample
+                           (update :score #(js/parseFloat %))
+                           (update :id #(js/parseInt %)))
+                       sample))
+                  "Sample row should match expected data (type differences allowed for markdown)"))))))))
 
 (deftest example-data-config-test
   (testing "Example data generation with custom config"
@@ -48,8 +38,8 @@
           json (dp/example-data :json :columnar custom-config)]
 
       (testing "Markdown uses custom separators"
-        (is (str/includes? markdown "* id * score *"))
-        (is (str/includes? markdown "===")))
+        (is (= "* id * score * category * date *\n* === * === * === * === *\n* 1 * 12.5 * a * 2023-01-01 *\n* 2 * 10.2 * b * 2023-01-02 *\n* 3 * 8.7 * c * 2023-01-03 *\n* 4 * 15 * a * 2023-01-04 *\n* 5 * 9.9 * b * 2023-01-05 *\n* 6 * 11.1 * c * 2023-01-06 *\n* 7 * 13.4 * a * 2023-01-07 *\n* 8 * 7.8 * b * 2023-01-08 *\n* 9 * 14.2 * c * 2023-01-09 *\n* 10 * 10 * a * 2023-01-10 *"
+               markdown)))
 
       (testing "JSON uses custom indentation"
         ;; Checking for indentation is tricky depending on implementation, but 4 spaces should start lines

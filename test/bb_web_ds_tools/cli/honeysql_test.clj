@@ -7,12 +7,12 @@
 (deftest convert-test
   (testing "Convert HoneySQL EDN to SQL"
     (testing "File input/output"
-       (let [tmp-dir (fs/create-temp-dir {:prefix "honeysql-test"})
-             input-file (str (fs/file tmp-dir "input.edn"))
-             output-file (str (fs/file tmp-dir "output.sql"))]
-         (spit input-file "{:select [:*] :from [:table]}")
-         (sut/convert {:opts {:file input-file :out output-file}})
-         (is (str/includes? (slurp output-file) "SELECT * FROM table"))))
+      (let [tmp-dir (fs/create-temp-dir {:prefix "honeysql-test"})
+            input-file (str (fs/file tmp-dir "input.edn"))
+            output-file (str (fs/file tmp-dir "output.sql"))]
+        (spit input-file "{:select [:*] :from [:table]}")
+        (sut/convert {:opts {:file input-file :out output-file}})
+        (is (str/includes? (slurp output-file) "SELECT * FROM table"))))
 
     (testing "Stdin/Stdout"
       (let [input-str "{:select [:a] :from [:t]}"]

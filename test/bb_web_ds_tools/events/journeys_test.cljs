@@ -1,10 +1,11 @@
 (ns bb-web-ds-tools.events.journeys-test
-  (:require [cljs.test :refer [deftest is testing]]
+  (:require [cljs.test :refer [deftest is testing use-fixtures]]
             [bb-web-ds-tools.events.journeys :as sut]
             [malli.core :as m]
             [re-frame.core :as rf]
             [day8.re-frame.test :as rf-test]
             [bb-web-ds-tools.core :as core]
+            [bb-web-ds-tools.test-setup :as setup]
             ;; Require views to ensure event handlers and subscriptions are registered
             [bb-web-ds-tools.views.malli]
             [bb-web-ds-tools.views.honeysql]
@@ -21,6 +22,8 @@
             [bb-web-ds-tools.views.pyodide]
             [bb-web-ds-tools.events.theme]
             [bb-web-ds-tools.events.settings]))
+
+(use-fixtures :each setup/suppress-re-frame-warnings)
 
 (def view-subscriptions
   "Map of route names to a list of critical subscriptions for that view.
@@ -83,75 +86,78 @@
   (testing "Executes a generated journey against the app-db"
     (rf-test/run-test-sync
       ;; Initialize the DB
-      (rf/dispatch-sync [::core/initialize-db])
+     (rf/dispatch-sync [::core/initialize-db])
 
       ;; Initialize all view states (simulating component mounts)
       ;; This prevents subscription failures due to missing state
-      (rf/dispatch-sync [:malli/initialize])
-      (rf/dispatch-sync [:honeysql/initialize])
-      (rf/dispatch-sync [:bb-web-ds-tools.views.vega-lite/initialize])
-      (rf/dispatch-sync [:bb-web-ds-tools.views.gemma/initialize])
-      (rf/dispatch-sync [:bb-web-ds-tools.views.datasets/initialize])
-      (rf/dispatch-sync [:bb-web-ds-tools.views.code/initialize])
-      (rf/dispatch-sync [:bb-web-ds-tools.events.settings/initialize])
+     (rf/dispatch-sync [:malli/initialize])
+     (rf/dispatch-sync [:honeysql/initialize])
+     (rf/dispatch-sync [:bb-web-ds-tools.views.vega-lite/initialize])
+     (rf/dispatch-sync [:bb-web-ds-tools.views.gemma/initialize])
+     (rf/dispatch-sync [:bb-web-ds-tools.views.datasets/initialize])
+     (rf/dispatch-sync [:bb-web-ds-tools.views.code/initialize])
+     (rf/dispatch-sync [:bb-web-ds-tools.events.settings/initialize])
+
+      ;; Removed offending dispatch to non-existent initialization event for app-db
+      ;; (rf/dispatch-sync [:bb-web-ds-tools.views.app-db/initialize])
 
       ;; Mock navigation to avoid side effects
-      (rf/reg-fx :navigate (fn [_] nil))
+     (rf/reg-fx :navigate (fn [_] nil))
 
       ;; Mock portal submission to avoid external interactions
-      (rf/reg-event-db
-       :bb-web-ds-tools.portal/submit
-       (fn [db _] db))
+     (rf/reg-event-db
+      :bb-web-ds-tools.portal/submit
+      (fn [db _] db))
 
       ;; Mock Theme Application (prevents DOM access failure)
-      (rf/reg-fx :theme/apply (fn [_] nil))
-      (rf/dispatch-sync [:bb-web-ds-tools.events.theme/set-theme :zenburn])
+     (rf/reg-fx :theme/apply (fn [_] nil))
+     (rf/dispatch-sync [:bb-web-ds-tools.events.theme/set-theme :zenburn])
 
       ;; Mock Runtime and External Side Effects
       ;; R-REPL
-      (rf/reg-fx :bb-web-ds-tools.views.r-repl/load-runtime (fn [_] nil))
-      (rf/reg-fx :bb-web-ds-tools.views.r-repl/execute-r (fn [_] nil))
+     (rf/reg-fx :bb-web-ds-tools.views.r-repl/load-runtime (fn [_] nil))
+     (rf/reg-fx :bb-web-ds-tools.views.r-repl/execute-r (fn [_] nil))
       ;; Trigger R-REPL init after mock
-      (rf/dispatch-sync [:bb-web-ds-tools.views.r-repl/initialize])
+     (rf/dispatch-sync [:bb-web-ds-tools.views.r-repl/initialize])
 
       ;; Pyodide
-      (rf/reg-fx :bb-web-ds-tools.views.pyodide/load-runtime (fn [_] nil))
-      (rf/reg-fx :bb-web-ds-tools.views.pyodide/execute-python (fn [_] nil))
+     (rf/reg-fx :bb-web-ds-tools.views.pyodide/load-runtime (fn [_] nil))
+     (rf/reg-fx :bb-web-ds-tools.views.pyodide/execute-python (fn [_] nil))
       ;; Trigger Pyodide init after mock
-      (rf/dispatch-sync [:bb-web-ds-tools.views.pyodide/initialize])
+     (rf/dispatch-sync [:bb-web-ds-tools.views.pyodide/initialize])
 
       ;; Gemma
-      (rf/reg-fx :bb-web-ds-tools.views.gemma/load-model-fx (fn [_] nil))
-      (rf/reg-fx :bb-web-ds-tools.views.gemma/generate-response-fx (fn [_] nil))
+     (rf/reg-fx :bb-web-ds-tools.views.gemma/load-model-fx (fn [_] nil))
+     (rf/reg-fx :bb-web-ds-tools.views.gemma/generate-response-fx (fn [_] nil))
 
       ;; Datasets
-      (rf/reg-fx :bb-web-ds-tools.views.datasets/fetch-vega-datasets (fn [_] nil))
-      (rf/reg-fx :bb-web-ds-tools.views.datasets/fetch-vega-dataset (fn [_] nil))
+     (rf/reg-fx :bb-web-ds-tools.views.datasets/fetch-vega-datasets (fn [_] nil))
+     (rf/reg-fx :bb-web-ds-tools.views.datasets/fetch-vega-dataset (fn [_] nil))
 
-      (let [journey (take 20 (sut/generate-journey sut/fsm sut/events {:max-steps 20}))]
-        (doseq [[event args] journey]
+     (let [journey (take 20 (sut/generate-journey sut/fsm sut/events {:max-steps 20}))]
+       (doseq [[event args] journey]
           ;; Dispatch the event
-          (rf/dispatch (into [event] args))
+         (rf/dispatch (into [event] args))
 
           ;; For navigation events, simulate the router callback
-          (when (= event :bb-web-ds-tools.core/navigate)
-            (let [[route-name params query] args]
-              (rf/dispatch [::core/navigated {:data {:name route-name}
-                                              :path-params params
-                                              :query-params query}])))
+         (when (= event :bb-web-ds-tools.core/navigate)
+           (let [[route-name params query] args]
+             (rf/dispatch [::core/navigated {:data {:name route-name}
+                                             :path-params params
+                                             :query-params query}])))
 
           ;; Verify that the app state reflects the expected route
-          (let [current-route-match @(rf/subscribe [::core/current-route])
-                current-route-name (get-in current-route-match [:data :name])
-                event-def (get sut/events event)
-                expected-route (:route event-def)]
+         (let [current-route-match @(rf/subscribe [::core/current-route])
+               current-route-name (get-in current-route-match [:data :name])
+               event-def (get sut/events event)
+               expected-route (:route event-def)]
 
-            (when (and expected-route (not= expected-route :global))
-               (is (= expected-route current-route-name)
-                   (str "Event " event " expects route " expected-route " but got " current-route-name)))
+           (when (and expected-route (not= expected-route :global))
+             (is (= expected-route current-route-name)
+                 (str "Event " event " expects route " expected-route " but got " current-route-name)))
 
             ;; Verify subscriptions for the current route
-            (when-let [subs (get view-subscriptions current-route-name)]
-              (doseq [sub subs]
-                (let [val @(rf/subscribe [sub])]
-                  (is (not (nil? val)) (str "Subscription " sub " should return a value for route " current-route-name)))))))))))
+           (when-let [subs (get view-subscriptions current-route-name)]
+             (doseq [sub subs]
+               (let [val @(rf/subscribe [sub])]
+                 (is (not (nil? val)) (str "Subscription " sub " should return a value for route " current-route-name)))))))))))

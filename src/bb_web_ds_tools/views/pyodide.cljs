@@ -92,7 +92,7 @@ chart.to_html()")
          ready? (get-in db [:pyodide ::ready?])]
      {:db (-> db
               (cond->
-                  (not exists?)
+               (not exists?)
                 (assoc-in [:user-input :pyodide :default ::code] initial-code))
               (assoc-in [:pyodide ::loading?] (not ready?)))
       :fx [(when-not ready? [::load-runtime])]})))
@@ -150,8 +150,7 @@ chart.to_html()")
 (rf/reg-fx
  ::load-runtime
  (fn [_]
-   (pyodide-runtime/init-worker! on-worker-message)
-   (pyodide-runtime/load-runtime-worker)))
+   (pyodide-runtime/load-runtime-worker on-worker-message)))
 
 (rf/reg-fx
  ::execute-python
@@ -179,7 +178,11 @@ chart.to_html()")
   [datasets]
   (let [code-sub (rf/subscribe [::code])]
     (r/create-class
-     {:component-did-update
+     {:component-did-mount
+      (fn [this]
+        (let [datasets (second (r/argv this))]
+          (pyodide-runtime/sync-datasets datasets)))
+      :component-did-update
       (fn [this [_ old-datasets]]
         (let [new-datasets (second (r/argv this))]
           (when (not= old-datasets new-datasets)
@@ -190,14 +193,13 @@ chart.to_html()")
               mac-os? @(rf/subscribe [::mac-os?])
               loading? @(rf/subscribe [::loading?])
               ready? @(rf/subscribe [::ready?])]
-          [:div {:class "w-full border border-gray-700 rounded mb-4"}
-           [l/flex-col {:class "h-full w-full"}
-            [l/flex-row {:class "justify-between py-4"}
+          [:div {:class "w-full rounded mb-4"}
+           [l/flex-col {:class "h-full w-full p-2 space-y-2"}
+            [l/flex-row {:class "justify-between"}
              [c/label "Python Code"]
              [l/flex-row {:class "space-x-4"}
-              (when loading? [:div "Loading Pyodide..."])
               [c/button {:on-click #(rf/dispatch [::run-code code])} "Run"]]]
-            [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)
+            [:div {:class (str "flex-grow rounded overflow-hidden border  " t/border-default)
                    :style {:height "85vh"}}
              [editor/monaco-editor
               {:value code

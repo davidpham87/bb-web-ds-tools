@@ -366,14 +366,14 @@
    [:path {:stroke-linecap "round" :stroke-linejoin "round" :d "m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.052.68-.107 1.022-.166m-1.022.165L5.34 19.673a2.25 2.25 0 0 0 2.244 2.077H8.084a2.25 2.25 0 0 0 2.244-2.077L14.74 9m-6.42 10.668L9.26 9m9.968-3.21c-1.378-.225-2.776-.39-4.188-.475M6.887 5.79c1.378-.225 2.776-.39 4.188-.475m0 0V4.868a2.25 2.25 0 0 1 2.25-2.25h1.5a2.25 2.25 0 0 1 2.25 2.25v.912m-6 0h6m-6 0a48.11 48.11 0 0 1-3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"}]])
 
 (def nav-items
-  [{:label "Workspaces" :route :workspaces :icon "📂"}
-   {:label "App DB" :route :app-db :icon "🗄️"}
-   {:label "Code" :route :code :icon "💻"}
+  [#_{:label "Workspaces" :route :workspaces :icon "📂"}
    {:label "Datasets" :route :datasets :icon "📊"}
+   {:label "Vega-Lite" :route :vega-lite :icon "📈"}
+   {:label "Code" :route :code :icon "💻"}
    {:label "Malli" :route :malli :icon "✅"}
    {:label "HoneySQL" :route :honeysql :icon "🍯"}
-   {:label "Vega-Lite" :route :vega-lite :icon "📈"}
    {:label "Gemma" :route :gemma :icon "🤖"}
+   {:label "App DB" :route :app-db :icon "🗄️"}
    {:label "Settings" :route :settings :icon "⚙️"}
    {:label "Changelog" :route :changelog :icon "📜"}])
 

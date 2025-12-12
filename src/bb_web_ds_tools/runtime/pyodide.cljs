@@ -32,16 +32,19 @@
   Returns:
     nil: Sets the global pyodide-worker atom."
   [& [on-message]]
-  (when-not @pyodide-worker
-    (reset! pyodide-worker (worker/create-worker "js/compiled/pyodide-worker.js" (or on-message default-on-message)))))
+  (if-not @pyodide-worker
+    (reset! pyodide-worker
+            (worker/create-worker "js/compiled/pyodide-worker.js" (or on-message default-on-message)))
+    (when on-message
+      (worker/set-handler @pyodide-worker on-message))))
 
 (defn load-runtime-worker
   "Loads the Pyodide runtime inside the worker.
 
   Returns:
     nil: Posts a load message to the worker."
-  []
-  (init-worker!)
+  [& [on-message]]
+  (init-worker! on-message)
   (worker/post-message @pyodide-worker {:type "load"}))
 
 (defn eval-in-worker

@@ -1,6 +1,9 @@
 (ns bb-web-ds-tools.datasets-test
-  (:require [cljs.test :refer [deftest is testing]]
-            [bb-web-ds-tools.utils.dataset-processing :as dp]))
+  (:require [cljs.test :refer [deftest is testing use-fixtures]]
+            [bb-web-ds-tools.utils.dataset-processing :as dp]
+            [bb-web-ds-tools.test-setup :as setup]))
+
+(use-fixtures :each setup/suppress-re-frame-warnings)
 
 (deftest parse-dataset-test
   (testing "CSV parsing"

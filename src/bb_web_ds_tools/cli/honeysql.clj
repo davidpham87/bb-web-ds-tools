@@ -5,19 +5,17 @@
 
 (def cli-specs
   {:convert
-   {:file {:desc "Input file (stdin if omitted)"
-           :ref "<file>"
-           :alias :i}
-    :out  {:desc "Output file (inferred if input file given, else stdout)"
-           :ref "<file>"
-           :alias :o}}})
+   {:file {:desc "Input file (stdin if omitted)", :ref "<file>", :alias :i},
+    :out {:desc "Output file (inferred if input file given, else stdout)",
+          :ref "<file>",
+          :alias :o}}})
 
-(defn- infer-output [opts]
-  (or (:out opts)
-      (when (:file opts)
-        (str (fs/strip-ext (:file opts)) ".sql"))))
+(defn- infer-output
+  [opts]
+  (or (:out opts) (when (:file opts) (str (fs/strip-ext (:file opts)) ".sql"))))
 
-(defn convert [{:keys [opts]}]
+(defn convert
+  [{:keys [opts]}]
   (let [input-str (if-let [f (:file opts)]
                     (slurp f)
                     (slurp *in*))
@@ -26,19 +24,18 @@
       (if-let [f (infer-output opts)]
         (spit f (:output res))
         (println (:output res)))
-      (binding [*out* *err*]
-        (println "Error:" (:error res))))))
+      (binding [*out* *err*] (println "Error:" (:error res))))))
 
-(defn show-help [_]
+(defn show-help
+  [_]
   (println "Usage: bb -m bb-web-ds-tools.cli.honeysql <command> [opts]")
   (println "\nCommands:\n")
   (doseq [[cmd spec] cli-specs]
     (println "  " (name cmd))
-    (println (cli/format-opts {:spec spec :indent 4}))))
+    (println (cli/format-opts {:spec spec, :indent 4}))))
 
 (def table
-  [{:cmds ["convert"] :fn convert :spec (:convert cli-specs)}
-   {:cmds [] :fn show-help}])
+  [{:cmds ["convert"], :fn convert, :spec (:convert cli-specs)}
+   {:cmds [], :fn show-help}])
 
-(defn -main [& args]
-  (cli/dispatch table args))
+(defn -main [& args] (cli/dispatch table args))

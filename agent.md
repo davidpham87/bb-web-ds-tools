@@ -29,8 +29,11 @@ following core technologies:
 
 1.  **Install dependencies:**
 
+    This will download clojure, babashka and node depdencies. Check if bb or
+    clojure are installed before executing.
+
     ```bash
-    npm install
+    ./scripts/vm_setup.sh
     ```
 
 2.  **Start the development server:** Conect to localhost:8080 to see the app
@@ -170,3 +173,12 @@ the
 ## Markdown Formatting
 
 - All Markdown files should have a maximum line width of 80 characters.
+
+## End 2 End Test
+
+Write your E2E test in clojuresript using playwright in the test/verification/e2e
+folder.
+
+Store your screenshots in the screenshots/ folder.
+
+DO NOT WRITE YOUR E2E TEST IN PYTHON.

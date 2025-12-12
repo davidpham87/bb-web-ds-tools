@@ -5,75 +5,75 @@
 
 (deftest manual-flush-test
   (async done
-    (a/go
-      (let [input-ch (a/chan)
-            results (atom [])
-            on-flush (fn [items] (swap! results conj items))
-            flush! (buffer/create {:input-chan input-ch
-                                   :on-flush on-flush})]
+         (a/go
+           (let [input-ch (a/chan)
+                 results (atom [])
+                 on-flush (fn [items] (swap! results conj items))
+                 flush! (buffer/create {:input-chan input-ch
+                                        :on-flush on-flush})]
 
-        (a/>! input-ch 1)
-        (a/>! input-ch 2)
-        (a/<! (a/timeout 20)) ;; give loop time to process
+             (a/>! input-ch 1)
+             (a/>! input-ch 2)
+             (a/<! (a/timeout 20)) ;; give loop time to process
 
-        (is (empty? @results) "Buffer should not flush automatically without timer")
+             (is (empty? @results) "Buffer should not flush automatically without timer")
 
-        (flush!)
-        (a/<! (a/timeout 20)) ;; give loop time to process flush
+             (flush!)
+             (a/<! (a/timeout 20)) ;; give loop time to process flush
 
-        (is (= [[1 2]] @results) "Manual flush should flush all items")
+             (is (= [[1 2]] @results) "Manual flush should flush all items")
 
-        (a/>! input-ch 3)
-        (flush!)
-        (a/<! (a/timeout 20))
-        (is (= [[1 2] [3]] @results) "Subsequent flush should work")
+             (a/>! input-ch 3)
+             (flush!)
+             (a/<! (a/timeout 20))
+             (is (= [[1 2] [3]] @results) "Subsequent flush should work")
 
-        (done)))))
+             (done)))))
 
 (deftest timer-flush-test
   (async done
-    (a/go
-      (let [input-ch (a/chan)
-            results (atom [])
-            on-flush (fn [items] (swap! results conj items))
-            _ (buffer/create {:input-chan input-ch
-                              :flush-interval-ms 100
-                              :on-flush on-flush})]
+         (a/go
+           (let [input-ch (a/chan)
+                 results (atom [])
+                 on-flush (fn [items] (swap! results conj items))
+                 _ (buffer/create {:input-chan input-ch
+                                   :flush-interval-ms 100
+                                   :on-flush on-flush})]
 
-        (a/>! input-ch 1)
-        (a/>! input-ch 2)
+             (a/>! input-ch 1)
+             (a/>! input-ch 2)
 
-        (a/<! (a/timeout 50))
-        (is (empty? @results) "Should not flush before timeout")
+             (a/<! (a/timeout 50))
+             (is (empty? @results) "Should not flush before timeout")
 
-        (a/<! (a/timeout 100)) ;; Total 150ms > 100ms
-        (is (= [[1 2]] @results) "Should flush after timeout")
+             (a/<! (a/timeout 100)) ;; Total 150ms > 100ms
+             (is (= [[1 2]] @results) "Should flush after timeout")
 
         ;; Test batching reset
-        (a/>! input-ch 3)
-        (a/<! (a/timeout 50))
-        (a/>! input-ch 4)
-        (a/<! (a/timeout 20)) ;; Total 70ms since first message 3
-        (is (= [[1 2]] @results) "Should not flush 3,4 yet")
+             (a/>! input-ch 3)
+             (a/<! (a/timeout 50))
+             (a/>! input-ch 4)
+             (a/<! (a/timeout 20)) ;; Total 70ms since first message 3
+             (is (= [[1 2]] @results) "Should not flush 3,4 yet")
 
-        (a/<! (a/timeout 80)) ;; Total 150ms since first message 3
-        (is (= [[1 2] [3 4]] @results) "Should flush 3,4 after timeout from first message")
+             (a/<! (a/timeout 80)) ;; Total 150ms since first message 3
+             (is (= [[1 2] [3 4]] @results) "Should flush 3,4 after timeout from first message")
 
-        (done)))))
+             (done)))))
 
 (deftest close-input-test
   (async done
-    (a/go
-      (let [input-ch (a/chan)
-            results (atom [])
-            on-flush (fn [items] (swap! results conj items))
-            _ (buffer/create {:input-chan input-ch
-                              :on-flush on-flush})]
+         (a/go
+           (let [input-ch (a/chan)
+                 results (atom [])
+                 on-flush (fn [items] (swap! results conj items))
+                 _ (buffer/create {:input-chan input-ch
+                                   :on-flush on-flush})]
 
-        (a/>! input-ch :a)
-        (a/>! input-ch :b)
-        (a/close! input-ch)
+             (a/>! input-ch :a)
+             (a/>! input-ch :b)
+             (a/close! input-ch)
 
-        (a/<! (a/timeout 20))
-        (is (= [[:a :b]] @results) "Closing input should flush remaining")
-        (done)))))
+             (a/<! (a/timeout 20))
+             (is (= [[:a :b]] @results) "Closing input should flush remaining")
+             (done)))))

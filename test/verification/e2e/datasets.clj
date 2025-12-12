@@ -1,6 +1,7 @@
-(ns verification.e2e.datasets-test
-  (:require [verification.e2e.core :as core]
-            [promesa.core :as p]))
+(ns verification.e2e.datasets
+  (:require
+   [verification.e2e.core :as core]
+   [promesa.core :as p]))
 
 (core/register "Datasets View"
   (fn []

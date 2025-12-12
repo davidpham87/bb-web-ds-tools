@@ -28,49 +28,49 @@
         resize-observer (r/atom nil)
         dimensions (r/atom {:width 0 :height 0})]
     (r/create-class
-      {:display-name (str "canvas-card-" label)
+     {:display-name (str "canvas-card-" label)
 
-       :component-did-mount
-       (fn [this]
-         (when-let [canvas @canvas-ref]
-           (let [ctx (.getContext canvas "2d")
-                 update-size (fn []
-                               (let [w (.-offsetWidth canvas)
-                                     h (.-offsetHeight canvas)]
-                                 (reset! dimensions {:width w :height h})
-                                 (setup-canvas canvas w h)))
-                 observer (js/ResizeObserver. (fn [_] (update-size)))]
+      :component-did-mount
+      (fn [this]
+        (when-let [canvas @canvas-ref]
+          (let [ctx (.getContext canvas "2d")
+                update-size (fn []
+                              (let [w (.-offsetWidth canvas)
+                                    h (.-offsetHeight canvas)]
+                                (reset! dimensions {:width w :height h})
+                                (setup-canvas canvas w h)))
+                observer (js/ResizeObserver. (fn [_] (update-size)))]
 
-             (.observe observer canvas)
-             (reset! resize-observer observer)
-             (update-size)
+            (.observe observer canvas)
+            (reset! resize-observer observer)
+            (update-size)
 
-             (let [start-time (js/Date.now)
-                   loop-fn (fn loop-fn []
-                             (let [elapsed (- (js/Date.now) start-time)
-                                   {:keys [width height]} @dimensions]
-                               (when (and (> width 0) (> height 0))
-                                 (draw-fn ctx width height elapsed))
-                               (reset! animation-id (js/requestAnimationFrame loop-fn))))]
-               (loop-fn)))))
+            (let [start-time (js/Date.now)
+                  loop-fn (fn loop-fn []
+                            (let [elapsed (- (js/Date.now) start-time)
+                                  {:keys [width height]} @dimensions]
+                              (when (and (> width 0) (> height 0))
+                                (draw-fn ctx width height elapsed))
+                              (reset! animation-id (js/requestAnimationFrame loop-fn))))]
+              (loop-fn)))))
 
-       :component-will-unmount
-       (fn []
-         (when-let [id @animation-id]
-           (js/cancelAnimationFrame id))
-         (when-let [obs @resize-observer]
-           (.disconnect obs)))
+      :component-will-unmount
+      (fn []
+        (when-let [id @animation-id]
+          (js/cancelAnimationFrame id))
+        (when-let [obs @resize-observer]
+          (.disconnect obs)))
 
-       :reagent-render
-       (fn []
-         [:div {:class (str "flex flex-col h-full overflow-hidden rounded-xl shadow-lg transition-all duration-300 transform hover:scale-[1.02] cursor-pointer border " t/border-subtle " " t/border-hover " " t/bg-card)
-                :on-click #(rf/dispatch [:bb-web-ds-tools.core/navigate route nil nil])}
-          [:div {:class (str "relative h-40 w-full " t/bg-sidebar " border-b " t/border-main)}
-           [:canvas {:ref #(reset! canvas-ref %)
-                     :class "w-full h-full block"}]]
-          [:div {:class "p-5 flex flex-col flex-grow"}
-           [:h3 {:class (str "text-lg font-bold mb-2 " t/text-accent)} label]
-           [:p {:class (str "text-sm leading-relaxed " t/text-primary " opacity-90")} description]]])})))
+      :reagent-render
+      (fn []
+        [:div {:class (str "flex flex-col h-full overflow-hidden rounded-xl shadow-lg transition-all duration-300 transform hover:scale-[1.02] cursor-pointer border " t/border-subtle " " t/border-hover " " t/bg-card)
+               :on-click #(rf/dispatch [:bb-web-ds-tools.core/navigate route nil nil])}
+         [:div {:class (str "relative h-40 w-full " t/bg-sidebar " border-b " t/border-main)}
+          [:canvas {:ref #(reset! canvas-ref %)
+                    :class "w-full h-full block"}]]
+         [:div {:class "p-5 flex flex-col flex-grow"}
+          [:h3 {:class (str "text-lg font-bold mb-2 " t/text-accent)} label]
+          [:p {:class (str "text-sm leading-relaxed " t/text-primary " opacity-90")} description]]])})))
 
 ;; --- Animation Helpers ---
 
@@ -122,8 +122,8 @@
   (let [cycle (mod t 4000)
         open-phase (< cycle 2000)
         angle (if open-phase
-                 (* Math/PI 0.1 (Math/sin (* t 0.003)))
-                 0)
+                (* Math/PI 0.1 (Math/sin (* t 0.003)))
+                0)
         cx (/ w 2)
         cy (/ h 2)]
     (set! (.-strokeStyle ctx) (:portal.colors/string zenburn))
@@ -248,7 +248,7 @@
         (.moveTo ctx (- cx 20) cy)
         (.lineTo ctx (- cx 5) (+ cy 15))
         (when (> p 0.5)
-           (.lineTo ctx (+ cx 25) (- cy 20)))
+          (.lineTo ctx (+ cx 25) (- cy 20)))
         (.stroke ctx)))
     (set! (.-font ctx) "20px sans-serif")
     (set! (.-fillStyle ctx) (:portal.colors/text zenburn))
@@ -301,9 +301,9 @@
       (let [offset (* i 20)
             x (+ (- cx 100) (* offset 2))
             y (+ cy (* 40 (Math/sin (+ (* offset 0.1) (* t 0.005)))))]
-         (.beginPath ctx)
-         (.arc ctx x y 4 0 (* Math/PI 2))
-         (.fill ctx)))))
+        (.beginPath ctx)
+        (.arc ctx x y 4 0 (* Math/PI 2))
+        (.fill ctx)))))
 
 (defn draw-gemma [ctx w h t]
   (clear ctx w h)
@@ -376,22 +376,22 @@
           (.fillText ctx (str "- Update " i " fixed stuff") 20 y))))))
 
 (def feature-cards
-  [{:label "Workspaces"
+  [#_{:label "Workspaces"
     :route :workspaces
     :description "Persist your mess. Save your scripts before you accidentally close the tab and cry."
     :draw-fn draw-workspaces}
-   {:label "App DB"
-    :route :app-db
-    :description "Inspect the state of the universe. See the matrix code behind the curtain."
-    :draw-fn draw-app-db}
-   {:label "Code"
-    :route :code
-    :description "It's VS Code, but just the editor part. Includes Python, R, and Clojure support."
-    :draw-fn draw-code}
    {:label "Datasets"
     :route :datasets
     :description "Import CSVs, TSVs, JSON. Edit in a grid. Pretend you're using Excel."
     :draw-fn draw-datasets}
+   {:label "Vega-Lite"
+    :route :vega-lite
+    :description "Charts on the fly. Paste data, write spec, boom. Interactive charts."
+    :draw-fn draw-vega-lite}
+   {:label "Code"
+    :route :code
+    :description "It's VS Code, but just the editor part. Includes Python, R, and Clojure support."
+    :draw-fn draw-code}
    {:label "Malli"
     :route :malli
     :description "Schema Inference & Generation. A spellchecker for your data structures."
@@ -400,10 +400,6 @@
     :route :honeysql
     :description "SQL for Clojurists. Because writing strings is for cavemen."
     :draw-fn draw-honeysql}
-   {:label "Vega-Lite"
-    :route :vega-lite
-    :description "Charts on the fly. Paste data, write spec, boom. Interactive charts."
-    :draw-fn draw-vega-lite}
    {:label "Gemma"
     :route :gemma
     :description "Your Private AI Buddy. Uses your local GPU. Fans will spin."
@@ -412,6 +408,10 @@
     :route :settings
     :description "Tweak the knobs. Change the font size until you can read it."
     :draw-fn draw-settings}
+   {:label "App DB"
+    :route :app-db
+    :description "Inspect the state of the universe. See the matrix code behind the curtain."
+    :draw-fn draw-app-db}
    {:label "Changelog"
     :route :changelog
     :description "What's new? Probably some bugs we fixed and some new ones we added."

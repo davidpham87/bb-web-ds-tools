@@ -28,7 +28,7 @@
    [malli.registry :as mr]
    [malli.experimental.time :as met]
    [re-frame.core :as rf]
-   [reagent.dom :as rdom]
+   [reagent.dom.client :as rdomc]
    [reitit.coercion.spec :as rss]
    [reitit.frontend :as rf-router]
    [reitit.frontend.easy :as rfe]))
@@ -73,7 +73,7 @@
 (def routes
   ["/"
    ["" {:name :landing-page}]
-   ["workspaces" {:name :workspaces}]
+   #_["workspaces" {:name :workspaces}]
    ["malli" {:name :malli}]
    ["honeysql"
     {:name :honeysql}]
@@ -158,7 +158,6 @@
  (fn [db [_ new-code]]
    (assoc-in db [:user-input :editor :default :code] new-code)))
 
-
 ;; ;; --- Views ---
 
 (defmulti view
@@ -219,6 +218,8 @@
 ;;   [:div {:style {:color :white}}
 ;;    "Hello" " works!"])
 
+(defonce root (rdomc/create-root (.getElementById js/document "app")))
+
 
 (defn ^:export init
   "The entry point of the application. Initializes the database, router, and mounts the React root.
@@ -241,7 +242,7 @@
   ;; #_(rf/dispatch [::wp/init-persistence])
   (init-routes!)
   ;; (rf/dispatch [::navigate :landing-page nil nil]) ;; Removed to allow deep linking
-  (rdom/render [app] (.getElementById js/document "app")))
+  (rdomc/render root [app]))
 
 (defn ^:dev/after-load reload!
   "Reload hook for shadow-cljs. Re-mounts the application after code changes.
@@ -250,4 +251,7 @@
     nil: Re-renders the app."
   []
   (js/console.log "reload")
-  (rdom/render [app] (.getElementById js/document "app")))
+  (rdomc/render root [app]))
+
+(comment
+  (reload!))

@@ -4,7 +4,8 @@
             [bb-web-ds-tools.cli.malli :as malli]
             [babashka.cli :as cli]))
 
-(defn show-help [_]
+(defn show-help
+  [_]
   (println "Usage: bb -m dstools <command> <subcommand> [opts]")
   (println "\nCommands:")
   (println "  data    Data processing tools (datasets)")
@@ -15,21 +16,25 @@
 (def table
   ;; Datasets
   (concat
-   [{:cmds ["data" "convert"] :fn datasets/convert :spec (:convert datasets/cli-specs)}
-    {:cmds ["data"] :fn datasets/show-help}]
+   [{:cmds ["data" "convert"],
+     :fn datasets/convert,
+     :spec (:convert datasets/cli-specs)}
+    {:cmds ["data"], :fn datasets/show-help}]
+    ;; HoneySQL
+   [{:cmds ["sql" "convert"],
+     :fn honeysql/convert,
+     :spec (:convert honeysql/cli-specs)}
+    {:cmds ["sql"], :fn honeysql/show-help}]
+    ;; Malli
+   [{:cmds ["schema" "infer"], :fn malli/infer, :spec (:infer malli/cli-specs)}
+    {:cmds ["schema" "generate"],
+     :fn malli/generate,
+     :spec (:generate malli/cli-specs)}
+    {:cmds ["schema" "validate"],
+     :fn malli/validate,
+     :spec (:validate malli/cli-specs)}
+    {:cmds ["schema"], :fn malli/show-help}]
+    ;; Main Help
+   [{:cmds [], :fn show-help}]))
 
-   ;; HoneySQL
-   [{:cmds ["sql" "convert"] :fn honeysql/convert :spec (:convert honeysql/cli-specs)}
-    {:cmds ["sql"] :fn honeysql/show-help}]
-
-   ;; Malli
-   [{:cmds ["schema" "infer"] :fn malli/infer :spec (:infer malli/cli-specs)}
-    {:cmds ["schema" "generate"] :fn malli/generate :spec (:generate malli/cli-specs)}
-    {:cmds ["schema" "validate"] :fn malli/validate :spec (:validate malli/cli-specs)}
-    {:cmds ["schema"] :fn malli/show-help}]
-
-   ;; Main Help
-   [{:cmds [] :fn show-help}]))
-
-(defn -main [& args]
-  (cli/dispatch table args))
+(defn -main [& args] (cli/dispatch table args))
