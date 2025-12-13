@@ -187,27 +187,27 @@
         ;; The container needs to be tall to allow scrolling
         [:div {:ref #(reset! container-ref %) :class "relative h-[300vh] w-full"}
          [:div {:class "sticky top-0 h-screen flex items-center justify-center overflow-hidden"}
-          (doall
-           (map-indexed
-            (fn [idx {:keys [draw-fn title desc]}]
-              (let [active? (= idx @active-step)]
-                ^{:key title}
-                [:div {:class (str "absolute transition-all duration-700 ease-in-out transform flex flex-col items-center max-w-xl p-8 rounded-xl "
-                                   t/bg-card " border " t/border-subtle " shadow-2xl "
-                                   (if active? "opacity-100 translate-y-0 scale-100" "opacity-0 translate-y-10 scale-95"))}
-                 [landing/animated-icon {:draw-fn draw-fn :class "w-32 h-32 mb-6 mx-auto"}]
-                 [:h3 {:class (str "text-4xl font-bold mb-4 " t/text-primary " text-center")} title]
-                 [:p {:class (str "text-xl " t/text-muted " text-center leading-relaxed")} desc]
+          (into [:<>]
+                (map-indexed
+                 (fn [idx {:keys [draw-fn title desc]}]
+                   (let [active? (= idx @active-step)]
+                     ^{:key title}
+                     [:div {:class (str "absolute transition-all duration-700 ease-in-out transform flex flex-col items-center max-w-xl p-8 rounded-xl "
+                                        t/bg-card " border " t/border-subtle " shadow-2xl "
+                                        (if active? "opacity-100 translate-y-0 scale-100" "opacity-0 translate-y-10 scale-95"))}
+                      [landing/animated-icon {:draw-fn draw-fn :class "w-32 h-32 mb-6 mx-auto"}]
+                      [:h3 {:class (str "text-4xl font-bold mb-4 " t/text-primary " text-center")} title]
+                      [:p {:class (str "text-xl " t/text-muted " text-center leading-relaxed")} desc]
 
-                 ;; Step indicator
-                 [:div {:class "flex gap-2 mt-8"}
-                  (for [i (range (count flow-steps))]
-                    ^{:key i}
-                    [:div {:class (str "w-3 h-3 rounded-full transition-colors duration-300 "
-                                       (if (= i idx) t/text-accent (str t/bg-sidebar " opacity-50"))
-                                       " bg-current")}
-                     ])]])))
-           flow-steps)]])})))
+                      ;; Step indicator
+                      [:div {:class "flex gap-2 mt-8"}
+                       (for [i (range (count flow-steps))]
+                         ^{:key i}
+                         [:div {:class (str "w-3 h-3 rounded-full transition-colors duration-300 "
+                                            (if (= i idx) t/text-accent (str t/bg-sidebar " opacity-50"))
+                                            " bg-current")}
+                          ])]]))
+                 flow-steps))]])})))
 
 (defn landing-page
   "Renders the landing page with animated feature cards.
