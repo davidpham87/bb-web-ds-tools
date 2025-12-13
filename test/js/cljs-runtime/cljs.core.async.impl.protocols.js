@@ -275,7 +275,7 @@ return cljs$core$async$impl$protocols$Buffer$add_BANG__STAR_$dyn_30926(b,itm);
 }
 });
 
-var cljs$core$async$impl$protocols$Buffer$close_buf_BANG_$dyn_30927 = (function (b){
+var cljs$core$async$impl$protocols$Buffer$close_buf_BANG_$dyn_30928 = (function (b){
 var x__5373__auto__ = (((b == null))?null:b);
 var m__5374__auto__ = (cljs.core.async.impl.protocols.close_buf_BANG_[goog.typeOf(x__5373__auto__)]);
 if((!((m__5374__auto__ == null)))){
@@ -296,7 +296,7 @@ cljs.core.async.impl.protocols.close_buf_BANG_ = (function cljs$core$async$impl$
 if((((!((b == null)))) && ((!((b.cljs$core$async$impl$protocols$Buffer$close_buf_BANG_$arity$1 == null)))))){
 return b.cljs$core$async$impl$protocols$Buffer$close_buf_BANG_$arity$1(b);
 } else {
-return cljs$core$async$impl$protocols$Buffer$close_buf_BANG_$dyn_30927(b);
+return cljs$core$async$impl$protocols$Buffer$close_buf_BANG_$dyn_30928(b);
 }
 });
 

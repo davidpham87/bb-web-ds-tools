@@ -49,8 +49,8 @@ return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMP
 });
 clojure.test.check.complete = (function clojure$test$check$complete(property,num_trials,seed,start_time,reporter_fn){
 var time_elapsed_ms = (clojure.test.check.impl.get_current_time_millis() - start_time);
-var G__31935_32011 = new cljs.core.PersistentArrayMap(null, 7, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"complete","complete",-500388775),new cljs.core.Keyword(null,"property","property",-1114278232),property,new cljs.core.Keyword(null,"result","result",1415092211),true,new cljs.core.Keyword(null,"pass?","pass?",-424635753),true,new cljs.core.Keyword(null,"num-tests","num-tests",2050041354),num_trials,new cljs.core.Keyword(null,"time-elapsed-ms","time-elapsed-ms",-755913315),time_elapsed_ms,new cljs.core.Keyword(null,"seed","seed",68613327),seed], null);
-(reporter_fn.cljs$core$IFn$_invoke$arity$1 ? reporter_fn.cljs$core$IFn$_invoke$arity$1(G__31935_32011) : reporter_fn.call(null,G__31935_32011));
+var G__31953_32039 = new cljs.core.PersistentArrayMap(null, 7, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"complete","complete",-500388775),new cljs.core.Keyword(null,"property","property",-1114278232),property,new cljs.core.Keyword(null,"result","result",1415092211),true,new cljs.core.Keyword(null,"pass?","pass?",-424635753),true,new cljs.core.Keyword(null,"num-tests","num-tests",2050041354),num_trials,new cljs.core.Keyword(null,"time-elapsed-ms","time-elapsed-ms",-755913315),time_elapsed_ms,new cljs.core.Keyword(null,"seed","seed",68613327),seed], null);
+(reporter_fn.cljs$core$IFn$_invoke$arity$1 ? reporter_fn.cljs$core$IFn$_invoke$arity$1(G__31953_32039) : reporter_fn.call(null,G__31953_32039));
 
 return new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null,"result","result",1415092211),true,new cljs.core.Keyword(null,"pass?","pass?",-424635753),true,new cljs.core.Keyword(null,"num-tests","num-tests",2050041354),num_trials,new cljs.core.Keyword(null,"time-elapsed-ms","time-elapsed-ms",-755913315),time_elapsed_ms,new cljs.core.Keyword(null,"seed","seed",68613327),seed], null);
 });
@@ -63,9 +63,9 @@ if((((!((result == null))))?((((false) || ((cljs.core.PROTOCOL_SENTINEL === resu
 var d = clojure.test.check.results.result_data(result);
 var temp__5823__auto__ = cljs.core.find(d,new cljs.core.Keyword("clojure.test.check.properties","error","clojure.test.check.properties/error",483933635));
 if(cljs.core.truth_(temp__5823__auto__)){
-var vec__31938 = temp__5823__auto__;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__31938,(0),null);
-var e = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__31938,(1),null);
+var vec__31958 = temp__5823__auto__;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__31958,(0),null);
+var e = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__31958,(1),null);
 if((e instanceof Error)){
 return e;
 } else {
@@ -221,14 +221,14 @@ return result;
  */
 clojure.test.check.quick_check = (function clojure$test$check$quick_check(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___32018 = arguments.length;
-var i__5750__auto___32019 = (0);
+var len__5749__auto___32060 = arguments.length;
+var i__5750__auto___32061 = (0);
 while(true){
-if((i__5750__auto___32019 < len__5749__auto___32018)){
-args__5755__auto__.push((arguments[i__5750__auto___32019]));
+if((i__5750__auto___32061 < len__5749__auto___32060)){
+args__5755__auto__.push((arguments[i__5750__auto___32061]));
 
-var G__32020 = (i__5750__auto___32019 + (1));
-i__5750__auto___32019 = G__32020;
+var G__32062 = (i__5750__auto___32061 + (1));
+i__5750__auto___32061 = G__32062;
 continue;
 } else {
 }
@@ -239,15 +239,15 @@ var argseq__5756__auto__ = ((((2) < args__5755__auto__.length))?(new cljs.core.I
 return clojure.test.check.quick_check.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),(arguments[(1)]),argseq__5756__auto__);
 });
 
-(clojure.test.check.quick_check.cljs$core$IFn$_invoke$arity$variadic = (function (num_tests,property,p__31949){
-var map__31950 = p__31949;
-var map__31950__$1 = cljs.core.__destructure_map(map__31950);
-var seed = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__31950__$1,new cljs.core.Keyword(null,"seed","seed",68613327));
-var max_size = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__31950__$1,new cljs.core.Keyword(null,"max-size","max-size",-874966132),(200));
-var reporter_fn = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__31950__$1,new cljs.core.Keyword(null,"reporter-fn","reporter-fn",1280520247),cljs.core.constantly(null));
-var vec__31951 = clojure.test.check.make_rng(seed);
-var created_seed = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__31951,(0),null);
-var rng = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__31951,(1),null);
+(clojure.test.check.quick_check.cljs$core$IFn$_invoke$arity$variadic = (function (num_tests,property,p__31972){
+var map__31973 = p__31972;
+var map__31973__$1 = cljs.core.__destructure_map(map__31973);
+var seed = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__31973__$1,new cljs.core.Keyword(null,"seed","seed",68613327));
+var max_size = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__31973__$1,new cljs.core.Keyword(null,"max-size","max-size",-874966132),(200));
+var reporter_fn = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__31973__$1,new cljs.core.Keyword(null,"reporter-fn","reporter-fn",1280520247),cljs.core.constantly(null));
+var vec__31974 = clojure.test.check.make_rng(seed);
+var created_seed = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__31974,(0),null);
+var rng = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__31974,(1),null);
 var size_seq = clojure.test.check.generators.make_size_range_seq(max_size);
 var start_time = clojure.test.check.impl.get_current_time_millis();
 var so_far = (0);
@@ -257,30 +257,30 @@ while(true){
 if((so_far === num_tests)){
 return clojure.test.check.complete(property,num_tests,created_seed,start_time,reporter_fn);
 } else {
-var vec__31968 = size_seq__$1;
-var seq__31969 = cljs.core.seq(vec__31968);
-var first__31970 = cljs.core.first(seq__31969);
-var seq__31969__$1 = cljs.core.next(seq__31969);
-var size = first__31970;
-var rest_size_seq = seq__31969__$1;
-var vec__31971 = clojure.test.check.random.split(rstate);
-var r1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__31971,(0),null);
-var r2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__31971,(1),null);
+var vec__31987 = size_seq__$1;
+var seq__31988 = cljs.core.seq(vec__31987);
+var first__31989 = cljs.core.first(seq__31988);
+var seq__31988__$1 = cljs.core.next(seq__31988);
+var size = first__31989;
+var rest_size_seq = seq__31988__$1;
+var vec__31990 = clojure.test.check.random.split(rstate);
+var r1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__31990,(0),null);
+var r2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__31990,(1),null);
 var result_map_rose = clojure.test.check.generators.call_gen(property,r1,size);
 var result_map = clojure.test.check.rose_tree.root(result_map_rose);
 var result = new cljs.core.Keyword(null,"result","result",1415092211).cljs$core$IFn$_invoke$arity$1(result_map);
 var args = new cljs.core.Keyword(null,"args","args",1315556576).cljs$core$IFn$_invoke$arity$1(result_map);
 var so_far__$1 = (so_far + (1));
 if(cljs.core.truth_(clojure.test.check.results.pass_QMARK_(result))){
-var G__31974_32022 = cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"args","args",1315556576),new cljs.core.Keyword(null,"num-tests-total","num-tests-total",-2113009946),new cljs.core.Keyword(null,"property","property",-1114278232),new cljs.core.Keyword(null,"num-tests","num-tests",2050041354),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"seed","seed",68613327),new cljs.core.Keyword(null,"result","result",1415092211),new cljs.core.Keyword(null,"result-data","result-data",-1724248844),new cljs.core.Keyword(null,"pass?","pass?",-424635753)],[args,num_tests,property,so_far__$1,new cljs.core.Keyword(null,"trial","trial",-677458347),seed,result,clojure.test.check.results.result_data(result),true]);
-(reporter_fn.cljs$core$IFn$_invoke$arity$1 ? reporter_fn.cljs$core$IFn$_invoke$arity$1(G__31974_32022) : reporter_fn.call(null,G__31974_32022));
+var G__31996_32063 = cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"args","args",1315556576),new cljs.core.Keyword(null,"num-tests-total","num-tests-total",-2113009946),new cljs.core.Keyword(null,"property","property",-1114278232),new cljs.core.Keyword(null,"num-tests","num-tests",2050041354),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"seed","seed",68613327),new cljs.core.Keyword(null,"result","result",1415092211),new cljs.core.Keyword(null,"result-data","result-data",-1724248844),new cljs.core.Keyword(null,"pass?","pass?",-424635753)],[args,num_tests,property,so_far__$1,new cljs.core.Keyword(null,"trial","trial",-677458347),seed,result,clojure.test.check.results.result_data(result),true]);
+(reporter_fn.cljs$core$IFn$_invoke$arity$1 ? reporter_fn.cljs$core$IFn$_invoke$arity$1(G__31996_32063) : reporter_fn.call(null,G__31996_32063));
 
-var G__32024 = so_far__$1;
-var G__32025 = rest_size_seq;
-var G__32026 = r2;
-so_far = G__32024;
-size_seq__$1 = G__32025;
-rstate = G__32026;
+var G__32064 = so_far__$1;
+var G__32065 = rest_size_seq;
+var G__32066 = r2;
+so_far = G__32064;
+size_seq__$1 = G__32065;
+rstate = G__32066;
 continue;
 } else {
 return (clojure.test.check.failure.cljs$core$IFn$_invoke$arity$7 ? clojure.test.check.failure.cljs$core$IFn$_invoke$arity$7(property,result_map_rose,so_far__$1,size,created_seed,start_time,reporter_fn) : clojure.test.check.failure.call(null,property,result_map_rose,so_far__$1,size,created_seed,start_time,reporter_fn));
@@ -293,19 +293,19 @@ break;
 (clojure.test.check.quick_check.cljs$lang$maxFixedArity = (2));
 
 /** @this {Function} */
-(clojure.test.check.quick_check.cljs$lang$applyTo = (function (seq31946){
-var G__31947 = cljs.core.first(seq31946);
-var seq31946__$1 = cljs.core.next(seq31946);
-var G__31948 = cljs.core.first(seq31946__$1);
-var seq31946__$2 = cljs.core.next(seq31946__$1);
+(clojure.test.check.quick_check.cljs$lang$applyTo = (function (seq31969){
+var G__31970 = cljs.core.first(seq31969);
+var seq31969__$1 = cljs.core.next(seq31969);
+var G__31971 = cljs.core.first(seq31969__$1);
+var seq31969__$2 = cljs.core.next(seq31969__$1);
 var self__5734__auto__ = this;
-return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__31947,G__31948,seq31946__$2);
+return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__31970,G__31971,seq31969__$2);
 }));
 
 clojure.test.check.smallest_shrink = (function clojure$test$check$smallest_shrink(total_nodes_visited,depth,smallest,start_time){
-var map__31978 = smallest;
-var map__31978__$1 = cljs.core.__destructure_map(map__31978);
-var result = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__31978__$1,new cljs.core.Keyword(null,"result","result",1415092211));
+var map__32005 = smallest;
+var map__32005__$1 = cljs.core.__destructure_map(map__32005);
+var result = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32005__$1,new cljs.core.Keyword(null,"result","result",1415092211));
 return new cljs.core.PersistentArrayMap(null, 7, [new cljs.core.Keyword(null,"total-nodes-visited","total-nodes-visited",-620132443),total_nodes_visited,new cljs.core.Keyword(null,"depth","depth",1768663640),depth,new cljs.core.Keyword(null,"pass?","pass?",-424635753),false,new cljs.core.Keyword(null,"result","result",1415092211),clojure.test.check.legacy_result(result),new cljs.core.Keyword(null,"result-data","result-data",-1724248844),clojure.test.check.results.result_data(result),new cljs.core.Keyword(null,"time-shrinking-ms","time-shrinking-ms",-383238219),(clojure.test.check.impl.get_current_time_millis() - start_time),new cljs.core.Keyword(null,"smallest","smallest",-152623883),new cljs.core.Keyword(null,"args","args",1315556576).cljs$core$IFn$_invoke$arity$1(smallest)], null);
 });
 /**
@@ -343,41 +343,41 @@ var reporter_fn_arg = new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.K
 if(cljs.core.truth_(pass_QMARK_)){
 (reporter_fn.cljs$core$IFn$_invoke$arity$1 ? reporter_fn.cljs$core$IFn$_invoke$arity$1(reporter_fn_arg) : reporter_fn.call(null,reporter_fn_arg));
 
-var G__32033 = tail;
-var G__32034 = current_smallest;
-var G__32035 = (total_nodes_visited + (1));
-var G__32036 = depth;
-nodes = G__32033;
-current_smallest = G__32034;
-total_nodes_visited = G__32035;
-depth = G__32036;
+var G__32067 = tail;
+var G__32068 = current_smallest;
+var G__32069 = (total_nodes_visited + (1));
+var G__32070 = depth;
+nodes = G__32067;
+current_smallest = G__32068;
+total_nodes_visited = G__32069;
+depth = G__32070;
 continue;
 } else {
 var new_smallest = clojure.test.check.rose_tree.root(head);
-var G__31990_32037 = cljs.core.assoc_in(reporter_fn_arg,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"shrinking","shrinking",2049648186),new cljs.core.Keyword(null,"smallest","smallest",-152623883)], null),new cljs.core.Keyword(null,"args","args",1315556576).cljs$core$IFn$_invoke$arity$1(new_smallest));
-(reporter_fn.cljs$core$IFn$_invoke$arity$1 ? reporter_fn.cljs$core$IFn$_invoke$arity$1(G__31990_32037) : reporter_fn.call(null,G__31990_32037));
+var G__32024_32071 = cljs.core.assoc_in(reporter_fn_arg,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"shrinking","shrinking",2049648186),new cljs.core.Keyword(null,"smallest","smallest",-152623883)], null),new cljs.core.Keyword(null,"args","args",1315556576).cljs$core$IFn$_invoke$arity$1(new_smallest));
+(reporter_fn.cljs$core$IFn$_invoke$arity$1 ? reporter_fn.cljs$core$IFn$_invoke$arity$1(G__32024_32071) : reporter_fn.call(null,G__32024_32071));
 
 var temp__5823__auto__ = cljs.core.seq(clojure.test.check.rose_tree.children(head));
 if(temp__5823__auto__){
 var children = temp__5823__auto__;
-var G__32038 = children;
-var G__32039 = new_smallest;
-var G__32040 = (total_nodes_visited + (1));
-var G__32041 = (depth + (1));
-nodes = G__32038;
-current_smallest = G__32039;
-total_nodes_visited = G__32040;
-depth = G__32041;
+var G__32072 = children;
+var G__32073 = new_smallest;
+var G__32074 = (total_nodes_visited + (1));
+var G__32075 = (depth + (1));
+nodes = G__32072;
+current_smallest = G__32073;
+total_nodes_visited = G__32074;
+depth = G__32075;
 continue;
 } else {
-var G__32048 = tail;
-var G__32049 = new_smallest;
-var G__32050 = (total_nodes_visited + (1));
-var G__32051 = depth;
-nodes = G__32048;
-current_smallest = G__32049;
-total_nodes_visited = G__32050;
-depth = G__32051;
+var G__32076 = tail;
+var G__32077 = new_smallest;
+var G__32078 = (total_nodes_visited + (1));
+var G__32079 = depth;
+nodes = G__32076;
+current_smallest = G__32077;
+total_nodes_visited = G__32078;
+depth = G__32079;
 continue;
 }
 }
@@ -390,15 +390,15 @@ var failed_after_ms = (clojure.test.check.impl.get_current_time_millis() - start
 var root = clojure.test.check.rose_tree.root(failing_rose_tree);
 var result = new cljs.core.Keyword(null,"result","result",1415092211).cljs$core$IFn$_invoke$arity$1(root);
 var failure_data = cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"failed-after-ms","failed-after-ms",912141156),new cljs.core.Keyword(null,"property","property",-1114278232),new cljs.core.Keyword(null,"num-tests","num-tests",2050041354),new cljs.core.Keyword(null,"seed","seed",68613327),new cljs.core.Keyword(null,"fail","fail",1706214930),new cljs.core.Keyword(null,"result","result",1415092211),new cljs.core.Keyword(null,"result-data","result-data",-1724248844),new cljs.core.Keyword(null,"failing-size","failing-size",-429562538),new cljs.core.Keyword(null,"pass?","pass?",-424635753)],[failed_after_ms,property,trial_number,seed,new cljs.core.Keyword(null,"args","args",1315556576).cljs$core$IFn$_invoke$arity$1(root),clojure.test.check.legacy_result(result),clojure.test.check.results.result_data(result),size,false]);
-var G__31995_32052 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(failure_data,new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"failure","failure",720415879));
-(reporter_fn.cljs$core$IFn$_invoke$arity$1 ? reporter_fn.cljs$core$IFn$_invoke$arity$1(G__31995_32052) : reporter_fn.call(null,G__31995_32052));
+var G__32034_32080 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(failure_data,new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"failure","failure",720415879));
+(reporter_fn.cljs$core$IFn$_invoke$arity$1 ? reporter_fn.cljs$core$IFn$_invoke$arity$1(G__32034_32080) : reporter_fn.call(null,G__32034_32080));
 
-var shrunk = clojure.test.check.shrink_loop(failing_rose_tree,(function (p1__31991_SHARP_){
-var G__31996 = cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([failure_data,p1__31991_SHARP_], 0));
-return (reporter_fn.cljs$core$IFn$_invoke$arity$1 ? reporter_fn.cljs$core$IFn$_invoke$arity$1(G__31996) : reporter_fn.call(null,G__31996));
+var shrunk = clojure.test.check.shrink_loop(failing_rose_tree,(function (p1__32026_SHARP_){
+var G__32036 = cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([failure_data,p1__32026_SHARP_], 0));
+return (reporter_fn.cljs$core$IFn$_invoke$arity$1 ? reporter_fn.cljs$core$IFn$_invoke$arity$1(G__32036) : reporter_fn.call(null,G__32036));
 }));
-var G__31997_32053 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$variadic(failure_data,new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"shrunk","shrunk",-2041664412),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"shrunk","shrunk",-2041664412),shrunk], 0));
-(reporter_fn.cljs$core$IFn$_invoke$arity$1 ? reporter_fn.cljs$core$IFn$_invoke$arity$1(G__31997_32053) : reporter_fn.call(null,G__31997_32053));
+var G__32037_32081 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$variadic(failure_data,new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"shrunk","shrunk",-2041664412),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"shrunk","shrunk",-2041664412),shrunk], 0));
+(reporter_fn.cljs$core$IFn$_invoke$arity$1 ? reporter_fn.cljs$core$IFn$_invoke$arity$1(G__32037_32081) : reporter_fn.call(null,G__32037_32081));
 
 return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(cljs.core.dissoc.cljs$core$IFn$_invoke$arity$2(failure_data,new cljs.core.Keyword(null,"property","property",-1114278232)),new cljs.core.Keyword(null,"shrunk","shrunk",-2041664412),shrunk);
 });

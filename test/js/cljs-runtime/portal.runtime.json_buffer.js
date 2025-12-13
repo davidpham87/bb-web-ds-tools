@@ -16,34 +16,34 @@ portal.runtime.json_buffer.__GT_reader = (function portal$runtime$json_buffer$__
 return portal.runtime.json_buffer.shifter(JSON.parse(data));
 });
 portal.runtime.json_buffer.push_null = (function portal$runtime$json_buffer$push_null(buffer){
+var G__28838 = buffer;
+G__28838.push(null);
+
+return G__28838;
+});
+portal.runtime.json_buffer.push_bool = (function portal$runtime$json_buffer$push_bool(buffer,value){
+var G__28839 = buffer;
+G__28839.push(value);
+
+return G__28839;
+});
+portal.runtime.json_buffer.push_long = (function portal$runtime$json_buffer$push_long(buffer,value){
 var G__28840 = buffer;
-G__28840.push(null);
+G__28840.push(value);
 
 return G__28840;
 });
-portal.runtime.json_buffer.push_bool = (function portal$runtime$json_buffer$push_bool(buffer,value){
-var G__28845 = buffer;
-G__28845.push(value);
-
-return G__28845;
-});
-portal.runtime.json_buffer.push_long = (function portal$runtime$json_buffer$push_long(buffer,value){
-var G__28853 = buffer;
-G__28853.push(value);
-
-return G__28853;
-});
 portal.runtime.json_buffer.push_double = (function portal$runtime$json_buffer$push_double(buffer,value){
-var G__28854 = buffer;
-G__28854.push(value);
+var G__28841 = buffer;
+G__28841.push(value);
 
-return G__28854;
+return G__28841;
 });
 portal.runtime.json_buffer.push_string = (function portal$runtime$json_buffer$push_string(buffer,value){
-var G__28855 = buffer;
-G__28855.push(value);
+var G__28850 = buffer;
+G__28850.push(value);
 
-return G__28855;
+return G__28850;
 });
 portal.runtime.json_buffer.push_value = (function portal$runtime$json_buffer$push_value(buffer,value){
 if((value == null)){
@@ -87,9 +87,9 @@ portal.runtime.json_buffer.next_value = (function portal$runtime$json_buffer$nex
 return portal.runtime.json_buffer._shift(buffer);
 });
 portal.runtime.json_buffer.with_buffer = (function portal$runtime$json_buffer$with_buffer(f,value){
-return JSON.stringify((function (){var G__28864 = (new Array());
-var G__28865 = value;
-return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__28864,G__28865) : f.call(null,G__28864,G__28865));
+return JSON.stringify((function (){var G__28859 = (new Array());
+var G__28860 = value;
+return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__28859,G__28860) : f.call(null,G__28859,G__28860));
 })());
 });
 
