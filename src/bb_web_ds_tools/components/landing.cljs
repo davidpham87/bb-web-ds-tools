@@ -21,8 +21,9 @@
       - :description (string): Description text.
       - :route (keyword): Navigation route.
       - :draw-fn (fn [ctx width height timestamp]): Animation function.
+      - :id (string): Unique identifier for the card.
   "
-  [{:keys [label description route draw-fn]}]
+  [{:keys [label description route draw-fn id]}]
   (let [canvas-ref (r/atom nil)
         animation-id (r/atom nil)
         resize-observer (r/atom nil)
@@ -63,7 +64,8 @@
 
       :reagent-render
       (fn []
-        [:div {:class (str "flex flex-col md:flex-row h-auto md:h-64 w-full overflow-hidden rounded-xl shadow-lg transition-all duration-300 transform hover:scale-[1.01] cursor-pointer border " t/border-subtle " " t/border-hover " " t/bg-card)
+        [:div {:id id
+               :class (str "flex flex-col md:flex-row h-auto md:h-64 w-full overflow-hidden rounded-xl shadow-lg transition-all duration-300 transform hover:scale-[1.01] cursor-pointer border " t/border-subtle " " t/border-hover " " t/bg-card)
                :on-click #(rf/dispatch [:bb-web-ds-tools.core/navigate route nil nil])}
          [:div {:class (str "relative w-full md:w-1/3 h-48 md:h-full " t/bg-sidebar " border-b md:border-b-0 md:border-r " t/border-main)}
           [:canvas {:ref #(reset! canvas-ref %)
@@ -223,6 +225,182 @@
     (set! (.-textAlign ctx) "center")
     (.fillText ctx "Valid" cx (+ cy 60))))
 
+(defn clear-rect [ctx w h]
+  (.clearRect ctx 0 0 w h))
+
+(defn draw-fast-io [ctx w h t]
+  (clear-rect ctx w h)
+  (let [cx (/ w 2)
+        cy (/ h 2)
+        scale 1.5]
+    (set! (.-fillStyle ctx) (:portal.colors/diff-add zenburn))
+    (set! (.-shadowColor ctx) (:portal.colors/diff-add zenburn))
+    (set! (.-shadowBlur ctx) (+ 10 (* 10 (Math/sin (* t 0.005)))))
+
+    (.save ctx)
+    (.translate ctx cx cy)
+    (.scale ctx scale scale)
+    (.translate ctx -12 -18) ;; Center the path approx
+
+    (.beginPath ctx)
+    (.moveTo ctx 15 0)
+    (.lineTo ctx 0 15)
+    (.lineTo ctx 10 15)
+    (.lineTo ctx 5 35)
+    (.lineTo ctx 25 12)
+    (.lineTo ctx 15 12)
+    (.lineTo ctx 15 0)
+    (.fill ctx)
+    (.restore ctx)))
+
+(defn draw-instant-charts [ctx w h t]
+  (clear-rect ctx w h)
+  (let [cx (/ w 2)
+        cy (/ h 2)
+        cycle 6000 ;; Increased cycle time for more complex animation
+        phase (mod t cycle)
+        num-violins 3
+        violin-w 25
+        spacing 15
+        total-width (+ (* num-violins violin-w) (* (dec num-violins) spacing))
+        start-x (- cx (/ total-width 2))]
+
+    (cond
+      ;; Phase 1: Raw Data (0 - 1500ms)
+      (< phase 1500)
+      (let [font-size 12
+            rows 3
+            cols 4
+            grid-w (* cols 20)
+            start-data-x (- cx (/ grid-w 2))
+            start-data-y (- cy 20)
+            progress (/ phase 1500)]
+        (set! (.-font ctx) (str font-size "px monospace"))
+        (set! (.-textAlign ctx) "center")
+        (set! (.-globalAlpha ctx) (- 1.0 progress))
+        (dotimes [i cols]
+          (dotimes [j rows]
+            (let [val (mod (Math/floor (+ (* i 10) (* j 5) (/ t 200))) 100)
+                  x (+ start-data-x (* i 20))
+                  y (+ start-data-y (* j 16))]
+              (set! (.-fillStyle ctx) (:portal.colors/text zenburn))
+              (.fillText ctx (str val) x y))))
+        (set! (.-globalAlpha ctx) 1.0))
+
+      ;; Phase 2: Morph to Violins (1500 - 3000ms)
+      (< phase 3000)
+      (let [progress (/ (- phase 1500) 1500) ;; 0.0 -> 1.0
+            max-height 60]
+
+        (dotimes [i num-violins]
+          (let [x (+ start-x (* i (+ violin-w spacing)) (/ violin-w 2))
+                base-y cy
+                current-h (* max-height progress)]
+            (set! (.-fillStyle ctx) (nth [(:portal.colors/diff-add zenburn)
+                                          (:portal.colors/number zenburn)
+                                          (:portal.colors/string zenburn)] i))
+            (set! (.-globalAlpha ctx) progress)
+            (.beginPath ctx)
+            ;; Draw top half of violin
+            (.ellipse ctx x (- base-y (/ current-h 2)) (/ violin-w 2) (/ current-h 2) 0 0 Math/PI)
+            ;; Draw bottom half of violin
+            (.ellipse ctx x (+ base-y (/ current-h 2)) (/ violin-w 2) (/ current-h 2) 0 Math/PI (* Math/PI 2))
+            (.fill ctx)
+            (set! (.-globalAlpha ctx) 1.0))))
+
+      ;; Phase 3: Violin Plots (3000 - 6000ms)
+      :else
+      (let [max-height 60]
+        (dotimes [i num-violins]
+          (let [x (+ start-x (* i (+ violin-w spacing)) (/ violin-w 2))
+                base-y cy
+                anim-offset (* 5 (Math/sin (* t 0.002)))
+                current-h (+ max-height anim-offset)]
+            (set! (.-fillStyle ctx) (nth [(:portal.colors/diff-add zenburn)
+                                          (:portal.colors/number zenburn)
+                                          (:portal.colors/string zenburn)] i))
+            (.beginPath ctx)
+            (.ellipse ctx x (- base-y (/ current-h 2)) (/ violin-w 2) (/ current-h 2) 0 0 Math/PI)
+            (.ellipse ctx x (+ base-y (/ current-h 2)) (/ violin-w 2) (/ current-h 2) 0 Math/PI (* Math/PI 2))
+            (.fill ctx)))))))
+
+(defn draw-multi-runtime [ctx w h t]
+  (clear-rect ctx w h)
+  (let [cx (/ w 2)
+        cy (/ h 2)
+        draw-gear (fn [x y r teeth speed color]
+                    (.save ctx)
+                    (.translate ctx x y)
+                    (.rotate ctx (* t speed))
+                    (set! (.-fillStyle ctx) color)
+                    (.beginPath ctx)
+                    (let [outer-r r
+                          inner-r (* r 0.8)
+                          hole-r (* r 0.3)]
+                      (dotimes [i (* teeth 2)]
+                        (let [angle (* i (/ Math/PI teeth))
+                              rad (if (even? i) outer-r inner-r)]
+                          (.lineTo ctx (* rad (Math/cos angle)) (* rad (Math/sin angle)))))
+                      (.closePath ctx)
+                      (.fill ctx)
+                      ;; Hole
+                      (set! (.-globalCompositeOperation ctx) "destination-out")
+                      (.beginPath ctx)
+                      (.arc ctx 0 0 hole-r 0 (* Math/PI 2))
+                      (.fill ctx)
+                      (set! (.-globalCompositeOperation ctx) "source-over"))
+                    (.restore ctx))]
+    (draw-gear (- cx 15) (- cy 10) 20 8 0.002 (:portal.colors/keyword zenburn))
+    (draw-gear (+ cx 15) (+ cy 10) 15 6 -0.003 (:portal.colors/string zenburn))))
+
+(defn animated-icon
+  [{:keys [draw-fn class]}]
+  (let [canvas-ref (r/atom nil)
+        animation-id (r/atom nil)
+        resize-observer (r/atom nil)
+        dimensions (r/atom {:width 0 :height 0})]
+    (r/create-class
+     {:display-name "animated-icon"
+
+      :component-did-mount
+      (fn [this]
+        (when-let [canvas @canvas-ref]
+          (let [ctx (.getContext canvas "2d")
+                dpr (or js/window.devicePixelRatio 1)
+                update-size (fn []
+                              (let [w (.-offsetWidth canvas)
+                                    h (.-offsetHeight canvas)]
+                                (reset! dimensions {:width w :height h})
+                                (set! (.-width canvas) (* w dpr))
+                                (set! (.-height canvas) (* h dpr))
+                                (.scale ctx dpr dpr)))
+                observer (js/ResizeObserver. (fn [_] (update-size)))]
+
+            (.observe observer canvas)
+            (reset! resize-observer observer)
+            (update-size)
+
+            (let [start-time (js/Date.now)
+                  loop-fn (fn loop-fn []
+                            (let [elapsed (- (js/Date.now) start-time)
+                                  {:keys [width height]} @dimensions]
+                              (when (and (> width 0) (> height 0))
+                                (draw-fn ctx width height elapsed))
+                              (reset! animation-id (js/requestAnimationFrame loop-fn))))]
+              (loop-fn)))))
+
+      :component-will-unmount
+      (fn []
+        (when-let [id @animation-id]
+          (js/cancelAnimationFrame id))
+        (when-let [obs @resize-observer]
+          (.disconnect obs)))
+
+      :reagent-render
+      (fn []
+        [:canvas {:ref #(reset! canvas-ref %)
+                  :class (or class "w-16 h-16 mb-4")}])})))
+
 (defn draw-honeysql [ctx w h t]
   (clear ctx w h)
   (let [cx (/ w 2)
@@ -348,39 +526,48 @@
     :route :workspaces
     :description "Persist your mess. Save your scripts before you accidentally close the tab and cry."
     :draw-fn draw-workspaces}
-   {:label "Datasets"
+   {:id "card-datasets"
+    :label "Datasets"
     :route :datasets
     :description "Because sometimes you just want to look at a CSV without firing up a Jupyter notebook that takes 3 minutes to load. It's like Excel, but you can feel superior about using it."
     :draw-fn draw-datasets}
-   {:label "Vega-Lite"
+   {:id "card-vega-lite"
+    :label "Vega-Lite"
     :route :vega-lite
     :description "Make charts that look like you spent hours on them, when in reality you just copied a JSON blob. Data visualization for the impatient and the lazy."
     :draw-fn draw-vega-lite}
-   {:label "Code"
+   {:id "card-code"
+    :label "Code"
     :route :code
     :description "Write Python, R, and Clojure in the browser because installing local environments is a form of self-harm. We downloaded the internet so you don't have to."
     :draw-fn draw-code}
-   {:label "Malli"
+   {:id "card-malli"
+    :label "Malli"
     :route :malli
     :description "Validate your data structures because trusting user input is a rookie mistake. It's like a strict librarian for your JSON."
     :draw-fn draw-malli}
-   {:label "HoneySQL"
+   {:id "card-honeysql"
+    :label "HoneySQL"
     :route :honeysql
     :description "Write SQL in Clojure data structures, because string manipulation is for people who enjoy SQL injection attacks. Be the abstraction you want to see in the world."
     :draw-fn draw-honeysql}
-   {:label "Gemma"
+   {:id "card-gemma"
+    :label "Gemma"
     :route :gemma
     :description "Run an LLM locally and listen to your laptop fan simulate a jet engine takeoff. Ask it questions, getting answers is optional."
     :draw-fn draw-gemma}
-   {:label "Settings"
+   {:id "card-settings"
+    :label "Settings"
     :route :settings
     :description "Change the font size because you're not 20 anymore. Customize the UI until it's barely usable, we won't stop you."
     :draw-fn draw-settings}
-   {:label "App DB"
+   {:id "card-app-db"
+    :label "App DB"
     :route :app-db
     :description "Stare directly into the soul of the application state. If it looks like chaos, that's because it is. Don't touch it."
     :draw-fn draw-app-db}
-   {:label "Changelog"
+   {:id "card-changelog"
+    :label "Changelog"
     :route :changelog
     :description "A historical record of our mistakes and the heroic efforts to fix them. Read it to feel better about your own code."
     :draw-fn draw-changelog}])

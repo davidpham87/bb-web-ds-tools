@@ -18,11 +18,16 @@
          loading? (get-in db [:user-input :r-repl :default ::loading?])]
      {:db (cond-> db
             (not exists?)
-            (assoc-in [:user-input :r-repl :default]
-                      {::loading? false
-                       ::ready? false
-                       ::error nil
-                       ::code "# To install packages use webr::install(\"package_name\")\n# Example: webr::install(\"bootstrap\")\n# Repository available here: https://repo.r-wasm.org/\n\nwebr::install(\"ggplot2\")\nwebr::install(\"dplyr\")\n\nmtcars %>% \n  filter(mpg > 20) %>% \n  ggplot(aes(x = wt, y = mpg)) + \n  geom_point() -> p\n\nprint(p)"}))
+            (assoc-in
+             [:user-input :r-repl :default]
+             {::loading? false
+              ::ready? false
+              ::error nil
+              ::code
+              (str "# To install packages use webr::install(\"package_name\")\n# Example: webr::install(\"bootstrap\")\n# Repository available here: https://repo.r-wasm.org/"
+                   "\n\nwebr::install(\"ggplot2\")\nwebr::install(\"dplyr\")"
+                   "\n\nlibrary(\"ggplot2\")\nlibrary(\"dplyr\")"
+                   "\n\nmtcars %>% \n  filter(mpg > 20) %>% \n  ggplot(aes(x = wt, y = mpg)) + \n  geom_point() -> p\n\nprint(p)")}))
       :fx [(when (and (not ready?) (not loading?))
              [:dispatch [::initialize-runtime]])]})))
 
@@ -156,11 +161,12 @@
         (when loading? [:div {:class t/text-accent} "Loading WebR..."])
         [c/button {:on-click #(rf/dispatch [::run-code code])} "Eval"]]]
       [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
-       [editor/monaco-editor {:value code
-                              :language "r"
-                              :options {:rulers [80] :lineNumbers "off"}
-                              :on-change #(rf/dispatch [::set-code %])
-                              :on-mount #(editor/setup-editor-actions % mac-os? (fn [code] (rf/dispatch [::run-code code])))}]]]]))
+       [editor/monaco-editor
+        {:value code
+         :language "r"
+         :options {:rulers [80] :lineNumbers "off"}
+         :on-change #(rf/dispatch [::set-code %])
+         :on-mount #(editor/setup-editor-actions % mac-os? (fn [code] (rf/dispatch [::run-code code])))}]]]]))
 
 (defn panel
   "Main component for the R REPL view. Initializes state on mount.

@@ -38,6 +38,7 @@
    :border-hover "var(--border-hover)"
    :border-focus "var(--border-focus)"
    :border-focus-accent "var(--border-focus-accent)"
+   :border-accent "var(--border-accent)"
 
    :ring-focus "var(--ring-focus)"})
 
@@ -79,6 +80,7 @@
    :border-hover :portal.colors/number
    :border-focus :portal.colors/number
    :border-focus-accent :portal.colors/tag
+   :border-accent :portal.colors/tag
 
    :ring-focus :portal.colors/number})
 
@@ -126,6 +128,7 @@
 (def border-hover (str "hover:border-[" (:border-hover colors) "]"))
 (def border-focus (str "focus:border-[" (:border-focus colors) "]"))
 (def border-focus-accent (str "focus:border-[" (:border-focus-accent colors) "]"))
+(def border-accent (str "border-[" (:border-accent colors) "]"))
 
 ;; Rings/Focus
 (def ring-focus (str "focus:ring-[" (:ring-focus colors) "]"))

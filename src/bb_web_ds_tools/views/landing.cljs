@@ -1,6 +1,7 @@
 (ns bb-web-ds-tools.views.landing
   (:require [re-frame.core :as rf]
             [reagent.core :as r]
+            [reagent.dom :as rdom]
             [bb-web-ds-tools.components.landing :as landing]
             [bb-web-ds-tools.theme :as t]
             [bb-web-ds-tools.utils.themes :as themes]))
@@ -113,8 +114,100 @@
 
       :reagent-render
       (fn []
-        [:canvas {:ref #(reset! canvas-ref %)
-                  :class "fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-40"}])})))
+        [:canvas {:ref #(reset! canvas-ref %) :class "fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-40"}])})))
+
+(def flow-steps
+  [{:draw-fn landing/draw-fast-io
+    :title "Zero I/O Friction"
+    :desc "Stop wrestling with file paths. Just paste your data and go."}
+   {:draw-fn landing/draw-instant-charts
+    :title "Instant Visuals"
+    :desc "Charts that look handwritten, generated in milliseconds."}
+   {:draw-fn landing/draw-multi-runtime
+    :title "Multi-Runtime"
+    :desc "Clojure, Python, R. Run them all. Simultaneously. Chaos awaits."}])
+
+(defn- get-scroll-parent
+  "Traverses up the DOM tree to find the first scrollable ancestor."
+  [node]
+  (if (or (nil? node) (identical? node js/document.body))
+    js/window
+    (let [style (js/getComputedStyle node)
+          overflow-y (.getPropertyValue style "overflow-y")]
+      (if (or (= overflow-y "auto") (= overflow-y "scroll"))
+        node
+        (recur (.-parentNode node))))))
+
+(defn scroll-flow-section
+  "A section that scrolls through the flow-steps using sticky positioning."
+  []
+  (let [container-ref (r/atom nil)
+        active-step (r/atom 0)
+        listener-ref (r/atom nil)]
+    (r/create-class
+     {:display-name "scroll-flow-section"
+      :component-did-mount
+      (fn [this]
+        ;; Use @container-ref instead of (rdom/dom-node this)
+        ;; as the ref is attached to the root div of this component.
+        (when-let [el @container-ref]
+          (let [parent (get-scroll-parent el)
+                handle-scroll
+                (fn []
+                  (when-let [el @container-ref]
+                    (let [rect (.getBoundingClientRect el)
+                          parent-rect (if (= parent js/window)
+                                        {:top 0}
+                                        (.getBoundingClientRect parent))
+                          parent-height (if (= parent js/window)
+                                          js/window.innerHeight
+                                          (.-clientHeight parent))
+                          top (- (.-top rect) (:top parent-rect))
+                          height (.-height rect)
+                          ;; Calculate scroll progress (0.0 to 1.0) through the container
+                          ;; When top is 0, progress is 0.
+                          ;; When bottom is at window bottom, progress is 1.
+                          scroll-dist (- height parent-height)
+                          raw-progress (if (zero? scroll-dist) 0 (/ (- top) scroll-dist))
+                          progress (max 0 (min 1 raw-progress))
+                          step-count (count flow-steps)
+                          current (Math/floor (* progress step-count))]
+                      (reset! active-step (min (dec step-count) current)))))]
+            (reset! listener-ref {:parent parent :handler handle-scroll})
+            (.addEventListener parent "scroll" handle-scroll)
+            (handle-scroll)))) ;; Initial check
+
+      :component-will-unmount
+      (fn []
+        (when-let [{:keys [parent handler]} @listener-ref]
+          (.removeEventListener parent "scroll" handler)))
+
+      :reagent-render
+      (fn []
+        ;; The container needs to be tall to allow scrolling
+        [:div {:ref #(reset! container-ref %) :class "relative h-[300vh] w-full"}
+         [:div {:class "sticky top-0 h-screen flex items-center justify-center overflow-hidden"}
+          (doall
+           (map-indexed
+            (fn [idx {:keys [draw-fn title desc]}]
+              (let [active? (= idx @active-step)]
+                ^{:key title}
+                [:div {:class (str "absolute transition-all duration-700 ease-in-out transform flex flex-col items-center max-w-xl p-8 rounded-xl "
+                                   t/bg-card " border " t/border-subtle " shadow-2xl "
+                                   (if active? "opacity-100 translate-y-0 scale-100" "opacity-0 translate-y-10 scale-95"))}
+                 [landing/animated-icon {:draw-fn draw-fn :class "w-32 h-32 mb-6 mx-auto"}]
+                 [:h3 {:class (str "text-4xl font-bold mb-4 " t/text-primary " text-center")} title]
+                 [:p {:class (str "text-xl " t/text-muted " text-center leading-relaxed")} desc]
+
+                 ;; Step indicator
+                 [:div {:class "flex gap-2 mt-8"}
+                  (for [i (range (count flow-steps))]
+                    ^{:key i}
+                    [:div {:class (str "w-3 h-3 rounded-full transition-colors duration-300 "
+                                       (if (= i idx) t/text-accent (str t/bg-sidebar " opacity-50"))
+                                       " bg-current")}
+                     ])]])))
+           flow-steps)]])})))
 
 (defn landing-page
   "Renders the landing page with animated feature cards.
@@ -122,7 +215,7 @@
   Returns:
     vector: A hiccup vector."
   []
-  [:div {:class "min-h-full flex flex-col items-center relative overflow-hidden font-['Source_Code_Pro']"}
+  [:div {:class "min-h-full flex flex-col items-center relative font-['Source_Code_Pro']"}
    [:style
     "@keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
      .animate-float { animation: float 6s ease-in-out infinite; }
@@ -131,52 +224,17 @@
    ;; Background
    [background-canvas]
 
-   [:div {:class "max-w-7xl w-full flex-grow flex flex-col justify-center z-10 p-8"}
+   [:div {:class "max-w-7xl w-full flex-grow flex flex-col justify-center z-10 p-8 pb-0"}
 
     ;; Intro Section
-    [:div {:class "text-center mb-16 space-y-8 animate-fade-in-up"}
+    [:div {:class "text-center mb-8 space-y-8 animate-fade-in-up"}
      [:h1 {:class (str "text-6xl md:text-8xl font-extrabold mb-4 " t/text-accent " tracking-tight drop-shadow-lg")}
       "The \"Swiss Army Knife\" of Data Science"]
 
      [:p {:class (str "text-2xl md:text-3xl " t/text-secondary " max-w-4xl mx-auto leading-relaxed font-light")}
       "Decrease I/O friction. Copy paste data like a pro. Visualize without tears."]
 
-     ;; Top cards: Smaller cards (max-w-4xl), larger gap (gap-10), animated
-     [:div {:class "grid grid-cols-1 md:grid-cols-3 gap-10 max-w-4xl mx-auto mt-12"}
-      [:div {:class (str "p-6 rounded-lg " t/bg-card " border " t/border-subtle " shadow-md transform hover:scale-105 transition-transform duration-300 animate-float")}
-       [:div {:class (str "text-5xl mb-4 " t/text-accent)} "⚡"]
-       [:h3 {:class (str "text-xl font-bold mb-2 " t/text-primary)} "Zero I/O Friction"]
-       [:p {:class (str "text-base " t/text-muted)} "Stop wrestling with file paths. Just paste your data and go."]]
+     [:p {:class (str "mt-8 text-xl " t/text-secondary " max-w-3xl mx-auto italic opacity-80")}]]]
 
-      [:div {:class (str "p-6 rounded-lg " t/bg-card " border " t/border-subtle " shadow-md transform hover:scale-105 transition-transform duration-300 animate-float-delay-1")}
-       [:div {:class (str "text-5xl mb-4 " t/text-accent)} "📊"]
-       [:h3 {:class (str "text-xl font-bold mb-2 " t/text-primary)} "Instant Visuals"]
-       [:p {:class (str "text-base " t/text-muted)} "Charts that look handwritten, generated in milliseconds."]]
-
-      [:div {:class (str "p-6 rounded-lg " t/bg-card " border " t/border-subtle " shadow-md transform hover:scale-105 transition-transform duration-300 animate-float-delay-2")}
-       [:div {:class (str "text-5xl mb-4 " t/text-accent)} "🛠️"]
-       [:h3 {:class (str "text-xl font-bold mb-2 " t/text-primary)} "Multi-Runtime"]
-       [:p {:class (str "text-base " t/text-muted)} "Clojure, Python, R. Run them all. Simultaneously. Chaos awaits."]]]
-
-     [:p {:class (str "mt-8 text-xl " t/text-secondary " max-w-3xl mx-auto italic opacity-80")}
-      "\"It's like having a data science team in your pocket, but they don't ask for equity.\""]]
-
-    ;; Features Grid (Bigger cards)
-    [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-8"}
-     (for [card landing/feature-cards]
-       ^{:key (:route card)}
-       [landing/canvas-card card])]]
-
-   [:footer {:class (str "w-full py-8 mt-16 border-t " t/border-default " z-10 bg-opacity-80 backdrop-blur-sm " t/bg-page)}
-    [:div {:class "flex justify-center items-center gap-8"}
-     [:a {:href "wiki/"
-          :class (str "text-lg flex items-center gap-2 " t/text-secondary " hover:text-white transition-colors")}
-      "Wiki"]
-     [:a {:href "blog/"
-          :class (str "text-lg flex items-center gap-2 " t/text-secondary " hover:text-white transition-colors")}
-      "Blog"]
-     [:a {:href "https://github.com/davidpham87/bb-web-ds-tools"
-          :target "_blank"
-          :class (str "text-lg flex items-center gap-2 " t/text-secondary " hover:text-white transition-colors")}
-      github-icon
-      "View on GitHub"]]]])
+   ;; Scroll Flow Section
+   [scroll-flow-section]])
