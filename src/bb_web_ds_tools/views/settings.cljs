@@ -2,6 +2,7 @@
   (:require [re-frame.core :as rf]
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.layout :as l]
+            [bb-web-ds-tools.components.navigation :as nav]
             [bb-web-ds-tools.portal :as portal]
             [bb-web-ds-tools.events.settings :as settings-events]
             [bb-web-ds-tools.events.theme :as theme-events]
@@ -185,7 +186,14 @@
     [l/split-view {:ratio :1-3}
      ;; Sidebar
      [:div {:class "h-full bg-[#2b2b2b] border-r border-[#3f3f3f] overflow-y-auto py-4"}
-      [:h2 {:class "text-xl font-bold px-4 mb-4 text-[#dcdccc]"} "Settings"]
+      [:div {:class "flex items-center justify-between px-4 mb-4"}
+       [:h2 {:class "text-xl font-bold text-[#dcdccc]"} "Settings"]
+       [c/icon-button-link
+        {:href (nav/get-wiki-url :settings)
+         :title "Help: Settings"
+         :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100"
+         :icon [:svg {:xmlns "http://www.w3.org/2000/svg" :fill "none" :viewBox "0 0 24 24" :stroke-width "1.5" :stroke "currentColor" :class "w-4 h-4"}
+                [:path {:stroke-linecap "round" :stroke-linejoin "round" :d "M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"}]]}]]
       (for [item settings-nav]
         ^{:key (:id item)}
         [sidebar-item {:item item

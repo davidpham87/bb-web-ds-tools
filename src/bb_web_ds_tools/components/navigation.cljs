@@ -6,6 +6,26 @@
             [reitit.frontend.easy :as rfe]
             ["react-dom" :as ReactDOM]))
 
+(def wiki-base-url "https://github.com/davidpham87/bb-web-ds-tools/blob/main/wiki/")
+
+(def wiki-mapping
+  {:landing-page "index.md"
+   :app-db "app_db.md"
+   :changelog "changelog.md"
+   :code "code_environments.md"
+   :datasets "datasets.md"
+   :gemma "gemma.md"
+   :honeysql "honeysql.md"
+   :malli "malli.md"
+   :vega-lite "vega_lite.md"
+   :settings "index.md"})
+
+(defn get-wiki-url
+  "Returns the wiki URL for a given route name."
+  [route-name]
+  (let [page (get wiki-mapping route-name "index.md")]
+    (str wiki-base-url page)))
+
 (defn menu-button
   "Renders a menu button that toggles a dropdown navigation menu.
 
@@ -72,10 +92,11 @@
   Args:
     props (map): Props. Keys:
       - :active-label (string): The label of the current section.
+      - :active-route (keyword): The current route name.
 
   Returns:
     vector: A hiccup vector."
-  [{:keys [active-label]}]
+  [{:keys [active-label active-route]}]
   [:div {:class (str "flex items-center w-full h-12 px-4 border-b " t/border-main " " t/bg-toolbar)}
    ;; Menu Button
    [menu-button]
@@ -86,4 +107,11 @@
 
    ;; Portal Target (for secondary nav)
    [:div {:class "flex-grow h-full flex items-center justify-end"
-          :ref (fn [el] (rf/dispatch [::set-top-bar-ref el]))}]])
+          :ref (fn [el] (rf/dispatch [::set-top-bar-ref el]))}
+    ;; Global Help Button at the far right
+    [common/icon-button-link
+     {:href (get-wiki-url :landing-page)
+      :title "Global Help (Wiki)"
+      :class "ml-2"
+      :icon [:svg {:xmlns "http://www.w3.org/2000/svg" :fill "none" :viewBox "0 0 24 24" :stroke-width "1.5" :stroke "currentColor" :class "w-5 h-5"}
+             [:path {:stroke-linecap "round" :stroke-linejoin "round" :d "M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"}]]}]]])

@@ -5,6 +5,7 @@
             [bb-web-ds-tools.components.editor :as editor]
             [bb-web-ds-tools.components.honeysql :as c-honeysql]
             [bb-web-ds-tools.components.layout :as l]
+            [bb-web-ds-tools.components.navigation :as nav]
             [bb-web-ds-tools.portal :as portal :refer [portal-frame portal-panel]]
             [bb-web-ds-tools.theme :as t]))
 
@@ -93,7 +94,15 @@
         [l/flex-row {:class "h-full items-start gap-0"}
          ;; LEFT: Input
          [l/flex-col {:class "gap-4 w-full max-w-3xl h-full p-4 border-r border-[#3f3f3f]"}
-          [c/section-header "Convert to SQL" [:span {:class "ml-2"} "🍯"]]
+          [c/section-header "Convert to SQL"
+           [:div {:class "flex items-center gap-2"}
+            [:span "🍯"]
+            [c/icon-button-link
+             {:href (nav/get-wiki-url :honeysql)
+              :title "Help: HoneySQL"
+              :class "!p-1 !w-6 !h-6 opacity-50 hover:opacity-100"
+              :icon [:svg {:xmlns "http://www.w3.org/2000/svg" :fill "none" :viewBox "0 0 24 24" :stroke-width "1.5" :stroke "currentColor" :class "w-5 h-5"}
+                     [:path {:stroke-linecap "round" :stroke-linejoin "round" :d "M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"}]]}]]]
           [c/label "Clojure Code (Last value must be HoneySQL Map)"]
           [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
            [editor/monaco-editor {:value input
