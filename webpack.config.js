@@ -41,6 +41,13 @@ const commonConfig = {
     }),
     new PyodidePlugin(),
   ],
+  ignoreWarnings: [
+    (warning) =>
+      warning.module &&
+      warning.module.resource &&
+      warning.module.resource.includes("sqlite3.mjs") &&
+      warning.message.includes("Critical dependency"),
+  ],
   module: {
     rules: [
       {
