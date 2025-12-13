@@ -329,7 +329,12 @@
   "Generates props for the unified view in Inference mode."
   [{:keys [inference-input inferred-schema datasets input-format max-enum-values]}]
   {:controls [:<>
-              [c/label "Input Data"]
+              [l/flex-row {:class "items-center gap-2"}
+               [c/label "Input Data"]
+               [c/help-button
+                {:href (nav/get-wiki-url :malli)
+                 :title "Help: Malli"
+                 :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100 mb-2"}]]
               [l/flex-row {:class "space-x-2 items-center"}
                [c/button {:size :sm
                           :variant (if (= input-format :edn) :primary nil)
@@ -382,7 +387,12 @@
   "Generates props for the unified view in Generation mode."
   [{:keys [schema-text generated-data samples gen-fmt]}]
   {:controls [:<>
-              [c/label "Schema (EDN)"]
+              [l/flex-row {:class "items-center gap-2"}
+               [c/label "Schema (EDN)"]
+               [c/help-button
+                {:href (nav/get-wiki-url :malli)
+                 :title "Help: Malli Generation"
+                 :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100 mb-2"}]]
               [l/flex-row {:class "items-center gap-2"}
                ;; Samples count
                [:div {:class "flex items-center gap-1"}
@@ -421,7 +431,12 @@
   "Generates props for the unified view in Validation mode."
   [{:keys [schema-text inference-input input-format validation-result]}]
   {:controls [:<>
-              [c/label "Schema (EDN)"]
+              [l/flex-row {:class "items-center gap-2"}
+               [c/label "Schema (EDN)"]
+               [c/help-button
+                {:href (nav/get-wiki-url :malli)
+                 :title "Help: Malli Validation"
+                 :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100 mb-2"}]]
               [c/button {:size :sm
                          :variant :primary
                          :on-click #(rf/dispatch [:malli/validate])} "Validate"]
@@ -445,7 +460,12 @@
   "Generates props for the unified view in JSON Schema mode."
   [{:keys [schema-text json-schema-result]}]
   {:controls [:<>
-              [c/label "Schema (EDN)"]
+              [l/flex-row {:class "items-center gap-2"}
+               [c/label "Schema (EDN)"]
+               [c/help-button
+                {:href (nav/get-wiki-url :malli)
+                 :title "Help: JSON Schema"
+                 :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100 mb-2"}]]
               [c/button {:size :sm
                          :variant :primary
                          :on-click #(rf/dispatch [:malli/transform-json])} "Transform to JSON Schema"]]

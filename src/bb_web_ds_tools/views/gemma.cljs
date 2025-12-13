@@ -3,7 +3,8 @@
             [re-frame.core :as rf]
             [fork.reagent :as fork]
             ["@mediapipe/tasks-genai" :as genai]
-            [bb-web-ds-tools.components.common :as c]))
+            [bb-web-ds-tools.components.common :as c]
+            [bb-web-ds-tools.components.navigation :as nav]))
 
 ;; State for the LLM instance
 (defonce llm-instance (r/atom nil))
@@ -140,7 +141,11 @@
            [:form {:on-submit handle-submit :class "max-w-2xl mx-auto"}
             [c/card {}
              [:div
-              [c/section-header "Load Gemma Model"]
+              [c/section-header "Load Gemma Model"
+                [c/help-button
+                {:href (nav/get-wiki-url :gemma)
+                 :title "Help: Gemma"
+                  :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100"}]]
               [:p {:class "text-[#dcdccc] mb-4 text-sm"} "Enter the URL to the .bin model file (e.g., from Kaggle or Hugging Face)."]
               [:input {:type "text"
                        :name "url"
@@ -176,6 +181,11 @@
            [:form {:on-submit handle-submit :class "max-w-4xl mx-auto"}
             [c/card {}
              [:div
+              [c/section-header "Gemma Chat"
+               [c/help-button
+                {:href (nav/get-wiki-url :gemma)
+                 :title "Help: Gemma"
+                 :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100"}]]
               [:div.messages {:class "bg-[#2f2f2f] border border-[#5f5f5f] rounded-lg p-4 h-[500px] overflow-y-auto mb-4 custom-scrollbar"}
                (for [[idx msg] (map-indexed vector messages)]
                  [:div {:key idx :class (str "mb-4 " (if (= (:role msg) :user) "text-right" "text-left"))}

@@ -4,6 +4,7 @@
    [bb-web-ds-tools.components.common :as c]
    [bb-web-ds-tools.components.editor :as editor]
    [bb-web-ds-tools.components.layout :as l]
+   [bb-web-ds-tools.components.navigation :as nav]
    [bb-web-ds-tools.portal :as portal]
    [bb-web-ds-tools.runtime.sci :as sci-runtime]
    [bb-web-ds-tools.theme :as t]
@@ -165,7 +166,12 @@
         [:div {:class "w-full rounded mb-4"}
          [l/flex-col {:class "space-y-2 h-full p-2"}
           [l/flex-row {:class "justify-between"}
-           [c/label "Clojure Code"]
+           [l/flex-row {:class "items-center gap-2"}
+            [c/label "Clojure Code"]
+             [c/help-button
+             {:href (nav/get-wiki-url :code)
+              :title "Help: Clojure REPL"
+               :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100 mb-2"}]]
            [c/button {:on-click #(rf/dispatch [::eval-code instance-id code])} "Eval"]]
           [:div {:class (str "flex-grow rounded overflow-hidden border space-x-4"
                              t/border-default)

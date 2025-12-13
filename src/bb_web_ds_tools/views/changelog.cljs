@@ -1,5 +1,6 @@
 (ns bb-web-ds-tools.views.changelog
-  (:require [bb-web-ds-tools.components.common :as c]))
+  (:require [bb-web-ds-tools.components.common :as c]
+            [bb-web-ds-tools.components.navigation :as nav]))
 
 (def changelog-data
   [{:version "0.11.1"
@@ -132,7 +133,11 @@
   []
   [:div {:class "h-full w-full bg-[#3f3f3f] py-12 px-4 overflow-y-auto"}
    [:div {:class "container mx-auto max-w-3xl"}
-    [c/page-header "Changelog"]
+    [c/page-header "Changelog"
+     [c/help-button
+      {:href (nav/get-wiki-url :changelog)
+       :title "Help: Changelog"
+       :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100"}]]
     [:div
      (for [item changelog-data]
        ^{:key (:version item)}

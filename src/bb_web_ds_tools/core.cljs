@@ -198,7 +198,8 @@
         label (get-route-label active-tab-id)
         landing-page? (= active-tab-id :landing-page)]
     [:div {:class (str "flex flex-col h-screen w-full overflow-hidden " t/bg-page " " t/text-primary)}
-     [nav/top-bar {:active-label label}]
+     [nav/top-bar {:active-label label
+                   :active-route active-tab-id}]
      [layout/main {}
       [:div {:class (str "flex-grow relative h-full "
                          (if landing-page? "overflow-y-auto" "overflow-hidden"))}

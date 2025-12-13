@@ -5,6 +5,7 @@
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.editor :as editor]
             [bb-web-ds-tools.components.layout :as l]
+            [bb-web-ds-tools.components.navigation :as nav]
             [bb-web-ds-tools.portal :as portal :refer [portal-frame portal-panel]]
             [bb-web-ds-tools.events.settings :as settings-events]
             [bb-web-ds-tools.theme :as t]
@@ -330,7 +331,11 @@
         [l/flex-col {:class "h-full space-y-4 p-4"}
          [l/flex-row {:class "justify-between items-center"}
           [:div {:class "flex-grow"}
-           [c/section-header "Create New Dataset"]]
+           [c/section-header "Create New Dataset"
+            [c/help-button
+             {:href (nav/get-wiki-url :datasets)
+              :title "Help: Datasets"
+              :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100"}]]]
 
           [l/flex-row {:class "space-x-4 items-center"}
            ;; Vega Dataset Selector
@@ -643,7 +648,11 @@
       (let [{:keys [items active-id]} @state-sub]
         [:div {:class (str "h-full w-full " t/bg-sidebar " flex flex-col p-4 border-r border-[#3f3f3f]")}
          [:div {:class (str "pb-4 border-b " t/border-main " flex flex-col gap-2")}
-          [c/section-header "Datasets"]
+          [c/section-header "Datasets"
+           [c/help-button
+            {:href (nav/get-wiki-url :datasets)
+             :title "Help: Datasets"
+             :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100"}]]
 
           ;; Persistence Controls
           [l/flex-row {:class "gap-2"}
