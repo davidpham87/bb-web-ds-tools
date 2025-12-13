@@ -48,6 +48,9 @@
      [:h1 {:class (str "text-6xl md:text-8xl font-extrabold mb-4 " t/text-accent " tracking-tight drop-shadow-lg")}
       "Swiss Army Knife of Data Science"]
 
+     [:h3 {:class (str "text-2xl md:text-4xl font-extrabold mb-4 " t/text-accent " tracking-tight drop-shadow-lg")}
+      "We looked at the separation of concerns and said, \"Nah.\""]
+
      [:p {:class (str "text-2xl md:text-3xl " t/text-secondary " max-w-4xl mx-auto leading-relaxed font-light")}
       "Decrease I/O friction. Copy paste data like a pro. Visualize without tears. Learn and have fun."]
 
