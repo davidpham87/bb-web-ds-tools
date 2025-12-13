@@ -19,9 +19,11 @@
           d3 (LocalDate.parse "2023-01-05")
           data [d1 d2 d3]
           result (m-comp/infer-schema data)
-          schema-str (:schema-str result)]
+          schema (:schema result)]
       (is (:success result) "Inference should succeed")
-      (println "Inferred Schema:" schema-str)
-      (is (clojure.string/includes? schema-str ":time/local-date") "Should infer :time/local-date")
-      (is (clojure.string/includes? schema-str ":min") "Should include :min constraint")
-      (is (clojure.string/includes? schema-str ":max") "Should include :max constraint"))))
+      (is (vector? schema) "Schema should be a vector")
+      (is (= :time/local-date (first schema)) "Should infer :time/local-date")
+      (let [props (second schema)]
+        (is (map? props) "Should have properties map")
+        (is (:min props) "Should include :min constraint")
+        (is (:max props) "Should include :max constraint")))))
