@@ -27,8 +27,7 @@
                 (if (empty? data)
                   true
                   (let [result (sut/infer-schema data)
-                        schema-str (:schema-str result)
-                        schema (when (:success result) (sut/read-edn schema-str))]
+                        schema (when (:success result) (:schema result))]
                     (and (:success result)
                          (every? #(m/validate schema %) data))))))
 

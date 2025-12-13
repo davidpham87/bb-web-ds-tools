@@ -119,7 +119,7 @@
                       :json (dp/parse-dataset :json :row-maps inference-input)
                       (dp/parse-dataset input-fmt :columnar inference-input))
          result (c-malli/infer-schema input-data max-enum-values)
-         output (if (:success result) (:schema-str result) (str "Invalid input data for format " (name input-fmt) "."))]
+         output (if (:success result) (c-malli/pretty-print-str (:schema result)) (str "Invalid input data for format " (name input-fmt) "."))]
      {:db (assoc-in db [::malli :inferred-schema] output)})))
 
 (rf/reg-event-fx

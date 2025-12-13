@@ -52,7 +52,7 @@
     (if data
       (let [res (m/infer-schema data (or (:max-enum opts) 10))]
         (if (:success res)
-          (println (:schema-str res))
+          (println (m/pretty-print-str (:schema res)))
           (binding [*out* *err*]
             (println "Error inferring schema:" (:error res)))))
       (binding [*out* *err*]
