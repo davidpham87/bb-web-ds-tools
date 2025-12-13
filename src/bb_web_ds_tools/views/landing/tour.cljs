@@ -72,15 +72,15 @@
        [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-12 items-start"}
         ;; Left Column: Triggers
         [:div {:class "space-y-4 hidden lg:block"}
-         (into [:<>] 
+         (into [:<>]
                (map-indexed
-                (fn [idx {:keys [id title desc icon color]}] 
+                (fn [idx {:keys [id title desc icon color]}]
                   (let [active? (= idx @active-idx)]
                     ^{:key id}
                     [:button {:on-click #(reset! active-idx idx)
-                              :class (str "w-full text-left p-6 rounded-xl transition-all duration-300 border " 
-                                          (if active? 
-                                            (str t/bg-card " border-l-4 " t/border-accent " shadow-lg scale-[1.02]") 
+                              :class (str "w-full text-left p-6 rounded-xl transition-all duration-300 border "
+                                          (if active?
+                                            (str t/bg-card " border-l-4 " t/border-accent " shadow-lg scale-[1.02]")
                                             (str "bg-transparent " t/border-subtle " hover:bg-opacity-50 hover:" t/bg-sidebar)))}
                      [:div {:class "flex items-start gap-4"}
                       [:div {:class (str "p-2 rounded-lg bg-opacity-10 " (if active? color "text-gray-400"))}
@@ -101,15 +101,15 @@
              [landing/animated-icon {:draw-fn draw-fn :class "w-48 h-48 bg-transparent"}]]
             [:h3 {:class (str "text-3xl font-bold mb-4 " t/text-primary)} title]
             [:p {:class (str "text-lg " t/text-secondary " max-w-lg leading-relaxed font-light italic")} why]
-            
+
             ;; Mobile indicators
-                         [:div {:class "flex gap-2 justify-center mt-8"}
-                         (doall
-                          (map-indexed
-                           (fn [idx _]
-                             ^{:key idx}
-                             [:div {:class (str "w-2 h-2 rounded-full transition-all " 
-                                                (if (= idx @active-idx) 
-                                                  (str "bg-" color " w-4") 
-                                                  (str t/bg-button)))}])
-                           tour-features))]])]])))
+            [:div {:class "flex gap-2 justify-center mt-8"}
+             (into [:<>]
+                   (map-indexed
+                    (fn [idx _]
+                      ^{:key idx}
+                      [:div {:class (str "w-2 h-2 rounded-full transition-all "
+                                         (if (= idx @active-idx)
+                                           (str "bg-" color " w-4")
+                                           (str t/bg-button)))}])
+                    tour-features))]])]]])))

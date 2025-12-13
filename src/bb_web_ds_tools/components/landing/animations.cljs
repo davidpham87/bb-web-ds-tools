@@ -315,149 +315,149 @@
       (set! (.-globalAlpha ctx) 1.0)
 
       ;; Phase 3: Validation (5000 - 8000ms)
-      :else)
-    (let [progress (/ (- phase 5000) 500)
-          alpha (min 1.0 progress)
-          radius 30]
-      (set! (.-globalAlpha ctx) alpha)
-      ;; Shield or Checkmark
-      (set! (.-strokeStyle ctx) (:portal.colors/diff-add zenburn))
-      (set! (.-lineWidth ctx) 4)
-      (.beginPath ctx)
-      (.arc ctx cx cy radius 0 (* Math/PI 2))
-      (.stroke ctx)
+      :else
+      (let [progress (/ (- phase 5000) 500)
+            alpha (min 1.0 progress)
+            radius 30]
+        (set! (.-globalAlpha ctx) alpha)
+        ;; Shield or Checkmark
+        (set! (.-strokeStyle ctx) (:portal.colors/diff-add zenburn))
+        (set! (.-lineWidth ctx) 4)
+        (.beginPath ctx)
+        (.arc ctx cx cy radius 0 (* Math/PI 2))
+        (.stroke ctx)
 
-      ;; Animated checkmark
-      (.beginPath ctx)
-      (.moveTo ctx (- cx 15) cy)
-      (.lineTo ctx (- cx 5) (+ cy 10))
-      (.lineTo ctx (+ cx 20) (- cy 15))
-      (.stroke ctx)
+        ;; Animated checkmark
+        (.beginPath ctx)
+        (.moveTo ctx (- cx 15) cy)
+        (.lineTo ctx (- cx 5) (+ cy 10))
+        (.lineTo ctx (+ cx 20) (- cy 15))
+        (.stroke ctx)
 
-      (set! (.-font ctx) "16 sans-serif")
-      (set! (.-fillStyle ctx) (:portal.colors/text zenburn))
-      (.fillText ctx "Valid" cx (+ cy 50))
-      (set! (.-globalAlpha ctx) 1.0))))))
+        (set! (.-font ctx) "16 sans-serif")
+        (set! (.-fillStyle ctx) (:portal.colors/text zenburn))
+        (.fillText ctx "Valid" cx (+ cy 50))
+        (set! (.-globalAlpha ctx) 1.0)))))
 
 (defn draw-fast-io [ctx w h t]
-(clear-rect ctx w h)
-(let [cx (/ w 2)
-      cy (/ h 2)
-      cycle 6000
-      phase (mod t cycle)
+  (clear-rect ctx w h)
+  (let [cx (/ w 2)
+        cy (/ h 2)
+        cycle 6000
+        phase (mod t cycle)
 
-      ;; Layout
-      win-w 200
-      win-h 140
-      win-x (- cx (/ win-w 2))
-      win-y (- cy (/ win-h 2))]
+        ;; Layout
+        win-w 200
+        win-h 140
+        win-x (- cx (/ win-w 2))
+        win-y (- cy (/ win-h 2))]
 
-(cond
-  ;; Phase 1: Browsing Sources (0 - 2000ms)
-  (< phase 2000)
-  (let [active-tab (int (mod (/ phase 600) 3))
-        tab-w (/ win-w 3)]
+    (cond
+      ;; Phase 1: Browsing Sources (0 - 2000ms)
+      (< phase 2000)
+      (let [active-tab (int (mod (/ phase 600) 3))
+            tab-w (/ win-w 3)]
 
-    ;; Window Chrome
-    (set! (.-fillStyle ctx) (:portal.colors/background2 zenburn))
-    (.fillRect ctx win-x win-y win-w win-h)
+        ;; Window Chrome
+        (set! (.-fillStyle ctx) (:portal.colors/background2 zenburn))
+        (.fillRect ctx win-x win-y win-w win-h)
 
-    ;; Tabs
-    (dotimes [i 3]
-      (set! (.-fillStyle ctx) (if (= i active-tab)
-                                (:portal.colors/background2 zenburn)
-                                (:portal.colors/background zenburn)))
-      (.fillRect ctx (+ win-x (* i tab-w)) (- win-y 10) tab-w 10))
+        ;; Tabs
+        (dotimes [i 3]
+          (set! (.-fillStyle ctx) (if (= i active-tab)
+                                    (:portal.colors/background2 zenburn)
+                                    (:portal.colors/background zenburn)))
+          (.fillRect ctx (+ win-x (* i tab-w)) (- win-y 10) tab-w 10))
 
-    ;; Content Lines
-    (set! (.-fillStyle ctx) (:portal.colors/text zenburn))
-    (dotimes [i 4]
-      ;; Random-ish line lengths based on tab
-      (let [len (+ 20 (mod (* (+ i active-tab) 37) 60))]
-        (.fillRect ctx (+ win-x 10) (+ win-y 15 (* i 15)) len 8))))
+        ;; Content Lines
+        (set! (.-fillStyle ctx) (:portal.colors/text zenburn))
+        (dotimes [i 4]
+          ;; Random-ish line lengths based on tab
+          (let [len (+ 20 (mod (* (+ i active-tab) 37) 60))]
+            (.fillRect ctx (+ win-x 10) (+ win-y 15 (* i 15)) len 8))))
 
-  ;; Phase 2: Selection & Copy (2000 - 3000ms)
-  (< phase 3000)
-  (do
-    ;; Static Window
-    (set! (.-fillStyle ctx) (:portal.colors/background2 zenburn))
-    (.fillRect ctx win-x win-y win-w win-h)
-    ;; Tabs
-    (dotimes [i 3]
-      (set! (.-fillStyle ctx) (if (= i 2) ;; last one active
-                                (:portal.colors/background2 zenburn)
-                                (:portal.colors/background zenburn)))
-      (.fillRect ctx (+ win-x (* i (/ win-w 3))) (- win-y 10) (/ win-w 3) 10))
-    ;; Content
-    (set! (.-fillStyle ctx) (:portal.colors/text zenburn))
-    (dotimes [i 4]
-      (.fillRect ctx (+ win-x 10) (+ win-y 15 (* i 15)) 50 8))
+      ;; Phase 2: Selection & Copy (2000 - 3000ms)
+      (< phase 3000)
+      (do
+        ;; Static Window
+        (set! (.-fillStyle ctx) (:portal.colors/background2 zenburn))
+        (.fillRect ctx win-x win-y win-w win-h)
+        ;; Tabs
+        (dotimes [i 3]
+          (set! (.-fillStyle ctx) (if (= i 2) ;; last one active
+                                    (:portal.colors/background2 zenburn)
+                                    (:portal.colors/background zenburn)))
+          (.fillRect ctx (+ win-x (* i (/ win-w 3))) (- win-y 10) (/ win-w 3) 10))
+        ;; Content
+        (set! (.-fillStyle ctx) (:portal.colors/text zenburn))
+        (dotimes [i 4]
+          (.fillRect ctx (+ win-x 10) (+ win-y 15 (* i 15)) 50 8))
 
-    ;; Selection Overlay
-    (let [pulse (Math/sin (* t 0.01))]
-      (set! (.-fillStyle ctx) (:portal.colors/diff-add zenburn))
-      (set! (.-globalAlpha ctx) (+ 0.2 (* 0.1 pulse)))
-      (.fillRect ctx win-x win-y win-w win-h)
-      (set! (.-globalAlpha ctx) 1.0)
+        ;; Selection Overlay
+        (let [pulse (Math/sin (* t 0.01))]
+          (set! (.-fillStyle ctx) (:portal.colors/diff-add zenburn))
+          (set! (.-globalAlpha ctx) (+ 0.2 (* 0.1 pulse)))
+          (.fillRect ctx win-x win-y win-w win-h)
+          (set! (.-globalAlpha ctx) 1.0)
 
-      ;; Copy Text
-      (set! (.-font ctx) "bold 14px sans-serif")
-      (set! (.-fillStyle ctx) "#fff")
-      (set! (.-textAlign ctx) "center")
-      (.fillText ctx "COPY" cx cy)))
+          ;; Copy Text
+          (set! (.-font ctx) "bold 14px sans-serif")
+          (set! (.-fillStyle ctx) "#fff")
+          (set! (.-textAlign ctx) "center")
+          (.fillText ctx "COPY" cx cy)))
 
-  ;; Phase 3: Transition/Paste (3000 - 3500ms)
-  (< phase 3500)
-  (let [progress (/ (- phase 3000) 500) ;; 0 -> 1
-        scale (- 1 progress)]
-    (.save ctx)
-    (.translate ctx cx cy)
-    (.scale ctx scale scale)
-    (set! (.-fillStyle ctx) (:portal.colors/diff-add zenburn))
-    (.fillRect ctx (- (/ win-w 2)) (- (/ win-h 2)) win-w win-h)
-    (.restore ctx))
+      ;; Phase 3: Transition/Paste (3000 - 3500ms)
+      (< phase 3500)
+      (let [progress (/ (- phase 3000) 500) ;; 0 -> 1
+            scale (- 1 progress)]
+        (.save ctx)
+        (.translate ctx cx cy)
+        (.scale ctx scale scale)
+        (set! (.-fillStyle ctx) (:portal.colors/diff-add zenburn))
+        (.fillRect ctx (- (/ win-w 2)) (- (/ win-h 2)) win-w win-h)
+        (.restore ctx))
 
-  ;; Phase 4: Result (3500 - 6000ms)
-  :else
-  (let [progress (/ (- phase 3500) 500) ;; 0 -> 1 (fade in)
-        alpha (min 1.0 progress)
-        font-size 14
-        line-h 18
-        start-x (- cx 50)
-        start-y (- cy 10)
-        draw-tokens (fn [y tokens]
-                      (loop [toks tokens
-                             cur-x start-x]
-                        (when (seq toks)
-                          (let [[text color] (first toks)]
-                            (set! (.-fillStyle ctx) color)
-                            (.fillText ctx text cur-x y)
-                            (recur (rest toks) (+ cur-x (.-width (.measureText ctx text))))))))]
-    (set! (.-globalAlpha ctx) alpha)
-    (set! (.-font ctx) (str font-size "px monospace"))
-    (set! (.-textAlign ctx) "left")
-    (set! (.-textBaseline ctx) "middle")
+      ;; Phase 4: Result (3500 - 6000ms)
+      :else
+      (let [progress (/ (- phase 3500) 500) ;; 0 -> 1 (fade in)
+            alpha (min 1.0 progress)
+            font-size 14
+            line-h 18
+            start-x (- cx 50)
+            start-y (- cy 10)
+            draw-tokens (fn [y tokens]
+                          (loop [toks tokens
+                                 cur-x start-x]
+                            (when (seq toks)
+                              (let [[text color] (first toks)]
+                                (set! (.-fillStyle ctx) color)
+                                (.fillText ctx text cur-x y)
+                                (recur (rest toks) (+ cur-x (.-width (.measureText ctx text))))))))]
+        (set! (.-globalAlpha ctx) alpha)
+        (set! (.-font ctx) (str font-size "px monospace"))
+        (set! (.-textAlign ctx) "left")
+        (set! (.-textBaseline ctx) "middle")
 
-    (draw-tokens start-y [["[{" (:portal.colors/text zenburn)]
-                          [":n" (:portal.colors/keyword zenburn)]
-                          [" " (:portal.colors/text zenburn)]
-                          ["\"A\"" (:portal.colors/string zenburn)]
-                          [" " (:portal.colors/text zenburn)]
-                          [":v" (:portal.colors/keyword zenburn)]
-                          [" " (:portal.colors/text zenburn)]
-                          ["1" (:portal.colors/number zenburn)]
-                          ["}" (:portal.colors/text zenburn)]])
+        (draw-tokens start-y [["[{" (:portal.colors/text zenburn)]
+                              [":n" (:portal.colors/keyword zenburn)]
+                              [" " (:portal.colors/text zenburn)]
+                              ["\"A\"" (:portal.colors/string zenburn)]
+                              [" " (:portal.colors/text zenburn)]
+                              [":v" (:portal.colors/keyword zenburn)]
+                              [" " (:portal.colors/text zenburn)]
+                              ["1" (:portal.colors/number zenburn)]
+                              ["}" (:portal.colors/text zenburn)]])
 
-    (draw-tokens (+ start-y line-h) [[" {" (:portal.colors/text zenburn)]
-                                     [":n" (:portal.colors/keyword zenburn)]
-                                     [" " (:portal.colors/text zenburn)]
-                                     ["\"B\"" (:portal.colors/string zenburn)]
-                                     [" " (:portal.colors/text zenburn)]
-                                     [":v" (:portal.colors/keyword zenburn)]
-                                     [" " (:portal.colors/text zenburn)]
-                                     ["2" (:portal.colors/number zenburn)]
-                                     ["}]" (:portal.colors/text zenburn)]])
-    (set! (.-globalAlpha ctx) 1.0)))))
+        (draw-tokens (+ start-y line-h) [[" {" (:portal.colors/text zenburn)]
+                                         [":n" (:portal.colors/keyword zenburn)]
+                                         [" " (:portal.colors/text zenburn)]
+                                         ["\"B\"" (:portal.colors/string zenburn)]
+                                         [" " (:portal.colors/text zenburn)]
+                                         [":v" (:portal.colors/keyword zenburn)]
+                                         [" " (:portal.colors/text zenburn)]
+                                         ["2" (:portal.colors/number zenburn)]
+                                         ["}]" (:portal.colors/text zenburn)]])
+        (set! (.-globalAlpha ctx) 1.0)))))
 
 (defn draw-instant-charts [ctx w h t]
   (clear-rect ctx w h)
@@ -722,216 +722,220 @@
             ;; Hole
             (set! (.-globalCompositeOperation ctx) "destination-out")
             (.beginPath ctx)
-            (.arc ctx 0 0 (* r 0.3) 0 (* Math/PI 2))
+            (.arc ctx 0 0 (* inner-r 0.3) 0 (* Math/PI 2))
             (.fill ctx)
             (set! (.-globalCompositeOperation ctx) "source-over"))
-          (.restore ctx))
+          (.restore ctx)
 
-                ;; Output particles
-                (set! (.-fillStyle ctx) (:portal.colors/text zenburn))
-                (dotimes [i 5]
-                  (let [offset (* i 200)
-                        p-progress (mod (/ (+ t offset) 1000) 1.0)
-                        y (+ cy (/ box-size 2) (* p-progress 60)) ;; Move down
-                        alpha (- 1.0 p-progress)]
-                    (when (< p-progress 1.0)
-                      (set! (.-globalAlpha ctx) alpha)
-                      (.fillRect ctx (- cx 2) y 4 4))))
-                (set! (.-globalAlpha ctx) 1.0)))))
-
-        (defn draw-honeysql [ctx w h t]
-          (clear-rect ctx w h)
-          (let [cx (/ w 2)
-                cy (/ h 2)
-                cycle 6000
-                phase (mod t cycle)
-                orbit-r 60
-                angle (* t 0.001)
-                sql-lines ["SELECT *" "FROM users" "WHERE id > 10"]]
-
-            (set! (.-font ctx) "bold 24px sans-serif")
-            (set! (.-textAlign ctx) "center")
-            (set! (.-textBaseline ctx) "middle")
-
-            (cond
-              ;; Phase 1: Orbiting (0 - 3000ms)
-              (< phase 3000)
-              (let [alpha (if (> phase 2500) (- 1.0 (/ (- phase 2500) 500)) 1.0)]
+          ;; Output particles
+          (set! (.-fillStyle ctx) (:portal.colors/text zenburn))
+          (dotimes [i 5]
+            (let [offset (* i 200)
+                  p-progress (mod (/ (+ t offset) 1000) 1.0)
+                  y (+ cy (/ box-size 2) (* p-progress 60)) ;; Move down
+                  alpha (- 1.0 p-progress)]
+              (when (< p-progress 1.0)
                 (set! (.-globalAlpha ctx) alpha)
-                ;; Central pot
-                (set! (.-fillStyle ctx) (:portal.colors/tag zenburn))
-                (.fillText ctx "{}" cx cy)
+                (.fillRect ctx (- cx 2) y 4 4)))))
+        (set! (.-globalAlpha ctx) 1.0)))))
 
-                ;; Orbiting keywords
-                (doseq [[i text color] [[0 "SELECT" (:portal.colors/keyword zenburn)]
-                                        [1 "FROM" (:portal.colors/string zenburn)]
-                                        [2 "WHERE" (:portal.colors/number zenburn)]]]
-                  (let [theta (+ angle (* i (/ (* Math/PI 2) 3)))
-                        x (+ cx (* orbit-r (Math/cos theta)))
-                        y (+ cy (* orbit-r (Math/sin theta)))]
-                    (set! (.-fillStyle ctx) color)
-                    (set! (.-font ctx) "14px sans-serif")
-                    (.fillText ctx text x y)))
-                (set! (.-globalAlpha ctx) 1.0))
+(defn draw-honeysql [ctx w h t]
+  (clear-rect ctx w h)
+  (let [cx (/ w 2)
+        cy (/ h 2)
+        cycle 6000
+        phase (mod t cycle)
+        orbit-r 60
+        angle (* t 0.001)
+        sql-lines ["SELECT *" "FROM users" "WHERE id > 10"]
 
-              ;; Phase 2: SQL Query (3000 - 6000ms)
-              :else
-              (let [progress (/ (- phase 3000) 1000)
-                    alpha (min 1.0 progress)
-                    start-x (- cx 80) ;; Left justify: Move starting x to the left
-                    start-y (- cy 20)
-                    line-h 24]
-                (set! (.-globalAlpha ctx) alpha)
-                (set! (.-font ctx) "16px monospace")
-                (set! (.-textAlign ctx) "left") ;; Set alignment to left
-                (set! (.-fillStyle ctx) (:portal.colors/text zenburn))
-                (dotimes [i (count sql-lines)]
-                  (.fillText ctx (nth sql-lines i) start-x (+ start-y (* i line-h))))
-                (set! (.-globalAlpha ctx) 1.0)))))
+        ;; Moved inside let
+        font-size 24
+        text-align "center"
+        text-baseline "middle"]
 
-        (defn draw-vega-lite [ctx w h t](clear-rect ctx w h)
-(let [cx (/ w 2)
-      cy (/ h 2)
-      cycle 8000
-      phase (mod t cycle)
-      code-snippet "{:mark :bar :encoding ...}"
-      font-size 14]
+    (set! (.-font ctx) (str "bold " font-size "px sans-serif"))
+    (set! (.-textAlign ctx) text-align)
+    (set! (.-textBaseline ctx) text-baseline)
 
-  (cond
-    ;; Phase 1: Code Snippet (0 - 2000ms)
-    (< phase 2000)
-    (do
-      (set! (.-font ctx) (str font-size "px monospace"))
-      (set! (.-textAlign ctx) "center")
-      (set! (.-textBaseline ctx) "middle")
-      (set! (.-fillStyle ctx) (:portal.colors/keyword zenburn))
-      (let [progress (/ phase 1500)
-            chars-to-show (min (count code-snippet) (Math/floor (* progress (count code-snippet))))]
-        (.fillText ctx (subs code-snippet 0 chars-to-show) cx cy)))
+    (cond
+      ;; Phase 1: Orbiting (0 - 3000ms)
+      (< phase 3000)
+      (let [alpha (if (> phase 2500) (- 1.0 (/ (- phase 2500) 500)) 1.0)]
+        (set! (.-globalAlpha ctx) alpha)
+        ;; Central pot
+        (set! (.-fillStyle ctx) (:portal.colors/tag zenburn))
+        (.fillText ctx "{}" cx cy)
 
-    ;; Phase 2: Full Screen Charts Sequence (2000 - 8000ms)
-    :else
-    (let [chart-phase (- phase 2000)
-          chart-duration 2000
-          transition 500]
+        ;; Orbiting keywords
+        (doseq [[i text color] [[0 "SELECT" (:portal.colors/keyword zenburn)]
+                                [1 "FROM" (:portal.colors/string zenburn)]
+                                [2 "WHERE" (:portal.colors/number zenburn)]]]
+          (let [theta (+ angle (* i (/ (* Math/PI 2) 3)))
+                x (+ cx (* orbit-r (Math/cos theta)))
+                y (+ cy (* orbit-r (Math/sin theta)))]
+            (set! (.-fillStyle ctx) color)
+            (set! (.-font ctx) "14px sans-serif")
+            (.fillText ctx text x y)))
+        (set! (.-globalAlpha ctx) 1.0))
 
-      ;; 1. Bar Chart (2000 - 4000ms)
-      (when (< chart-phase 2000)
-        (let [progress (min 1.0 (/ chart-phase transition))
-              alpha (if (> chart-phase 1500) (- 1.0 (/ (- chart-phase 1500) 500)) 1.0)]
-          (set! (.-globalAlpha ctx) (* progress alpha))
-          ;; Draw Bar Chart
-          (set! (.-fillStyle ctx) (:portal.colors/diff-add zenburn))
-          (let [bar-w 40 gap 20
-                start-x (- cx (* 1.5 (+ bar-w gap)))]
-            (dotimes [i 3]
-              (let [h (+ 50 (* i 30))
-                    x (+ start-x (* i (+ bar-w gap)))]
-                (.fillRect ctx x (- cy (- h 50)) bar-w h))))))
+      ;; Phase 2: SQL Query (3000 - 6000ms)
+      :else
+      (let [progress (/ (- phase 3000) 1000)
+            alpha (min 1.0 progress)
+            start-x (- cx 80) ;; Left justify: Move starting x to the left
+            start-y (- cy 20)
+            line-h 24]
+        (set! (.-globalAlpha ctx) alpha)
+        (set! (.-font ctx) "16px monospace")
+        (set! (.-textAlign ctx) "left") ;; Set alignment to left
+        (set! (.-fillStyle ctx) (:portal.colors/text zenburn))
+        (dotimes [i (count sql-lines)]
+          (.fillText ctx (nth sql-lines i) start-x (+ start-y (* i line-h))))
+        (set! (.-globalAlpha ctx) 1.0)))))
 
-      ;; 2. Line Chart (4000 - 6000ms)
-      (when (and (>= chart-phase 2000) (< chart-phase 4000))
-        (let [local-t (- chart-phase 2000)
-              progress (min 1.0 (/ local-t transition))
-              alpha (if (> local-t 1500) (- 1.0 (/ (- local-t 1500) 500)) 1.0)]
-          (set! (.-globalAlpha ctx) (* progress alpha))
-          ;; Draw Line Chart
-          (set! (.-strokeStyle ctx) (:portal.colors/number zenburn))
-          (set! (.-lineWidth ctx) 4)
-          (.beginPath ctx)
-          (let [points 10
-                step (/ w points)]
-            (dotimes [i points]
-              (let [x (* i step)
-                    y (+ cy (* 60 (Math/sin (* i 0.8))))]
-                (if (zero? i)
-                  (.moveTo ctx x y)
-                  (.lineTo ctx x y))))))
-        (.stroke ctx)))
+(defn draw-vega-lite [ctx w h t]
+  (let [cx (/ w 2)
+        cy (/ h 2)
+        cycle 8000
+        phase (mod t cycle)
+        code-snippet "{:mark :bar :encoding ...}"
+        font-size 14]
 
-    ;; 3. Scatter Plot (6000 - 8000ms)
-    (when (>= chart-phase 4000)
-      (let [local-t (- chart-phase 4000)
-            progress (min 1.0 (/ local-t transition))]
-        (set! (.-globalAlpha ctx) progress)
-        ;; Draw Scatter Plot
-        (set! (.-fillStyle ctx) (:portal.colors/string zenburn))
-        (dotimes [i 20]
-          (let [x (+ (* (mod (* i 123) w)) (- (/ w 2)))
-                y (+ (* (mod (* i 456) h)) (- (/ h 2)))]
-            ;; Scatter around center but spread out
+    (cond
+      ;; Phase 1: Code Snippet (0 - 2000ms)
+      (< phase 2000)
+      (do
+        (set! (.-font ctx) (str font-size "px monospace"))
+        (set! (.-textAlign ctx) "center")
+        (set! (.-textBaseline ctx) "middle")
+        (set! (.-fillStyle ctx) (:portal.colors/keyword zenburn))
+        (let [progress (/ phase 1500)
+              chars-to-show (min (count code-snippet) (Math/floor (* progress (count code-snippet))))]
+          (.fillText ctx (subs code-snippet 0 chars-to-show) cx cy)))
+
+      ;; Phase 2: Full Screen Charts Sequence (2000 - 8000ms)
+      :else
+      (let [chart-phase (- phase 2000)
+            chart-duration 2000
+            transition 500]
+
+        ;; 1. Bar Chart (2000 - 4000ms)
+        (when (< chart-phase 2000)
+          (let [progress (min 1.0 (/ chart-phase transition))
+                alpha (if (> chart-phase 1500) (- 1.0 (/ (- chart-phase 1500) 500)) 1.0)]
+            (set! (.-globalAlpha ctx) (* progress alpha))
+            ;; Draw Bar Chart
+            (set! (.-fillStyle ctx) (:portal.colors/diff-add zenburn))
+            (let [bar-w 40 gap 20
+                  start-x (- cx (* 1.5 (+ bar-w gap)))]
+              (dotimes [i 3]
+                (let [h (+ 50 (* i 30))
+                      x (+ start-x (* i (+ bar-w gap)))]
+                  (.fillRect ctx x (- cy (- h 50)) bar-w h))))))
+
+        ;; 2. Line Chart (4000 - 6000ms)
+        (when (and (>= chart-phase 2000) (< chart-phase 4000))
+          (let [local-t (- chart-phase 2000)
+                progress (min 1.0 (/ local-t transition))
+                alpha (if (> local-t 1500) (- 1.0 (/ (- local-t 1500) 500)) 1.0)]
+            (set! (.-globalAlpha ctx) (* progress alpha))
+            ;; Draw Line Chart
+            (set! (.-strokeStyle ctx) (:portal.colors/number zenburn))
+            (set! (.-lineWidth ctx) 4)
             (.beginPath ctx)
-            (.arc ctx (+ cx (* (Math/cos i) (* i 5))) (+ cy (* (Math/sin i) (* i 3))) 5 0 (* Math/PI 2))
-            (.fill ctx)))))
+            (let [points 10
+                  step (/ w points)]
+              (dotimes [i points]
+                (let [x (* i step)
+                      y (+ cy (* 60 (Math/sin (* i 0.8))))]
+                  (if (zero? i)
+                    (.moveTo ctx x y)
+                    (.lineTo ctx x y))))))
+          (.stroke ctx))
 
-    (set! (.-globalAlpha ctx) 1.0)))))
+        ;; 3. Scatter Plot (6000 - 8000ms)
+        (when (>= chart-phase 4000)
+          (let [local-t (- chart-phase 4000)
+                progress (min 1.0 (/ local-t transition))]
+            (set! (.-globalAlpha ctx) progress)
+            ;; Draw Scatter Plot
+            (set! (.-fillStyle ctx) (:portal.colors/string zenburn))
+            (dotimes [i 20]
+              (let [x (+ (* (mod (* i 123) w)) (- (/ w 2)))
+                    y (+ (* (mod (* i 456) h)) (- (/ h 2)))]
+                ;; Scatter around center but spread out
+                (.beginPath ctx)
+                (.arc ctx (+ cx (* (Math/cos i) (* i 5))) (+ cy (* (Math/sin i) (* i 3))) 5 0 (* Math/PI 2))
+                (.fill ctx)))))
+        (set! (.-globalAlpha ctx) 1.0)))))
 
 (defn draw-gemma [ctx w h t]
-(clear ctx w h)
-(let [cx (/ w 2)
-      cy (/ h 2)
-      scale (+ 1 (* 0.1 (Math/sin (* t 0.005))))]
-  (.save ctx)
-  (.translate ctx cx cy)
-  (.scale ctx scale scale)
+  (clear ctx w h)
+  (let [cx (/ w 2)
+        cy (/ h 2)
+        scale (+ 1 (* 0.1 (Math/sin (* t 0.005))))]
+    (.save ctx)
+    (.translate ctx cx cy)
+    (.scale ctx scale scale)
 
-  (set! (.-fillStyle ctx) (:portal.colors/diff-add zenburn))
-  ;; Robot head shape
-  (.fillRect ctx -30 -30 60 60)
+    (set! (.-fillStyle ctx) (:portal.colors/diff-add zenburn))
+    ;; Robot head shape
+    (.fillRect ctx -30 -30 60 60)
 
-  ;; Eyes
-  (set! (.-fillStyle ctx) (:portal.colors/background2 zenburn))
-  (.fillRect ctx -20 -10 15 10)
-  (.fillRect ctx 5 -10 15 10)
+    ;; Eyes
+    (set! (.-fillStyle ctx) (:portal.colors/background2 zenburn))
+    (.fillRect ctx -20 -10 15 10)
+    (.fillRect ctx 5 -10 15 10)
 
-  ;; Blinking eyes
-  (let [blink (mod (* t 0.0005) 5)]
-    (when (> blink 4.8)
-      (set! (.-fillStyle ctx) (:portal.colors/diff-add zenburn))
-      (.fillRect ctx -20 -10 15 10)
-      (.fillRect ctx 5 -10 15 10)))
-
-  (.restore ctx)))
+    ;; Blinking eyes
+    (let [blink (mod (* t 0.0005) 5)]
+      (when (> blink 4.8)
+        (set! (.-fillStyle ctx) (:portal.colors/diff-add zenburn))
+        (.fillRect ctx -20 -10 15 10)
+        (.fillRect ctx 5 -10 15 10)))
+    (.restore ctx)))
 
 (defn draw-settings [ctx w h t]
   (clear ctx w h)
   (let [cx (/ w 2)
         cy (/ h 2)
-        draw-gear (fn [x y r teeth speed color]
-                    (.save ctx)
-                    (.translate ctx x y)
-                    (.rotate ctx (* t speed))
-                    (set! (.-fillStyle ctx) color)
-                    (.beginPath ctx)
-                    (let [outer-r r
-                          inner-r (* r 0.8)
-                          hole-r (* r 0.3)]
-                      (dotimes [i (* teeth 2)]
-                        (let [angle (* i (/ Math/PI teeth))
-                              rad (if (even? i) outer-r inner-r)]
-                          (.lineTo ctx (* rad (Math/cos angle)) (* rad (Math/sin angle))))))
-                    (.closePath ctx)
-                    (.fill ctx)
-                    ;; Hole
-                    (set! (.-globalCompositeOperation ctx) "destination-out")
-                    (.beginPath ctx)
-                    (.arc ctx 0 0 hole-r 0 (* Math/PI 2))
-                    (.fill ctx)
-                    (set! (.-globalCompositeOperation ctx) "source-over")
-                    (.restore ctx))]
+        draw-gear
+        (fn [x y r teeth speed color]
+          (.save ctx)
+          (.translate ctx x y)
+          (.rotate ctx (* t speed))
+          (set! (.-fillStyle ctx) color)
+          (.beginPath ctx)
+          (let [outer-r r
+                inner-r (* r 0.8)
+                hole-r (* r 0.3)]
+            (dotimes [i (* teeth 2)]
+              (let [angle (* i (/ Math/PI teeth))
+                    rad (if (even? i) outer-r inner-r)]
+                (.lineTo ctx (* rad (Math/cos angle)) (* rad (Math/sin angle)))))
+            (.closePath ctx)
+            (.fill ctx)
+            ;; Hole
+            (set! (.-globalCompositeOperation ctx) "destination-out")
+            (.beginPath ctx)
+            (.arc ctx 0 0 hole-r 0 (* Math/PI 2))
+            (.fill ctx)
+            (set! (.-globalCompositeOperation ctx) "source-over")
+            (.restore ctx)))]
     (draw-gear cx cy 40 8 0.001 (:portal.colors/text zenburn))
     (draw-gear (+ cx 50) (+ cy 50) 25 6 -0.002 (:portal.colors/namespace zenburn))))
 
 (defn draw-changelog [ctx w h t]
-(clear ctx w h)
-(let [cx (/ w 2)
-      cy (/ h 2)
-      scroll-y (mod (* t 0.05) 200)]
-  (set! (.-fillStyle ctx) (:portal.colors/text zenburn))
-  (set! (.-font ctx) "12px monospace")
-  (set! (.-textAlign ctx) "left")
+  (clear ctx w h)
+  (let [cx (/ w 2)
+        cy (/ h 2)
+        scroll-y (mod (* t 0.05) 200)]
+    (set! (.-fillStyle ctx) (:portal.colors/text zenburn))
+    (set! (.-font ctx) "12px monospace")
+    (set! (.-textAlign ctx) "left")
 
-  (doseq [i (range 10)]
-    (let [y (- (+ 200 (* i 20)) scroll-y)]
-      (when (and (> y 0) (< y 200))
-        (.fillText ctx (str "- Update " i " fixed stuff") 20 y))))))
+    (doseq [i (range 10)]
+      (let [y (- (+ 200 (* i 20)) scroll-y)]
+        (when (and (> y 0) (< y 200))
+          (.fillText ctx (str "- Update " i " fixed stuff") 20 y))))))
