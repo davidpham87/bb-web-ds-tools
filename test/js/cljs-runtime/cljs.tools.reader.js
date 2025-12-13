@@ -446,14 +446,14 @@ return or__5025__auto__;
 return cljs.tools.reader.impl.errors.throw_invalid_number(rdr,s);
 }
 } else {
-var G__30632 = (function (){var G__30521 = sb;
+var G__30627 = (function (){var G__30521 = sb;
 G__30521.append(ch);
 
 return G__30521;
 })();
-var G__30633 = rdr.cljs$tools$reader$reader_types$Reader$read_char$arity$1(null);
-sb = G__30632;
-ch = G__30633;
+var G__30628 = rdr.cljs$tools$reader$reader_types$Reader$read_char$arity$1(null);
+sb = G__30627;
+ch = G__30628;
 continue;
 }
 break;
@@ -524,14 +524,14 @@ return cljs.tools.reader.impl.errors.throw_eof_reading.cljs$core$IFn$_invoke$ari
 var G__30523 = ch;
 switch (G__30523) {
 case "\\":
-var G__30636 = (function (){var G__30524 = sb;
+var G__30632 = (function (){var G__30524 = sb;
 G__30524.append(cljs.tools.reader.escape_char(sb,reader));
 
 return G__30524;
 })();
-var G__30637 = reader.cljs$tools$reader$reader_types$Reader$read_char$arity$1(null);
-sb = G__30636;
-ch = G__30637;
+var G__30633 = reader.cljs$tools$reader$reader_types$Reader$read_char$arity$1(null);
+sb = G__30632;
+ch = G__30633;
 continue;
 
 break;
@@ -540,14 +540,14 @@ return cljs.core.str.cljs$core$IFn$_invoke$arity$1(sb);
 
 break;
 default:
-var G__30638 = (function (){var G__30525 = sb;
+var G__30634 = (function (){var G__30525 = sb;
 G__30525.append(ch);
 
 return G__30525;
 })();
-var G__30639 = reader.cljs$tools$reader$reader_types$Reader$read_char$arity$1(null);
-sb = G__30638;
-ch = G__30639;
+var G__30635 = reader.cljs$tools$reader$reader_types$Reader$read_char$arity$1(null);
+sb = G__30634;
+ch = G__30635;
 continue;
 
 }

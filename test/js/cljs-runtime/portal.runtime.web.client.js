@@ -74,27 +74,27 @@ return portal.runtime.web.client.push_state(self__.session_id,new_value);
 (portal.runtime.web.client.Portal.prototype.cljs$core$ISwap$_swap_BANG_$arity$2 = (function (this$,f){
 var self__ = this;
 var this$__$1 = this;
-return cljs.core.reset_BANG_(this$__$1,(function (){var G__29240 = cljs.core.deref(this$__$1);
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__29240) : f.call(null,G__29240));
+return cljs.core.reset_BANG_(this$__$1,(function (){var G__29230 = cljs.core.deref(this$__$1);
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__29230) : f.call(null,G__29230));
 })());
 }));
 
 (portal.runtime.web.client.Portal.prototype.cljs$core$ISwap$_swap_BANG_$arity$3 = (function (this$,f,a){
 var self__ = this;
 var this$__$1 = this;
-return cljs.core.reset_BANG_(this$__$1,(function (){var G__29241 = cljs.core.deref(this$__$1);
-var G__29242 = a;
-return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__29241,G__29242) : f.call(null,G__29241,G__29242));
+return cljs.core.reset_BANG_(this$__$1,(function (){var G__29236 = cljs.core.deref(this$__$1);
+var G__29237 = a;
+return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__29236,G__29237) : f.call(null,G__29236,G__29237));
 })());
 }));
 
 (portal.runtime.web.client.Portal.prototype.cljs$core$ISwap$_swap_BANG_$arity$4 = (function (this$,f,a,b){
 var self__ = this;
 var this$__$1 = this;
-return cljs.core.reset_BANG_(this$__$1,(function (){var G__29248 = cljs.core.deref(this$__$1);
-var G__29249 = a;
-var G__29250 = b;
-return (f.cljs$core$IFn$_invoke$arity$3 ? f.cljs$core$IFn$_invoke$arity$3(G__29248,G__29249,G__29250) : f.call(null,G__29248,G__29249,G__29250));
+return cljs.core.reset_BANG_(this$__$1,(function (){var G__29244 = cljs.core.deref(this$__$1);
+var G__29245 = a;
+var G__29246 = b;
+return (f.cljs$core$IFn$_invoke$arity$3 ? f.cljs$core$IFn$_invoke$arity$3(G__29244,G__29245,G__29246) : f.call(null,G__29244,G__29245,G__29246));
 })());
 }));
 

@@ -37,14 +37,14 @@ var com=$CLJS.com || ($CLJS.com = {});
 $CLJS.SHADOW_ENV.setLoaded("bb_web_ds_tools.portal.js");
 
 goog.provide('bb_web_ds_tools.portal');
-re_frame.core.reg_fx(new cljs.core.Keyword("portal","open","portal/open",1349656052),(function (p__37943){
-var map__37944 = p__37943;
-var map__37944__$1 = cljs.core.__destructure_map(map__37944);
-var iframe_parent_id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__37944__$1,new cljs.core.Keyword(null,"iframe-parent-id","iframe-parent-id",-1242074886));
-var theme = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__37944__$1,new cljs.core.Keyword(null,"theme","theme",-1247880880));
+re_frame.core.reg_fx(new cljs.core.Keyword("portal","open","portal/open",1349656052),(function (p__38084){
+var map__38087 = p__38084;
+var map__38087__$1 = cljs.core.__destructure_map(map__38087);
+var iframe_parent_id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__38087__$1,new cljs.core.Keyword(null,"iframe-parent-id","iframe-parent-id",-1242074886));
+var theme = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__38087__$1,new cljs.core.Keyword(null,"theme","theme",-1247880880));
 cljs.core.tap_GT_(iframe_parent_id);
 
-var options = (function (){var G__37945 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"theme","theme",-1247880880),(function (){var or__5025__auto__ = cljs.core.keyword.cljs$core$IFn$_invoke$arity$2("portal.colors",cljs.core.name(theme));
+var options = (function (){var G__38088 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"theme","theme",-1247880880),(function (){var or__5025__auto__ = cljs.core.keyword.cljs$core$IFn$_invoke$arity$2("portal.colors",cljs.core.name(theme));
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
 } else {
@@ -52,34 +52,34 @@ return new cljs.core.Keyword("portal.colors","zenburn","portal.colors/zenburn",-
 }
 })()], null);
 if(cljs.core.truth_(iframe_parent_id)){
-return cljs.core.assoc.cljs$core$IFn$_invoke$arity$variadic(G__37945,new cljs.core.Keyword(null,"launcher","launcher",-1380803777),new cljs.core.Keyword(null,"iframe","iframe",884422026),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"iframe-parent","iframe-parent",-2133134058),document.getElementById(iframe_parent_id)], 0));
+return cljs.core.assoc.cljs$core$IFn$_invoke$arity$variadic(G__38088,new cljs.core.Keyword(null,"launcher","launcher",-1380803777),new cljs.core.Keyword(null,"iframe","iframe",884422026),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"iframe-parent","iframe-parent",-2133134058),document.getElementById(iframe_parent_id)], 0));
 } else {
-return G__37945;
+return G__38088;
 }
 })();
 return portal.web.open.cljs$core$IFn$_invoke$arity$1(options);
 }));
-re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.portal","open","bb-web-ds-tools.portal/open",1274924169),(function (p__37953,p__37954){
-var map__37960 = p__37953;
-var map__37960__$1 = cljs.core.__destructure_map(map__37960);
-var db = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__37960__$1,new cljs.core.Keyword(null,"db","db",993250759));
-var vec__37962 = p__37954;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37962,(0),null);
-var map__37965 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37962,(1),null);
-var map__37965__$1 = cljs.core.__destructure_map(map__37965);
-var opts = map__37965__$1;
-var node_id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__37965__$1,new cljs.core.Keyword(null,"node-id","node-id",779482292));
+re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.portal","open","bb-web-ds-tools.portal/open",1274924169),(function (p__38091,p__38092){
+var map__38093 = p__38091;
+var map__38093__$1 = cljs.core.__destructure_map(map__38093);
+var db = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__38093__$1,new cljs.core.Keyword(null,"db","db",993250759));
+var vec__38094 = p__38092;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38094,(0),null);
+var map__38097 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38094,(1),null);
+var map__38097__$1 = cljs.core.__destructure_map(map__38097);
+var opts = map__38097__$1;
+var node_id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__38097__$1,new cljs.core.Keyword(null,"node-id","node-id",779482292));
 var theme = cljs.core.get.cljs$core$IFn$_invoke$arity$3(db,new cljs.core.Keyword("bb-web-ds-tools.events.theme","current-theme","bb-web-ds-tools.events.theme/current-theme",-1882747906),new cljs.core.Keyword(null,"zenburn","zenburn",-688714384));
 return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword("portal","open","portal/open",1349656052),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"iframe-parent-id","iframe-parent-id",-1242074886),node_id,new cljs.core.Keyword(null,"theme","theme",-1247880880),theme], null)], null);
 }));
 re_frame.core.reg_fx(new cljs.core.Keyword("portal","submit","portal/submit",861997951),(function (value){
 return portal.web.submit(value);
 }));
-re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.portal","submit","bb-web-ds-tools.portal/submit",1366041846),(function (_,p__37987){
-var vec__37988 = p__37987;
-var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37988,(0),null);
-var value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37988,(1),null);
-var viewer = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__37988,(2),null);
+re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.portal","submit","bb-web-ds-tools.portal/submit",1366041846),(function (_,p__38101){
+var vec__38102 = p__38101;
+var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38102,(0),null);
+var value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38102,(1),null);
+var viewer = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38102,(2),null);
 return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword("portal","submit","portal/submit",861997951),(cljs.core.truth_(viewer)?(((((!((value == null))))?(((((value.cljs$lang$protocol_mask$partition0$ & (262144))) || ((cljs.core.PROTOCOL_SENTINEL === value.cljs$core$IWithMeta$))))?true:(((!value.cljs$lang$protocol_mask$partition0$))?cljs.core.native_satisfies_QMARK_(cljs.core.IWithMeta,value):false)):cljs.core.native_satisfies_QMARK_(cljs.core.IWithMeta,value)))?cljs.core.with_meta(value,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword("portal.viewer","default","portal.viewer/default",-1985169620),viewer], null)):new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [viewer,value], null)):value)], null);
 }));
 /**
@@ -110,14 +110,14 @@ return null;
  */
 bb_web_ds_tools.portal.portal_panel = (function bb_web_ds_tools$portal$portal_panel(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___38021 = arguments.length;
-var i__5750__auto___38023 = (0);
+var len__5749__auto___38138 = arguments.length;
+var i__5750__auto___38139 = (0);
 while(true){
-if((i__5750__auto___38023 < len__5749__auto___38021)){
-args__5755__auto__.push((arguments[i__5750__auto___38023]));
+if((i__5750__auto___38139 < len__5749__auto___38138)){
+args__5755__auto__.push((arguments[i__5750__auto___38139]));
 
-var G__38026 = (i__5750__auto___38023 + (1));
-i__5750__auto___38023 = G__38026;
+var G__38140 = (i__5750__auto___38139 + (1));
+i__5750__auto___38139 = G__38140;
 continue;
 } else {
 }
@@ -128,24 +128,24 @@ var argseq__5756__auto__ = ((((1) < args__5755__auto__.length))?(new cljs.core.I
 return bb_web_ds_tools.portal.portal_panel.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),argseq__5756__auto__);
 });
 
-(bb_web_ds_tools.portal.portal_panel.cljs$core$IFn$_invoke$arity$variadic = (function (value,p__38003){
-var vec__38004 = p__38003;
-var viewer = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38004,(0),null);
+(bb_web_ds_tools.portal.portal_panel.cljs$core$IFn$_invoke$arity$variadic = (function (value,p__38120){
+var vec__38121 = p__38120;
+var viewer = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38121,(0),null);
 return reagent.core.create_class.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"component-did-mount","component-did-mount",-1126910518),(function (this$){
-var vec__38008 = reagent.core.argv(this$);
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38008,(0),null);
-var value__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38008,(1),null);
-var viewer__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38008,(2),null);
+var vec__38124 = reagent.core.argv(this$);
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38124,(0),null);
+var value__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38124,(1),null);
+var viewer__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38124,(2),null);
 return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.portal","submit","bb-web-ds-tools.portal/submit",1366041846),value__$1,viewer__$1], null));
-}),new cljs.core.Keyword(null,"component-did-update","component-did-update",-1468549173),(function (this$,p__38012){
-var vec__38013 = p__38012;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38013,(0),null);
-var old_value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38013,(1),null);
-var old_viewer = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38013,(2),null);
-var vec__38016 = reagent.core.argv(this$);
-var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38016,(0),null);
-var value__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38016,(1),null);
-var viewer__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38016,(2),null);
+}),new cljs.core.Keyword(null,"component-did-update","component-did-update",-1468549173),(function (this$,p__38127){
+var vec__38128 = p__38127;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38128,(0),null);
+var old_value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38128,(1),null);
+var old_viewer = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38128,(2),null);
+var vec__38131 = reagent.core.argv(this$);
+var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38131,(0),null);
+var value__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38131,(1),null);
+var viewer__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38131,(2),null);
 if(((cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(value__$1,old_value)) || (cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(viewer__$1,old_viewer)))){
 return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.portal","submit","bb-web-ds-tools.portal/submit",1366041846),value__$1,viewer__$1], null));
 } else {
@@ -159,11 +159,11 @@ return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMP
 (bb_web_ds_tools.portal.portal_panel.cljs$lang$maxFixedArity = (1));
 
 /** @this {Function} */
-(bb_web_ds_tools.portal.portal_panel.cljs$lang$applyTo = (function (seq38000){
-var G__38001 = cljs.core.first(seq38000);
-var seq38000__$1 = cljs.core.next(seq38000);
+(bb_web_ds_tools.portal.portal_panel.cljs$lang$applyTo = (function (seq38109){
+var G__38110 = cljs.core.first(seq38109);
+var seq38109__$1 = cljs.core.next(seq38109);
 var self__5734__auto__ = this;
-return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__38001,seq38000__$1);
+return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__38110,seq38109__$1);
 }));
 
 

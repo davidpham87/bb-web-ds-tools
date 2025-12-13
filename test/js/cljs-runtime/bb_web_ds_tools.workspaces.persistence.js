@@ -11,10 +11,10 @@ return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword("persist
 re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.workspaces.persistence","load-datasets","bb-web-ds-tools.workspaces.persistence/load-datasets",425111618),(function (_,___$1){
 return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword("persistence","load-datasets","persistence/load-datasets",2001936203),null], null);
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.workspaces.persistence","datasets-loaded","bb-web-ds-tools.workspaces.persistence/datasets-loaded",1851286842),(function (db,p__49071){
-var vec__49072 = p__49071;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49072,(0),null);
-var datasets = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49072,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.workspaces.persistence","datasets-loaded","bb-web-ds-tools.workspaces.persistence/datasets-loaded",1851286842),(function (db,p__49083){
+var vec__49086 = p__49083;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49086,(0),null);
+var datasets = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49086,(1),null);
 return cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"datasets","datasets",1896364419),new cljs.core.Keyword(null,"items","items",1031954938)], null),datasets);
 }));
 

@@ -5,8 +5,8 @@ goog.provide('bb_web_ds_tools.utils.worker');
  * Returns a map with the worker instance and optionally a channel if no callback provided.
  */
 bb_web_ds_tools.utils.worker.create_worker = (function bb_web_ds_tools$utils$worker$create_worker(var_args){
-var G__34913 = arguments.length;
-switch (G__34913) {
+var G__34713 = arguments.length;
+switch (G__34713) {
 case 1:
 return bb_web_ds_tools.utils.worker.create_worker.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -49,11 +49,11 @@ return cljs.core.async.put_BANG_.cljs$core$IFn$_invoke$arity$2(out_chan,err);
 }
 }));
 
-var G__34919 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"worker","worker",938239996),worker], null);
+var G__34714 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"worker","worker",938239996),worker], null);
 if(cljs.core.truth_(out_chan)){
-return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(G__34919,new cljs.core.Keyword(null,"out-chan","out-chan",384315017),out_chan);
+return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(G__34714,new cljs.core.Keyword(null,"out-chan","out-chan",384315017),out_chan);
 } else {
-return G__34919;
+return G__34714;
 }
 }));
 
@@ -62,10 +62,10 @@ return G__34919;
 /**
  * Updates the message handler for an existing worker.
  */
-bb_web_ds_tools.utils.worker.set_handler = (function bb_web_ds_tools$utils$worker$set_handler(p__34928,on_message){
-var map__34929 = p__34928;
-var map__34929__$1 = cljs.core.__destructure_map(map__34929);
-var worker = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__34929__$1,new cljs.core.Keyword(null,"worker","worker",938239996));
+bb_web_ds_tools.utils.worker.set_handler = (function bb_web_ds_tools$utils$worker$set_handler(p__34715,on_message){
+var map__34716 = p__34715;
+var map__34716__$1 = cljs.core.__destructure_map(map__34716);
+var worker = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__34716__$1,new cljs.core.Keyword(null,"worker","worker",938239996));
 (worker.onmessage = (function (e){
 var r = cognitect.transit.reader.cljs$core$IFn$_invoke$arity$1(new cljs.core.Keyword(null,"json","json",1279968570));
 var data = cognitect.transit.read(r,e.data);
@@ -82,10 +82,10 @@ return (on_message.cljs$core$IFn$_invoke$arity$1 ? on_message.cljs$core$IFn$_inv
 /**
  * Sends a message to the worker.
  */
-bb_web_ds_tools.utils.worker.post_message = (function bb_web_ds_tools$utils$worker$post_message(p__34933,message){
-var map__34934 = p__34933;
-var map__34934__$1 = cljs.core.__destructure_map(map__34934);
-var worker = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__34934__$1,new cljs.core.Keyword(null,"worker","worker",938239996));
+bb_web_ds_tools.utils.worker.post_message = (function bb_web_ds_tools$utils$worker$post_message(p__34721,message){
+var map__34722 = p__34721;
+var map__34722__$1 = cljs.core.__destructure_map(map__34722);
+var worker = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__34722__$1,new cljs.core.Keyword(null,"worker","worker",938239996));
 var w = cognitect.transit.writer.cljs$core$IFn$_invoke$arity$1(new cljs.core.Keyword(null,"json","json",1279968570));
 var payload = cognitect.transit.write(w,message);
 return worker.postMessage(payload);
@@ -93,11 +93,11 @@ return worker.postMessage(payload);
 /**
  * Terminates the worker.
  */
-bb_web_ds_tools.utils.worker.terminate = (function bb_web_ds_tools$utils$worker$terminate(p__34950){
-var map__34951 = p__34950;
-var map__34951__$1 = cljs.core.__destructure_map(map__34951);
-var worker = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__34951__$1,new cljs.core.Keyword(null,"worker","worker",938239996));
-var out_chan = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__34951__$1,new cljs.core.Keyword(null,"out-chan","out-chan",384315017));
+bb_web_ds_tools.utils.worker.terminate = (function bb_web_ds_tools$utils$worker$terminate(p__34724){
+var map__34725 = p__34724;
+var map__34725__$1 = cljs.core.__destructure_map(map__34725);
+var worker = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__34725__$1,new cljs.core.Keyword(null,"worker","worker",938239996));
+var out_chan = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__34725__$1,new cljs.core.Keyword(null,"out-chan","out-chan",384315017));
 worker.terminate();
 
 if(cljs.core.truth_(out_chan)){
