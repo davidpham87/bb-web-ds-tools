@@ -6,7 +6,7 @@
             [reitit.frontend.easy :as rfe]
             ["react-dom" :as ReactDOM]))
 
-(def wiki-base-url "https://github.com/davidpham87/bb-web-ds-tools/blob/main/wiki/")
+(def wiki-base-url "https://davidpham87.github.io//bb-web-ds-tools/wiki/")
 
 (def wiki-mapping
   {:landing-page "index.md"
