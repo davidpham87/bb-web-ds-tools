@@ -1,6 +1,7 @@
 (ns bb-web-ds-tools.views.landing
   (:require [re-frame.core :as rf]
             [reagent.core :as r]
+            [reagent.dom :as rdom]
             [bb-web-ds-tools.components.landing :as landing]
             [bb-web-ds-tools.theme :as t]
             [bb-web-ds-tools.utils.themes :as themes]))
@@ -126,69 +127,60 @@
     :title "Multi-Runtime"
     :desc "Clojure, Python, R. Run them all. Simultaneously. Chaos awaits."}])
 
-(defn landing-page
-  "Renders the landing page with animated feature cards.
-
-  Returns:
-    vector: A hiccup vector."
-  []
-  [:div {:class "min-h-full flex flex-col items-center relative overflow-hidden font-['Source_Code_Pro']"}
-   [:style
-    "@keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
-     .animate-float { animation: float 6s ease-in-out infinite; }
-     .animate-float-delay-1 { animation: float 6s ease-in-out infinite; animation-delay: 1s; }
-     .animate-float-delay-2 { animation: float 6s ease-in-out infinite; animation-delay: 2s; }"]
-   ;; Background
-   [background-canvas]
-
-   [:div {:class "max-w-7xl w-full flex-grow flex flex-col justify-center z-10 p-8 pb-0"}
-
-    ;; Intro Section
-    [:div {:class "text-center mb-8 space-y-8 animate-fade-in-up"}
-     [:h1 {:class (str "text-6xl md:text-8xl font-extrabold mb-4 " t/text-accent " tracking-tight drop-shadow-lg")}
-      "The \"Swiss Army Knife\" of Data Science"]
-
-     [:p {:class (str "text-2xl md:text-3xl " t/text-secondary " max-w-4xl mx-auto leading-relaxed font-light")}
-      "Decrease I/O friction. Copy paste data like a pro. Visualize without tears."]
-
-     [:p {:class (str "mt-8 text-xl " t/text-secondary " max-w-3xl mx-auto italic opacity-80")}]]]])
+(defn- get-scroll-parent
+  "Traverses up the DOM tree to find the first scrollable ancestor."
+  [node]
+  (if (or (nil? node) (identical? node js/document.body))
+    js/window
+    (let [style (js/getComputedStyle node)
+          overflow-y (.getPropertyValue style "overflow-y")]
+      (if (or (= overflow-y "auto") (= overflow-y "scroll"))
+        node
+        (recur (.-parentNode node))))))
 
 (defn scroll-flow-section
   "A section that scrolls through the flow-steps using sticky positioning."
   []
   (let [container-ref (r/atom nil)
-        active-step (r/atom 0)]
+        active-step (r/atom 0)
+        listener-ref (r/atom nil)]
     (r/create-class
      {:display-name "scroll-flow-section"
       :component-did-mount
-      (fn []
-        (let [handle-scroll
-              (fn []
-                (when-let [el @container-ref]
-                  (let [rect (.getBoundingClientRect el)
-                        top (.-top rect)
-                        height (.-height rect)
-                        window-h js/window.innerHeight
-                        ;; Calculate scroll progress (0.0 to 1.0) through the container
-                        ;; When top is 0, progress is 0.
-                        ;; When bottom is at window bottom, progress is 1.
-                        scroll-dist (- height window-h)
-                        raw-progress (/ (- top) scroll-dist)
-                        progress (max 0 (min 1 raw-progress))
-                        step-count (count flow-steps)
-                        current (Math/floor (* progress step-count))]
-                    (reset! active-step (min (dec step-count) current)))))]
-          (js/window.addEventListener "scroll" handle-scroll)
-          (handle-scroll)));; Initial check
+      (fn [this]
+        ;; Use @container-ref instead of (rdom/dom-node this)
+        ;; as the ref is attached to the root div of this component.
+        (when-let [el @container-ref]
+          (let [parent (get-scroll-parent el)
+                handle-scroll
+                (fn []
+                  (when-let [el @container-ref]
+                    (let [rect (.getBoundingClientRect el)
+                          parent-rect (if (= parent js/window)
+                                        {:top 0}
+                                        (.getBoundingClientRect parent))
+                          parent-height (if (= parent js/window)
+                                          js/window.innerHeight
+                                          (.-clientHeight parent))
+                          top (- (.-top rect) (:top parent-rect))
+                          height (.-height rect)
+                          ;; Calculate scroll progress (0.0 to 1.0) through the container
+                          ;; When top is 0, progress is 0.
+                          ;; When bottom is at window bottom, progress is 1.
+                          scroll-dist (- height parent-height)
+                          raw-progress (if (zero? scroll-dist) 0 (/ (- top) scroll-dist))
+                          progress (max 0 (min 1 raw-progress))
+                          step-count (count flow-steps)
+                          current (Math/floor (* progress step-count))]
+                      (reset! active-step (min (dec step-count) current)))))]
+            (reset! listener-ref {:parent parent :handler handle-scroll})
+            (.addEventListener parent "scroll" handle-scroll)
+            (handle-scroll)))) ;; Initial check
 
       :component-will-unmount
       (fn []
-        ;; Note: In a real app, we should store the listener fn to remove it correctly,
-        ;; but for this anonymous fn, we're relying on Reagent component lifecycle re-creation
-        ;; or we could use a stable ref for the handler. For simplicity here:
-        ;; (js/window.removeEventListener "scroll" handle-scroll)
-        ;; Correct implementation requires storing the handler.
-        nil)
+        (when-let [{:keys [parent handler]} @listener-ref]
+          (.removeEventListener parent "scroll" handler)))
 
       :reagent-render
       (fn []
@@ -216,3 +208,33 @@
                                        " bg-current")}
                      ])]])))
            flow-steps)]])})))
+
+(defn landing-page
+  "Renders the landing page with animated feature cards.
+
+  Returns:
+    vector: A hiccup vector."
+  []
+  [:div {:class "min-h-full flex flex-col items-center relative font-['Source_Code_Pro']"}
+   [:style
+    "@keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+     .animate-float { animation: float 6s ease-in-out infinite; }
+     .animate-float-delay-1 { animation: float 6s ease-in-out infinite; animation-delay: 1s; }
+     .animate-float-delay-2 { animation: float 6s ease-in-out infinite; animation-delay: 2s; }"]
+   ;; Background
+   [background-canvas]
+
+   [:div {:class "max-w-7xl w-full flex-grow flex flex-col justify-center z-10 p-8 pb-0"}
+
+    ;; Intro Section
+    [:div {:class "text-center mb-8 space-y-8 animate-fade-in-up"}
+     [:h1 {:class (str "text-6xl md:text-8xl font-extrabold mb-4 " t/text-accent " tracking-tight drop-shadow-lg")}
+      "The \"Swiss Army Knife\" of Data Science"]
+
+     [:p {:class (str "text-2xl md:text-3xl " t/text-secondary " max-w-4xl mx-auto leading-relaxed font-light")}
+      "Decrease I/O friction. Copy paste data like a pro. Visualize without tears."]
+
+     [:p {:class (str "mt-8 text-xl " t/text-secondary " max-w-3xl mx-auto italic opacity-80")}]]]
+
+   ;; Scroll Flow Section
+   [scroll-flow-section]])
