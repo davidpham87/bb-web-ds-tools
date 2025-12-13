@@ -30,7 +30,7 @@
   (prop/for-all [data (gen/vector (gen/map gen/keyword gen/int) 1 5)]
                 (let [result (sut/infer-schema data)]
                   (if (:success result)
-                    (let [inferred-schema (sut/read-edn (:schema-str result))]
+                    (let [inferred-schema (:schema result)]
                       (every? #(m/validate inferred-schema %) data))
                     false))))
 
@@ -70,7 +70,7 @@
     (let [data [{:a "x"} {:a "y"} {:a "x"} {:a "z"}]
           result (sut/infer-schema data)]
       (is (:success result))
-      (let [schema (sut/read-edn (:schema-str result))]
+      (let [schema (:schema result)]
         (is (= :map (first schema)))
         (let [entries (rest schema)
               entry-a (first (filter #(= :a (first %)) entries))
@@ -82,7 +82,7 @@
     (let [data [{:a "1"} {:a "2"} {:a "3"}]
           ;; max-values 2. Distinct count 3. Should remain string.
           result (sut/infer-schema data 2)
-          schema (sut/read-edn (:schema-str result))]
+          schema (:schema result)]
       (is (:success result))
       (let [entries (rest schema)
             entry-a (first (filter #(= :a (first %)) entries))
@@ -93,19 +93,19 @@
   (testing "infer-schema adds min/max to integers"
     (let [data [{:a 1} {:a 5} {:a 10}]]
       (is (= {:success true
-              :schema-str "[:map [:a [:int {:min 1, :max 10}]]]\n"}
+              :schema [:map [:a [:int {:min 1, :max 10}]]]}
              (sut/infer-schema data)))))
 
   (testing "infer-schema adds min/max to doubles"
     (let [data [{:a 1.5} {:a 5.5}]]
       (is (= {:success true
-              :schema-str "[:map [:a [:double {:min 1.5, :max 5.5}]]]\n"}
+              :schema [:map [:a [:double {:min 1.5, :max 5.5}]]]}
              (sut/infer-schema data)))))
 
   (testing "infer-schema handles nullable numbers"
     (let [data [{:a 1} {:a nil} {:a 10}]]
       (is (= {:success true
-              :schema-str "[:map [:a [:maybe [:int {:min 1, :max 10}]]]]\n"}
+              :schema [:map [:a [:maybe [:int {:min 1, :max 10}]]]]}
              (sut/infer-schema data))))))
 
 (deftest infer-schema-date-min-max-test
@@ -115,5 +115,9 @@
           d3 #inst "2023-01-10"
           data [{:a d1} {:a d2} {:a d3}]]
       (is (= {:success true
-              :schema-str "[:map\n [:a\n  [inst?\n   {:min #inst \"2023-01-01T00:00:00.000-00:00\",\n    :max #inst \"2023-01-10T00:00:00.000-00:00\"}]]]\n"}
+              :schema [:map
+                       [:a
+                        ['inst?
+                         {:min d1
+                          :max d3}]]]}
              (sut/infer-schema data))))))
