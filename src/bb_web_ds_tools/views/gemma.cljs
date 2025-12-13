@@ -142,12 +142,10 @@
             [c/card {}
              [:div
               [c/section-header "Load Gemma Model"
-               [c/icon-button-link
+                [c/help-button
                 {:href (nav/get-wiki-url :gemma)
                  :title "Help: Gemma"
-                 :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100"
-                 :icon [:svg {:xmlns "http://www.w3.org/2000/svg" :fill "none" :viewBox "0 0 24 24" :stroke-width "1.5" :stroke "currentColor" :class "w-4 h-4"}
-                        [:path {:stroke-linecap "round" :stroke-linejoin "round" :d "M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"}]]}]]
+                  :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100"}]]
               [:p {:class "text-[#dcdccc] mb-4 text-sm"} "Enter the URL to the .bin model file (e.g., from Kaggle or Hugging Face)."]
               [:input {:type "text"
                        :name "url"
@@ -184,12 +182,10 @@
             [c/card {}
              [:div
               [c/section-header "Gemma Chat"
-               [c/icon-button-link
+               [c/help-button
                 {:href (nav/get-wiki-url :gemma)
                  :title "Help: Gemma"
-                 :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100"
-                 :icon [:svg {:xmlns "http://www.w3.org/2000/svg" :fill "none" :viewBox "0 0 24 24" :stroke-width "1.5" :stroke "currentColor" :class "w-4 h-4"}
-                        [:path {:stroke-linecap "round" :stroke-linejoin "round" :d "M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"}]]}]]
+                 :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100"}]]
               [:div.messages {:class "bg-[#2f2f2f] border border-[#5f5f5f] rounded-lg p-4 h-[500px] overflow-y-auto mb-4 custom-scrollbar"}
                (for [[idx msg] (map-indexed vector messages)]
                  [:div {:key idx :class (str "mb-4 " (if (= (:role msg) :user) "text-right" "text-left"))}

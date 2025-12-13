@@ -332,12 +332,10 @@
          [l/flex-row {:class "justify-between items-center"}
           [:div {:class "flex-grow"}
            [c/section-header "Create New Dataset"
-            [c/icon-button-link
+            [c/help-button
              {:href (nav/get-wiki-url :datasets)
               :title "Help: Datasets"
-              :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100"
-              :icon [:svg {:xmlns "http://www.w3.org/2000/svg" :fill "none" :viewBox "0 0 24 24" :stroke-width "1.5" :stroke "currentColor" :class "w-4 h-4"}
-                     [:path {:stroke-linecap "round" :stroke-linejoin "round" :d "M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"}]]}]]]
+              :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100"}]]]
 
           [l/flex-row {:class "space-x-4 items-center"}
            ;; Vega Dataset Selector
@@ -642,12 +640,10 @@
         [:div {:class (str "h-full w-full " t/bg-sidebar " flex flex-col p-4 border-r border-[#3f3f3f]")}
          [:div {:class (str "pb-4 border-b " t/border-main " flex flex-col gap-2")}
           [c/section-header "Datasets"
-           [c/icon-button-link
+           [c/help-button
             {:href (nav/get-wiki-url :datasets)
              :title "Help: Datasets"
-             :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100"
-             :icon [:svg {:xmlns "http://www.w3.org/2000/svg" :fill "none" :viewBox "0 0 24 24" :stroke-width "1.5" :stroke "currentColor" :class "w-4 h-4"}
-                    [:path {:stroke-linecap "round" :stroke-linejoin "round" :d "M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"}]]}]]
+             :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100"}]]
 
           ;; Persistence Controls
           [l/flex-row {:class "gap-2"}
