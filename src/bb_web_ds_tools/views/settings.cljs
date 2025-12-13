@@ -2,6 +2,7 @@
   (:require [re-frame.core :as rf]
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.layout :as l]
+            [bb-web-ds-tools.components.navigation :as nav]
             [bb-web-ds-tools.portal :as portal]
             [bb-web-ds-tools.events.settings :as settings-events]
             [bb-web-ds-tools.events.theme :as theme-events]
@@ -185,7 +186,12 @@
     [l/split-view {:ratio :1-3}
      ;; Sidebar
      [:div {:class "h-full bg-[#2b2b2b] border-r border-[#3f3f3f] overflow-y-auto py-4"}
-      [:h2 {:class "text-xl font-bold px-4 mb-4 text-[#dcdccc]"} "Settings"]
+      [:div {:class "flex items-center justify-between px-4 mb-4"}
+       [:h2 {:class "text-xl font-bold text-[#dcdccc]"} "Settings"]
+       [c/help-button
+        {:href (nav/get-wiki-url :settings)
+         :title "Help: Settings"
+         :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100"}]]
       (for [item settings-nav]
         ^{:key (:id item)}
         [sidebar-item {:item item

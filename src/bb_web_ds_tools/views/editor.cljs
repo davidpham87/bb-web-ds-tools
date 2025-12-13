@@ -2,7 +2,8 @@
   (:require [re-frame.core :as rf]
             [fork.re-frame :as fork]
             [bb-web-ds-tools.components.common :as c]
-            [bb-web-ds-tools.components.editor :as editor]))
+            [bb-web-ds-tools.components.editor :as editor]
+            [bb-web-ds-tools.components.navigation :as nav]))
 
 (rf/reg-event-db
  ::save-code
@@ -47,5 +48,10 @@
     vector: A hiccup vector."
   []
   [:div {:class "container mx-auto max-w-6xl p-6"}
+   [c/section-header "Editor"
+    [c/help-button
+     {:href (nav/get-wiki-url :code)
+      :title "Help: Editor"
+      :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100"}]]
    [c/card {}
     [editor-form {}]]])

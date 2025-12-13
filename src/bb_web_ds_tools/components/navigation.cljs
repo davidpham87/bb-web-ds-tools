@@ -6,6 +6,26 @@
             [reitit.frontend.easy :as rfe]
             ["react-dom" :as ReactDOM]))
 
+(def wiki-base-url "https://davidpham87.github.io//bb-web-ds-tools/wiki/")
+
+(def wiki-mapping
+  {:landing-page "index.md"
+   :app-db "app_db.md"
+   :changelog "changelog.md"
+   :code "code_environments.md"
+   :datasets "datasets.md"
+   :gemma "gemma.md"
+   :honeysql "honeysql.md"
+   :malli "malli.md"
+   :vega-lite "vega_lite.md"
+   :settings "index.md"})
+
+(defn get-wiki-url
+  "Returns the wiki URL for a given route name."
+  [route-name]
+  (let [page (get wiki-mapping route-name "index.md")]
+    (str wiki-base-url page)))
+
 (defn menu-button
   "Renders a menu button that toggles a dropdown navigation menu.
 
@@ -72,10 +92,11 @@
   Args:
     props (map): Props. Keys:
       - :active-label (string): The label of the current section.
+      - :active-route (keyword): The current route name.
 
   Returns:
     vector: A hiccup vector."
-  [{:keys [active-label]}]
+  [{:keys [active-label active-route]}]
   [:div {:class (str "flex items-center w-full h-12 px-4 border-b " t/border-main " " t/bg-toolbar)}
    ;; Menu Button
    [menu-button]
@@ -86,4 +107,9 @@
 
    ;; Portal Target (for secondary nav)
    [:div {:class "flex-grow h-full flex items-center justify-end"
-          :ref (fn [el] (rf/dispatch [::set-top-bar-ref el]))}]])
+          :ref (fn [el] (rf/dispatch [::set-top-bar-ref el]))}
+    ;; Global Help Button at the far right
+    [common/help-button
+     {:href (get-wiki-url :landing-page)
+      :title "Global Help (Wiki)"
+      :class "ml-2"}]]])

@@ -5,6 +5,7 @@
             [bb-web-ds-tools.components.editor :as editor]
             [bb-web-ds-tools.components.honeysql :as c-honeysql]
             [bb-web-ds-tools.components.layout :as l]
+            [bb-web-ds-tools.components.navigation :as nav]
             [bb-web-ds-tools.portal :as portal :refer [portal-frame portal-panel]]
             [bb-web-ds-tools.theme :as t]))
 
@@ -93,7 +94,13 @@
         [l/flex-row {:class "h-full items-start gap-0"}
          ;; LEFT: Input
          [l/flex-col {:class "gap-4 w-full max-w-3xl h-full p-4 border-r border-[#3f3f3f]"}
-          [c/section-header "Convert to SQL" [:span {:class "ml-2"} "🍯"]]
+          [c/section-header "Convert to SQL"
+           [:div {:class "flex items-center gap-2"}
+            [:span "🍯"]
+            [c/help-button
+             {:href (nav/get-wiki-url :honeysql)
+              :title "Help: HoneySQL"
+              :class "!p-1 !w-6 !h-6 opacity-50 hover:opacity-100"}]]]
           [c/label "Clojure Code (Last value must be HoneySQL Map)"]
           [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
            [editor/monaco-editor {:value input

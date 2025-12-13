@@ -298,14 +298,14 @@
     max-enum-values (int, optional): Max values to infer enum. Default 10.
 
   Returns:
-    map: {:success true :schema-str string} or error."
+    map: {:success true :schema any} or error."
   ([input-data] (infer-schema input-data 10))
   ([input-data max-enum-values]
    (if (and (coll? input-data) (seq input-data))
      (let [schema (mp/provide input-data)
            refined-schema (refine-schema-with-data schema input-data max-enum-values)]
        {:success true
-        :schema-str (pretty-print-str refined-schema)})
+        :schema refined-schema})
      {:success false
       :error "Invalid input data or empty sequence."})))
 

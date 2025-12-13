@@ -64,4 +64,6 @@ RUN npm install
 ENV PATH="/opt/app/node_modules/.bin:${PATH}"
 ENV NODE_PATH="/opt/app/node_modules"
 
+RUN pip install mkdocs-material
+
 WORKDIR /github/workspace

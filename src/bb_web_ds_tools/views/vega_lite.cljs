@@ -368,10 +368,15 @@
     [l/flex-col {:class "h-full w-full"}
      ;; Tabs Navigation (Portaled to Top Bar)
      [nav/portal-to-top-bar
-      [c/nav-tabs {:tabs tabs
-                   :active-tab-id active-left-tab
-                   :class "border-b-0 bg-transparent px-0"
-                   :on-change #(rf/dispatch [::set-active-left-tab %])}]]
+      [l/flex-row {:class "items-center gap-2"}
+       [c/nav-tabs {:tabs tabs
+                    :active-tab-id active-left-tab
+                    :class "border-b-0 bg-transparent px-0"
+                    :on-change #(rf/dispatch [::set-active-left-tab %])}]
+       [c/help-button
+        {:href (nav/get-wiki-url :vega-lite)
+         :title "Help: Vega-Lite"
+         :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100"}]]]
 
      [:div {:class "flex flex-col md:flex-row h-full w-full overflow-hidden"}
       ;; Left Column (Inputs)

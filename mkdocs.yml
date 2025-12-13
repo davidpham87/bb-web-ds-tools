@@ -4,7 +4,7 @@ site_dir: docs/wiki
 repo_url: https://github.com/davidpham87/bb-web-ds-tools
 repo_name: GitHub
 theme:
-  name: mkdocs
+  name: material
   features:
     - navigation.tabs
     - navigation.sections

@@ -4,6 +4,7 @@
             [cljs.reader :as reader]
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.layout :as l]
+            [bb-web-ds-tools.components.navigation :as nav]
             [bb-web-ds-tools.portal :as portal :refer [portal-frame portal-panel]]
             [bb-web-ds-tools.theme :as t]))
 
@@ -148,7 +149,11 @@
         active-path @(rf/subscribe [::active-path])]
     [:div {:class (str "h-full " t/bg-sidebar " flex flex-col")}
      [:div {:class (str "p-4 border-b " t/border-main)}
-      [:h3 {:class (str "text-lg font-semibold " t/text-accent " mb-4")} "App DB"]
+      [c/section-header "App DB"
+       [c/help-button
+        {:href (nav/get-wiki-url :app-db)
+         :title "Help: App DB"
+         :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100"}]]
       [c/button {:size :sm
                  :class (str "w-full " t/bg-button " " t/bg-button-hover " justify-center")
                  :on-click #(rf/dispatch [::set-active-path :new])}
