@@ -112,4 +112,4 @@
     [common/help-button
      {:href (get-wiki-url active-route)
       :title "Global Help (Wiki)"
-      :class "ml-2 px-2"}]]])
+      :class "ml-2 px-2 !py-1 opacity-50 hover:opacity-100"}]]])
