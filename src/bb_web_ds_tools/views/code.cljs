@@ -28,6 +28,27 @@
  (fn [db _]
    (get db ::active-tab :clojure-repl)))
 
+(defn use-media-query
+  "React hook to track a media query match."
+  [query]
+  (let [match-atom (r/atom false)]
+    (r/create-class
+     {:component-did-mount
+      (fn []
+        (let [mql (js/window.matchMedia query)
+              handler (fn [e] (reset! match-atom (.-matches e)))]
+          (reset! match-atom (.-matches mql))
+          (.addEventListener mql "change" handler)
+          ;; Store cleanup
+          (reset! match-atom {:mql mql :handler handler :matches (.-matches mql)})))
+      :component-will-unmount
+      (fn []
+        (let [{:keys [mql handler]} @match-atom]
+          (when mql (.removeEventListener mql "change" handler))))
+      :reagent-render
+      (fn []
+        @match-atom)})))
+
 (defn panel-render
   "Renders the content of the Code view, switching between sub-views based on the active tab.
 
@@ -36,6 +57,13 @@
   []
   (let [active-tab @(rf/subscribe [::active-tab])
         editor-settings @(rf/subscribe [::settings-events/editor-settings])
+        ;; Track if screen is at least medium (md breakpoint is 768px in Tailwind)
+        is-md? (r/with-let [mql (js/window.matchMedia "(min-width: 768px)")
+                            match (r/atom (.-matches mql))
+                            handler (fn [e] (reset! match (.-matches e)))]
+                 (.addEventListener mql "change" handler)
+                 @match
+                 (finally (.removeEventListener mql "change" handler)))
         tabs [{:id :clojure-repl :label "Clojure REPL"}
               {:id :pyodide :label "Python (Pyodide)"}
               {:id :r-repl :label "R (WebR)"}
@@ -50,7 +78,8 @@
 
      [:div {:class "flex flex-col md:flex-row h-full w-full overflow-hidden"}
       [:div {:class "h-1/2 md:h-full overflow-auto border-r border-[#3f3f3f] flex-shrink-0"
-             :style {:width (:width editor-settings)}}
+             :style (when is-md?
+                      {:width (:width editor-settings)})}
        (case active-tab
          :clojure-repl [repl/panel]
          :pyodide [pyodide/panel]

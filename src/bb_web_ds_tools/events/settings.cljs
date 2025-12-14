@@ -28,7 +28,7 @@
      (assoc-in [:settings :editor]
                {:font-size 14
                 :width "50%"
-                :word-wrap "off"}))))
+                :word-wrap "on"}))))
 
 (rf/reg-event-db
  ::set-column-normalizer-case
@@ -92,4 +92,4 @@
  (fn [db]
    (get-in db [:settings :editor] {:font-size 14
                                    :width "50%"
-                                   :word-wrap "off"})))
+                                   :word-wrap "on"})))
