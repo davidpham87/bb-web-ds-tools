@@ -219,7 +219,9 @@
 ;;   [:div {:style {:color :white}}
 ;;    "Hello" " works!"])
 
-(defonce root (rdomc/create-root (.getElementById js/document "app")))
+(defonce root
+  (when-let [el (.getElementById js/document "app")]
+    (rdomc/create-root el)))
 
 
 (defn ^:export init
@@ -243,7 +245,8 @@
   ;; #_(rf/dispatch [::wp/init-persistence])
   (init-routes!)
   ;; (rf/dispatch [::navigate :landing-page nil nil]) ;; Removed to allow deep linking
-  (rdomc/render root [app]))
+  (when root
+    (rdomc/render root [app])))
 
 (defn ^:dev/after-load reload!
   "Reload hook for shadow-cljs. Re-mounts the application after code changes.
@@ -252,7 +255,8 @@
     nil: Re-renders the app."
   []
   (js/console.log "reload")
-  (rdomc/render root [app]))
+  (when root
+    (rdomc/render root [app])))
 
 (comment
   (reload!))

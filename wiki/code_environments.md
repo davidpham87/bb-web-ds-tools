@@ -35,7 +35,7 @@ The Clojure environment uses the Small Clojure Interpreter (SCI).
 2.  Select the **Clojure** tab.
 3.  Paste the following code to manipulate our example data:
 
-    ```clojure
+```clojure
     (def data
       [{:id 1 :score 12.5 :category "a"}
        {:id 2 :score 10.2 :category "b"}
@@ -44,7 +44,7 @@ The Clojure environment uses the Small Clojure Interpreter (SCI).
     ;; Calculate average score
     (let [scores (map :score data)]
       (/ (reduce + scores) (count scores)))
-    ```
+```
 
 4.  Press **Ctrl+Enter** (or **Cmd+Enter**).
 5.  The result (`10.466...`) will appear in the Portal inspector on the right.
@@ -61,7 +61,7 @@ standard libraries and scientific packages.
     indicator).
 3.  Execute the following code:
 
-    ```python
+```python
     import pandas as pd
 
     # Define the example dataframe
@@ -73,7 +73,7 @@ standard libraries and scientific packages.
 
     # Calculate summary statistics
     df.describe()
-    ```
+```
 
 4.  Press **Ctrl+Enter**.
 5.  A rich table representation of the dataframe summary will appear in Portal.
@@ -88,7 +88,7 @@ The R environment uses WebR (R compiled to WASM).
 2.  (Optional) Wait for the runtime to initialize.
 3.  Execute the following R code:
 
-    ```r
+```r
     # Create the dataframe
     df <- data.frame(
       id = c(1, 2, 3),
@@ -98,7 +98,7 @@ The R environment uses WebR (R compiled to WASM).
 
     # Perform a linear model (trivial example)
     summary(lm(score ~ id, data = df))
-    ```
+```
 
 4.  Press **Ctrl+Enter**.
 5.  The summary text output will be displayed in Portal.

@@ -16,9 +16,7 @@
 
   (testing "add message"
     (rf/dispatch-sync [::gemma/add-message :user "Hello"])
-    (let [messages @(rf/subscribe [::gemma/messages])]
-      (is (= 1 (count messages)))
-      (is (= {:role :user :content "Hello"} (first messages)))))
+    (is (= [{:role :user :content "Hello"}] @(rf/subscribe [::gemma/messages]))))
 
   (testing "set loading"
     (rf/dispatch-sync [::gemma/set-loading true])
