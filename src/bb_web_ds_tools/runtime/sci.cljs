@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.runtime.sci
-  "Runtime support for sci."
+  "Runtime environment management for sci.
+
+  Key functionality: sci-worker, sync-datasets!, init!, eval-in-worker, sci-ctx, ..."
   (:require [bb-web-ds-tools.utils.worker :as worker]
             [bb-web-ds-tools.views.datasets :as datasets]
             [portal.web :as p]

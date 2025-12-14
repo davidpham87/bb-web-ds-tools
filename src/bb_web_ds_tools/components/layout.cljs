@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.components.layout
-  "Component for layout."
+  "Reagent component library for layout.
+
+  Key functionality: page-container, container, section, grid, flex-row, ..."
   (:require [bb-web-ds-tools.theme :as t]
             [reagent.core :as r]
             [re-frame.core :as rf]))

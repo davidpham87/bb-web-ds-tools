@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.theme
-  "Namespace for bb-web-ds-tools.theme."
+  "Namespace bb-web-ds-tools.theme.
+
+  Key functionality: colors, mapping, color, bg-page, bg-sidebar, ..."
   (:require [bb-web-ds-tools.utils.themes :as themes]))
 
 (def colors

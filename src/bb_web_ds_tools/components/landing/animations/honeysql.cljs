@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.components.landing.animations.honeysql
-  "Component for honeysql."
+  "Reagent component library for honeysql.
+
+  Key functionality: draw-honeysql"
   (:require
    [bb-web-ds-tools.components.landing.animations.common :refer (clear-rect zenburn)]))
 

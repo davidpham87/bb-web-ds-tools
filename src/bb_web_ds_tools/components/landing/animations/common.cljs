@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.components.landing.animations.common
-  "Component for common."
+  "Reagent component library for common.
+
+  Key functionality: zenburn, clear, clear-rect"
   (:require [bb-web-ds-tools.utils.themes :as themes]))
 
 (def zenburn (themes/get-theme :zenburn))

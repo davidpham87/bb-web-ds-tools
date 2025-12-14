@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.runtime.webr
-  "Runtime support for webr."
+  "Runtime environment management for webr.
+
+  Key functionality: webr-instance, input-buffer, flush!, load-runtime-main, bind-datasets, ..."
   (:require
    [bb-web-ds-tools.components.async-buffer :as ab]
    [bb-web-ds-tools.portal :as portal]

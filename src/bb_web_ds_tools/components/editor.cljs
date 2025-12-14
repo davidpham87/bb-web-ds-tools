@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.components.editor
-  "Component for editor."
+  "Reagent component library for editor.
+
+  Key functionality: monaco-editor, get-code-to-eval, get-ctrl-key, setup-editor-actions, render-output"
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             ["react-dom" :as react-dom]

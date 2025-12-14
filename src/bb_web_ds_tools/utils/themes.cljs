@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.utils.themes
-  "Utilities for themes.")
+  "Utility functions for themes.
+
+  Key functionality: themes, get-theme")
 
 (def themes
   {:nord

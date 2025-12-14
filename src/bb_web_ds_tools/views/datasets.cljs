@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.views.datasets
-  "View for datasets."
+  "View component for datasets.
+
+  Key functionality: deep-merge, column-toggle-dropdown, importer-view, data-row, data-table, ..."
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             [clojure.string :as str]

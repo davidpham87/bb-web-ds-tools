@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.components.repl
-  "Component for repl."
+  "Reagent component library for repl.
+
+  Key functionality: input-panel, output-panel, repl-card"
   (:require [bb-web-ds-tools.components.editor :as editor-comp]))
 
 (defn input-panel

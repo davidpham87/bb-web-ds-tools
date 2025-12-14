@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.views.changelog
-  "View for changelog."
+  "View component for changelog.
+
+  Key functionality: changelog-data, changelog-item, panel"
   (:require [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.navigation :as nav]))
 

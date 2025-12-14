@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.components.honeysql
-  "Component for honeysql."
+  "Reagent component library for honeysql.
+
+  Key functionality: sci-ctx, convert-to-sql"
   (:require [honey.sql :as h]
             [sci.core :as sci]))
 

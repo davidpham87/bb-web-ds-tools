@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.views.landing
-  "View for landing."
+  "View component for landing.
+
+  Key functionality: github-icon, blog-icon, docs-icon, app-footer, landing-page"
   (:require [bb-web-ds-tools.views.landing.background :as background]
             [bb-web-ds-tools.views.landing.features :as features]
             [bb-web-ds-tools.views.landing.tour :as tour]

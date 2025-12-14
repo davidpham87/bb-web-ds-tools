@@ -1,5 +1,5 @@
 (ns bb-web-ds-tools.workspaces.persistence
-  "Workspace management for persistence."
+  "Workspace state management for persistence."
   (:require [re-frame.core :as rf]
             [bb-web-ds-tools.workspaces.persistence-fx]))
 

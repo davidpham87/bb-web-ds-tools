@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.components.landing.animations.multi-runtime
-  "Component for multi-runtime."
+  "Reagent component library for multi-runtime.
+
+  Key functionality: draw-multi-runtime"
   (:require
    [bb-web-ds-tools.components.landing.animations.common :refer (clear-rect zenburn)]))
 

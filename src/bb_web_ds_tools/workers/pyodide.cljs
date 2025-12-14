@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.workers.pyodide
-  "Web worker for pyodide."
+  "Web worker implementation for pyodide.
+
+  Key functionality: pyodide-instance, post-msg, run-code, datasets-target, update-datasets, ..."
   (:require
    [cognitect.transit :as t]
    [goog.object :as gobj]))

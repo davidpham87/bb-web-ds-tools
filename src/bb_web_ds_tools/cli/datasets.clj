@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.cli.datasets
-  "CLI tool for datasets."
+  "CLI entry point for datasets functionality.
+
+  Key functionality: cli-specs, convert, show-help, table, -main"
   (:require [clojure.string :as str]
             [babashka.fs :as fs]
             [babashka.cli :as cli]

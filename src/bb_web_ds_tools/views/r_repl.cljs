@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.views.r-repl
-  "View for r-repl."
+  "View component for r-repl.
+
+  Key functionality: panel-render, panel"
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             [bb-web-ds-tools.components.common :as c]

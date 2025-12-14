@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.views.code
-  "View for code."
+  "View component for code.
+
+  Key functionality: panel-render, panel"
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             [bb-web-ds-tools.components.common :as c]

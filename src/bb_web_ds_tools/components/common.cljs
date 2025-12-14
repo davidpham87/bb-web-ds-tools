@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.components.common
-  "Component for common."
+  "Reagent component library for common.
+
+  Key functionality: button, button-sm, button-md, button-xs, button-info, ..."
   (:require [bb-web-ds-tools.theme :as t]
             [re-frame.core :as rf]))
 

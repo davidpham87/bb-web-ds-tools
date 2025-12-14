@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.runtime.pyodide
-  "Runtime support for pyodide."
+  "Runtime environment management for pyodide.
+
+  Key functionality: pyodide-worker, main-pyodide, main-loading, init-worker!, load-runtime-worker, ..."
   (:require [bb-web-ds-tools.utils.worker :as worker]
             [portal.web :as p]
             [re-frame.core :as rf]

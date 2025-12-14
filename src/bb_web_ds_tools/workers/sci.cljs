@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.workers.sci
-  "Web worker for sci."
+  "Web worker implementation for sci.
+
+  Key functionality: datasets-atom, datasets-sci-var, ^:dynamic, post-msg, sci-ctx, ..."
   (:require
    [cljs-bean.core :refer (->clj)]
    [clojure.edn :as edn]

@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.workspaces.core
-  "Workspace management for core."
+  "Workspace state management for core.
+
+  Key functionality: conn, get-workspaces, get-inputs, ds-version"
   (:require [re-frame.core :as rf]
             [reagent.core :as r]
             [datascript.core :as d]

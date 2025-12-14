@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.stories.layout-stories
-  "Namespace for bb-web-ds-tools.stories.layout-stories."
+  "Namespace bb-web-ds-tools.stories.layout-stories.
+
+  Key functionality: meta-data, ^:export, ^:export, ^:export, ^:export, ..."
   (:require [bb-web-ds-tools.components.layout :as l]
             [reagent.core :as r]
             [goog.object :as gobj]))

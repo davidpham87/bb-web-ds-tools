@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.views.landing.tour
-  "View for tour."
+  "View component for tour.
+
+  Key functionality: tour-features, product-tour"
   (:require [reagent.core :as r]
             [bb-web-ds-tools.components.landing :as landing]
             [bb-web-ds-tools.components.landing.animations :as animations]

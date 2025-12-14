@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.workspaces.schema
-  "Workspace management for schema.")
+  "Workspace state management for schema.
+
+  Key functionality: schema")
 
 (def schema
   {:workspace/id          {:db/unique :db.unique/identity}

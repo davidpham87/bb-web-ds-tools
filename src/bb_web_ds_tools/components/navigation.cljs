@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.components.navigation
-  "Component for navigation."
+  "Reagent component library for navigation.
+
+  Key functionality: wiki-base-url, wiki-mapping, get-wiki-url, menu-button, portal-to-top-bar, ..."
   (:require [bb-web-ds-tools.components.common :as common]
             [bb-web-ds-tools.theme :as t]
             [re-frame.core :as rf]

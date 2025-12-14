@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.portal
-  "Namespace for bb-web-ds-tools.portal."
+  "Namespace bb-web-ds-tools.portal.
+
+  Key functionality: portal-frame, portal-panel"
   (:require
    [portal.web :as p]
    [re-frame.core :as rf]

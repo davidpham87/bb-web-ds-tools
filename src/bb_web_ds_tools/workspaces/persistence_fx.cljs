@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.workspaces.persistence-fx
-  "Workspace management for persistence-fx."
+  "Workspace state management for persistence-fx.
+
+  Key functionality: sqlite-lib, sql-db, worker, transit-encode, transit-decode, ..."
   (:require
    [bb-web-ds-tools.workspaces.core :as ws]
    [cljs.core.async :refer [go]]

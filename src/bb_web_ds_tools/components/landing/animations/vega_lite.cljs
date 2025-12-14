@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.components.landing.animations.vega-lite
-  "Component for vega-lite."
+  "Reagent component library for vega-lite.
+
+  Key functionality: draw-vega-lite"
   (:require
    [bb-web-ds-tools.components.landing.animations.common :refer (clear-rect zenburn)]))
 

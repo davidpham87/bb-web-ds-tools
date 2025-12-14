@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.components.async-buffer
-  "Component for async-buffer."
+  "Reagent component library for async-buffer.
+
+  Key functionality: create"
   (:require [cljs.core.async :as a]))
 
 (defn create

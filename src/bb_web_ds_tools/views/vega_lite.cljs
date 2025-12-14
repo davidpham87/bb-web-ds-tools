@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.views.vega-lite
-  "View for vega-lite."
+  "View component for vega-lite.
+
+  Key functionality: default-config-json, load-example, render-vega, vega-viz, tab-button, ..."
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             [bb-web-ds-tools.components.common :as c]

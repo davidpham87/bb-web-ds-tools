@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.components.landing.animations.app-db
-  "Component for app-db."
+  "Reagent component library for app-db.
+
+  Key functionality: draw-app-db"
   (:require
    [bb-web-ds-tools.components.landing.animations.common
     :refer (clear-rect zenburn)]))

@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.views.settings
-  "View for settings."
+  "View component for settings.
+
+  Key functionality: settings-nav, sidebar-item, general-settings, appearance-settings, development-settings, ..."
   (:require [re-frame.core :as rf]
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.layout :as l]

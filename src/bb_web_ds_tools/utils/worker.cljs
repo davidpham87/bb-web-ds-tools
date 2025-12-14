@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.utils.worker
-  "Utilities for worker."
+  "Utility functions for worker.
+
+  Key functionality: create-worker, set-handler, post-message, terminate"
   (:require [clojure.core.async :as a]
             [cognitect.transit :as t]))
 

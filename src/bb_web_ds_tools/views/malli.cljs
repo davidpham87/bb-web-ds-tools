@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.views.malli
-  "View for malli."
+  "View component for malli.
+
+  Key functionality: get-malli-state, unified-view, get-inference-props, get-generation-props, get-validation-props, ..."
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             [fork.re-frame :as fork]

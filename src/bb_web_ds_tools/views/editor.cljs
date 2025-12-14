@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.views.editor
-  "View for editor."
+  "View component for editor.
+
+  Key functionality: editor-form, panel"
   (:require [re-frame.core :as rf]
             [fork.re-frame :as fork]
             [bb-web-ds-tools.components.common :as c]

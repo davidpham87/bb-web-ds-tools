@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.views.honeysql
-  "View for honeysql."
+  "View component for honeysql.
+
+  Key functionality: get-honeysql-state, panel"
   (:require [re-frame.core :as rf]
             [reagent.core :as r]
             [bb-web-ds-tools.components.common :as c]

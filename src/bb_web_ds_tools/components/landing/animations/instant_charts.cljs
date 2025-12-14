@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.components.landing.animations.instant-charts
-  "Component for instant-charts."
+  "Reagent component library for instant-charts.
+
+  Key functionality: draw-instant-charts"
   (:require
    [bb-web-ds-tools.components.landing.animations.common :refer (clear-rect zenburn)]))
 

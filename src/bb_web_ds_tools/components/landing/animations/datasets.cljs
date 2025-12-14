@@ -1,5 +1,7 @@
 (ns bb-web-ds-tools.components.landing.animations.datasets
-  "Component for datasets."
+  "Reagent component library for datasets.
+
+  Key functionality: draw-datasets"
   (:require
    [bb-web-ds-tools.components.landing.animations.common :refer (clear-rect zenburn)]))
 
