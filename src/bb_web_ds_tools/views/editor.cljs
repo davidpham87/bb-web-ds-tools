@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.views.editor
+  "View for editor."
   (:require [re-frame.core :as rf]
             [fork.re-frame :as fork]
             [bb-web-ds-tools.components.common :as c]

@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.cli.malli
+  "CLI tool for malli."
   (:require [bb-web-ds-tools.components.malli :as m]
             [clojure.pprint :as pprint]
             [babashka.cli :as cli]

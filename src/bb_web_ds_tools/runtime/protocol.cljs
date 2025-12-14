@@ -1,4 +1,5 @@
-(ns bb-web-ds-tools.runtime.protocol)
+(ns bb-web-ds-tools.runtime.protocol
+  "Runtime support for protocol.")
 
 (defmulti portal-submit
   "Dispatches a message based on the runtime identifier and the message type.

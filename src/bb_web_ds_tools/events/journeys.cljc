@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.events.journeys
+  "Event handlers for journeys."
   (:require [malli.core :as m]
             [malli.generator :as mg]))
 

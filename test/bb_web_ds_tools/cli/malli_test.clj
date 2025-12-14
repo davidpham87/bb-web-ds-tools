@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.cli.malli-test
+  "Tests for bb-web-ds-tools.cli.malli-test."
   (:require [clojure.test :refer [deftest is testing]]
             [bb-web-ds-tools.cli.malli :as sut]
             [clojure.string :as str]

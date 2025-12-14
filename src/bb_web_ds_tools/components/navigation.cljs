@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.components.navigation
+  "Component for navigation."
   (:require [bb-web-ds-tools.components.common :as common]
             [bb-web-ds-tools.theme :as t]
             [re-frame.core :as rf]

@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.events.settings
+  "Event handlers for settings."
   (:require [re-frame.core :as rf]))
 
 ;; --- Events ---

@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.components.repl
+  "Component for repl."
   (:require [bb-web-ds-tools.components.editor :as editor-comp]))
 
 (defn input-panel

@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.stories.layout-stories
+  "Namespace for bb-web-ds-tools.stories.layout-stories."
   (:require [bb-web-ds-tools.components.layout :as l]
             [reagent.core :as r]
             [goog.object :as gobj]))

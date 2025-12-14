@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.views.landing
+  "View for landing."
   (:require [bb-web-ds-tools.views.landing.background :as background]
             [bb-web-ds-tools.views.landing.features :as features]
             [bb-web-ds-tools.views.landing.tour :as tour]

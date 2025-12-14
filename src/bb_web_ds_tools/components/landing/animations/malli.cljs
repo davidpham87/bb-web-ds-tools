@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.components.landing.animations.malli
+  "Component for malli."
   (:require
    [bb-web-ds-tools.components.landing.animations.common :refer (clear-rect zenburn)]))
 

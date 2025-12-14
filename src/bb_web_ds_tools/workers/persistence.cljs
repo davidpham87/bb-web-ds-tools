@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.workers.persistence
+  "Web worker for persistence."
   (:require
    ["@sqlite.org/sqlite-wasm" :default sqlite3InitModule]
    [cljs.core.async :refer [go]]

@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.workspaces.persistence-fx
+  "Workspace management for persistence-fx."
   (:require
    [bb-web-ds-tools.workspaces.core :as ws]
    [cljs.core.async :refer [go]]

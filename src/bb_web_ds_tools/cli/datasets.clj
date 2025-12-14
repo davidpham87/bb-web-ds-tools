@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.cli.datasets
+  "CLI tool for datasets."
   (:require [clojure.string :as str]
             [babashka.fs :as fs]
             [babashka.cli :as cli]

@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.stories.view-stories
+  "Namespace for bb-web-ds-tools.stories.view-stories."
   (:require [bb-web-ds-tools.views.landing :as landing]
             [bb-web-ds-tools.views.malli :as malli]
             [re-frame.core :as rf]

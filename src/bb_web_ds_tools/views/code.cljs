@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.views.code
+  "View for code."
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             [bb-web-ds-tools.components.common :as c]

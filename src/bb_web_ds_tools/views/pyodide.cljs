@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.views.pyodide
+  "View for pyodide."
   (:require
    [bb-web-ds-tools.components.common :as c]
    [bb-web-ds-tools.components.editor :as editor]

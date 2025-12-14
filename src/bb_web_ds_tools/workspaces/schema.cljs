@@ -1,4 +1,5 @@
-(ns bb-web-ds-tools.workspaces.schema)
+(ns bb-web-ds-tools.workspaces.schema
+  "Workspace management for schema.")
 
 (def schema
   {:workspace/id          {:db/unique :db.unique/identity}

@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.workers.pyodide
+  "Web worker for pyodide."
   (:require
    [cognitect.transit :as t]
    [goog.object :as gobj]))

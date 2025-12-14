@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.utils.worker
+  "Utilities for worker."
   (:require [clojure.core.async :as a]
             [cognitect.transit :as t]))
 

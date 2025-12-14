@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.workers.sci
+  "Web worker for sci."
   (:require
    [cljs-bean.core :refer (->clj)]
    [clojure.edn :as edn]

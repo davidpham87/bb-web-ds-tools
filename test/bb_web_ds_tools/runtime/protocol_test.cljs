@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.runtime.protocol-test
+  "Tests for bb-web-ds-tools.runtime.protocol-test."
   (:require [cljs.test :refer [deftest is testing]]
             [bb-web-ds-tools.runtime.protocol :as protocol]))
 

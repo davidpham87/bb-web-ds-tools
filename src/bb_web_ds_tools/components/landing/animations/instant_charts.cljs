@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.components.landing.animations.instant-charts
+  "Component for instant-charts."
   (:require
    [bb-web-ds-tools.components.landing.animations.common :refer (clear-rect zenburn)]))
 

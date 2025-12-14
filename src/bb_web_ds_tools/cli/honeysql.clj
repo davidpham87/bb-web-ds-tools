@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.cli.honeysql
+  "CLI tool for honeysql."
   (:require [bb-web-ds-tools.components.honeysql :as h]
             [babashka.cli :as cli]
             [babashka.fs :as fs]))

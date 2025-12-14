@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.core
+  "Namespace for bb-web-ds-tools.core."
   (:require
    [bb-web-ds-tools.components.common :refer (nav-items)]
    [bb-web-ds-tools.components.layout :as layout]

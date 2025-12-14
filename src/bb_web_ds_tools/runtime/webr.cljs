@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.runtime.webr
+  "Runtime support for webr."
   (:require
    [bb-web-ds-tools.components.async-buffer :as ab]
    [bb-web-ds-tools.portal :as portal]

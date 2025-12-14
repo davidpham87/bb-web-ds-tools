@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.runtime.sci
+  "Runtime support for sci."
   (:require [bb-web-ds-tools.utils.worker :as worker]
             [bb-web-ds-tools.views.datasets :as datasets]
             [portal.web :as p]

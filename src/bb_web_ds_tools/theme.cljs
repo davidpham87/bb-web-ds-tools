@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.theme
+  "Namespace for bb-web-ds-tools.theme."
   (:require [bb-web-ds-tools.utils.themes :as themes]))
 
 (def colors

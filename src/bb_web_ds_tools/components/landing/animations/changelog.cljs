@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.components.landing.animations.changelog
+  "Component for changelog."
   (:require
    [bb-web-ds-tools.components.landing.animations.common :refer (clear zenburn)]))
 

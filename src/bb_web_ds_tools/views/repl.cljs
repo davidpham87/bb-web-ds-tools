@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.views.repl
+  "View for repl."
   (:require
    ["monaco-editor/esm/vs/editor/editor.api.js" :refer [KeyCode]]
    [bb-web-ds-tools.components.common :as c]

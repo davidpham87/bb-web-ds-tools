@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.components.landing.animations.workspaces
+  "Component for workspaces."
   (:require
    [bb-web-ds-tools.components.landing.animations.common :refer (clear-rect zenburn)]))
 

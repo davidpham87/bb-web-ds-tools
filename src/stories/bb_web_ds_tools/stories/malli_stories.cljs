@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.stories.malli-stories
+  "Namespace for bb-web-ds-tools.stories.malli-stories."
   (:require [bb-web-ds-tools.components.malli :as malli]
             [reagent.core :as r]))
 

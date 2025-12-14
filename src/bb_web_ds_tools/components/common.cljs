@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.components.common
+  "Component for common."
   (:require [bb-web-ds-tools.theme :as t]
             [re-frame.core :as rf]))
 

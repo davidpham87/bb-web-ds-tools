@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.views.honeysql
+  "View for honeysql."
   (:require [re-frame.core :as rf]
             [reagent.core :as r]
             [bb-web-ds-tools.components.common :as c]

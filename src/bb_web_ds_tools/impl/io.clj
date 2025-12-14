@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.impl.io
+  "Implementation details for io."
   (:require [clojure.string :as str]
             [clojure.edn :as edn]
             [clojure.pprint :as pprint]

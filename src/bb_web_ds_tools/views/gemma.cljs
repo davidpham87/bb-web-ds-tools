@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.views.gemma
+  "View for gemma."
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             [fork.reagent :as fork]

@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.views.malli
+  "View for malli."
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             [fork.re-frame :as fork]

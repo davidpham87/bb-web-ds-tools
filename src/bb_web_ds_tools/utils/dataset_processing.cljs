@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.utils.dataset-processing
+  "Utilities for dataset-processing."
   (:require ["papaparse" :as Papa]
             [sci.core :as sci]
             [clojure.string :as str]

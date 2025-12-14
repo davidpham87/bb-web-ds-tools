@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.views.workspaces
+  "View for workspaces."
   (:require [re-frame.core :as rf]
             [reagent.core :as r]
             [bb-web-ds-tools.workspaces.core :as ws]

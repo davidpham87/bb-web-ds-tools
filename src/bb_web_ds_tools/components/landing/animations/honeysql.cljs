@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.components.landing.animations.honeysql
+  "Component for honeysql."
   (:require
    [bb-web-ds-tools.components.landing.animations.common :refer (clear-rect zenburn)]))
 

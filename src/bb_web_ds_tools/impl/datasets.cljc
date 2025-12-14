@@ -1,4 +1,5 @@
-(ns bb-web-ds-tools.impl.datasets)
+(ns bb-web-ds-tools.impl.datasets
+  "Implementation details for datasets.")
 
 (defn detect-structure
   "Detects the structure of the input data.

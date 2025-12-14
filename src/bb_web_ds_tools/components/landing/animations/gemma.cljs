@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.components.landing.animations.gemma
+  "Component for gemma."
   (:require
    [bb-web-ds-tools.components.landing.animations.common :refer (clear zenburn)]))
 

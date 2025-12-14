@@ -1,4 +1,5 @@
-(ns bb-web-ds-tools.utils.themes)
+(ns bb-web-ds-tools.utils.themes
+  "Utilities for themes.")
 
 (def themes
   {:nord

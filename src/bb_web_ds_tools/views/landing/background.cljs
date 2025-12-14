@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.views.landing.background
+  "View for background."
   (:require [reagent.core :as r]))
 
 (defn- update-background-colors

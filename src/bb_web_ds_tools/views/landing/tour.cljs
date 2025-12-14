@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.views.landing.tour
+  "View for tour."
   (:require [reagent.core :as r]
             [bb-web-ds-tools.components.landing :as landing]
             [bb-web-ds-tools.components.landing.animations :as animations]

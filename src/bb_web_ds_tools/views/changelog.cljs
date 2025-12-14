@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.views.changelog
+  "View for changelog."
   (:require [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.navigation :as nav]))
 

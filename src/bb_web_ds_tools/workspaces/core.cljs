@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.workspaces.core
+  "Workspace management for core."
   (:require [re-frame.core :as rf]
             [reagent.core :as r]
             [datascript.core :as d]

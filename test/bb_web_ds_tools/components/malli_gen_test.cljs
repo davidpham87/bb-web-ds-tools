@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.components.malli-gen-test
+  "Tests for bb-web-ds-tools.components.malli-gen-test."
   (:require [cljs.test :refer [deftest is testing]]
             [clojure.test.check :as tc]
             [clojure.test.check.generators :as gen]

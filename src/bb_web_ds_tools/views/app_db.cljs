@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.views.app-db
+  "View for app-db."
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             [cljs.reader :as reader]

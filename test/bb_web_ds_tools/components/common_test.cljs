@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.components.common-test
+  "Tests for bb-web-ds-tools.components.common-test."
   (:require [cljs.test :refer [deftest is testing]]
             [bb-web-ds-tools.components.common :as c]))
 

@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.views.landing.features
+  "View for features."
   (:require [bb-web-ds-tools.components.landing :as landing]
             [bb-web-ds-tools.components.landing.animations :as animations]
             [bb-web-ds-tools.theme :as t]))

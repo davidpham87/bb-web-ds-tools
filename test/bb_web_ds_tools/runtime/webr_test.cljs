@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.runtime.webr-test
+  "Tests for bb-web-ds-tools.runtime.webr-test."
   (:require [cljs.test :refer-macros [deftest is testing async use-fixtures]]
             [bb-web-ds-tools.runtime.webr :as webr]
             [portal.web :as p]

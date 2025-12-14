@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.runtime.pyodide
+  "Runtime support for pyodide."
   (:require [bb-web-ds-tools.utils.worker :as worker]
             [portal.web :as p]
             [re-frame.core :as rf]

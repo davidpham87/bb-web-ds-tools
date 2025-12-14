@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.components.async-buffer
+  "Component for async-buffer."
   (:require [cljs.core.async :as a]))
 
 (defn create

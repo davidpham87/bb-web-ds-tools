@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.components.landing.animations.settings
+  "Component for settings."
   (:require
    [bb-web-ds-tools.components.landing.animations.common :refer (clear zenburn)]))
 

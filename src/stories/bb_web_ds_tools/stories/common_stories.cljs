@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.stories.common-stories
+  "Namespace for bb-web-ds-tools.stories.common-stories."
   (:require [bb-web-ds-tools.components.common :as common]
             [reagent.core :as r]
             [goog.object :as gobj]))

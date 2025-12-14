@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.events.theme
+  "Event handlers for theme."
   (:require [re-frame.core :as rf]
             [bb-web-ds-tools.utils.themes :as themes]
             [bb-web-ds-tools.theme :as t]

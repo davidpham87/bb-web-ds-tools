@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.portal
+  "Namespace for bb-web-ds-tools.portal."
   (:require
    [portal.web :as p]
    [re-frame.core :as rf]

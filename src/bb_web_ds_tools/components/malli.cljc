@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.components.malli
+  "Component for malli."
   (:require [clojure.walk :as walk]
             [malli.provider :as mp]
             [malli.generator :as mg]

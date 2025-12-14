@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.views.datasets
+  "View for datasets."
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             [clojure.string :as str]

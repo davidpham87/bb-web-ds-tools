@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.components.landing
+  "Component for landing."
   (:require [reagent.core :as r]
             [bb-web-ds-tools.theme :as t]
             [re-frame.core :as rf]))

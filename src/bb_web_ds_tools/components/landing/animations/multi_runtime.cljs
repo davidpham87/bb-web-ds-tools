@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.components.landing.animations.multi-runtime
+  "Component for multi-runtime."
   (:require
    [bb-web-ds-tools.components.landing.animations.common :refer (clear-rect zenburn)]))
 

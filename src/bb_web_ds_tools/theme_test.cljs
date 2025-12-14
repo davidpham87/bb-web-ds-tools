@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.theme-test
+  "Tests for bb-web-ds-tools.theme-test."
   (:require [cljs.test :refer [deftest is testing use-fixtures]]
             [re-frame.core :as rf]
             [bb-web-ds-tools.views.settings :as settings]

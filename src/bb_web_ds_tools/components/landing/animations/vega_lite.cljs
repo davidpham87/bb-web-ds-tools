@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.components.landing.animations.vega-lite
+  "Component for vega-lite."
   (:require
    [bb-web-ds-tools.components.landing.animations.common :refer (clear-rect zenburn)]))
 

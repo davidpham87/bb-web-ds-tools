@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.components.layout
+  "Component for layout."
   (:require [bb-web-ds-tools.theme :as t]
             [reagent.core :as r]
             [re-frame.core :as rf]))

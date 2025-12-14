@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.stories.editor-stories
+  "Namespace for bb-web-ds-tools.stories.editor-stories."
   (:require [bb-web-ds-tools.components.editor :as editor]
             [reagent.core :as r]
             [goog.object :as gobj]))

@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.components.honeysql
+  "Component for honeysql."
   (:require [honey.sql :as h]
             [sci.core :as sci]))
 

@@ -1,4 +1,5 @@
 (ns bb-web-ds-tools.components.editor
+  "Component for editor."
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             ["react-dom" :as react-dom]
