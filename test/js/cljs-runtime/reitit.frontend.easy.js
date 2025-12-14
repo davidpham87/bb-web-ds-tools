@@ -45,8 +45,8 @@ return (on_navigate.cljs$core$IFn$_invoke$arity$2 ? on_navigate.cljs$core$IFn$_i
  *   differently, convert the collections to strings first.
  */
 reitit.frontend.easy.href = (function reitit$frontend$easy$href(var_args){
-var G__28708 = arguments.length;
-switch (G__28708) {
+var G__28693 = arguments.length;
+switch (G__28693) {
 case 1:
 return reitit.frontend.easy.href.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -102,8 +102,8 @@ return reitit.frontend.history.href.cljs$core$IFn$_invoke$arity$5(cljs.core.dere
  *   https://developer.mozilla.org/en-US/docs/Web/API/History/pushState
  */
 reitit.frontend.easy.push_state = (function reitit$frontend$easy$push_state(var_args){
-var G__28721 = arguments.length;
-switch (G__28721) {
+var G__28703 = arguments.length;
+switch (G__28703) {
 case 1:
 return reitit.frontend.easy.push_state.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -159,8 +159,8 @@ return reitit.frontend.history.push_state.cljs$core$IFn$_invoke$arity$5(cljs.cor
  *   https://developer.mozilla.org/en-US/docs/Web/API/History/replaceState
  */
 reitit.frontend.easy.replace_state = (function reitit$frontend$easy$replace_state(var_args){
-var G__28752 = arguments.length;
-switch (G__28752) {
+var G__28725 = arguments.length;
+switch (G__28725) {
 case 1:
 return reitit.frontend.easy.replace_state.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -218,8 +218,8 @@ return reitit.frontend.history.replace_state.cljs$core$IFn$_invoke$arity$5(cljs.
  *   https://developer.mozilla.org/en-US/docs/Web/API/History/replaceState
  */
 reitit.frontend.easy.navigate = (function reitit$frontend$easy$navigate(var_args){
-var G__28756 = arguments.length;
-switch (G__28756) {
+var G__28758 = arguments.length;
+switch (G__28758) {
 case 1:
 return reitit.frontend.easy.navigate.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -261,8 +261,8 @@ return reitit.frontend.history.navigate.cljs$core$IFn$_invoke$arity$3(cljs.core.
  *   update fn will see string values for all query params.
  */
 reitit.frontend.easy.set_query = (function reitit$frontend$easy$set_query(var_args){
-var G__28764 = arguments.length;
-switch (G__28764) {
+var G__28765 = arguments.length;
+switch (G__28765) {
 case 1:
 return reitit.frontend.easy.set_query.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 

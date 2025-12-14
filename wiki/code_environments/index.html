@@ -573,6 +573,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#3-r-webr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. R (WebR)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-accessing-global-datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Accessing Global Datasets
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1183,6 +1205,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#3-r-webr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. R (WebR)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-accessing-global-datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Accessing Global Datasets
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1236,21 +1280,19 @@ rich data visualization.</p>
 <ol>
 <li>Navigate to the <strong>Code</strong> view.</li>
 <li>Select the <strong>Clojure</strong> tab.</li>
-<li>
-<p>Paste the following code to manipulate our example data:</p>
-<p>```clojure
-(def data
-  [{:id 1 :score 12.5 :category "a"}
-   {:id 2 :score 10.2 :category "b"}
-   {:id 3 :score 8.7  :category "c"}])</p>
-<p>;; Calculate average score
-(let [scores (map :score data)]
-  (/ (reduce + scores) (count scores)))
-```</p>
-</li>
-<li>
-<p>Press <strong>Ctrl+Enter</strong> (or <strong>Cmd+Enter</strong>).</p>
-</li>
+<li>Paste the following code to manipulate our example data:</li>
+</ol>
+<pre><code class="language-clojure">    (def data
+      [{:id 1 :score 12.5 :category &quot;a&quot;}
+       {:id 2 :score 10.2 :category &quot;b&quot;}
+       {:id 3 :score 8.7  :category &quot;c&quot;}])
+
+    ;; Calculate average score
+    (let [scores (map :score data)]
+      (/ (reduce + scores) (count scores)))
+</code></pre>
+<ol>
+<li>Press <strong>Ctrl+Enter</strong> (or <strong>Cmd+Enter</strong>).</li>
 <li>The result (<code>10.466...</code>) will appear in the Portal inspector on the right.</li>
 </ol>
 <h3 id="2-python-pyodide">2. Python (Pyodide)</h3>
@@ -1261,23 +1303,22 @@ standard libraries and scientific packages.</p>
 <li>Select the <strong>Python</strong> tab.</li>
 <li>(Optional) Wait for the runtime to initialize (look for the "Ready"
     indicator).</li>
-<li>
-<p>Execute the following code:</p>
-<p>```python
-import pandas as pd</p>
-<h1 id="define-the-example-dataframe">Define the example dataframe</h1>
-<p>df = pd.DataFrame([
-    {"id": 1, "score": 12.5, "category": "a"},
-    {"id": 2, "score": 10.2, "category": "b"},
-    {"id": 3, "score": 8.7,  "category": "c"}
-])</p>
-<h1 id="calculate-summary-statistics">Calculate summary statistics</h1>
-<p>df.describe()
-```</p>
-</li>
-<li>
-<p>Press <strong>Ctrl+Enter</strong>.</p>
-</li>
+<li>Execute the following code:</li>
+</ol>
+<pre><code class="language-python">    import pandas as pd
+
+    # Define the example dataframe
+    df = pd.DataFrame([
+        {&quot;id&quot;: 1, &quot;score&quot;: 12.5, &quot;category&quot;: &quot;a&quot;},
+        {&quot;id&quot;: 2, &quot;score&quot;: 10.2, &quot;category&quot;: &quot;b&quot;},
+        {&quot;id&quot;: 3, &quot;score&quot;: 8.7,  &quot;category&quot;: &quot;c&quot;}
+    ])
+
+    # Calculate summary statistics
+    df.describe()
+</code></pre>
+<ol>
+<li>Press <strong>Ctrl+Enter</strong>.</li>
 <li>A rich table representation of the dataframe summary will appear in Portal.</li>
 </ol>
 <h3 id="3-r-webr">3. R (WebR)</h3>
@@ -1286,22 +1327,20 @@ import pandas as pd</p>
 <ol>
 <li>Select the <strong>R</strong> tab.</li>
 <li>(Optional) Wait for the runtime to initialize.</li>
-<li>
-<p>Execute the following R code:</p>
-<p>```r</p>
-<h1 id="create-the-dataframe">Create the dataframe</h1>
-<p>df &lt;- data.frame(
-  id = c(1, 2, 3),
-  score = c(12.5, 10.2, 8.7),
-  category = c("a", "b", "c")
-)</p>
-<h1 id="perform-a-linear-model-trivial-example">Perform a linear model (trivial example)</h1>
-<p>summary(lm(score ~ id, data = df))
-```</p>
-</li>
-<li>
-<p>Press <strong>Ctrl+Enter</strong>.</p>
-</li>
+<li>Execute the following R code:</li>
+</ol>
+<pre><code class="language-r">    # Create the dataframe
+    df &lt;- data.frame(
+      id = c(1, 2, 3),
+      score = c(12.5, 10.2, 8.7),
+      category = c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)
+    )
+
+    # Perform a linear model (trivial example)
+    summary(lm(score ~ id, data = df))
+</code></pre>
+<ol>
+<li>Press <strong>Ctrl+Enter</strong>.</li>
 <li>The summary text output will be displayed in Portal.</li>
 </ol>
 <h3 id="4-accessing-global-datasets">4. Accessing Global Datasets</h3>

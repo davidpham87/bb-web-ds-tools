@@ -1,0 +1,9 @@
+{
+"version":3,
+"file":"shadow.js.shim.module$$sqlite_org$sqlite_wasm.js",
+"lineCount":5,
+"mappings":"AAAAA,IAAKC,CAAAA,OAAL,CAAa,+CAAb,CAAA;AACAD,IAAKC,CAAAA,OAAL,CAAa,sDAAb,CAAA;AACAC,MAAOC,CAAAA,EAAGC,CAAAA,IAAKC,CAAAA,8BAAf,GAAgDH,MAAOC,CAAAA,EAAGG,CAAAA,cAAV,CAAyB,yBAAzB,CAAhD,GAAsGC,aAAA,CAAc,yBAAd,CAAtG;AACAC,oDAAqDC,CAAAA,OAArD,GAA+DP,MAAOC,CAAAA,EAAGC,CAAAA,IAAKC,CAAAA,8BAA9E;;",
+"sources":["shadow.js.shim.module$$sqlite_org$sqlite_wasm.js"],
+"sourcesContent":["goog.provide(\"shadow.js.shim.module$$sqlite_org$sqlite_wasm\");\ngoog.provide(\"module$shadow_js_shim_module$$sqlite_org$sqlite_wasm\");\nshadow.js.shim.module$$sqlite_org$sqlite_wasm = shadow.js.nativeProvides[\"@sqlite.org/sqlite-wasm\"] = shadow$bridge(\"@sqlite.org/sqlite-wasm\");\nmodule$shadow_js_shim_module$$sqlite_org$sqlite_wasm.default = shadow.js.shim.module$$sqlite_org$sqlite_wasm;\n"],
+"names":["goog","provide","shadow","js","shim","module$$sqlite_org$sqlite_wasm","nativeProvides","shadow$bridge","module$shadow_js_shim_module$$sqlite_org$sqlite_wasm","default"]
+}

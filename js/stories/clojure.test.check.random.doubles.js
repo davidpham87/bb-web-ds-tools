@@ -40,10 +40,10 @@ while(true){
 if((i === (0))){
 return x;
 } else {
-var G__30519 = (i - (1));
-var G__30520 = (x / (2));
-i = G__30519;
-x = G__30520;
+var G__30514 = (i - (1));
+var G__30515 = (x / (2));
+i = G__30514;
+x = G__30515;
 continue;
 }
 break;

@@ -47,12 +47,12 @@ ctx.fillRect((start_x + (show_len * 8.5)),(y - (8)),(2),(16));
 } else {
 }
 
-var G__51716 = cljs.core.rest(lines);
-var G__51717 = (line_idx + (1));
-var G__51718 = (chars_left - show_len);
-lines = G__51716;
-line_idx = G__51717;
-chars_left = G__51718;
+var G__51803 = cljs.core.rest(lines);
+var G__51804 = (line_idx + (1));
+var G__51805 = (chars_left - show_len);
+lines = G__51803;
+line_idx = G__51804;
+chars_left = G__51805;
 continue;
 } else {
 return null;
@@ -63,14 +63,14 @@ break;
 if((phase < (type_duration + highlight_duration))){
 (ctx.fillStyle = "rgba(255, 255, 255, 0.2)");
 
-var n__5616__auto___51719 = cljs.core.count(code_lines);
-var i_51720 = (0);
+var n__5616__auto___51807 = cljs.core.count(code_lines);
+var i_51808 = (0);
 while(true){
-if((i_51720 < n__5616__auto___51719)){
-ctx.fillRect((start_x - (2)),((start_y + (i_51720 * line_h)) - (10)),(cljs.core.count(cljs.core.nth.cljs$core$IFn$_invoke$arity$2(code_lines,i_51720)) * 8.5),(20));
+if((i_51808 < n__5616__auto___51807)){
+ctx.fillRect((start_x - (2)),((start_y + (i_51808 * line_h)) - (10)),(cljs.core.count(cljs.core.nth.cljs$core$IFn$_invoke$arity$2(code_lines,i_51808)) * 8.5),(20));
 
-var G__51721 = (i_51720 + (1));
-i_51720 = G__51721;
+var G__51809 = (i_51808 + (1));
+i_51808 = G__51809;
 continue;
 } else {
 }
@@ -85,8 +85,8 @@ while(true){
 if((i < n__5616__auto__)){
 ctx.fillText(cljs.core.nth.cljs$core$IFn$_invoke$arity$2(code_lines,i),start_x,(start_y + (i * line_h)));
 
-var G__51722 = (i + (1));
-i = G__51722;
+var G__51810 = (i + (1));
+i = G__51810;
 continue;
 } else {
 return null;
@@ -97,14 +97,14 @@ break;
 if((phase < ((type_duration + highlight_duration) + exec_duration))){
 (ctx.fillStyle = new cljs.core.Keyword("portal.colors","text","portal.colors/text",1967472969).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.code.zenburn));
 
-var n__5616__auto___51723 = cljs.core.count(code_lines);
-var i_51724 = (0);
+var n__5616__auto___51811 = cljs.core.count(code_lines);
+var i_51812 = (0);
 while(true){
-if((i_51724 < n__5616__auto___51723)){
-ctx.fillText(cljs.core.nth.cljs$core$IFn$_invoke$arity$2(code_lines,i_51724),start_x,(start_y + (i_51724 * line_h)));
+if((i_51812 < n__5616__auto___51811)){
+ctx.fillText(cljs.core.nth.cljs$core$IFn$_invoke$arity$2(code_lines,i_51812),start_x,(start_y + (i_51812 * line_h)));
 
-var G__51725 = (i_51724 + (1));
-i_51724 = G__51725;
+var G__51813 = (i_51812 + (1));
+i_51812 = G__51813;
 continue;
 } else {
 }
@@ -132,14 +132,14 @@ return (ctx.globalAlpha = 1.0);
 } else {
 (ctx.fillStyle = new cljs.core.Keyword("portal.colors","text","portal.colors/text",1967472969).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.code.zenburn));
 
-var n__5616__auto___51726 = cljs.core.count(code_lines);
-var i_51727 = (0);
+var n__5616__auto___51818 = cljs.core.count(code_lines);
+var i_51819 = (0);
 while(true){
-if((i_51727 < n__5616__auto___51726)){
-ctx.fillText(cljs.core.nth.cljs$core$IFn$_invoke$arity$2(code_lines,i_51727),start_x,(start_y + (i_51727 * line_h)));
+if((i_51819 < n__5616__auto___51818)){
+ctx.fillText(cljs.core.nth.cljs$core$IFn$_invoke$arity$2(code_lines,i_51819),start_x,(start_y + (i_51819 * line_h)));
 
-var G__51728 = (i_51727 + (1));
-i_51727 = G__51728;
+var G__51820 = (i_51819 + (1));
+i_51819 = G__51820;
 continue;
 } else {
 }
@@ -154,8 +154,8 @@ while(true){
 if((i < n__5616__auto__)){
 ctx.fillText(cljs.core.nth.cljs$core$IFn$_invoke$arity$2(result_lines,i),start_x,(start_y + (((cljs.core.count(code_lines) + (1)) + i) * line_h)));
 
-var G__51730 = (i + (1));
-i = G__51730;
+var G__51827 = (i + (1));
+i = G__51827;
 continue;
 } else {
 return null;

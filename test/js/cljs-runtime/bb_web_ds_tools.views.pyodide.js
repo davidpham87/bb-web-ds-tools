@@ -10,11 +10,11 @@ bb_web_ds_tools.views.pyodide.plot_code = "source = vd.data.cars()\n\nchart = al
 /**
  * initial code from the console
  */
-bb_web_ds_tools.views.pyodide.initial_code = (function (){var import_fn = (function (p1__49270_SHARP_,p2__49271_SHARP_){
-return ["import ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(p1__49270_SHARP_),(cljs.core.truth_(p2__49271_SHARP_)?[" as ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(p2__49271_SHARP_)].join(''):null)].join('');
+bb_web_ds_tools.views.pyodide.initial_code = (function (){var import_fn = (function (p1__49271_SHARP_,p2__49272_SHARP_){
+return ["import ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(p1__49271_SHARP_),(cljs.core.truth_(p2__49272_SHARP_)?[" as ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(p2__49272_SHARP_)].join(''):null)].join('');
 });
-var install_fn = (function (p1__49272_SHARP_){
-return ["await micropip.install(\"",cljs.core.str.cljs$core$IFn$_invoke$arity$1(p1__49272_SHARP_),"\")"].join('');
+var install_fn = (function (p1__49273_SHARP_){
+return ["await micropip.install(\"",cljs.core.str.cljs$core$IFn$_invoke$arity$1(p1__49273_SHARP_),"\")"].join('');
 });
 return clojure.string.join.cljs$core$IFn$_invoke$arity$2("\n",new cljs.core.PersistentVector(null, 13, 5, cljs.core.PersistentVector.EMPTY_NODE, ["import micropip","from datasets import datasets","",clojure.string.join.cljs$core$IFn$_invoke$arity$2("\n",cljs.core.mapv.cljs$core$IFn$_invoke$arity$2(install_fn,bb_web_ds_tools.views.pyodide.packages)),"",import_fn("numpy","np"),import_fn("pandas","pd"),import_fn("altair","alt"),import_fn("sklearn.linear_model","lm"),import_fn("cytoolz","tz"),import_fn("vega_datasets","vd"),"",bb_web_ds_tools.views.pyodide.plot_code], null));
 })();
@@ -22,27 +22,27 @@ return clojure.string.join.cljs$core$IFn$_invoke$arity$2("\n",new cljs.core.Pers
  * Code run at start of pyodide
  */
 bb_web_ds_tools.views.pyodide.setup_code = ["import pyodide_js\nawait pyodide_js.loadPackage('micropip')","\n",bb_web_ds_tools.views.pyodide.initial_code].join('');
-re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","handle-dataset-update","bb-web-ds-tools.views.pyodide/handle-dataset-update",-1582082681),(function (p__49280,p__49281){
-var map__49283 = p__49280;
-var map__49283__$1 = cljs.core.__destructure_map(map__49283);
-var db = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49283__$1,new cljs.core.Keyword(null,"db","db",993250759));
-var vec__49284 = p__49281;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49284,(0),null);
-var map__49287 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49284,(1),null);
-var map__49287__$1 = cljs.core.__destructure_map(map__49287);
-var key = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49287__$1,new cljs.core.Keyword(null,"key","key",-1516042587));
-var value = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49287__$1,new cljs.core.Keyword(null,"value","value",305978217));
+re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","handle-dataset-update","bb-web-ds-tools.views.pyodide/handle-dataset-update",-1582082681),(function (p__49278,p__49279){
+var map__49280 = p__49278;
+var map__49280__$1 = cljs.core.__destructure_map(map__49280);
+var db = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49280__$1,new cljs.core.Keyword(null,"db","db",993250759));
+var vec__49281 = p__49279;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49281,(0),null);
+var map__49284 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49281,(1),null);
+var map__49284__$1 = cljs.core.__destructure_map(map__49284);
+var key = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49284__$1,new cljs.core.Keyword(null,"key","key",-1516042587));
+var value = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49284__$1,new cljs.core.Keyword(null,"value","value",305978217));
 return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"fx","fx",-1237829572),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"dispatch","dispatch",1319337009),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.datasets","add-dataset","bb-web-ds-tools.views.datasets/add-dataset",1462625692),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"name","name",1843675177),key,new cljs.core.Keyword(null,"data","data",-232669377),value], null)], null)], null)], null)], null);
 }));
-re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","handle-dataset-delete","bb-web-ds-tools.views.pyodide/handle-dataset-delete",-1207199684),(function (p__49290,p__49291){
-var map__49292 = p__49290;
-var map__49292__$1 = cljs.core.__destructure_map(map__49292);
-var db = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49292__$1,new cljs.core.Keyword(null,"db","db",993250759));
-var vec__49293 = p__49291;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49293,(0),null);
-var map__49296 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49293,(1),null);
-var map__49296__$1 = cljs.core.__destructure_map(map__49296);
-var key = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49296__$1,new cljs.core.Keyword(null,"key","key",-1516042587));
+re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","handle-dataset-delete","bb-web-ds-tools.views.pyodide/handle-dataset-delete",-1207199684),(function (p__49285,p__49286){
+var map__49287 = p__49285;
+var map__49287__$1 = cljs.core.__destructure_map(map__49287);
+var db = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49287__$1,new cljs.core.Keyword(null,"db","db",993250759));
+var vec__49288 = p__49286;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49288,(0),null);
+var map__49291 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49288,(1),null);
+var map__49291__$1 = cljs.core.__destructure_map(map__49291);
+var key = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49291__$1,new cljs.core.Keyword(null,"key","key",-1516042587));
 return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"fx","fx",-1237829572),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"dispatch","dispatch",1319337009),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.datasets","delete-dataset","bb-web-ds-tools.views.datasets/delete-dataset",243110744),key], null)], null)], null)], null);
 }));
 /**
@@ -55,15 +55,15 @@ return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"fx
  *  nil: Dispatches events.
  */
 bb_web_ds_tools.views.pyodide.on_worker_message = (function bb_web_ds_tools$views$pyodide$on_worker_message(msg){
-var map__49298 = msg;
-var map__49298__$1 = cljs.core.__destructure_map(map__49298);
-var type = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49298__$1,new cljs.core.Keyword(null,"type","type",1174270348));
-var text = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49298__$1,new cljs.core.Keyword(null,"text","text",-1790561697));
-var value = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49298__$1,new cljs.core.Keyword(null,"value","value",305978217));
-var key = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49298__$1,new cljs.core.Keyword(null,"key","key",-1516042587));
-var G__49307 = cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(type);
-var G__49307__$1 = (((G__49307 instanceof cljs.core.Keyword))?G__49307.fqn:null);
-switch (G__49307__$1) {
+var map__49292 = msg;
+var map__49292__$1 = cljs.core.__destructure_map(map__49292);
+var type = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49292__$1,new cljs.core.Keyword(null,"type","type",1174270348));
+var text = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49292__$1,new cljs.core.Keyword(null,"text","text",-1790561697));
+var value = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49292__$1,new cljs.core.Keyword(null,"value","value",305978217));
+var key = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49292__$1,new cljs.core.Keyword(null,"key","key",-1516042587));
+var G__49300 = cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(type);
+var G__49300__$1 = (((G__49300 instanceof cljs.core.Keyword))?G__49300.fqn:null);
+switch (G__49300__$1) {
 case "ready":
 return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","on-ready","bb-web-ds-tools.views.pyodide/on-ready",1916532562)], null));
 
@@ -93,17 +93,17 @@ return console.warn("Unknown worker msg:",msg);
 
 }
 });
-re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","initialize","bb-web-ds-tools.views.pyodide/initialize",-110047080),(function (p__49308,_){
-var map__49309 = p__49308;
-var map__49309__$1 = cljs.core.__destructure_map(map__49309);
-var db = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49309__$1,new cljs.core.Keyword(null,"db","db",993250759));
+re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","initialize","bb-web-ds-tools.views.pyodide/initialize",-110047080),(function (p__49307,_){
+var map__49308 = p__49307;
+var map__49308__$1 = cljs.core.__destructure_map(map__49308);
+var db = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49308__$1,new cljs.core.Keyword(null,"db","db",993250759));
 var exists_QMARK_ = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(db,new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"pyodide","pyodide",-2009894763),new cljs.core.Keyword(null,"default","default",-1987822328),new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","code","bb-web-ds-tools.views.pyodide/code",-1315684971)], null));
 var ready_QMARK_ = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(db,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"pyodide","pyodide",-2009894763),new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","ready?","bb-web-ds-tools.views.pyodide/ready?",1283113202)], null));
-return new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"db","db",993250759),cljs.core.assoc_in((function (){var G__49311 = db;
+return new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"db","db",993250759),cljs.core.assoc_in((function (){var G__49309 = db;
 if(cljs.core.not(exists_QMARK_)){
-return cljs.core.assoc_in(G__49311,new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"pyodide","pyodide",-2009894763),new cljs.core.Keyword(null,"default","default",-1987822328),new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","code","bb-web-ds-tools.views.pyodide/code",-1315684971)], null),bb_web_ds_tools.views.pyodide.initial_code);
+return cljs.core.assoc_in(G__49309,new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"pyodide","pyodide",-2009894763),new cljs.core.Keyword(null,"default","default",-1987822328),new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","code","bb-web-ds-tools.views.pyodide/code",-1315684971)], null),bb_web_ds_tools.views.pyodide.initial_code);
 } else {
-return G__49311;
+return G__49309;
 }
 })(),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"pyodide","pyodide",-2009894763),new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","loading?","bb-web-ds-tools.views.pyodide/loading?",445355050)], null),cljs.core.not(ready_QMARK_)),new cljs.core.Keyword(null,"fx","fx",-1237829572),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [(cljs.core.truth_(ready_QMARK_)?null:new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","load-runtime","bb-web-ds-tools.views.pyodide/load-runtime",-658206477)], null))], null)], null);
 }));
@@ -125,28 +125,28 @@ return new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","ready?","bb-web-ds
 re_frame.core.reg_sub.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","mac-os?","bb-web-ds-tools.views.pyodide/mac-os?",-1659496014),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (db,_){
 return cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(db,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"platform","platform",-1086422114),new cljs.core.Keyword(null,"mac-os?","mac-os?",-1478507137)], null));
 })], 0));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","set-code","bb-web-ds-tools.views.pyodide/set-code",-948832189),(function (db,p__49328){
-var vec__49329 = p__49328;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49329,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49329,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","set-code","bb-web-ds-tools.views.pyodide/set-code",-948832189),(function (db,p__49336){
+var vec__49337 = p__49336;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49337,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49337,(1),null);
 return cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"pyodide","pyodide",-2009894763),new cljs.core.Keyword(null,"default","default",-1987822328),new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","code","bb-web-ds-tools.views.pyodide/code",-1315684971)], null),v);
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","set-loading","bb-web-ds-tools.views.pyodide/set-loading",-844163320),(function (db,p__49333){
-var vec__49335 = p__49333;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49335,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49335,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","set-loading","bb-web-ds-tools.views.pyodide/set-loading",-844163320),(function (db,p__49341){
+var vec__49342 = p__49341;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49342,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49342,(1),null);
 return cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"pyodide","pyodide",-2009894763),new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","loading?","bb-web-ds-tools.views.pyodide/loading?",445355050)], null),v);
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","set-ready","bb-web-ds-tools.views.pyodide/set-ready",-104921681),(function (db,p__49338){
-var vec__49339 = p__49338;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49339,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49339,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","set-ready","bb-web-ds-tools.views.pyodide/set-ready",-104921681),(function (db,p__49345){
+var vec__49346 = p__49345;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49346,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49346,(1),null);
 return cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"pyodide","pyodide",-2009894763),new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","ready?","bb-web-ds-tools.views.pyodide/ready?",1283113202)], null),v);
 }));
-re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","on-ready","bb-web-ds-tools.views.pyodide/on-ready",1916532562),(function (p__49352,_){
-var map__49353 = p__49352;
-var map__49353__$1 = cljs.core.__destructure_map(map__49353);
-var db = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49353__$1,new cljs.core.Keyword(null,"db","db",993250759));
+re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","on-ready","bb-web-ds-tools.views.pyodide/on-ready",1916532562),(function (p__49350,_){
+var map__49351 = p__49350;
+var map__49351__$1 = cljs.core.__destructure_map(map__49351);
+var db = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49351__$1,new cljs.core.Keyword(null,"db","db",993250759));
 return new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"db","db",993250759),cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"pyodide","pyodide",-2009894763),new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","ready?","bb-web-ds-tools.views.pyodide/ready?",1283113202)], null),true),new cljs.core.Keyword(null,"fx","fx",-1237829572),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"dispatch","dispatch",1319337009),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","set-loading","bb-web-ds-tools.views.pyodide/set-loading",-844163320),false], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"dispatch","dispatch",1319337009),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","run-code","bb-web-ds-tools.views.pyodide/run-code",-897547225),bb_web_ds_tools.views.pyodide.setup_code], null)], null)], null)], null);
 }));
 re_frame.core.reg_fx(new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","load-runtime","bb-web-ds-tools.views.pyodide/load-runtime",-658206477),(function (_){
@@ -158,10 +158,10 @@ return bb_web_ds_tools.runtime.pyodide.eval_in_worker(code);
 re_frame.core.reg_fx(new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","sync-datasets","bb-web-ds-tools.views.pyodide/sync-datasets",-336788001),(function (datasets){
 return bb_web_ds_tools.runtime.pyodide.sync_datasets(datasets);
 }));
-re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","run-code","bb-web-ds-tools.views.pyodide/run-code",-897547225),(function (_,p__49354){
-var vec__49355 = p__49354;
-var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49355,(0),null);
-var code = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49355,(1),null);
+re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","run-code","bb-web-ds-tools.views.pyodide/run-code",-897547225),(function (_,p__49353){
+var vec__49354 = p__49353;
+var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49354,(0),null);
+var code = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49354,(1),null);
 return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"fx","fx",-1237829572),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.pyodide","execute-python","bb-web-ds-tools.views.pyodide/execute-python",2027548435),code], null)], null)], null);
 }));
 /**
@@ -178,10 +178,10 @@ var code_sub = re_frame.core.subscribe.cljs$core$IFn$_invoke$arity$1(new cljs.co
 return reagent.core.create_class.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"component-did-mount","component-did-mount",-1126910518),(function (this$){
 var datasets__$1 = cljs.core.second(reagent.core.argv(this$));
 return bb_web_ds_tools.runtime.pyodide.sync_datasets(datasets__$1);
-}),new cljs.core.Keyword(null,"component-did-update","component-did-update",-1468549173),(function (this$,p__49361){
-var vec__49362 = p__49361;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49362,(0),null);
-var old_datasets = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49362,(1),null);
+}),new cljs.core.Keyword(null,"component-did-update","component-did-update",-1468549173),(function (this$,p__49360){
+var vec__49361 = p__49360;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49361,(0),null);
+var old_datasets = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49361,(1),null);
 var new_datasets = cljs.core.second(reagent.core.argv(this$));
 if(cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(old_datasets,new_datasets)){
 return bb_web_ds_tools.runtime.pyodide.sync_datasets(new_datasets);

@@ -61,65 +61,65 @@ return "vs";
 return "vs-dark";
 }
 });
-re_frame.core.reg_fx(new cljs.core.Keyword("theme","apply","theme/apply",1476395918),(function (p__24849){
-var map__24850 = p__24849;
-var map__24850__$1 = cljs.core.__destructure_map(map__24850);
-var name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24850__$1,new cljs.core.Keyword(null,"name","name",1843675177));
-var data = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24850__$1,new cljs.core.Keyword(null,"data","data",-232669377));
-var css_vars = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24850__$1,new cljs.core.Keyword(null,"css-vars","css-vars",57967357));
+re_frame.core.reg_fx(new cljs.core.Keyword("theme","apply","theme/apply",1476395918),(function (p__24847){
+var map__24848 = p__24847;
+var map__24848__$1 = cljs.core.__destructure_map(map__24848);
+var name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24848__$1,new cljs.core.Keyword(null,"name","name",1843675177));
+var data = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24848__$1,new cljs.core.Keyword(null,"data","data",-232669377));
+var css_vars = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24848__$1,new cljs.core.Keyword(null,"css-vars","css-vars",57967357));
 var root_24870 = document.documentElement;
 var body_24871 = document.body;
-var seq__24851_24872 = cljs.core.seq(css_vars);
-var chunk__24852_24873 = null;
-var count__24853_24874 = (0);
-var i__24854_24875 = (0);
+var seq__24849_24872 = cljs.core.seq(css_vars);
+var chunk__24850_24873 = null;
+var count__24851_24874 = (0);
+var i__24852_24875 = (0);
 while(true){
-if((i__24854_24875 < count__24853_24874)){
-var vec__24861_24876 = chunk__24852_24873.cljs$core$IIndexed$_nth$arity$2(null,i__24854_24875);
+if((i__24852_24875 < count__24851_24874)){
+var vec__24861_24876 = chunk__24850_24873.cljs$core$IIndexed$_nth$arity$2(null,i__24852_24875);
 var k_24877 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24861_24876,(0),null);
 var v_24878 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24861_24876,(1),null);
 root_24870.style.setProperty(k_24877,v_24878);
 
 
-var G__24879 = seq__24851_24872;
-var G__24880 = chunk__24852_24873;
-var G__24881 = count__24853_24874;
-var G__24882 = (i__24854_24875 + (1));
-seq__24851_24872 = G__24879;
-chunk__24852_24873 = G__24880;
-count__24853_24874 = G__24881;
-i__24854_24875 = G__24882;
+var G__24879 = seq__24849_24872;
+var G__24880 = chunk__24850_24873;
+var G__24881 = count__24851_24874;
+var G__24882 = (i__24852_24875 + (1));
+seq__24849_24872 = G__24879;
+chunk__24850_24873 = G__24880;
+count__24851_24874 = G__24881;
+i__24852_24875 = G__24882;
 continue;
 } else {
-var temp__5825__auto___24883 = cljs.core.seq(seq__24851_24872);
+var temp__5825__auto___24883 = cljs.core.seq(seq__24849_24872);
 if(temp__5825__auto___24883){
-var seq__24851_24884__$1 = temp__5825__auto___24883;
-if(cljs.core.chunked_seq_QMARK_(seq__24851_24884__$1)){
-var c__5548__auto___24885 = cljs.core.chunk_first(seq__24851_24884__$1);
-var G__24886 = cljs.core.chunk_rest(seq__24851_24884__$1);
+var seq__24849_24884__$1 = temp__5825__auto___24883;
+if(cljs.core.chunked_seq_QMARK_(seq__24849_24884__$1)){
+var c__5548__auto___24885 = cljs.core.chunk_first(seq__24849_24884__$1);
+var G__24886 = cljs.core.chunk_rest(seq__24849_24884__$1);
 var G__24887 = c__5548__auto___24885;
 var G__24888 = cljs.core.count(c__5548__auto___24885);
 var G__24889 = (0);
-seq__24851_24872 = G__24886;
-chunk__24852_24873 = G__24887;
-count__24853_24874 = G__24888;
-i__24854_24875 = G__24889;
+seq__24849_24872 = G__24886;
+chunk__24850_24873 = G__24887;
+count__24851_24874 = G__24888;
+i__24852_24875 = G__24889;
 continue;
 } else {
-var vec__24864_24890 = cljs.core.first(seq__24851_24884__$1);
+var vec__24864_24890 = cljs.core.first(seq__24849_24884__$1);
 var k_24891 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24864_24890,(0),null);
 var v_24892 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24864_24890,(1),null);
 root_24870.style.setProperty(k_24891,v_24892);
 
 
-var G__24893 = cljs.core.next(seq__24851_24884__$1);
+var G__24893 = cljs.core.next(seq__24849_24884__$1);
 var G__24894 = null;
 var G__24895 = (0);
 var G__24896 = (0);
-seq__24851_24872 = G__24893;
-chunk__24852_24873 = G__24894;
-count__24853_24874 = G__24895;
-i__24854_24875 = G__24896;
+seq__24849_24872 = G__24893;
+chunk__24850_24873 = G__24894;
+count__24851_24874 = G__24895;
+i__24852_24875 = G__24896;
 continue;
 }
 } else {
@@ -135,11 +135,11 @@ body_24871.style.setProperty("color","var(--text-primary)");
 try{shadow.js.shim.module$monaco_editor$esm$vs$editor$editor_api.editor.defineTheme(name,cljs.core.clj__GT_js(new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"base","base",185279322),bb_web_ds_tools.events.theme.get_base_theme(new cljs.core.Keyword("portal.colors","background","portal.colors/background",-1400610375).cljs$core$IFn$_invoke$arity$1(data)),new cljs.core.Keyword(null,"inherit","inherit",-1840815422),true,new cljs.core.Keyword(null,"rules","rules",1198912366),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"background","background",-863952629),new cljs.core.Keyword("portal.colors","background","portal.colors/background",-1400610375).cljs$core$IFn$_invoke$arity$1(data),new cljs.core.Keyword(null,"foreground","foreground",499022036),new cljs.core.Keyword("portal.colors","text","portal.colors/text",1967472969).cljs$core$IFn$_invoke$arity$1(data)], null)], null),new cljs.core.Keyword(null,"colors","colors",1157174732),new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword(null,"editor.background","editor.background",2026633319),new cljs.core.Keyword("portal.colors","background","portal.colors/background",-1400610375).cljs$core$IFn$_invoke$arity$1(data),new cljs.core.Keyword(null,"editor.foreground","editor.foreground",1303499970),new cljs.core.Keyword("portal.colors","text","portal.colors/text",1967472969).cljs$core$IFn$_invoke$arity$1(data),new cljs.core.Keyword(null,"editorCursor.foreground","editorCursor.foreground",1866693001),new cljs.core.Keyword("portal.colors","namespace","portal.colors/namespace",159276238).cljs$core$IFn$_invoke$arity$1(data),new cljs.core.Keyword(null,"editor.lineHighlightBackground","editor.lineHighlightBackground",-130612686),new cljs.core.Keyword("portal.colors","background2","portal.colors/background2",-2075622390).cljs$core$IFn$_invoke$arity$1(data),new cljs.core.Keyword(null,"editor.selectionBackground","editor.selectionBackground",-454164974),new cljs.core.Keyword("portal.colors","border","portal.colors/border",-165446507).cljs$core$IFn$_invoke$arity$1(data),new cljs.core.Keyword(null,"editor.inactiveSelectionBackground","editor.inactiveSelectionBackground",997371136),new cljs.core.Keyword("portal.colors","background2","portal.colors/background2",-2075622390).cljs$core$IFn$_invoke$arity$1(data)], null)], null)));
 
 return shadow.js.shim.module$monaco_editor$esm$vs$editor$editor_api.editor.setTheme(name);
-}catch (e24867){if((e24867 instanceof Error)){
-var e = e24867;
+}catch (e24869){if((e24869 instanceof Error)){
+var e = e24869;
 return console.error("Failed to apply Monaco theme",e);
 } else {
-throw e24867;
+throw e24869;
 
 }
 }}));

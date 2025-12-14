@@ -1,13 +1,13 @@
 goog.provide('portal.shortcuts');
 portal.shortcuts.get_platform = (function portal$shortcuts$get_platform(){
 var platform = window.navigator.platform;
-if(cljs.core.truth_((function (){var fexpr__29130 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 4, ["Mac68K",null,"Macintosh",null,"MacPPC",null,"MacIntel",null], null), null);
-return (fexpr__29130.cljs$core$IFn$_invoke$arity$1 ? fexpr__29130.cljs$core$IFn$_invoke$arity$1(platform) : fexpr__29130.call(null,platform));
+if(cljs.core.truth_((function (){var fexpr__29168 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 4, ["Mac68K",null,"Macintosh",null,"MacPPC",null,"MacIntel",null], null), null);
+return (fexpr__29168.cljs$core$IFn$_invoke$arity$1 ? fexpr__29168.cljs$core$IFn$_invoke$arity$1(platform) : fexpr__29168.call(null,platform));
 })())){
 return new cljs.core.Keyword("portal.shortcuts","osx","portal.shortcuts/osx",300522451);
 } else {
-if(cljs.core.truth_((function (){var fexpr__29131 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 4, ["WinCE",null,"Windows",null,"Win32",null,"Win64",null], null), null);
-return (fexpr__29131.cljs$core$IFn$_invoke$arity$1 ? fexpr__29131.cljs$core$IFn$_invoke$arity$1(platform) : fexpr__29131.call(null,platform));
+if(cljs.core.truth_((function (){var fexpr__29169 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 4, ["WinCE",null,"Windows",null,"Win32",null,"Win64",null], null), null);
+return (fexpr__29169.cljs$core$IFn$_invoke$arity$1 ? fexpr__29169.cljs$core$IFn$_invoke$arity$1(platform) : fexpr__29169.call(null,platform));
 })())){
 return new cljs.core.Keyword("portal.shortcuts","windows","portal.shortcuts/windows",-450991854);
 } else {
@@ -67,25 +67,25 @@ return null;
  */
 portal.shortcuts.log__GT_seq = (function portal$shortcuts$log__GT_seq(log){
 var log__$1 = cljs.core.map.cljs$core$IFn$_invoke$arity$2(portal.shortcuts.event__GT_key,log);
-var iter__5503__auto__ = (function portal$shortcuts$log__GT_seq_$_iter__29134(s__29135){
+var iter__5503__auto__ = (function portal$shortcuts$log__GT_seq_$_iter__29172(s__29173){
 return (new cljs.core.LazySeq(null,(function (){
-var s__29135__$1 = s__29135;
+var s__29173__$1 = s__29173;
 while(true){
-var temp__5825__auto__ = cljs.core.seq(s__29135__$1);
+var temp__5825__auto__ = cljs.core.seq(s__29173__$1);
 if(temp__5825__auto__){
-var s__29135__$2 = temp__5825__auto__;
-if(cljs.core.chunked_seq_QMARK_(s__29135__$2)){
-var c__5501__auto__ = cljs.core.chunk_first(s__29135__$2);
+var s__29173__$2 = temp__5825__auto__;
+if(cljs.core.chunked_seq_QMARK_(s__29173__$2)){
+var c__5501__auto__ = cljs.core.chunk_first(s__29173__$2);
 var size__5502__auto__ = cljs.core.count(c__5501__auto__);
-var b__29137 = cljs.core.chunk_buffer(size__5502__auto__);
-if((function (){var i__29136 = (0);
+var b__29175 = cljs.core.chunk_buffer(size__5502__auto__);
+if((function (){var i__29174 = (0);
 while(true){
-if((i__29136 < size__5502__auto__)){
-var n = cljs.core._nth(c__5501__auto__,i__29136);
-cljs.core.chunk_append(b__29137,cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentVector.EMPTY,cljs.core.reverse(cljs.core.take.cljs$core$IFn$_invoke$arity$2(n,log__$1))));
+if((i__29174 < size__5502__auto__)){
+var n = cljs.core._nth(c__5501__auto__,i__29174);
+cljs.core.chunk_append(b__29175,cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentVector.EMPTY,cljs.core.reverse(cljs.core.take.cljs$core$IFn$_invoke$arity$2(n,log__$1))));
 
-var G__29171 = (i__29136 + (1));
-i__29136 = G__29171;
+var G__29197 = (i__29174 + (1));
+i__29174 = G__29197;
 continue;
 } else {
 return true;
@@ -93,13 +93,13 @@ return true;
 break;
 }
 })()){
-return cljs.core.chunk_cons(cljs.core.chunk(b__29137),portal$shortcuts$log__GT_seq_$_iter__29134(cljs.core.chunk_rest(s__29135__$2)));
+return cljs.core.chunk_cons(cljs.core.chunk(b__29175),portal$shortcuts$log__GT_seq_$_iter__29172(cljs.core.chunk_rest(s__29173__$2)));
 } else {
-return cljs.core.chunk_cons(cljs.core.chunk(b__29137),null);
+return cljs.core.chunk_cons(cljs.core.chunk(b__29175),null);
 }
 } else {
-var n = cljs.core.first(s__29135__$2);
-return cljs.core.cons(cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentVector.EMPTY,cljs.core.reverse(cljs.core.take.cljs$core$IFn$_invoke$arity$2(n,log__$1))),portal$shortcuts$log__GT_seq_$_iter__29134(cljs.core.rest(s__29135__$2)));
+var n = cljs.core.first(s__29173__$2);
+return cljs.core.cons(cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentVector.EMPTY,cljs.core.reverse(cljs.core.take.cljs$core$IFn$_invoke$arity$2(n,log__$1))),portal$shortcuts$log__GT_seq_$_iter__29172(cljs.core.rest(s__29173__$2)));
 }
 } else {
 return null;
@@ -117,14 +117,14 @@ portal.shortcuts.log__GT_combo = (function portal$shortcuts$log__GT_combo(log){
 var temp__5825__auto__ = cljs.core.first(log);
 if(cljs.core.truth_(temp__5825__auto__)){
 var e = temp__5825__auto__;
-var G__29141 = cljs.core.PersistentHashSet.createAsIfByAssoc([portal.shortcuts.event__GT_key(e)]);
-var G__29141__$1 = (cljs.core.truth_(e.ctrlKey)?cljs.core.conj.cljs$core$IFn$_invoke$arity$2(G__29141,"control"):G__29141);
-var G__29141__$2 = (cljs.core.truth_(e.metaKey)?cljs.core.conj.cljs$core$IFn$_invoke$arity$2(G__29141__$1,"meta"):G__29141__$1);
-var G__29141__$3 = (cljs.core.truth_(e.shiftKey)?cljs.core.conj.cljs$core$IFn$_invoke$arity$2(G__29141__$2,"shift"):G__29141__$2);
+var G__29179 = cljs.core.PersistentHashSet.createAsIfByAssoc([portal.shortcuts.event__GT_key(e)]);
+var G__29179__$1 = (cljs.core.truth_(e.ctrlKey)?cljs.core.conj.cljs$core$IFn$_invoke$arity$2(G__29179,"control"):G__29179);
+var G__29179__$2 = (cljs.core.truth_(e.metaKey)?cljs.core.conj.cljs$core$IFn$_invoke$arity$2(G__29179__$1,"meta"):G__29179__$1);
+var G__29179__$3 = (cljs.core.truth_(e.shiftKey)?cljs.core.conj.cljs$core$IFn$_invoke$arity$2(G__29179__$2,"shift"):G__29179__$2);
 if(cljs.core.truth_(e.altKey)){
-return cljs.core.conj.cljs$core$IFn$_invoke$arity$2(G__29141__$3,"alt");
+return cljs.core.conj.cljs$core$IFn$_invoke$arity$2(G__29179__$3,"alt");
 } else {
-return G__29141__$3;
+return G__29179__$3;
 }
 } else {
 return null;
@@ -147,8 +147,8 @@ var or__5025__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(mapping,porta
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
 } else {
-return cljs.core.some((function (p1__29149_SHARP_){
-return cljs.core.get.cljs$core$IFn$_invoke$arity$2(mapping,p1__29149_SHARP_);
+return cljs.core.some((function (p1__29184_SHARP_){
+return cljs.core.get.cljs$core$IFn$_invoke$arity$2(mapping,p1__29184_SHARP_);
 }),portal.shortcuts.log__GT_seq(log));
 }
 });
@@ -156,16 +156,16 @@ portal.shortcuts.input_QMARK_ = (function portal$shortcuts$input_QMARK_(log){
 var temp__5825__auto__ = cljs.core.first(log);
 if(cljs.core.truth_(temp__5825__auto__)){
 var e = temp__5825__auto__;
-var G__29157 = e.target.tagName;
-var fexpr__29156 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 4, ["SELECT",null,"INPUT",null,"BUTTON",null,"TEXTAREA",null], null), null);
-return (fexpr__29156.cljs$core$IFn$_invoke$arity$1 ? fexpr__29156.cljs$core$IFn$_invoke$arity$1(G__29157) : fexpr__29156.call(null,G__29157));
+var G__29187 = e.target.tagName;
+var fexpr__29186 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 4, ["SELECT",null,"INPUT",null,"BUTTON",null,"TEXTAREA",null], null), null);
+return (fexpr__29186.cljs$core$IFn$_invoke$arity$1 ? fexpr__29186.cljs$core$IFn$_invoke$arity$1(G__29187) : fexpr__29186.call(null,G__29187));
 } else {
 return null;
 }
 });
 portal.shortcuts.keydown = (function portal$shortcuts$keydown(e){
-cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$2(portal.shortcuts.log,(function (p1__29161_SHARP_){
-return cljs.core.take.cljs$core$IFn$_invoke$arity$2((5),cljs.core.conj.cljs$core$IFn$_invoke$arity$2(p1__29161_SHARP_,e));
+cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$2(portal.shortcuts.log,(function (p1__29188_SHARP_){
+return cljs.core.take.cljs$core$IFn$_invoke$arity$2((5),cljs.core.conj.cljs$core$IFn$_invoke$arity$2(p1__29188_SHARP_,e));
 }));
 
 return null;
@@ -178,8 +178,8 @@ window.addEventListener("blur",(function (){
 return portal.shortcuts.clear_BANG_();
 }));
 
-return window.addEventListener("keydown",(function (p1__29162_SHARP_){
-return portal.shortcuts.keydown(p1__29162_SHARP_);
+return window.addEventListener("keydown",(function (p1__29190_SHARP_){
+return portal.shortcuts.keydown(p1__29190_SHARP_);
 }));
 } else {
 return null;

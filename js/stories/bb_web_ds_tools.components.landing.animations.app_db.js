@@ -75,20 +75,20 @@ var n__5616__auto__ = (5);
 var i = (0);
 while(true){
 if((i < n__5616__auto__)){
-var offset_25075 = (i * (1000));
-var y_pos_25076 = ((-50) + cljs.core.mod(((t + offset_25075) * 0.05),(100)));
-var x_pos_25077 = (cx + ((60) * Math.sin(((t + offset_25075) * 0.002))));
-if((((y_pos_25076 > (-50))) && ((y_pos_25076 < (50))))){
+var offset_25077 = (i * (1000));
+var y_pos_25078 = ((-50) + cljs.core.mod(((t + offset_25077) * 0.05),(100)));
+var x_pos_25079 = (cx + ((60) * Math.sin(((t + offset_25077) * 0.002))));
+if((((y_pos_25078 > (-50))) && ((y_pos_25078 < (50))))){
 ctx.beginPath();
 
-ctx.arc(x_pos_25077,(cy + y_pos_25076),(3),(0),(Math.PI * (2)));
+ctx.arc(x_pos_25079,(cy + y_pos_25078),(3),(0),(Math.PI * (2)));
 
 ctx.fill();
 } else {
 }
 
-var G__25078 = (i + (1));
-i = G__25078;
+var G__25080 = (i + (1));
+i = G__25080;
 continue;
 } else {
 return null;

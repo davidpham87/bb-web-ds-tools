@@ -18,8 +18,8 @@ goog.provide('clojure.edn');
  *            be called with the tag and the value.
  */
 clojure.edn.read = (function clojure$edn$read(var_args){
-var G__43373 = arguments.length;
-switch (G__43373) {
+var G__43372 = arguments.length;
+switch (G__43372) {
 case 1:
 return clojure.edn.read.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
