@@ -155,5 +155,13 @@
     :portal.colors/diff-add    "#a6e3a1"
     :portal.colors/diff-remove "#f38ba8"}})
 
-(defn get-theme [k]
+(defn get-theme
+  "Retrieves the theme map for the given keyword.
+
+  Args:
+    k (keyword): The theme keyword (e.g., :nord, :zenburn).
+
+  Returns:
+    map: The theme color map."
+  [k]
   (get themes k))

@@ -2,6 +2,17 @@
 
 All notable changes to a project will be documented in this file.
 
+## [0.11.2] - 2025-05-23
+
+### Refactoring
+
+- **Code Cleanup**: Simplified `help-button` usage across all views by leveraging default values, removing redundant code (local).
+- **Documentation**: Added missing docstrings to `utils/themes`, `workers/sci`, `workers/persistence`, `workers/pyodide`, and animation components (local).
+
+### Added
+
+- **Help Button**: Added Context Sensitive Help Button to all tool views (128f03b).
+
 ## [0.11.1] - 2025-05-23
 
 ### Refactoring

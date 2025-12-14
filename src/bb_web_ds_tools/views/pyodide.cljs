@@ -202,8 +202,7 @@ chart.to_html()")
               [c/label "Python Code"]
               [c/help-button
                {:href (nav/get-wiki-url :code)
-                :title "Help: Python (Pyodide)"
-                :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100 mb-2"}]]
+                :title "Help: Python (Pyodide)"}]]
              [l/flex-row {:class "space-x-4"}
               [c/button {:on-click #(rf/dispatch [::run-code code])} "Run"]]]
             [:div {:class (str "flex-grow rounded overflow-hidden border  " t/border-default)

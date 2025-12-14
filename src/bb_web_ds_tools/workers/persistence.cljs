@@ -6,13 +6,37 @@
 
 (defonce sqlite-db (atom nil))
 
-(defn log [& args]
+(defn log
+  "Logs arguments to the console with a worker prefix.
+
+  Args:
+    args (rest): Arguments to log.
+
+  Returns:
+    nil."
+  [& args]
   (apply js/console.log "[Worker]" args))
 
-(defn error [& args]
+(defn error
+  "Logs errors to the console with a worker prefix.
+
+  Args:
+    args (rest): Arguments to log.
+
+  Returns:
+    nil."
+  [& args]
   (apply js/console.error "[Worker]" args))
 
-(defn start [^js sqlite3]
+(defn start
+  "Starts the SQLite database connection.
+
+  Args:
+    sqlite3 (object): The initialized sqlite3 module.
+
+  Returns:
+    nil."
+  [^js sqlite3]
   (log "Running SQLite3 version" (.. sqlite3 -version -libVersion))
   (let [opfs? (exists? (.-opfs ^js (.-oo1 sqlite3)))
         db (if opfs?
@@ -23,7 +47,12 @@
            (str "OPFS is available, created persisted database at " (.-filename db))
            (str "OPFS is not available, created transient database " (.-filename db))))))
 
-(defn ^:export init []
+(defn ^:export init
+  "Initializes the persistence worker by loading the SQLite module.
+
+  Returns:
+    channel: A core.async channel."
+  []
   (go
     (try
       (log "Loading and initializing SQLite3 module...")

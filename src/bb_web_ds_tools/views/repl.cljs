@@ -170,8 +170,7 @@
             [c/label "Clojure Code"]
              [c/help-button
              {:href (nav/get-wiki-url :code)
-              :title "Help: Clojure REPL"
-               :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100 mb-2"}]]
+              :title "Help: Clojure REPL"}]]
            [c/button {:on-click #(rf/dispatch [::eval-code instance-id code])} "Eval"]]
           [:div {:class (str "flex-grow rounded overflow-hidden border space-x-4"
                              t/border-default)
