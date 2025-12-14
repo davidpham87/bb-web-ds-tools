@@ -1,7 +1,13 @@
 (ns bb-web-ds-tools.cli.malli
   "CLI entry point for malli functionality.
 
-  Key functionality: cli-specs, infer, generate, validate, show-help, ..."
+  Key functionality:
+  - (read-input [opts])
+  - (infer [{:keys [opts])
+  - (generate [{:keys [opts])
+  - (validate [{:keys [opts])
+  - (show-help [_])
+  - ..."
   (:require [bb-web-ds-tools.components.malli :as m]
             [clojure.pprint :as pprint]
             [babashka.cli :as cli]

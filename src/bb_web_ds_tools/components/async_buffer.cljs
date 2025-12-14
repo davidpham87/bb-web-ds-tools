@@ -1,7 +1,8 @@
 (ns bb-web-ds-tools.components.async-buffer
   "Reagent component library for async-buffer.
 
-  Key functionality: create"
+  Key functionality:
+  - (create [{:keys [input-chan flush-interval-ms on-flush])"
   (:require [cljs.core.async :as a]))
 
 (defn create

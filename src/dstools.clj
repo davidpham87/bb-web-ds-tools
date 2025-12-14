@@ -1,7 +1,10 @@
 (ns dstools
   "Namespace dstools.
 
-  Key functionality: show-help, table, -main"
+  Key functionality:
+  - (show-help [_])
+  - (-main [& args])
+  - table"
   (:require [bb-web-ds-tools.cli.datasets :as datasets]
             [bb-web-ds-tools.cli.honeysql :as honeysql]
             [bb-web-ds-tools.cli.malli :as malli]

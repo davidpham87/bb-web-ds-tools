@@ -1,7 +1,13 @@
 (ns bb-web-ds-tools.runtime.pyodide
   "Runtime environment management for pyodide.
 
-  Key functionality: pyodide-worker, main-pyodide, main-loading, init-worker!, load-runtime-worker, ..."
+  Key functionality:
+  - (default-on-message [msg])
+  - (init-worker! [& [on-message])
+  - (load-runtime-worker [& [on-message])
+  - (eval-in-worker [code])
+  - (sync-datasets [datasets])
+  - ..."
   (:require [bb-web-ds-tools.utils.worker :as worker]
             [portal.web :as p]
             [re-frame.core :as rf]

@@ -1,7 +1,8 @@
 (ns bb-web-ds-tools.components.landing.animations.malli
   "Reagent component library for malli.
 
-  Key functionality: draw-malli"
+  Key functionality:
+  - (draw-malli [ctx w h t])"
   (:require
    [bb-web-ds-tools.components.landing.animations.common :refer (clear-rect zenburn)]))
 

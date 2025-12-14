@@ -1,5 +1,8 @@
 (ns bb-web-ds-tools.events.theme
-  "Re-frame event handlers for theme."
+  "Re-frame event handlers for theme.
+
+  Key functionality:
+  - (get-base-theme [bg-color])"
   (:require [re-frame.core :as rf]
             [bb-web-ds-tools.utils.themes :as themes]
             [bb-web-ds-tools.theme :as t]

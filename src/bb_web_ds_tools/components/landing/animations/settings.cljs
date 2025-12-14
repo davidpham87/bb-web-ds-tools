@@ -1,7 +1,8 @@
 (ns bb-web-ds-tools.components.landing.animations.settings
   "Reagent component library for settings.
 
-  Key functionality: draw-settings"
+  Key functionality:
+  - (draw-settings [ctx w h t])"
   (:require
    [bb-web-ds-tools.components.landing.animations.common :refer (clear zenburn)]))
 

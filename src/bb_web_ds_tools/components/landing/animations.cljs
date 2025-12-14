@@ -1,7 +1,13 @@
 (ns bb-web-ds-tools.components.landing.animations
   "Reagent component library for animations.
 
-  Key functionality: zenburn, clear, clear-rect, draw-workspaces, draw-app-db, ..."
+  Key functionality:
+  - (clear [ctx w h])
+  - (clear-rect [ctx w h])
+  - zenburn
+  - draw-workspaces
+  - draw-app-db
+  - ..."
   (:require
    [bb-web-ds-tools.utils.themes :as themes]
    [bb-web-ds-tools.components.landing.animations.app-db :as aa]

@@ -1,7 +1,13 @@
 (ns bb-web-ds-tools.components.malli
   "Reagent component library for malli.
 
-  Key functionality: compare-time, parse-int, read-edn, parse-json, generate-json, ..."
+  Key functionality:
+  - (compare-time [a b])
+  - (parse-int [s])
+  - (read-edn [s])
+  - (parse-json [s])
+  - (generate-json [data])
+  - ..."
   (:require [clojure.walk :as walk]
             [malli.provider :as mp]
             [malli.generator :as mg]

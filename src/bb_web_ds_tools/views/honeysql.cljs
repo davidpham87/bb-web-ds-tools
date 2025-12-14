@@ -1,7 +1,9 @@
 (ns bb-web-ds-tools.views.honeysql
   "View component for honeysql.
 
-  Key functionality: get-honeysql-state, panel"
+  Key functionality:
+  - (get-honeysql-state [db])
+  - (panel [])"
   (:require [re-frame.core :as rf]
             [reagent.core :as r]
             [bb-web-ds-tools.components.common :as c]

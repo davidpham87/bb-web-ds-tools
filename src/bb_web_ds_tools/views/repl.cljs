@@ -1,7 +1,13 @@
 (ns bb-web-ds-tools.views.repl
   "View component for repl.
 
-  Key functionality: find-last-sexpr, key-chord, setup-editor-actions, on-worker-message, panel"
+  Key functionality:
+  - (find-last-sexpr [text cursor-pos])
+  - (key-chord [first-part second-part])
+  - (setup-editor-actions [^js editor instance-id mac-os?])
+  - (repl-instance [{:keys [instance-id])
+  - (on-worker-message [msg])
+  - ..."
   (:require
    ["monaco-editor/esm/vs/editor/editor.api.js" :refer [KeyCode]]
    [bb-web-ds-tools.components.common :as c]

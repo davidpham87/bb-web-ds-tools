@@ -1,7 +1,8 @@
 (ns bb-web-ds-tools.impl.datasets
   "Implementation details for datasets.
 
-  Key functionality: detect-structure")
+  Key functionality:
+  - (detect-structure [data])")
 
 (defn detect-structure
   "Detects the structure of the input data.

@@ -1,7 +1,13 @@
 (ns bb-web-ds-tools.views.pyodide
   "View component for pyodide.
 
-  Key functionality: packages, plot-code, initial-code, setup-code, on-worker-message, ..."
+  Key functionality:
+  - (on-worker-message [msg])
+  - (internal-view [datasets])
+  - (panel [])
+  - packages
+  - plot-code
+  - ..."
   (:require
    [bb-web-ds-tools.components.common :as c]
    [bb-web-ds-tools.components.editor :as editor]

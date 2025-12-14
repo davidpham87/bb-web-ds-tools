@@ -1,7 +1,13 @@
 (ns bb-web-ds-tools.components.common
   "Reagent component library for common.
 
-  Key functionality: button, button-sm, button-md, button-xs, button-info, ..."
+  Key functionality:
+  - (get-button-classes [variant disabled? size])
+  - (button [props & children])
+  - (button-sm [props & children])
+  - (button-md [props & children])
+  - (button-xs [props & children])
+  - ..."
   (:require [bb-web-ds-tools.theme :as t]
             [re-frame.core :as rf]))
 

@@ -1,7 +1,8 @@
 (ns bb-web-ds-tools.events.journeys-test
   "Tests for bb-web-ds-tools.events.journeys-test.
 
-  Key functionality: view-subscriptions"
+  Key functionality:
+  - view-subscriptions"
   (:require [cljs.test :refer [deftest is testing use-fixtures]]
             [bb-web-ds-tools.events.journeys :as sut]
             [malli.core :as m]

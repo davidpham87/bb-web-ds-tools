@@ -1,7 +1,11 @@
 (ns bb-web-ds-tools.workers.persistence
   "Web worker implementation for persistence.
 
-  Key functionality: sqlite-db, log, error, start, ^:export"
+  Key functionality:
+  - (log [& args])
+  - (error [& args])
+  - (start [^js sqlite3])
+  - (^:export [])"
   (:require
    ["@sqlite.org/sqlite-wasm" :default sqlite3InitModule]
    [cljs.core.async :refer [go]]

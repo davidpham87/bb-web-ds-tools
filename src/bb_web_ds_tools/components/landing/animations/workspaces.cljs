@@ -1,7 +1,8 @@
 (ns bb-web-ds-tools.components.landing.animations.workspaces
   "Reagent component library for workspaces.
 
-  Key functionality: draw-workspaces"
+  Key functionality:
+  - (draw-workspaces [ctx w h t])"
   (:require
    [bb-web-ds-tools.components.landing.animations.common :refer (clear-rect zenburn)]))
 

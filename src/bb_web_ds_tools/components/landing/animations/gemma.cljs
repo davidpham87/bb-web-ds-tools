@@ -1,7 +1,8 @@
 (ns bb-web-ds-tools.components.landing.animations.gemma
   "Reagent component library for gemma.
 
-  Key functionality: draw-gemma"
+  Key functionality:
+  - (draw-gemma [ctx w h t])"
   (:require
    [bb-web-ds-tools.components.landing.animations.common :refer (clear zenburn)]))
 

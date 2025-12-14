@@ -1,7 +1,10 @@
 (ns bb-web-ds-tools.components.landing
   "Reagent component library for landing.
 
-  Key functionality: canvas-card, animated-icon"
+  Key functionality:
+  - (setup-canvas [canvas width height])
+  - (canvas-card [ctx width height timestamp])
+  - (animated-icon [{:keys [draw-fn class])"
   (:require [reagent.core :as r]
             [bb-web-ds-tools.theme :as t]
             [re-frame.core :as rf]))

@@ -1,7 +1,8 @@
 (ns bb-web-ds-tools.components.landing.animations.changelog
   "Reagent component library for changelog.
 
-  Key functionality: draw-changelog"
+  Key functionality:
+  - (draw-changelog [ctx w h t])"
   (:require
    [bb-web-ds-tools.components.landing.animations.common :refer (clear zenburn)]))
 

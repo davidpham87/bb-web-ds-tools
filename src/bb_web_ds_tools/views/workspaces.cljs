@@ -1,7 +1,10 @@
 (ns bb-web-ds-tools.views.workspaces
   "View component for workspaces.
 
-  Key functionality: workspace-list, input-list, main-panel"
+  Key functionality:
+  - (workspace-list [])
+  - (input-list [])
+  - (main-panel [])"
   (:require [re-frame.core :as rf]
             [reagent.core :as r]
             [bb-web-ds-tools.workspaces.core :as ws]

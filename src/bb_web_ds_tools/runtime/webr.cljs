@@ -1,7 +1,13 @@
 (ns bb-web-ds-tools.runtime.webr
   "Runtime environment management for webr.
 
-  Key functionality: webr-instance, input-buffer, flush!, load-runtime-main, bind-datasets, ..."
+  Key functionality:
+  - (to-js [^js obj])
+  - (get-shelter-class [^js webr])
+  - (init-obj [^js obj])
+  - (capture-r [^js shelter code options])
+  - (purge-shelter [^js shelter])
+  - ..."
   (:require
    [bb-web-ds-tools.components.async-buffer :as ab]
    [bb-web-ds-tools.portal :as portal]

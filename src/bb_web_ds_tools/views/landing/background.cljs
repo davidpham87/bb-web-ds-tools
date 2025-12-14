@@ -1,7 +1,10 @@
 (ns bb-web-ds-tools.views.landing.background
   "View component for background.
 
-  Key functionality: background-canvas"
+  Key functionality:
+  - (update-background-colors [colors])
+  - (draw-background-pattern [ctx width height t cols])
+  - (background-canvas [])"
   (:require [reagent.core :as r]))
 
 (defn- update-background-colors

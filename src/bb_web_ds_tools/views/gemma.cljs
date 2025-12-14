@@ -1,7 +1,10 @@
 (ns bb-web-ds-tools.views.gemma
   "View component for gemma.
 
-  Key functionality: llm-instance, model-loader, chat-interface, panel"
+  Key functionality:
+  - (model-loader [])
+  - (chat-interface [])
+  - (panel [])"
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             [fork.reagent :as fork]

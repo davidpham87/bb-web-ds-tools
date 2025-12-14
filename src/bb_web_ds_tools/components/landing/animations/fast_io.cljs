@@ -1,7 +1,8 @@
 (ns bb-web-ds-tools.components.landing.animations.fast-io
   "Reagent component library for fast-io.
 
-  Key functionality: draw-fast-io"
+  Key functionality:
+  - (draw-fast-io [ctx w h t])"
   (:require
    [bb-web-ds-tools.components.landing.animations.common :refer (clear-rect zenburn)]))
 

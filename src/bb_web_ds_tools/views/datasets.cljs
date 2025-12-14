@@ -1,7 +1,13 @@
 (ns bb-web-ds-tools.views.datasets
   "View component for datasets.
 
-  Key functionality: deep-merge, column-toggle-dropdown, importer-view, data-row, data-table, ..."
+  Key functionality:
+  - (deep-merge [& maps])
+  - (column-toggle-dropdown [id columns hidden-columns])
+  - (importer-view [])
+  - (data-row [id row visible-columns])
+  - (data-table [dataset])
+  - ..."
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             [clojure.string :as str]

@@ -1,7 +1,13 @@
 (ns bb-web-ds-tools.workers.pyodide
   "Web worker implementation for pyodide.
 
-  Key functionality: pyodide-instance, post-msg, run-code, datasets-target, update-datasets, ..."
+  Key functionality:
+  - (post-msg [msg])
+  - (run-code [code])
+  - (update-datasets [new-datasets])
+  - (create-datasets-proxy [])
+  - (load-runtime [])
+  - ..."
   (:require
    [cognitect.transit :as t]
    [goog.object :as gobj]))

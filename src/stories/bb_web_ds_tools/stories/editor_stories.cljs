@@ -1,7 +1,9 @@
 (ns bb-web-ds-tools.stories.editor-stories
   "Namespace bb-web-ds-tools.stories.editor-stories.
 
-  Key functionality: meta-data, ^:export"
+  Key functionality:
+  - (^:export [])
+  - meta-data"
   (:require [bb-web-ds-tools.components.editor :as editor]
             [reagent.core :as r]
             [goog.object :as gobj]))

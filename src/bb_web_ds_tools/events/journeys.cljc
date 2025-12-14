@@ -1,7 +1,13 @@
 (ns bb-web-ds-tools.events.journeys
   "Re-frame event handlers for journeys.
 
-  Key functionality: nav-event, events, fsm, weighted-choice, generate-journey"
+  Key functionality:
+  - (round-2 [n])
+  - (normalize-weights [weights])
+  - (get-heuristic-weight [event])
+  - (weighted-choice [weights])
+  - (generate-journey [event args])
+  - ..."
   (:require [malli.core :as m]
             [malli.generator :as mg]))
 

@@ -1,7 +1,13 @@
 (ns bb-web-ds-tools.runtime.webr-test
   "Tests for bb-web-ds-tools.runtime.webr-test.
 
-  Key functionality: submitted, mock-submit, mock-result, mock-capture-output, MockShelter, ..."
+  Key functionality:
+  - (mock-submit [val])
+  - (MockShelter [])
+  - (mock-WebR [_])
+  - submitted
+  - mock-result
+  - ..."
   (:require [cljs.test :refer-macros [deftest is testing async use-fixtures]]
             [bb-web-ds-tools.runtime.webr :as webr]
             [portal.web :as p]

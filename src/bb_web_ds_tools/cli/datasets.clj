@@ -1,7 +1,13 @@
 (ns bb-web-ds-tools.cli.datasets
   "CLI entry point for datasets functionality.
 
-  Key functionality: cli-specs, convert, show-help, table, -main"
+  Key functionality:
+  - (read-input [opts])
+  - (infer-output [opts default-ext])
+  - (write-output [opts content default-ext])
+  - (infer-format [filename])
+  - (convert [{:keys [opts])
+  - ..."
   (:require [clojure.string :as str]
             [babashka.fs :as fs]
             [babashka.cli :as cli]

@@ -1,7 +1,13 @@
 (ns bb-web-ds-tools.utils.dataset-processing
   "Utility functions for dataset-processing.
 
-  Key functionality: to-snake-case, to-camel-case, to-kebab-case, normalize-column-name, config, ..."
+  Key functionality:
+  - (to-snake-case [s])
+  - (to-camel-case [s])
+  - (to-kebab-case [s])
+  - (normalize-column-name [col-name {:keys [case output])
+  - (normalize-columnar [data])
+  - ..."
   (:require ["papaparse" :as Papa]
             [sci.core :as sci]
             [clojure.string :as str]

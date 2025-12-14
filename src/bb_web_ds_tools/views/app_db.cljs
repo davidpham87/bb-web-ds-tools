@@ -1,7 +1,11 @@
 (ns bb-web-ds-tools.views.app-db
   "View component for app-db.
 
-  Key functionality: path-list-item, path-list, add-path-view, panel"
+  Key functionality:
+  - (path-list-item [path active?])
+  - (path-list [])
+  - (add-path-view [])
+  - (panel [])"
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             [cljs.reader :as reader]

@@ -1,7 +1,13 @@
 (ns bb-web-ds-tools.core
   "Namespace bb-web-ds-tools.core.
 
-  Key functionality: get-route-label, routes, router, on-navigate, init-routes!, ..."
+  Key functionality:
+  - (get-route-label [route-name])
+  - (on-navigate [match _])
+  - (init-routes! [])
+  - (main-panel [])
+  - (app [])
+  - ..."
   (:require
    [bb-web-ds-tools.components.common :refer (nav-items)]
    [bb-web-ds-tools.components.layout :as layout]

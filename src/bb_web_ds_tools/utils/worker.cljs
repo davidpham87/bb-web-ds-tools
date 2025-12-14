@@ -1,7 +1,11 @@
 (ns bb-web-ds-tools.utils.worker
   "Utility functions for worker.
 
-  Key functionality: create-worker, set-handler, post-message, terminate"
+  Key functionality:
+  - (create-worker [url])
+  - (set-handler [{:keys [worker])
+  - (post-message [{:keys [worker])
+  - (terminate [{:keys [worker out-chan])"
   (:require [clojure.core.async :as a]
             [cognitect.transit :as t]))
 

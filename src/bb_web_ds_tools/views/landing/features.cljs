@@ -1,7 +1,9 @@
 (ns bb-web-ds-tools.views.landing.features
   "View component for features.
 
-  Key functionality: flow-steps, features-carousel"
+  Key functionality:
+  - (features-carousel [])
+  - flow-steps"
   (:require [bb-web-ds-tools.components.landing :as landing]
             [bb-web-ds-tools.components.landing.animations :as animations]
             [bb-web-ds-tools.theme :as t]))

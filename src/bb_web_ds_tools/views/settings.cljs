@@ -1,7 +1,13 @@
 (ns bb-web-ds-tools.views.settings
   "View component for settings.
 
-  Key functionality: settings-nav, sidebar-item, general-settings, appearance-settings, development-settings, ..."
+  Key functionality:
+  - (sidebar-item [{:keys [item active-id expanded-ids on-select on-toggle])
+  - (general-settings [])
+  - (appearance-settings [])
+  - (development-settings [])
+  - (dataset-import-settings [])
+  - ..."
   (:require [re-frame.core :as rf]
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.layout :as l]

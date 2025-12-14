@@ -1,7 +1,9 @@
 (ns bb-web-ds-tools.components.landing.animations.code
   "Reagent component library for code.
 
-  Key functionality: zenburn, draw-code"
+  Key functionality:
+  - (draw-code [ctx w h t])
+  - zenburn"
   (:require
    [bb-web-ds-tools.utils.themes :as themes]
    [bb-web-ds-tools.components.landing.animations.common :refer (clear-rect)]))

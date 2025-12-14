@@ -1,7 +1,13 @@
 (ns bb-web-ds-tools.cli.honeysql
   "CLI entry point for honeysql functionality.
 
-  Key functionality: cli-specs, convert, show-help, table, -main"
+  Key functionality:
+  - (infer-output [opts])
+  - (convert [{:keys [opts])
+  - (show-help [_])
+  - (-main [& args])
+  - cli-specs
+  - ..."
   (:require [bb-web-ds-tools.components.honeysql :as h]
             [babashka.cli :as cli]
             [babashka.fs :as fs]))

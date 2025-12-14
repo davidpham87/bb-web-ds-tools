@@ -1,7 +1,13 @@
 (ns bb-web-ds-tools.views.malli
   "View component for malli.
 
-  Key functionality: get-malli-state, unified-view, get-inference-props, get-generation-props, get-validation-props, ..."
+  Key functionality:
+  - (get-malli-state [db])
+  - (unified-view [{:keys [controls editors output])
+  - (get-inference-props [{:keys [inference-input inferred-schema datasets input-format max-enum-values])
+  - (get-generation-props [{:keys [schema-text generated-data samples gen-fmt])
+  - (get-validation-props [{:keys [schema-text inference-input input-format validation-result])
+  - ..."
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             [fork.re-frame :as fork]
