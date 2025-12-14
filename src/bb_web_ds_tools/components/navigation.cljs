@@ -110,6 +110,6 @@
           :ref (fn [el] (rf/dispatch [::set-top-bar-ref el]))}
     ;; Global Help Button at the far right
     [common/help-button
-     {:href (get-wiki-url :landing-page)
+     {:href (get-wiki-url active-route)
       :title "Global Help (Wiki)"
-      :class "ml-2"}]]])
+      :class "ml-2 px-2"}]]])
