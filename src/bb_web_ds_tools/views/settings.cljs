@@ -21,7 +21,8 @@
    {:id :code
     :label "Code"
     :icon "💻"
-    :children [{:id :webr-settings :label "WebR"}]}])
+    :children [{:id :editor-settings :label "Editor"}
+               {:id :webr-settings :label "WebR"}]}])
 
 (defn sidebar-item
   "Renders a sidebar item.
@@ -126,6 +127,38 @@
          ^{:key o}
          [:option {:value (name o)} (name o)])]]]))
 
+(defn editor-settings
+  "Renders the Editor settings view.
+
+  Returns:
+    vector: A hiccup vector."
+  []
+  (let [settings @(rf/subscribe [::settings-events/editor-settings])]
+    [c/card {:class "p-6 space-y-6"}
+     [:h3 {:class "text-xl font-bold"} "Editor Settings"]
+     [:div
+      [:label {:class "block text-sm font-medium mb-2"} "Font Size (px)"]
+      [c/input {:type "number"
+                :value (:font-size settings)
+                :on-change-event [::settings-events/set-editor-setting :font-size]
+                :class "w-full max-w-xs"}]]
+     [:div
+      [:label {:class "block text-sm font-medium mb-2"} "Editor Width (CSS value, e.g. 50%, 800px)"]
+      [c/input {:type "text"
+                :value (:width settings)
+                :on-change-event [::settings-events/set-editor-setting :width]
+                :class "w-full max-w-xs"}]]
+     [:div
+      [:label {:class "block text-sm font-medium mb-2"} "Word Wrap"]
+      [:select
+       {:class "bg-[#3f3f3f] text-white rounded px-3 py-2 w-full max-w-xs border border-[#4f4f4f] focus:outline-none focus:border-[#8cd0d3]"
+        :value (:word-wrap settings)
+        :on-change #(rf/dispatch [::settings-events/set-editor-setting :word-wrap (.. % -target -value)])}
+       [:option {:value "off"} "Off"]
+       [:option {:value "on"} "On"]
+       [:option {:value "wordWrapColumn"} "Word Wrap Column"]
+       [:option {:value "bounded"} "Bounded"]]]]))
+
 (defn webr-settings
   "Renders the WebR settings view.
 
@@ -171,7 +204,8 @@
      :development [development-settings]
      :datasets [dataset-import-settings] ;; Fallback if parent clicked
      :dataset-import [dataset-import-settings]
-     :code [webr-settings] ;; Fallback
+     :code [editor-settings] ;; Fallback
+     :editor-settings [editor-settings]
      :webr-settings [webr-settings]
      [:div "Select a setting"])])
 

@@ -22,7 +22,13 @@
      (assoc-in [:settings :webr]
                {:container-width 720
                 :container-height 800
-                :canvas-scale 0.72}))))
+                :canvas-scale 0.72})
+
+     (not (get-in db [:settings :editor]))
+     (assoc-in [:settings :editor]
+               {:font-size 14
+                :width "50%"
+                :word-wrap "off"}))))
 
 (rf/reg-event-db
  ::set-column-normalizer-case
@@ -52,6 +58,11 @@
  (fn [db [_ key val]]
    (assoc-in db [:settings :webr key] val)))
 
+(rf/reg-event-db
+ ::set-editor-setting
+ (fn [db [_ key val]]
+   (assoc-in db [:settings :editor key] val)))
+
 ;; --- Subscriptions ---
 
 (rf/reg-sub
@@ -75,3 +86,10 @@
    (get-in db [:settings :webr] {:container-width 720
                                  :container-height 800
                                  :canvas-scale 0.72})))
+
+(rf/reg-sub
+ ::editor-settings
+ (fn [db]
+   (get-in db [:settings :editor] {:font-size 14
+                                   :width "50%"
+                                   :word-wrap "off"})))
