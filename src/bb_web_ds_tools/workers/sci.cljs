@@ -54,7 +54,15 @@
 ;; Initialize aliases
 (sci/eval-string* sci-ctx "(require '[clojure.string :as str] '[clojure.set :as set] '[clojure.edn :as edn])")
 
-(defn prepare-for-transport [val]
+(defn prepare-for-transport
+  "Prepares a value for transport via Transit/postMessage by converting non-serializable types to strings.
+
+  Args:
+    val (any): The value to prepare.
+
+  Returns:
+    any: The safe value."
+  [val]
   (cond
     (nil? val) val
     (number? val) val

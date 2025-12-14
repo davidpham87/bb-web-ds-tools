@@ -62,7 +62,18 @@
     (.fillText ctx "Valid" cx (+ cy 50))
     (set! (.-globalAlpha ctx) 1.0)))
 
-(defn draw-malli [ctx w h t]
+(defn draw-malli
+  "Draws the Malli feature animation.
+
+  Args:
+    ctx (object): Canvas context.
+    w (number): Width.
+    h (number): Height.
+    t (number): Time.
+
+  Returns:
+    nil."
+  [ctx w h t]
   (clear-rect ctx w h)
   (let [cx (/ w 2)
         cy (/ h 2)

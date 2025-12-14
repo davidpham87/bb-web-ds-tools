@@ -161,8 +161,7 @@
         [c/label "R Code"]
         [c/help-button
          {:href (nav/get-wiki-url :code)
-          :title "Help: R (WebR)"
-          :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100 mb-2"}]]
+          :title "Help: R (WebR)"}]]
        [l/flex-row {:class "space-x-4"}
         (when loading? [:div {:class t/text-accent} "Loading WebR..."])
         [c/button {:on-click #(rf/dispatch [::run-code code])} "Eval"]]]

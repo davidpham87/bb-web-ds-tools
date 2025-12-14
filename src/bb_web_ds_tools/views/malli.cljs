@@ -333,8 +333,7 @@
                [c/label "Input Data"]
                [c/help-button
                 {:href (nav/get-wiki-url :malli)
-                 :title "Help: Malli"
-                 :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100 mb-2"}]]
+                 :title "Help: Malli"}]]
               [l/flex-row {:class "space-x-2 items-center"}
                [c/button {:size :sm
                           :variant (if (= input-format :edn) :primary nil)
@@ -391,8 +390,7 @@
                [c/label "Schema (EDN)"]
                [c/help-button
                 {:href (nav/get-wiki-url :malli)
-                 :title "Help: Malli Generation"
-                 :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100 mb-2"}]]
+                 :title "Help: Malli Generation"}]]
               [l/flex-row {:class "items-center gap-2"}
                ;; Samples count
                [:div {:class "flex items-center gap-1"}
@@ -435,8 +433,7 @@
                [c/label "Schema (EDN)"]
                [c/help-button
                 {:href (nav/get-wiki-url :malli)
-                 :title "Help: Malli Validation"
-                 :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100 mb-2"}]]
+                 :title "Help: Malli Validation"}]]
               [c/button {:size :sm
                          :variant :primary
                          :on-click #(rf/dispatch [:malli/validate])} "Validate"]
@@ -464,8 +461,7 @@
                [c/label "Schema (EDN)"]
                [c/help-button
                 {:href (nav/get-wiki-url :malli)
-                 :title "Help: JSON Schema"
-                 :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100 mb-2"}]]
+                 :title "Help: JSON Schema"}]]
               [c/button {:size :sm
                          :variant :primary
                          :on-click #(rf/dispatch [:malli/transform-json])} "Transform to JSON Schema"]]
