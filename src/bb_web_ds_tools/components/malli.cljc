@@ -235,8 +235,8 @@
                                longest-string-len (reduce max 0 (map count distinct-vals))]
                            (if (and (pos? unique-count)
                                     (<= unique-count max-values)
-                                    (or (< unique-count (* 0.1 total-count))
-                                        (< longest-string-len 60)))
+                                    (< unique-count (* 0.1 total-count))
+                                    (< longest-string-len 60))
                              (assoc node :schema (into [:enum] (sort distinct-vals)))
                              node))
 
