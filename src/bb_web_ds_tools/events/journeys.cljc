@@ -1,7 +1,5 @@
 (ns bb-web-ds-tools.events.journeys
-  "Namespace: bb-web-ds-tools.events.journeys
-
-  Key functions:
+  "Key functions:
   - (round-2 [n])
   - (normalize-weights [weights])
   - (get-heuristic-weight [event])
@@ -12,7 +10,7 @@
   - fsm
 
   History:
-  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [malli.core :as m]
             [malli.generator :as mg]))
 

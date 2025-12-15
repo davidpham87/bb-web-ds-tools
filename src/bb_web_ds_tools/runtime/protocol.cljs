@@ -1,8 +1,6 @@
 (ns bb-web-ds-tools.runtime.protocol
-  "Namespace: bb-web-ds-tools.runtime.protocol
-
-  History:
-  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438")
+  "History:
+  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438")
 
 (defmulti portal-submit
   "Dispatches a message based on the runtime identifier and the message type.

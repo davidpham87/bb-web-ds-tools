@@ -1,12 +1,10 @@
 (ns bb-web-ds-tools.views.editor
-  "Namespace: bb-web-ds-tools.views.editor
-
-  Key functions:
+  "Key functions:
   - (editor-form [{:keys [path initial-code])
   - (panel [])
 
   History:
-  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [re-frame.core :as rf]
             [fork.re-frame :as fork]
             [bb-web-ds-tools.components.common :as c]

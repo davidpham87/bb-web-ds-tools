@@ -1,12 +1,10 @@
 (ns bb-web-ds-tools.views.code
-  "Namespace: bb-web-ds-tools.views.code
-
-  Key functions:
+  "Key functions:
   - (panel-render [])
   - (panel [])
 
   History:
-  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             [bb-web-ds-tools.components.common :as c]

@@ -1,12 +1,10 @@
 (ns bb-web-ds-tools.views.honeysql
-  "Namespace: bb-web-ds-tools.views.honeysql
-
-  Key functions:
+  "Key functions:
   - (get-honeysql-state [db])
   - (panel [])
 
   History:
-  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [re-frame.core :as rf]
             [reagent.core :as r]
             [bb-web-ds-tools.components.common :as c]

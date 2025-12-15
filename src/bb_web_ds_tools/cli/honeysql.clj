@@ -1,7 +1,5 @@
 (ns bb-web-ds-tools.cli.honeysql
-  "Namespace: bb-web-ds-tools.cli.honeysql
-
-  Key functions:
+  "Key functions:
   - (infer-output [opts])
   - (convert [{:keys [opts])
   - (show-help [_])
@@ -10,7 +8,7 @@
   - table
 
   History:
-  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [bb-web-ds-tools.components.honeysql :as h]
             [babashka.cli :as cli]
             [babashka.fs :as fs]))

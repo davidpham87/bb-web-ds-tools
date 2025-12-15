@@ -1,13 +1,11 @@
 (ns bb-web-ds-tools.views.gemma
-  "Namespace: bb-web-ds-tools.views.gemma
-
-  Key functions:
+  "Key functions:
   - (model-loader [])
   - (chat-interface [])
   - (panel [])
 
   History:
-  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             [fork.reagent :as fork]

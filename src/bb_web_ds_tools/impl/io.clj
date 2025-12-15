@@ -1,8 +1,6 @@
 (ns bb-web-ds-tools.impl.io
-  "Namespace: bb-web-ds-tools.impl.io
-
-  History:
-  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  "History:
+  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [clojure.string :as str]
             [clojure.edn :as edn]
             [clojure.pprint :as pprint]

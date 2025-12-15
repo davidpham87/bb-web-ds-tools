@@ -1,7 +1,5 @@
 (ns bb-web-ds-tools.views.datasets
-  "Namespace: bb-web-ds-tools.views.datasets
-
-  Key functions:
+  "Key functions:
   - (deep-merge [& maps])
   - (column-toggle-dropdown [id columns hidden-columns])
   - (importer-view [])
@@ -14,7 +12,7 @@
   - (panel [])
 
   History:
-  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             [clojure.string :as str]

@@ -1,7 +1,5 @@
 (ns bb-web-ds-tools.workers.pyodide
-  "Namespace: bb-web-ds-tools.workers.pyodide
-
-  Key functions:
+  "Key functions:
   - (post-msg [msg])
   - (run-code [code])
   - (update-datasets [new-datasets])
@@ -11,7 +9,7 @@
   - datasets-target
 
   History:
-  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require
    [cognitect.transit :as t]
    [goog.object :as gobj]))

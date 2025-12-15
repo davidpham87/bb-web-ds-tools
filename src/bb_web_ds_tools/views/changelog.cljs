@@ -1,13 +1,11 @@
 (ns bb-web-ds-tools.views.changelog
-  "Namespace: bb-web-ds-tools.views.changelog
-
-  Key functions:
+  "Key functions:
   - (changelog-item [{:keys [version date sections])
   - (panel [])
   - changelog-data
 
   History:
-  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.navigation :as nav]))
 

@@ -1,11 +1,9 @@
 (ns bb-web-ds-tools.events.theme
-  "Namespace: bb-web-ds-tools.events.theme
-
-  Key functions:
+  "Key functions:
   - (get-base-theme [bg-color])
 
   History:
-  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [re-frame.core :as rf]
             [bb-web-ds-tools.utils.themes :as themes]
             [bb-web-ds-tools.theme :as t]

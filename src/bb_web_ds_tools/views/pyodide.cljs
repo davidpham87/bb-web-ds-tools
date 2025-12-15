@@ -1,7 +1,5 @@
 (ns bb-web-ds-tools.views.pyodide
-  "Namespace: bb-web-ds-tools.views.pyodide
-
-  Key functions:
+  "Key functions:
   - (on-worker-message [msg])
   - (internal-view [datasets])
   - (panel [])
@@ -11,7 +9,7 @@
   - setup-code
 
   History:
-  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require
    [bb-web-ds-tools.components.common :as c]
    [bb-web-ds-tools.components.editor :as editor]

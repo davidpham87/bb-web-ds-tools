@@ -1,8 +1,6 @@
 (ns bb-web-ds-tools.theme-test
-  "Namespace: bb-web-ds-tools.theme-test
-
-  History:
-  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  "History:
+  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [cljs.test :refer [deftest is testing use-fixtures]]
             [re-frame.core :as rf]
             [bb-web-ds-tools.views.settings :as settings]

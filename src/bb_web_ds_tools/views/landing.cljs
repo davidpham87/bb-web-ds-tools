@@ -1,7 +1,5 @@
 (ns bb-web-ds-tools.views.landing
-  "Namespace: bb-web-ds-tools.views.landing
-
-  Key functions:
+  "Key functions:
   - (app-footer [])
   - (landing-page [])
   - github-icon
@@ -9,7 +7,7 @@
   - docs-icon
 
   History:
-  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [bb-web-ds-tools.views.landing.background :as background]
             [bb-web-ds-tools.views.landing.features :as features]
             [bb-web-ds-tools.views.landing.tour :as tour]

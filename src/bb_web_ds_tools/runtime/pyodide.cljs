@@ -1,7 +1,5 @@
 (ns bb-web-ds-tools.runtime.pyodide
-  "Namespace: bb-web-ds-tools.runtime.pyodide
-
-  Key functions:
+  "Key functions:
   - (default-on-message [msg])
   - (init-worker! [& [on-message])
   - (load-runtime-worker [& [on-message])
@@ -12,7 +10,7 @@
   - (eval-in-main [code])
 
   History:
-  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [bb-web-ds-tools.utils.worker :as worker]
             [portal.web :as p]
             [re-frame.core :as rf]

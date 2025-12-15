@@ -1,7 +1,5 @@
 (ns bb-web-ds-tools.theme
-  "Namespace: bb-web-ds-tools.theme
-
-  Key functions:
+  "Key functions:
   - (color [k])
   - (resolve-theme-colors [theme])
   - colors
@@ -14,7 +12,7 @@
   - bg-table-head
 
   History:
-  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [bb-web-ds-tools.utils.themes :as themes]))
 
 (def colors

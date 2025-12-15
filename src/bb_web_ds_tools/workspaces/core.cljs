@@ -1,12 +1,10 @@
 (ns bb-web-ds-tools.workspaces.core
-  "Namespace: bb-web-ds-tools.workspaces.core
-
-  Key functions:
+  "Key functions:
   - (get-workspaces [eid name])
   - (get-inputs [db workspace-eid])
 
   History:
-  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [re-frame.core :as rf]
             [reagent.core :as r]
             [datascript.core :as d]

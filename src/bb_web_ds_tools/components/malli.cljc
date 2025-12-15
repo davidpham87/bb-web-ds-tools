@@ -1,7 +1,5 @@
 (ns bb-web-ds-tools.components.malli
-  "Namespace: bb-web-ds-tools.components.malli
-
-  Key functions:
+  "Key functions:
   - (compare-time [a b])
   - (parse-int [s])
   - (read-edn [s])
@@ -14,7 +12,7 @@
   - (annotate-schema [schema data])
 
   History:
-  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [clojure.walk :as walk]
             [malli.provider :as mp]
             [malli.generator :as mg]

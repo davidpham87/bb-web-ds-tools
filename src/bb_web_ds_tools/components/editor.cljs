@@ -1,7 +1,5 @@
 (ns bb-web-ds-tools.components.editor
-  "Namespace: bb-web-ds-tools.components.editor
-
-  Key functions:
+  "Key functions:
   - (monaco-editor [_])
   - (get-code-to-eval [^js editor])
   - (get-ctrl-key [mac-os?])
@@ -9,7 +7,7 @@
   - (render-output [output])
 
   History:
-  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             ["react-dom" :as react-dom]

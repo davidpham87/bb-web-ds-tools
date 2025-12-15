@@ -1,7 +1,5 @@
 (ns bb-web-ds-tools.utils.dataset-processing
-  "Namespace: bb-web-ds-tools.utils.dataset-processing
-
-  Key functions:
+  "Key functions:
   - (to-snake-case [s])
   - (to-camel-case [s])
   - (to-kebab-case [s])
@@ -14,7 +12,7 @@
   - (to-markdown-table [rows])
 
   History:
-  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require ["papaparse" :as Papa]
             [sci.core :as sci]
             [clojure.string :as str]

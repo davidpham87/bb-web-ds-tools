@@ -1,13 +1,11 @@
 (ns bb-web-ds-tools.views.landing.background
-  "Namespace: bb-web-ds-tools.views.landing.background
-
-  Key functions:
+  "Key functions:
   - (update-background-colors [colors])
   - (draw-background-pattern [ctx width height t cols])
   - (background-canvas [])
 
   History:
-  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [reagent.core :as r]))
 
 (defn- update-background-colors

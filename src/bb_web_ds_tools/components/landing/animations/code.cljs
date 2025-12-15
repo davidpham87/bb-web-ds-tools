@@ -1,12 +1,10 @@
 (ns bb-web-ds-tools.components.landing.animations.code
-  "Namespace: bb-web-ds-tools.components.landing.animations.code
-
-  Key functions:
+  "Key functions:
   - (draw-code [ctx w h t])
   - zenburn
 
   History:
-  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require
    [bb-web-ds-tools.utils.themes :as themes]
    [bb-web-ds-tools.components.landing.animations.common :refer (clear-rect)]))

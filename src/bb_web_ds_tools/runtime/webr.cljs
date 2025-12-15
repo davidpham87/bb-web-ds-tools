@@ -1,7 +1,5 @@
 (ns bb-web-ds-tools.runtime.webr
-  "Namespace: bb-web-ds-tools.runtime.webr
-
-  Key functions:
+  "Key functions:
   - (to-js [^js obj])
   - (get-shelter-class [^js webr])
   - (init-obj [^js obj])
@@ -14,7 +12,7 @@
   - (bind-r [^js env name val])
 
   History:
-  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require
    [bb-web-ds-tools.components.async-buffer :as ab]
    [bb-web-ds-tools.portal :as portal]

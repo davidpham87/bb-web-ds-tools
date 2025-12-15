@@ -1,14 +1,12 @@
 (ns bb-web-ds-tools.workers.persistence
-  "Namespace: bb-web-ds-tools.workers.persistence
-
-  Key functions:
+  "Key functions:
   - (log [& args])
   - (error [& args])
   - (start [^js sqlite3])
   - (^:export [])
 
   History:
-  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require
    ["@sqlite.org/sqlite-wasm" :default sqlite3InitModule]
    [cljs.core.async :refer [go]]

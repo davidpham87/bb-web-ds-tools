@@ -1,7 +1,5 @@
 (ns bb-web-ds-tools.utils.worker
-  "Namespace: bb-web-ds-tools.utils.worker
-
-  Key functions:
+  "Key functions:
   - (create-worker [url])
   - (set-handler [{:keys [worker])
   - (post-message [{:keys [worker])
@@ -12,7 +10,7 @@
                  (reset! listeners {})
 
   History:
-  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [clojure.core.async :as a]
             [cognitect.transit :as t]))
 

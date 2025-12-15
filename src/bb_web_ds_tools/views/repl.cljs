@@ -1,7 +1,5 @@
 (ns bb-web-ds-tools.views.repl
-  "Namespace: bb-web-ds-tools.views.repl
-
-  Key functions:
+  "Key functions:
   - (find-last-sexpr [text cursor-pos])
   - (key-chord [first-part second-part])
   - (setup-editor-actions [^js editor instance-id mac-os?])
@@ -10,7 +8,7 @@
   - (panel [])
 
   History:
-  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require
    ["monaco-editor/esm/vs/editor/editor.api.js" :refer [KeyCode]]
    [bb-web-ds-tools.components.common :as c]
