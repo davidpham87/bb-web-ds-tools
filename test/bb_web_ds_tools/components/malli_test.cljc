@@ -39,8 +39,7 @@
     (let [schema [:map [:a int?]]
           data {:a 1}
           result (sut/validate-data schema data)]
-      (is (:success result))
-      (is (= "✅ Data is valid." (:result result)))))
+      (is (= {:success true :result "✅ Data is valid."} result))))
 
   (testing "Invalid data"
     (let [schema [:map [:a int?]]
