@@ -1,13 +1,18 @@
 (ns bb-web-ds-tools.events.journeys
-  "Re-frame event handlers for journeys.
+  "Namespace: bb-web-ds-tools.events.journeys
 
-  Key functionality:
+  Key functions:
   - (round-2 [n])
   - (normalize-weights [weights])
   - (get-heuristic-weight [event])
   - (weighted-choice [weights])
   - (generate-journey [event args])
-  - ..."
+  - nav-event
+  - events
+  - fsm
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [malli.core :as m]
             [malli.generator :as mg]))
 

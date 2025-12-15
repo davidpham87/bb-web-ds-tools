@@ -1,10 +1,4 @@
 (ns bb-web-ds-tools.stories.malli-stories
-  "Namespace bb-web-ds-tools.stories.malli-stories.
-
-  Key functionality:
-  - (^:export [])
-  - (^:export [])
-  - ^:export"
   (:require [bb-web-ds-tools.components.malli :as malli]
             [reagent.core :as r]))
 

@@ -1,9 +1,12 @@
 (ns bb-web-ds-tools.workspaces.core
-  "Workspace state management for core.
+  "Namespace: bb-web-ds-tools.workspaces.core
 
-  Key functionality:
+  Key functions:
   - (get-workspaces [eid name])
-  - (get-inputs [db workspace-eid])"
+  - (get-inputs [db workspace-eid])
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [re-frame.core :as rf]
             [reagent.core :as r]
             [datascript.core :as d]

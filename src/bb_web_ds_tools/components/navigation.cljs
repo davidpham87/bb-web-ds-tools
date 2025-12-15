@@ -1,13 +1,16 @@
 (ns bb-web-ds-tools.components.navigation
-  "Reagent component library for navigation.
+  "Namespace: bb-web-ds-tools.components.navigation
 
-  Key functionality:
+  Key functions:
   - (get-wiki-url [route-name])
   - (menu-button [])
   - (portal-to-top-bar [& children])
   - (top-bar [{:keys [active-label active-route])
   - wiki-base-url
-  - ..."
+  - wiki-mapping
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [bb-web-ds-tools.components.common :as common]
             [bb-web-ds-tools.theme :as t]
             [re-frame.core :as rf]

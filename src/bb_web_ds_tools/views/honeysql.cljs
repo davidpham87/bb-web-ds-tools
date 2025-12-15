@@ -1,9 +1,12 @@
 (ns bb-web-ds-tools.views.honeysql
-  "View component for honeysql.
+  "Namespace: bb-web-ds-tools.views.honeysql
 
-  Key functionality:
+  Key functions:
   - (get-honeysql-state [db])
-  - (panel [])"
+  - (panel [])
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [re-frame.core :as rf]
             [reagent.core :as r]
             [bb-web-ds-tools.components.common :as c]

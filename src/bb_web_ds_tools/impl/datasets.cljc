@@ -1,8 +1,11 @@
 (ns bb-web-ds-tools.impl.datasets
-  "Implementation details for datasets.
+  "Namespace: bb-web-ds-tools.impl.datasets
 
-  Key functionality:
-  - (detect-structure [data])")
+  Key functions:
+  - (detect-structure [data])
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438")
 
 (defn detect-structure
   "Detects the structure of the input data.

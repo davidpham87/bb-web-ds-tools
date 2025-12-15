@@ -1,5 +1,4 @@
 (ns bb-web-ds-tools.cli.datasets-test
-  "Tests for bb-web-ds-tools.cli.datasets-test."
   (:require [clojure.test :refer [deftest is testing]]
             [bb-web-ds-tools.cli.datasets :as sut]
             [clojure.string :as str]

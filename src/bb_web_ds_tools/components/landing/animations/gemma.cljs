@@ -1,8 +1,11 @@
 (ns bb-web-ds-tools.components.landing.animations.gemma
-  "Reagent component library for gemma.
+  "Namespace: bb-web-ds-tools.components.landing.animations.gemma
 
-  Key functionality:
-  - (draw-gemma [ctx w h t])"
+  Key functions:
+  - (draw-gemma [ctx w h t])
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require
    [bb-web-ds-tools.components.landing.animations.common :refer (clear zenburn)]))
 

@@ -1,10 +1,4 @@
 (ns bb-web-ds-tools.stories.view-stories
-  "Namespace bb-web-ds-tools.stories.view-stories.
-
-  Key functionality:
-  - (^:export [])
-  - (^:export [])
-  - meta-data"
   (:require [bb-web-ds-tools.views.landing :as landing]
             [bb-web-ds-tools.views.malli :as malli]
             [re-frame.core :as rf]

@@ -1,13 +1,4 @@
 (ns bb-web-ds-tools.stories.common-stories
-  "Namespace bb-web-ds-tools.stories.common-stories.
-
-  Key functionality:
-  - (^:export [])
-  - (^:export [])
-  - (^:export [])
-  - (^:export [])
-  - (^:export [])
-  - ..."
   (:require [bb-web-ds-tools.components.common :as common]
             [reagent.core :as r]
             [goog.object :as gobj]))

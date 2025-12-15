@@ -1,12 +1,4 @@
 (ns bb-web-ds-tools.components.malli-gen-test
-  "Tests for bb-web-ds-tools.components.malli-gen-test.
-
-  Key functionality:
-  - simple-value-gen
-  - simple-schema-gen
-  - map-schema-gen
-  - inference-validation-prop
-  - generation-validation-prop"
   (:require [cljs.test :refer [deftest is testing]]
             [clojure.test.check :as tc]
             [clojure.test.check.generators :as gen]

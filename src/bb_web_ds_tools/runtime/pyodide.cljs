@@ -1,13 +1,18 @@
 (ns bb-web-ds-tools.runtime.pyodide
-  "Runtime environment management for pyodide.
+  "Namespace: bb-web-ds-tools.runtime.pyodide
 
-  Key functionality:
+  Key functions:
   - (default-on-message [msg])
   - (init-worker! [& [on-message])
   - (load-runtime-worker [& [on-message])
   - (eval-in-worker [code])
   - (sync-datasets [datasets])
-  - ..."
+  - (load-script [src onload onerror])
+  - (load-runtime-main [on-ready on-error])
+  - (eval-in-main [code])
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [bb-web-ds-tools.utils.worker :as worker]
             [portal.web :as p]
             [re-frame.core :as rf]

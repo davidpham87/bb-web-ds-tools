@@ -1,5 +1,4 @@
 (ns bb-web-ds-tools.repro-test
-  "Tests for bb-web-ds-tools.repro-test."
   (:require [cljs.test :refer [deftest is testing]]))
 
 (deftest repro-test

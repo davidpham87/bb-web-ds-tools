@@ -1,9 +1,12 @@
 (ns bb-web-ds-tools.components.landing.animations.code
-  "Reagent component library for code.
+  "Namespace: bb-web-ds-tools.components.landing.animations.code
 
-  Key functionality:
+  Key functions:
   - (draw-code [ctx w h t])
-  - zenburn"
+  - zenburn
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require
    [bb-web-ds-tools.utils.themes :as themes]
    [bb-web-ds-tools.components.landing.animations.common :refer (clear-rect)]))

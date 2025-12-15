@@ -1,11 +1,14 @@
 (ns bb-web-ds-tools.workers.persistence
-  "Web worker implementation for persistence.
+  "Namespace: bb-web-ds-tools.workers.persistence
 
-  Key functionality:
+  Key functions:
   - (log [& args])
   - (error [& args])
   - (start [^js sqlite3])
-  - (^:export [])"
+  - (^:export [])
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require
    ["@sqlite.org/sqlite-wasm" :default sqlite3InitModule]
    [cljs.core.async :refer [go]]

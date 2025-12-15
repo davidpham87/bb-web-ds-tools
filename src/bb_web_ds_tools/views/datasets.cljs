@@ -1,13 +1,20 @@
 (ns bb-web-ds-tools.views.datasets
-  "View component for datasets.
+  "Namespace: bb-web-ds-tools.views.datasets
 
-  Key functionality:
+  Key functions:
   - (deep-merge [& maps])
   - (column-toggle-dropdown [id columns hidden-columns])
   - (importer-view [])
   - (data-row [id row visible-columns])
   - (data-table [dataset])
-  - ..."
+  - (dataset-view [dataset])
+  - (dataset-list-item [id ds active-id])
+  - (dataset-list [])
+  - (panel-render [])
+  - (panel [])
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             [clojure.string :as str]

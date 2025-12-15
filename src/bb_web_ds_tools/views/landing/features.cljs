@@ -1,9 +1,12 @@
 (ns bb-web-ds-tools.views.landing.features
-  "View component for features.
+  "Namespace: bb-web-ds-tools.views.landing.features
 
-  Key functionality:
+  Key functions:
   - (features-carousel [])
-  - flow-steps"
+  - flow-steps
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [bb-web-ds-tools.components.landing :as landing]
             [bb-web-ds-tools.components.landing.animations :as animations]
             [bb-web-ds-tools.theme :as t]))

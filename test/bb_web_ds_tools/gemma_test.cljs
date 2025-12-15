@@ -1,5 +1,4 @@
 (ns bb-web-ds-tools.gemma-test
-  "Tests for bb-web-ds-tools.gemma-test."
   (:require [cljs.test :refer [deftest is testing use-fixtures]]
             [re-frame.core :as rf]
             [re-frame.db :as rf-db]

@@ -1,9 +1,4 @@
 (ns bb-web-ds-tools.data-sharing-test
-  "Tests for bb-web-ds-tools.data-sharing-test.
-
-  Key functionality:
-  - (mount-component [comp])
-  - (unmount-component [div])"
   (:require [cljs.test :refer [deftest is testing use-fixtures async]]
             [day8.re-frame.test :as rf-test]
             [re-frame.core :as rf]

@@ -1,8 +1,11 @@
 (ns bb-web-ds-tools.components.landing.animations.malli
-  "Reagent component library for malli.
+  "Namespace: bb-web-ds-tools.components.landing.animations.malli
 
-  Key functionality:
-  - (draw-malli [ctx w h t])"
+  Key functions:
+  - (draw-malli [ctx w h t])
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require
    [bb-web-ds-tools.components.landing.animations.common :refer (clear-rect zenburn)]))
 

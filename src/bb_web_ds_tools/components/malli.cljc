@@ -1,13 +1,20 @@
 (ns bb-web-ds-tools.components.malli
-  "Reagent component library for malli.
+  "Namespace: bb-web-ds-tools.components.malli
 
-  Key functionality:
+  Key functions:
   - (compare-time [a b])
   - (parse-int [s])
   - (read-edn [s])
   - (parse-json [s])
   - (generate-json [data])
-  - ..."
+  - (pretty-print-str [data])
+  - (detect-and-parse [text])
+  - (parse-schema-and-generate [schema-text])
+  - (generate-data [schema samples format])
+  - (annotate-schema [schema data])
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [clojure.walk :as walk]
             [malli.provider :as mp]
             [malli.generator :as mg]

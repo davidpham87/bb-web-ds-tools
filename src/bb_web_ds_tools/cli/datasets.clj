@@ -1,13 +1,19 @@
 (ns bb-web-ds-tools.cli.datasets
-  "CLI entry point for datasets functionality.
+  "Namespace: bb-web-ds-tools.cli.datasets
 
-  Key functionality:
+  Key functions:
   - (read-input [opts])
   - (infer-output [opts default-ext])
   - (write-output [opts content default-ext])
   - (infer-format [filename])
   - (convert [{:keys [opts])
-  - ..."
+  - (show-help [_])
+  - (-main [& args])
+  - cli-specs
+  - table
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [clojure.string :as str]
             [babashka.fs :as fs]
             [babashka.cli :as cli]

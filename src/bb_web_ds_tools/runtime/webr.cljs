@@ -1,13 +1,20 @@
 (ns bb-web-ds-tools.runtime.webr
-  "Runtime environment management for webr.
+  "Namespace: bb-web-ds-tools.runtime.webr
 
-  Key functionality:
+  Key functions:
   - (to-js [^js obj])
   - (get-shelter-class [^js webr])
   - (init-obj [^js obj])
   - (capture-r [^js shelter code options])
   - (purge-shelter [^js shelter])
-  - ..."
+  - (get-result-props [^js res])
+  - (get-width [^js obj])
+  - (get-height [^js obj])
+  - (get-global-env [^js webr])
+  - (bind-r [^js env name val])
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require
    [bb-web-ds-tools.components.async-buffer :as ab]
    [bb-web-ds-tools.portal :as portal]

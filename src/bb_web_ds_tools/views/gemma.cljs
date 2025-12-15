@@ -1,10 +1,13 @@
 (ns bb-web-ds-tools.views.gemma
-  "View component for gemma.
+  "Namespace: bb-web-ds-tools.views.gemma
 
-  Key functionality:
+  Key functions:
   - (model-loader [])
   - (chat-interface [])
-  - (panel [])"
+  - (panel [])
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             [fork.reagent :as fork]

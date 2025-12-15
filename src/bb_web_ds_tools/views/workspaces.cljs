@@ -1,10 +1,13 @@
 (ns bb-web-ds-tools.views.workspaces
-  "View component for workspaces.
+  "Namespace: bb-web-ds-tools.views.workspaces
 
-  Key functionality:
+  Key functions:
   - (workspace-list [])
   - (input-list [])
-  - (main-panel [])"
+  - (main-panel [])
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [re-frame.core :as rf]
             [reagent.core :as r]
             [bb-web-ds-tools.workspaces.core :as ws]

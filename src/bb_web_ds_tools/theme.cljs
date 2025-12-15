@@ -1,13 +1,20 @@
 (ns bb-web-ds-tools.theme
-  "Namespace bb-web-ds-tools.theme.
+  "Namespace: bb-web-ds-tools.theme
 
-  Key functionality:
+  Key functions:
   - (color [k])
   - (resolve-theme-colors [theme])
   - colors
   - mapping
   - bg-page
-  - ..."
+  - bg-sidebar
+  - bg-card
+  - bg-input
+  - bg-toolbar
+  - bg-table-head
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [bb-web-ds-tools.utils.themes :as themes]))
 
 (def colors

@@ -1,8 +1,11 @@
 (ns bb-web-ds-tools.components.landing.animations.changelog
-  "Reagent component library for changelog.
+  "Namespace: bb-web-ds-tools.components.landing.animations.changelog
 
-  Key functionality:
-  - (draw-changelog [ctx w h t])"
+  Key functions:
+  - (draw-changelog [ctx w h t])
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require
    [bb-web-ds-tools.components.landing.animations.common :refer (clear zenburn)]))
 

@@ -1,13 +1,20 @@
 (ns bb-web-ds-tools.components.landing.animations
-  "Reagent component library for animations.
+  "Namespace: bb-web-ds-tools.components.landing.animations
 
-  Key functionality:
+  Key functions:
   - (clear [ctx w h])
   - (clear-rect [ctx w h])
   - zenburn
   - draw-workspaces
   - draw-app-db
-  - ..."
+  - draw-datasets
+  - draw-code
+  - draw-malli
+  - draw-fast-io
+  - draw-instant-charts
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require
    [bb-web-ds-tools.utils.themes :as themes]
    [bb-web-ds-tools.components.landing.animations.app-db :as aa]

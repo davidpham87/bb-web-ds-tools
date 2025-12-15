@@ -1,13 +1,18 @@
 (ns bb-web-ds-tools.workspaces.persistence-fx
-  "Workspace state management for persistence-fx.
+  "Namespace: bb-web-ds-tools.workspaces.persistence-fx
 
-  Key functionality:
+  Key functions:
   - (transit-encode [x])
   - (transit-decode [x])
   - (create-tables! [db])
   - (persist-all! [db])
   - (persist-datasets! [db datasets-map])
-  - ..."
+  - (load-datasets-from-db [db])
+  - (export-db [db])
+  - (init-db! [])
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require
    [bb-web-ds-tools.workspaces.core :as ws]
    [cljs.core.async :refer [go]]

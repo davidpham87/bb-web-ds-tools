@@ -1,11 +1,14 @@
 (ns bb-web-ds-tools.views.app-db
-  "View component for app-db.
+  "Namespace: bb-web-ds-tools.views.app-db
 
-  Key functionality:
+  Key functions:
   - (path-list-item [path active?])
   - (path-list [])
   - (add-path-view [])
-  - (panel [])"
+  - (panel [])
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             [cljs.reader :as reader]

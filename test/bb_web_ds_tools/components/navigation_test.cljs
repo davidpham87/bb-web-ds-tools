@@ -1,5 +1,4 @@
 (ns bb-web-ds-tools.components.navigation-test
-  "Tests for bb-web-ds-tools.components.navigation-test."
   (:require [cljs.test :refer-macros [deftest is testing async use-fixtures]]
             [bb-web-ds-tools.components.navigation :as nav]
             [re-frame.core :as rf]

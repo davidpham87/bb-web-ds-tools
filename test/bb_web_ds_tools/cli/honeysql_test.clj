@@ -1,5 +1,4 @@
 (ns bb-web-ds-tools.cli.honeysql-test
-  "Tests for bb-web-ds-tools.cli.honeysql-test."
   (:require [clojure.test :refer [deftest is testing]]
             [bb-web-ds-tools.cli.honeysql :as sut]
             [clojure.string :as str]

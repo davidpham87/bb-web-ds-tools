@@ -1,8 +1,11 @@
 (ns bb-web-ds-tools.components.landing.animations.instant-charts
-  "Reagent component library for instant-charts.
+  "Namespace: bb-web-ds-tools.components.landing.animations.instant-charts
 
-  Key functionality:
-  - (draw-instant-charts [ctx w h t])"
+  Key functions:
+  - (draw-instant-charts [ctx w h t])
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require
    [bb-web-ds-tools.components.landing.animations.common :refer (clear-rect zenburn)]))
 

@@ -1,13 +1,18 @@
 (ns bb-web-ds-tools.workers.sci
-  "Web worker implementation for sci.
+  "Namespace: bb-web-ds-tools.workers.sci
 
-  Key functionality:
+  Key functions:
   - (post-msg [msg])
   - (prepare-for-transport [val])
   - (eval-code [code])
   - (init [])
   - datasets-atom
-  - ..."
+  - datasets-sci-var
+  - ^:dynamic
+  - sci-ctx
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require
    [cljs-bean.core :refer (->clj)]
    [clojure.edn :as edn]

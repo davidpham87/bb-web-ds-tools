@@ -1,5 +1,4 @@
 (ns bb-web-ds-tools.components.async-buffer-test
-  "Tests for bb-web-ds-tools.components.async-buffer-test."
   (:require [cljs.test :refer [deftest is testing async use-fixtures]]
             [cljs.core.async :as a]
             [bb-web-ds-tools.components.async-buffer :as buffer]))

@@ -1,9 +1,12 @@
 (ns bb-web-ds-tools.views.r-repl
-  "View component for r-repl.
+  "Namespace: bb-web-ds-tools.views.r-repl
 
-  Key functionality:
+  Key functions:
   - (panel-render [])
-  - (panel [])"
+  - (panel [])
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             [bb-web-ds-tools.components.common :as c]

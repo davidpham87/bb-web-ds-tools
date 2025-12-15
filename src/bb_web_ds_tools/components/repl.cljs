@@ -1,10 +1,13 @@
 (ns bb-web-ds-tools.components.repl
-  "Reagent component library for repl.
+  "Namespace: bb-web-ds-tools.components.repl
 
-  Key functionality:
+  Key functions:
   - (input-panel [{:keys [code on-change on-submit on-focus on-blur on-mount])
   - (output-panel [{:keys [output])
-  - (repl-card [{:keys [code output on-change on-eval on-focus on-blur path on-mount])"
+  - (repl-card [{:keys [code output on-change on-eval on-focus on-blur path on-mount])
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [bb-web-ds-tools.components.editor :as editor-comp]))
 
 (defn input-panel

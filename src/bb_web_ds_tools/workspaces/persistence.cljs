@@ -1,5 +1,8 @@
 (ns bb-web-ds-tools.workspaces.persistence
-  "Workspace state management for persistence."
+  "Namespace: bb-web-ds-tools.workspaces.persistence
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [re-frame.core :as rf]
             [bb-web-ds-tools.workspaces.persistence-fx]))
 

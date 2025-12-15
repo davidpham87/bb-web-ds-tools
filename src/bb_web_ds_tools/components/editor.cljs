@@ -1,12 +1,15 @@
 (ns bb-web-ds-tools.components.editor
-  "Reagent component library for editor.
+  "Namespace: bb-web-ds-tools.components.editor
 
-  Key functionality:
+  Key functions:
   - (monaco-editor [_])
   - (get-code-to-eval [^js editor])
   - (get-ctrl-key [mac-os?])
   - (setup-editor-actions [^js editor mac-os? eval-action])
-  - (render-output [output])"
+  - (render-output [output])
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             ["react-dom" :as react-dom]

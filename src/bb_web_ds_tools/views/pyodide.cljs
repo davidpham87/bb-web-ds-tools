@@ -1,13 +1,17 @@
 (ns bb-web-ds-tools.views.pyodide
-  "View component for pyodide.
+  "Namespace: bb-web-ds-tools.views.pyodide
 
-  Key functionality:
+  Key functions:
   - (on-worker-message [msg])
   - (internal-view [datasets])
   - (panel [])
   - packages
   - plot-code
-  - ..."
+  - initial-code
+  - setup-code
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require
    [bb-web-ds-tools.components.common :as c]
    [bb-web-ds-tools.components.editor :as editor]

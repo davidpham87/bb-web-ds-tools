@@ -1,9 +1,12 @@
 (ns bb-web-ds-tools.utils.themes
-  "Utility functions for themes.
+  "Namespace: bb-web-ds-tools.utils.themes
 
-  Key functionality:
+  Key functions:
   - (get-theme [k])
-  - themes")
+  - themes
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438")
 
 (def themes
   {:nord

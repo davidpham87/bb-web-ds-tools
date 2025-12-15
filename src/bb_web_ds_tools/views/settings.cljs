@@ -1,13 +1,19 @@
 (ns bb-web-ds-tools.views.settings
-  "View component for settings.
+  "Namespace: bb-web-ds-tools.views.settings
 
-  Key functionality:
+  Key functions:
   - (sidebar-item [{:keys [item active-id expanded-ids on-select on-toggle])
   - (general-settings [])
   - (appearance-settings [])
   - (development-settings [])
   - (dataset-import-settings [])
-  - ..."
+  - (webr-settings [])
+  - (content-panel [active-view])
+  - (panel [])
+  - settings-nav
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [re-frame.core :as rf]
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.layout :as l]

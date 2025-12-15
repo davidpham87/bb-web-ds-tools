@@ -1,5 +1,4 @@
 (ns bb-web-ds-tools.persistence-test
-  "Tests for bb-web-ds-tools.persistence-test."
   (:require [cljs.test :refer [deftest is testing async]]
             [bb-web-ds-tools.workspaces.persistence-fx :as pfx]
             [cljs.core.async :refer [go]]

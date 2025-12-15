@@ -1,12 +1,15 @@
 (ns bb-web-ds-tools.views.landing
-  "View component for landing.
+  "Namespace: bb-web-ds-tools.views.landing
 
-  Key functionality:
+  Key functions:
   - (app-footer [])
   - (landing-page [])
   - github-icon
   - blog-icon
-  - docs-icon"
+  - docs-icon
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [bb-web-ds-tools.views.landing.background :as background]
             [bb-web-ds-tools.views.landing.features :as features]
             [bb-web-ds-tools.views.landing.tour :as tour]

@@ -1,13 +1,16 @@
 (ns bb-web-ds-tools.runtime.sci
-  "Runtime environment management for sci.
+  "Namespace: bb-web-ds-tools.runtime.sci
 
-  Key functionality:
+  Key functions:
   - (default-on-message [msg])
   - (sync-datasets! [])
   - (init! [& [on-message])
   - (eval-in-worker [code])
   - (eval-in-main [code])
-  - ..."
+  - sci-ctx
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [bb-web-ds-tools.utils.worker :as worker]
             [bb-web-ds-tools.views.datasets :as datasets]
             [portal.web :as p]

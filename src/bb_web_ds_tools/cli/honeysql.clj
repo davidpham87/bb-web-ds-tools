@@ -1,13 +1,16 @@
 (ns bb-web-ds-tools.cli.honeysql
-  "CLI entry point for honeysql functionality.
+  "Namespace: bb-web-ds-tools.cli.honeysql
 
-  Key functionality:
+  Key functions:
   - (infer-output [opts])
   - (convert [{:keys [opts])
   - (show-help [_])
   - (-main [& args])
   - cli-specs
-  - ..."
+  - table
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [bb-web-ds-tools.components.honeysql :as h]
             [babashka.cli :as cli]
             [babashka.fs :as fs]))

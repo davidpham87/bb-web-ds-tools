@@ -1,13 +1,19 @@
 (ns bb-web-ds-tools.core
-  "Namespace bb-web-ds-tools.core.
+  "Namespace: bb-web-ds-tools.core
 
-  Key functionality:
+  Key functions:
   - (get-route-label [route-name])
   - (on-navigate [match _])
   - (init-routes! [])
   - (main-panel [])
   - (app [])
-  - ..."
+  - (^:export [])
+  - (^:dev/after-load [])
+  - routes
+  - router
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require
    [bb-web-ds-tools.components.common :refer (nav-items)]
    [bb-web-ds-tools.components.layout :as layout]

@@ -1,13 +1,20 @@
 (ns bb-web-ds-tools.utils.dataset-processing
-  "Utility functions for dataset-processing.
+  "Namespace: bb-web-ds-tools.utils.dataset-processing
 
-  Key functionality:
+  Key functions:
   - (to-snake-case [s])
   - (to-camel-case [s])
   - (to-kebab-case [s])
   - (normalize-column-name [col-name {:keys [case output])
   - (normalize-columnar [data])
-  - ..."
+  - (normalize-row-arrays [data])
+  - (parse-json [text])
+  - (to-columnar [rows])
+  - (to-row-arrays [rows])
+  - (to-markdown-table [rows])
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require ["papaparse" :as Papa]
             [sci.core :as sci]
             [clojure.string :as str]

@@ -1,5 +1,4 @@
 (ns bb-web-ds-tools.editor-bug-test
-  "Tests for bb-web-ds-tools.editor-bug-test."
   (:require [cljs.test :refer [deftest is async use-fixtures]]
             [reagent.core :as r]
             [reagent.dom :as rdom]

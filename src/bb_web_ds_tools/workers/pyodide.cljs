@@ -1,13 +1,17 @@
 (ns bb-web-ds-tools.workers.pyodide
-  "Web worker implementation for pyodide.
+  "Namespace: bb-web-ds-tools.workers.pyodide
 
-  Key functionality:
+  Key functions:
   - (post-msg [msg])
   - (run-code [code])
   - (update-datasets [new-datasets])
   - (create-datasets-proxy [])
   - (load-runtime [])
-  - ..."
+  - (init [])
+  - datasets-target
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require
    [cognitect.transit :as t]
    [goog.object :as gobj]))

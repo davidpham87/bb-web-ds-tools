@@ -1,8 +1,11 @@
 (ns bb-web-ds-tools.events.theme
-  "Re-frame event handlers for theme.
+  "Namespace: bb-web-ds-tools.events.theme
 
-  Key functionality:
-  - (get-base-theme [bg-color])"
+  Key functions:
+  - (get-base-theme [bg-color])
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [re-frame.core :as rf]
             [bb-web-ds-tools.utils.themes :as themes]
             [bb-web-ds-tools.theme :as t]

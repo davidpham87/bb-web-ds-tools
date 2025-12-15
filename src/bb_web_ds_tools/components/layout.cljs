@@ -1,13 +1,20 @@
 (ns bb-web-ds-tools.components.layout
-  "Reagent component library for layout.
+  "Namespace: bb-web-ds-tools.components.layout
 
-  Key functionality:
+  Key functions:
   - (page-container [props & children])
   - (container [props & children])
   - (section [props & children])
   - (grid [props & children])
   - (flex-row [props & children])
-  - ..."
+  - (flex-col [props & children])
+  - (header [props & children])
+  - (main [props & children])
+  - (row [props & children])
+  - (col [props & children])
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [bb-web-ds-tools.theme :as t]
             [reagent.core :as r]
             [re-frame.core :as rf]))

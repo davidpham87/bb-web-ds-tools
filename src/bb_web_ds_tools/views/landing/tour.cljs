@@ -1,9 +1,12 @@
 (ns bb-web-ds-tools.views.landing.tour
-  "View component for tour.
+  "Namespace: bb-web-ds-tools.views.landing.tour
 
-  Key functionality:
+  Key functions:
   - (product-tour [])
-  - tour-features"
+  - tour-features
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [reagent.core :as r]
             [bb-web-ds-tools.components.landing :as landing]
             [bb-web-ds-tools.components.landing.animations :as animations]

@@ -1,13 +1,18 @@
 (ns bb-web-ds-tools.cli.malli
-  "CLI entry point for malli functionality.
+  "Namespace: bb-web-ds-tools.cli.malli
 
-  Key functionality:
+  Key functions:
   - (read-input [opts])
   - (infer [{:keys [opts])
   - (generate [{:keys [opts])
   - (validate [{:keys [opts])
   - (show-help [_])
-  - ..."
+  - (-main [& args])
+  - cli-specs
+  - table
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [bb-web-ds-tools.components.malli :as m]
             [clojure.pprint :as pprint]
             [babashka.cli :as cli]

@@ -1,10 +1,13 @@
 (ns bb-web-ds-tools.components.landing
-  "Reagent component library for landing.
+  "Namespace: bb-web-ds-tools.components.landing
 
-  Key functionality:
+  Key functions:
   - (setup-canvas [canvas width height])
   - (canvas-card [ctx width height timestamp])
-  - (animated-icon [{:keys [draw-fn class])"
+  - (animated-icon [{:keys [draw-fn class])
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [reagent.core :as r]
             [bb-web-ds-tools.theme :as t]
             [re-frame.core :as rf]))

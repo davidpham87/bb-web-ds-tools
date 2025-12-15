@@ -1,13 +1,18 @@
 (ns bb-web-ds-tools.views.malli
-  "View component for malli.
+  "Namespace: bb-web-ds-tools.views.malli
 
-  Key functionality:
+  Key functions:
   - (get-malli-state [db])
   - (unified-view [{:keys [controls editors output])
   - (get-inference-props [{:keys [inference-input inferred-schema datasets input-format max-enum-values])
   - (get-generation-props [{:keys [schema-text generated-data samples gen-fmt])
   - (get-validation-props [{:keys [schema-text inference-input input-format validation-result])
-  - ..."
+  - (get-json-schema-props [{:keys [schema-text json-schema-result])
+  - (panel-render [])
+  - (panel [])
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             [fork.re-frame :as fork]

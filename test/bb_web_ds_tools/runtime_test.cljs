@@ -1,5 +1,4 @@
 (ns bb-web-ds-tools.runtime-test
-  "Tests for bb-web-ds-tools.runtime-test."
   (:require [cljs.test :refer [deftest is testing async use-fixtures]]
             [bb-web-ds-tools.runtime.sci :as sci]
             [portal.web :as p]

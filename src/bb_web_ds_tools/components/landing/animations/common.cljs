@@ -1,10 +1,13 @@
 (ns bb-web-ds-tools.components.landing.animations.common
-  "Reagent component library for common.
+  "Namespace: bb-web-ds-tools.components.landing.animations.common
 
-  Key functionality:
+  Key functions:
   - (clear [ctx w h])
   - zenburn
-  - clear-rect"
+  - clear-rect
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [bb-web-ds-tools.utils.themes :as themes]))
 
 (def zenburn (themes/get-theme :zenburn))

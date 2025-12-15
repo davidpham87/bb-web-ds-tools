@@ -1,8 +1,11 @@
 (ns bb-web-ds-tools.components.async-buffer
-  "Reagent component library for async-buffer.
+  "Namespace: bb-web-ds-tools.components.async-buffer
 
-  Key functionality:
-  - (create [{:keys [input-chan flush-interval-ms on-flush])"
+  Key functions:
+  - (create [{:keys [input-chan flush-interval-ms on-flush])
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [cljs.core.async :as a]))
 
 (defn create

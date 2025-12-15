@@ -1,9 +1,12 @@
 (ns bb-web-ds-tools.components.honeysql
-  "Reagent component library for honeysql.
+  "Namespace: bb-web-ds-tools.components.honeysql
 
-  Key functionality:
+  Key functions:
   - (convert-to-sql [input-text])
-  - sci-ctx"
+  - sci-ctx
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [honey.sql :as h]
             [sci.core :as sci]))
 

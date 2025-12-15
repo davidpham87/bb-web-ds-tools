@@ -1,8 +1,11 @@
 (ns bb-web-ds-tools.components.landing.animations.multi-runtime
-  "Reagent component library for multi-runtime.
+  "Namespace: bb-web-ds-tools.components.landing.animations.multi-runtime
 
-  Key functionality:
-  - (draw-multi-runtime [ctx w h t])"
+  Key functions:
+  - (draw-multi-runtime [ctx w h t])
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require
    [bb-web-ds-tools.components.landing.animations.common :refer (clear-rect zenburn)]))
 

@@ -1,13 +1,20 @@
 (ns bb-web-ds-tools.components.common
-  "Reagent component library for common.
+  "Namespace: bb-web-ds-tools.components.common
 
-  Key functionality:
+  Key functions:
   - (get-button-classes [variant disabled? size])
   - (button [props & children])
   - (button-sm [props & children])
   - (button-md [props & children])
   - (button-xs [props & children])
-  - ..."
+  - (button-info [props & children])
+  - (icon-button-link [{:keys [href icon title class])
+  - (help-button [{:keys [href title class])
+  - (input [])
+  - (select [props & children])
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [bb-web-ds-tools.theme :as t]
             [re-frame.core :as rf]))
 

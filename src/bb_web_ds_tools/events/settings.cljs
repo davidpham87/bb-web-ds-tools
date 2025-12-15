@@ -1,5 +1,8 @@
 (ns bb-web-ds-tools.events.settings
-  "Re-frame event handlers for settings."
+  "Namespace: bb-web-ds-tools.events.settings
+
+  History:
+  - Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [re-frame.core :as rf]))
 
 ;; --- Events ---
