@@ -3,6 +3,7 @@
             [clojure.test.check :as tc]
             [clojure.test.check.generators :as gen]
             [clojure.test.check.properties :as prop]
+            [clojure.string :as str]
             [bb-web-ds-tools.utils.dataset-processing :as dp]))
 
 ;; --- Generators ---
@@ -17,6 +18,8 @@
 
 (def dataset-gen
   (gen/vector row-map-gen))
+
+(def string-gen (gen/not-empty gen/string-alphanumeric))
 
 ;; --- Properties ---
 
@@ -35,6 +38,57 @@
                       parsed (dp/parse-dataset :edn :row-maps edn-str)]
                   (= dataset parsed))))
 
+;; Casing Properties
+
+(def snake-case-prop
+  (prop/for-all [s string-gen]
+    (let [res (dp/to-snake-case s)]
+      (and (string? res)
+           (= res (str/lower-case res))
+           (not (str/includes? res " "))
+           (not (str/includes? res "-"))))))
+
+(def kebab-case-prop
+  (prop/for-all [s string-gen]
+    (let [res (dp/to-kebab-case s)]
+      (and (string? res)
+           (= res (str/lower-case res))
+           (not (str/includes? res " "))
+           (not (str/includes? res "_"))))))
+
+;; Pagination Property
+
+(def pagination-prop
+  (prop/for-all [dataset dataset-gen
+                 page (gen/choose 0 10)
+                 rows-per-page (gen/choose 1 20)]
+    (let [res (dp/get-pagination-info dataset page rows-per-page)
+          count-data (count dataset)
+          page-data-count (count (:page-data res))]
+      (and
+        (<= page-data-count rows-per-page)
+        (if (> count-data (* page rows-per-page))
+             (> page-data-count 0)
+             (= page-data-count 0))
+        (= (:total-rows res) count-data)))))
+
+;; Sorting Property (Simple)
+
+(defn sorted-seq? [pred coll]
+  (every? (fn [[a b]] (pred a b)) (partition 2 1 coll)))
+
+(def sort-prop
+  (prop/for-all [vals (gen/vector gen/int)]
+    (let [data (mapv (fn [v] {:val v}) vals)
+          sorted-asc (dp/apply-sorting data :val :asc)
+          sorted-desc (dp/apply-sorting data :val :desc)
+          vals-asc (map :val sorted-asc)
+          vals-desc (map :val sorted-desc)]
+      (and
+        (sorted-seq? <= vals-asc)
+        (sorted-seq? >= vals-desc)))))
+
+
 ;; --- Tests ---
 
 (deftest json-round-trip-test
@@ -45,4 +99,19 @@
 (deftest edn-round-trip-test
   (testing "Generative EDN round-trip"
     (let [result (tc/quick-check 50 edn-round-trip-prop)]
+      (is (:pass? result) (str "Failed: " (pr-str (:shrunk result)))))))
+
+(deftest casing-gen-test
+  (testing "Snake case properties"
+    (is (:pass? (tc/quick-check 50 snake-case-prop))))
+  (testing "Kebab case properties"
+    (is (:pass? (tc/quick-check 50 kebab-case-prop)))))
+
+(deftest pagination-gen-test
+  (testing "Pagination properties"
+    (is (:pass? (tc/quick-check 50 pagination-prop)))))
+
+(deftest sorting-gen-test
+  (testing "Sorting properties"
+    (let [result (tc/quick-check 50 sort-prop)]
       (is (:pass? result) (str "Failed: " (pr-str (:shrunk result)))))))
