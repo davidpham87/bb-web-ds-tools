@@ -184,6 +184,12 @@
 (defmethod parse-dataset [:edn :row-arrays] [_ _ text]
   (some-> (edn/read-string text) normalize-row-arrays))
 
+(defmethod parse-dataset [:text :lines] [_ _ text]
+  (mapv (fn [line] {:line line}) (str/split-lines text)))
+
+(defmethod parse-dataset [:text :raw] [_ _ text]
+  [{:text text}])
+
 (defmethod parse-dataset :default [_ _ _]
   [])
 
@@ -279,6 +285,14 @@
 
 (defmethod example-data [:edn :row-arrays] [_ structure & [conf]]
   (with-out-str (pprint/pprint (get-structured-data structure))))
+
+(defmethod example-data [:text :lines] [_ _ & [conf]]
+  "Line 1: Hello World
+Line 2: This is a text file
+Line 3: 123-456-7890")
+
+(defmethod example-data [:text :raw] [_ _ & [conf]]
+  "This is a raw text block.\nIt contains newlines and special characters.\n\nUse it to test regex matching on the whole content.")
 
 (defmethod example-data :default [_ _ & [conf]] "")
 
