@@ -46,8 +46,6 @@
           ;; In some CI/Test environments, loading WASM assets might fail due to path issues.
           ;; We catch this to prevent build failure, but log it.
           (js/console.warn "SQLite WASM initialization failed (expected if WASM assets are missing in test env):" (.-message e))
-          ;; (is true "Skipping SQLite tests due to environment limitations")
-          ;; Explicitly mark as passed if we catch the expected error
-          (is true))
+          (is true "Skipping SQLite tests due to environment limitations"))
         (finally
           (done))))))

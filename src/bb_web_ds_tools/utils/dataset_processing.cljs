@@ -3,39 +3,17 @@
             [sci.core :as sci]
             [clojure.string :as str]
             [clojure.edn :as edn]
-            [cljs.pprint :as pprint]))
-
-(defn to-snake-case
-  "Converts a string to snake_case."
-  [s]
-  (-> s
-      (str/replace #"([a-z])([A-Z])" "$1_$2")
-      (str/replace #"[\s-]" "_")
-      str/lower-case))
-
-(defn to-camel-case
-  "Converts a string to CamelCase."
-  [s]
-  (->> (str/split (str/replace s #"[\s-_]" " ") #" ")
-       (map str/capitalize)
-       str/join))
-
-(defn to-kebab-case
-  "Converts a string to kebab-case."
-  [s]
-  (-> s
-      (str/replace #"([a-z])([A-Z])" "$1-$2")
-      (str/replace #"[\s_]" "-")
-      str/lower-case))
+            [cljs.pprint :as pprint]
+            [camel-snake-kebab.core :as csk]))
 
 (defn normalize-column-name
   "Normalizes a column name based on the provided configuration."
   [col-name {:keys [case output]}]
   (let [s (name col-name)
         s-case (condp = case
-                 :snake_case (to-snake-case s)
-                 :CamelCase (to-camel-case s)
-                 :kebab-case (to-kebab-case s)
+                 :snake_case (csk/->snake_case s)
+                 :CamelCase (csk/->PascalCase s)
+                 :kebab-case (csk/->kebab-case s)
                  s)
         final-val (condp = output
                     :string s-case
