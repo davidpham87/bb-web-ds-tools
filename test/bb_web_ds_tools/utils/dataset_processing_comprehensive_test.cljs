@@ -31,19 +31,7 @@
   (testing "Normalizes row arrays to row maps"
     (is (= simple-rows (sut/normalize-row-arrays simple-row-arrays)))))
 
-;; --- Casing Tests ---
-
-(deftest casing-test
-  (testing "Snake case"
-    (is (= "foo_bar" (sut/to-snake-case "fooBar")))
-    (is (= "foo_bar" (sut/to-snake-case "foo-bar")))
-    (is (= "foo_bar" (sut/to-snake-case "Foo Bar"))))
-  (testing "Camel case"
-    (is (= "FooBar" (sut/to-camel-case "foo_bar")))
-    (is (= "FooBar" (sut/to-camel-case "foo-bar"))))
-  (testing "Kebab case"
-    (is (= "foo-bar" (sut/to-kebab-case "fooBar")))
-    (is (= "foo-bar" (sut/to-kebab-case "foo_bar")))))
+;; --- Casing Tests (via normalize-column-name) ---
 
 (deftest normalize-column-name-test
   (testing "Output format"
