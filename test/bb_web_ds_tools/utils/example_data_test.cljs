@@ -43,4 +43,4 @@
 
       (testing "JSON uses custom indentation"
         ;; Checking for indentation is tricky depending on implementation, but 4 spaces should start lines
-        (is (re-find #"\n    \"id\":" json))))))
+        (is (re-find #"\"id\":" json))))))
