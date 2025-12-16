@@ -51,7 +51,7 @@
       (.beginPath ctx)
       (.moveTo ctx 0 height)
       (doseq [x (range 0 width 20)]
-        (let [y (+ y-offset (* 100 (Math/sin (+ wave-t (* x 0.005))))) ]
+        (let [y (+ y-offset (* 100 (Math/sin (+ wave-t (* x 0.005)))))]
           (.lineTo ctx x y)))
       (.lineTo ctx width height)
       (.fill ctx))))
