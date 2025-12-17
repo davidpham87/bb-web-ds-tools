@@ -2,6 +2,13 @@
 
 All notable changes to a project will be documented in this file.
 
+## [Unreleased]
+
+### Refactoring
+
+- **DRY**: Refactored `utils/dataset-processing` to consolidate repetitive multimethod implementations for JSON, EDN, and YAML formats using custom dispatch functions.
+- **Code Cleanup**: Moved `download-file` function from `views/datasets` to a new shared utility namespace `utils/io` to promote reuse and reduce duplication.
+
 ## [0.11.3] - 2025-05-23
 
 ### Refactoring
