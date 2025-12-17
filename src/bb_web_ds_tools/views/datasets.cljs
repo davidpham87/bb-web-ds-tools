@@ -141,9 +141,9 @@
    (let [id (str (random-uuid))
          valid-data (cond
                       (map? data) [data]
-                      (seq data) (if (map? (first data))
-                                   data
-                                   (mapv (fn [row] {:value row}) data))
+                      (and (coll? data) (seq data)) (if (map? (first data))
+                                                      data
+                                                      (mapv (fn [row] {:value row}) data))
                       :else [])
          ;; Apply normalization
          normalized-data (if norm-config
