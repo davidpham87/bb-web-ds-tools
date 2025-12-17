@@ -39,8 +39,8 @@
            :malli/inference-view-state]
    :honeysql [:honeysql/user-input-root
               :honeysql/component-root
-              :honeysql/input-text
-              :honeysql/sql-output]
+              :honeysql/input
+              :honeysql/output]
    :vega-lite [:bb-web-ds-tools.views.vega-lite/user-input-root
                :bb-web-ds-tools.views.vega-lite/component-root
                :bb-web-ds-tools.views.vega-lite/data-input
@@ -140,36 +140,43 @@
                   (rf/reg-fx :bb-web-ds-tools.views.datasets/fetch-vega-dataset (fn [_] nil))
 
                   (try
-                    (doseq [[event args] journey]
-                      ;; Dispatch the event
-                      (rf/dispatch (into [event] args))
+                    (doseq [[i [event args]] (map-indexed vector journey)]
+                      (try
+                        ;; Dispatch the event
+                        (rf/dispatch (into [event] args))
 
-                      ;; For navigation events, simulate the router callback
-                      (when (= event :bb-web-ds-tools.core/navigate)
-                        (let [[route-name params query] args]
-                          (rf/dispatch [::core/navigated {:data {:name route-name}
-                                                          :path-params params
-                                                          :query-params query}])))
+                        ;; For navigation events, simulate the router callback
+                        (when (= event :bb-web-ds-tools.core/navigate)
+                          (let [[route-name params query] args]
+                            (rf/dispatch [::core/navigated {:data {:name route-name}
+                                                            :path-params params
+                                                            :query-params query}])))
 
-                      ;; Verify that the app state reflects the expected route
-                      (let [current-route-match @(rf/subscribe [::core/current-route])
-                            current-route-name (get-in current-route-match [:data :name])
-                            event-def (get sut/events event)
-                            expected-route (:route event-def)]
+                        ;; Verify that the app state reflects the expected route
+                        (let [current-route-match @(rf/subscribe [::core/current-route])
+                              current-route-name (get-in current-route-match [:data :name])
+                              event-def (get sut/events event)
+                              expected-route (:route event-def)]
 
-                        (when (and expected-route (not= expected-route :global))
-                          (if (not= expected-route current-route-name)
-                            (throw (ex-info (str "Event " event " expects route " expected-route " but got " current-route-name) {}))))
+                          (when (and expected-route (not= expected-route :global))
+                            (if (not= expected-route current-route-name)
+                              (throw (ex-info (str "Event " event " expects route " expected-route " but got " current-route-name) {}))))
 
-                        ;; Verify subscriptions for the current route
-                        (when-let [subs (get view-subscriptions current-route-name)]
-                          (doseq [sub subs]
-                            (let [val @(rf/subscribe [sub])]
-                              (if (nil? val)
-                                (throw (ex-info (str "Subscription " sub " should return a value for route " current-route-name) {}))))))))
+                          ;; Verify subscriptions for the current route
+                          (when-let [subs (get view-subscriptions current-route-name)]
+                            (doseq [sub subs]
+                              (try
+                                (let [val @(rf/subscribe [sub])]
+                                  (if (nil? val)
+                                    (throw (ex-info (str "Subscription " sub " should return a value for route " current-route-name) {}))))
+                                (catch :default e
+                                  (throw (ex-info (str "Error checking subscription " sub " at route " current-route-name) {} e)))))))
+                        (catch :default e
+                          (throw (ex-info (str "Error at step " i ": " event " " args) {:step i :event event :args args} e)))))
                     true
                     (catch :default e
                       (println "Failed journey execution:")
+                      (println "Last event:" (last journey))
                       (println "Error:" (.-message e))
                       (println "Journey:" (pr-str journey))
                       false))))
