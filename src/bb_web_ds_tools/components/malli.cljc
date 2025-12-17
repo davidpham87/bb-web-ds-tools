@@ -7,8 +7,7 @@
             [clojure.string :as str]
             #?(:cljs [cljs.pprint :as pprint]
                :clj [clojure.pprint :as pprint])
-            #?(:cljs [cljs.reader :as reader]
-               :clj [clojure.edn :as reader])
+            [clojure.edn :as reader]
             #?(:clj [cheshire.core :as json])
             #?(:cljs [bb-web-ds-tools.components.common :as c])
             #?(:cljs ["@js-joda/core" :as js-joda])))
@@ -230,8 +229,13 @@
                          (or (= s-type 'string?) (= s-type :string))
                          (let [strings (filter string? d)
                                distinct-vals (distinct strings)
-                               cnt (count distinct-vals)]
-                           (if (and (pos? cnt) (<= cnt max-values))
+                               unique-count (count distinct-vals)
+                               total-count (count d)
+                               longest-string-len (reduce max 0 (map count distinct-vals))]
+                           (if (and (pos? unique-count)
+                                    (<= unique-count max-values)
+                                    (or (< unique-count (* 0.1 total-count))
+                                        (< longest-string-len 60)))
                              (assoc node :schema (into [:enum] (sort distinct-vals)))
                              node))
 
@@ -295,11 +299,11 @@
 
   Args:
     input-data (coll): The input data sample.
-    max-enum-values (int, optional): Max values to infer enum. Default 10.
+    max-enum-values (int, optional): Max values to infer enum. Default 200.
 
   Returns:
     map: {:success true :schema any} or error."
-  ([input-data] (infer-schema input-data 10))
+  ([input-data] (infer-schema input-data 200))
   ([input-data max-enum-values]
    (if (and (coll? input-data) (seq input-data))
      (let [schema (mp/provide input-data)
@@ -319,10 +323,13 @@
   Returns:
     any: The parsed data or nil."
   [generated-data format]
-  (case format
-    :edn (try (read-edn generated-data) (catch #?(:cljs :default :clj Exception) _ nil))
-    :json (try (parse-json generated-data) (catch #?(:cljs :default :clj Exception) _ nil))
-    nil))
+  (let [data (case format
+               :edn (try (read-edn generated-data) (catch #?(:cljs :default :clj Exception) _ nil))
+               :json (try (parse-json generated-data) (catch #?(:cljs :default :clj Exception) _ nil))
+               nil)]
+    (if (coll? data)
+      data
+      nil)))
 
 (defn validate-data
   "Validates data against a schema.

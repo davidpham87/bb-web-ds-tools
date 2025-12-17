@@ -142,10 +142,10 @@
             [c/card {}
              [:div
               [c/section-header "Load Gemma Model"
-                [c/help-button
+               [c/help-button
                 {:href (nav/get-wiki-url :gemma)
                  :title "Help: Gemma"
-                  :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100"}]]
+                 :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100"}]]
               [:p {:class "text-[#dcdccc] mb-4 text-sm"} "Enter the URL to the .bin model file (e.g., from Kaggle or Hugging Face)."]
               [:input {:type "text"
                        :name "url"

@@ -104,6 +104,13 @@ const commonConfig = {
         generator: {
           filename: 'images/[hash][ext][query]'
         }
+      },
+      {
+        test: /sqlite3\.wasm$/,
+        type: 'asset/resource',
+        generator: {
+          filename: '[name][ext]'
+        }
       }
     ],
   },

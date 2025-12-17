@@ -122,7 +122,7 @@
             (let [new-options (merge options
                                      {:fontSize (:font-size settings)
                                       :wordWrap (:word-wrap settings)})]
-               (.updateOptions editor (clj->js new-options))))))
+              (.updateOptions editor (clj->js new-options))))))
 
       :component-will-unmount
       (fn [this]

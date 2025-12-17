@@ -79,7 +79,6 @@
 
     (set! (.-globalAlpha ctx) 1.0)))
 
-
 (defn draw-vega-lite [ctx w h t]
   (clear-rect ctx w h)
   (let [cx (/ w 2)
