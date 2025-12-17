@@ -155,11 +155,11 @@
   "Renders a single REPL instance.
 
   Args:
-    props (map): Contains :instance-id.
+    props (map): Contains :instance-id and optional :header-content.
 
   Returns:
     vector: A hiccup vector."
-  [{:keys [instance-id]}]
+  [{:keys [instance-id header-content]}]
   (let [state-sub (rf/subscribe [::repl-instance-state instance-id])]
     (fn []
       (let [{:keys [code mac-os?]} @state-sub]
@@ -167,10 +167,13 @@
          [l/flex-col {:class "space-y-2 h-full p-2"}
           [l/flex-row {:class "justify-between"}
            [l/flex-row {:class "items-center gap-2"}
-            [c/label "Clojure Code"]
-             [c/help-button
-             {:href (nav/get-wiki-url :code)
-              :title "Help: Clojure REPL"}]]
+            (or header-content
+                [:<>
+                 [c/label "Clojure Code"]
+                 [c/help-button
+                  {:href (nav/get-wiki-url :code)
+                   :title "Help: Clojure REPL"
+                   :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100 mb-2"}]])]
            [c/button {:on-click #(rf/dispatch [::eval-code instance-id code])} "Eval"]]
           [:div {:class (str "flex-grow rounded overflow-hidden border space-x-4"
                              t/border-default)
@@ -201,21 +204,19 @@
 (defn panel
   "Main component for the Clojure REPL view. Initializes SCI on mount.
 
+  Args:
+    props (map, optional): Configuration props.
+
   Returns:
     vector: A hiccup vector."
-  []
+  [& [props]]
   (r/create-class
    {:component-did-mount #(sci-runtime/init! on-worker-message)
     :reagent-render
-    (fn []
+    (fn [& [props]]
       (let [instances (rf/subscribe [::instances])]
         [:div {:class "flex flex-col h-full overflow-y-clip"}
          (into [:div]
                (for [[instance-id] @instances]
                  ^{:key instance-id}
-                 [repl-instance {:instance-id instance-id}]))]))}))
-
-(comment
-  (rf/dispatch [:bb-web-ds-tools.portal/open {:node-id "clojure-repl"}])
-  @(rf/subscribe [::eval-count])
-  (.getElementById js/document "clojure-repl"))
+                 [repl-instance (merge {:instance-id instance-id} props)]))]))}))

@@ -245,6 +245,34 @@
  (fn [root _]
    (:json-schema-result root)))
 
+;; Mobile view state
+(rf/reg-event-db
+ :malli/set-mobile-view-mode
+ (fn [db [_ mode]]
+   (assoc db ::mobile-view-mode mode)))
+
+(rf/reg-sub
+ ::mobile-view-mode
+ (fn [db _]
+   (get db ::mobile-view-mode :editor)))
+
+(defn mobile-view-toggle [mode set-mode-fn]
+  [:div {:class "flex flex-row space-x-4 p-2 md:hidden justify-center bg-[#2d2d2d] border-b border-[#3f3f3f]"}
+   [:label {:class "flex items-center space-x-2 cursor-pointer"}
+    [:input {:type "radio"
+             :name "malli-mobile-view-mode"
+             :checked (= mode :editor)
+             :on-change #(set-mode-fn :editor)
+             :class "form-radio text-blue-600"}]
+    [:span "Editor"]]
+   [:label {:class "flex items-center space-x-2 cursor-pointer"}
+    [:input {:type "radio"
+             :name "malli-mobile-view-mode"
+             :checked (= mode :portal)
+             :on-change #(set-mode-fn :portal)
+             :class "form-radio text-blue-600"}]
+    [:span "Portal"]]])
+
 ;; Combined Subscriptions
 
 (rf/reg-sub
@@ -307,23 +335,36 @@
   Returns:
     vector: A hiccup vector."
   [{:keys [controls editors output]}]
-  [l/flex-row {:class "h-full w-full"}
-   ;; LEFT: Controls + Editors
-   [l/flex-col {:class "space-y-2 w-full max-w-3xl"}
-    ;; Controls
-    [l/flex-row {:class "justify-between py-4 items-center"}
-     controls]
-    ;; Editors
-    (for [[i editor-config] (map-indexed vector editors)]
-      ^{:key i}
-      [:<>
-       (when (:label editor-config)
-         [c/label (:label editor-config)])
-       [:div {:class (str "rounded overflow-hidden border " t/border-default)
-              :style {:height (or (:height editor-config) "85vh")}}
-        [editor/monaco-editor (dissoc editor-config :height :label)]]])]
-   ;; RIGHT: Output
-   [portal-panel output]])
+  (let [mobile-view-mode @(rf/subscribe [::mobile-view-mode])
+        is-md? (r/with-let [mql (js/window.matchMedia "(min-width: 768px)")
+                            match (r/atom (.-matches mql))
+                            handler (fn [e] (reset! match (.-matches e)))]
+                 (.addEventListener mql "change" handler)
+                 @match
+                 (finally (.removeEventListener mql "change" handler)))]
+    [l/flex-col {:class "h-full w-full"}
+     (when-not is-md?
+       [mobile-view-toggle mobile-view-mode #(rf/dispatch [:malli/set-mobile-view-mode %])])
+     [l/flex-row {:class "h-full w-full"}
+      ;; LEFT: Controls + Editors
+      (when (or is-md? (= mobile-view-mode :editor))
+        [l/flex-col {:class "space-y-2 w-full md:max-w-3xl flex-shrink-0"}
+         ;; Controls
+         [l/flex-row {:class "justify-between py-4 items-center flex-wrap gap-2"}
+          controls]
+         ;; Editors
+         (for [[i editor-config] (map-indexed vector editors)]
+           ^{:key i}
+           [:<>
+            (when (:label editor-config)
+              [c/label (:label editor-config)])
+            [:div {:class (str "rounded overflow-hidden border " t/border-default)
+                   :style {:height (or (:height editor-config) "85vh")}}
+             [editor/monaco-editor (dissoc editor-config :height :label)]]])])
+      ;; RIGHT: Output
+      (when (or is-md? (= mobile-view-mode :portal))
+        [:div {:class "w-full h-full flex-grow overflow-hidden"}
+         [portal-panel output]])]]))
 
 (defn get-inference-props
   "Generates props for the unified view in Inference mode."
@@ -333,8 +374,9 @@
                [c/label "Input Data"]
                [c/help-button
                 {:href (nav/get-wiki-url :malli)
-                 :title "Help: Malli"}]]
-              [l/flex-row {:class "space-x-2 items-center"}
+                 :title "Help: Malli"
+                 :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100 mb-2"}]]
+              [l/flex-row {:class "space-x-2 items-center flex-wrap gap-y-2"}
                [c/button {:size :sm
                           :variant (if (= input-format :edn) :primary nil)
                           :on-click #(rf/dispatch [:malli/set-input-format :edn])} "EDN"]
@@ -370,7 +412,7 @@
                           :variant :primary
                           :on-click #(rf/dispatch [:malli/infer-schema])} "Infer Schema"]
 
-               [:div {:class (str "ml-4 text-xs " t/text-secondary)}
+               [:div {:class (str "ml-4 text-xs " t/text-secondary " hidden md:block")}
                 "CLI: " [:code {:class "bg-black/20 p-1 rounded"} "bb -x bb-web-ds-tools.cli.malli/infer"]]]]
    :editors [{:value inference-input
               :language (case input-format
@@ -390,8 +432,9 @@
                [c/label "Schema (EDN)"]
                [c/help-button
                 {:href (nav/get-wiki-url :malli)
-                 :title "Help: Malli Generation"}]]
-              [l/flex-row {:class "items-center gap-2"}
+                 :title "Help: Malli Generation"
+                 :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100 mb-2"}]]
+              [l/flex-row {:class "items-center gap-2 flex-wrap"}
                ;; Samples count
                [:div {:class "flex items-center gap-1"}
                 [:span {:class "text-xs"} "Samples:"]
@@ -416,7 +459,7 @@
                [c/button {:size :sm
                           :on-click #(rf/dispatch [:malli/save-dataset])} "Save to Datasets"]
 
-               [:div {:class (str "ml-4 text-xs " t/text-secondary)}
+               [:div {:class (str "ml-4 text-xs " t/text-secondary " hidden md:block")}
                 "CLI: " [:code {:class "bg-black/20 p-1 rounded"} "bb -x bb-web-ds-tools.cli.malli/generate"]]]]
    :editors [{:value schema-text
               :language "clojure"
@@ -438,7 +481,7 @@
                          :variant :primary
                          :on-click #(rf/dispatch [:malli/validate])} "Validate"]
 
-              [:div {:class (str "ml-4 text-xs " t/text-secondary)}
+              [:div {:class (str "ml-4 text-xs " t/text-secondary " hidden md:block")}
                "CLI: " [:code {:class "bg-black/20 p-1 rounded"} "bb -x bb-web-ds-tools.cli.malli/validate"]]]
    :editors [{:value schema-text
               :language "clojure"
@@ -494,7 +537,7 @@
      [nav/portal-to-top-bar
       [c/nav-tabs {:tabs tabs
                    :active-tab-id active-tab
-                   :class "border-b-0 bg-transparent px-0"
+                   :class "border-b-0 bg-transparent px-0 text-xs"
                    :on-change #(rf/dispatch [:malli/set-active-tab %])}]]
 
      [:div {:class "flex-grow overflow-hidden"}
