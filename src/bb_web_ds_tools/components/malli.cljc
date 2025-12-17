@@ -7,8 +7,7 @@
             [clojure.string :as str]
             #?(:cljs [cljs.pprint :as pprint]
                :clj [clojure.pprint :as pprint])
-            #?(:cljs [cljs.reader :as reader]
-               :clj [clojure.edn :as reader])
+            [clojure.edn :as reader]
             #?(:clj [cheshire.core :as json])
             #?(:cljs [bb-web-ds-tools.components.common :as c])
             #?(:cljs ["@js-joda/core" :as js-joda])))
