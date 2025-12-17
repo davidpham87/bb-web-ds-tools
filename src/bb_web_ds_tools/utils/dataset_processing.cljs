@@ -55,10 +55,10 @@
     vector: A vector of maps e.g. [{:col1 v1 :col2 v3} ...]."
   [data]
   (let [cols (keys data)
-        vals-seq (vals data)
-        cnt (if (seq vals-seq) (reduce max 0 (map count vals-seq)) 0)]
+        col-vecs (mapv data cols)
+        cnt (if (seq col-vecs) (reduce max 0 (map count col-vecs)) 0)]
     (mapv (fn [i]
-            (zipmap cols (map #(get (get data %) i) cols)))
+            (zipmap cols (map #(nth % i nil) col-vecs)))
           (range cnt))))
 
 (defn normalize-row-arrays
@@ -148,19 +148,20 @@
   (let [res (.parse Papa text #js {:delimiter "\t" :header true :dynamicTyping true :skipEmptyLines true})]
     (js->clj (.-data res) :keywordize-keys true)))
 
+(defn- parse-markdown-row [line]
+  (let [parts (into [] (map str/trim) (str/split line #"\|"))
+        n (count parts)
+        start (if (and (> n 0) (empty? (nth parts 0))) 1 0)
+        end (if (and (> n 0) (empty? (peek parts))) (dec n) n)]
+    (if (< start end)
+      (subvec parts start end)
+      [])))
+
 (defmethod parse-dataset [:markdown :columnar] [_ _ text]
   (let [lines (into [] (comp (map str/trim) (remove empty?)) (str/split-lines text))
-        parse-row (fn [line]
-                    (let [parts (into [] (map str/trim) (str/split line #"\|"))
-                          n (count parts)
-                          start (if (and (> n 0) (empty? (nth parts 0))) 1 0)
-                          end (if (and (> n 0) (empty? (peek parts))) (dec n) n)]
-                      (if (< start end)
-                        (subvec parts start end)
-                        [])))
         [header-line _ & data-lines] lines
-        header (map keyword (parse-row header-line))]
-    (mapv (fn [line] (zipmap header (parse-row line))) data-lines)))
+        header (map keyword (parse-markdown-row header-line))]
+    (mapv (fn [line] (zipmap header (parse-markdown-row line))) data-lines)))
 
 ;; JSON parsing
 (defmethod parse-dataset [:json :columnar] [_ structure text] (parse-structured parse-json structure text))
@@ -420,17 +421,17 @@ Line 3: 123-456-7890")
              {}
              filters))
 
+(defn- match-filter? [row [k f]]
+  (try
+    (f (get row k))
+    (catch :default _ false)))
+
 (defn apply-filters
-  "Filters the data based on the compiled filters map."
+  "Filters the data based on the compiled filters map.
+   Uses a transducer for performance."
   [data compiled-filters]
   (if (seq compiled-filters)
-    (filter (fn [row]
-              (every? (fn [[k f]]
-                        (try
-                          (f (get row k))
-                          (catch :default _ false)))
-                      compiled-filters))
-            data)
+    (into [] (filter (fn [row] (every? #(match-filter? row %) compiled-filters))) data)
     data))
 
 (defn apply-sorting

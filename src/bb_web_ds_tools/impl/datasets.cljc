@@ -73,8 +73,9 @@
   [data _ _]
   "Transforms a columnar map to a sequence of row maps."
   (let [cols (keys data)
-        count (count (first (vals data)))]
-    (mapv (fn [i] (zipmap cols (map #(nth (get data %) i) cols))) (range count))))
+        col-vecs (mapv data cols)
+        cnt (if (seq col-vecs) (reduce max 0 (map count col-vecs)) 0)]
+    (mapv (fn [i] (zipmap cols (map #(nth % i nil) col-vecs))) (range cnt))))
 
 ;; Columnar -> Rows
 (defmethod transform [:columnar :rows]
@@ -83,8 +84,9 @@
   (if (empty? data)
     []
     (let [header (keys data)
-          count (count (first (vals data)))
-          rows (mapv (fn [i] (mapv #(nth (get data %) i) header)) (range count))]
+          col-vecs (mapv data header)
+          cnt (if (seq col-vecs) (reduce max 0 (map count col-vecs)) 0)
+          rows (mapv (fn [i] (mapv #(nth % i nil) col-vecs)) (range cnt))]
       (cons header rows))))
 
 ;; Rows -> Row Maps
