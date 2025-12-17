@@ -8,7 +8,7 @@
   - sci-ctx
 
   History:
-  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14 782cf0f: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [bb-web-ds-tools.utils.worker :as worker]
             [bb-web-ds-tools.views.datasets :as datasets]
             [portal.web :as p]

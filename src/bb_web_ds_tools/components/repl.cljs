@@ -5,7 +5,7 @@
   - (repl-card [{:keys [code output on-change on-eval on-focus on-blur path on-mount])
 
   History:
-  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14 782cf0f: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [bb-web-ds-tools.components.editor :as editor-comp]))
 
 (defn input-panel

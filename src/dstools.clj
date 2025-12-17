@@ -5,7 +5,7 @@
   - table
 
   History:
-  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14 782cf0f: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [bb-web-ds-tools.cli.datasets :as datasets]
             [bb-web-ds-tools.cli.honeysql :as honeysql]
             [bb-web-ds-tools.cli.malli :as malli]

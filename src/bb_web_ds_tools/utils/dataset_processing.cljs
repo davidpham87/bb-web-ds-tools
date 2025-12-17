@@ -12,7 +12,7 @@
   - (to-markdown-table [rows])
 
   History:
-  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14 782cf0f: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require ["papaparse" :as Papa]
             [sci.core :as sci]
             [clojure.string :as str]

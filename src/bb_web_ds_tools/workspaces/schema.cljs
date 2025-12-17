@@ -3,7 +3,7 @@
   - schema
 
   History:
-  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438")
+  - 2025-12-14 782cf0f: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438")
 
 (def schema
   {:workspace/id          {:db/unique :db.unique/identity}

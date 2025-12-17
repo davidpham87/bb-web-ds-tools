@@ -5,7 +5,7 @@
   - changelog-data
 
   History:
-  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14 782cf0f: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.navigation :as nav]))
 

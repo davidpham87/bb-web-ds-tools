@@ -8,7 +8,7 @@
   - (panel [])
 
   History:
-  - 2025-12-14: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
+  - 2025-12-14 782cf0f: Merge pull request #351 from davidpham87/sqlite-wasm-test-13575504069155099438"
   (:require
    ["monaco-editor/esm/vs/editor/editor.api.js" :refer [KeyCode]]
    [bb-web-ds-tools.components.common :as c]
