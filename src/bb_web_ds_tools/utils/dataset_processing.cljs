@@ -17,7 +17,11 @@
   Returns:
     keyword/string/symbol: The normalized column name."
   [col-name {:keys [case output]}]
-  (let [s (name col-name)
+  (let [s (cond
+            (keyword? col-name) (name col-name)
+            (symbol? col-name) (name col-name)
+            (string? col-name) col-name
+            :else (str col-name))
         s-case (condp = case
                  :snake_case (csk/->snake_case s)
                  :CamelCase (csk/->PascalCase s)
