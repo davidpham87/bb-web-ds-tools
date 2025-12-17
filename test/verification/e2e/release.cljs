@@ -1,4 +1,4 @@
-(ns verification.e2e.release-test
+(ns verification.e2e.release
   (:require-macros [verification.e2e.macros :refer [def-e2e-test]])
   (:require
    [verification.e2e.core :refer [with-page check]]
