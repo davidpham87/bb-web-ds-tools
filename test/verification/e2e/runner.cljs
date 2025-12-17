@@ -3,7 +3,8 @@
             [verification.e2e.release]
             [verification.e2e.theme]
             [verification.e2e.navigation]
-            [verification.e2e.datasets]))
+            [verification.e2e.datasets]
+            [verification.csp]))
 
 (defn -main []
   (println "Starting e2e tests...")
