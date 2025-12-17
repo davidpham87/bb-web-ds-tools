@@ -35,11 +35,18 @@
  ::path-value
  (fn [db [_ path-str]]
    (try
-     (let [path (reader/read-string path-str)]
+     (let [path (if (string? path-str)
+                  (reader/read-string path-str)
+                  path-str)]
        (get-in db path :bb-web-ds-tools.views.app-db/not-found))
      (catch :default _ :bb-web-ds-tools.views.app-db/error))))
 
 ;; Events
+
+(rf/reg-event-db
+ ::initialize
+ (fn [db _]
+   (update-in db [:user-input :app-db] #(merge {:watched-paths [] :active-path nil} %))))
 
 (rf/reg-event-db
  ::set-active-path
