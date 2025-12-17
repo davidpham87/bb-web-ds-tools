@@ -223,7 +223,6 @@
   (when-let [el (.getElementById js/document "app")]
     (rdomc/create-root el)))
 
-
 (defn ^:export init
   "The entry point of the application. Initializes the database, router, and mounts the React root.
 

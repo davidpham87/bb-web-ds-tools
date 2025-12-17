@@ -148,7 +148,7 @@
 
   Returns:
     vector: A hiccup vector."
-  []
+  [& [{:keys [header-content]}]]
   (let [loading? @(rf/subscribe [::loading?])
         ready? @(rf/subscribe [::ready?])
         error @(rf/subscribe [::error])
@@ -158,11 +158,13 @@
      [l/flex-col {:class "h-full p-2 space-y-2"}
       [l/flex-row {:class "justify-between"}
        [l/flex-row {:class "items-center gap-2"}
-        [c/label "R Code"]
-        [c/help-button
-         {:href (nav/get-wiki-url :code)
-          :title "Help: R (WebR)"
-          :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100 mb-2"}]]
+        (or header-content
+            [:<>
+             [c/label "R Code"]
+             [c/help-button
+              {:href (nav/get-wiki-url :code)
+               :title "Help: R (WebR)"
+               :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100 mb-2"}]])]
        [l/flex-row {:class "space-x-4"}
         (when loading? [:div {:class t/text-accent} "Loading WebR..."])
         [c/button {:on-click #(rf/dispatch [::run-code code])} "Eval"]]]
@@ -179,8 +181,8 @@
 
   Returns:
     vector: A hiccup vector."
-  []
+  [& [props]]
   (r/create-class
    {:display-name "r-repl-panel"
     :component-did-mount (fn [] (rf/dispatch [::on-mount]))
-    :reagent-render (fn [] [panel-render])}))
+    :reagent-render (fn [& [props]] [panel-render props])}))

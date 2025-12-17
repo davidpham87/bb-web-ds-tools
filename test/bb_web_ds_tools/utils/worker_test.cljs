@@ -35,7 +35,7 @@
              (sut/post-message w {:type :ping})
              (a/go
                (let [msg (a/<! out-chan)]
-                 (is (= :ping (:type msg)))
+                 (is (= {:type :ping} msg))
                  (sut/terminate w)
                  (done)))))))
 
@@ -45,7 +45,7 @@
            (let [received (atom nil)
                  on-msg (fn [msg]
                           (reset! received msg)
-                          (is (= :pong (:type msg)))
+                          (is (= {:type :pong} msg))
                           (done))
                  w (sut/create-worker "test.js" on-msg)]
              (is (nil? (:out-chan w)))

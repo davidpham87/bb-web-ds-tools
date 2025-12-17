@@ -317,13 +317,16 @@
 
             set-state (fn [k v] (rf/dispatch [::update-new-dataset-state k v]))
 
-            supported-structures (if (contains? #{:csv :tsv :markdown} fmt)
-                                   #{:columnar}
-                                   #{:columnar :row-maps :row-arrays})
+            supported-structures (cond
+                                   (= fmt :text) #{:lines :raw}
+                                   (contains? #{:csv :tsv :markdown} fmt) #{:columnar}
+                                   :else #{:columnar :row-maps :row-arrays})
 
             struct-labels {:columnar "Columnar"
                            :row-maps "Row (Maps)"
-                           :row-arrays "Array (Arrays)"}]
+                           :row-arrays "Array (Arrays)"
+                           :lines "Lines"
+                           :raw "Raw Text"}]
 
         (when (and (nil? @vega-list) (not @loading-list?))
           (rf/dispatch [::fetch-vega-datasets]))
@@ -351,13 +354,14 @@
                  [:option {:key ds :value ds} ds])])]
 
            [l/flex-row {:class "space-x-2"}
-            (for [f [:csv :tsv :json :edn :markdown]]
+            (for [f [:csv :tsv :json :edn :markdown :text]]
               [c/button {:size :xs
                          :key f
                          :class (if (= fmt f) (str t/bg-button-primary " text-white") "")
                          :on-click #(do (set-state :format f)
-                                        (when (#{:csv :tsv :markdown} f)
-                                          (set-state :structure :columnar)))}
+                                        (cond
+                                          (= f :text) (set-state :structure :lines)
+                                          (#{:csv :tsv :markdown} f) (set-state :structure :columnar)))}
                (if (= f :markdown) "MD" (str/upper-case (name f)))])]]]
 
          [c/input {:value dataset-name
@@ -367,15 +371,23 @@
          [l/flex-row {:class "items-center space-x-4 flex-wrap gap-y-2"}
           [l/flex-row {:class "items-baseline space-x-2"}
            [:span {:class (str "text-sm " t/text-primary)} "Structure:"]
-           (for [s [:columnar :row-maps :row-arrays]]
+           (for [s [:columnar :row-maps :row-arrays :lines :raw]]
              [c/button {:size :xs
                         :key s
                         :disabled (not (contains? supported-structures s))
                         :class (if (= structure s)
                                  (str t/bg-button-primary " text-white")
-                                 (if (not (contains? supported-structures s)) "opacity-50 cursor-not-allowed" ""))
+                                 (if (not (contains? supported-structures s)) "hidden" ""))
                         :on-click #(set-state :structure s)}
               (get struct-labels s)])]
+
+          (when (= fmt :text)
+            [:div {:class "text-xs text-gray-400 p-2 bg-black/10 rounded space-y-1"}
+             [:p "Work directly on text files. Load as 'Lines' (split by newline) or 'Raw' (single text block)."]
+             [:p {:class "font-mono"} ";; Example: Slurp (simulated via raw text)"]
+             [:p {:class "font-mono"} "(def content (-> @user/datasets :ds-id :data first :text))"]
+             [:p {:class "font-mono"} ";; Example: Regex Match"]
+             [:p {:class "font-mono"} "(re-seq #\"[0-9]+\" content)"]])
 
           [l/flex-row {:class (str "space-x-2 text-sm " t/text-primary " items-center")}
            [c/button-info {:on-click #(set-state :text (dp/example-data fmt structure))}

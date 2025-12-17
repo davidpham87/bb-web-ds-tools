@@ -67,7 +67,12 @@
   (doseq [[k v] new-datasets]
     (js/Reflect.set datasets-target k (clj->js v))))
 
-(defn create-datasets-proxy []
+(defn create-datasets-proxy
+  "Creates a JavaScript Proxy object to intercept dataset modifications in Python.
+
+  Returns:
+    js/Proxy: A proxy that syncs changes back to the main thread."
+  []
   (js/Proxy. datasets-target
              (clj->js {:set (fn [obj prop ^js value receiver]
                               (let [js-val (if (and value (.-toJs value))

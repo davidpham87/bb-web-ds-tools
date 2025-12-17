@@ -62,9 +62,12 @@
   Returns:
     vector: A hiccup vector."
   []
-  (let [current-theme @(rf/subscribe [::theme-events/current-theme])]
+  (let [current-theme @(rf/subscribe [::theme-events/current-theme])
+        editor-settings @(rf/subscribe [::settings-events/editor-settings])]
     [c/card {:class "p-6 space-y-6"}
      [:h3 {:class "text-xl font-bold"} "General Settings"]
+
+     ;; Theme
      [:div
       [:label {:class "block text-sm font-medium mb-2"} "Theme"]
       [:select
@@ -73,7 +76,34 @@
         :on-change #(rf/dispatch [::theme-events/set-theme (keyword (.. % -target -value))])}
        (for [theme-name (sort (keys themes/themes))]
          ^{:key theme-name}
-         [:option {:value (name theme-name)} (name theme-name)])]]]))
+         [:option {:value (name theme-name)} (name theme-name)])]]
+
+     ;; Editor Settings (Moved from Code section)
+     [:div {:class "pt-4 border-t border-[#3f3f3f]"}
+      [:h4 {:class "text-lg font-bold mb-4"} "Editor Settings"]
+      [:div {:class "space-y-4"}
+       [:div
+        [:label {:class "block text-sm font-medium mb-2"} "Font Size (px)"]
+        [c/input {:type "number"
+                  :value (:font-size editor-settings)
+                  :on-change-event [::settings-events/set-editor-setting :font-size]
+                  :class "w-full max-w-xs"}]]
+       [:div
+        [:label {:class "block text-sm font-medium mb-2"} "Editor Width (CSS value, e.g. 50%, 800px)"]
+        [c/input {:type "text"
+                  :value (:width editor-settings)
+                  :on-change-event [::settings-events/set-editor-setting :width]
+                  :class "w-full max-w-xs"}]]
+       [:div
+        [:label {:class "block text-sm font-medium mb-2"} "Word Wrap"]
+        [:select
+         {:class "bg-[#3f3f3f] text-white rounded px-3 py-2 w-full max-w-xs border border-[#4f4f4f] focus:outline-none focus:border-[#8cd0d3]"
+          :value (:word-wrap editor-settings)
+          :on-change #(rf/dispatch [::settings-events/set-editor-setting :word-wrap (.. % -target -value)])}
+         [:option {:value "off"} "Off"]
+         [:option {:value "on"} "On"]
+         [:option {:value "wordWrapColumn"} "Word Wrap Column"]
+         [:option {:value "bounded"} "Bounded"]]]]]]))
 
 (defn appearance-settings
   "Renders the appearance settings view.

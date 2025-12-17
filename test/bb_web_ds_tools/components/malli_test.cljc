@@ -39,8 +39,7 @@
     (let [schema [:map [:a int?]]
           data {:a 1}
           result (sut/validate-data schema data)]
-      (is (:success result))
-      (is (= "✅ Data is valid." (:result result)))))
+      (is (= {:success true :result "✅ Data is valid."} result))))
 
   (testing "Invalid data"
     (let [schema [:map [:a int?]]
@@ -67,7 +66,8 @@
 
 (deftest infer-schema-enum-test
   (testing "infer-schema uses max-enum-values to refine strings to enums"
-    (let [data [{:a "x"} {:a "y"} {:a "x"} {:a "z"}]
+    ;; Needs unique < 10% of total. 3 unique ("x", "y", "z"). Need > 30 rows.
+    (let [data (vec (mapcat (fn [v] (repeat 11 {:a v})) ["x" "y" "z"])) ;; 33 rows. 3 unique. 9%.
           result (sut/infer-schema data)]
       (is (:success result))
       (let [schema (:schema result)]
@@ -79,8 +79,9 @@
           (is (= #{"x" "y" "z"} (set (rest val-schema))))))))
 
   (testing "infer-schema respects max-enum-values limit"
-    (let [data [{:a "1"} {:a "2"} {:a "3"}]
-          ;; max-values 2. Distinct count 3. Should remain string.
+    ;; Needs unique < 10% (to qualify) BUT unique > max-values (to fail limit).
+    ;; 3 unique. Max values 2. Need > 30 rows.
+    (let [data (vec (mapcat (fn [v] (repeat 11 {:a v})) ["1" "2" "3"])) ;; 33 rows. 3 unique.
           result (sut/infer-schema data 2)
           schema (:schema result)]
       (is (:success result))

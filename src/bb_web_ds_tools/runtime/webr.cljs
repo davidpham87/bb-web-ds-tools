@@ -4,6 +4,7 @@
    [bb-web-ds-tools.portal :as portal]
    [cljs.core.async :as a :refer [go <!]]
    [cljs.core.async.interop :refer [<p!]]
+   [cljs.pprint :as pprint]
    [clojure.string :as str]
    [re-frame.core :as rf]))
 
@@ -98,6 +99,19 @@
 
         :else nil))))
 
+(defn- process-capture-msgs [output]
+  (go
+    (let [output-chans (map process-output-msg (array-seq output))]
+      (if (seq output-chans)
+        (loop [[ch & more] output-chans
+               acc []]
+          (let [val (<! ch)
+                new-acc (conj acc val)]
+            (if more
+              (recur more new-acc)
+              new-acc)))
+        []))))
+
 (defn load-runtime-main
   "Loads the WebR runtime in the main thread.
 
@@ -187,6 +201,25 @@
           (js/console.error "Failed to sync datasets from R:" e))))
     (go (js/console.warn "WebR not loaded, cannot sync datasets"))))
 
+(defn- get-error-details [e]
+  (if (and (object? e) (= (.-message e) "Promise error"))
+    (let [clj-e (js->clj e :keywordize-keys true)]
+      (if (not-empty clj-e)
+        (with-out-str (pprint/pprint clj-e))
+        (str e)))
+    (str e)))
+
+(defn- attempt-print-error [^js webr ^js shelter e]
+  (go
+    (try
+      (<p! (bind-r (get-global-env webr) ".last_error" e))
+      (let [res (<p! (capture-r shelter "print(.last_error)" (clj->js {:autoprint true})))
+            [output _ _] (get-result-props res)
+            msgs (<! (process-capture-msgs output))]
+        (str/join "\n" (keep :text msgs)))
+      (catch :default _
+        nil))))
+
 (defn eval-in-main
   "Evaluates R code in the main thread using WebR.
 
@@ -217,19 +250,9 @@
               (try
                 (let [res (<p! (capture-r shelter code (clj->js {:autoprint true})))
                       [output images result] (get-result-props res)
-                      ;; Fix for output order regression:
-                      ;; Map process-output-msg to create sequence of channels,
-                      ;; then sequentially await them to preserve order.
-                      output-chans (map process-output-msg (array-seq output))
-                      output-msgs (if (seq output-chans)
-                                    (loop [[ch & more] output-chans
-                                           acc []]
-                                      (let [val (<! ch)
-                                            new-acc (conj acc val)]
-                                        (if more
-                                          (recur more new-acc)
-                                          new-acc)))
-                                    [])
+                      ;; Use shared output processing logic
+                      output-msgs (<! (process-capture-msgs output))
+
                       ;; Default settings
                       webr-settings (get opts :webr {:container-width 720
                                                      :container-height 800
@@ -261,7 +284,11 @@
                                      (catch js/Error _ (str result)))]
                     (portal-submit {:type :result :value clj-val})))
                 (catch :default e
-                  (portal-submit {:type :error :text (str e)}))
+                  (let [printed-error (if (and (object? e) (= (.-message e) "Promise error"))
+                                        (<! (attempt-print-error webr shelter e))
+                                        nil)]
+                    (portal-submit {:type :error
+                                    :text (or printed-error (get-error-details e))})))
                 (finally
                   (purge-shelter shelter))))
             (throw (js/Error. "Shelter not found on WebR instance"))))

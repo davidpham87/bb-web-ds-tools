@@ -177,7 +177,7 @@ chart.to_html()")
 
   Returns:
     vector: A hiccup vector."
-  [datasets]
+  [datasets & [{:keys [header-content]}]]
   (let [code-sub (rf/subscribe [::code])]
     (r/create-class
      {:component-did-mount
@@ -190,7 +190,7 @@ chart.to_html()")
           (when (not= old-datasets new-datasets)
             (pyodide-runtime/sync-datasets new-datasets))))
       :reagent-render
-      (fn [datasets]
+      (fn [datasets & [{:keys [header-content]}]]
         (let [code @code-sub
               mac-os? @(rf/subscribe [::mac-os?])
               loading? @(rf/subscribe [::loading?])
@@ -199,11 +199,13 @@ chart.to_html()")
            [l/flex-col {:class "h-full w-full p-2 space-y-2"}
             [l/flex-row {:class "justify-between"}
              [l/flex-row {:class "items-center gap-2"}
-              [c/label "Python Code"]
-              [c/help-button
-               {:href (nav/get-wiki-url :code)
-                :title "Help: Python (Pyodide)"
-                :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100 mb-2"}]]
+              (or header-content
+                  [:<>
+                   [c/label "Python Code"]
+                   [c/help-button
+                    {:href (nav/get-wiki-url :code)
+                     :title "Help: Python (Pyodide)"
+                     :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100 mb-2"}]])]
              [l/flex-row {:class "space-x-4"}
               [c/button {:on-click #(rf/dispatch [::run-code code])} "Run"]]]
             [:div {:class (str "flex-grow rounded overflow-hidden border  " t/border-default)
@@ -220,11 +222,14 @@ chart.to_html()")
 (defn panel
   "Main component for the Pyodide view. Initializes on mount.
 
+  Args:
+    props (map, optional): Configuration props.
+
   Returns:
     vector: A hiccup vector."
-  []
+  [& [props]]
   (let [datasets-sub (rf/subscribe [::datasets/items])]
     (r/create-class
      {:component-did-mount #(rf/dispatch [::initialize])
-      :reagent-render (fn []
-                        [internal-view @datasets-sub])})))
+      :reagent-render (fn [& [props]]
+                        [internal-view @datasets-sub props])})))

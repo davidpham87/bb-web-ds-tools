@@ -7,7 +7,14 @@
             ["monaco-editor/esm/vs/basic-languages/python/python.contribution.js"]
             ["monaco-editor/esm/vs/basic-languages/r/r.contribution.js"]
             [bb-web-ds-tools.theme :as t]
-            [bb-web-ds-tools.events.theme :as theme-events]))
+            [bb-web-ds-tools.events.theme :as theme-events]
+            [bb-web-ds-tools.events.settings :as settings-events]
+            [clojure.string :as str]))
+
+(defn normalize-value
+  "Normalizes line endings to LF."
+  [s]
+  (str/replace (or s "") #"\r\n" "\n"))
 
 (defn monaco-editor
   "Renders a Monaco Editor component.
@@ -27,7 +34,8 @@
         subscription (r/atom nil)
         on-change-ref (atom nil)
         ignore-change? (atom false)
-        current-theme (rf/subscribe [::theme-events/current-theme])]
+        current-theme (rf/subscribe [::theme-events/current-theme])
+        global-settings (rf/subscribe [::settings-events/editor-settings])]
     (r/create-class
      {:displayName "monaco-editor"
       :component-did-mount
@@ -53,7 +61,8 @@
                            :minimap {:enabled false}
                            :scrollBeyondLastLine false
                            :fontFamily "'Source Code Pro', monospace"
-                           :fontSize 14}
+                           :fontSize (:font-size @global-settings 14)
+                           :wordWrap (:word-wrap @global-settings "off")}
                           options)))]
 
             (reset! editor-instance editor)
@@ -84,12 +93,20 @@
       :component-did-update
       (fn [this [_ old-props]]
         (let [{:keys [value language mode options on-change]} (r/props this)
-              editor ^js @editor-instance]
+              editor ^js @editor-instance
+              settings @global-settings]
           (reset! on-change-ref on-change)
           (when editor
+            ;; Logic to prevent cursor jumping
             (when (and (not @ignore-change?)
-                       (not= (.getValue editor) value))
-              (.setValue editor (or value "")))
+                       (not= (normalize-value (.getValue editor)) (normalize-value value)))
+              (let [model (.getModel editor)
+                    full-range (.getFullModelRange model)]
+                (.executeEdits editor "update-value"
+                               (clj->js [{:range full-range
+                                          :text (or value "")
+                                          :forceMoveMarkers true}]))
+                (.pushUndoStop editor)))
 
             (let [lang (or language
                            (case mode
@@ -101,8 +118,11 @@
               (when (and model lang (not= current-lang lang))
                 (monaco/editor.setModelLanguage model lang)))
 
-            (when (not= (:options old-props) options)
-              (.updateOptions editor (clj->js options))))))
+            ;; Update options from props AND global settings
+            (let [new-options (merge options
+                                     {:fontSize (:font-size settings)
+                                      :wordWrap (:word-wrap settings)})]
+              (.updateOptions editor (clj->js new-options))))))
 
       :component-will-unmount
       (fn [this]

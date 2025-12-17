@@ -21,9 +21,4 @@
           result (m-comp/infer-schema data)
           schema (:schema result)]
       (is (:success result) "Inference should succeed")
-      (is (vector? schema) "Schema should be a vector")
-      (is (= :time/local-date (first schema)) "Should infer :time/local-date")
-      (let [props (second schema)]
-        (is (map? props) "Should have properties map")
-        (is (:min props) "Should include :min constraint")
-        (is (:max props) "Should include :max constraint")))))
+      (is (= [:time/local-date {:min d1 :max d2}] schema) "Should infer correct schema with min/max"))))
