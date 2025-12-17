@@ -1,16 +1,16 @@
 (ns bb-web-ds-tools.views.malli
-  (:require [reagent.core :as r]
-            [re-frame.core :as rf]
-            [fork.re-frame :as fork]
-            [bb-web-ds-tools.components.common :as c]
-            [bb-web-ds-tools.components.editor :as editor]
-            [bb-web-ds-tools.components.layout :as l]
-            [bb-web-ds-tools.components.malli :as c-malli]
-            [bb-web-ds-tools.components.navigation :as nav]
-            [bb-web-ds-tools.portal :as portal :refer [portal-frame portal-panel]]
-            [bb-web-ds-tools.theme :as t]
-            [bb-web-ds-tools.views.datasets :as datasets]
-            [bb-web-ds-tools.utils.dataset-processing :as dp]))
+  (:require
+   [reagent.core :as r]
+   [re-frame.core :as rf]
+   [bb-web-ds-tools.components.common :as c]
+   [bb-web-ds-tools.components.editor :as editor]
+   [bb-web-ds-tools.components.layout :as l]
+   [bb-web-ds-tools.components.malli :as c-malli]
+   [bb-web-ds-tools.components.navigation :as nav]
+   [bb-web-ds-tools.portal :as portal :refer [portal-panel]]
+   [bb-web-ds-tools.theme :as t]
+   [bb-web-ds-tools.views.datasets :as datasets]
+   [bb-web-ds-tools.utils.dataset-processing :as dp]))
 
 ;; Helper for state extraction
 (defn get-malli-state

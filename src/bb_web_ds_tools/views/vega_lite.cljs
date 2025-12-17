@@ -1,18 +1,19 @@
 (ns bb-web-ds-tools.views.vega-lite
-  (:require [reagent.core :as r]
-            [re-frame.core :as rf]
-            [bb-web-ds-tools.components.common :as c]
-            [bb-web-ds-tools.components.editor :as editor]
-            [bb-web-ds-tools.components.layout :as l]
-            [bb-web-ds-tools.components.navigation :as nav]
-            [bb-web-ds-tools.theme :as t]
-            [bb-web-ds-tools.portal :as portal]
-            [bb-web-ds-tools.views.datasets :as datasets]
-            ["react-dom" :as ReactDOM]
-            [cljs.pprint :refer [pprint]]
-            [clojure.edn :as edn]
-            [malli.provider :as mp]
-            [bb-web-ds-tools.utils.dataset-processing :as dp]))
+  (:require
+   ["react-dom" :as ReactDOM]
+   [bb-web-ds-tools.components.common :as c]
+   [bb-web-ds-tools.components.editor :as editor]
+   [bb-web-ds-tools.components.layout :as l]
+   [bb-web-ds-tools.components.navigation :as nav]
+   [bb-web-ds-tools.portal :as portal :refer [portal-panel]]
+   [bb-web-ds-tools.theme :as t]
+   [bb-web-ds-tools.utils.dataset-processing :as dp]
+   [bb-web-ds-tools.views.datasets :as datasets]
+   [cljs.pprint :refer [pprint]]
+   [clojure.edn :as edn]
+   [malli.provider :as mp]
+   [re-frame.core :as rf]
+   [reagent.core :as r]))
 
 ;; --- State ---
 
@@ -378,23 +379,21 @@
               {:id :config :label "Config"}]]
     [l/flex-col {:class "h-full w-full"}
      ;; Tabs Navigation (Portaled to Top Bar)
-     [nav/portal-to-top-bar
-      [l/flex-row {:class "items-center gap-2"}
-       [c/nav-tabs {:tabs tabs
-                    :active-tab-id active-left-tab
-                    :class "border-b-0 bg-transparent px-0"
-                    :on-change #(rf/dispatch [::set-active-left-tab %])}]
-       [c/help-button
-        {:href (nav/get-wiki-url :vega-lite)
-         :title "Help: Vega-Lite"
-         :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100"}]]]
-
      [:div {:class "flex flex-col md:flex-row h-full w-full overflow-hidden"}
       ;; Left Column (Inputs)
       [:div {:class "h-1/2 md:h-full overflow-auto border-b md:border-b-0 md:border-r border-[#3f3f3f] w-full md:max-w-3xl flex-shrink-0"}
        [l/flex-col {:class "h-full"}
         ;; Left Content
         [:div {:class "flex-grow overflow-hidden relative"}
+         [l/flex-row {:class "items-center gap-1"}
+          [c/tabs {:tabs tabs
+                   :active-tab-id active-left-tab
+                   :class "border-b-0 bg-transparent px-0"
+                   :on-change #(rf/dispatch [::set-active-left-tab %])}]
+          [c/help-button
+           {:href (nav/get-wiki-url :vega-lite)
+            :title "Help: Vega-Lite"
+            :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100"}]]
          (case active-left-tab
            :data
            [l/flex-col {:class "h-full"}
@@ -469,29 +468,31 @@
      ;; Right Column (Outputs)
       [:div {:class "h-1/2 md:h-full overflow-auto flex-grow"}
        [l/flex-col {:class "h-full"}
-       ;; Right Tabs
-        [l/flex-row {:class (str "justify-between border-b " t/border-default " px-2 " t/bg-toolbar)}
-         [l/flex-row {:class "space-x-2"}
-          [tab-button (= active-right-tab :plot) "Plot" #(rf/dispatch [::set-active-right-tab :plot])]
-          [tab-button (= active-right-tab :parsed) "Parsed Data" #(rf/dispatch [::set-active-right-tab :parsed])]
-          [tab-button (= active-right-tab :schema) "Schema" #(rf/dispatch [::set-active-right-tab :schema])]]
-        ;; Send to Portal
-         (when (= active-right-tab :plot)
-           [c/button {:size :sm
-                      :on-click #(let [config-edn (js->clj parsed-config-obj :keywordize-keys true)
-                                       final-edn (assoc config-edn :data {:values parsed-data})]
-                                   (rf/dispatch [::portal/submit final-edn]))}
-            "Send to Portal"])]
+        ;; Right Tabs
+        [c/tabs {:tabs [{:id :plot :label "Plot"}
+                        {:id :parsed :label "Parsed Data"}
+                        {:id :schema :label "Schema"}
+                        {:id :portal :label "Portal"}]
+                 :active-tab-id active-right-tab
+                 :class "border-b-0 bg-transparent px-0"
+                 :on-change #(rf/dispatch [::set-active-right-tab %])}]
 
        ;; Right Content
         [:div {:class "flex-grow overflow-hidden relative bg-white"}
          (case active-right-tab
            :plot
-           [:div {:class "h-full w-full overflow-auto p-4"}
+           [:div {:class "h-full w-full overflow-auto p-2"}
+            [:div {:class "mb-2"}
+             [c/button {:size :sm
+                        :on-click #(let [config-edn (js->clj parsed-config-obj :keywordize-keys true)
+                                         final-edn (assoc config-edn :data {:values parsed-data})]
+                                     (rf/dispatch [::portal/submit final-edn]))}
+              "Send to Portal"]]
             [vega-viz {:spec-obj parsed-config-obj :data parsed-data}]]
 
            :parsed
            [:div {:class (str "h-full w-full " t/bg-page)}
+            ^{:key active-right-tab}
             [editor/monaco-editor
              {:value (with-out-str (pprint (limit-preview parsed-data)))
               :language "clojure"
@@ -500,12 +501,18 @@
            :schema
            (if (seq parsed-data)
              [:div {:class (str "h-full w-full " t/bg-page)}
+              ^{:key active-right-tab}
               [editor/monaco-editor
                {:value (with-out-str (pprint inferred-schema))
                 :language "clojure"
                 :options {:readOnly true :minimap {:enabled false}}}]]
              [:div {:class (str "h-full w-full flex items-center justify-center " t/bg-page " " t/text-secondary)}
               "No data available to infer schema."])
+
+           :portal
+           [:div {:class "w-full h-full flex-grow overflow-hidden"}
+            ^{:key  active-right-tab}
+            [portal-panel {:spec-obj parsed-config-obj :data parsed-data}]]
            nil)]]]]]))
 
 (defn panel
