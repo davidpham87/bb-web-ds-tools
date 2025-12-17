@@ -1,5 +1,6 @@
 (ns bb-web-ds-tools.utils.dataset-processing
   (:require ["papaparse" :as Papa]
+            ["js-yaml" :as yaml]
             [sci.core :as sci]
             [clojure.string :as str]
             [clojure.edn :as edn]
@@ -7,7 +8,14 @@
             [camel-snake-kebab.core :as csk]))
 
 (defn normalize-column-name
-  "Normalizes a column name based on the provided configuration."
+  "Normalizes a column name based on the provided configuration.
+
+  Args:
+    col-name (keyword/string): The original column name.
+    config (map): Normalization config with keys :case and :output.
+
+  Returns:
+    keyword/string/symbol: The normalized column name."
   [col-name {:keys [case output]}]
   (let [s (name col-name)
         s-case (condp = case
@@ -23,6 +31,7 @@
     final-val))
 
 (def config
+  "Default configuration for dataset parsing and formatting."
   {:markdown {:cell-separator " | "
               :row-start "| "
               :row-end " |"
@@ -33,7 +42,13 @@
 ;; --- Normalization ---
 
 (defn normalize-columnar
-  "Normalizes columnar data (map of arrays) into a sequence of row maps."
+  "Normalizes columnar data (map of arrays) into a sequence of row maps.
+
+  Args:
+    data (map): Data in columnar format e.g. {:col1 [v1 v2] :col2 [v3 v4]}.
+
+  Returns:
+    vector: A vector of maps e.g. [{:col1 v1 :col2 v3} ...]."
   [data]
   (let [cols (keys data)
         vals-seq (vals data)
@@ -43,7 +58,13 @@
           (range cnt))))
 
 (defn normalize-row-arrays
-  "Normalizes row-array data (vector of vectors, first is header) into a sequence of row maps."
+  "Normalizes row-array data (vector of vectors, first is header) into a sequence of row maps.
+
+  Args:
+    data (vector): Data in row-array format e.g. [[col1 col2] [v1 v2]].
+
+  Returns:
+    vector: A vector of maps."
   [data]
   (let [header (map keyword (first data))
         rows (rest data)]
@@ -51,7 +72,68 @@
 
 ;; --- Parsing Logic ---
 
+(defn- parse-json
+  "Parses a JSON string into Clojure data.
+
+  Args:
+    text (string): The JSON string.
+    conf (map, optional): Configuration map.
+
+  Returns:
+    any: Parsed Clojure data or nil on error."
+  ([text] (parse-json text (:json config)))
+  ([text conf]
+   (let [conf (or conf (:json config))]
+     (try
+       (js->clj (js/JSON.parse text) :keywordize-keys true)
+       (catch js/Error e
+         (js/console.error (:error-msg conf) e)
+         nil)))))
+
+(defn- parse-yaml
+  "Parses a YAML string into Clojure data.
+
+  Args:
+    text (string): The YAML string.
+
+  Returns:
+    any: Parsed Clojure data or nil on error."
+  [text]
+  (try
+    (js->clj (yaml/load text) :keywordize-keys true)
+    (catch js/Error e
+      (js/console.error "YAML Parse Error" e)
+      nil)))
+
+(defn- parse-structured
+  "Parses structured text (JSON/EDN/YAML) and normalizes it based on the target structure.
+
+  Args:
+    parse-fn (fn): Function to parse text into data (e.g., parse-json, edn/read-string).
+    structure (keyword): Target structure (:columnar, :row-maps, :row-arrays, :tree).
+    text (string): The text to parse.
+
+  Returns:
+    any: The normalized data."
+  [parse-fn structure text]
+  (let [data (parse-fn text)]
+    (case structure
+      :columnar (some-> data normalize-columnar)
+      :row-maps data
+      :row-arrays (some-> data normalize-row-arrays)
+      :tree data
+      data)))
+
 (defmulti parse-dataset
+  "Parses raw text into a dataset based on format and structure.
+
+  Args:
+    format (keyword): The format of the input text (:csv, :tsv, :json, :edn, :yaml, :markdown, :text).
+    structure (keyword): The desired structure of the output data (:columnar, :row-maps, :row-arrays, :tree, :lines, :raw).
+    text (string): The raw input text.
+
+  Returns:
+    any: The parsed dataset."
   (fn [format structure _text] [format structure]))
 
 (defmethod parse-dataset [:csv :columnar] [_ _ text]
@@ -76,33 +158,23 @@
         header (map keyword (parse-row header-line))]
     (mapv (fn [line] (zipmap header (parse-row line))) data-lines)))
 
-(defn- parse-json
-  ([text] (parse-json text (:json config)))
-  ([text conf]
-   (let [conf (or conf (:json config))]
-     (try
-       (js->clj (js/JSON.parse text) :keywordize-keys true)
-       (catch js/Error e
-         (js/console.error (:error-msg conf) e)
-         nil)))))
+;; JSON parsing
+(defmethod parse-dataset [:json :columnar] [_ structure text] (parse-structured parse-json structure text))
+(defmethod parse-dataset [:json :row-maps] [_ structure text] (parse-structured parse-json structure text))
+(defmethod parse-dataset [:json :row-arrays] [_ structure text] (parse-structured parse-json structure text))
+(defmethod parse-dataset [:json :tree] [_ structure text] (parse-structured parse-json structure text))
 
-(defmethod parse-dataset [:json :columnar] [_ _ text]
-  (some-> (parse-json text) normalize-columnar))
+;; EDN parsing
+(defmethod parse-dataset [:edn :columnar] [_ structure text] (parse-structured edn/read-string structure text))
+(defmethod parse-dataset [:edn :row-maps] [_ structure text] (parse-structured edn/read-string structure text))
+(defmethod parse-dataset [:edn :row-arrays] [_ structure text] (parse-structured edn/read-string structure text))
+(defmethod parse-dataset [:edn :tree] [_ structure text] (parse-structured edn/read-string structure text))
 
-(defmethod parse-dataset [:json :row-maps] [_ _ text]
-  (parse-json text))
-
-(defmethod parse-dataset [:json :row-arrays] [_ _ text]
-  (some-> (parse-json text) normalize-row-arrays))
-
-(defmethod parse-dataset [:edn :columnar] [_ _ text]
-  (some-> (edn/read-string text) normalize-columnar))
-
-(defmethod parse-dataset [:edn :row-maps] [_ _ text]
-  (edn/read-string text))
-
-(defmethod parse-dataset [:edn :row-arrays] [_ _ text]
-  (some-> (edn/read-string text) normalize-row-arrays))
+;; YAML parsing
+(defmethod parse-dataset [:yaml :columnar] [_ structure text] (parse-structured parse-yaml structure text))
+(defmethod parse-dataset [:yaml :row-maps] [_ structure text] (parse-structured parse-yaml structure text))
+(defmethod parse-dataset [:yaml :row-arrays] [_ structure text] (parse-structured parse-yaml structure text))
+(defmethod parse-dataset [:yaml :tree] [_ structure text] (parse-structured parse-yaml structure text))
 
 (defmethod parse-dataset [:text :lines] [_ _ text]
   (mapv (fn [line] {:line line}) (str/split-lines text)))
@@ -116,6 +188,7 @@
 ;; --- Examples ---
 
 (def example-rows
+  "Example dataset rows used for generating sample data."
   [{:id 1 :score 12.5 :category "a" :date "2023-01-01"}
    {:id 2 :score 10.2 :category "b" :date "2023-01-02"}
    {:id 3 :score 8.7  :category "c" :date "2023-01-03"}
@@ -127,19 +200,31 @@
    {:id 9 :score 14.2 :category "c" :date "2023-01-09"}
    {:id 10 :score 10.0 :category "a" :date "2023-01-10"}])
 
-(defn- to-columnar [rows]
+(def example-tree
+  "Example tree data for testing."
+  {:name "root"
+   :children [{:name "child1" :value 1}
+              {:name "child2" :value 2
+               :children [{:name "grandchild1" :value 3}]}]})
+
+(defn- to-columnar
+  "Converts a sequence of row maps to columnar format."
+  [rows]
   (let [ks (keys (first rows))]
     (reduce (fn [acc k]
-              (assoc acc k (mapv k rows)))
+              (assoc acc k (mapv #(get % k) rows)))
             {}
             ks)))
 
-(defn- to-row-arrays [rows]
+(defn- to-row-arrays
+  "Converts a sequence of row maps to row-array format (with header)."
+  [rows]
   (let [ks (keys (first rows))]
     (vec (cons (vec ks)
                (mapv (fn [row] (mapv #(get row %) ks)) rows)))))
 
 (defn- to-markdown-table
+  "Formats data as a Markdown table."
   ([rows] (to-markdown-table rows (:markdown config)))
   ([rows conf]
    (let [conf (or conf (:markdown config))
@@ -156,18 +241,51 @@
      (str/join "\n" (cons header (cons separator data-lines))))))
 
 (defn- stringify-json
+  "Converts data to a JSON string with indentation."
   ([data] (stringify-json data (:json config)))
   ([data conf]
    (let [conf (or conf (:json config))]
      (js/JSON.stringify (clj->js data) nil (:indent conf)))))
 
-(defn- get-structured-data [structure]
+(defn- stringify-yaml
+  "Converts data to a YAML string."
+  [data]
+  (yaml/dump (clj->js data)))
+
+(defn- get-structured-data
+  "Returns the example data in the requested structure."
+  [structure]
   (case structure
     :row-maps example-rows
     :columnar (to-columnar example-rows)
-    :row-arrays (to-row-arrays example-rows)))
+    :row-arrays (to-row-arrays example-rows)
+    :tree example-tree
+    example-rows))
+
+(defn- example-structured
+  "Generates example data for structured formats (JSON/EDN).
+
+  Args:
+    format-fn (fn): Function to format data as string.
+    structure (keyword): Target structure.
+    conf (map, optional): Configuration map (passed to format-fn if supported).
+
+  Returns:
+    string: The formatted example data."
+  [format-fn structure conf]
+  (let [data (get-structured-data structure)]
+    (format-fn data conf)))
 
 (defmulti example-data
+  "Generates example data string for a given format and structure.
+
+  Args:
+    fmt (keyword): Output format (:csv, :tsv, :json, :edn, :yaml, :markdown, :text).
+    structure (keyword): Data structure (:columnar, :row-maps, :row-arrays, :tree, :lines, :raw).
+    conf (map, optional): Configuration map.
+
+  Returns:
+    string: The example data string."
   (fn [fmt structure & [conf]] [fmt structure]))
 
 (defmethod example-data [:csv :columnar] [_ _ & [conf]]
@@ -179,23 +297,27 @@
 (defmethod example-data [:markdown :columnar] [_ _ & [conf]]
   (to-markdown-table example-rows (:markdown conf)))
 
-(defmethod example-data [:json :columnar] [_ structure & [conf]]
-  (stringify-json (get-structured-data structure) (:json conf)))
+;; JSON examples
+(defmethod example-data [:json :columnar] [_ structure & [conf]] (example-structured stringify-json structure conf))
+(defmethod example-data [:json :row-maps] [_ structure & [conf]] (example-structured stringify-json structure conf))
+(defmethod example-data [:json :row-arrays] [_ structure & [conf]] (example-structured stringify-json structure conf))
+(defmethod example-data [:json :tree] [_ structure & [conf]] (example-structured stringify-json structure conf))
 
-(defmethod example-data [:json :row-maps] [_ structure & [conf]]
-  (stringify-json (get-structured-data structure) (:json conf)))
-
-(defmethod example-data [:json :row-arrays] [_ structure & [conf]]
-  (stringify-json (get-structured-data structure) (:json conf)))
-
+;; EDN examples
 (defmethod example-data [:edn :columnar] [_ structure & [conf]]
-  (with-out-str (pprint/pprint (get-structured-data structure))))
-
+  (example-structured (fn [d _] (with-out-str (pprint/pprint d))) structure conf))
 (defmethod example-data [:edn :row-maps] [_ structure & [conf]]
-  (with-out-str (pprint/pprint (get-structured-data structure))))
-
+  (example-structured (fn [d _] (with-out-str (pprint/pprint d))) structure conf))
 (defmethod example-data [:edn :row-arrays] [_ structure & [conf]]
-  (with-out-str (pprint/pprint (get-structured-data structure))))
+  (example-structured (fn [d _] (with-out-str (pprint/pprint d))) structure conf))
+(defmethod example-data [:edn :tree] [_ structure & [conf]]
+  (example-structured (fn [d _] (with-out-str (pprint/pprint d))) structure conf))
+
+;; YAML examples
+(defmethod example-data [:yaml :columnar] [_ structure & [conf]] (example-structured (fn [d _] (stringify-yaml d)) structure conf))
+(defmethod example-data [:yaml :row-maps] [_ structure & [conf]] (example-structured (fn [d _] (stringify-yaml d)) structure conf))
+(defmethod example-data [:yaml :row-arrays] [_ structure & [conf]] (example-structured (fn [d _] (stringify-yaml d)) structure conf))
+(defmethod example-data [:yaml :tree] [_ structure & [conf]] (example-structured (fn [d _] (stringify-yaml d)) structure conf))
 
 (defmethod example-data [:text :lines] [_ _ & [conf]]
   "Line 1: Hello World
@@ -206,6 +328,44 @@ Line 3: 123-456-7890")
   "This is a raw text block.\nIt contains newlines and special characters.\n\nUse it to test regex matching on the whole content.")
 
 (defmethod example-data :default [_ _ & [conf]] "")
+
+;; --- Conversion Logic ---
+
+(defn convert-data
+  "Converts the dataset to the specified format and structure.
+
+  Args:
+    data (seq): Sequence of row maps (the internal dataset representation).
+    format (keyword): Target format (:csv, :tsv, :json, :edn, :yaml, :markdown).
+    structure (keyword): Target structure (:columnar, :row-maps, :row-arrays, :tree).
+
+  Returns:
+    string: The converted data string."
+  [data format structure]
+  (let [;; Remove internal _uuid key
+        clean-data (if (and (sequential? data) (map? (first data)))
+                     (mapv #(dissoc % :_uuid) data)
+                     data)
+        structured-data (case structure
+                          :row-maps clean-data
+                          :columnar (to-columnar clean-data)
+                          :row-arrays (to-row-arrays clean-data)
+                          :tree clean-data ;; For tree, we assume input is already what we want or we just dump it
+                          clean-data)]
+    (case format
+      :csv (if (= structure :columnar)
+             (.unparse Papa (clj->js clean-data) #js {:header true})
+             "CSV only supports columnar structure.")
+      :tsv (if (= structure :columnar)
+             (.unparse Papa (clj->js clean-data) #js {:delimiter "\t" :header true})
+             "TSV only supports columnar structure.")
+      :markdown (if (= structure :columnar)
+                  (to-markdown-table clean-data)
+                  "Markdown only supports columnar structure.")
+      :json (stringify-json structured-data)
+      :edn (with-out-str (pprint/pprint structured-data))
+      :yaml (stringify-yaml structured-data)
+      "Unsupported format")))
 
 ;; --- Table Processing ---
 

@@ -3,7 +3,6 @@
    [bb-web-ds-tools.components.landing.animations.common
     :refer (clear-rect zenburn)]))
 
-
 (defn draw-app-db [ctx w h t]
   (clear-rect ctx w h)
   (let [cx (/ w 2)

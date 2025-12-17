@@ -42,6 +42,11 @@
 ;; Events
 
 (rf/reg-event-db
+ ::initialize
+ (fn [db _]
+   (update-in db [:user-input :app-db] #(merge {:watched-paths [] :active-path nil} %))))
+
+(rf/reg-event-db
  ::set-active-path
  (fn [db [_ path]]
    (assoc-in db [:user-input :app-db :active-path] path)))

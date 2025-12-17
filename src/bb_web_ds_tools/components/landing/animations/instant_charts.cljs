@@ -123,7 +123,6 @@
         (.restore ctx)
         (set! (.-globalAlpha ctx) 1.0))
 
-
-      ;; Phase 3: Final Plots (3500 - 5000ms) - Plots are fully visible
+;; Phase 3: Final Plots (3500 - 5000ms) - Plots are fully visible
       :else
       (draw-plots ctx t cx cy density-pos box-pos scatter-pos))))

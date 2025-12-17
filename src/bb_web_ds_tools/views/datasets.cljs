@@ -10,7 +10,7 @@
             [bb-web-ds-tools.events.settings :as settings-events]
             [bb-web-ds-tools.theme :as t]
             [bb-web-ds-tools.utils.dataset-processing :as dp]
-            [bb-web-ds-tools.workspaces.persistence :as wp])) ;; Uncommented
+            [bb-web-ds-tools.workspaces.persistence :as wp]))
 
 ;; --- Utilities ---
 
@@ -26,6 +26,24 @@
   (if (every? map? maps)
     (apply merge-with deep-merge maps)
     (last maps)))
+
+(defn download-file
+  "Triggers a file download in the browser.
+
+  Args:
+    content (string): The file content.
+    filename (string): The filename to save as.
+    mime-type (string): The MIME type of the file."
+  [content filename mime-type]
+  (let [blob (js/Blob. #js [content] #js {:type mime-type})
+        url (js/URL.createObjectURL blob)
+        a (js/document.createElement "a")]
+    (set! (.-href a) url)
+    (set! (.-download a) filename)
+    (js/document.body.appendChild a)
+    (.click a)
+    (js/document.body.removeChild a)
+    (js/URL.revokeObjectURL url)))
 
 ;; --- State Management ---
 
@@ -320,11 +338,13 @@
             supported-structures (cond
                                    (= fmt :text) #{:lines :raw}
                                    (contains? #{:csv :tsv :markdown} fmt) #{:columnar}
+                                   (contains? #{:json :edn :yaml} fmt) #{:columnar :row-maps :row-arrays :tree}
                                    :else #{:columnar :row-maps :row-arrays})
 
             struct-labels {:columnar "Columnar"
                            :row-maps "Row (Maps)"
                            :row-arrays "Array (Arrays)"
+                           :tree "Tree (Raw)"
                            :lines "Lines"
                            :raw "Raw Text"}]
 
@@ -354,14 +374,15 @@
                  [:option {:key ds :value ds} ds])])]
 
            [l/flex-row {:class "space-x-2"}
-            (for [f [:csv :tsv :json :edn :markdown :text]]
+            (for [f [:csv :tsv :json :edn :yaml :markdown :text]]
               [c/button {:size :xs
                          :key f
                          :class (if (= fmt f) (str t/bg-button-primary " text-white") "")
                          :on-click #(do (set-state :format f)
                                         (cond
                                           (= f :text) (set-state :structure :lines)
-                                          (#{:csv :tsv :markdown} f) (set-state :structure :columnar)))}
+                                          (#{:csv :tsv :markdown} f) (set-state :structure :columnar)
+                                          (#{:json :edn :yaml} f) (set-state :structure :row-maps)))}
                (if (= f :markdown) "MD" (str/upper-case (name f)))])]]]
 
          [c/input {:value dataset-name
@@ -371,7 +392,7 @@
          [l/flex-row {:class "items-center space-x-4 flex-wrap gap-y-2"}
           [l/flex-row {:class "items-baseline space-x-2"}
            [:span {:class (str "text-sm " t/text-primary)} "Structure:"]
-           (for [s [:columnar :row-maps :row-arrays :lines :raw]]
+           (for [s [:columnar :row-maps :row-arrays :tree :lines :raw]]
              [c/button {:size :xs
                         :key s
                         :disabled (not (contains? supported-structures s))
@@ -439,6 +460,7 @@
                         :json "json"
                         :edn "clojure"
                         :markdown "markdown"
+                        :yaml "yaml"
                         "plaintext")
             :on-change [::update-new-dataset-state :text]}]]]))))
 
@@ -555,6 +577,73 @@
             (for [row page-data]
               [data-row id row visible-columns])]]]]))))
 
+(defn dataset-export-view
+  "Renders the export/download view for a dataset."
+  [dataset]
+  (let [export-state (r/atom {:fmt :csv :struct :columnar})]
+    (fn [dataset]
+      (let [{:keys [fmt struct]} @export-state
+            supported-structures (cond
+                                   (contains? #{:csv :tsv :markdown} fmt) #{:columnar}
+                                   (contains? #{:json :edn :yaml} fmt) #{:columnar :row-maps :row-arrays :tree}
+                                   :else #{:columnar})
+            preview (try (dp/convert-data (:data dataset) fmt struct) (catch :default e (str "Error: " e)))
+            filename (str (:name dataset) "." (name fmt))]
+        [l/flex-col {:class "h-full space-y-4 p-4"}
+         [c/section-header "Export / Download"]
+
+         ;; Format selection
+         [:div {:class "flex flex-row space-x-2"}
+          (doall (for [f [:csv :tsv :json :edn :yaml :markdown]]
+                   ^{:key f}
+                   [c/button {:size :xs
+                              :class (if (= fmt f) (str t/bg-button-primary " text-white") "")
+                              :on-click #(do (swap! export-state assoc :fmt f)
+                                             (cond
+                                               (#{:csv :tsv :markdown} f) (swap! export-state assoc :struct :columnar)
+                                               (#{:json :edn :yaml} f) (swap! export-state assoc :struct :row-maps)))}
+                    (if (= f :markdown) "MD" (str/upper-case (name f)))]))]
+
+         ;; Structure selection
+         [:div {:class "flex flex-row items-baseline space-x-2"}
+          [:span {:class (str "text-sm " t/text-primary)} "Structure:"]
+          (doall (for [s [:columnar :row-maps :row-arrays :tree]]
+                   ^{:key s}
+                   [c/button {:size :xs
+                              :disabled (not (contains? supported-structures s))
+                              :class (if (= struct s)
+                                       (str t/bg-button-primary " text-white")
+                                       (if (not (contains? supported-structures s)) "hidden" ""))
+                              :on-click #(swap! export-state assoc :struct s)}
+                    (name s)]))]
+
+         ;; Preview and Download
+         [l/flex-row {:class "justify-between items-center"}
+          [:span {:class "text-sm text-gray-500"} (str "Preview (" filename ")")]
+          [c/button {:class (str t/bg-button-primary " text-white")
+                     :on-click #(download-file preview filename (case fmt
+                                                                  :json "application/json"
+                                                                  :csv "text/csv"
+                                                                  :tsv "text/tab-separated-values"
+                                                                  :yaml "text/yaml"
+                                                                  :edn "application/edn"
+                                                                  :markdown "text/markdown"
+                                                                  "text/plain"))}
+           "Download"]]
+
+         [:div {:class (str "flex-grow " t/bg-input " rounded overflow-hidden shadow-inner border " t/border-default)}
+          [editor/monaco-editor
+           {:value preview
+            :language (case fmt
+                        :json "json"
+                        :edn "clojure"
+                        :markdown "markdown"
+                        :yaml "yaml"
+                        (:csv :tsv) "csv"
+                        "plaintext")
+            :readOnly true}]]]))))
+
+
 (defn dataset-view
   "Renders the main view for a single dataset (table or portal).
 
@@ -584,14 +673,19 @@
         [c/button {:size :xs
                    :class (if (= view-mode :portal) (str t/bg-button-primary " text-white") "opacity-50 hover:opacity-100")
                    :on-click #(rf/dispatch [::update-view-state (:id dataset) :mode :portal])}
-         "Portal"]]
+         "Portal"]
+        [c/button {:size :xs
+                   :class (if (= view-mode :export) (str t/bg-button-primary " text-white") "opacity-50 hover:opacity-100")
+                   :on-click #(rf/dispatch [::update-view-state (:id dataset) :mode :export])}
+         "Export"]]
 
        [c/button {:class (str t/bg-button-danger " " t/bg-button-danger-hover " " t/text-button-primary)
                   :on-click #(rf/dispatch [::delete-dataset (:id dataset)])}
         [c/dustbin-icon {:class "w-5 h-5"}]]]]
 
-     (if (= view-mode :portal)
-       [portal-panel dataset]
+     (case view-mode
+       :portal [portal-panel dataset]
+       :export [dataset-export-view dataset]
        [data-table dataset])]))
 
 (defn dataset-list-item

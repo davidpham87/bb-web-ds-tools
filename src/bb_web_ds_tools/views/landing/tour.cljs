@@ -67,7 +67,7 @@
                                  is-right-swipe (swap! active-idx #(mod (dec %) count))))))]
     (fn []
       [:div {:class "w-full max-w-7xl mx-auto py-20 px-4"}
-       [:h2 {:class (str "text-4xl font-bold mb-12 text-center " t/text-primary) } "Explore the Views"]
+       [:h2 {:class (str "text-4xl font-bold mb-12 text-center " t/text-primary)} "Explore the Views"]
 
        [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-12 items-start"}
         ;; Left Column: Triggers
