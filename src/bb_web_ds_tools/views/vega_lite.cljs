@@ -374,9 +374,7 @@
         active-config-name @(rf/subscribe [::active-config-name])
         parsed-config-obj @(rf/subscribe [::parsed-config-obj])
         format @(rf/subscribe [::format])
-        inferred-schema @(rf/subscribe [::inferred-schema])
-        tabs [{:id :data :label "Data"}
-              {:id :config :label "Config"}]]
+        inferred-schema @(rf/subscribe [::inferred-schema])]
     [l/flex-col {:class "h-full w-full"}
      ;; Tabs Navigation (Portaled to Top Bar)
      [:div {:class "flex flex-col md:flex-row h-full w-full overflow-hidden"}
@@ -386,7 +384,8 @@
         ;; Left Content
         [:div {:class "flex-grow overflow-hidden relative"}
          [l/flex-row {:class "items-center gap-1"}
-          [c/tabs {:tabs tabs
+          [c/tabs {:tabs [{:id :data :label "Data"}
+                          {:id :config :label "Config"}]
                    :active-tab-id active-left-tab
                    :class "border-b-0 bg-transparent px-0"
                    :on-change #(rf/dispatch [::set-active-left-tab %])}]
@@ -511,8 +510,10 @@
 
            :portal
            [:div {:class "w-full h-full flex-grow overflow-hidden"}
-            ^{:key  active-right-tab}
-            [portal-panel {:spec-obj parsed-config-obj :data parsed-data}]]
+            ^{:key active-right-tab}
+            (let [config-edn (js->clj parsed-config-obj :keywordize-keys true)
+                  final-edn (assoc config-edn :data {:values parsed-data})]
+              [portal-panel final-edn :portal.viewer/vega-lite])]
            nil)]]]]]))
 
 (defn panel
