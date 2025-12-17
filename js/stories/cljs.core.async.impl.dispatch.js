@@ -19,6 +19,7 @@ var meta_merge=$CLJS.meta_merge || ($CLJS.meta_merge = {});
 var goog=$CLJS.goog || ($CLJS.goog = {});
 var reagent=$CLJS.reagent || ($CLJS.reagent = {});
 var module$shadow_js_shim_module$$js_joda$core=$CLJS.module$shadow_js_shim_module$$js_joda$core || ($CLJS.module$shadow_js_shim_module$$js_joda$core = {});
+var camel_snake_kebab=$CLJS.camel_snake_kebab || ($CLJS.camel_snake_kebab = {});
 var portal=$CLJS.portal || ($CLJS.portal = {});
 var edamame=$CLJS.edamame || ($CLJS.edamame = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
@@ -43,16 +44,16 @@ cljs.core.async.impl.dispatch.process_messages = (function cljs$core$async$impl$
 
 (cljs.core.async.impl.dispatch.queued_QMARK_ = false);
 
-var count_52744 = (0);
+var count_53058 = (0);
 while(true){
-var m_52745 = cljs.core.async.impl.dispatch.tasks.pop();
-if((m_52745 == null)){
+var m_53059 = cljs.core.async.impl.dispatch.tasks.pop();
+if((m_53059 == null)){
 } else {
-(m_52745.cljs$core$IFn$_invoke$arity$0 ? m_52745.cljs$core$IFn$_invoke$arity$0() : m_52745.call(null));
+(m_53059.cljs$core$IFn$_invoke$arity$0 ? m_53059.cljs$core$IFn$_invoke$arity$0() : m_53059.call(null));
 
-if((count_52744 < cljs.core.async.impl.dispatch.TASK_BATCH_SIZE)){
-var G__52746 = (count_52744 + (1));
-count_52744 = G__52746;
+if((count_53058 < cljs.core.async.impl.dispatch.TASK_BATCH_SIZE)){
+var G__53060 = (count_53058 + (1));
+count_53058 = G__53060;
 continue;
 } else {
 }

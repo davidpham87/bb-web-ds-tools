@@ -19,6 +19,7 @@ var meta_merge=$CLJS.meta_merge || ($CLJS.meta_merge = {});
 var goog=$CLJS.goog || ($CLJS.goog = {});
 var reagent=$CLJS.reagent || ($CLJS.reagent = {});
 var module$shadow_js_shim_module$$js_joda$core=$CLJS.module$shadow_js_shim_module$$js_joda$core || ($CLJS.module$shadow_js_shim_module$$js_joda$core = {});
+var camel_snake_kebab=$CLJS.camel_snake_kebab || ($CLJS.camel_snake_kebab = {});
 var portal=$CLJS.portal || ($CLJS.portal = {});
 var edamame=$CLJS.edamame || ($CLJS.edamame = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
@@ -34,12 +35,7 @@ var com=$CLJS.com || ($CLJS.com = {});
 $CLJS.SHADOW_ENV.setLoaded("bb_web_ds_tools.components.landing.animations.settings.js");
 
 goog.provide('bb_web_ds_tools.components.landing.animations.settings');
-bb_web_ds_tools.components.landing.animations.settings.draw_settings = (function bb_web_ds_tools$components$landing$animations$settings$draw_settings(ctx,w,h,t){
-bb_web_ds_tools.components.landing.animations.common.clear(ctx,w,h);
-
-var cx = (w / (2));
-var cy = (h / (2));
-var draw_gear = (function (x,y,r,teeth,speed,color){
+bb_web_ds_tools.components.landing.animations.settings.draw_gear = (function bb_web_ds_tools$components$landing$animations$settings$draw_gear(ctx,t,x,y,r,teeth,speed,color){
 ctx.save();
 
 ctx.translate(x,y);
@@ -53,16 +49,16 @@ ctx.beginPath();
 var outer_r = r;
 var inner_r = (r * 0.8);
 var hole_r = (r * 0.3);
-var n__5616__auto___25310 = (teeth * (2));
-var i_25311 = (0);
+var n__5616__auto___25246 = (teeth * (2));
+var i_25247 = (0);
 while(true){
-if((i_25311 < n__5616__auto___25310)){
-var angle_25312 = (i_25311 * (Math.PI / teeth));
-var rad_25313 = ((cljs.core.even_QMARK_(i_25311))?outer_r:inner_r);
-ctx.lineTo((rad_25313 * Math.cos(angle_25312)),(rad_25313 * Math.sin(angle_25312)));
+if((i_25247 < n__5616__auto___25246)){
+var angle_25248 = (i_25247 * (Math.PI / teeth));
+var rad_25249 = ((cljs.core.even_QMARK_(i_25247))?outer_r:inner_r);
+ctx.lineTo((rad_25249 * Math.cos(angle_25248)),(rad_25249 * Math.sin(angle_25248)));
 
-var G__25314 = (i_25311 + (1));
-i_25311 = G__25314;
+var G__25250 = (i_25247 + (1));
+i_25247 = G__25250;
 continue;
 } else {
 }
@@ -85,9 +81,14 @@ ctx.fill();
 
 return ctx.restore();
 });
-draw_gear(cx,cy,(40),(8),0.001,new cljs.core.Keyword("portal.colors","text","portal.colors/text",1967472969).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn));
+bb_web_ds_tools.components.landing.animations.settings.draw_settings = (function bb_web_ds_tools$components$landing$animations$settings$draw_settings(ctx,w,h,t){
+bb_web_ds_tools.components.landing.animations.common.clear(ctx,w,h);
 
-return draw_gear((cx + (50)),(cy + (50)),(25),(6),-0.002,new cljs.core.Keyword("portal.colors","namespace","portal.colors/namespace",159276238).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn));
+var cx = (w / (2));
+var cy = (h / (2));
+bb_web_ds_tools.components.landing.animations.settings.draw_gear(ctx,t,cx,cy,(40),(8),0.001,new cljs.core.Keyword("portal.colors","text","portal.colors/text",1967472969).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn));
+
+return bb_web_ds_tools.components.landing.animations.settings.draw_gear(ctx,t,(cx + (50)),(cy + (50)),(25),(6),-0.002,new cljs.core.Keyword("portal.colors","namespace","portal.colors/namespace",159276238).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn));
 });
 
 //# sourceMappingURL=bb_web_ds_tools.components.landing.animations.settings.js.map

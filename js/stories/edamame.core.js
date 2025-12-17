@@ -22,6 +22,7 @@ var meta_merge=$CLJS.meta_merge || ($CLJS.meta_merge = {});
 var goog=$CLJS.goog || ($CLJS.goog = {});
 var reagent=$CLJS.reagent || ($CLJS.reagent = {});
 var module$shadow_js_shim_module$$js_joda$core=$CLJS.module$shadow_js_shim_module$$js_joda$core || ($CLJS.module$shadow_js_shim_module$$js_joda$core = {});
+var camel_snake_kebab=$CLJS.camel_snake_kebab || ($CLJS.camel_snake_kebab = {});
 var portal=$CLJS.portal || ($CLJS.portal = {});
 var edamame=$CLJS.edamame || ($CLJS.edamame = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
@@ -113,8 +114,8 @@ goog.provide('edamame.core');
  *   
  */
 edamame.core.parse_string = (function edamame$core$parse_string(var_args){
-var G__39593 = arguments.length;
-switch (G__39593) {
+var G__39519 = arguments.length;
+switch (G__39519) {
 case 1:
 return edamame.core.parse_string.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -144,8 +145,8 @@ return edamame.impl.parser.parse_string(s,opts);
  *   in a vector.
  */
 edamame.core.parse_string_all = (function edamame$core$parse_string_all(var_args){
-var G__39596 = arguments.length;
-switch (G__39596) {
+var G__39535 = arguments.length;
+switch (G__39535) {
 case 1:
 return edamame.core.parse_string_all.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -202,8 +203,8 @@ return edamame.impl.parser.normalize_opts(opts);
  *   but must be normalized with `normalize-opts` first.
  */
 edamame.core.parse_next = (function edamame$core$parse_next(var_args){
-var G__39615 = arguments.length;
-switch (G__39615) {
+var G__39541 = arguments.length;
+switch (G__39541) {
 case 1:
 return edamame.core.parse_next.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -224,8 +225,8 @@ return edamame.core.parse_next.cljs$core$IFn$_invoke$arity$2(reader,edamame.impl
 
 (edamame.core.parse_next.cljs$core$IFn$_invoke$arity$2 = (function (reader,normalized_opts){
 if(cljs.tools.reader.reader_types.source_logging_reader_QMARK_(reader)){
-var buf_39625 = edamame.impl.parser.buf(reader);
-buf_39625.clear();
+var buf_39553 = edamame.impl.parser.buf(reader);
+buf_39553.clear();
 } else {
 }
 
@@ -250,8 +251,8 @@ return v;
  *   Returns read value + string read (whitespace-trimmed).
  */
 edamame.core.parse_next_PLUS_string = (function edamame$core$parse_next_PLUS_string(var_args){
-var G__39617 = arguments.length;
-switch (G__39617) {
+var G__39544 = arguments.length;
+switch (G__39544) {
 case 1:
 return edamame.core.parse_next_PLUS_string.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 

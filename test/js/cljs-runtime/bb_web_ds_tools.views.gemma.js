@@ -19,55 +19,55 @@ try{var response = cljs.core.deref(bb_web_ds_tools.views.gemma.llm_instance).gen
 re_frame.core.dispatch(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.gemma","add-message","bb-web-ds-tools.views.gemma/add-message",-287683400),new cljs.core.Keyword(null,"model","model",331153215),response], null));
 
 return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.gemma","set-loading","bb-web-ds-tools.views.gemma/set-loading",1961048351),false], null));
-}catch (e50015){if((e50015 instanceof Error)){
-var e = e50015;
+}catch (e50411){if((e50411 instanceof Error)){
+var e = e50411;
 return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.gemma","set-error","bb-web-ds-tools.views.gemma/set-error",1578779084),["Generation failed: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(e)].join('')], null));
 } else {
-throw e50015;
+throw e50411;
 
 }
 }}));
 re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.gemma","initialize","bb-web-ds-tools.views.gemma/initialize",1645538905),(function (db,_){
 return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"gemma","gemma",2017704848),new cljs.core.Keyword(null,"default","default",-1987822328)], null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"messages","messages",345434482),cljs.core.PersistentVector.EMPTY], null)),new cljs.core.Keyword("bb-web-ds-tools.views.gemma","gemma","bb-web-ds-tools.views.gemma/gemma",999339256),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"loading?","loading?",1905707049),false,new cljs.core.Keyword(null,"error","error",-978969032),null,new cljs.core.Keyword(null,"model-loaded?","model-loaded?",1625615782),false], null));
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.gemma","set-loading","bb-web-ds-tools.views.gemma/set-loading",1961048351),(function (db,p__50016){
-var vec__50017 = p__50016;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50017,(0),null);
-var loading_QMARK_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50017,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.gemma","set-loading","bb-web-ds-tools.views.gemma/set-loading",1961048351),(function (db,p__50414){
+var vec__50415 = p__50414;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50415,(0),null);
+var loading_QMARK_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50415,(1),null);
 return cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.gemma","gemma","bb-web-ds-tools.views.gemma/gemma",999339256),new cljs.core.Keyword(null,"loading?","loading?",1905707049)], null),loading_QMARK_);
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.gemma","set-error","bb-web-ds-tools.views.gemma/set-error",1578779084),(function (db,p__50020){
-var vec__50021 = p__50020;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50021,(0),null);
-var error = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50021,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.gemma","set-error","bb-web-ds-tools.views.gemma/set-error",1578779084),(function (db,p__50418){
+var vec__50419 = p__50418;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50419,(0),null);
+var error = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50419,(1),null);
 return cljs.core.update.cljs$core$IFn$_invoke$arity$variadic(db,new cljs.core.Keyword("bb-web-ds-tools.views.gemma","gemma","bb-web-ds-tools.views.gemma/gemma",999339256),cljs.core.assoc,new cljs.core.Keyword(null,"error","error",-978969032),error,new cljs.core.Keyword(null,"loading?","loading?",1905707049),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([false], 0));
 }));
 re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.gemma","model-loaded","bb-web-ds-tools.views.gemma/model-loaded",-265479602),(function (db,_){
 return cljs.core.update.cljs$core$IFn$_invoke$arity$variadic(db,new cljs.core.Keyword("bb-web-ds-tools.views.gemma","gemma","bb-web-ds-tools.views.gemma/gemma",999339256),cljs.core.assoc,new cljs.core.Keyword(null,"model-loaded?","model-loaded?",1625615782),true,new cljs.core.Keyword(null,"loading?","loading?",1905707049),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([false,new cljs.core.Keyword(null,"error","error",-978969032),null], 0));
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.gemma","add-message","bb-web-ds-tools.views.gemma/add-message",-287683400),(function (db,p__50025){
-var vec__50026 = p__50025;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50026,(0),null);
-var role = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50026,(1),null);
-var text = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50026,(2),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.gemma","add-message","bb-web-ds-tools.views.gemma/add-message",-287683400),(function (db,p__50431){
+var vec__50432 = p__50431;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50432,(0),null);
+var role = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50432,(1),null);
+var text = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50432,(2),null);
 return cljs.core.update_in.cljs$core$IFn$_invoke$arity$4(db,new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"gemma","gemma",2017704848),new cljs.core.Keyword(null,"default","default",-1987822328),new cljs.core.Keyword(null,"messages","messages",345434482)], null),cljs.core.conj,new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"role","role",-736691072),role,new cljs.core.Keyword(null,"content","content",15833224),text], null));
 }));
-re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.gemma","load-model","bb-web-ds-tools.views.gemma/load-model",595672016),(function (p__50032,p__50033){
-var map__50034 = p__50032;
-var map__50034__$1 = cljs.core.__destructure_map(map__50034);
-var db = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50034__$1,new cljs.core.Keyword(null,"db","db",993250759));
-var vec__50035 = p__50033;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50035,(0),null);
-var model_url = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50035,(1),null);
+re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.gemma","load-model","bb-web-ds-tools.views.gemma/load-model",595672016),(function (p__50440,p__50441){
+var map__50442 = p__50440;
+var map__50442__$1 = cljs.core.__destructure_map(map__50442);
+var db = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50442__$1,new cljs.core.Keyword(null,"db","db",993250759));
+var vec__50443 = p__50441;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50443,(0),null);
+var model_url = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50443,(1),null);
 return new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"db","db",993250759),cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.gemma","gemma","bb-web-ds-tools.views.gemma/gemma",999339256),new cljs.core.Keyword(null,"loading?","loading?",1905707049)], null),true),new cljs.core.Keyword(null,"fx","fx",-1237829572),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.gemma","load-model-fx","bb-web-ds-tools.views.gemma/load-model-fx",225161033),model_url], null)], null)], null);
 }));
-re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.gemma","send-message","bb-web-ds-tools.views.gemma/send-message",1070168611),(function (p__50043,p__50044){
-var map__50045 = p__50043;
-var map__50045__$1 = cljs.core.__destructure_map(map__50045);
-var db = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50045__$1,new cljs.core.Keyword(null,"db","db",993250759));
-var vec__50046 = p__50044;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50046,(0),null);
-var text = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50046,(1),null);
+re_frame.core.reg_event_fx.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.gemma","send-message","bb-web-ds-tools.views.gemma/send-message",1070168611),(function (p__50449,p__50450){
+var map__50451 = p__50449;
+var map__50451__$1 = cljs.core.__destructure_map(map__50451);
+var db = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50451__$1,new cljs.core.Keyword(null,"db","db",993250759));
+var vec__50452 = p__50450;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50452,(0),null);
+var text = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50452,(1),null);
 if(cljs.core.truth_(cljs.core.deref(bb_web_ds_tools.views.gemma.llm_instance))){
 return new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"db","db",993250759),cljs.core.assoc_in(cljs.core.update_in.cljs$core$IFn$_invoke$arity$4(db,new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"user-input","user-input",-504242422),new cljs.core.Keyword(null,"gemma","gemma",2017704848),new cljs.core.Keyword(null,"default","default",-1987822328),new cljs.core.Keyword(null,"messages","messages",345434482)], null),cljs.core.conj,new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"role","role",-736691072),new cljs.core.Keyword(null,"user","user",1532431356),new cljs.core.Keyword(null,"content","content",15833224),text], null)),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.gemma","gemma","bb-web-ds-tools.views.gemma/gemma",999339256),new cljs.core.Keyword(null,"loading?","loading?",1905707049)], null),true),new cljs.core.Keyword(null,"fx","fx",-1237829572),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.gemma","generate-response-fx","bb-web-ds-tools.views.gemma/generate-response-fx",-476111213),text], null)], null)], null);
 } else {
@@ -104,18 +104,18 @@ var error_sub = re_frame.core.subscribe.cljs$core$IFn$_invoke$arity$1(new cljs.c
 return (function (){
 var loading_QMARK_ = cljs.core.deref(loading_QMARK__sub);
 var error = cljs.core.deref(error_sub);
-return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [fork.reagent.form,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"initial-values","initial-values",1392120293),new cljs.core.PersistentArrayMap(null, 1, ["url",""], null),new cljs.core.Keyword(null,"prevent-default?","prevent-default?",-1165567888),true,new cljs.core.Keyword(null,"on-submit","on-submit",1227871159),(function (p__50049){
-var map__50051 = p__50049;
-var map__50051__$1 = cljs.core.__destructure_map(map__50051);
-var values = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50051__$1,new cljs.core.Keyword(null,"values","values",372645556));
+return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [fork.reagent.form,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"initial-values","initial-values",1392120293),new cljs.core.PersistentArrayMap(null, 1, ["url",""], null),new cljs.core.Keyword(null,"prevent-default?","prevent-default?",-1165567888),true,new cljs.core.Keyword(null,"on-submit","on-submit",1227871159),(function (p__50468){
+var map__50473 = p__50468;
+var map__50473__$1 = cljs.core.__destructure_map(map__50473);
+var values = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50473__$1,new cljs.core.Keyword(null,"values","values",372645556));
 return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.gemma","load-model","bb-web-ds-tools.views.gemma/load-model",595672016),cljs.core.get.cljs$core$IFn$_invoke$arity$2(values,"url")], null));
-})], null),(function (p__50054){
-var map__50055 = p__50054;
-var map__50055__$1 = cljs.core.__destructure_map(map__50055);
-var values = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50055__$1,new cljs.core.Keyword(null,"values","values",372645556));
-var handle_change = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50055__$1,new cljs.core.Keyword(null,"handle-change","handle-change",741134083));
-var handle_blur = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50055__$1,new cljs.core.Keyword(null,"handle-blur","handle-blur",-546639264));
-var handle_submit = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50055__$1,new cljs.core.Keyword(null,"handle-submit","handle-submit",1732326917));
+})], null),(function (p__50474){
+var map__50475 = p__50474;
+var map__50475__$1 = cljs.core.__destructure_map(map__50475);
+var values = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50475__$1,new cljs.core.Keyword(null,"values","values",372645556));
+var handle_change = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50475__$1,new cljs.core.Keyword(null,"handle-change","handle-change",741134083));
+var handle_blur = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50475__$1,new cljs.core.Keyword(null,"handle-blur","handle-blur",-546639264));
+var handle_submit = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50475__$1,new cljs.core.Keyword(null,"handle-submit","handle-submit",1732326917));
 return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"form","form",-1624062471),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"on-submit","on-submit",1227871159),handle_submit,new cljs.core.Keyword(null,"class","class",-2030961996),"max-w-2xl mx-auto"], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.card,cljs.core.PersistentArrayMap.EMPTY,new cljs.core.PersistentVector(null, 6, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.section_header,"Load Gemma Model",new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.help_button,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"href","href",-793805698),bb_web_ds_tools.components.navigation.get_wiki_url(new cljs.core.Keyword(null,"gemma","gemma",2017704848)),new cljs.core.Keyword(null,"title","title",636505583),"Help: Gemma",new cljs.core.Keyword(null,"class","class",-2030961996),"!p-1 !w-5 !h-5 opacity-50 hover:opacity-100"], null)], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"text-[#dcdccc] mb-4 text-sm"], null),"Enter the URL to the .bin model file (e.g., from Kaggle or Hugging Face)."], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"input","input",556931961),new cljs.core.PersistentArrayMap(null, 7, [new cljs.core.Keyword(null,"type","type",1174270348),"text",new cljs.core.Keyword(null,"name","name",1843675177),"url",new cljs.core.Keyword(null,"placeholder","placeholder",-104873083),"Model URL (e.g. /gemma-2b-it-gpu-int4.bin)",new cljs.core.Keyword(null,"value","value",305978217),cljs.core.get.cljs$core$IFn$_invoke$arity$2(values,"url"),new cljs.core.Keyword(null,"on-change","on-change",-732046149),handle_change,new cljs.core.Keyword(null,"on-blur","on-blur",814300747),handle_blur,new cljs.core.Keyword(null,"class","class",-2030961996),"w-full bg-[#2f2f2f] text-[#dcdccc] border border-[#5f5f5f] rounded p-3 mb-4 focus:ring-2 focus:ring-[#8cd0d3] focus:outline-none"], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.button,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"type","type",1174270348),"submit",new cljs.core.Keyword(null,"disabled","disabled",-1529784218),loading_QMARK_,new cljs.core.Keyword(null,"class","class",-2030961996),"w-full"], null),(cljs.core.truth_(loading_QMARK_)?"Loading...":"Load Model")], null),(cljs.core.truth_(error)?new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"text-[#cc9393] mt-4 p-3 bg-[#3f3f3f] border border-[#cc9393] rounded"], null),error], null):null)], null)], null)], null);
 })], null);
 });
@@ -132,42 +132,42 @@ var loading_QMARK__sub = re_frame.core.subscribe.cljs$core$IFn$_invoke$arity$1(n
 return (function (){
 var messages = cljs.core.deref(messages_sub);
 var loading_QMARK_ = cljs.core.deref(loading_QMARK__sub);
-return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [fork.reagent.form,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"initial-values","initial-values",1392120293),new cljs.core.PersistentArrayMap(null, 1, ["text",""], null),new cljs.core.Keyword(null,"prevent-default?","prevent-default?",-1165567888),true,new cljs.core.Keyword(null,"on-submit","on-submit",1227871159),(function (p__50059){
-var map__50060 = p__50059;
-var map__50060__$1 = cljs.core.__destructure_map(map__50060);
-var values = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50060__$1,new cljs.core.Keyword(null,"values","values",372645556));
-var reset = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50060__$1,new cljs.core.Keyword(null,"reset","reset",-800929946));
+return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [fork.reagent.form,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"initial-values","initial-values",1392120293),new cljs.core.PersistentArrayMap(null, 1, ["text",""], null),new cljs.core.Keyword(null,"prevent-default?","prevent-default?",-1165567888),true,new cljs.core.Keyword(null,"on-submit","on-submit",1227871159),(function (p__50517){
+var map__50519 = p__50517;
+var map__50519__$1 = cljs.core.__destructure_map(map__50519);
+var values = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50519__$1,new cljs.core.Keyword(null,"values","values",372645556));
+var reset = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50519__$1,new cljs.core.Keyword(null,"reset","reset",-800929946));
 re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.gemma","send-message","bb-web-ds-tools.views.gemma/send-message",1070168611),cljs.core.get.cljs$core$IFn$_invoke$arity$2(values,"text")], null));
 
 return (reset.cljs$core$IFn$_invoke$arity$0 ? reset.cljs$core$IFn$_invoke$arity$0() : reset.call(null));
-})], null),(function (p__50061){
-var map__50062 = p__50061;
-var map__50062__$1 = cljs.core.__destructure_map(map__50062);
-var values = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50062__$1,new cljs.core.Keyword(null,"values","values",372645556));
-var handle_change = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50062__$1,new cljs.core.Keyword(null,"handle-change","handle-change",741134083));
-var handle_blur = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50062__$1,new cljs.core.Keyword(null,"handle-blur","handle-blur",-546639264));
-var handle_submit = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50062__$1,new cljs.core.Keyword(null,"handle-submit","handle-submit",1732326917));
-return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"form","form",-1624062471),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"on-submit","on-submit",1227871159),handle_submit,new cljs.core.Keyword(null,"class","class",-2030961996),"max-w-4xl mx-auto"], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.card,cljs.core.PersistentArrayMap.EMPTY,new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.section_header,"Gemma Chat",new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.help_button,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"href","href",-793805698),bb_web_ds_tools.components.navigation.get_wiki_url(new cljs.core.Keyword(null,"gemma","gemma",2017704848)),new cljs.core.Keyword(null,"title","title",636505583),"Help: Gemma",new cljs.core.Keyword(null,"class","class",-2030961996),"!p-1 !w-5 !h-5 opacity-50 hover:opacity-100"], null)], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.messages","div.messages",-55661322),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"bg-[#2f2f2f] border border-[#5f5f5f] rounded-lg p-4 h-[500px] overflow-y-auto mb-4 custom-scrollbar"], null),(function (){var iter__5503__auto__ = (function bb_web_ds_tools$views$gemma$chat_interface_$_iter__50063(s__50064){
+})], null),(function (p__50522){
+var map__50524 = p__50522;
+var map__50524__$1 = cljs.core.__destructure_map(map__50524);
+var values = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50524__$1,new cljs.core.Keyword(null,"values","values",372645556));
+var handle_change = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50524__$1,new cljs.core.Keyword(null,"handle-change","handle-change",741134083));
+var handle_blur = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50524__$1,new cljs.core.Keyword(null,"handle-blur","handle-blur",-546639264));
+var handle_submit = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50524__$1,new cljs.core.Keyword(null,"handle-submit","handle-submit",1732326917));
+return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"form","form",-1624062471),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"on-submit","on-submit",1227871159),handle_submit,new cljs.core.Keyword(null,"class","class",-2030961996),"max-w-4xl mx-auto"], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.card,cljs.core.PersistentArrayMap.EMPTY,new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.section_header,"Gemma Chat",new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.help_button,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"href","href",-793805698),bb_web_ds_tools.components.navigation.get_wiki_url(new cljs.core.Keyword(null,"gemma","gemma",2017704848)),new cljs.core.Keyword(null,"title","title",636505583),"Help: Gemma",new cljs.core.Keyword(null,"class","class",-2030961996),"!p-1 !w-5 !h-5 opacity-50 hover:opacity-100"], null)], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.messages","div.messages",-55661322),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"bg-[#2f2f2f] border border-[#5f5f5f] rounded-lg p-4 h-[500px] overflow-y-auto mb-4 custom-scrollbar"], null),(function (){var iter__5503__auto__ = (function bb_web_ds_tools$views$gemma$chat_interface_$_iter__50525(s__50526){
 return (new cljs.core.LazySeq(null,(function (){
-var s__50064__$1 = s__50064;
+var s__50526__$1 = s__50526;
 while(true){
-var temp__5825__auto__ = cljs.core.seq(s__50064__$1);
+var temp__5825__auto__ = cljs.core.seq(s__50526__$1);
 if(temp__5825__auto__){
-var s__50064__$2 = temp__5825__auto__;
-if(cljs.core.chunked_seq_QMARK_(s__50064__$2)){
-var c__5501__auto__ = cljs.core.chunk_first(s__50064__$2);
+var s__50526__$2 = temp__5825__auto__;
+if(cljs.core.chunked_seq_QMARK_(s__50526__$2)){
+var c__5501__auto__ = cljs.core.chunk_first(s__50526__$2);
 var size__5502__auto__ = cljs.core.count(c__5501__auto__);
-var b__50066 = cljs.core.chunk_buffer(size__5502__auto__);
-if((function (){var i__50065 = (0);
+var b__50528 = cljs.core.chunk_buffer(size__5502__auto__);
+if((function (){var i__50527 = (0);
 while(true){
-if((i__50065 < size__5502__auto__)){
-var vec__50067 = cljs.core._nth(c__5501__auto__,i__50065);
-var idx = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50067,(0),null);
-var msg = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50067,(1),null);
-cljs.core.chunk_append(b__50066,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"key","key",-1516042587),idx,new cljs.core.Keyword(null,"class","class",-2030961996),["mb-4 ",((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"role","role",-736691072).cljs$core$IFn$_invoke$arity$1(msg),new cljs.core.Keyword(null,"user","user",1532431356)))?"text-right":"text-left")].join('')], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),["inline-block px-4 py-2 rounded-lg max-w-[80%] ",((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"role","role",-736691072).cljs$core$IFn$_invoke$arity$1(msg),new cljs.core.Keyword(null,"user","user",1532431356)))?"bg-[#7f9f7f] text-[#3f3f3f]":"bg-[#4f4f4f] text-[#dcdccc] border border-[#5f5f5f]")].join('')], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"text-xs opacity-75 mb-1 font-bold"], null),((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"role","role",-736691072).cljs$core$IFn$_invoke$arity$1(msg),new cljs.core.Keyword(null,"user","user",1532431356)))?"You":"Gemma")], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"span","span",1394872991),new cljs.core.Keyword(null,"content","content",15833224).cljs$core$IFn$_invoke$arity$1(msg)], null)], null)], null));
+if((i__50527 < size__5502__auto__)){
+var vec__50533 = cljs.core._nth(c__5501__auto__,i__50527);
+var idx = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50533,(0),null);
+var msg = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50533,(1),null);
+cljs.core.chunk_append(b__50528,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"key","key",-1516042587),idx,new cljs.core.Keyword(null,"class","class",-2030961996),["mb-4 ",((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"role","role",-736691072).cljs$core$IFn$_invoke$arity$1(msg),new cljs.core.Keyword(null,"user","user",1532431356)))?"text-right":"text-left")].join('')], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),["inline-block px-4 py-2 rounded-lg max-w-[80%] ",((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"role","role",-736691072).cljs$core$IFn$_invoke$arity$1(msg),new cljs.core.Keyword(null,"user","user",1532431356)))?"bg-[#7f9f7f] text-[#3f3f3f]":"bg-[#4f4f4f] text-[#dcdccc] border border-[#5f5f5f]")].join('')], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"text-xs opacity-75 mb-1 font-bold"], null),((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"role","role",-736691072).cljs$core$IFn$_invoke$arity$1(msg),new cljs.core.Keyword(null,"user","user",1532431356)))?"You":"Gemma")], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"span","span",1394872991),new cljs.core.Keyword(null,"content","content",15833224).cljs$core$IFn$_invoke$arity$1(msg)], null)], null)], null));
 
-var G__50154 = (i__50065 + (1));
-i__50065 = G__50154;
+var G__50636 = (i__50527 + (1));
+i__50527 = G__50636;
 continue;
 } else {
 return true;
@@ -175,15 +175,15 @@ return true;
 break;
 }
 })()){
-return cljs.core.chunk_cons(cljs.core.chunk(b__50066),bb_web_ds_tools$views$gemma$chat_interface_$_iter__50063(cljs.core.chunk_rest(s__50064__$2)));
+return cljs.core.chunk_cons(cljs.core.chunk(b__50528),bb_web_ds_tools$views$gemma$chat_interface_$_iter__50525(cljs.core.chunk_rest(s__50526__$2)));
 } else {
-return cljs.core.chunk_cons(cljs.core.chunk(b__50066),null);
+return cljs.core.chunk_cons(cljs.core.chunk(b__50528),null);
 }
 } else {
-var vec__50136 = cljs.core.first(s__50064__$2);
-var idx = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50136,(0),null);
-var msg = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50136,(1),null);
-return cljs.core.cons(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"key","key",-1516042587),idx,new cljs.core.Keyword(null,"class","class",-2030961996),["mb-4 ",((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"role","role",-736691072).cljs$core$IFn$_invoke$arity$1(msg),new cljs.core.Keyword(null,"user","user",1532431356)))?"text-right":"text-left")].join('')], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),["inline-block px-4 py-2 rounded-lg max-w-[80%] ",((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"role","role",-736691072).cljs$core$IFn$_invoke$arity$1(msg),new cljs.core.Keyword(null,"user","user",1532431356)))?"bg-[#7f9f7f] text-[#3f3f3f]":"bg-[#4f4f4f] text-[#dcdccc] border border-[#5f5f5f]")].join('')], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"text-xs opacity-75 mb-1 font-bold"], null),((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"role","role",-736691072).cljs$core$IFn$_invoke$arity$1(msg),new cljs.core.Keyword(null,"user","user",1532431356)))?"You":"Gemma")], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"span","span",1394872991),new cljs.core.Keyword(null,"content","content",15833224).cljs$core$IFn$_invoke$arity$1(msg)], null)], null)], null),bb_web_ds_tools$views$gemma$chat_interface_$_iter__50063(cljs.core.rest(s__50064__$2)));
+var vec__50540 = cljs.core.first(s__50526__$2);
+var idx = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50540,(0),null);
+var msg = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50540,(1),null);
+return cljs.core.cons(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"key","key",-1516042587),idx,new cljs.core.Keyword(null,"class","class",-2030961996),["mb-4 ",((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"role","role",-736691072).cljs$core$IFn$_invoke$arity$1(msg),new cljs.core.Keyword(null,"user","user",1532431356)))?"text-right":"text-left")].join('')], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),["inline-block px-4 py-2 rounded-lg max-w-[80%] ",((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"role","role",-736691072).cljs$core$IFn$_invoke$arity$1(msg),new cljs.core.Keyword(null,"user","user",1532431356)))?"bg-[#7f9f7f] text-[#3f3f3f]":"bg-[#4f4f4f] text-[#dcdccc] border border-[#5f5f5f]")].join('')], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"text-xs opacity-75 mb-1 font-bold"], null),((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"role","role",-736691072).cljs$core$IFn$_invoke$arity$1(msg),new cljs.core.Keyword(null,"user","user",1532431356)))?"You":"Gemma")], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"span","span",1394872991),new cljs.core.Keyword(null,"content","content",15833224).cljs$core$IFn$_invoke$arity$1(msg)], null)], null)], null),bb_web_ds_tools$views$gemma$chat_interface_$_iter__50525(cljs.core.rest(s__50526__$2)));
 }
 } else {
 return null;

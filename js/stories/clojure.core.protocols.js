@@ -18,6 +18,7 @@ var meta_merge=$CLJS.meta_merge || ($CLJS.meta_merge = {});
 var goog=$CLJS.goog || ($CLJS.goog = {});
 var reagent=$CLJS.reagent || ($CLJS.reagent = {});
 var module$shadow_js_shim_module$$js_joda$core=$CLJS.module$shadow_js_shim_module$$js_joda$core || ($CLJS.module$shadow_js_shim_module$$js_joda$core = {});
+var camel_snake_kebab=$CLJS.camel_snake_kebab || ($CLJS.camel_snake_kebab = {});
 var portal=$CLJS.portal || ($CLJS.portal = {});
 var edamame=$CLJS.edamame || ($CLJS.edamame = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
@@ -39,7 +40,7 @@ goog.provide('clojure.core.protocols');
  */
 clojure.core.protocols.Datafiable = function(){};
 
-var clojure$core$protocols$Datafiable$datafy$dyn_36930 = (function (o){
+var clojure$core$protocols$Datafiable$datafy$dyn_36889 = (function (o){
 var x__5373__auto__ = (((o == null))?null:o);
 var m__5374__auto__ = (clojure.core.protocols.datafy[goog.typeOf(x__5373__auto__)]);
 if((!((m__5374__auto__ == null)))){
@@ -65,7 +66,7 @@ return (meta_impl__5375__auto__.cljs$core$IFn$_invoke$arity$1 ? meta_impl__5375_
 if((((!((o == null)))) && ((!((o.clojure$core$protocols$Datafiable$datafy$arity$1 == null)))))){
 return o.clojure$core$protocols$Datafiable$datafy$arity$1(o);
 } else {
-return clojure$core$protocols$Datafiable$datafy$dyn_36930(o);
+return clojure$core$protocols$Datafiable$datafy$dyn_36889(o);
 }
 }
 });
@@ -87,7 +88,7 @@ return o;
  */
 clojure.core.protocols.Navigable = function(){};
 
-var clojure$core$protocols$Navigable$nav$dyn_36931 = (function (coll,k,v){
+var clojure$core$protocols$Navigable$nav$dyn_36892 = (function (coll,k,v){
 var x__5373__auto__ = (((coll == null))?null:coll);
 var m__5374__auto__ = (clojure.core.protocols.nav[goog.typeOf(x__5373__auto__)]);
 if((!((m__5374__auto__ == null)))){
@@ -114,7 +115,7 @@ return (meta_impl__5375__auto__.cljs$core$IFn$_invoke$arity$3 ? meta_impl__5375_
 if((((!((coll == null)))) && ((!((coll.clojure$core$protocols$Navigable$nav$arity$3 == null)))))){
 return coll.clojure$core$protocols$Navigable$nav$arity$3(coll,k,v);
 } else {
-return clojure$core$protocols$Navigable$nav$dyn_36931(coll,k,v);
+return clojure$core$protocols$Navigable$nav$dyn_36892(coll,k,v);
 }
 }
 });

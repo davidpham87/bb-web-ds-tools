@@ -19,6 +19,7 @@ var meta_merge=$CLJS.meta_merge || ($CLJS.meta_merge = {});
 var goog=$CLJS.goog || ($CLJS.goog = {});
 var reagent=$CLJS.reagent || ($CLJS.reagent = {});
 var module$shadow_js_shim_module$$js_joda$core=$CLJS.module$shadow_js_shim_module$$js_joda$core || ($CLJS.module$shadow_js_shim_module$$js_joda$core = {});
+var camel_snake_kebab=$CLJS.camel_snake_kebab || ($CLJS.camel_snake_kebab = {});
 var portal=$CLJS.portal || ($CLJS.portal = {});
 var edamame=$CLJS.edamame || ($CLJS.edamame = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
@@ -51,10 +52,10 @@ if(s__$1){
 var item = cljs.core.first(s__$1);
 var ret = cljs.core.conj_BANG_.cljs$core$IFn$_invoke$arity$2(r,((edamame.impl.syntax_quote.unquote_QMARK_(item))?(new cljs.core.List(null,new cljs.core.Symbol("clojure.core","list","clojure.core/list",-1119203325,null),(new cljs.core.List(null,cljs.core.second(item),null,(1),null)),(2),null)):((edamame.impl.syntax_quote.unquote_splicing_QMARK_(item))?cljs.core.second(item):(new cljs.core.List(null,new cljs.core.Symbol("clojure.core","list","clojure.core/list",-1119203325,null),(new cljs.core.List(null,(edamame.impl.syntax_quote.syntax_quote.cljs$core$IFn$_invoke$arity$3 ? edamame.impl.syntax_quote.syntax_quote.cljs$core$IFn$_invoke$arity$3(ctx,reader,item) : edamame.impl.syntax_quote.syntax_quote.call(null,ctx,reader,item)),null,(1),null)),(2),null))
 )));
-var G__38350 = cljs.core.next(s__$1);
-var G__38351 = ret;
-s__$1 = G__38350;
-r = G__38351;
+var G__38275 = cljs.core.next(s__$1);
+var G__38276 = ret;
+s__$1 = G__38275;
+r = G__38276;
 continue;
 } else {
 return cljs.core.seq(cljs.core.persistent_BANG_(r));
@@ -89,10 +90,10 @@ var key_vals = cljs.core.transient$(cljs.core.PersistentVector.EMPTY);
 while(true){
 if(s){
 var e = cljs.core.first(s);
-var G__38352 = cljs.core.next(s);
-var G__38353 = cljs.core.conj_BANG_.cljs$core$IFn$_invoke$arity$2(cljs.core.conj_BANG_.cljs$core$IFn$_invoke$arity$2(key_vals,cljs.core.key(e)),cljs.core.val(e));
-s = G__38352;
-key_vals = G__38353;
+var G__38277 = cljs.core.next(s);
+var G__38278 = cljs.core.conj_BANG_.cljs$core$IFn$_invoke$arity$2(cljs.core.conj_BANG_.cljs$core$IFn$_invoke$arity$2(key_vals,cljs.core.key(e)),cljs.core.val(e));
+s = G__38277;
+key_vals = G__38278;
 continue;
 } else {
 return cljs.core.seq(cljs.core.persistent_BANG_(key_vals));
@@ -100,11 +101,11 @@ return cljs.core.seq(cljs.core.persistent_BANG_(key_vals));
 break;
 }
 });
-edamame.impl.syntax_quote.syntax_quote_STAR_ = (function edamame$impl$syntax_quote$syntax_quote_STAR_(p__38345,reader,form){
-var map__38346 = p__38345;
-var map__38346__$1 = cljs.core.__destructure_map(map__38346);
-var ctx = map__38346__$1;
-var gensyms = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__38346__$1,new cljs.core.Keyword(null,"gensyms","gensyms",248713782));
+edamame.impl.syntax_quote.syntax_quote_STAR_ = (function edamame$impl$syntax_quote$syntax_quote_STAR_(p__38270,reader,form){
+var map__38271 = p__38270;
+var map__38271__$1 = cljs.core.__destructure_map(map__38271);
+var ctx = map__38271__$1;
+var gensyms = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__38271__$1,new cljs.core.Keyword(null,"gensyms","gensyms",248713782));
 if(cljs.core.special_symbol_QMARK_(form)){
 return (new cljs.core.List(null,new cljs.core.Symbol(null,"quote","quote",1377916282,null),(new cljs.core.List(null,form,null,(1),null)),(2),null));
 } else {
@@ -132,22 +133,22 @@ var f__$1 = (function (){var or__5025__auto__ = f;
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
 } else {
-var temp__5823__auto__ = (function (){var G__38347 = ctx;
-var G__38347__$1 = (((G__38347 == null))?null:new cljs.core.Keyword(null,"ns-state","ns-state",-532270771).cljs$core$IFn$_invoke$arity$1(G__38347));
-if((G__38347__$1 == null)){
+var temp__5823__auto__ = (function (){var G__38272 = ctx;
+var G__38272__$1 = (((G__38272 == null))?null:new cljs.core.Keyword(null,"ns-state","ns-state",-532270771).cljs$core$IFn$_invoke$arity$1(G__38272));
+if((G__38272__$1 == null)){
 return null;
 } else {
-return cljs.core.deref(G__38347__$1);
+return cljs.core.deref(G__38272__$1);
 }
 })();
 if(cljs.core.truth_(temp__5823__auto__)){
 var ns_state = temp__5823__auto__;
 return (function (sym){
-var temp__5823__auto____$1 = (function (){var G__38348 = cljs.core.namespace(sym);
-if((G__38348 == null)){
+var temp__5823__auto____$1 = (function (){var G__38273 = cljs.core.namespace(sym);
+if((G__38273 == null)){
 return null;
 } else {
-return cljs.core.symbol.cljs$core$IFn$_invoke$arity$1(G__38348);
+return cljs.core.symbol.cljs$core$IFn$_invoke$arity$1(G__38273);
 }
 })();
 if(cljs.core.truth_(temp__5823__auto____$1)){

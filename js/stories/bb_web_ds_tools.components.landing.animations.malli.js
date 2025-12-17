@@ -19,6 +19,7 @@ var meta_merge=$CLJS.meta_merge || ($CLJS.meta_merge = {});
 var goog=$CLJS.goog || ($CLJS.goog = {});
 var reagent=$CLJS.reagent || ($CLJS.reagent = {});
 var module$shadow_js_shim_module$$js_joda$core=$CLJS.module$shadow_js_shim_module$$js_joda$core || ($CLJS.module$shadow_js_shim_module$$js_joda$core = {});
+var camel_snake_kebab=$CLJS.camel_snake_kebab || ($CLJS.camel_snake_kebab = {});
 var portal=$CLJS.portal || ($CLJS.portal = {});
 var edamame=$CLJS.edamame || ($CLJS.edamame = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
@@ -34,21 +35,15 @@ var com=$CLJS.com || ($CLJS.com = {});
 $CLJS.SHADOW_ENV.setLoaded("bb_web_ds_tools.components.landing.animations.malli.js");
 
 goog.provide('bb_web_ds_tools.components.landing.animations.malli');
-bb_web_ds_tools.components.landing.animations.malli.draw_malli = (function bb_web_ds_tools$components$landing$animations$malli$draw_malli(ctx,w,h,t){
-(bb_web_ds_tools.components.landing.animations.common.clear_rect.cljs$core$IFn$_invoke$arity$3 ? bb_web_ds_tools.components.landing.animations.common.clear_rect.cljs$core$IFn$_invoke$arity$3(ctx,w,h) : bb_web_ds_tools.components.landing.animations.common.clear_rect.call(null,ctx,w,h));
-
-var cx = (w / (2));
-var cy = (h / (2));
-var cycle = (8000);
-var phase = cljs.core.mod(t,cycle);
-var font_size = (12);
-(ctx.font = [cljs.core.str.cljs$core$IFn$_invoke$arity$1(font_size),"px monospace"].join(''));
+bb_web_ds_tools.components.landing.animations.malli.font_size = (12);
+bb_web_ds_tools.components.landing.animations.malli.setup_font = (function bb_web_ds_tools$components$landing$animations$malli$setup_font(ctx){
+(ctx.font = [cljs.core.str.cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.malli.font_size),"px monospace"].join(''));
 
 (ctx.textAlign = "center");
 
-(ctx.textBaseline = "middle");
-
-if((phase < (2000))){
+return (ctx.textBaseline = "middle");
+});
+bb_web_ds_tools.components.landing.animations.malli.draw_raw_data = (function bb_web_ds_tools$components$landing$animations$malli$draw_raw_data(ctx,_w,_h,_t,phase,cx,cy){
 var alpha = (((phase > (1500)))?(1.0 - ((phase - (1500)) / (500))):1.0);
 (ctx.globalAlpha = alpha);
 
@@ -57,8 +52,8 @@ var alpha = (((phase > (1500)))?(1.0 - ((phase - (1500)) / (500))):1.0);
 ctx.fillText("[{:a 1} {:a 2}]",cx,cy);
 
 return (ctx.globalAlpha = 1.0);
-} else {
-if((phase < (5000))){
+});
+bb_web_ds_tools.components.landing.animations.malli.draw_schema_inference = (function bb_web_ds_tools$components$landing$animations$malli$draw_schema_inference(ctx,_w,_h,_t,phase,cx,cy){
 var progress = ((phase - (2000)) / (1000));
 var alpha_in = (function (){var x__5113__auto__ = 1.0;
 var y__5114__auto__ = progress;
@@ -77,14 +72,15 @@ ctx.fillText("[{:a 1} {:a 2}]",cx,(cy - (20)));
 
 ctx.fillText("\u2B07",cx,(cy + (5)));
 
-(ctx.font = [cljs.core.str.cljs$core$IFn$_invoke$arity$1(font_size),"px monospace"].join(''));
+(ctx.font = [cljs.core.str.cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.malli.font_size),"px monospace"].join(''));
 
 (ctx.fillStyle = new cljs.core.Keyword("portal.colors","keyword","portal.colors/keyword",-1873282591).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn));
 
 ctx.fillText("[:map [:a :int]]",cx,(cy + (30)));
 
 return (ctx.globalAlpha = 1.0);
-} else {
+});
+bb_web_ds_tools.components.landing.animations.malli.draw_validation = (function bb_web_ds_tools$components$landing$animations$malli$draw_validation(ctx,_w,_h,_t,phase,cx,cy){
 var progress = ((phase - (5000)) / (500));
 var alpha = (function (){var x__5113__auto__ = 1.0;
 var y__5114__auto__ = progress;
@@ -120,6 +116,35 @@ ctx.stroke();
 ctx.fillText("Valid",cx,(cy + (50)));
 
 return (ctx.globalAlpha = 1.0);
+});
+/**
+ * Draws the Malli feature animation.
+ * 
+ *   Args:
+ *  ctx (object): Canvas context.
+ *  w (number): Width.
+ *  h (number): Height.
+ *  t (number): Time.
+ * 
+ *   Returns:
+ *  nil.
+ */
+bb_web_ds_tools.components.landing.animations.malli.draw_malli = (function bb_web_ds_tools$components$landing$animations$malli$draw_malli(ctx,w,h,t){
+(bb_web_ds_tools.components.landing.animations.common.clear_rect.cljs$core$IFn$_invoke$arity$3 ? bb_web_ds_tools.components.landing.animations.common.clear_rect.cljs$core$IFn$_invoke$arity$3(ctx,w,h) : bb_web_ds_tools.components.landing.animations.common.clear_rect.call(null,ctx,w,h));
+
+var cx = (w / (2));
+var cy = (h / (2));
+var cycle = (8000);
+var phase = cljs.core.mod(t,cycle);
+bb_web_ds_tools.components.landing.animations.malli.setup_font(ctx);
+
+if((phase < (2000))){
+return bb_web_ds_tools.components.landing.animations.malli.draw_raw_data(ctx,w,h,t,phase,cx,cy);
+} else {
+if((phase < (5000))){
+return bb_web_ds_tools.components.landing.animations.malli.draw_schema_inference(ctx,w,h,t,phase,cx,cy);
+} else {
+return bb_web_ds_tools.components.landing.animations.malli.draw_validation(ctx,w,h,t,phase,cx,cy);
 
 }
 }

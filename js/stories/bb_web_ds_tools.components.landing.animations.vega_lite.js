@@ -19,6 +19,7 @@ var meta_merge=$CLJS.meta_merge || ($CLJS.meta_merge = {});
 var goog=$CLJS.goog || ($CLJS.goog = {});
 var reagent=$CLJS.reagent || ($CLJS.reagent = {});
 var module$shadow_js_shim_module$$js_joda$core=$CLJS.module$shadow_js_shim_module$$js_joda$core || ($CLJS.module$shadow_js_shim_module$$js_joda$core = {});
+var camel_snake_kebab=$CLJS.camel_snake_kebab || ($CLJS.camel_snake_kebab = {});
 var portal=$CLJS.portal || ($CLJS.portal = {});
 var edamame=$CLJS.edamame || ($CLJS.edamame = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
@@ -34,17 +35,10 @@ var com=$CLJS.com || ($CLJS.com = {});
 $CLJS.SHADOW_ENV.setLoaded("bb_web_ds_tools.components.landing.animations.vega_lite.js");
 
 goog.provide('bb_web_ds_tools.components.landing.animations.vega_lite');
-bb_web_ds_tools.components.landing.animations.vega_lite.draw_vega_lite = (function bb_web_ds_tools$components$landing$animations$vega_lite$draw_vega_lite(ctx,w,h,t){
-(bb_web_ds_tools.components.landing.animations.common.clear_rect.cljs$core$IFn$_invoke$arity$3 ? bb_web_ds_tools.components.landing.animations.common.clear_rect.cljs$core$IFn$_invoke$arity$3(ctx,w,h) : bb_web_ds_tools.components.landing.animations.common.clear_rect.call(null,ctx,w,h));
-
-var cx = (w / (2));
-var cy = (h / (2));
-var cycle = (8000);
-var phase = cljs.core.mod(t,cycle);
+bb_web_ds_tools.components.landing.animations.vega_lite.font_size = (14);
+bb_web_ds_tools.components.landing.animations.vega_lite.draw_code_snippet = (function bb_web_ds_tools$components$landing$animations$vega_lite$draw_code_snippet(ctx,_w,_h,_t,phase,cx,cy){
 var code_snippet = "{:mark :bar :encoding ...}";
-var font_size = (14);
-if((phase < (2000))){
-(ctx.font = [cljs.core.str.cljs$core$IFn$_invoke$arity$1(font_size),"px monospace"].join(''));
+(ctx.font = [cljs.core.str.cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.vega_lite.font_size),"px monospace"].join(''));
 
 (ctx.textAlign = "center");
 
@@ -58,49 +52,47 @@ var y__5114__auto__ = Math.floor((progress * ((code_snippet).length)));
 return ((x__5113__auto__ < y__5114__auto__) ? x__5113__auto__ : y__5114__auto__);
 })();
 return ctx.fillText(cljs.core.subs.cljs$core$IFn$_invoke$arity$3(code_snippet,(0),chars_to_show),cx,cy);
-} else {
-var chart_phase = (phase - (2000));
-var chart_duration = (2000);
+});
+bb_web_ds_tools.components.landing.animations.vega_lite.draw_bar_chart = (function bb_web_ds_tools$components$landing$animations$vega_lite$draw_bar_chart(ctx,_w,_h,_t,chart_phase,cx,cy){
 var transition = (500);
-if((chart_phase < (2000))){
-var progress_25282 = (function (){var x__5113__auto__ = 1.0;
+var progress = (function (){var x__5113__auto__ = 1.0;
 var y__5114__auto__ = (chart_phase / transition);
 return ((x__5113__auto__ < y__5114__auto__) ? x__5113__auto__ : y__5114__auto__);
 })();
-var alpha_25283 = (((chart_phase > (1500)))?(1.0 - ((chart_phase - (1500)) / (500))):1.0);
-(ctx.globalAlpha = (progress_25282 * alpha_25283));
+var alpha = (((chart_phase > (1500)))?(1.0 - ((chart_phase - (1500)) / (500))):1.0);
+(ctx.globalAlpha = (progress * alpha));
 
 (ctx.fillStyle = new cljs.core.Keyword("portal.colors","diff-add","portal.colors/diff-add",1253946866).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn));
 
-var bar_w_25284 = (40);
-var gap_25285 = (20);
-var start_x_25286 = (cx - (1.5 * (bar_w_25284 + gap_25285)));
-var n__5616__auto___25287 = (3);
-var i_25288 = (0);
+var bar_w = (40);
+var gap = (20);
+var start_x = (cx - (1.5 * (bar_w + gap)));
+var n__5616__auto__ = (3);
+var i = (0);
 while(true){
-if((i_25288 < n__5616__auto___25287)){
-var h_25289__$1 = ((50) + (i_25288 * (30)));
-var x_25290 = (start_x_25286 + (i_25288 * (bar_w_25284 + gap_25285)));
-ctx.fillRect(x_25290,(cy - (h_25289__$1 - (50))),bar_w_25284,h_25289__$1);
+if((i < n__5616__auto__)){
+var h_25251 = ((50) + (i * (30)));
+var x_25252 = (start_x + (i * (bar_w + gap)));
+ctx.fillRect(x_25252,(cy - (h_25251 - (50))),bar_w,h_25251);
 
-var G__25291 = (i_25288 + (1));
-i_25288 = G__25291;
+var G__25253 = (i + (1));
+i = G__25253;
 continue;
 } else {
+return null;
 }
 break;
 }
-} else {
-}
-
-if((((chart_phase >= (2000))) && ((chart_phase < (4000))))){
-var local_t_25292 = (chart_phase - (2000));
-var progress_25293 = (function (){var x__5113__auto__ = 1.0;
-var y__5114__auto__ = (local_t_25292 / transition);
+});
+bb_web_ds_tools.components.landing.animations.vega_lite.draw_line_chart = (function bb_web_ds_tools$components$landing$animations$vega_lite$draw_line_chart(ctx,w,_h,_t,chart_phase,cy){
+var transition = (500);
+var local_t = (chart_phase - (2000));
+var progress = (function (){var x__5113__auto__ = 1.0;
+var y__5114__auto__ = (local_t / transition);
 return ((x__5113__auto__ < y__5114__auto__) ? x__5113__auto__ : y__5114__auto__);
 })();
-var alpha_25294 = (((local_t_25292 > (1500)))?(1.0 - ((local_t_25292 - (1500)) / (500))):1.0);
-(ctx.globalAlpha = (progress_25293 * alpha_25294));
+var alpha = (((local_t > (1500)))?(1.0 - ((local_t - (1500)) / (500))):1.0);
+(ctx.globalAlpha = (progress * alpha));
 
 (ctx.strokeStyle = new cljs.core.Keyword("portal.colors","number","portal.colors/number",2107558552).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn));
 
@@ -108,65 +100,92 @@ var alpha_25294 = (((local_t_25292 > (1500)))?(1.0 - ((local_t_25292 - (1500)) /
 
 ctx.beginPath();
 
-var points_25295 = (10);
-var step_25296 = (w / points_25295);
-var n__5616__auto___25297 = points_25295;
-var i_25298 = (0);
+var points_25254 = (10);
+var step_25255 = (w / points_25254);
+var n__5616__auto___25256 = points_25254;
+var i_25257 = (0);
 while(true){
-if((i_25298 < n__5616__auto___25297)){
-var x_25299 = (i_25298 * step_25296);
-var y_25300 = (cy + ((60) * Math.sin((i_25298 * 0.8))));
-if((i_25298 === (0))){
-ctx.moveTo(x_25299,y_25300);
+if((i_25257 < n__5616__auto___25256)){
+var x_25258 = (i_25257 * step_25255);
+var y_25259 = (cy + ((60) * Math.sin((i_25257 * 0.8))));
+if((i_25257 === (0))){
+ctx.moveTo(x_25258,y_25259);
 } else {
-ctx.lineTo(x_25299,y_25300);
+ctx.lineTo(x_25258,y_25259);
 }
 
-var G__25301 = (i_25298 + (1));
-i_25298 = G__25301;
+var G__25260 = (i_25257 + (1));
+i_25257 = G__25260;
 continue;
 } else {
 }
 break;
 }
 
-ctx.stroke();
+return ctx.stroke();
+});
+bb_web_ds_tools.components.landing.animations.vega_lite.draw_scatter_plot = (function bb_web_ds_tools$components$landing$animations$vega_lite$draw_scatter_plot(ctx,w,h,_t,chart_phase,cx,cy){
+var transition = (500);
+var local_t = (chart_phase - (4000));
+var progress = (function (){var x__5113__auto__ = 1.0;
+var y__5114__auto__ = (local_t / transition);
+return ((x__5113__auto__ < y__5114__auto__) ? x__5113__auto__ : y__5114__auto__);
+})();
+(ctx.globalAlpha = progress);
+
+(ctx.fillStyle = new cljs.core.Keyword("portal.colors","string","portal.colors/string",-1452455936).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn));
+
+var n__5616__auto__ = (20);
+var i = (0);
+while(true){
+if((i < n__5616__auto__)){
+var x_25261 = ((cljs.core.mod((i * (123)),w)) + (- (w / (2))));
+var y_25262 = ((cljs.core.mod((i * (456)),h)) + (- (h / (2))));
+ctx.beginPath();
+
+ctx.arc((cx + (Math.cos(i) * (i * (5)))),(cy + (Math.sin(i) * (i * (3)))),(5),(0),(Math.PI * (2)));
+
+ctx.fill();
+
+var G__25263 = (i + (1));
+i = G__25263;
+continue;
+} else {
+return null;
+}
+break;
+}
+});
+bb_web_ds_tools.components.landing.animations.vega_lite.draw_charts = (function bb_web_ds_tools$components$landing$animations$vega_lite$draw_charts(ctx,w,h,t,phase,cx,cy){
+var chart_phase = (phase - (2000));
+if((chart_phase < (2000))){
+bb_web_ds_tools.components.landing.animations.vega_lite.draw_bar_chart(ctx,w,h,t,chart_phase,cx,cy);
+} else {
+}
+
+if((((chart_phase >= (2000))) && ((chart_phase < (4000))))){
+bb_web_ds_tools.components.landing.animations.vega_lite.draw_line_chart(ctx,w,h,t,chart_phase,cy);
 } else {
 }
 
 if((chart_phase >= (4000))){
-var local_t_25302 = (chart_phase - (4000));
-var progress_25303 = (function (){var x__5113__auto__ = 1.0;
-var y__5114__auto__ = (local_t_25302 / transition);
-return ((x__5113__auto__ < y__5114__auto__) ? x__5113__auto__ : y__5114__auto__);
-})();
-(ctx.globalAlpha = progress_25303);
-
-(ctx.fillStyle = new cljs.core.Keyword("portal.colors","string","portal.colors/string",-1452455936).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn));
-
-var n__5616__auto___25304 = (20);
-var i_25305 = (0);
-while(true){
-if((i_25305 < n__5616__auto___25304)){
-var x_25306 = ((cljs.core.mod((i_25305 * (123)),w)) + (- (w / (2))));
-var y_25307 = ((cljs.core.mod((i_25305 * (456)),h)) + (- (h / (2))));
-ctx.beginPath();
-
-ctx.arc((cx + (Math.cos(i_25305) * (i_25305 * (5)))),(cy + (Math.sin(i_25305) * (i_25305 * (3)))),(5),(0),(Math.PI * (2)));
-
-ctx.fill();
-
-var G__25308 = (i_25305 + (1));
-i_25305 = G__25308;
-continue;
-} else {
-}
-break;
-}
+bb_web_ds_tools.components.landing.animations.vega_lite.draw_scatter_plot(ctx,w,h,t,chart_phase,cx,cy);
 } else {
 }
 
 return (ctx.globalAlpha = 1.0);
+});
+bb_web_ds_tools.components.landing.animations.vega_lite.draw_vega_lite = (function bb_web_ds_tools$components$landing$animations$vega_lite$draw_vega_lite(ctx,w,h,t){
+(bb_web_ds_tools.components.landing.animations.common.clear_rect.cljs$core$IFn$_invoke$arity$3 ? bb_web_ds_tools.components.landing.animations.common.clear_rect.cljs$core$IFn$_invoke$arity$3(ctx,w,h) : bb_web_ds_tools.components.landing.animations.common.clear_rect.call(null,ctx,w,h));
+
+var cx = (w / (2));
+var cy = (h / (2));
+var cycle = (8000);
+var phase = cljs.core.mod(t,cycle);
+if((phase < (2000))){
+return bb_web_ds_tools.components.landing.animations.vega_lite.draw_code_snippet(ctx,w,h,t,phase,cx,cy);
+} else {
+return bb_web_ds_tools.components.landing.animations.vega_lite.draw_charts(ctx,w,h,t,phase,cx,cy);
 
 }
 });

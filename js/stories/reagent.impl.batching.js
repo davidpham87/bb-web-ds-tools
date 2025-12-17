@@ -20,6 +20,7 @@ var meta_merge=$CLJS.meta_merge || ($CLJS.meta_merge = {});
 var goog=$CLJS.goog || ($CLJS.goog = {});
 var reagent=$CLJS.reagent || ($CLJS.reagent = {});
 var module$shadow_js_shim_module$$js_joda$core=$CLJS.module$shadow_js_shim_module$$js_joda$core || ($CLJS.module$shadow_js_shim_module$$js_joda$core = {});
+var camel_snake_kebab=$CLJS.camel_snake_kebab || ($CLJS.camel_snake_kebab = {});
 var portal=$CLJS.portal || ($CLJS.portal = {});
 var edamame=$CLJS.edamame || ($CLJS.edamame = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
@@ -86,14 +87,14 @@ var n__5616__auto__ = a.length;
 var i = (0);
 while(true){
 if((i < n__5616__auto__)){
-var c_21925 = (a[i]);
-if(c_21925.cljsIsDirty === true){
-c_21925.forceUpdate();
+var c_21915 = (a[i]);
+if(c_21915.cljsIsDirty === true){
+c_21915.forceUpdate();
 } else {
 }
 
-var G__21926 = (i + (1));
-i = G__21926;
+var G__21916 = (i + (1));
+i = G__21916;
 continue;
 } else {
 return null;
@@ -113,11 +114,11 @@ var n__5616__auto__ = fs.length;
 var i = (0);
 while(true){
 if((i < n__5616__auto__)){
-var fexpr__21904_21927 = (fs[i]);
-(fexpr__21904_21927.cljs$core$IFn$_invoke$arity$0 ? fexpr__21904_21927.cljs$core$IFn$_invoke$arity$0() : fexpr__21904_21927.call(null));
+var fexpr__21900_21918 = (fs[i]);
+(fexpr__21900_21918.cljs$core$IFn$_invoke$arity$0 ? fexpr__21900_21918.cljs$core$IFn$_invoke$arity$0() : fexpr__21900_21918.call(null));
 
-var G__21929 = (i + (1));
-i = G__21929;
+var G__21919 = (i + (1));
+i = G__21919;
 continue;
 } else {
 return null;
@@ -175,10 +176,10 @@ return null;
 } else {
 (self__.scheduled_QMARK_ = true);
 
-var G__21914 = (function (){
+var G__21904 = (function (){
 return this$.run_queues();
 });
-return (reagent.impl.batching.next_tick.cljs$core$IFn$_invoke$arity$1 ? reagent.impl.batching.next_tick.cljs$core$IFn$_invoke$arity$1(G__21914) : reagent.impl.batching.next_tick.call(null,G__21914));
+return (reagent.impl.batching.next_tick.cljs$core$IFn$_invoke$arity$1 ? reagent.impl.batching.next_tick.cljs$core$IFn$_invoke$arity$1(G__21904) : reagent.impl.batching.next_tick.call(null,G__21904));
 }
 }));
 

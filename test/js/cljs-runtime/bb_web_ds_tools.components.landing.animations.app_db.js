@@ -40,20 +40,20 @@ var n__5616__auto__ = (5);
 var i = (0);
 while(true){
 if((i < n__5616__auto__)){
-var offset_51660 = (i * (1000));
-var y_pos_51661 = ((-50) + cljs.core.mod(((t + offset_51660) * 0.05),(100)));
-var x_pos_51662 = (cx + ((60) * Math.sin(((t + offset_51660) * 0.002))));
-if((((y_pos_51661 > (-50))) && ((y_pos_51661 < (50))))){
+var offset_52641 = (i * (1000));
+var y_pos_52642 = ((-50) + cljs.core.mod(((t + offset_52641) * 0.05),(100)));
+var x_pos_52643 = (cx + ((60) * Math.sin(((t + offset_52641) * 0.002))));
+if((((y_pos_52642 > (-50))) && ((y_pos_52642 < (50))))){
 ctx.beginPath();
 
-ctx.arc(x_pos_51662,(cy + y_pos_51661),(3),(0),(Math.PI * (2)));
+ctx.arc(x_pos_52643,(cy + y_pos_52642),(3),(0),(Math.PI * (2)));
 
 ctx.fill();
 } else {
 }
 
-var G__51666 = (i + (1));
-i = G__51666;
+var G__52645 = (i + (1));
+i = G__52645;
 continue;
 } else {
 return null;

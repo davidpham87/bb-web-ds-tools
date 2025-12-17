@@ -1,10 +1,5 @@
 goog.provide('bb_web_ds_tools.components.landing.animations.settings');
-bb_web_ds_tools.components.landing.animations.settings.draw_settings = (function bb_web_ds_tools$components$landing$animations$settings$draw_settings(ctx,w,h,t){
-bb_web_ds_tools.components.landing.animations.common.clear(ctx,w,h);
-
-var cx = (w / (2));
-var cy = (h / (2));
-var draw_gear = (function (x,y,r,teeth,speed,color){
+bb_web_ds_tools.components.landing.animations.settings.draw_gear = (function bb_web_ds_tools$components$landing$animations$settings$draw_gear(ctx,t,x,y,r,teeth,speed,color){
 ctx.save();
 
 ctx.translate(x,y);
@@ -18,16 +13,16 @@ ctx.beginPath();
 var outer_r = r;
 var inner_r = (r * 0.8);
 var hole_r = (r * 0.3);
-var n__5616__auto___52317 = (teeth * (2));
-var i_52318 = (0);
+var n__5616__auto___52916 = (teeth * (2));
+var i_52917 = (0);
 while(true){
-if((i_52318 < n__5616__auto___52317)){
-var angle_52319 = (i_52318 * (Math.PI / teeth));
-var rad_52320 = ((cljs.core.even_QMARK_(i_52318))?outer_r:inner_r);
-ctx.lineTo((rad_52320 * Math.cos(angle_52319)),(rad_52320 * Math.sin(angle_52319)));
+if((i_52917 < n__5616__auto___52916)){
+var angle_52918 = (i_52917 * (Math.PI / teeth));
+var rad_52919 = ((cljs.core.even_QMARK_(i_52917))?outer_r:inner_r);
+ctx.lineTo((rad_52919 * Math.cos(angle_52918)),(rad_52919 * Math.sin(angle_52918)));
 
-var G__52321 = (i_52318 + (1));
-i_52318 = G__52321;
+var G__52920 = (i_52917 + (1));
+i_52917 = G__52920;
 continue;
 } else {
 }
@@ -50,9 +45,14 @@ ctx.fill();
 
 return ctx.restore();
 });
-draw_gear(cx,cy,(40),(8),0.001,new cljs.core.Keyword("portal.colors","text","portal.colors/text",1967472969).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn));
+bb_web_ds_tools.components.landing.animations.settings.draw_settings = (function bb_web_ds_tools$components$landing$animations$settings$draw_settings(ctx,w,h,t){
+bb_web_ds_tools.components.landing.animations.common.clear(ctx,w,h);
 
-return draw_gear((cx + (50)),(cy + (50)),(25),(6),-0.002,new cljs.core.Keyword("portal.colors","namespace","portal.colors/namespace",159276238).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn));
+var cx = (w / (2));
+var cy = (h / (2));
+bb_web_ds_tools.components.landing.animations.settings.draw_gear(ctx,t,cx,cy,(40),(8),0.001,new cljs.core.Keyword("portal.colors","text","portal.colors/text",1967472969).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn));
+
+return bb_web_ds_tools.components.landing.animations.settings.draw_gear(ctx,t,(cx + (50)),(cy + (50)),(25),(6),-0.002,new cljs.core.Keyword("portal.colors","namespace","portal.colors/namespace",159276238).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn));
 });
 
 //# sourceMappingURL=bb_web_ds_tools.components.landing.animations.settings.js.map

@@ -19,6 +19,7 @@ var meta_merge=$CLJS.meta_merge || ($CLJS.meta_merge = {});
 var goog=$CLJS.goog || ($CLJS.goog = {});
 var reagent=$CLJS.reagent || ($CLJS.reagent = {});
 var module$shadow_js_shim_module$$js_joda$core=$CLJS.module$shadow_js_shim_module$$js_joda$core || ($CLJS.module$shadow_js_shim_module$$js_joda$core = {});
+var camel_snake_kebab=$CLJS.camel_snake_kebab || ($CLJS.camel_snake_kebab = {});
 var portal=$CLJS.portal || ($CLJS.portal = {});
 var edamame=$CLJS.edamame || ($CLJS.edamame = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
@@ -156,8 +157,8 @@ return null;
  * Recursively merge values based on the information in their metadata.
  */
 meta_merge.core.meta_merge = (function meta_merge$core$meta_merge(var_args){
-var G__34683 = arguments.length;
-switch (G__34683) {
+var G__34642 = arguments.length;
+switch (G__34642) {
 case 0:
 return meta_merge.core.meta_merge.cljs$core$IFn$_invoke$arity$0();
 
@@ -172,14 +173,14 @@ return meta_merge.core.meta_merge.cljs$core$IFn$_invoke$arity$2((arguments[(0)])
 break;
 default:
 var args_arr__5774__auto__ = [];
-var len__5749__auto___34686 = arguments.length;
-var i__5750__auto___34687 = (0);
+var len__5749__auto___34661 = arguments.length;
+var i__5750__auto___34662 = (0);
 while(true){
-if((i__5750__auto___34687 < len__5749__auto___34686)){
-args_arr__5774__auto__.push((arguments[i__5750__auto___34687]));
+if((i__5750__auto___34662 < len__5749__auto___34661)){
+args_arr__5774__auto__.push((arguments[i__5750__auto___34662]));
 
-var G__34688 = (i__5750__auto___34687 + (1));
-i__5750__auto___34687 = G__34688;
+var G__34663 = (i__5750__auto___34662 + (1));
+i__5750__auto___34662 = G__34663;
 continue;
 } else {
 }
@@ -236,13 +237,13 @@ return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(meta_merge.core.meta_merge
 }));
 
 /** @this {Function} */
-(meta_merge.core.meta_merge.cljs$lang$applyTo = (function (seq34680){
-var G__34681 = cljs.core.first(seq34680);
-var seq34680__$1 = cljs.core.next(seq34680);
-var G__34682 = cljs.core.first(seq34680__$1);
-var seq34680__$2 = cljs.core.next(seq34680__$1);
+(meta_merge.core.meta_merge.cljs$lang$applyTo = (function (seq34639){
+var G__34640 = cljs.core.first(seq34639);
+var seq34639__$1 = cljs.core.next(seq34639);
+var G__34641 = cljs.core.first(seq34639__$1);
+var seq34639__$2 = cljs.core.next(seq34639__$1);
 var self__5734__auto__ = this;
-return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__34681,G__34682,seq34680__$2);
+return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__34640,G__34641,seq34639__$2);
 }));
 
 (meta_merge.core.meta_merge.cljs$lang$maxFixedArity = (2));

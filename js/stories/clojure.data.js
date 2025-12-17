@@ -19,6 +19,7 @@ var meta_merge=$CLJS.meta_merge || ($CLJS.meta_merge = {});
 var goog=$CLJS.goog || ($CLJS.goog = {});
 var reagent=$CLJS.reagent || ($CLJS.reagent = {});
 var module$shadow_js_shim_module$$js_joda$core=$CLJS.module$shadow_js_shim_module$$js_joda$core || ($CLJS.module$shadow_js_shim_module$$js_joda$core = {});
+var camel_snake_kebab=$CLJS.camel_snake_kebab || ($CLJS.camel_snake_kebab = {});
 var portal=$CLJS.portal || ($CLJS.portal = {});
 var edamame=$CLJS.edamame || ($CLJS.edamame = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
@@ -50,10 +51,10 @@ return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMP
  */
 clojure.data.vectorize = (function clojure$data$vectorize(m){
 if(cljs.core.seq(m)){
-return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (result,p__24606){
-var vec__24607 = p__24606;
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24607,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24607,(1),null);
+return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (result,p__24522){
+var vec__24523 = p__24522;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24523,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24523,(1),null);
 return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(result,k,v);
 }),cljs.core.vec(cljs.core.repeat.cljs$core$IFn$_invoke$arity$2(cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.max,cljs.core.keys(m)),null)),m);
 } else {
@@ -66,10 +67,10 @@ return null;
 clojure.data.diff_associative_key = (function clojure$data$diff_associative_key(a,b,k){
 var va = cljs.core.get.cljs$core$IFn$_invoke$arity$2(a,k);
 var vb = cljs.core.get.cljs$core$IFn$_invoke$arity$2(b,k);
-var vec__24630 = clojure.data.diff(va,vb);
-var a_STAR_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24630,(0),null);
-var b_STAR_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24630,(1),null);
-var ab = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24630,(2),null);
+var vec__24531 = clojure.data.diff(va,vb);
+var a_STAR_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24531,(0),null);
+var b_STAR_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24531,(1),null);
+var ab = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__24531,(2),null);
 var in_a = cljs.core.contains_QMARK_(a,k);
 var in_b = cljs.core.contains_QMARK_(b,k);
 var same = ((in_a) && (((in_b) && ((((!((ab == null)))) || ((((va == null)) && ((vb == null)))))))));
@@ -79,8 +80,8 @@ return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMP
  * Diff associative things a and b, comparing only keys in ks (if supplied).
  */
 clojure.data.diff_associative = (function clojure$data$diff_associative(var_args){
-var G__24642 = arguments.length;
-switch (G__24642) {
+var G__24551 = arguments.length;
+switch (G__24551) {
 case 2:
 return clojure.data.diff_associative.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -123,7 +124,7 @@ return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMP
  */
 clojure.data.EqualityPartition = function(){};
 
-var clojure$data$EqualityPartition$equality_partition$dyn_24664 = (function (x){
+var clojure$data$EqualityPartition$equality_partition$dyn_24645 = (function (x){
 var x__5373__auto__ = (((x == null))?null:x);
 var m__5374__auto__ = (clojure.data.equality_partition[goog.typeOf(x__5373__auto__)]);
 if((!((m__5374__auto__ == null)))){
@@ -144,7 +145,7 @@ clojure.data.equality_partition = (function clojure$data$equality_partition(x){
 if((((!((x == null)))) && ((!((x.clojure$data$EqualityPartition$equality_partition$arity$1 == null)))))){
 return x.clojure$data$EqualityPartition$equality_partition$arity$1(x);
 } else {
-return clojure$data$EqualityPartition$equality_partition$dyn_24664(x);
+return clojure$data$EqualityPartition$equality_partition$dyn_24645(x);
 }
 });
 
@@ -155,7 +156,7 @@ return clojure$data$EqualityPartition$equality_partition$dyn_24664(x);
  */
 clojure.data.Diff = function(){};
 
-var clojure$data$Diff$diff_similar$dyn_24665 = (function (a,b){
+var clojure$data$Diff$diff_similar$dyn_24646 = (function (a,b){
 var x__5373__auto__ = (((a == null))?null:a);
 var m__5374__auto__ = (clojure.data.diff_similar[goog.typeOf(x__5373__auto__)]);
 if((!((m__5374__auto__ == null)))){
@@ -176,7 +177,7 @@ clojure.data.diff_similar = (function clojure$data$diff_similar(a,b){
 if((((!((a == null)))) && ((!((a.clojure$data$Diff$diff_similar$arity$2 == null)))))){
 return a.clojure$data$Diff$diff_similar$arity$2(a,b);
 } else {
-return clojure$data$Diff$diff_similar$dyn_24665(a,b);
+return clojure$data$Diff$diff_similar$dyn_24646(a,b);
 }
 });
 
@@ -273,9 +274,9 @@ return clojure.data.atom_diff(a,b);
 (clojure.data.Diff["_"] = true);
 
 (clojure.data.diff_similar["_"] = (function (a,b){
-var fexpr__24661 = (function (){var G__24662 = clojure.data.equality_partition(a);
-var G__24662__$1 = (((G__24662 instanceof cljs.core.Keyword))?G__24662.fqn:null);
-switch (G__24662__$1) {
+var fexpr__24633 = (function (){var G__24634 = clojure.data.equality_partition(a);
+var G__24634__$1 = (((G__24634 instanceof cljs.core.Keyword))?G__24634.fqn:null);
+switch (G__24634__$1) {
 case "atom":
 return clojure.data.atom_diff;
 
@@ -293,11 +294,11 @@ return clojure.data.diff_associative;
 
 break;
 default:
-throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__24662__$1)].join('')));
+throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__24634__$1)].join('')));
 
 }
 })();
-return (fexpr__24661.cljs$core$IFn$_invoke$arity$2 ? fexpr__24661.cljs$core$IFn$_invoke$arity$2(a,b) : fexpr__24661.call(null,a,b));
+return (fexpr__24633.cljs$core$IFn$_invoke$arity$2 ? fexpr__24633.cljs$core$IFn$_invoke$arity$2(a,b) : fexpr__24633.call(null,a,b));
 }));
 /**
  * Recursively compares a and b, returning a tuple of

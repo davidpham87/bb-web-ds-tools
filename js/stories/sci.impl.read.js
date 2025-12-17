@@ -23,6 +23,7 @@ var meta_merge=$CLJS.meta_merge || ($CLJS.meta_merge = {});
 var goog=$CLJS.goog || ($CLJS.goog = {});
 var reagent=$CLJS.reagent || ($CLJS.reagent = {});
 var module$shadow_js_shim_module$$js_joda$core=$CLJS.module$shadow_js_shim_module$$js_joda$core || ($CLJS.module$shadow_js_shim_module$$js_joda$core = {});
+var camel_snake_kebab=$CLJS.camel_snake_kebab || ($CLJS.camel_snake_kebab = {});
 var portal=$CLJS.portal || ($CLJS.portal = {});
 var edamame=$CLJS.edamame || ($CLJS.edamame = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
@@ -59,8 +60,8 @@ sci.impl.read.with_resolver = (function sci$impl$read$with_resolver(opts){
 return opts;
 });
 sci.impl.read.read = (function sci$impl$read$read(var_args){
-var G__44400 = arguments.length;
-switch (G__44400) {
+var G__44302 = arguments.length;
+switch (G__44302) {
 case 1:
 return sci.impl.read.read.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -114,8 +115,8 @@ return sci.impl.read.eof_or_throw(opts__$2,v);
 (sci.impl.read.read.cljs$lang$maxFixedArity = 5);
 
 sci.impl.read.read_string = (function sci$impl$read$read_string(var_args){
-var G__44416 = arguments.length;
-switch (G__44416) {
+var G__44318 = arguments.length;
+switch (G__44318) {
 case 2:
 return sci.impl.read.read_string.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -152,8 +153,8 @@ var x = sci.impl.parser.parse_next.cljs$core$IFn$_invoke$arity$2(sci_ctx,reader)
 if(cljs.core.keyword_identical_QMARK_(new cljs.core.Keyword("sci.impl.parser.edamame","eof","sci.impl.parser.edamame/eof",-917261517),x)){
 return ret;
 } else {
-var G__44445 = sci.impl.utils.eval(sci_ctx,x);
-ret = G__44445;
+var G__44339 = sci.impl.utils.eval(sci_ctx,x);
+ret = G__44339;
 continue;
 }
 break;

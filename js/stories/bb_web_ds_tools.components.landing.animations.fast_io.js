@@ -19,6 +19,7 @@ var meta_merge=$CLJS.meta_merge || ($CLJS.meta_merge = {});
 var goog=$CLJS.goog || ($CLJS.goog = {});
 var reagent=$CLJS.reagent || ($CLJS.reagent = {});
 var module$shadow_js_shim_module$$js_joda$core=$CLJS.module$shadow_js_shim_module$$js_joda$core || ($CLJS.module$shadow_js_shim_module$$js_joda$core = {});
+var camel_snake_kebab=$CLJS.camel_snake_kebab || ($CLJS.camel_snake_kebab = {});
 var portal=$CLJS.portal || ($CLJS.portal = {});
 var edamame=$CLJS.edamame || ($CLJS.edamame = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
@@ -34,34 +35,25 @@ var com=$CLJS.com || ($CLJS.com = {});
 $CLJS.SHADOW_ENV.setLoaded("bb_web_ds_tools.components.landing.animations.fast_io.js");
 
 goog.provide('bb_web_ds_tools.components.landing.animations.fast_io');
-bb_web_ds_tools.components.landing.animations.fast_io.draw_fast_io = (function bb_web_ds_tools$components$landing$animations$fast_io$draw_fast_io(ctx,w,h,t){
-(bb_web_ds_tools.components.landing.animations.common.clear_rect.cljs$core$IFn$_invoke$arity$3 ? bb_web_ds_tools.components.landing.animations.common.clear_rect.cljs$core$IFn$_invoke$arity$3(ctx,w,h) : bb_web_ds_tools.components.landing.animations.common.clear_rect.call(null,ctx,w,h));
-
-var cx = (w / (2));
-var cy = (h / (2));
-var cycle = (6000);
-var phase = cljs.core.mod(t,cycle);
-var win_w = (200);
-var win_h = (140);
-var win_x = (cx - (win_w / (2)));
-var win_y = (cy - (win_h / (2)));
-if((phase < (2000))){
+bb_web_ds_tools.components.landing.animations.fast_io.win_w = (200);
+bb_web_ds_tools.components.landing.animations.fast_io.win_h = (140);
+bb_web_ds_tools.components.landing.animations.fast_io.draw_browsing_sources = (function bb_web_ds_tools$components$landing$animations$fast_io$draw_browsing_sources(ctx,_w,_h,_t,phase,win_x,win_y){
 var active_tab = (cljs.core.mod((phase / (600)),(3)) | (0));
-var tab_w = (win_w / (3));
+var tab_w = (bb_web_ds_tools.components.landing.animations.fast_io.win_w / (3));
 (ctx.fillStyle = new cljs.core.Keyword("portal.colors","background2","portal.colors/background2",-2075622390).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn));
 
-ctx.fillRect(win_x,win_y,win_w,win_h);
+ctx.fillRect(win_x,win_y,bb_web_ds_tools.components.landing.animations.fast_io.win_w,bb_web_ds_tools.components.landing.animations.fast_io.win_h);
 
-var n__5616__auto___25125 = (3);
-var i_25126 = (0);
+var n__5616__auto___25132 = (3);
+var i_25133 = (0);
 while(true){
-if((i_25126 < n__5616__auto___25125)){
-(ctx.fillStyle = ((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(i_25126,active_tab))?new cljs.core.Keyword("portal.colors","background2","portal.colors/background2",-2075622390).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn):new cljs.core.Keyword("portal.colors","background","portal.colors/background",-1400610375).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn)));
+if((i_25133 < n__5616__auto___25132)){
+(ctx.fillStyle = ((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(i_25133,active_tab))?new cljs.core.Keyword("portal.colors","background2","portal.colors/background2",-2075622390).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn):new cljs.core.Keyword("portal.colors","background","portal.colors/background",-1400610375).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn)));
 
-ctx.fillRect((win_x + (i_25126 * tab_w)),(win_y - (10)),tab_w,(10));
+ctx.fillRect((win_x + (i_25133 * tab_w)),(win_y - (10)),tab_w,(10));
 
-var G__25127 = (i_25126 + (1));
-i_25126 = G__25127;
+var G__25134 = (i_25133 + (1));
+i_25133 = G__25134;
 continue;
 } else {
 }
@@ -74,33 +66,33 @@ var n__5616__auto__ = (4);
 var i = (0);
 while(true){
 if((i < n__5616__auto__)){
-var len_25128 = ((20) + cljs.core.mod(((i + active_tab) * (37)),(60)));
-ctx.fillRect((win_x + (10)),((win_y + (15)) + (i * (15))),len_25128,(8));
+var len_25135 = ((20) + cljs.core.mod(((i + active_tab) * (37)),(60)));
+ctx.fillRect((win_x + (10)),((win_y + (15)) + (i * (15))),len_25135,(8));
 
-var G__25129 = (i + (1));
-i = G__25129;
+var G__25136 = (i + (1));
+i = G__25136;
 continue;
 } else {
 return null;
 }
 break;
 }
-} else {
-if((phase < (3000))){
+});
+bb_web_ds_tools.components.landing.animations.fast_io.draw_selection_copy = (function bb_web_ds_tools$components$landing$animations$fast_io$draw_selection_copy(ctx,_w,_h,t,_phase,cx,cy,win_x,win_y){
 (ctx.fillStyle = new cljs.core.Keyword("portal.colors","background2","portal.colors/background2",-2075622390).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn));
 
-ctx.fillRect(win_x,win_y,win_w,win_h);
+ctx.fillRect(win_x,win_y,bb_web_ds_tools.components.landing.animations.fast_io.win_w,bb_web_ds_tools.components.landing.animations.fast_io.win_h);
 
-var n__5616__auto___25130 = (3);
-var i_25131 = (0);
+var n__5616__auto___25137 = (3);
+var i_25138 = (0);
 while(true){
-if((i_25131 < n__5616__auto___25130)){
-(ctx.fillStyle = ((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(i_25131,(2)))?new cljs.core.Keyword("portal.colors","background2","portal.colors/background2",-2075622390).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn):new cljs.core.Keyword("portal.colors","background","portal.colors/background",-1400610375).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn)));
+if((i_25138 < n__5616__auto___25137)){
+(ctx.fillStyle = ((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(i_25138,(2)))?new cljs.core.Keyword("portal.colors","background2","portal.colors/background2",-2075622390).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn):new cljs.core.Keyword("portal.colors","background","portal.colors/background",-1400610375).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn)));
 
-ctx.fillRect((win_x + (i_25131 * (win_w / (3)))),(win_y - (10)),(win_w / (3)),(10));
+ctx.fillRect((win_x + (i_25138 * (bb_web_ds_tools.components.landing.animations.fast_io.win_w / (3)))),(win_y - (10)),(bb_web_ds_tools.components.landing.animations.fast_io.win_w / (3)),(10));
 
-var G__25132 = (i_25131 + (1));
-i_25131 = G__25132;
+var G__25139 = (i_25138 + (1));
+i_25138 = G__25139;
 continue;
 } else {
 }
@@ -109,14 +101,14 @@ break;
 
 (ctx.fillStyle = new cljs.core.Keyword("portal.colors","text","portal.colors/text",1967472969).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn));
 
-var n__5616__auto___25133 = (4);
-var i_25134 = (0);
+var n__5616__auto___25140 = (4);
+var i_25141 = (0);
 while(true){
-if((i_25134 < n__5616__auto___25133)){
-ctx.fillRect((win_x + (10)),((win_y + (15)) + (i_25134 * (15))),(50),(8));
+if((i_25141 < n__5616__auto___25140)){
+ctx.fillRect((win_x + (10)),((win_y + (15)) + (i_25141 * (15))),(50),(8));
 
-var G__25135 = (i_25134 + (1));
-i_25134 = G__25135;
+var G__25142 = (i_25141 + (1));
+i_25141 = G__25142;
 continue;
 } else {
 }
@@ -128,7 +120,7 @@ var pulse = Math.sin((t * 0.01));
 
 (ctx.globalAlpha = (0.2 + (0.1 * pulse)));
 
-ctx.fillRect(win_x,win_y,win_w,win_h);
+ctx.fillRect(win_x,win_y,bb_web_ds_tools.components.landing.animations.fast_io.win_w,bb_web_ds_tools.components.landing.animations.fast_io.win_h);
 
 (ctx.globalAlpha = 1.0);
 
@@ -139,8 +131,8 @@ ctx.fillRect(win_x,win_y,win_w,win_h);
 (ctx.textAlign = "center");
 
 return ctx.fillText("COPY",cx,cy);
-} else {
-if((phase < (3500))){
+});
+bb_web_ds_tools.components.landing.animations.fast_io.draw_transition_paste = (function bb_web_ds_tools$components$landing$animations$fast_io$draw_transition_paste(ctx,_w,_h,_t,phase,cx,cy){
 var progress = ((phase - (3000)) / (500));
 var scale = ((1) - progress);
 ctx.save();
@@ -151,10 +143,11 @@ ctx.scale(scale,scale);
 
 (ctx.fillStyle = new cljs.core.Keyword("portal.colors","diff-add","portal.colors/diff-add",1253946866).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn));
 
-ctx.fillRect((- (win_w / (2))),(- (win_h / (2))),win_w,win_h);
+ctx.fillRect((- (bb_web_ds_tools.components.landing.animations.fast_io.win_w / (2))),(- (bb_web_ds_tools.components.landing.animations.fast_io.win_h / (2))),bb_web_ds_tools.components.landing.animations.fast_io.win_w,bb_web_ds_tools.components.landing.animations.fast_io.win_h);
 
 return ctx.restore();
-} else {
+});
+bb_web_ds_tools.components.landing.animations.fast_io.draw_result = (function bb_web_ds_tools$components$landing$animations$fast_io$draw_result(ctx,_w,_h,_t,phase,cx,cy){
 var progress = ((phase - (3500)) / (500));
 var alpha = (function (){var x__5113__auto__ = 1.0;
 var y__5114__auto__ = progress;
@@ -169,17 +162,17 @@ var toks = tokens;
 var cur_x = start_x;
 while(true){
 if(cljs.core.seq(toks)){
-var vec__25122 = cljs.core.first(toks);
-var text = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__25122,(0),null);
-var color = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__25122,(1),null);
+var vec__25129 = cljs.core.first(toks);
+var text = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__25129,(0),null);
+var color = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__25129,(1),null);
 (ctx.fillStyle = color);
 
 ctx.fillText(text,cur_x,y);
 
-var G__25136 = cljs.core.rest(toks);
-var G__25137 = (cur_x + ctx.measureText(text).width);
-toks = G__25136;
-cur_x = G__25137;
+var G__25143 = cljs.core.rest(toks);
+var G__25144 = (cur_x + ctx.measureText(text).width);
+toks = G__25143;
+cur_x = G__25144;
 continue;
 } else {
 return null;
@@ -200,6 +193,26 @@ draw_tokens(start_y,new cljs.core.PersistentVector(null, 9, 5, cljs.core.Persist
 draw_tokens((start_y + line_h),new cljs.core.PersistentVector(null, 9, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [" {",new cljs.core.Keyword("portal.colors","text","portal.colors/text",1967472969).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [":n",new cljs.core.Keyword("portal.colors","keyword","portal.colors/keyword",-1873282591).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [" ",new cljs.core.Keyword("portal.colors","text","portal.colors/text",1967472969).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["\"B\"",new cljs.core.Keyword("portal.colors","string","portal.colors/string",-1452455936).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [" ",new cljs.core.Keyword("portal.colors","text","portal.colors/text",1967472969).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [":v",new cljs.core.Keyword("portal.colors","keyword","portal.colors/keyword",-1873282591).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [" ",new cljs.core.Keyword("portal.colors","text","portal.colors/text",1967472969).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["2",new cljs.core.Keyword("portal.colors","number","portal.colors/number",2107558552).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["}]",new cljs.core.Keyword("portal.colors","text","portal.colors/text",1967472969).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn)], null)], null));
 
 return (ctx.globalAlpha = 1.0);
+});
+bb_web_ds_tools.components.landing.animations.fast_io.draw_fast_io = (function bb_web_ds_tools$components$landing$animations$fast_io$draw_fast_io(ctx,w,h,t){
+(bb_web_ds_tools.components.landing.animations.common.clear_rect.cljs$core$IFn$_invoke$arity$3 ? bb_web_ds_tools.components.landing.animations.common.clear_rect.cljs$core$IFn$_invoke$arity$3(ctx,w,h) : bb_web_ds_tools.components.landing.animations.common.clear_rect.call(null,ctx,w,h));
+
+var cx = (w / (2));
+var cy = (h / (2));
+var cycle = (6000);
+var phase = cljs.core.mod(t,cycle);
+var win_x = (cx - (bb_web_ds_tools.components.landing.animations.fast_io.win_w / (2)));
+var win_y = (cy - (bb_web_ds_tools.components.landing.animations.fast_io.win_h / (2)));
+if((phase < (2000))){
+return bb_web_ds_tools.components.landing.animations.fast_io.draw_browsing_sources(ctx,w,h,t,phase,win_x,win_y);
+} else {
+if((phase < (3000))){
+return bb_web_ds_tools.components.landing.animations.fast_io.draw_selection_copy(ctx,w,h,t,phase,cx,cy,win_x,win_y);
+} else {
+if((phase < (3500))){
+return bb_web_ds_tools.components.landing.animations.fast_io.draw_transition_paste(ctx,w,h,t,phase,cx,cy);
+} else {
+return bb_web_ds_tools.components.landing.animations.fast_io.draw_result(ctx,w,h,t,phase,cx,cy);
 
 }
 }

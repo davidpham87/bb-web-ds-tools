@@ -18,6 +18,7 @@ var meta_merge=$CLJS.meta_merge || ($CLJS.meta_merge = {});
 var goog=$CLJS.goog || ($CLJS.goog = {});
 var reagent=$CLJS.reagent || ($CLJS.reagent = {});
 var module$shadow_js_shim_module$$js_joda$core=$CLJS.module$shadow_js_shim_module$$js_joda$core || ($CLJS.module$shadow_js_shim_module$$js_joda$core = {});
+var camel_snake_kebab=$CLJS.camel_snake_kebab || ($CLJS.camel_snake_kebab = {});
 var portal=$CLJS.portal || ($CLJS.portal = {});
 var edamame=$CLJS.edamame || ($CLJS.edamame = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
@@ -35,14 +36,14 @@ $CLJS.SHADOW_ENV.setLoaded("portal.async.js");
 goog.provide('portal.async');
 portal.async.race = (function portal$async$race(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___36916 = arguments.length;
-var i__5750__auto___36917 = (0);
+var len__5749__auto___36874 = arguments.length;
+var i__5750__auto___36875 = (0);
 while(true){
-if((i__5750__auto___36917 < len__5749__auto___36916)){
-args__5755__auto__.push((arguments[i__5750__auto___36917]));
+if((i__5750__auto___36875 < len__5749__auto___36874)){
+args__5755__auto__.push((arguments[i__5750__auto___36875]));
 
-var G__36918 = (i__5750__auto___36917 + (1));
-i__5750__auto___36917 = G__36918;
+var G__36876 = (i__5750__auto___36875 + (1));
+i__5750__auto___36875 = G__36876;
 continue;
 } else {
 }
@@ -60,9 +61,9 @@ return Promise.race(args);
 (portal.async.race.cljs$lang$maxFixedArity = (0));
 
 /** @this {Function} */
-(portal.async.race.cljs$lang$applyTo = (function (seq36913){
+(portal.async.race.cljs$lang$applyTo = (function (seq36871){
 var self__5735__auto__ = this;
-return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq36913));
+return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq36871));
 }));
 
 
