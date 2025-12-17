@@ -20,7 +20,7 @@
    ;; [bb-web-ds-tools.views.r-repl :as r-repl]
    [bb-web-ds-tools.views.repl :as repl]
    [bb-web-ds-tools.views.settings :as settings]
-   [bb-web-ds-tools.views.vega-lite :as vega-lite]
+   [bb-web-ds-tools.views.vega-lite.core :as vega-lite]
    ;; [bb-web-ds-tools.views.workspaces :as workspaces]
    ;; [bb-web-ds-tools.workspaces.core :as ws]
    [bb-web-ds-tools.workspaces.persistence :as wp]

@@ -13,7 +13,7 @@
             [bb-web-ds-tools.views.malli]
             [bb-web-ds-tools.views.honeysql]
             [bb-web-ds-tools.views.datasets]
-            [bb-web-ds-tools.views.vega-lite]
+            [bb-web-ds-tools.views.vega-lite.core]
             [bb-web-ds-tools.views.gemma]
             [bb-web-ds-tools.views.code]
             [bb-web-ds-tools.views.settings]
