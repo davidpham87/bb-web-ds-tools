@@ -102,31 +102,31 @@
     :route :code}
 
    ;; Vega-Lite View
-   :bb-web-ds-tools.views.vega-lite/set-data-input
+   :bb-web-ds-tools.views.vega-lite.events/set-data-input
    {:args-gen [:tuple :string]
     :route :vega-lite}
 
-   :bb-web-ds-tools.views.vega-lite/set-config-input
+   :bb-web-ds-tools.views.vega-lite.events/set-config-input
    {:args-gen [:tuple :string]
     :route :vega-lite}
 
-   :bb-web-ds-tools.views.vega-lite/set-config-mode
+   :bb-web-ds-tools.views.vega-lite.events/set-config-mode
    {:args-gen [:tuple [:enum :json :edn]]
     :route :vega-lite}
 
-   :bb-web-ds-tools.views.vega-lite/set-active-config-name
+   :bb-web-ds-tools.views.vega-lite.events/set-active-config-name
    {:args-gen [:tuple :string]
     :route :vega-lite}
 
-   :bb-web-ds-tools.views.vega-lite/set-format
+   :bb-web-ds-tools.views.vega-lite.events/set-format
    {:args-gen [:tuple [:enum :json :edn :csv :tsv]]
     :route :vega-lite}
 
-   :bb-web-ds-tools.views.vega-lite/save-config
+   :bb-web-ds-tools.views.vega-lite.events/save-config
    {:args-gen [:tuple]
     :route :vega-lite}
 
-   :bb-web-ds-tools.views.vega-lite/import-dataset
+   :bb-web-ds-tools.views.vega-lite.events/import-dataset
    {:args-gen [:tuple]
     :route :vega-lite}
 
@@ -190,8 +190,8 @@
           (= event :honeysql/update-input)
           (= event :bb-web-ds-tools.views.r-repl/set-code)
           (= event :bb-web-ds-tools.views.pyodide/set-code)
-          (= event :bb-web-ds-tools.views.vega-lite/set-data-input)
-          (= event :bb-web-ds-tools.views.vega-lite/set-config-input)
+          (= event :bb-web-ds-tools.views.vega-lite.events/set-data-input)
+          (= event :bb-web-ds-tools.views.vega-lite.events/set-config-input)
           (= event :bb-web-ds-tools.views.datasets/update-cell)
           (= event :bb-web-ds-tools.views.datasets/update-new-dataset-state)) 0.80
 
