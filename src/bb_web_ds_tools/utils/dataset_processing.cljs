@@ -138,7 +138,10 @@
 
   Returns:
     any: The parsed dataset."
-  (fn [format structure _text] [format structure]))
+  (fn [format structure _text]
+    (if (#{:json :edn :yaml} format)
+      format
+      [format structure])))
 
 (defmethod parse-dataset [:csv :columnar] [_ _ text]
   (let [res (.parse Papa text #js {:header true :dynamicTyping true :skipEmptyLines true})]
@@ -162,23 +165,10 @@
         header (map keyword (parse-row header-line))]
     (mapv (fn [line] (zipmap header (parse-row line))) data-lines)))
 
-;; JSON parsing
-(defmethod parse-dataset [:json :columnar] [_ structure text] (parse-structured parse-json structure text))
-(defmethod parse-dataset [:json :row-maps] [_ structure text] (parse-structured parse-json structure text))
-(defmethod parse-dataset [:json :row-arrays] [_ structure text] (parse-structured parse-json structure text))
-(defmethod parse-dataset [:json :tree] [_ structure text] (parse-structured parse-json structure text))
-
-;; EDN parsing
-(defmethod parse-dataset [:edn :columnar] [_ structure text] (parse-structured edn/read-string structure text))
-(defmethod parse-dataset [:edn :row-maps] [_ structure text] (parse-structured edn/read-string structure text))
-(defmethod parse-dataset [:edn :row-arrays] [_ structure text] (parse-structured edn/read-string structure text))
-(defmethod parse-dataset [:edn :tree] [_ structure text] (parse-structured edn/read-string structure text))
-
-;; YAML parsing
-(defmethod parse-dataset [:yaml :columnar] [_ structure text] (parse-structured parse-yaml structure text))
-(defmethod parse-dataset [:yaml :row-maps] [_ structure text] (parse-structured parse-yaml structure text))
-(defmethod parse-dataset [:yaml :row-arrays] [_ structure text] (parse-structured parse-yaml structure text))
-(defmethod parse-dataset [:yaml :tree] [_ structure text] (parse-structured parse-yaml structure text))
+;; Structured parsing (dispatch by format only)
+(defmethod parse-dataset :json [_ structure text] (parse-structured parse-json structure text))
+(defmethod parse-dataset :edn [_ structure text] (parse-structured edn/read-string structure text))
+(defmethod parse-dataset :yaml [_ structure text] (parse-structured parse-yaml structure text))
 
 (defmethod parse-dataset [:text :lines] [_ _ text]
   (mapv (fn [line] {:line line}) (str/split-lines text)))
@@ -290,7 +280,10 @@
 
   Returns:
     string: The example data string."
-  (fn [fmt structure & [conf]] [fmt structure]))
+  (fn [fmt structure & [conf]]
+    (if (#{:json :edn :yaml} fmt)
+      fmt
+      [fmt structure])))
 
 (defmethod example-data [:csv :columnar] [_ _ & [conf]]
   (.unparse Papa (clj->js example-rows) #js {:header true}))
@@ -301,27 +294,15 @@
 (defmethod example-data [:markdown :columnar] [_ _ & [conf]]
   (to-markdown-table example-rows (:markdown conf)))
 
-;; JSON examples
-(defmethod example-data [:json :columnar] [_ structure & [conf]] (example-structured stringify-json structure conf))
-(defmethod example-data [:json :row-maps] [_ structure & [conf]] (example-structured stringify-json structure conf))
-(defmethod example-data [:json :row-arrays] [_ structure & [conf]] (example-structured stringify-json structure conf))
-(defmethod example-data [:json :tree] [_ structure & [conf]] (example-structured stringify-json structure conf))
+;; Structured examples (dispatch by format only)
+(defmethod example-data :json [_ structure & [conf]]
+  (example-structured stringify-json structure conf))
 
-;; EDN examples
-(defmethod example-data [:edn :columnar] [_ structure & [conf]]
-  (example-structured (fn [d _] (with-out-str (pprint/pprint d))) structure conf))
-(defmethod example-data [:edn :row-maps] [_ structure & [conf]]
-  (example-structured (fn [d _] (with-out-str (pprint/pprint d))) structure conf))
-(defmethod example-data [:edn :row-arrays] [_ structure & [conf]]
-  (example-structured (fn [d _] (with-out-str (pprint/pprint d))) structure conf))
-(defmethod example-data [:edn :tree] [_ structure & [conf]]
+(defmethod example-data :edn [_ structure & [conf]]
   (example-structured (fn [d _] (with-out-str (pprint/pprint d))) structure conf))
 
-;; YAML examples
-(defmethod example-data [:yaml :columnar] [_ structure & [conf]] (example-structured (fn [d _] (stringify-yaml d)) structure conf))
-(defmethod example-data [:yaml :row-maps] [_ structure & [conf]] (example-structured (fn [d _] (stringify-yaml d)) structure conf))
-(defmethod example-data [:yaml :row-arrays] [_ structure & [conf]] (example-structured (fn [d _] (stringify-yaml d)) structure conf))
-(defmethod example-data [:yaml :tree] [_ structure & [conf]] (example-structured (fn [d _] (stringify-yaml d)) structure conf))
+(defmethod example-data :yaml [_ structure & [conf]]
+  (example-structured (fn [d _] (stringify-yaml d)) structure conf))
 
 (defmethod example-data [:text :lines] [_ _ & [conf]]
   "Line 1: Hello World

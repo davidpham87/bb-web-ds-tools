@@ -10,7 +10,8 @@
             [bb-web-ds-tools.events.settings :as settings-events]
             [bb-web-ds-tools.theme :as t]
             [bb-web-ds-tools.utils.dataset-processing :as dp]
-            [bb-web-ds-tools.workspaces.persistence :as wp]))
+            [bb-web-ds-tools.workspaces.persistence :as wp]
+            [bb-web-ds-tools.utils.io :as io]))
 
 ;; --- Utilities ---
 
@@ -26,24 +27,6 @@
   (if (every? map? maps)
     (apply merge-with deep-merge maps)
     (last maps)))
-
-(defn download-file
-  "Triggers a file download in the browser.
-
-  Args:
-    content (string): The file content.
-    filename (string): The filename to save as.
-    mime-type (string): The MIME type of the file."
-  [content filename mime-type]
-  (let [blob (js/Blob. #js [content] #js {:type mime-type})
-        url (js/URL.createObjectURL blob)
-        a (js/document.createElement "a")]
-    (set! (.-href a) url)
-    (set! (.-download a) filename)
-    (js/document.body.appendChild a)
-    (.click a)
-    (js/document.body.removeChild a)
-    (js/URL.revokeObjectURL url)))
 
 ;; --- State Management ---
 
@@ -623,14 +606,14 @@
          [l/flex-row {:class "justify-between items-center"}
           [:span {:class "text-sm text-gray-500"} (str "Preview (" filename ")")]
           [c/button {:class (str t/bg-button-primary " text-white")
-                     :on-click #(download-file preview filename (case fmt
-                                                                  :json "application/json"
-                                                                  :csv "text/csv"
-                                                                  :tsv "text/tab-separated-values"
-                                                                  :yaml "text/yaml"
-                                                                  :edn "application/edn"
-                                                                  :markdown "text/markdown"
-                                                                  "text/plain"))}
+                     :on-click #(io/download-file preview filename (case fmt
+                                                                     :json "application/json"
+                                                                     :csv "text/csv"
+                                                                     :tsv "text/tab-separated-values"
+                                                                     :yaml "text/yaml"
+                                                                     :edn "application/edn"
+                                                                     :markdown "text/markdown"
+                                                                     "text/plain"))}
            "Download"]]
 
          [:div {:class (str "flex-grow " t/bg-input " rounded overflow-hidden shadow-inner border " t/border-default)}
