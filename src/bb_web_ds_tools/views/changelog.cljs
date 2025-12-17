@@ -3,7 +3,14 @@
             [bb-web-ds-tools.components.navigation :as nav]))
 
 (def changelog-data
-  [{:version "0.11.1"
+  [{:version "0.11.2"
+    :date "2025-05-23"
+    :sections [{:title "Refactoring"
+                :items ["Code Cleanup: Simplified `help-button` usage across all views by leveraging default values, removing redundant code (local)."
+                        "Documentation: Added missing docstrings to `utils/themes`, `workers/sci`, `workers/persistence`, `workers/pyodide`, and animation components (local)."]}
+               {:title "Added"
+                :items ["Help Button: Added Context Sensitive Help Button to all tool views (128f03b)."]}]}
+   {:version "0.11.1"
     :date "2025-05-23"
     :sections [{:title "Refactoring"
                 :items ["Refactored `bb-web-ds-tools.components.common` to consolidate button components."

@@ -3,70 +3,25 @@
             [sci.core :as sci]
             [clojure.string :as str]
             [clojure.edn :as edn]
-            [cljs.pprint :as pprint]))
-
-(defn to-snake-case
-  "Converts a string to snake_case.
-   Example: 'camelCase' -> 'camel_case'
-
-  Args:
-    s (string): The input string.
-
-  Returns:
-    string: The snake_case string."
-  [s]
-  (-> s
-      (str/replace #"([a-z])([A-Z])" "$1_$2")
-      (str/replace #"[\s-]" "_")
-      (str/lower-case)))
-
-(defn to-camel-case
-  "Converts a string to CamelCase.
-   Example: 'snake_case' -> 'SnakeCase'
-
-  Args:
-    s (string): The input string.
-
-  Returns:
-    string: The CamelCase string."
-  [s]
-  (let [parts (str/split (str/replace s #"[\s-_]" " ") #" ")]
-    (str/join (map str/capitalize parts))))
-
-(defn to-kebab-case
-  "Converts a string to kebab-case.
-   Example: 'camelCase' -> 'camel-case'
-
-  Args:
-    s (string): The input string.
-
-  Returns:
-    string: The kebab-case string."
-  [s]
-  (-> s
-      (str/replace #"([a-z])([A-Z])" "$1-$2")
-      (str/replace #"[\s_]" "-")
-      (str/lower-case)))
+            [cljs.pprint :as pprint]
+            [camel-snake-kebab.core :as csk]))
 
 (defn normalize-column-name
   "Normalizes a column name based on the provided configuration.
-   Can convert case (snake, camel, kebab) and output type (string, keyword, symbol).
 
   Args:
-    col-name (string/keyword/symbol): The column name to normalize.
-    opts (map): Configuration options.
-      - :case (keyword): :snake_case, :CamelCase, :kebab-case.
-      - :output (keyword): :string, :keyword, :symbol.
+    col-name (keyword/string): The original column name.
+    config (map): Normalization config with keys :case and :output.
 
   Returns:
-    The normalized column name."
+    keyword/string/symbol: The normalized column name."
   [col-name {:keys [case output]}]
   (let [s (name col-name)
         s-case (condp = case
-                 :snake_case (to-snake-case s)
-                 :CamelCase (to-camel-case s)
-                 :kebab-case (to-kebab-case s)
-                 s) ;; default to identity if unknown
+                 :snake_case (csk/->snake_case s)
+                 :CamelCase (csk/->PascalCase s)
+                 :kebab-case (csk/->kebab-case s)
+                 s)
         final-val (condp = output
                     :string s-case
                     :keyword (keyword s-case)
@@ -75,6 +30,7 @@
     final-val))
 
 (def config
+  "Default configuration for dataset parsing and formatting."
   {:markdown {:cell-separator " | "
               :row-start "| "
               :row-end " |"
@@ -86,13 +42,12 @@
 
 (defn normalize-columnar
   "Normalizes columnar data (map of arrays) into a sequence of row maps.
-   Handles uneven column lengths by padding with nil.
 
   Args:
-    data (map): A map where keys are column names and values are sequences of column values.
+    data (map): Data in columnar format e.g. {:col1 [v1 v2] :col2 [v3 v4]}.
 
   Returns:
-    vector: A vector of maps, where each map represents a row."
+    vector: A vector of maps e.g. [{:col1 v1 :col2 v3} ...]."
   [data]
   (let [cols (keys data)
         vals-seq (vals data)
@@ -105,10 +60,10 @@
   "Normalizes row-array data (vector of vectors, first is header) into a sequence of row maps.
 
   Args:
-    data (seq): A sequence of vectors. The first vector is expected to be the header row.
+    data (vector): Data in row-array format e.g. [[col1 col2] [v1 v2]].
 
   Returns:
-    vector: A vector of maps, where each map represents a row."
+    vector: A vector of maps."
   [data]
   (let [header (map keyword (first data))
         rows (rest data)]
@@ -116,20 +71,54 @@
 
 ;; --- Parsing Logic ---
 
-(defmulti parse-dataset
-  "Parses dataset text into a sequence of maps (row-maps) based on format and structure.
+(defn- parse-json
+  "Parses a JSON string into Clojure data.
 
   Args:
-    format (keyword): The input format (:csv, :tsv, :json, :edn, :markdown).
-    structure (keyword): The input structure (:columnar, :row-maps, :row-arrays).
-    text (string): The raw text content to parse.
+    text (string): The JSON string.
+    conf (map, optional): Configuration map.
 
   Returns:
-    vector: A vector of maps representing the dataset rows."
+    any: Parsed Clojure data or nil on error."
+  ([text] (parse-json text (:json config)))
+  ([text conf]
+   (let [conf (or conf (:json config))]
+     (try
+       (js->clj (js/JSON.parse text) :keywordize-keys true)
+       (catch js/Error e
+         (js/console.error (:error-msg conf) e)
+         nil)))))
+
+(defn- parse-structured
+  "Parses structured text (JSON/EDN) and normalizes it based on the target structure.
+
+  Args:
+    parse-fn (fn): Function to parse text into data (e.g., parse-json, edn/read-string).
+    structure (keyword): Target structure (:columnar, :row-maps, :row-arrays).
+    text (string): The text to parse.
+
+  Returns:
+    any: The normalized data."
+  [parse-fn structure text]
+  (let [data (parse-fn text)]
+    (case structure
+      :columnar (some-> data normalize-columnar)
+      :row-maps data
+      :row-arrays (some-> data normalize-row-arrays)
+      data)))
+
+(defmulti parse-dataset
+  "Parses raw text into a dataset based on format and structure.
+
+  Args:
+    format (keyword): The format of the input text (:csv, :tsv, :json, :edn, :markdown, :text).
+    structure (keyword): The desired structure of the output data (:columnar, :row-maps, :row-arrays, :lines, :raw).
+    text (string): The raw input text.
+
+  Returns:
+    any: The parsed dataset."
   (fn [format structure _text] [format structure]))
 
-;; CSV/TSV are inherently "columnar" (tabular) in this context, but produce row-maps via PapaParse.
-;; We treat them as valid inputs for :columnar structure selection.
 (defmethod parse-dataset [:csv :columnar] [_ _ text]
   (let [res (.parse Papa text #js {:header true :dynamicTyping true :skipEmptyLines true})]
     (js->clj (.-data res) :keywordize-keys true)))
@@ -139,13 +128,9 @@
     (js->clj (.-data res) :keywordize-keys true)))
 
 (defmethod parse-dataset [:markdown :columnar] [_ _ text]
-  (let [lines (->> (str/split-lines text)
-                   (map str/trim)
-                   (remove empty?))
+  (let [lines (into [] (comp (map str/trim) (remove empty?)) (str/split-lines text))
         parse-row (fn [line]
-                    (let [parts (->> (str/split line #"\|")
-                                     (map str/trim)
-                                     vec)
+                    (let [parts (into [] (map str/trim) (str/split line #"\|"))
                           n (count parts)
                           start (if (and (> n 0) (empty? (nth parts 0))) 1 0)
                           end (if (and (> n 0) (empty? (peek parts))) (dec n) n)]
@@ -156,33 +141,21 @@
         header (map keyword (parse-row header-line))]
     (mapv (fn [line] (zipmap header (parse-row line))) data-lines)))
 
-(defn- parse-json
-  ([text] (parse-json text (:json config)))
-  ([text conf]
-   (let [conf (or conf (:json config))]
-     (try
-       (js->clj (js/JSON.parse text) :keywordize-keys true)
-       (catch js/Error e
-         (js/console.error (:error-msg conf) e)
-         nil)))))
+;; JSON parsing
+(defmethod parse-dataset [:json :columnar] [_ structure text] (parse-structured parse-json structure text))
+(defmethod parse-dataset [:json :row-maps] [_ structure text] (parse-structured parse-json structure text))
+(defmethod parse-dataset [:json :row-arrays] [_ structure text] (parse-structured parse-json structure text))
 
-(defmethod parse-dataset [:json :columnar] [_ _ text]
-  (some-> (parse-json text) normalize-columnar))
+;; EDN parsing
+(defmethod parse-dataset [:edn :columnar] [_ structure text] (parse-structured edn/read-string structure text))
+(defmethod parse-dataset [:edn :row-maps] [_ structure text] (parse-structured edn/read-string structure text))
+(defmethod parse-dataset [:edn :row-arrays] [_ structure text] (parse-structured edn/read-string structure text))
 
-(defmethod parse-dataset [:json :row-maps] [_ _ text]
-  (parse-json text))
+(defmethod parse-dataset [:text :lines] [_ _ text]
+  (mapv (fn [line] {:line line}) (str/split-lines text)))
 
-(defmethod parse-dataset [:json :row-arrays] [_ _ text]
-  (some-> (parse-json text) normalize-row-arrays))
-
-(defmethod parse-dataset [:edn :columnar] [_ _ text]
-  (some-> (edn/read-string text) normalize-columnar))
-
-(defmethod parse-dataset [:edn :row-maps] [_ _ text]
-  (edn/read-string text))
-
-(defmethod parse-dataset [:edn :row-arrays] [_ _ text]
-  (some-> (edn/read-string text) normalize-row-arrays))
+(defmethod parse-dataset [:text :raw] [_ _ text]
+  [{:text text}])
 
 (defmethod parse-dataset :default [_ _ _]
   [])
@@ -190,6 +163,7 @@
 ;; --- Examples ---
 
 (def example-rows
+  "Example dataset rows used for generating sample data."
   [{:id 1 :score 12.5 :category "a" :date "2023-01-01"}
    {:id 2 :score 10.2 :category "b" :date "2023-01-02"}
    {:id 3 :score 8.7  :category "c" :date "2023-01-03"}
@@ -201,19 +175,24 @@
    {:id 9 :score 14.2 :category "c" :date "2023-01-09"}
    {:id 10 :score 10.0 :category "a" :date "2023-01-10"}])
 
-(defn- to-columnar [rows]
+(defn- to-columnar
+  "Converts a sequence of row maps to columnar format."
+  [rows]
   (let [ks (keys (first rows))]
     (reduce (fn [acc k]
               (assoc acc k (mapv k rows)))
             {}
             ks)))
 
-(defn- to-row-arrays [rows]
+(defn- to-row-arrays
+  "Converts a sequence of row maps to row-array format (with header)."
+  [rows]
   (let [ks (keys (first rows))]
     (vec (cons (vec ks)
                (mapv (fn [row] (mapv #(get row %) ks)) rows)))))
 
 (defn- to-markdown-table
+  "Formats data as a Markdown table."
   ([rows] (to-markdown-table rows (:markdown config)))
   ([rows conf]
    (let [conf (or conf (:markdown config))
@@ -230,27 +209,44 @@
      (str/join "\n" (cons header (cons separator data-lines))))))
 
 (defn- stringify-json
+  "Converts data to a JSON string with indentation."
   ([data] (stringify-json data (:json config)))
   ([data conf]
    (let [conf (or conf (:json config))]
      (js/JSON.stringify (clj->js data) nil (:indent conf)))))
 
-(defn- get-structured-data [structure]
+(defn- get-structured-data
+  "Returns the example data in the requested structure."
+  [structure]
   (case structure
     :row-maps example-rows
     :columnar (to-columnar example-rows)
     :row-arrays (to-row-arrays example-rows)))
 
-(defmulti example-data
-  "Generates example data text for a given format and structure.
+(defn- example-structured
+  "Generates example data for structured formats (JSON/EDN).
 
   Args:
-    fmt (keyword): The desired output format (:csv, :tsv, :json, :edn, :markdown).
-    structure (keyword): The structure of the data (:columnar, :row-maps, :row-arrays).
-    conf (map, optional): Configuration map (indentation, delimiters, etc.).
+    format-fn (fn): Function to format data as string.
+    structure (keyword): Target structure.
+    conf (map, optional): Configuration map (passed to format-fn if supported).
 
   Returns:
-    string: The formatted example data string."
+    string: The formatted example data."
+  [format-fn structure conf]
+  (let [data (get-structured-data structure)]
+    (format-fn data conf)))
+
+(defmulti example-data
+  "Generates example data string for a given format and structure.
+
+  Args:
+    fmt (keyword): Output format (:csv, :tsv, :json, :edn, :markdown, :text).
+    structure (keyword): Data structure (:columnar, :row-maps, :row-arrays, :lines, :raw).
+    conf (map, optional): Configuration map.
+
+  Returns:
+    string: The example data string."
   (fn [fmt structure & [conf]] [fmt structure]))
 
 (defmethod example-data [:csv :columnar] [_ _ & [conf]]
@@ -262,23 +258,26 @@
 (defmethod example-data [:markdown :columnar] [_ _ & [conf]]
   (to-markdown-table example-rows (:markdown conf)))
 
-(defmethod example-data [:json :columnar] [_ structure & [conf]]
-  (stringify-json (get-structured-data structure) (:json conf)))
+;; JSON examples
+(defmethod example-data [:json :columnar] [_ structure & [conf]] (example-structured stringify-json structure conf))
+(defmethod example-data [:json :row-maps] [_ structure & [conf]] (example-structured stringify-json structure conf))
+(defmethod example-data [:json :row-arrays] [_ structure & [conf]] (example-structured stringify-json structure conf))
 
-(defmethod example-data [:json :row-maps] [_ structure & [conf]]
-  (stringify-json (get-structured-data structure) (:json conf)))
-
-(defmethod example-data [:json :row-arrays] [_ structure & [conf]]
-  (stringify-json (get-structured-data structure) (:json conf)))
-
+;; EDN examples
 (defmethod example-data [:edn :columnar] [_ structure & [conf]]
-  (with-out-str (pprint/pprint (get-structured-data structure))))
-
+  (example-structured (fn [d _] (with-out-str (pprint/pprint d))) structure conf))
 (defmethod example-data [:edn :row-maps] [_ structure & [conf]]
-  (with-out-str (pprint/pprint (get-structured-data structure))))
-
+  (example-structured (fn [d _] (with-out-str (pprint/pprint d))) structure conf))
 (defmethod example-data [:edn :row-arrays] [_ structure & [conf]]
-  (with-out-str (pprint/pprint (get-structured-data structure))))
+  (example-structured (fn [d _] (with-out-str (pprint/pprint d))) structure conf))
+
+(defmethod example-data [:text :lines] [_ _ & [conf]]
+  "Line 1: Hello World
+Line 2: This is a text file
+Line 3: 123-456-7890")
+
+(defmethod example-data [:text :raw] [_ _ & [conf]]
+  "This is a raw text block.\nIt contains newlines and special characters.\n\nUse it to test regex matching on the whole content.")
 
 (defmethod example-data :default [_ _ & [conf]] "")
 
@@ -306,15 +305,7 @@
                                            'ends-with? str/ends-with?}}}))
 
 (defn compile-filter
-  "Compiles a filter string into a predicate function using SCI.
-   If the string is empty, returns nil.
-   If compilation fails, returns a string equality predicate.
-
-  Args:
-    expression-str (string): The filter expression (e.g. '(> % 10)').
-
-  Returns:
-    fn: A predicate function accepting a value and returning boolean."
+  "Compiles a filter string into a predicate function using SCI."
   [expression-str]
   (try
     (if (str/blank? expression-str)
@@ -329,63 +320,64 @@
               input-str (str expression-str)]
           (= val-str input-str))))))
 
+(defn compile-filters
+  "Compiles a map of raw filter strings into a map of predicate functions."
+  [filters]
+  (reduce-kv (fn [m k v]
+               (if (str/blank? v)
+                 m
+                 (assoc m k (compile-filter v))))
+             {}
+             filters))
+
+(defn apply-filters
+  "Filters the data based on the compiled filters map."
+  [data compiled-filters]
+  (if (seq compiled-filters)
+    (filter (fn [row]
+              (every? (fn [[k f]]
+                        (try
+                          (f (get row k))
+                          (catch :default _ false)))
+                      compiled-filters))
+            data)
+    data))
+
+(defn apply-sorting
+  "Sorts the data based on sort column and direction."
+  [data sort-col sort-dir]
+  (if sort-col
+    (sort-by sort-col (if (= sort-dir :asc) compare #(compare %2 %1)) data)
+    data))
+
+(defn get-pagination-info
+  "Calculates pagination indices and slices the data."
+  [data page rows-per-page]
+  (let [total-rows (count data)
+        start-idx (min (* page rows-per-page) total-rows)
+        end-idx (min (+ start-idx rows-per-page) total-rows)]
+    {:total-rows total-rows
+     :start-idx start-idx
+     :end-idx end-idx
+     :page-data (subvec (vec data) start-idx end-idx)}))
+
 (defn process-table-data
   "Processes dataset data for display in a table: filtering, sorting, and pagination.
 
-  Args:
-    data (seq): A sequence of row maps.
-    view-state (map): The current view state containing:
-      - :page (int): Current page index (0-based).
-      - :rows-per-page (int): Number of rows per page.
-      - :filters (map): Map of col-key -> filter-string.
-      - :hidden-columns (set): Set of hidden column keys.
-      - :sort-col (keyword): Column to sort by.
-      - :sort-dir (keyword): Sort direction (:asc or :desc).
-      - :columns (seq, optional): List of column keys (defaults to keys of first row).
-
-  Returns:
-    map: A map containing:
-      - :filtered-data (seq): Data after filtering.
-      - :page-data (vector): Data for the current page.
-      - :total-rows (int): Total count after filtering.
-      - :start-idx (int): Start index of display.
-      - :end-idx (int): End index of display.
-      - :visible-columns (seq): List of visible column keys."
-  [data view-state]
-  (let [{:keys [page rows-per-page filters hidden-columns sort-col sort-dir columns]} view-state
-        ;; Note: columns might be passed in view-state or derived from data if not present.
-        ;; Assuming data is a vector of maps.
-        all-columns (or columns (keys (first data)))
-
-        compiled-filters (when (seq filters)
-                           (reduce-kv (fn [m k v]
-                                        (if (str/blank? v)
-                                          m
-                                          (assoc m k (compile-filter v))))
-                                      {}
-                                      filters))
-
-        filtered-data (if (seq compiled-filters)
-                        (filter (fn [row]
-                                  (every? (fn [[k f]]
-                                            (try
-                                              (f (get row k))
-                                              (catch :default _ false)))
-                                          compiled-filters))
-                                data)
-                        data)
-        sorted-data (if sort-col
-                      (sort-by sort-col (if (= sort-dir :asc) compare #(compare %2 %1)) filtered-data)
-                      filtered-data)
-        total-rows (count sorted-data)
-        start-idx (min (* page rows-per-page) total-rows)
-        end-idx (min (+ start-idx rows-per-page) total-rows)
-        page-data (subvec (vec sorted-data) start-idx end-idx)
+  Returns a map containing:
+    - :filtered-data (seq): Data after filtering.
+    - :page-data (vector): Data for the current page.
+    - :total-rows (int): Total count after filtering.
+    - :start-idx (int): Start index of display.
+    - :end-idx (int): End index of display.
+    - :visible-columns (seq): List of visible column keys."
+  [data {:keys [page rows-per-page filters hidden-columns sort-col sort-dir columns]}]
+  (let [all-columns (or columns (keys (first data)))
+        compiled-filters (when (seq filters) (compile-filters filters))
+        filtered-data (apply-filters data compiled-filters)
+        sorted-data (apply-sorting filtered-data sort-col sort-dir)
+        pagination (get-pagination-info sorted-data page rows-per-page)
         visible-columns (remove hidden-columns all-columns)]
-
-    {:filtered-data filtered-data ;; In case we need it
-     :page-data page-data
-     :total-rows total-rows
-     :start-idx start-idx
-     :end-idx end-idx
-     :visible-columns visible-columns}))
+    (merge {:filtered-data filtered-data
+            :visible-columns visible-columns}
+           pagination)))

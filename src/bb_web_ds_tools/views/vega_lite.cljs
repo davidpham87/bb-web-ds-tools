@@ -215,8 +215,19 @@
      {:db (-> db
               (assoc-in [:user-input :vega-lite :default ::data-input] data-str)
               (assoc-in [::vega-lite ::format] :edn)
-              (assoc-in [::vega-lite ::structure] :row-maps))
+              (assoc-in [::vega-lite ::structure] :row-maps)
+              (assoc-in [::vega-lite ::active-left-tab] :config)
+              (assoc-in [::vega-lite ::active-right-tab] :plot))
       :dispatch [::parse-data]})))
+
+(defn limit-preview
+  "Limits the data for preview to the first 100 observations."
+  [data]
+  (let [limit 100]
+    (cond
+      (sequential? data) (into [] (take limit data))
+      (map? data) (into {} (map (fn [[k v]] [k (if (sequential? v) (into [] (take limit v)) v)]) data))
+      :else data)))
 
 ;; --- Parsing ---
 
@@ -482,7 +493,7 @@
            :parsed
            [:div {:class (str "h-full w-full " t/bg-page)}
             [editor/monaco-editor
-             {:value (with-out-str (pprint parsed-data))
+             {:value (with-out-str (pprint (limit-preview parsed-data)))
               :language "clojure"
               :options {:readOnly true :minimap {:enabled false}}}]]
 
