@@ -8,7 +8,7 @@
 ;; --- Generators ---
 
 (def simple-value-gen
-  ;; Limit to simple types, removing large integers or floats that might cause issues with JSON parsing/formatting differences
+  ;; Limit to simple types
   (gen/one-of [gen/string
                gen/boolean]))
 
@@ -35,6 +35,11 @@
                       parsed (dp/parse-dataset :edn :row-maps edn-str)]
                   (= dataset parsed))))
 
+(def normalize-column-name-prop
+  (prop/for-all [s gen/string-alphanumeric]
+                (let [res (dp/normalize-column-name s {:case :snake_case :output :string})]
+                  (string? res))))
+
 ;; --- Tests ---
 
 (deftest json-round-trip-test
@@ -45,4 +50,9 @@
 (deftest edn-round-trip-test
   (testing "Generative EDN round-trip"
     (let [result (tc/quick-check 50 edn-round-trip-prop)]
+      (is (:pass? result) (str "Failed: " (pr-str (:shrunk result)))))))
+
+(deftest normalize-column-name-test
+  (testing "Generative normalize-column-name"
+    (let [result (tc/quick-check 50 normalize-column-name-prop)]
       (is (:pass? result) (str "Failed: " (pr-str (:shrunk result)))))))
