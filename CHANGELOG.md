@@ -2,6 +2,14 @@
 
 All notable changes to a project will be documented in this file.
 
+## [0.11.3] - 2025-05-23
+
+### Refactoring
+
+- **Code Cleanup**: Removed deprecated button components (`button-sm`, `button-md`, `button-xs`) from `components/common`.
+- **DRY**: Refactored `utils/dataset-processing` to remove repetitive logic in `parse-dataset` and `example-data` multimethods using helper functions.
+- **Documentation**: Added comprehensive docstrings to `utils/dataset-processing` and `components/common`.
+
 ## [0.11.2] - 2025-05-23
 
 ### Refactoring

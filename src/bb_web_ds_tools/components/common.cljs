@@ -23,7 +23,7 @@
 
 (defn button
   "Renders a styled button component.
-   Unified component replacing button-sm, button-md, button-xs.
+   Unified component.
 
   Args:
     props (map): Standard HTML attributes.
@@ -40,50 +40,6 @@
            (merge clean-props
                   {:class (str (get-button-classes variant disabled size) " " class)})]
           children)))
-
-(defn button-sm
-  "DEPRECATED: Use (button {:size :sm} ...).
-   Renders a small styled button component.
-   Style: py-1 px-3 text-sm font-medium.
-
-  Args:
-    props (map): Standard HTML attributes.
-      - :variant (keyword): :primary, :danger, or nil (default).
-    children (rest): Child elements.
-
-  Returns:
-    vector: A hiccup vector."
-  [props & children]
-  (into [button (assoc props :size :sm)] children))
-
-(defn button-md
-  "DEPRECATED: Use (button {:size :md} ...).
-   Renders a medium (standard) styled button component.
-   Style: py-2 px-4 text-sm font-bold.
-
-  Args:
-    props (map): Standard HTML attributes.
-      - :variant (keyword): :primary, :danger, or nil (default).
-    children (rest): Child elements.
-
-  Returns:
-    vector: A hiccup vector."
-  [props & children]
-  (into [button (assoc props :size :md)] children))
-
-(defn button-xs
-  "DEPRECATED: Use (button {:size :xs} ...).
-   Renders an extra small styled button component.
-   Style: text-xs px-2 py-1.
-
-  Args:
-    props (map): Standard HTML attributes.
-    children (rest): Child elements.
-
-  Returns:
-    vector: A hiccup vector."
-  [props & children]
-  (into [button (assoc props :size :xs)] children))
 
 (defn button-info
   "Renders an informational button (blue style).
