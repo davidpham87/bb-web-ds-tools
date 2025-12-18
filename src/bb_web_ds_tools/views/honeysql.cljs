@@ -5,6 +5,7 @@
             [bb-web-ds-tools.components.editor :as editor]
             [bb-web-ds-tools.components.honeysql :as c-honeysql]
             [bb-web-ds-tools.components.layout :as l]
+            [bb-web-ds-tools.components.layout.tool-view :refer [tool-view]]
             [bb-web-ds-tools.components.navigation :as nav]
             [bb-web-ds-tools.portal :as portal :refer [portal-frame portal-panel]]
             [bb-web-ds-tools.theme :as t]))
@@ -91,26 +92,15 @@
   (let [state-sub (rf/subscribe [:honeysql/panel-state])]
     (fn []
       (let [{:keys [input output]} @state-sub]
-        [l/flex-row {:class "h-full items-start gap-0"}
-         ;; LEFT: Input
-         [l/flex-col {:class "gap-4 w-full max-w-3xl h-full p-4 border-r border-[#3f3f3f]"}
-          [c/section-header "Convert to SQL"
-           [:div {:class "flex items-center gap-2"}
-            [:span "🍯"]
-            [c/help-button
-             {:href (nav/get-wiki-url :honeysql)
-              :title "Help: HoneySQL"
-              :class "!p-1 !w-6 !h-6 opacity-50 hover:opacity-100"}]]]
-          [c/label "Clojure Code (Last value must be HoneySQL Map)"]
-          [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
-           [editor/monaco-editor {:value input
-                                  :language "clojure"
-                                  :options {:rulers [80]}
-                                  :on-change #(rf/dispatch [:honeysql/update-input %])}]]
-          [l/flex-row {:class "items-center gap-4"}
-           [c/button {:on-click #(rf/dispatch [:honeysql/convert-to-sql])} "Convert"]
-           [:div {:class (str "text-xs " t/text-secondary)}
-            "CLI: " [:code {:class "bg-black/20 p-1 rounded"} "bb -x bb-web-ds-tools.cli.honeysql/convert"]]]]
-
-         ;; RIGHT: Output
-         [portal-panel output]]))))
+        [tool-view
+         {:title "Convert to SQL"
+          :wiki-key :honeysql
+          :editor [editor/monaco-editor {:value input
+                                         :language "clojure"
+                                         :options {:rulers [80]}
+                                         :on-change #(rf/dispatch [:honeysql/update-input %])}]
+          :actions [:<>
+                    [c/button {:on-click #(rf/dispatch [:honeysql/convert-to-sql])} "Convert"]
+                    [:div {:class (str "text-xs " t/text-secondary)}
+                     "CLI: " [:code {:class "bg-black/20 p-1 rounded"} "bb -x bb-web-ds-tools.cli.honeysql/convert"]]]
+          :output [portal-panel output]}]))))
