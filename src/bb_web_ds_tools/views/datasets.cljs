@@ -7,6 +7,7 @@
             [bb-web-ds-tools.components.layout :as l]
    [bb-web-ds-tools.components.layout.tool-view :refer [tool-view]]
             [bb-web-ds-tools.components.navigation :as nav]
+   [bb-web-ds-tools.components.tabs :as tabs]
             [bb-web-ds-tools.portal :as portal :refer [portal-frame portal-panel]]
             [bb-web-ds-tools.events.settings :as settings-events]
             [bb-web-ds-tools.theme :as t]
@@ -646,12 +647,12 @@
 
       [l/flex-row {:class "space-x-2 items-center"}
        ;; View Toggles
-       [c/nav-tabs {:tabs [{:id :table :label "Table"}
-                           {:id :portal :label "Portal"}
-                           {:id :export :label "Export"}]
-                    :active-tab-id view-mode
-                    :class "border-b-0 bg-transparent px-0 text-xs"
-                    :on-change #(rf/dispatch [::update-view-state (:id dataset) :mode %])}]
+       [tabs/tabs {:tabs [{:id :table :label "Table"}
+                          {:id :portal :label "Portal"}
+                          {:id :export :label "Export"}]
+                   :active-tab-id view-mode
+                   :class "border-b-0 bg-transparent px-0"
+                   :on-change #(rf/dispatch [::update-view-state (:id dataset) :mode %])}]
 
        [c/button {:class (str "ml-4 " t/bg-button-danger " " t/bg-button-danger-hover " " t/text-button-primary)
                   :on-click #(rf/dispatch [::delete-dataset (:id dataset)])}
