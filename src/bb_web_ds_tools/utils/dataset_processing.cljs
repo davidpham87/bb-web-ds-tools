@@ -16,23 +16,19 @@
 
   Returns:
     keyword/string/symbol: The normalized column name."
-  [col-name {:keys [case output]}]
-  (let [s (cond
-            (keyword? col-name) (name col-name)
-            (symbol? col-name) (name col-name)
-            (string? col-name) col-name
-            :else (str col-name))
-        s-case (condp = case
+  [col-name {casing :case output :output}]
+  (let [s (if (or (keyword? col-name) (symbol? col-name))
+            (name col-name)
+            (str col-name))
+        s-case (case casing
                  :snake_case (csk/->snake_case s)
                  :CamelCase (csk/->PascalCase s)
                  :kebab-case (csk/->kebab-case s)
-                 s)
-        final-val (condp = output
-                    :string s-case
-                    :keyword (keyword s-case)
-                    :symbol (symbol s-case)
-                    s-case)]
-    final-val))
+                 s)]
+    (case output
+      :keyword (keyword s-case)
+      :symbol (symbol s-case)
+      s-case)))
 
 (def config
   "Default configuration for dataset parsing and formatting."
@@ -317,6 +313,29 @@ Line 3: 123-456-7890")
 
 ;; --- Conversion Logic ---
 
+(defn- remove-internal-keys
+  [data]
+  (if (and (sequential? data) (map? (first data)))
+    (into [] (map #(dissoc % :_uuid)) data)
+    data))
+
+(defn- format-data
+  [clean-data structured-data format structure]
+  (case format
+    :csv (if (= structure :columnar)
+           (.unparse Papa (clj->js clean-data) #js {:header true})
+           "CSV only supports columnar structure.")
+    :tsv (if (= structure :columnar)
+           (.unparse Papa (clj->js clean-data) #js {:delimiter "\t" :header true})
+           "TSV only supports columnar structure.")
+    :markdown (if (= structure :columnar)
+                (to-markdown-table clean-data)
+                "Markdown only supports columnar structure.")
+    :json (stringify-json structured-data)
+    :edn (with-out-str (pprint/pprint structured-data))
+    :yaml (stringify-yaml structured-data)
+    "Unsupported format"))
+
 (defn convert-data
   "Converts the dataset to the specified format and structure.
 
@@ -328,30 +347,12 @@ Line 3: 123-456-7890")
   Returns:
     string: The converted data string."
   [data format structure]
-  (let [;; Remove internal _uuid key
-        clean-data (if (and (sequential? data) (map? (first data)))
-                     (mapv #(dissoc % :_uuid) data)
-                     data)
+  (let [clean-data (remove-internal-keys data)
         structured-data (case structure
-                          :row-maps clean-data
                           :columnar (to-columnar clean-data)
                           :row-arrays (to-row-arrays clean-data)
-                          :tree clean-data ;; For tree, we assume input is already what we want or we just dump it
                           clean-data)]
-    (case format
-      :csv (if (= structure :columnar)
-             (.unparse Papa (clj->js clean-data) #js {:header true})
-             "CSV only supports columnar structure.")
-      :tsv (if (= structure :columnar)
-             (.unparse Papa (clj->js clean-data) #js {:delimiter "\t" :header true})
-             "TSV only supports columnar structure.")
-      :markdown (if (= structure :columnar)
-                  (to-markdown-table clean-data)
-                  "Markdown only supports columnar structure.")
-      :json (stringify-json structured-data)
-      :edn (with-out-str (pprint/pprint structured-data))
-      :yaml (stringify-yaml structured-data)
-      "Unsupported format")))
+    (format-data clean-data structured-data format structure)))
 
 ;; --- Table Processing ---
 
@@ -412,7 +413,10 @@ Line 3: 123-456-7890")
    Uses a transducer for performance."
   [data compiled-filters]
   (if (seq compiled-filters)
-    (into [] (filter (fn [row] (every? #(match-filter? row %) compiled-filters))) data)
+    (into []
+          (filter (fn [row]
+                    (every? #(match-filter? row %) compiled-filters)))
+          data)
     data))
 
 (defn apply-sorting
