@@ -11,21 +11,19 @@
   "Normalizes a column name based on the provided configuration.
 
   Args:
-    col-name (keyword/string): The original column name.
+    col-name (keyword/string/symbol): The original column name.
     config (map): Normalization config with keys :case and :output.
 
   Returns:
     keyword/string/symbol: The normalized column name."
-  [col-name {casing :case output :output}]
-  (let [s (if (or (keyword? col-name) (symbol? col-name))
-            (name col-name)
-            (str col-name))
-        s-case (case casing
+  [col-name {:keys [case output]}]
+  (let [s (name col-name)
+        s-case (condp = case
                  :snake_case (csk/->snake_case s)
                  :CamelCase (csk/->PascalCase s)
                  :kebab-case (csk/->kebab-case s)
                  s)]
-    (case output
+    (condp = output
       :keyword (keyword s-case)
       :symbol (symbol s-case)
       s-case)))
@@ -218,18 +216,13 @@
   "Formats data as a Markdown table."
   ([rows] (to-markdown-table rows (:markdown config)))
   ([rows conf]
-   (let [conf (or conf (:markdown config))
+   (let [{:keys [cell-separator row-start row-end header-dash]} (or conf (:markdown config))
          ks (keys (first rows))
-         cell-sep (:cell-separator conf)
-         row-start (:row-start conf)
-         row-end (:row-end conf)
-         dash (:header-dash conf)
-         header (str row-start (str/join cell-sep (map name ks)) row-end)
-         separator (str row-start (str/join cell-sep (repeat (count ks) dash)) row-end)
-         data-lines (map (fn [row]
-                           (str row-start (str/join cell-sep (map #(get row %) ks)) row-end))
-                         rows)]
-     (str/join "\n" (cons header (cons separator data-lines))))))
+         row-fmt (fn [vals] (str row-start (str/join cell-separator vals) row-end))]
+     (str/join "\n"
+               (cons (row-fmt (map name ks))
+                     (cons (row-fmt (repeat (count ks) header-dash))
+                           (map #(row-fmt (map (fn [k] (get % k)) ks)) rows)))))))
 
 (defn- stringify-json
   "Converts data to a JSON string with indentation."
