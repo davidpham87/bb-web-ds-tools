@@ -78,7 +78,7 @@
         tabs-component [c/nav-tabs {:tabs tabs
                                     :active-tab-id active-tab
                                     :class "border-b-0 bg-transparent px-0 text-xs"
-                                    :on-change #(rf/dispatch [::set-active-tab %])}]]
+                                    :on-change #(rf/dispatch [:bb-web-ds-tools.core/navigate :code-tab {:tab (name %)} nil])}]]
     [l/flex-col {:class "h-full w-full"}
      (when-not is-md?
        [mobile-view-toggle mobile-view-mode #(rf/dispatch [::set-mobile-view-mode %])])

@@ -7,6 +7,7 @@
    [bb-web-ds-tools.events.theme :as theme-events] ;; Import theme events
    [bb-web-ds-tools.portal :as portal]
    [bb-web-ds-tools.theme :as t]
+   [bb-web-ds-tools.utils.share :as share]
    [bb-web-ds-tools.views.app-db :as app-db]
    [bb-web-ds-tools.views.changelog :as changelog]
    [bb-web-ds-tools.views.code :as code]
@@ -62,19 +63,45 @@
   (if-let [item (some #(when (= (:route %) route-name) %) nav-items)]
     (:label item)
     (if route-name
-      (if (= route-name :landing-page) "Home" (name route-name))
+      (cond
+        (= route-name :landing-page) "Home"
+        (#{:malli-tab :code-tab} route-name) (get-route-label (keyword (first (clojure.string/split (name route-name) #"-"))))
+        :else (name route-name))
       "")))
 
 (rf/reg-event-db
+ ::load-shared-state
+ (fn [db [_ encoded-state]]
+   (if-let [decoded (share/decode-state encoded-state)]
+     (merge db decoded)
+     db)))
+
+(rf/reg-event-fx
  ::navigated
- (fn [db [_ match]]
-   (assoc db :current-route match)))
+ (fn [{:keys [db]} [_ match]]
+   (let [route-name (get-in match [:data :name])
+         path-params (get-in match [:parameters :path])
+         query-params (get-in match [:query-params])
+         state-str (:state query-params)
+         tab (:tab path-params)
+         dispatches (cond-> []
+                      state-str
+                      (conj [::load-shared-state state-str])
+
+                      (and tab (#{:malli :malli-tab} route-name))
+                      (conj [:malli/set-active-tab (keyword tab)])
+
+                      (and tab (#{:code :code-tab} route-name))
+                      (conj [:bb-web-ds-tools.views.code/set-active-tab (keyword tab)]))]
+     {:db (assoc db :current-route match)
+      :dispatch-n dispatches})))
 
 (def routes
   ["/"
    ["" {:name :landing-page}]
    #_["workspaces" {:name :workspaces}]
-   ["malli" {:name :malli}]
+   ["malli" {:name :malli}
+    ["/:tab" {:name :malli-tab :parameters {:path {:tab string?}}}]]
    ["honeysql"
     {:name :honeysql}]
    ["vega-lite"
@@ -82,7 +109,8 @@
    ["gemma"
     {:name :gemma}]
    ["code"
-    {:name :code}]
+    {:name :code}
+    ["/:tab" {:name :code-tab :parameters {:path {:tab string?}}}]]
    ["datasets"
     {:name :datasets}]
    ["changelog"
@@ -173,10 +201,12 @@
 (defmethod view :default [_] [:div "404! Sorry"])
 (defmethod view :landing-page [_] [landing/landing-page])
 (defmethod view :malli [_] [malli/panel])
+(defmethod view :malli-tab [_] [malli/panel])
 (defmethod view :honeysql [_] [honeysql/panel])
 (defmethod view :vega-lite [_] [vega-lite/panel])
 (defmethod view :gemma [_] [gemma/panel])
 (defmethod view :code [_] [code/panel])
+(defmethod view :code-tab [_] [code/panel])
 ;; (defmethod view :pyodide [_] [pyodide/panel])
 ;; (defmethod view :editor [_] [editor/panel])
 ;; (defmethod view :repl [_] [repl/panel])

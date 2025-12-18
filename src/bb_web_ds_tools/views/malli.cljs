@@ -486,7 +486,7 @@
       [c/nav-tabs {:tabs tabs
                    :active-tab-id active-tab
                    :class "border-b-0 bg-transparent px-0 text-xs"
-                   :on-change #(rf/dispatch [:malli/set-active-tab %])}]]
+                   :on-change #(rf/dispatch [:bb-web-ds-tools.core/navigate :malli-tab {:tab (name %)} nil])}]]
 
      [:div {:class "flex-grow overflow-hidden"}
       [tool-view view-props]]]))
