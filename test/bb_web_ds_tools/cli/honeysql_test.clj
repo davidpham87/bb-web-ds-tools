@@ -12,14 +12,14 @@
             output-file (str (fs/file tmp-dir "output.sql"))]
         (spit input-file "{:select [:*] :from [:table]}")
         (sut/convert {:opts {:file input-file :out output-file}})
-        (is (str/includes? (slurp output-file) "SELECT * FROM table"))))
+        (is (= "SELECT * FROM table" (slurp output-file)))))
 
     (testing "Stdin/Stdout"
       (let [input-str "{:select [:a] :from [:t]}"]
         (with-in-str input-str
           (let [output (with-out-str
                          (sut/convert {:opts {}}))]
-            (is (str/includes? output "SELECT a FROM t"))))))))
+            (is (= "SELECT a FROM t\n" output))))))))
 
 (deftest infer-output-test
   (testing "Infers .sql extension"
