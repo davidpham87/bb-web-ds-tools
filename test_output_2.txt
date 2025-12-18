@@ -1,0 +1,113 @@
+
+> bb-web-ds-tools@0.6.0 test
+> npx shadow-cljs compile test && npx webpack --config-name test && karma start --single-run
+
+shadow-cljs - config: /app/shadow-cljs.edn
+shadow-cljs - starting via "clojure"
+==============================================================================
+WARNING: The configured :source-paths in shadow-cljs.edn were ignored!
+         When using :deps they must be configured in deps.edn
+==============================================================================
+[:test] Compiling ...
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+[:test] Build completed. (404 files, 403 compiled, 4 warnings, 32.14s)
+
+[1m------ WARNING #1 - :undeclared-var --------------------------------------------[0m
+ File: /app/test/bb_web_ds_tools/card_usage_test.cljs:30:15
+--------------------------------------------------------------------------------
+[2m  27 | [0m
+[2m  28 | (deftest malli-layout-test[0m
+[2m  29 |   (let [mock-props {:controls [:div "ctrl"] :editors [] :output "out"}[0m
+[1m  30 |         view (malli/unified-view mock-props)[0m
+---------------------^----------------------------------------------------------
+ [33;1mUse of undeclared Var bb-web-ds-tools.views.malli/unified-view[0m
+--------------------------------------------------------------------------------
+[2m  31 |         rows (find-component-usages l/flex-row view)][0m
+[2m  32 |     (is (seq rows) "Should find flex-row in unified-view")[0m
+[2m  33 |     (doseq [row rows][0m
+[2m  34 |       (is (map? (nth row 1)) (str "Flex-row props should be a map, found: " (pr-str (nth row 1)))))))[0m
+--------------------------------------------------------------------------------
+
+[1m------ WARNING #2 - :infer-warning ---------------------------------------------[0m
+ File: /app/test/bb_web_ds_tools/persistence_test.cljs:10:10
+--------------------------------------------------------------------------------
+[2m   7 | [0m
+[2m   8 | (deftest test-sqlite-wasm[0m
+[2m   9 |   (async done[0m
+[1m  10 |          (go[0m
+----------------^---------------------------------------------------------------
+ [33;1mCannot infer target type in expression (. inst_66660 -oo1)[0m
+--------------------------------------------------------------------------------
+[2m  11 |            (try[0m
+[2m  12 |              (let [config (clj->js {:print (fn [x] (js/console.log "SQLite:" x))[0m
+[2m  13 |                                     :printErr (fn [x] (js/console.error "SQLite Err:" x))})[0m
+[2m  14 |                    sqlite3 (<p! (sqlite3InitModule config))][0m
+--------------------------------------------------------------------------------
+
+[1m------ WARNING #3 - :infer-warning ---------------------------------------------[0m
+ File: /app/test/bb_web_ds_tools/persistence_test.cljs:10:10
+--------------------------------------------------------------------------------
+[2m   7 | [0m
+[2m   8 | (deftest test-sqlite-wasm[0m
+[2m   9 |   (async done[0m
+[1m  10 |          (go[0m
+----------------^---------------------------------------------------------------
+ [33;1mCannot infer target type in expression (. inst_66714 -DB)[0m
+--------------------------------------------------------------------------------
+[2m  11 |            (try[0m
+[2m  12 |              (let [config (clj->js {:print (fn [x] (js/console.log "SQLite:" x))[0m
+[2m  13 |                                     :printErr (fn [x] (js/console.error "SQLite Err:" x))})[0m
+[2m  14 |                    sqlite3 (<p! (sqlite3InitModule config))][0m
+--------------------------------------------------------------------------------
+
+[1m------ WARNING #1 - :fn-deprecated ---------------------------------------------[0m
+ Resource: spec_tools/openapi/core.cljc:180:4
+--------------------------------------------------------------------------------
+[2m 177 |   can have any qualified keywords which are expanded with the[0m
+[2m 178 |   `spec-tools.openapi.core/expand` multimethod."[0m
+[2m 179 |   ([x][0m
+[1m 180 |    (openapi-spec x nil))[0m
+----------^---------------------------------------------------------------------
+ [33;1mspec-tools.openapi.core/openapi-spec is deprecated[0m
+--------------------------------------------------------------------------------
+[2m 181 |   ([x options][0m
+[2m 182 |    (expand-qualified-keywords x options)))[0m
+[2m 183 | [0m
+--------------------------------------------------------------------------------
+test:
+  assets by path *.js 15.4 MiB
+    assets by chunk 47.6 KiB (id hint: vendors) 2 assets
+    asset libs.js 15.3 MiB [emitted] (name: main)
+    asset node_modules_monaco-editor_esm_vs_basic-languages_r_r_js.libs.js 6.75 KiB [emitted]
+    asset node_modules_sqlite_org_sqlite-wasm_sqlite-wasm_jswasm_sqlite3-worker1_js.libs.js 4.17 KiB [emitted]
+  assets by path pyodide/ 11.7 MiB
+    assets by path pyodide/*.json 115 KiB 2 assets
+    asset pyodide/pyodide.asm.wasm 8.25 MiB [emitted] [from: node_modules/pyodide/pyodide.asm.wasm] [copied]
+    asset pyodide/python_stdlib.zip 2.31 MiB [emitted] [from: node_modules/pyodide/python_stdlib.zip] [copied]
+    asset pyodide/pyodide.asm.js 1.02 MiB [emitted] [from: node_modules/pyodide/pyodide.asm.js] [copied]
+  assets by chunk 951 KiB (auxiliary name: main)
+    asset sqlite3.wasm 831 KiB [emitted] [from: node_modules/@sqlite.org/sqlite-wasm/sqlite-wasm/jswasm/sqlite3.wasm] (auxiliary name: main)
+    asset fonts/4c354c82c52ca6cc2543.ttf 119 KiB [emitted] [immutable] [from: node_modules/monaco-editor/esm/vs/base/browser/ui/codicons/codicon/codicon.ttf] (auxiliary name: main)
+  runtime modules 7.56 KiB 13 modules
+  modules by path ./node_modules/monaco-editor/esm/vs/editor/ 6.6 MiB 745 modules
+  modules by path ./node_modules/monaco-editor/esm/vs/base/ 1.92 MiB (javascript) 119 KiB (asset) 241 modules
+  modules by path ./node_modules/monaco-editor/esm/vs/platform/ 994 KiB 127 modules
+  modules by path ./node_modules/js-yaml/ 108 KiB 25 modules
+  modules by path ./node_modules/monaco-editor/esm/vs/basic-languages/ 36.7 KiB 7 modules
+  modules by path ./node_modules/@sqlite.org/sqlite-wasm/ 430 KiB (javascript) 831 KiB (asset) 6 modules
+  modules by path ./node_modules/style-loader/dist/runtime/*.js 5.84 KiB 6 modules
+  modules by path ./node_modules/react-dom/ 1010 KiB 3 modules
+  modules by path ./node_modules/css-loader/dist/runtime/*.js 2.89 KiB 3 modules
+  modules by path ./node_modules/react/ 85.7 KiB 2 modules
+  modules by path ./node_modules/scheduler/ 17.3 KiB 2 modules
+  modules by path ./node_modules/monaco-editor/esm/vs/*.js 3.47 KiB 2 modules
+  modules by mime type image/svg+xml 3.17 KiB 2 modules
+  + 6 modules
+  test (webpack 5.104.0) compiled successfully in 5974 ms
+[32m18 12 2025 08:20:33.733:INFO [karma-server]: [39mKarma v6.4.4 server started at http://localhost:9876/
+[32m18 12 2025 08:20:33.735:INFO [launcher]: [39mLaunching browsers ChromeHeadlessNoSandbox with concurrency unlimited
+[32m18 12 2025 08:20:33.739:INFO [launcher]: [39mStarting browser ChromeHeadless
+[91m18 12 2025 08:20:33.741:ERROR [launcher]: [39mNo binary for ChromeHeadless browser on your platform.
+  Please, set "CHROME_BIN" env variable.

@@ -646,21 +646,14 @@
 
       [l/flex-row {:class "space-x-2 items-center"}
        ;; View Toggles
-       [:div {:class "flex rounded bg-black/20 p-1 space-x-1"}
-        [c/button {:size :xs
-                   :class (if (= view-mode :table) (str t/bg-button-primary " text-white") "opacity-50 hover:opacity-100")
-                   :on-click #(rf/dispatch [::update-view-state (:id dataset) :mode :table])}
-         "Table"]
-        [c/button {:size :xs
-                   :class (if (= view-mode :portal) (str t/bg-button-primary " text-white") "opacity-50 hover:opacity-100")
-                   :on-click #(rf/dispatch [::update-view-state (:id dataset) :mode :portal])}
-         "Portal"]
-        [c/button {:size :xs
-                   :class (if (= view-mode :export) (str t/bg-button-primary " text-white") "opacity-50 hover:opacity-100")
-                   :on-click #(rf/dispatch [::update-view-state (:id dataset) :mode :export])}
-         "Export"]]
+       [c/nav-tabs {:tabs [{:id :table :label "Table"}
+                           {:id :portal :label "Portal"}
+                           {:id :export :label "Export"}]
+                    :active-tab-id view-mode
+                    :class "border-b-0 bg-transparent px-0 text-xs"
+                    :on-change #(rf/dispatch [::update-view-state (:id dataset) :mode %])}]
 
-       [c/button {:class (str t/bg-button-danger " " t/bg-button-danger-hover " " t/text-button-primary)
+       [c/button {:class (str "ml-4 " t/bg-button-danger " " t/bg-button-danger-hover " " t/text-button-primary)
                   :on-click #(rf/dispatch [::delete-dataset (:id dataset)])}
         [c/dustbin-icon {:class "w-5 h-5"}]]]]
 

@@ -1,0 +1,16 @@
+
+> bb-web-ds-tools@0.6.0 test
+> npx shadow-cljs compile test && npx webpack --config-name test && karma start --single-run
+
+npm warn exec The following package was not found and will be installed: shadow-cljs@3.3.4
+shadow-cljs - config: /app/shadow-cljs.edn
+shadow-cljs - starting via "clojure"
+==============================================================================
+WARNING: The configured :source-paths in shadow-cljs.edn were ignored!
+         When using :deps they must be configured in deps.edn
+==============================================================================
+[2025-12-18 08:18:37.672 - WARNING] failed to inspect resource "jar:file:/home/jules/.m2/repository/metosin/ring-swagger-ui/5.9.0/ring-swagger-ui-5.9.0.jar!/swagger-ui/swagger-ui-bundle.js", it will not be available.
+[2025-12-18 08:18:38.675 - WARNING] failed to inspect resource "jar:file:/home/jules/.m2/repository/metosin/ring-swagger-ui/5.9.0/ring-swagger-ui-5.9.0.jar!/swagger-ui/swagger-ui-es-bundle-core.js", it will not be available.
+[2025-12-18 08:18:39.317 - WARNING] failed to inspect resource "jar:file:/home/jules/.m2/repository/metosin/ring-swagger-ui/5.9.0/ring-swagger-ui-5.9.0.jar!/swagger-ui/swagger-ui-es-bundle.js", it will not be available.
+[:test] Compiling ...
+The required namespace "react" is not available, it was required by "reagent/core.cljs".
