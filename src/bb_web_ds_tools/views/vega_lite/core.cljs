@@ -5,6 +5,7 @@
    [bb-web-ds-tools.components.editor :as editor]
    [bb-web-ds-tools.components.layout :as l]
    [bb-web-ds-tools.components.navigation :as nav]
+   [bb-web-ds-tools.components.tabs :as tabs]
    [bb-web-ds-tools.portal :as portal :refer [portal-panel]]
    [bb-web-ds-tools.theme :as t]
    [bb-web-ds-tools.utils.dataset-processing :as dp]
@@ -151,11 +152,11 @@
      [l/flex-col {:class "h-full"}
       [:div {:class "flex-grow overflow-hidden relative"}
        [l/flex-row {:class "items-center gap-1"}
-        [c/tabs {:tabs [{:id :data :label "Data"}
-                        {:id :config :label "Config"}]
-                 :active-tab-id active-left-tab
-                 :class "border-b-0 bg-transparent px-0"
-                 :on-change #(rf/dispatch [::events/set-active-left-tab %])}]
+        [tabs/tabs {:tabs [{:id :data :label "Data"}
+                           {:id :config :label "Config"}]
+                    :active-tab-id active-left-tab
+                    :class "border-b-0 bg-transparent px-0"
+                    :on-change #(rf/dispatch [::events/set-active-left-tab %])}]
         [c/help-button
          {:href (nav/get-wiki-url :vega-lite)
           :title "Help: Vega-Lite"
@@ -172,13 +173,13 @@
         parsed-config-obj @(rf/subscribe [::subs/parsed-config-obj])]
     [:div {:class "h-1/2 md:h-full overflow-auto flex-grow"}
      [l/flex-col {:class "h-full"}
-      [c/tabs {:tabs [{:id :plot :label "Plot"}
-                      {:id :parsed :label "Parsed Data"}
-                      {:id :schema :label "Schema"}
-                      {:id :portal :label "Portal"}]
-               :active-tab-id active-right-tab
-               :class "border-b-0 bg-transparent px-0"
-               :on-change #(rf/dispatch [::events/set-active-right-tab %])}]
+      [tabs/tabs {:tabs [{:id :plot :label "Plot"}
+                         {:id :parsed :label "Parsed Data"}
+                         {:id :schema :label "Schema"}
+                         {:id :portal :label "Portal"}]
+                  :active-tab-id active-right-tab
+                  :class "border-b-0 bg-transparent px-0"
+                  :on-change #(rf/dispatch [::events/set-active-right-tab %])}]
 
       [:div {:class "flex-grow overflow-hidden relative bg-white"}
        (case active-right-tab
