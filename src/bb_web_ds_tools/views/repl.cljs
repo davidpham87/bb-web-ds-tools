@@ -4,6 +4,7 @@
    [bb-web-ds-tools.components.common :as c]
    [bb-web-ds-tools.components.editor :as editor]
    [bb-web-ds-tools.components.layout :as l]
+   [bb-web-ds-tools.components.layout.tool-view :refer [tool-view]]
    [bb-web-ds-tools.components.navigation :as nav]
    [bb-web-ds-tools.portal :as portal]
    [bb-web-ds-tools.runtime.sci :as sci-runtime]
@@ -163,27 +164,16 @@
   (let [state-sub (rf/subscribe [::repl-instance-state instance-id])]
     (fn []
       (let [{:keys [code mac-os?]} @state-sub]
-        [:div {:class "w-full rounded mb-4"}
-         [l/flex-col {:class "space-y-2 h-full p-2"}
-          [l/flex-row {:class "justify-between"}
-           [l/flex-row {:class "items-center gap-2"}
-            (or header-content
-                [:<>
-                 [c/label "Clojure Code"]
-                 [c/help-button
-                  {:href (nav/get-wiki-url :code)
-                   :title "Help: Clojure REPL"
-                   :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100 mb-2"}]])]
-           [c/button {:on-click #(rf/dispatch [::eval-code instance-id code])} "Eval"]]
-          [:div {:class (str "flex-grow rounded overflow-hidden border space-x-4"
-                             t/border-default)
-                 :style {:height "85vh"}}
-           [editor/monaco-editor
-            {:value code
-             :language "clojure"
-             :options {:rulers [80] :lineNumbers "off"}
-             :on-change #(rf/dispatch [::update-code instance-id %])
-             :on-mount #(setup-editor-actions % instance-id mac-os?)}]]]]))))
+        [tool-view
+         {:title "Clojure Code"
+          :wiki-key :code
+          :editor [editor/monaco-editor
+                   {:value code
+                    :language "clojure"
+                    :options {:rulers [80] :lineNumbers "off"}
+                    :on-change #(rf/dispatch [::update-code instance-id %])
+                    :on-mount #(setup-editor-actions % instance-id mac-os?)}]
+          :actions [c/button {:on-click #(rf/dispatch [::eval-code instance-id code])} "Eval"]}]))))
 
 (defn on-worker-message
   "Handles messages from the SCI worker.
