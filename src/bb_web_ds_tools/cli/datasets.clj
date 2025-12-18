@@ -23,7 +23,8 @@
     :file {:desc "Input file (stdin if omitted)", :ref "<file>", :alias :i},
     :out {:desc "Output file (inferred if input file given, else stdout)",
           :ref "<file>",
-          :alias :o}}})
+          :alias :o},
+    :debug {:desc "Enable debug output", :alias :d, :coerce :boolean}}})
 
 (defn- read-input
   [opts]
@@ -57,34 +58,34 @@
 (defn convert
   [{:keys [opts]}]
   (let [in-format (or (:format opts) (infer-format (:file opts)))
-        out-format (:to opts "json") ;; output format: csv, json, edn, yaml
-        text (read-input opts)]
+        out-format (:to opts "json")] ;; output format: csv, json, edn, yaml
     (try
-      (let
-       [raw-data
-        (try
-          (io/parse-string in-format text)
-          (catch Exception e
-            (throw
-             (ex-info
-              (if (:format opts)
-                (str "Unknown input format: " in-format)
-                "Could not infer input format from filename. Please use --format.")
-              {}))))
-        input-struct (or (keyword (:input-struct opts))
-                         (impl/detect-structure raw-data))
-        output-struct (or (keyword (:output-struct opts)) input-struct)
-        processed-data (impl/transform raw-data input-struct output-struct)
-        output (try (io/write-string out-format processed-data)
-                    (catch IllegalArgumentException _
-                      (throw (ex-info (str "Unknown output format: "
-                                           out-format)
-                                      {}))))]
+      (let [text (read-input opts)
+            raw-data
+            (try
+              (io/parse-string in-format text)
+              (catch Exception e
+                (throw
+                 (ex-info
+                  (if (:format opts)
+                    (str "Unknown input format: " in-format)
+                    "Could not infer input format from filename. Please use --format.")
+                  {}))))
+            input-struct (or (keyword (:input-struct opts))
+                             (impl/detect-structure raw-data))
+            output-struct (or (keyword (:output-struct opts)) input-struct)
+            processed-data (impl/transform raw-data input-struct output-struct)
+            output (try (io/write-string out-format processed-data)
+                        (catch IllegalArgumentException _
+                          (throw (ex-info (str "Unknown output format: "
+                                               out-format)
+                                          {}))))]
         (write-output opts output out-format))
       (catch Exception e
         (binding [*out* *err*]
           (println "Error:" (.getMessage e))
-          (.printStackTrace e))))))
+          (when (:debug opts)
+            (.printStackTrace e)))))))
 
 (defn show-help
   [_]
