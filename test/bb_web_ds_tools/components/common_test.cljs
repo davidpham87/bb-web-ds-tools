@@ -29,3 +29,18 @@
          (is (string? (:class (second hiccup))))
          ;; Check if it contains the tabs
          (is (some #(= "Tab 1" %) (tree-seq coll? seq hiccup)))))))
+
+(deftest collapsible-card-test
+  (testing "collapsible-card structure"
+    (let [props {:title "Test Card" :default-expanded? true}
+          child [:div "Content"]
+          ;; Form-2 component
+          component (c/collapsible-card props child)
+          render-fn (if (fn? component) component (constantly component))
+          hiccup (render-fn props child)]
+      (is (vector? hiccup))
+      (is (= :div (first hiccup)))
+      ;; Check title presence
+      (is (some #(= "Test Card" %) (tree-seq coll? seq hiccup)))
+      ;; Check content presence (since expanded)
+      (is (some #(= "Content" %) (tree-seq coll? seq hiccup))))))
