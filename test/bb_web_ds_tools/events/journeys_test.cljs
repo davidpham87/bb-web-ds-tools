@@ -14,6 +14,7 @@
             [bb-web-ds-tools.views.honeysql]
             [bb-web-ds-tools.views.datasets]
             [bb-web-ds-tools.views.vega-lite.core]
+            [bb-web-ds-tools.views.vega-lite.events]
             [bb-web-ds-tools.views.gemma]
             [bb-web-ds-tools.views.code]
             [bb-web-ds-tools.views.settings]
