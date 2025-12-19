@@ -18,6 +18,14 @@
 
 (def default-config-json "{\n  \"$schema\": \"https://vega.github.io/schema/vega-lite/v5.json\",\n  \"mark\": \"bar\",\n  \"encoding\": {\n    \"x\": {\"field\": \"col1\", \"type\": \"ordinal\"},\n    \"y\": {\"field\": \"col2\", \"type\": \"quantitative\"}\n  }\n}")
 
+(def default-config-edn
+  (with-out-str
+    (pprint
+     {:$schema "https://vega.github.io/schema/vega-lite/v5.json"
+      :mark "bar"
+      :encoding {:x {:field "col1" :type "ordinal"}
+                 :y {:field "col2" :type "quantitative"}}})))
+
 (rf/reg-event-db
  ::initialize
  (fn [db _]
@@ -28,8 +36,8 @@
        (assoc-in [:user-input :vega-lite]
                  {:saved-configs {}
                   :default {::data-input ""
-                            ::config-input default-config-json
-                            ::config-mode :json
+                            ::config-input default-config-edn
+                            ::config-mode :edn
                             ::active-config-name nil}})
 
        (not component-state-exists?)
@@ -362,34 +370,49 @@
         active-config-name @(rf/subscribe [::active-config-name])
         parsed-config-obj @(rf/subscribe [::parsed-config-obj])
         format @(rf/subscribe [::format])
-        inferred-schema @(rf/subscribe [::inferred-schema])
-        tabs [{:id :data :label "Data"}
-              {:id :config :label "Config"}]]
+        structure @(rf/subscribe [::structure])
+        inferred-schema @(rf/subscribe [::inferred-schema])]
     [l/flex-col {:class "h-full w-full"}
-     ;; Tabs Navigation (Portaled to Top Bar)
-     [nav/portal-to-top-bar
-      [c/nav-tabs {:tabs tabs
-                   :active-tab-id active-left-tab
-                   :class "border-b-0 bg-transparent px-0"
-                   :on-change #(rf/dispatch [::set-active-left-tab %])}]]
 
      [:div {:class "flex flex-col md:flex-row h-full w-full overflow-hidden"}
       ;; Left Column (Inputs)
       [:div {:class "h-1/2 md:h-full overflow-auto border-b md:border-b-0 md:border-r border-[#3f3f3f] w-full md:max-w-3xl flex-shrink-0"}
        [l/flex-col {:class "h-full"}
+        ;; Left Tabs
+        [l/flex-row {:class (str "justify-between border-b " t/border-default " px-2 " t/bg-toolbar)}
+         [l/flex-row {:class "space-x-2"}
+          [tab-button (= active-left-tab :data) "Data" #(rf/dispatch [::set-active-left-tab :data])]
+          [tab-button (= active-left-tab :config) "Config" #(rf/dispatch [::set-active-left-tab :config])]]]
+
         ;; Left Content
         [:div {:class "flex-grow overflow-hidden relative"}
          (case active-left-tab
            :data
            [l/flex-col {:class "h-full"}
             [l/flex-row {:class "p-2 gap-2 flex-wrap border-b border-[#3f3f3f] bg-[#1c2128] items-center"}
-             [c/button {:size :sm :on-click #(load-example :csv :columnar)} "CSV"]
-             [c/button {:size :sm :on-click #(load-example :tsv :columnar)} "TSV"]
-             [c/button {:size :sm :on-click #(load-example :markdown :columnar)} "MD"]
-             [c/button {:size :sm :on-click #(load-example :json :row-maps)} "JSON Maps"]
-             [c/button {:size :sm :on-click #(load-example :json :row-arrays)} "JSON Arrays"]
-             [c/button {:size :sm :on-click #(load-example :edn :row-maps)} "EDN Maps"]
-             [c/button {:size :sm :on-click #(load-example :edn :columnar)} "EDN Col"]
+             [c/select {:value (name format)
+                        :on-change #(do (rf/dispatch [::set-format (keyword (.. % -target -value))])
+                                        (rf/dispatch [::parse-data]))
+                        :class "text-xs py-1 px-2 !h-8"}
+              [:option {:value "csv"} "CSV"]
+              [:option {:value "tsv"} "TSV"]
+              [:option {:value "json"} "JSON"]
+              [:option {:value "edn"} "EDN"]
+              [:option {:value "markdown"} "MD"]]
+
+             [c/select {:value (name structure)
+                        :on-change #(do (rf/dispatch [::set-structure (keyword (.. % -target -value))])
+                                        (rf/dispatch [::parse-data]))
+                        :class "text-xs py-1 px-2 !h-8"}
+              [:option {:value "row-maps"} "Row Maps"]
+              [:option {:value "columnar"} "Columnar"]
+              [:option {:value "row-arrays"} "Row Arrays"]]
+
+             [:div {:class "h-6 w-px bg-gray-600 mx-2"}]
+
+             [c/button {:size :sm :on-click #(load-example :csv :columnar)} "Ex: CSV"]
+             [c/button {:size :sm :on-click #(load-example :json :row-maps)} "Ex: JSON"]
+             [c/button {:size :sm :on-click #(load-example :edn :row-maps)} "Ex: EDN"]
             ;; Dataset Import
              [:div {:class "relative group ml-auto"}
               [c/button {:size :sm
@@ -477,7 +500,7 @@
            :parsed
            [:div {:class (str "h-full w-full " t/bg-page)}
             [editor/monaco-editor
-             {:value (with-out-str (pprint parsed-data))
+             {:value (with-out-str (pprint (take 100 parsed-data)))
               :language "clojure"
               :options {:readOnly true :minimap {:enabled false}}}]]
 
