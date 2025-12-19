@@ -1,6 +1,7 @@
 (ns bb-web-ds-tools.components.common
   (:require [bb-web-ds-tools.theme :as t]
-            [re-frame.core :as rf]))
+            [re-frame.core :as rf]
+            [reagent.core :as r]))
 
 (defn- get-button-classes
   "Returns CSS classes for a button based on variant and disabled state."
@@ -387,3 +388,37 @@
                              (str "border-transparent " t/text-secondary " hover:text-[#dcdccc]")))
                :on-click #(when on-change (on-change id))}
       label])])
+
+(defn collapsible-card
+  "Renders a card that can be collapsed vertically.
+
+  Args:
+    props (map): Props. Keys:
+      - :title (string): The card title.
+      - :default-expanded? (boolean): Initial state (default true).
+      - :class (string): Extra classes for the container.
+      - :header-class (string): Extra classes for the header.
+      - :body-class (string): Extra classes for the body.
+    children (rest): The content of the card.
+
+  Returns:
+    vector: A hiccup vector."
+  [props & children]
+  (r/with-let [expanded? (r/atom (:default-expanded? props true))]
+    (let [{:keys [title class header-class body-class]} props]
+      [:div {:class (str t/bg-card " rounded shadow-md " t/text-primary " " class)}
+       ;; Header
+       [:div {:class (str "flex items-center justify-between px-4 py-3 cursor-pointer select-none "
+                          (when @expanded? (str "border-b " t/border-subtle))
+                          " " header-class)
+              :on-click #(swap! expanded? not)}
+        [:h3 {:class (str "font-bold text-sm " t/text-accent)} title]
+        [:button {:class (str "focus:outline-none transition-transform duration-200 "
+                              (if @expanded? "rotate-180" "rotate-0"))}
+         ;; Chevron down icon
+         [:svg {:xmlns "http://www.w3.org/2000/svg" :fill "none" :viewBox "0 0 24 24" :stroke-width "1.5" :stroke "currentColor" :class "w-4 h-4"}
+          [:path {:stroke-linecap "round" :stroke-linejoin "round" :d "m19.5 8.25-7.5 7.5-7.5-7.5"}]]]]
+       ;; Body
+       (when @expanded?
+         (into [:div {:class (str "p-4 " body-class)}]
+               children))])))

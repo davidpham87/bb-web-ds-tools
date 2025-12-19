@@ -91,3 +91,13 @@
        :json (js/JSON.parse input)
        :edn (clj->js (edn/read-string input)))
      (catch js/Error _ nil))))
+
+(rf/reg-sub
+ ::logs
+ (fn [db]
+   (get-in db [:runtime :vega-lite :logs] [])))
+
+(rf/reg-sub
+ ::error
+ (fn [db]
+   (get-in db [:runtime :vega-lite :error])))

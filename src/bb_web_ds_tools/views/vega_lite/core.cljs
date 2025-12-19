@@ -125,6 +125,10 @@
         [:span "EDN"]]]
 
       [l/flex-row {:class "space-x-2 items-center"}
+       [c/button {:size :sm
+                  :class "text-blue-400 !px-2"
+                  :on-click #(rf/dispatch [::events/format-config])}
+        "Format"]
        (when (seq saved-configs)
          [:select {:class (str "text-xs py-1 px-2 rounded " t/bg-input " " t/border-default)
                    :value (or active-config-name "")
@@ -166,17 +170,33 @@
          :config [config-tab-content]
          nil)]]]))
 
+(defn log-tab-content []
+  (let [logs @(rf/subscribe [::subs/logs])]
+    [:div {:class (str "h-full w-full p-2 overflow-auto " t/bg-page)}
+     (if (seq logs)
+       [:div {:class "space-y-1"}
+        (for [{:keys [type text timestamp]} logs]
+          ^{:key (str timestamp (hash text))}
+          [:div {:class "text-xs font-mono border-b border-[#3f3f3f] pb-1"}
+           [:span {:class "text-gray-500 mr-2"}
+            (.toLocaleTimeString timestamp)]
+           [:span {:class (if (= type :error) "text-red-400" "text-green-400")}
+            text]])]
+       [:div {:class "text-xs text-gray-500"} "No logs available."])]))
+
 (defn right-panel []
   (let [active-right-tab (or @(rf/subscribe [::subs/active-right-tab]) :plot)
         parsed-data @(rf/subscribe [::subs/parsed-data])
         inferred-schema @(rf/subscribe [::subs/inferred-schema])
-        parsed-config-obj @(rf/subscribe [::subs/parsed-config-obj])]
+        parsed-config-obj @(rf/subscribe [::subs/parsed-config-obj])
+        error-msg @(rf/subscribe [::subs/error])]
     [:div {:class "h-1/2 md:h-full overflow-auto flex-grow"}
      [l/flex-col {:class "h-full"}
       [tabs/tabs {:tabs [{:id :plot :label "Plot"}
                          {:id :parsed :label "Parsed Data"}
                          {:id :schema :label "Schema"}
-                         {:id :portal :label "Portal"}]
+                         {:id :portal :label "Portal"}
+                         {:id :log :label "Log"}]
                   :active-tab-id active-right-tab
                   :class "border-b-0 bg-transparent px-0"
                   :on-change #(rf/dispatch [::events/set-active-right-tab %])}]
@@ -185,12 +205,15 @@
        (case active-right-tab
          :plot
          [:div {:class "h-full w-full overflow-auto p-2"}
-          [:div {:class "mb-2"}
+          [:div {:class "mb-2 flex items-center space-x-2"}
            [c/button {:size :sm
                       :on-click #(let [config-edn (js->clj parsed-config-obj :keywordize-keys true)
                                        final-edn (assoc config-edn :data {:values parsed-data})]
                                    (rf/dispatch [::portal/submit final-edn]))}
-            "Send to Portal"]]
+            "Send to Portal"]
+           (when error-msg
+             [:div {:class "text-xs text-red-500 bg-red-100 border border-red-300 px-2 py-1 rounded"}
+              error-msg])]
           [vega-viz {:spec-obj parsed-config-obj :data parsed-data}]]
 
          :parsed
@@ -218,6 +241,8 @@
           (let [config-edn (js->clj parsed-config-obj :keywordize-keys true)
                 final-edn (assoc config-edn :data {:values parsed-data})]
             [portal-panel final-edn :portal.viewer/vega-lite])]
+
+         :log [log-tab-content]
          nil)]]]))
 
 (defn panel-render []
