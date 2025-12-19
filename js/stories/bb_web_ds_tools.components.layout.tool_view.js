@@ -7,6 +7,7 @@ require("./bb_web_ds_tools.components.layout.js");
 require("./bb_web_ds_tools.components.navigation.js");
 require("./bb_web_ds_tools.theme.js");
 var cognitect=$CLJS.cognitect || ($CLJS.cognitect = {});
+var module$shadow_js_shim_module$monaco_editor$esm$vs$language$json$monaco_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$language$json$monaco_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$language$json$monaco_contribution = {});
 var borkdude=$CLJS.borkdude || ($CLJS.borkdude = {});
 var re_frame=$CLJS.re_frame || ($CLJS.re_frame = {});
 var module$shadow_js_shim_module$react=$CLJS.module$shadow_js_shim_module$react || ($CLJS.module$shadow_js_shim_module$react = {});
@@ -53,15 +54,15 @@ goog.provide('bb_web_ds_tools.components.layout.tool_view');
  *   Returns:
  *  vector: A hiccup vector.
  */
-bb_web_ds_tools.components.layout.tool_view.tool_view = (function bb_web_ds_tools$components$layout$tool_view$tool_view(p__27039){
-var map__27040 = p__27039;
-var map__27040__$1 = cljs.core.__destructure_map(map__27040);
-var title = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__27040__$1,new cljs.core.Keyword(null,"title","title",636505583));
-var wiki_key = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__27040__$1,new cljs.core.Keyword(null,"wiki-key","wiki-key",-1495409073));
-var actions = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__27040__$1,new cljs.core.Keyword(null,"actions","actions",-812656882));
-var editor = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__27040__$1,new cljs.core.Keyword(null,"editor","editor",-989377770));
-var output = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__27040__$1,new cljs.core.Keyword(null,"output","output",-1105869043));
-var class$ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__27040__$1,new cljs.core.Keyword(null,"class","class",-2030961996));
+bb_web_ds_tools.components.layout.tool_view.tool_view = (function bb_web_ds_tools$components$layout$tool_view$tool_view(p__26216){
+var map__26217 = p__26216;
+var map__26217__$1 = cljs.core.__destructure_map(map__26217);
+var title = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26217__$1,new cljs.core.Keyword(null,"title","title",636505583));
+var wiki_key = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26217__$1,new cljs.core.Keyword(null,"wiki-key","wiki-key",-1495409073));
+var actions = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26217__$1,new cljs.core.Keyword(null,"actions","actions",-812656882));
+var editor = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26217__$1,new cljs.core.Keyword(null,"editor","editor",-989377770));
+var output = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26217__$1,new cljs.core.Keyword(null,"output","output",-1105869043));
+var class$ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26217__$1,new cljs.core.Keyword(null,"class","class",-2030961996));
 if(cljs.core.truth_(output)){
 return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.layout.flex_row,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),["h-full items-start gap-0 ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(class$)].join('')], null),new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.layout.flex_col,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"gap-4 w-full max-w-3xl h-full p-4 border-r border-[#3f3f3f]"], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.section_header,title,(cljs.core.truth_(wiki_key)?new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.help_button,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"href","href",-793805698),bb_web_ds_tools.components.navigation.get_wiki_url(wiki_key),new cljs.core.Keyword(null,"title","title",636505583),["Help: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(title)].join(''),new cljs.core.Keyword(null,"class","class",-2030961996),"!p-1 !w-6 !h-6 opacity-50 hover:opacity-100"], null)], null):null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"class","class",-2030961996),["flex-grow rounded overflow-hidden border ",bb_web_ds_tools.theme.border_default].join(''),new cljs.core.Keyword(null,"style","style",-496642736),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"height","height",1025178622),"100%"], null)], null),editor], null),(cljs.core.truth_(actions)?new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.layout.flex_row,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"items-center gap-4 mt-2"], null),actions], null):null)], null),output], null);
 } else {

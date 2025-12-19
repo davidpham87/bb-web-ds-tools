@@ -13,28 +13,28 @@ return db;
  *   Returns:
  *  vector: A hiccup vector.
  */
-bb_web_ds_tools.views.editor.editor_form = (function bb_web_ds_tools$views$editor$editor_form(p__50049){
-var map__50050 = p__50049;
-var map__50050__$1 = cljs.core.__destructure_map(map__50050);
-var path = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__50050__$1,new cljs.core.Keyword(null,"path","path",-188191168),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"editor-form","editor-form",2054255699)], null));
-var initial_code = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__50050__$1,new cljs.core.Keyword(null,"initial-code","initial-code",-1940969145),cljs.core.deref(re_frame.core.subscribe.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.core","code","bb-web-ds-tools.core/code",-403485604)], null))));
+bb_web_ds_tools.views.editor.editor_form = (function bb_web_ds_tools$views$editor$editor_form(p__32569){
+var map__32570 = p__32569;
+var map__32570__$1 = cljs.core.__destructure_map(map__32570);
+var path = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__32570__$1,new cljs.core.Keyword(null,"path","path",-188191168),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"editor-form","editor-form",2054255699)], null));
+var initial_code = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__32570__$1,new cljs.core.Keyword(null,"initial-code","initial-code",-1940969145),cljs.core.deref(re_frame.core.subscribe.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.core","code","bb-web-ds-tools.core/code",-403485604)], null))));
 var initial_code__$1 = cljs.core.deref(re_frame.core.subscribe.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.core","code","bb-web-ds-tools.core/code",-403485604)], null)));
-return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [fork.re_frame.form,new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword(null,"initial-values","initial-values",1392120293),new cljs.core.PersistentArrayMap(null, 1, ["code",initial_code__$1], null),new cljs.core.Keyword(null,"keywordize-keys","keywordize-keys",1310784252),true,new cljs.core.Keyword(null,"path","path",-188191168),path,new cljs.core.Keyword(null,"prevent-default?","prevent-default?",-1165567888),true,new cljs.core.Keyword(null,"clean-on-unmount?","clean-on-unmount?",-1144411068),true,new cljs.core.Keyword(null,"on-submit","on-submit",1227871159),(function (p__50051){
-var map__50052 = p__50051;
-var map__50052__$1 = cljs.core.__destructure_map(map__50052);
-var values = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50052__$1,new cljs.core.Keyword(null,"values","values",372645556));
+return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [fork.re_frame.form,new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword(null,"initial-values","initial-values",1392120293),new cljs.core.PersistentArrayMap(null, 1, ["code",initial_code__$1], null),new cljs.core.Keyword(null,"keywordize-keys","keywordize-keys",1310784252),true,new cljs.core.Keyword(null,"path","path",-188191168),path,new cljs.core.Keyword(null,"prevent-default?","prevent-default?",-1165567888),true,new cljs.core.Keyword(null,"clean-on-unmount?","clean-on-unmount?",-1144411068),true,new cljs.core.Keyword(null,"on-submit","on-submit",1227871159),(function (p__32576){
+var map__32578 = p__32576;
+var map__32578__$1 = cljs.core.__destructure_map(map__32578);
+var values = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32578__$1,new cljs.core.Keyword(null,"values","values",372645556));
 re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.core","code-changed","bb-web-ds-tools.core/code-changed",-2041081013),new cljs.core.Keyword(null,"code","code",1586293142).cljs$core$IFn$_invoke$arity$1(values)], null));
 
 return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.editor","save-code","bb-web-ds-tools.views.editor/save-code",1365207386)], null));
-})], null),(function (p__50066){
-var map__50067 = p__50066;
-var map__50067__$1 = cljs.core.__destructure_map(map__50067);
-var values = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50067__$1,new cljs.core.Keyword(null,"values","values",372645556));
-var set_values = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50067__$1,new cljs.core.Keyword(null,"set-values","set-values",-928640446));
-var handle_submit = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__50067__$1,new cljs.core.Keyword(null,"handle-submit","handle-submit",1732326917));
-return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"form","form",-1624062471),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"on-submit","on-submit",1227871159),handle_submit,new cljs.core.Keyword(null,"class","class",-2030961996),"space-y-4"], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"bg-[#2f2f2f] rounded shadow-sm overflow-hidden border border-[#5f5f5f]"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.editor.monaco_editor,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"value","value",305978217),new cljs.core.Keyword(null,"code","code",1586293142).cljs$core$IFn$_invoke$arity$1(values),new cljs.core.Keyword(null,"style","style",-496642736),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"height","height",1025178622),"600px"], null),new cljs.core.Keyword(null,"on-change","on-change",-732046149),(function (p1__50048_SHARP_){
-var G__50068 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"code","code",1586293142),p1__50048_SHARP_], null);
-return (set_values.cljs$core$IFn$_invoke$arity$1 ? set_values.cljs$core$IFn$_invoke$arity$1(G__50068) : set_values.call(null,G__50068));
+})], null),(function (p__32580){
+var map__32581 = p__32580;
+var map__32581__$1 = cljs.core.__destructure_map(map__32581);
+var values = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32581__$1,new cljs.core.Keyword(null,"values","values",372645556));
+var set_values = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32581__$1,new cljs.core.Keyword(null,"set-values","set-values",-928640446));
+var handle_submit = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32581__$1,new cljs.core.Keyword(null,"handle-submit","handle-submit",1732326917));
+return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"form","form",-1624062471),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"on-submit","on-submit",1227871159),handle_submit,new cljs.core.Keyword(null,"class","class",-2030961996),"space-y-4"], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"bg-[#2f2f2f] rounded shadow-sm overflow-hidden border border-[#5f5f5f]"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.editor.monaco_editor,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"value","value",305978217),new cljs.core.Keyword(null,"code","code",1586293142).cljs$core$IFn$_invoke$arity$1(values),new cljs.core.Keyword(null,"style","style",-496642736),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"height","height",1025178622),"600px"], null),new cljs.core.Keyword(null,"on-change","on-change",-732046149),(function (p1__32568_SHARP_){
+var G__32584 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"code","code",1586293142),p1__32568_SHARP_], null);
+return (set_values.cljs$core$IFn$_invoke$arity$1 ? set_values.cljs$core$IFn$_invoke$arity$1(G__32584) : set_values.call(null,G__32584));
 })], null)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.flex.justify-end","div.flex.justify-end",-2056434577),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.button,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"type","type",1174270348),"submit"], null),"Save Code"], null)], null)], null);
 })], null);
 });

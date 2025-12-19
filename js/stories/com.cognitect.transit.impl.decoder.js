@@ -6,6 +6,7 @@ require("./com.cognitect.transit.delimiters.js");
 require("./com.cognitect.transit.caching.js");
 require("./com.cognitect.transit.types.js");
 var cognitect=$CLJS.cognitect || ($CLJS.cognitect = {});
+var module$shadow_js_shim_module$monaco_editor$esm$vs$language$json$monaco_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$language$json$monaco_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$language$json$monaco_contribution = {});
 var borkdude=$CLJS.borkdude || ($CLJS.borkdude = {});
 var re_frame=$CLJS.re_frame || ($CLJS.re_frame = {});
 var module$shadow_js_shim_module$react=$CLJS.module$shadow_js_shim_module$react || ($CLJS.module$shadow_js_shim_module$react = {});

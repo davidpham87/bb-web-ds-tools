@@ -38,13 +38,13 @@ return new cljs.core.Keyword(null,"active-left-tab","active-left-tab",49789881).
 re_frame.core.reg_sub.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite.subs","active-right-tab","bb-web-ds-tools.views.vega-lite.subs/active-right-tab",810687396),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"<-","<-",760412998),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite.subs","component-root","bb-web-ds-tools.views.vega-lite.subs/component-root",17299576)], null),(function (root){
 return new cljs.core.Keyword(null,"active-right-tab","active-right-tab",373601478).cljs$core$IFn$_invoke$arity$1(root);
 })], 0));
-re_frame.core.reg_sub.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite.subs","parsed-config-obj","bb-web-ds-tools.views.vega-lite.subs/parsed-config-obj",854518547),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"<-","<-",760412998),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite.subs","config-input","bb-web-ds-tools.views.vega-lite.subs/config-input",120073368)], null),new cljs.core.Keyword(null,"<-","<-",760412998),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite.subs","config-mode","bb-web-ds-tools.views.vega-lite.subs/config-mode",-220878037)], null),(function (p__60913){
-var vec__60915 = p__60913;
-var input = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__60915,(0),null);
-var mode = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__60915,(1),null);
-try{var G__60922 = mode;
-var G__60922__$1 = (((G__60922 instanceof cljs.core.Keyword))?G__60922.fqn:null);
-switch (G__60922__$1) {
+re_frame.core.reg_sub.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite.subs","parsed-config-obj","bb-web-ds-tools.views.vega-lite.subs/parsed-config-obj",854518547),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"<-","<-",760412998),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite.subs","config-input","bb-web-ds-tools.views.vega-lite.subs/config-input",120073368)], null),new cljs.core.Keyword(null,"<-","<-",760412998),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite.subs","config-mode","bb-web-ds-tools.views.vega-lite.subs/config-mode",-220878037)], null),(function (p__38262){
+var vec__38265 = p__38262;
+var input = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38265,(0),null);
+var mode = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38265,(1),null);
+try{var G__38269 = mode;
+var G__38269__$1 = (((G__38269 instanceof cljs.core.Keyword))?G__38269.fqn:null);
+switch (G__38269__$1) {
 case "json":
 return JSON.parse(input);
 
@@ -54,16 +54,22 @@ return cljs.core.clj__GT_js(clojure.edn.read_string.cljs$core$IFn$_invoke$arity$
 
 break;
 default:
-throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__60922__$1)].join('')));
+throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__38269__$1)].join('')));
 
 }
-}catch (e60921){if((e60921 instanceof Error)){
-var _ = e60921;
+}catch (e38268){if((e38268 instanceof Error)){
+var _ = e38268;
 return null;
 } else {
-throw e60921;
+throw e38268;
 
 }
 }})], 0));
+re_frame.core.reg_sub.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite.subs","logs","bb-web-ds-tools.views.vega-lite.subs/logs",1770003458),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (db){
+return cljs.core.get_in.cljs$core$IFn$_invoke$arity$3(db,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"runtime","runtime",-1331573996),new cljs.core.Keyword(null,"vega-lite","vega-lite",-650304770),new cljs.core.Keyword(null,"logs","logs",1068148008)], null),cljs.core.PersistentVector.EMPTY);
+})], 0));
+re_frame.core.reg_sub.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword("bb-web-ds-tools.views.vega-lite.subs","error","bb-web-ds-tools.views.vega-lite.subs/error",-610486066),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (db){
+return cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(db,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"runtime","runtime",-1331573996),new cljs.core.Keyword(null,"vega-lite","vega-lite",-650304770),new cljs.core.Keyword(null,"error","error",-978969032)], null));
+})], 0));
 
 //# sourceMappingURL=bb_web_ds_tools.views.vega_lite.subs.js.map
