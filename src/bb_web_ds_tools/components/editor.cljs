@@ -6,6 +6,7 @@
             ["monaco-editor/esm/vs/basic-languages/clojure/clojure.contribution.js"]
             ["monaco-editor/esm/vs/basic-languages/python/python.contribution.js"]
             ["monaco-editor/esm/vs/basic-languages/r/r.contribution.js"]
+            ["monaco-editor/esm/vs/language/json/monaco.contribution.js"]
             [bb-web-ds-tools.theme :as t]
             [bb-web-ds-tools.events.theme :as theme-events]
             [bb-web-ds-tools.events.settings :as settings-events]

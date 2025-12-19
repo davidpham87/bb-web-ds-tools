@@ -119,14 +119,21 @@
   Returns:
     vector: A hiccup vector."
   []
-  [c/card {:class "p-6 space-y-4"}
-   [:h3 {:class "text-xl font-bold"} "Development Tools"]
-   [:p {:class "text-sm text-gray-400"} "Tools to assist with debugging and development."]
-   [:div {:class "mt-4"}
-    [:button
-     {:class "px-4 py-2 bg-[#3f3f3f] hover:bg-[#4f4f4f] text-white rounded transition-colors"
-      :on-click #(rf/dispatch [::portal/open])}
-     "Open Portal"]]])
+  (let [debounce-ms @(rf/subscribe [::settings-events/vega-lite-debounce-ms])]
+    [c/card {:class "p-6 space-y-4"}
+     [:h3 {:class "text-xl font-bold"} "Development Tools"]
+     [:p {:class "text-sm text-gray-400"} "Tools to assist with debugging and development."]
+     [:div {:class "mt-4"}
+      [:button
+       {:class "px-4 py-2 bg-[#3f3f3f] hover:bg-[#4f4f4f] text-white rounded transition-colors"
+        :on-click #(rf/dispatch [::portal/open])}
+       "Open Portal"]]
+     [:div {:class "mt-4 pt-4 border-t border-[#3f3f3f]"}
+      [:label {:class "block text-sm font-medium mb-2"} "Vega-Lite Config Debounce (ms)"]
+      [c/input {:type "number"
+                :value debounce-ms
+                :on-change-event [::settings-events/set-vega-lite-debounce-ms]
+                :class "w-full max-w-xs"}]]]))
 
 (defn dataset-import-settings
   "Renders the dataset import settings view.
