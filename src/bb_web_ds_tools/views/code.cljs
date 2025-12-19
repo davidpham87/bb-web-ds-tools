@@ -80,6 +80,9 @@
                                     :class "border-b-0 bg-transparent px-0 text-xs"
                                     :on-change #(rf/dispatch [:bb-web-ds-tools.core/navigate :code-tab {:tab (name %)} nil])}]]
     [l/flex-col {:class "h-full w-full"}
+     ;; Tabs Navigation (Portaled to Top Bar)
+     [nav/portal-to-top-bar tabs-component]
+
      (when-not is-md?
        [mobile-view-toggle mobile-view-mode #(rf/dispatch [::set-mobile-view-mode %])])
      [:div {:class "flex flex-col md:flex-row h-full w-full overflow-hidden"}
@@ -88,6 +91,7 @@
                :style (when is-md?
                         {:width (:width editor-settings)})}
          (let [props {:header-content tabs-component}]
+           ^{:key active-tab}
            (case active-tab
              :clojure-repl [repl/panel props]
              :pyodide [pyodide/panel props]
