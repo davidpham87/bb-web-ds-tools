@@ -28,7 +28,10 @@
      (assoc-in [:settings :editor]
                {:font-size 14
                 :width "50%"
-                :word-wrap "on"}))))
+                :word-wrap "on"})
+
+     (not (get-in db [:settings :vega-lite-debounce-ms]))
+     (assoc-in [:settings :vega-lite-debounce-ms] 200))))
 
 (rf/reg-event-db
  ::set-column-normalizer-case
@@ -63,6 +66,11 @@
  (fn [db [_ key val]]
    (assoc-in db [:settings :editor key] val)))
 
+(rf/reg-event-db
+ ::set-vega-lite-debounce-ms
+ (fn [db [_ val]]
+   (assoc-in db [:settings :vega-lite-debounce-ms] (js/parseInt val))))
+
 ;; --- Subscriptions ---
 
 (rf/reg-sub
@@ -93,3 +101,8 @@
    (get-in db [:settings :editor] {:font-size 14
                                    :width "50%"
                                    :word-wrap "on"})))
+
+(rf/reg-sub
+ ::vega-lite-debounce-ms
+ (fn [db]
+   (get-in db [:settings :vega-lite-debounce-ms] 200)))
