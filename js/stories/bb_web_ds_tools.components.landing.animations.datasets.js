@@ -20,6 +20,7 @@ var goog=$CLJS.goog || ($CLJS.goog = {});
 var reagent=$CLJS.reagent || ($CLJS.reagent = {});
 var module$shadow_js_shim_module$$js_joda$core=$CLJS.module$shadow_js_shim_module$$js_joda$core || ($CLJS.module$shadow_js_shim_module$$js_joda$core = {});
 var camel_snake_kebab=$CLJS.camel_snake_kebab || ($CLJS.camel_snake_kebab = {});
+var module$shadow_js_shim_module$js_yaml=$CLJS.module$shadow_js_shim_module$js_yaml || ($CLJS.module$shadow_js_shim_module$js_yaml = {});
 var portal=$CLJS.portal || ($CLJS.portal = {});
 var edamame=$CLJS.edamame || ($CLJS.edamame = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
@@ -27,7 +28,6 @@ var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contri
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution = {});
 var datascript=$CLJS.datascript || ($CLJS.datascript = {});
 var malli=$CLJS.malli || ($CLJS.malli = {});
-var fork=$CLJS.fork || ($CLJS.fork = {});
 var me=$CLJS.me || ($CLJS.me = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api = {});
 var com=$CLJS.com || ($CLJS.com = {});
@@ -52,32 +52,32 @@ var start_x = ((w / (2)) - ((cols * cell_w) / (2)));
 var start_y = ((h / (2)) - ((rows * cell_h) / (2)));
 (ctx.globalAlpha = alpha);
 
-var n__5616__auto___25096 = cols;
-var i_25097 = (0);
+var n__5616__auto___25087 = cols;
+var i_25088 = (0);
 while(true){
-if((i_25097 < n__5616__auto___25096)){
-var n__5616__auto___25098__$1 = rows;
-var j_25099 = (0);
+if((i_25088 < n__5616__auto___25087)){
+var n__5616__auto___25089__$1 = rows;
+var j_25090 = (0);
 while(true){
-if((j_25099 < n__5616__auto___25098__$1)){
-(ctx.fillStyle = ((cljs.core.even_QMARK_((i_25097 + j_25099)))?new cljs.core.Keyword("portal.colors","background2","portal.colors/background2",-2075622390).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn):new cljs.core.Keyword("portal.colors","background","portal.colors/background",-1400610375).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn)));
+if((j_25090 < n__5616__auto___25089__$1)){
+(ctx.fillStyle = ((cljs.core.even_QMARK_((i_25088 + j_25090)))?new cljs.core.Keyword("portal.colors","background2","portal.colors/background2",-2075622390).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn):new cljs.core.Keyword("portal.colors","background","portal.colors/background",-1400610375).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn)));
 
-ctx.fillRect((start_x + (i_25097 * cell_w)),(start_y + (j_25099 * cell_h)),(cell_w - (2)),(cell_h - (2)));
+ctx.fillRect((start_x + (i_25088 * cell_w)),(start_y + (j_25090 * cell_h)),(cell_w - (2)),(cell_h - (2)));
 
 (ctx.fillStyle = new cljs.core.Keyword("portal.colors","text","portal.colors/text",1967472969).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn));
 
-ctx.fillRect(((start_x + (i_25097 * cell_w)) + (4)),((start_y + (j_25099 * cell_h)) + (4)),(12),(4));
+ctx.fillRect(((start_x + (i_25088 * cell_w)) + (4)),((start_y + (j_25090 * cell_h)) + (4)),(12),(4));
 
-var G__25100 = (j_25099 + (1));
-j_25099 = G__25100;
+var G__25091 = (j_25090 + (1));
+j_25090 = G__25091;
 continue;
 } else {
 }
 break;
 }
 
-var G__25101 = (i_25097 + (1));
-i_25097 = G__25101;
+var G__25092 = (i_25088 + (1));
+i_25088 = G__25092;
 continue;
 } else {
 }
@@ -101,23 +101,23 @@ var start_x = ((w / (2)) - ((cols * cell_w) / (2)));
 var start_y = ((h / (2)) - ((rows * cell_h) / (2)));
 (ctx.globalAlpha = (alpha_in * alpha_out));
 
-var n__5616__auto___25102 = rows;
-var j_25103 = (0);
+var n__5616__auto___25093 = rows;
+var j_25094 = (0);
 while(true){
-if((j_25103 < n__5616__auto___25102)){
-var row_progress_25104 = cljs.core.mod(((t * 0.002) + (j_25103 * 0.2)),1.0);
-var x_25105 = ((start_x + ((4) * cell_w)) + (row_progress_25104 * (40)));
-var y_25106 = (start_y + (j_25103 * cell_h));
+if((j_25094 < n__5616__auto___25093)){
+var row_progress_25095 = cljs.core.mod(((t * 0.002) + (j_25094 * 0.2)),1.0);
+var x_25096 = ((start_x + ((4) * cell_w)) + (row_progress_25095 * (40)));
+var y_25097 = (start_y + (j_25094 * cell_h));
 (ctx.fillStyle = new cljs.core.Keyword("portal.colors","string","portal.colors/string",-1452455936).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn));
 
-ctx.fillRect(x_25105,y_25106,(12),(4));
+ctx.fillRect(x_25096,y_25097,(12),(4));
 
 (ctx.fillStyle = new cljs.core.Keyword("portal.colors","diff-remove","portal.colors/diff-remove",-1316767592).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn));
 
 ctx.fillRect(((start_x + ((4) * cell_w)) + (20)),start_y,(2),(rows * cell_h));
 
-var G__25107 = (j_25103 + (1));
-j_25103 = G__25107;
+var G__25098 = (j_25094 + (1));
+j_25094 = G__25098;
 continue;
 } else {
 }
@@ -147,32 +147,32 @@ var start_y = ((h / (2)) - ((cols * cell_h) / (2)));
 
 ctx.fillText("T",(start_x - (15)),start_y);
 
-var n__5616__auto___25108 = rows;
-var i_25109 = (0);
+var n__5616__auto___25099 = rows;
+var i_25100 = (0);
 while(true){
-if((i_25109 < n__5616__auto___25108)){
-var n__5616__auto___25110__$1 = cols;
-var j_25111 = (0);
+if((i_25100 < n__5616__auto___25099)){
+var n__5616__auto___25101__$1 = cols;
+var j_25102 = (0);
 while(true){
-if((j_25111 < n__5616__auto___25110__$1)){
-(ctx.fillStyle = ((cljs.core.even_QMARK_((i_25109 + j_25111)))?new cljs.core.Keyword("portal.colors","background2","portal.colors/background2",-2075622390).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn):new cljs.core.Keyword("portal.colors","background","portal.colors/background",-1400610375).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn)));
+if((j_25102 < n__5616__auto___25101__$1)){
+(ctx.fillStyle = ((cljs.core.even_QMARK_((i_25100 + j_25102)))?new cljs.core.Keyword("portal.colors","background2","portal.colors/background2",-2075622390).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn):new cljs.core.Keyword("portal.colors","background","portal.colors/background",-1400610375).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn)));
 
-ctx.fillRect((start_x + (i_25109 * cell_w)),(start_y + (j_25111 * cell_h)),(cell_w - (2)),(cell_h - (2)));
+ctx.fillRect((start_x + (i_25100 * cell_w)),(start_y + (j_25102 * cell_h)),(cell_w - (2)),(cell_h - (2)));
 
 (ctx.fillStyle = new cljs.core.Keyword("portal.colors","string","portal.colors/string",-1452455936).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn));
 
-ctx.fillRect(((start_x + (i_25109 * cell_w)) + (4)),((start_y + (j_25111 * cell_h)) + (4)),(12),(4));
+ctx.fillRect(((start_x + (i_25100 * cell_w)) + (4)),((start_y + (j_25102 * cell_h)) + (4)),(12),(4));
 
-var G__25112 = (j_25111 + (1));
-j_25111 = G__25112;
+var G__25103 = (j_25102 + (1));
+j_25102 = G__25103;
 continue;
 } else {
 }
 break;
 }
 
-var G__25113 = (i_25109 + (1));
-i_25109 = G__25113;
+var G__25104 = (i_25100 + (1));
+i_25100 = G__25104;
 continue;
 } else {
 }
@@ -194,20 +194,20 @@ var start_x = ((w / (2)) - (total_w / (2)));
 var base_y = ((h / (2)) + (20));
 (ctx.globalAlpha = alpha_in);
 
-var n__5616__auto___25114 = cols;
-var i_25115 = (0);
+var n__5616__auto___25105 = cols;
+var i_25106 = (0);
 while(true){
-if((i_25115 < n__5616__auto___25114)){
-var freq_25116 = (0.002 + (i_25115 * 0.001));
-var height_25117 = ((20) + ((30) * Math.abs(Math.sin((t * freq_25116)))));
-var x_25118 = (start_x + (i_25115 * (bar_w + gap)));
-var y_25119 = (base_y - height_25117);
-(ctx.fillStyle = cljs.core.nth.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("portal.colors","diff-add","portal.colors/diff-add",1253946866).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn),new cljs.core.Keyword("portal.colors","number","portal.colors/number",2107558552).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn),new cljs.core.Keyword("portal.colors","string","portal.colors/string",-1452455936).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn),new cljs.core.Keyword("portal.colors","keyword","portal.colors/keyword",-1873282591).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn),new cljs.core.Keyword("portal.colors","uri","portal.colors/uri",1909526219).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn)], null),cljs.core.mod(i_25115,(5))));
+if((i_25106 < n__5616__auto___25105)){
+var freq_25107 = (0.002 + (i_25106 * 0.001));
+var height_25108 = ((20) + ((30) * Math.abs(Math.sin((t * freq_25107)))));
+var x_25109 = (start_x + (i_25106 * (bar_w + gap)));
+var y_25110 = (base_y - height_25108);
+(ctx.fillStyle = cljs.core.nth.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("portal.colors","diff-add","portal.colors/diff-add",1253946866).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn),new cljs.core.Keyword("portal.colors","number","portal.colors/number",2107558552).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn),new cljs.core.Keyword("portal.colors","string","portal.colors/string",-1452455936).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn),new cljs.core.Keyword("portal.colors","keyword","portal.colors/keyword",-1873282591).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn),new cljs.core.Keyword("portal.colors","uri","portal.colors/uri",1909526219).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn)], null),cljs.core.mod(i_25106,(5))));
 
-ctx.fillRect(x_25118,y_25119,bar_w,height_25117);
+ctx.fillRect(x_25109,y_25110,bar_w,height_25108);
 
-var G__25120 = (i_25115 + (1));
-i_25115 = G__25120;
+var G__25111 = (i_25106 + (1));
+i_25106 = G__25111;
 continue;
 } else {
 }

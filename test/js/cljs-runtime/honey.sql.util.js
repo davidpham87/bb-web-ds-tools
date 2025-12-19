@@ -5,8 +5,8 @@ goog.provide('honey.sql.util');
  *   reverts back to `clojure.core/str`.
  */
 honey.sql.util.str = (function honey$sql$util$str(var_args){
-var G__50877 = arguments.length;
-switch (G__50877) {
+var G__50783 = arguments.length;
+switch (G__50783) {
 case 0:
 return honey.sql.util.str.cljs$core$IFn$_invoke$arity$0();
 
@@ -33,14 +33,14 @@ return honey.sql.util.str.cljs$core$IFn$_invoke$arity$5((arguments[(0)]),(argume
 break;
 default:
 var args_arr__5774__auto__ = [];
-var len__5749__auto___51152 = arguments.length;
-var i__5750__auto___51153 = (0);
+var len__5749__auto___50927 = arguments.length;
+var i__5750__auto___50928 = (0);
 while(true){
-if((i__5750__auto___51153 < len__5749__auto___51152)){
-args_arr__5774__auto__.push((arguments[i__5750__auto___51153]));
+if((i__5750__auto___50928 < len__5749__auto___50927)){
+args_arr__5774__auto__.push((arguments[i__5750__auto___50928]));
 
-var G__51154 = (i__5750__auto___51153 + (1));
-i__5750__auto___51153 = G__51154;
+var G__50929 = (i__5750__auto___50928 + (1));
+i__5750__auto___50928 = G__50929;
 continue;
 } else {
 }
@@ -82,19 +82,19 @@ return cljs.core.apply.cljs$core$IFn$_invoke$arity$variadic(cljs.core.str,a,b,c,
 }));
 
 /** @this {Function} */
-(honey.sql.util.str.cljs$lang$applyTo = (function (seq50852){
-var G__50853 = cljs.core.first(seq50852);
-var seq50852__$1 = cljs.core.next(seq50852);
-var G__50854 = cljs.core.first(seq50852__$1);
-var seq50852__$2 = cljs.core.next(seq50852__$1);
-var G__50856 = cljs.core.first(seq50852__$2);
-var seq50852__$3 = cljs.core.next(seq50852__$2);
-var G__50858 = cljs.core.first(seq50852__$3);
-var seq50852__$4 = cljs.core.next(seq50852__$3);
-var G__50860 = cljs.core.first(seq50852__$4);
-var seq50852__$5 = cljs.core.next(seq50852__$4);
+(honey.sql.util.str.cljs$lang$applyTo = (function (seq50777){
+var G__50778 = cljs.core.first(seq50777);
+var seq50777__$1 = cljs.core.next(seq50777);
+var G__50779 = cljs.core.first(seq50777__$1);
+var seq50777__$2 = cljs.core.next(seq50777__$1);
+var G__50780 = cljs.core.first(seq50777__$2);
+var seq50777__$3 = cljs.core.next(seq50777__$2);
+var G__50781 = cljs.core.first(seq50777__$3);
+var seq50777__$4 = cljs.core.next(seq50777__$3);
+var G__50782 = cljs.core.first(seq50777__$4);
+var seq50777__$5 = cljs.core.next(seq50777__$4);
 var self__5734__auto__ = this;
-return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__50853,G__50854,G__50856,G__50858,G__50860,seq50852__$5);
+return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__50778,G__50779,G__50780,G__50781,G__50782,seq50777__$5);
 }));
 
 (honey.sql.util.str.cljs$lang$maxFixedArity = (5));
@@ -106,8 +106,8 @@ return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__50853,G__50854
  *   platforms.
  */
 honey.sql.util.join = (function honey$sql$util$join(var_args){
-var G__51005 = arguments.length;
-switch (G__51005) {
+var G__50801 = arguments.length;
+switch (G__50801) {
 case 2:
 return honey.sql.util.join.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -151,10 +151,10 @@ return cljs.core.conj.cljs$core$IFn$_invoke$arity$2(res,cljs.core.subs.cljs$core
 } else {
 var sep_idx = temp__5827__auto__;
 var sep_idx__$1 = cljs.core.long$(sep_idx);
-var G__51158 = (sep_idx__$1 + (1));
-var G__51159 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(res,cljs.core.subs.cljs$core$IFn$_invoke$arity$3(s,start,sep_idx__$1));
-start = G__51158;
-res = G__51159;
+var G__50992 = (sep_idx__$1 + (1));
+var G__50993 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(res,cljs.core.subs.cljs$core$IFn$_invoke$arity$3(s,start,sep_idx__$1));
+start = G__50992;
+res = G__50993;
 continue;
 }
 break;
@@ -165,8 +165,8 @@ break;
  *   Doesn't support `xform`.
  */
 honey.sql.util.into_STAR_ = (function honey$sql$util$into_STAR_(var_args){
-var G__51062 = arguments.length;
-switch (G__51062) {
+var G__50824 = arguments.length;
+switch (G__50824) {
 case 2:
 return honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 

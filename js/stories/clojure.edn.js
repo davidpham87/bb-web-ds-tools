@@ -20,6 +20,7 @@ var goog=$CLJS.goog || ($CLJS.goog = {});
 var reagent=$CLJS.reagent || ($CLJS.reagent = {});
 var module$shadow_js_shim_module$$js_joda$core=$CLJS.module$shadow_js_shim_module$$js_joda$core || ($CLJS.module$shadow_js_shim_module$$js_joda$core = {});
 var camel_snake_kebab=$CLJS.camel_snake_kebab || ($CLJS.camel_snake_kebab = {});
+var module$shadow_js_shim_module$js_yaml=$CLJS.module$shadow_js_shim_module$js_yaml || ($CLJS.module$shadow_js_shim_module$js_yaml = {});
 var portal=$CLJS.portal || ($CLJS.portal = {});
 var edamame=$CLJS.edamame || ($CLJS.edamame = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
@@ -27,7 +28,6 @@ var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contri
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution = {});
 var datascript=$CLJS.datascript || ($CLJS.datascript = {});
 var malli=$CLJS.malli || ($CLJS.malli = {});
-var fork=$CLJS.fork || ($CLJS.fork = {});
 var me=$CLJS.me || ($CLJS.me = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api = {});
 var com=$CLJS.com || ($CLJS.com = {});
@@ -54,8 +54,8 @@ goog.provide('clojure.edn');
  *            be called with the tag and the value.
  */
 clojure.edn.read = (function clojure$edn$read(var_args){
-var G__47001 = arguments.length;
-switch (G__47001) {
+var G__36017 = arguments.length;
+switch (G__36017) {
 case 1:
 return clojure.edn.read.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -98,8 +98,8 @@ return cljs.reader.read.cljs$core$IFn$_invoke$arity$4(reader,eof_error_QMARK_,eo
  * opts is a map as per cljs.tools.reader.edn/read
  */
 clojure.edn.read_string = (function clojure$edn$read_string(var_args){
-var G__47004 = arguments.length;
-switch (G__47004) {
+var G__36068 = arguments.length;
+switch (G__36068) {
 case 1:
 return clojure.edn.read_string.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 

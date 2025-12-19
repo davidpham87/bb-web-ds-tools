@@ -13,16 +13,16 @@ ctx.beginPath();
 var outer_r = r;
 var inner_r = (r * 0.8);
 var hole_r = (r * 0.3);
-var n__5616__auto___52916 = (teeth * (2));
-var i_52917 = (0);
+var n__5616__auto___52940 = (teeth * (2));
+var i_52941 = (0);
 while(true){
-if((i_52917 < n__5616__auto___52916)){
-var angle_52918 = (i_52917 * (Math.PI / teeth));
-var rad_52919 = ((cljs.core.even_QMARK_(i_52917))?outer_r:inner_r);
-ctx.lineTo((rad_52919 * Math.cos(angle_52918)),(rad_52919 * Math.sin(angle_52918)));
+if((i_52941 < n__5616__auto___52940)){
+var angle_52942 = (i_52941 * (Math.PI / teeth));
+var rad_52943 = ((cljs.core.even_QMARK_(i_52941))?outer_r:inner_r);
+ctx.lineTo((rad_52943 * Math.cos(angle_52942)),(rad_52943 * Math.sin(angle_52942)));
 
-var G__52920 = (i_52917 + (1));
-i_52917 = G__52920;
+var G__52944 = (i_52941 + (1));
+i_52941 = G__52944;
 continue;
 } else {
 }

@@ -20,6 +20,7 @@ var goog=$CLJS.goog || ($CLJS.goog = {});
 var reagent=$CLJS.reagent || ($CLJS.reagent = {});
 var module$shadow_js_shim_module$$js_joda$core=$CLJS.module$shadow_js_shim_module$$js_joda$core || ($CLJS.module$shadow_js_shim_module$$js_joda$core = {});
 var camel_snake_kebab=$CLJS.camel_snake_kebab || ($CLJS.camel_snake_kebab = {});
+var module$shadow_js_shim_module$js_yaml=$CLJS.module$shadow_js_shim_module$js_yaml || ($CLJS.module$shadow_js_shim_module$js_yaml = {});
 var portal=$CLJS.portal || ($CLJS.portal = {});
 var edamame=$CLJS.edamame || ($CLJS.edamame = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
@@ -27,7 +28,6 @@ var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contri
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution = {});
 var datascript=$CLJS.datascript || ($CLJS.datascript = {});
 var malli=$CLJS.malli || ($CLJS.malli = {});
-var fork=$CLJS.fork || ($CLJS.fork = {});
 var me=$CLJS.me || ($CLJS.me = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api = {});
 var com=$CLJS.com || ($CLJS.com = {});
@@ -157,8 +157,8 @@ return null;
  * Recursively merge values based on the information in their metadata.
  */
 meta_merge.core.meta_merge = (function meta_merge$core$meta_merge(var_args){
-var G__34642 = arguments.length;
-switch (G__34642) {
+var G__25365 = arguments.length;
+switch (G__25365) {
 case 0:
 return meta_merge.core.meta_merge.cljs$core$IFn$_invoke$arity$0();
 
@@ -173,14 +173,14 @@ return meta_merge.core.meta_merge.cljs$core$IFn$_invoke$arity$2((arguments[(0)])
 break;
 default:
 var args_arr__5774__auto__ = [];
-var len__5749__auto___34661 = arguments.length;
-var i__5750__auto___34662 = (0);
+var len__5749__auto___25367 = arguments.length;
+var i__5750__auto___25368 = (0);
 while(true){
-if((i__5750__auto___34662 < len__5749__auto___34661)){
-args_arr__5774__auto__.push((arguments[i__5750__auto___34662]));
+if((i__5750__auto___25368 < len__5749__auto___25367)){
+args_arr__5774__auto__.push((arguments[i__5750__auto___25368]));
 
-var G__34663 = (i__5750__auto___34662 + (1));
-i__5750__auto___34662 = G__34663;
+var G__25369 = (i__5750__auto___25368 + (1));
+i__5750__auto___25368 = G__25369;
 continue;
 } else {
 }
@@ -237,13 +237,13 @@ return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(meta_merge.core.meta_merge
 }));
 
 /** @this {Function} */
-(meta_merge.core.meta_merge.cljs$lang$applyTo = (function (seq34639){
-var G__34640 = cljs.core.first(seq34639);
-var seq34639__$1 = cljs.core.next(seq34639);
-var G__34641 = cljs.core.first(seq34639__$1);
-var seq34639__$2 = cljs.core.next(seq34639__$1);
+(meta_merge.core.meta_merge.cljs$lang$applyTo = (function (seq25362){
+var G__25363 = cljs.core.first(seq25362);
+var seq25362__$1 = cljs.core.next(seq25362);
+var G__25364 = cljs.core.first(seq25362__$1);
+var seq25362__$2 = cljs.core.next(seq25362__$1);
 var self__5734__auto__ = this;
-return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__34640,G__34641,seq34639__$2);
+return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__25363,G__25364,seq25362__$2);
 }));
 
 (meta_merge.core.meta_merge.cljs$lang$maxFixedArity = (2));

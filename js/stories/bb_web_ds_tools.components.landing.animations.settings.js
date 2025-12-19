@@ -20,6 +20,7 @@ var goog=$CLJS.goog || ($CLJS.goog = {});
 var reagent=$CLJS.reagent || ($CLJS.reagent = {});
 var module$shadow_js_shim_module$$js_joda$core=$CLJS.module$shadow_js_shim_module$$js_joda$core || ($CLJS.module$shadow_js_shim_module$$js_joda$core = {});
 var camel_snake_kebab=$CLJS.camel_snake_kebab || ($CLJS.camel_snake_kebab = {});
+var module$shadow_js_shim_module$js_yaml=$CLJS.module$shadow_js_shim_module$js_yaml || ($CLJS.module$shadow_js_shim_module$js_yaml = {});
 var portal=$CLJS.portal || ($CLJS.portal = {});
 var edamame=$CLJS.edamame || ($CLJS.edamame = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
@@ -27,7 +28,6 @@ var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contri
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution = {});
 var datascript=$CLJS.datascript || ($CLJS.datascript = {});
 var malli=$CLJS.malli || ($CLJS.malli = {});
-var fork=$CLJS.fork || ($CLJS.fork = {});
 var me=$CLJS.me || ($CLJS.me = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api = {});
 var com=$CLJS.com || ($CLJS.com = {});
@@ -49,16 +49,16 @@ ctx.beginPath();
 var outer_r = r;
 var inner_r = (r * 0.8);
 var hole_r = (r * 0.3);
-var n__5616__auto___25246 = (teeth * (2));
-var i_25247 = (0);
+var n__5616__auto___25250 = (teeth * (2));
+var i_25251 = (0);
 while(true){
-if((i_25247 < n__5616__auto___25246)){
-var angle_25248 = (i_25247 * (Math.PI / teeth));
-var rad_25249 = ((cljs.core.even_QMARK_(i_25247))?outer_r:inner_r);
-ctx.lineTo((rad_25249 * Math.cos(angle_25248)),(rad_25249 * Math.sin(angle_25248)));
+if((i_25251 < n__5616__auto___25250)){
+var angle_25252 = (i_25251 * (Math.PI / teeth));
+var rad_25253 = ((cljs.core.even_QMARK_(i_25251))?outer_r:inner_r);
+ctx.lineTo((rad_25253 * Math.cos(angle_25252)),(rad_25253 * Math.sin(angle_25252)));
 
-var G__25250 = (i_25247 + (1));
-i_25247 = G__25250;
+var G__25254 = (i_25251 + (1));
+i_25251 = G__25254;
 continue;
 } else {
 }

@@ -21,6 +21,7 @@ var goog=$CLJS.goog || ($CLJS.goog = {});
 var reagent=$CLJS.reagent || ($CLJS.reagent = {});
 var module$shadow_js_shim_module$$js_joda$core=$CLJS.module$shadow_js_shim_module$$js_joda$core || ($CLJS.module$shadow_js_shim_module$$js_joda$core = {});
 var camel_snake_kebab=$CLJS.camel_snake_kebab || ($CLJS.camel_snake_kebab = {});
+var module$shadow_js_shim_module$js_yaml=$CLJS.module$shadow_js_shim_module$js_yaml || ($CLJS.module$shadow_js_shim_module$js_yaml = {});
 var portal=$CLJS.portal || ($CLJS.portal = {});
 var edamame=$CLJS.edamame || ($CLJS.edamame = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
@@ -28,7 +29,6 @@ var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contri
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution = {});
 var datascript=$CLJS.datascript || ($CLJS.datascript = {});
 var malli=$CLJS.malli || ($CLJS.malli = {});
-var fork=$CLJS.fork || ($CLJS.fork = {});
 var me=$CLJS.me || ($CLJS.me = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api = {});
 var com=$CLJS.com || ($CLJS.com = {});
@@ -45,8 +45,8 @@ if((temp__5827__auto__ == null)){
 throw (new Error(["Could not find instance method: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(method_name)].join('')));
 } else {
 var method = temp__5827__auto__;
-var args__$1 = args.map((function (p1__39926_SHARP_){
-return sci.impl.types.eval(p1__39926_SHARP_,ctx,bindings);
+var args__$1 = args.map((function (p1__39809_SHARP_){
+return sci.impl.types.eval(p1__39809_SHARP_,ctx,bindings);
 }));
 return Reflect.apply(method,obj,args__$1);
 }
@@ -57,7 +57,7 @@ return (class$[field_name_sym]);
 sci.impl.interop.fn_eval_allowed_QMARK_ = (function (){try{(new Function("return 1"));
 
 return true;
-}catch (e39931){var _ = e39931;
+}catch (e39815){var _ = e39815;
 return false;
 }})();
 sci.impl.interop.get_static_fields = (function sci$impl$interop$get_static_fields(cur,parts){
@@ -65,10 +65,10 @@ var cur__$1 = cur;
 var i = (0);
 while(true){
 if((i < parts.length)){
-var G__39971 = (cur__$1[(parts[i])]);
-var G__39972 = (i + (1));
-cur__$1 = G__39971;
-i = G__39972;
+var G__39872 = (cur__$1[(parts[i])]);
+var G__39873 = (i + (1));
+cur__$1 = G__39872;
+i = G__39873;
 continue;
 } else {
 return cur__$1;
@@ -90,13 +90,13 @@ return sci.impl.interop.get_static_fields(obj,parts);
 }
 });
 sci.impl.interop.invoke_js_constructor_STAR_ = (function sci$impl$interop$invoke_js_constructor_STAR_(ctx,bindings,constructor$,args){
-return Reflect.construct(constructor$,args.map((function (p1__39932_SHARP_){
-return sci.impl.types.eval(p1__39932_SHARP_,ctx,bindings);
+return Reflect.construct(constructor$,args.map((function (p1__39830_SHARP_){
+return sci.impl.types.eval(p1__39830_SHARP_,ctx,bindings);
 })));
 });
 sci.impl.interop.invoke_static_method = (function sci$impl$interop$invoke_static_method(ctx,bindings,class$,method,args){
-return Reflect.apply(method,class$,args.map((function (p1__39943_SHARP_){
-return sci.impl.types.eval(p1__39943_SHARP_,ctx,bindings);
+return Reflect.apply(method,class$,args.map((function (p1__39831_SHARP_){
+return sci.impl.types.eval(p1__39831_SHARP_,ctx,bindings);
 })));
 });
 sci.impl.interop.fully_qualify_class = (function sci$impl$interop$fully_qualify_class(ctx,sym){
@@ -156,9 +156,9 @@ var cnn = sci.impl.utils.current_ns_name();
 var imports = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(env,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"namespaces","namespaces",-1444157469),cnn,new cljs.core.Keyword(null,"imports","imports",-1249933394)], null));
 var temp__5823__auto__ = cljs.core.find(imports,sym);
 if(cljs.core.truth_(temp__5823__auto__)){
-var vec__39954 = temp__5823__auto__;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39954,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39954,(1),null);
+var vec__39854 = temp__5823__auto__;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39854,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39854,(1),null);
 return cljs.core.get.cljs$core$IFn$_invoke$arity$2(class__GT_opts,v);
 } else {
 var temp__5825__auto__ = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(env,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"imports","imports",-1249933394),sym], null));

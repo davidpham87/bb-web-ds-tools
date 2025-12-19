@@ -19,6 +19,7 @@ var goog=$CLJS.goog || ($CLJS.goog = {});
 var reagent=$CLJS.reagent || ($CLJS.reagent = {});
 var module$shadow_js_shim_module$$js_joda$core=$CLJS.module$shadow_js_shim_module$$js_joda$core || ($CLJS.module$shadow_js_shim_module$$js_joda$core = {});
 var camel_snake_kebab=$CLJS.camel_snake_kebab || ($CLJS.camel_snake_kebab = {});
+var module$shadow_js_shim_module$js_yaml=$CLJS.module$shadow_js_shim_module$js_yaml || ($CLJS.module$shadow_js_shim_module$js_yaml = {});
 var portal=$CLJS.portal || ($CLJS.portal = {});
 var edamame=$CLJS.edamame || ($CLJS.edamame = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
@@ -26,7 +27,6 @@ var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contri
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution = {});
 var datascript=$CLJS.datascript || ($CLJS.datascript = {});
 var malli=$CLJS.malli || ($CLJS.malli = {});
-var fork=$CLJS.fork || ($CLJS.fork = {});
 var me=$CLJS.me || ($CLJS.me = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api = {});
 var com=$CLJS.com || ($CLJS.com = {});
@@ -51,34 +51,34 @@ portal.runtime.json_buffer.__GT_reader = (function portal$runtime$json_buffer$__
 return portal.runtime.json_buffer.shifter(JSON.parse(data));
 });
 portal.runtime.json_buffer.push_null = (function portal$runtime$json_buffer$push_null(buffer){
-var G__36932 = buffer;
-G__36932.push(null);
+var G__36251 = buffer;
+G__36251.push(null);
 
-return G__36932;
+return G__36251;
 });
 portal.runtime.json_buffer.push_bool = (function portal$runtime$json_buffer$push_bool(buffer,value){
-var G__36933 = buffer;
-G__36933.push(value);
+var G__36252 = buffer;
+G__36252.push(value);
 
-return G__36933;
+return G__36252;
 });
 portal.runtime.json_buffer.push_long = (function portal$runtime$json_buffer$push_long(buffer,value){
-var G__36936 = buffer;
-G__36936.push(value);
+var G__36253 = buffer;
+G__36253.push(value);
 
-return G__36936;
+return G__36253;
 });
 portal.runtime.json_buffer.push_double = (function portal$runtime$json_buffer$push_double(buffer,value){
-var G__36939 = buffer;
-G__36939.push(value);
+var G__36262 = buffer;
+G__36262.push(value);
 
-return G__36939;
+return G__36262;
 });
 portal.runtime.json_buffer.push_string = (function portal$runtime$json_buffer$push_string(buffer,value){
-var G__36941 = buffer;
-G__36941.push(value);
+var G__36268 = buffer;
+G__36268.push(value);
 
-return G__36941;
+return G__36268;
 });
 portal.runtime.json_buffer.push_value = (function portal$runtime$json_buffer$push_value(buffer,value){
 if((value == null)){
@@ -122,9 +122,9 @@ portal.runtime.json_buffer.next_value = (function portal$runtime$json_buffer$nex
 return portal.runtime.json_buffer._shift(buffer);
 });
 portal.runtime.json_buffer.with_buffer = (function portal$runtime$json_buffer$with_buffer(f,value){
-return JSON.stringify((function (){var G__36951 = (new Array());
-var G__36952 = value;
-return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__36951,G__36952) : f.call(null,G__36951,G__36952));
+return JSON.stringify((function (){var G__36307 = (new Array());
+var G__36308 = value;
+return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__36307,G__36308) : f.call(null,G__36307,G__36308));
 })());
 });
 

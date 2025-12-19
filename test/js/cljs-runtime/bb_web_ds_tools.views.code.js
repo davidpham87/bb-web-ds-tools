@@ -6,19 +6,19 @@ return db;
 return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(db,new cljs.core.Keyword("bb-web-ds-tools.views.code","active-tab","bb-web-ds-tools.views.code/active-tab",95275616),new cljs.core.Keyword(null,"clojure-repl","clojure-repl",-863277991));
 }
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.code","set-active-tab","bb-web-ds-tools.views.code/set-active-tab",-1083304053),(function (db,p__51577){
-var vec__51579 = p__51577;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51579,(0),null);
-var tab = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51579,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.code","set-active-tab","bb-web-ds-tools.views.code/set-active-tab",-1083304053),(function (db,p__51881){
+var vec__51882 = p__51881;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51882,(0),null);
+var tab = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51882,(1),null);
 return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(db,new cljs.core.Keyword("bb-web-ds-tools.views.code","active-tab","bb-web-ds-tools.views.code/active-tab",95275616),tab);
 }));
 re_frame.core.reg_sub.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword("bb-web-ds-tools.views.code","active-tab","bb-web-ds-tools.views.code/active-tab",95275616),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (db,_){
 return cljs.core.get.cljs$core$IFn$_invoke$arity$3(db,new cljs.core.Keyword("bb-web-ds-tools.views.code","active-tab","bb-web-ds-tools.views.code/active-tab",95275616),new cljs.core.Keyword(null,"clojure-repl","clojure-repl",-863277991));
 })], 0));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.code","set-mobile-view-mode","bb-web-ds-tools.views.code/set-mobile-view-mode",192678378),(function (db,p__51588){
-var vec__51590 = p__51588;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51590,(0),null);
-var mode = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51590,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.views.code","set-mobile-view-mode","bb-web-ds-tools.views.code/set-mobile-view-mode",192678378),(function (db,p__51923){
+var vec__51924 = p__51923;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51924,(0),null);
+var mode = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51924,(1),null);
 return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(db,new cljs.core.Keyword("bb-web-ds-tools.views.code","mobile-view-mode","bb-web-ds-tools.views.code/mobile-view-mode",-1491968158),mode);
 }));
 re_frame.core.reg_sub.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword("bb-web-ds-tools.views.code","mobile-view-mode","bb-web-ds-tools.views.code/mobile-view-mode",-1491968158),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (db,_){
@@ -41,12 +41,12 @@ bb_web_ds_tools.views.code.panel_render = (function bb_web_ds_tools$views$code$p
 var active_tab = cljs.core.deref(re_frame.core.subscribe.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.code","active-tab","bb-web-ds-tools.views.code/active-tab",95275616)], null)));
 var editor_settings = cljs.core.deref(re_frame.core.subscribe.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.events.settings","editor-settings","bb-web-ds-tools.events.settings/editor-settings",74758155)], null)));
 var mobile_view_mode = cljs.core.deref(re_frame.core.subscribe.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.code","mobile-view-mode","bb-web-ds-tools.views.code/mobile-view-mode",-1491968158)], null)));
-var is_md_QMARK_ = (function (){var with_let51627 = reagent.ratom.with_let_values(new cljs.core.Keyword(null,"with-let51627","with-let51627",-1178168462));
-var temp__5829__auto___51680 = reagent.ratom._STAR_ratom_context_STAR_;
-if((temp__5829__auto___51680 == null)){
+var is_md_QMARK_ = (function (){var with_let51935 = reagent.ratom.with_let_values(new cljs.core.Keyword(null,"with-let51935","with-let51935",1025725181));
+var temp__5829__auto___52008 = reagent.ratom._STAR_ratom_context_STAR_;
+if((temp__5829__auto___52008 == null)){
 } else {
-var c__23462__auto___51681 = temp__5829__auto___51680;
-if((with_let51627.generation === c__23462__auto___51681.ratomGeneration)){
+var c__23647__auto___52009 = temp__5829__auto___52008;
+if((with_let51935.generation === c__23647__auto___52009.ratomGeneration)){
 if(reagent.debug.has_console){
 ((reagent.debug.tracking)?reagent.debug.track_console:console).error(["Warning: The same with-let is being used more ","than once in the same reactive context."].join(''));
 } else {
@@ -54,41 +54,41 @@ if(reagent.debug.has_console){
 } else {
 }
 
-(with_let51627.generation = c__23462__auto___51681.ratomGeneration);
+(with_let51935.generation = c__23647__auto___52009.ratomGeneration);
 }
 
-var init51628 = (with_let51627.length === (0));
-var mql = ((((init51628) || (cljs.core.not(with_let51627.hasOwnProperty((0))))))?(with_let51627[(0)] = window.matchMedia("(min-width: 768px)")):(with_let51627[(0)]));
-var match = ((((init51628) || (cljs.core.not(with_let51627.hasOwnProperty((1))))))?(with_let51627[(1)] = reagent.core.atom.cljs$core$IFn$_invoke$arity$1(mql.matches)):(with_let51627[(1)]));
-var handler = ((((init51628) || (cljs.core.not(with_let51627.hasOwnProperty((2))))))?(with_let51627[(2)] = (function (e){
+var init51936 = (with_let51935.length === (0));
+var mql = ((((init51936) || (cljs.core.not(with_let51935.hasOwnProperty((0))))))?(with_let51935[(0)] = window.matchMedia("(min-width: 768px)")):(with_let51935[(0)]));
+var match = ((((init51936) || (cljs.core.not(with_let51935.hasOwnProperty((1))))))?(with_let51935[(1)] = reagent.core.atom.cljs$core$IFn$_invoke$arity$1(mql.matches)):(with_let51935[(1)]));
+var handler = ((((init51936) || (cljs.core.not(with_let51935.hasOwnProperty((2))))))?(with_let51935[(2)] = (function (e){
 return cljs.core.reset_BANG_(match,e.matches);
-})):(with_let51627[(2)]));
-var res51629 = (function (){
+})):(with_let51935[(2)]));
+var res51937 = (function (){
 mql.addEventListener("change",handler);
 
 return cljs.core.deref(match);
 })()
 ;
-var destroy__23461__auto___51688 = (function (){
+var destroy__23646__auto___52016 = (function (){
 return mql.removeEventListener("change",handler);
 });
 if(reagent.ratom.reactive_QMARK_()){
-if((with_let51627.destroy == null)){
-(with_let51627.destroy = destroy__23461__auto___51688);
+if((with_let51935.destroy == null)){
+(with_let51935.destroy = destroy__23646__auto___52016);
 } else {
 }
 } else {
-destroy__23461__auto___51688();
+destroy__23646__auto___52016();
 }
 
-return res51629;
+return res51937;
 })();
 var tabs = new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"id","id",-1388402092),new cljs.core.Keyword(null,"clojure-repl","clojure-repl",-863277991),new cljs.core.Keyword(null,"label","label",1718410804),"Clojure"], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"id","id",-1388402092),new cljs.core.Keyword(null,"pyodide","pyodide",-2009894763),new cljs.core.Keyword(null,"label","label",1718410804),"Python"], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"id","id",-1388402092),new cljs.core.Keyword(null,"r-repl","r-repl",-2114415565),new cljs.core.Keyword(null,"label","label",1718410804),"R"], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"id","id",-1388402092),new cljs.core.Keyword(null,"editor","editor",-989377770),new cljs.core.Keyword(null,"label","label",1718410804),"Editor"], null)], null);
-var tabs_component = new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.nav_tabs,new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"tabs","tabs",-779855354),tabs,new cljs.core.Keyword(null,"active-tab-id","active-tab-id",1961631694),active_tab,new cljs.core.Keyword(null,"class","class",-2030961996),"border-b-0 bg-transparent px-0 text-xs",new cljs.core.Keyword(null,"on-change","on-change",-732046149),(function (p1__51619_SHARP_){
-return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.code","set-active-tab","bb-web-ds-tools.views.code/set-active-tab",-1083304053),p1__51619_SHARP_], null));
+var tabs_component = new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.common.nav_tabs,new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"tabs","tabs",-779855354),tabs,new cljs.core.Keyword(null,"active-tab-id","active-tab-id",1961631694),active_tab,new cljs.core.Keyword(null,"class","class",-2030961996),"border-b-0 bg-transparent px-0 text-xs",new cljs.core.Keyword(null,"on-change","on-change",-732046149),(function (p1__51927_SHARP_){
+return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.core","navigate","bb-web-ds-tools.core/navigate",-787989557),new cljs.core.Keyword(null,"code-tab","code-tab",-2022166816),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"tab","tab",-559583621),cljs.core.name(p1__51927_SHARP_)], null),null], null));
 })], null)], null);
-return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.layout.flex_col,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"h-full w-full"], null),(cljs.core.truth_(is_md_QMARK_)?null:new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.views.code.mobile_view_toggle,mobile_view_mode,(function (p1__51621_SHARP_){
-return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.code","set-mobile-view-mode","bb-web-ds-tools.views.code/set-mobile-view-mode",192678378),p1__51621_SHARP_], null));
+return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.layout.flex_col,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"h-full w-full"], null),(cljs.core.truth_(is_md_QMARK_)?null:new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.views.code.mobile_view_toggle,mobile_view_mode,(function (p1__51928_SHARP_){
+return re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.views.code","set-mobile-view-mode","bb-web-ds-tools.views.code/set-mobile-view-mode",192678378),p1__51928_SHARP_], null));
 })], null)),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"flex flex-col md:flex-row h-full w-full overflow-hidden"], null),(cljs.core.truth_((function (){var or__5025__auto__ = is_md_QMARK_;
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
@@ -96,9 +96,9 @@ return or__5025__auto__;
 return cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(mobile_view_mode,new cljs.core.Keyword(null,"editor","editor",-989377770));
 }
 })())?new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"class","class",-2030961996),"h-full md:h-full overflow-auto border-r border-[#3f3f3f] flex-shrink-0",new cljs.core.Keyword(null,"style","style",-496642736),(cljs.core.truth_(is_md_QMARK_)?new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"width","width",-384071477),new cljs.core.Keyword(null,"width","width",-384071477).cljs$core$IFn$_invoke$arity$1(editor_settings)], null):null)], null),(function (){var props = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"header-content","header-content",-2015916786),tabs_component], null);
-var G__51653 = active_tab;
-var G__51653__$1 = (((G__51653 instanceof cljs.core.Keyword))?G__51653.fqn:null);
-switch (G__51653__$1) {
+var G__51975 = active_tab;
+var G__51975__$1 = (((G__51975 instanceof cljs.core.Keyword))?G__51975.fqn:null);
+switch (G__51975__$1) {
 case "clojure-repl":
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.views.repl.panel,props], null);
 

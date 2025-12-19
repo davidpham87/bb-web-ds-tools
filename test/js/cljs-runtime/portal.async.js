@@ -1,14 +1,14 @@
 goog.provide('portal.async');
 portal.async.race = (function portal$async$race(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___28825 = arguments.length;
-var i__5750__auto___28826 = (0);
+var len__5749__auto___28799 = arguments.length;
+var i__5750__auto___28800 = (0);
 while(true){
-if((i__5750__auto___28826 < len__5749__auto___28825)){
-args__5755__auto__.push((arguments[i__5750__auto___28826]));
+if((i__5750__auto___28800 < len__5749__auto___28799)){
+args__5755__auto__.push((arguments[i__5750__auto___28800]));
 
-var G__28827 = (i__5750__auto___28826 + (1));
-i__5750__auto___28826 = G__28827;
+var G__28801 = (i__5750__auto___28800 + (1));
+i__5750__auto___28800 = G__28801;
 continue;
 } else {
 }
@@ -26,9 +26,9 @@ return Promise.race(args);
 (portal.async.race.cljs$lang$maxFixedArity = (0));
 
 /** @this {Function} */
-(portal.async.race.cljs$lang$applyTo = (function (seq28824){
+(portal.async.race.cljs$lang$applyTo = (function (seq28797){
 var self__5735__auto__ = this;
-return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq28824));
+return self__5735__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq28797));
 }));
 
 

@@ -10,8 +10,8 @@ honey.sql.default_clause_order = cljs.core.PersistentVector.fromArray([new cljs.
  */
 honey.sql.add_clause_before = (function honey$sql$add_clause_before(order,clause,before){
 var clauses = cljs.core.set(order);
-var order__$1 = ((cljs.core.contains_QMARK_(clauses,clause))?cljs.core.filterv((function (p1__51206_SHARP_){
-return cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(p1__51206_SHARP_,clause);
+var order__$1 = ((cljs.core.contains_QMARK_(clauses,clause))?cljs.core.filterv((function (p1__51222_SHARP_){
+return cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(p1__51222_SHARP_,clause);
 }),order):order);
 if(cljs.core.truth_(before)){
 if(cljs.core.contains_QMARK_(clauses,before)){
@@ -38,24 +38,24 @@ return honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(s,clojure.string.replace
 });
 honey.sql.dialects = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.reduce_kv((function (m,k,v){
 return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(m,k,cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(v,new cljs.core.Keyword(null,"dialect","dialect",-1374251073),k));
-}),cljs.core.PersistentArrayMap.EMPTY,new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null,"ansi","ansi",1415977390),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"quote","quote",-262615245),(function (p1__51213_SHARP_){
-return honey.sql.strop("\"",p1__51213_SHARP_,"\"");
-})], null),new cljs.core.Keyword(null,"sqlserver","sqlserver",222509918),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"quote","quote",-262615245),(function (p1__51215_SHARP_){
-return honey.sql.strop("[",p1__51215_SHARP_,"]");
-}),new cljs.core.Keyword(null,"auto-lift-boolean","auto-lift-boolean",1793118318),true], null),new cljs.core.Keyword(null,"mysql","mysql",-1431590210),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"quote","quote",-262615245),(function (p1__51216_SHARP_){
-return honey.sql.strop("`",p1__51216_SHARP_,"`");
-}),new cljs.core.Keyword(null,"clause-order-fn","clause-order-fn",-2005456179),(function (p1__51217_SHARP_){
-return honey.sql.add_clause_before(p1__51217_SHARP_,new cljs.core.Keyword(null,"set","set",304602554),new cljs.core.Keyword(null,"where","where",-2044795965));
-})], null),new cljs.core.Keyword(null,"nrql","nrql",-1120573919),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"quote","quote",-262615245),(function (p1__51218_SHARP_){
-return honey.sql.strop("`",p1__51218_SHARP_,"`");
-}),new cljs.core.Keyword(null,"col-fn","col-fn",69324006),(function (p1__51220_SHARP_){
-if((p1__51220_SHARP_ instanceof cljs.core.Keyword)){
-return cljs.core.subs.cljs$core$IFn$_invoke$arity$2(honey.sql.util.str.cljs$core$IFn$_invoke$arity$1(p1__51220_SHARP_),(1));
+}),cljs.core.PersistentArrayMap.EMPTY,new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null,"ansi","ansi",1415977390),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"quote","quote",-262615245),(function (p1__51238_SHARP_){
+return honey.sql.strop("\"",p1__51238_SHARP_,"\"");
+})], null),new cljs.core.Keyword(null,"sqlserver","sqlserver",222509918),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"quote","quote",-262615245),(function (p1__51239_SHARP_){
+return honey.sql.strop("[",p1__51239_SHARP_,"]");
+}),new cljs.core.Keyword(null,"auto-lift-boolean","auto-lift-boolean",1793118318),true], null),new cljs.core.Keyword(null,"mysql","mysql",-1431590210),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"quote","quote",-262615245),(function (p1__51240_SHARP_){
+return honey.sql.strop("`",p1__51240_SHARP_,"`");
+}),new cljs.core.Keyword(null,"clause-order-fn","clause-order-fn",-2005456179),(function (p1__51242_SHARP_){
+return honey.sql.add_clause_before(p1__51242_SHARP_,new cljs.core.Keyword(null,"set","set",304602554),new cljs.core.Keyword(null,"where","where",-2044795965));
+})], null),new cljs.core.Keyword(null,"nrql","nrql",-1120573919),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"quote","quote",-262615245),(function (p1__51243_SHARP_){
+return honey.sql.strop("`",p1__51243_SHARP_,"`");
+}),new cljs.core.Keyword(null,"col-fn","col-fn",69324006),(function (p1__51244_SHARP_){
+if((p1__51244_SHARP_ instanceof cljs.core.Keyword)){
+return cljs.core.subs.cljs$core$IFn$_invoke$arity$2(honey.sql.util.str.cljs$core$IFn$_invoke$arity$1(p1__51244_SHARP_),(1));
 } else {
-return honey.sql.util.str.cljs$core$IFn$_invoke$arity$1(p1__51220_SHARP_);
+return honey.sql.util.str.cljs$core$IFn$_invoke$arity$1(p1__51244_SHARP_);
 }
-}),new cljs.core.Keyword(null,"parts-fn","parts-fn",1152861),cljs.core.vector], null),new cljs.core.Keyword(null,"oracle","oracle",-2085139604),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"quote","quote",-262615245),(function (p1__51221_SHARP_){
-return honey.sql.strop("\"",p1__51221_SHARP_,"\"");
+}),new cljs.core.Keyword(null,"parts-fn","parts-fn",1152861),cljs.core.vector], null),new cljs.core.Keyword(null,"oracle","oracle",-2085139604),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"quote","quote",-262615245),(function (p1__51245_SHARP_){
+return honey.sql.strop("\"",p1__51245_SHARP_,"\"");
 }),new cljs.core.Keyword(null,"as","as",1148689641),false], null)], null)));
 honey.sql.default_dialect = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(new cljs.core.Keyword(null,"ansi","ansi",1415977390).cljs$core$IFn$_invoke$arity$1(cljs.core.deref(honey.sql.dialects)));
 honey.sql.default_quoted = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(null);
@@ -127,24 +127,24 @@ return clojure.string.upper_case(s);
  *   Hyphens at the start or end of a string should not be touched.
  */
 honey.sql.dehyphen = (function honey$sql$dehyphen(s){
-var G__51247 = s;
+var G__51265 = s;
 if(clojure.string.includes_QMARK_(s,"-")){
-return clojure.string.replace(G__51247,/(\w)-(?=\w)/,"$1 ");
+return clojure.string.replace(G__51265,/(\w)-(?=\w)/,"$1 ");
 } else {
-return G__51247;
+return G__51265;
 }
 });
 /**
  * Return the namespace portion of a symbol, with dashes converted.
  */
 honey.sql.namespace__ = (function honey$sql$namespace__(x){
-try{var G__51252 = cljs.core.namespace(x);
-if((G__51252 == null)){
+try{var G__51271 = cljs.core.namespace(x);
+if((G__51271 == null)){
 return null;
 } else {
-return clojure.string.replace(G__51252,"-","_");
+return clojure.string.replace(G__51271,"-","_");
 }
-}catch (e51250){var t = e51250;
+}catch (e51269){var t = e51269;
 throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(honey.sql.util.str.cljs$core$IFn$_invoke$arity$2("expected symbol, found: ",cljs.core.type(x)),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"symbol","symbol",-1038572696),x,new cljs.core.Keyword(null,"failure","failure",720415879),honey.sql.util.str.cljs$core$IFn$_invoke$arity$1(t)], null));
 }});
 /**
@@ -152,7 +152,7 @@ throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(honey.sql.util.str.cljs$co
  */
 honey.sql.name__ = (function honey$sql$name__(x){
 try{return clojure.string.replace(cljs.core.name(x),"-","_");
-}catch (e51253){var t = e51253;
+}catch (e51275){var t = e51275;
 throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(honey.sql.util.str.cljs$core$IFn$_invoke$arity$2("expected symbol, found: ",cljs.core.type(x)),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"symbol","symbol",-1038572696),x,new cljs.core.Keyword(null,"failure","failure",720415879),honey.sql.util.str.cljs$core$IFn$_invoke$arity$1(t)], null));
 }});
 honey.sql.ensure_sequential = (function honey$sql$ensure_sequential(xs){
@@ -177,8 +177,8 @@ honey.sql.alphanumeric = /^(?:[0-9_]+|[A-Za-z_][A-Za-z0-9_]*)$/;
  *   Handles quoting, splitting at / or ., replacing - with _ etc.
  */
 honey.sql.format_entity = (function honey$sql$format_entity(var_args){
-var G__51266 = arguments.length;
-switch (G__51266) {
+var G__51284 = arguments.length;
+switch (G__51284) {
 case 1:
 return honey.sql.format_entity.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -197,17 +197,17 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 return honey.sql.format_entity.cljs$core$IFn$_invoke$arity$2(e,cljs.core.PersistentArrayMap.EMPTY);
 }));
 
-(honey.sql.format_entity.cljs$core$IFn$_invoke$arity$2 = (function (e,p__51267){
-var map__51268 = p__51267;
-var map__51268__$1 = cljs.core.__destructure_map(map__51268);
-var aliased = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__51268__$1,new cljs.core.Keyword(null,"aliased","aliased",-125439273));
-var drop_ns = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__51268__$1,new cljs.core.Keyword(null,"drop-ns","drop-ns",-1721308319));
+(honey.sql.format_entity.cljs$core$IFn$_invoke$arity$2 = (function (e,p__51289){
+var map__51291 = p__51289;
+var map__51291__$1 = cljs.core.__destructure_map(map__51291);
+var aliased = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__51291__$1,new cljs.core.Keyword(null,"aliased","aliased",-125439273));
+var drop_ns = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__51291__$1,new cljs.core.Keyword(null,"drop-ns","drop-ns",-1721308319));
 var dialect = honey.sql._STAR_dialect_STAR_;
-var map__51270 = honey.sql._STAR_options_STAR_;
-var map__51270__$1 = cljs.core.__destructure_map(map__51270);
-var quoted = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__51270__$1,new cljs.core.Keyword(null,"quoted","quoted",2117344952));
-var quoted_snake = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__51270__$1,new cljs.core.Keyword(null,"quoted-snake","quoted-snake",-1093133358));
-var quoted_always = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__51270__$1,new cljs.core.Keyword(null,"quoted-always","quoted-always",365198806));
+var map__51293 = honey.sql._STAR_options_STAR_;
+var map__51293__$1 = cljs.core.__destructure_map(map__51293);
+var quoted = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__51293__$1,new cljs.core.Keyword(null,"quoted","quoted",2117344952));
+var quoted_snake = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__51293__$1,new cljs.core.Keyword(null,"quoted-snake","quoted-snake",-1093133358));
+var quoted_always = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__51293__$1,new cljs.core.Keyword(null,"quoted-always","quoted-always",365198806));
 var e__$1 = (cljs.core.truth_((function (){var and__5023__auto__ = aliased;
 if(cljs.core.truth_(and__5023__auto__)){
 return (((e instanceof cljs.core.Keyword)) && (clojure.string.starts_with_QMARK_(cljs.core.name(e),"'")));
@@ -245,11 +245,11 @@ return or__5025__auto__;
 return typeof e__$1 === 'string';
 }
 })())?dialect_q:(((quoted == null))?(function honey$sql$opt_quote(part){
-if(cljs.core.truth_((function (){var G__51277 = quoted_always;
-if((G__51277 == null)){
+if(cljs.core.truth_((function (){var G__51301 = quoted_always;
+if((G__51301 == null)){
 return null;
 } else {
-return cljs.core.re_find(G__51277,part);
+return cljs.core.re_find(G__51301,part);
 }
 })())){
 return (dialect_q.cljs$core$IFn$_invoke$arity$1 ? dialect_q.cljs$core$IFn$_invoke$arity$1(part) : dialect_q.call(null,part));
@@ -273,7 +273,7 @@ var parts_fn = (function (){var or__5025__auto__ = new cljs.core.Keyword(null,"p
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
 } else {
-return (function (p1__51261_SHARP_){
+return (function (p1__51278_SHARP_){
 var temp__5823__auto__ = (cljs.core.truth_((function (){var or__5025__auto____$1 = drop_ns;
 if(cljs.core.truth_(or__5025__auto____$1)){
 return or__5025__auto____$1;
@@ -283,24 +283,24 @@ return typeof e__$1 === 'string';
 })())?null:honey.sql.namespace__(e__$1));
 if(cljs.core.truth_(temp__5823__auto__)){
 var n = temp__5823__auto__;
-return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [n,p1__51261_SHARP_], null);
+return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [n,p1__51278_SHARP_], null);
 } else {
 if(cljs.core.truth_(aliased)){
-return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [p1__51261_SHARP_], null);
+return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [p1__51278_SHARP_], null);
 } else {
-return honey.sql.util.split_by_separator(p1__51261_SHARP_,".");
+return honey.sql.util.split_by_separator(p1__51278_SHARP_,".");
 }
 }
 });
 }
 })();
 var parts = (parts_fn.cljs$core$IFn$_invoke$arity$1 ? parts_fn.cljs$core$IFn$_invoke$arity$1(col_e) : parts_fn.call(null,col_e));
-var entity = honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(".",cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__51262_SHARP_){
-var G__51279 = p1__51262_SHARP_;
-if(cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2("*",p1__51262_SHARP_)){
-return (quote_fn.cljs$core$IFn$_invoke$arity$1 ? quote_fn.cljs$core$IFn$_invoke$arity$1(G__51279) : quote_fn.call(null,G__51279));
+var entity = honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(".",cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__51279_SHARP_){
+var G__51308 = p1__51279_SHARP_;
+if(cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2("*",p1__51279_SHARP_)){
+return (quote_fn.cljs$core$IFn$_invoke$arity$1 ? quote_fn.cljs$core$IFn$_invoke$arity$1(G__51308) : quote_fn.call(null,G__51308));
 } else {
-return G__51279;
+return G__51308;
 }
 })),parts);
 honey.sql.suspicious_entity_check(entity);
@@ -324,28 +324,28 @@ return entity;
  */
 honey.sql.sql_kw = (function honey$sql$sql_kw(k){
 if(cljs.core.truth_(k)){
-var n = (function (){var G__51285 = cljs.core.name(k);
+var n = (function (){var G__51314 = cljs.core.name(k);
 if(cljs.core.truth_(honey.sql._STAR_escape__QMARK__STAR_)){
-return clojure.string.replace(G__51285,"?","??");
+return clojure.string.replace(G__51314,"?","??");
 } else {
-return G__51285;
+return G__51314;
 }
 })();
 if(clojure.string.starts_with_QMARK_(n,"'")){
 var ident = cljs.core.subs.cljs$core$IFn$_invoke$arity$2(n,(1));
 var ident_l = clojure.string.lower_case(ident);
-var _STAR_options_STAR__orig_val__51288 = honey.sql._STAR_options_STAR_;
-var _STAR_options_STAR__temp_val__51289 = (function (){var G__51290 = honey.sql._STAR_options_STAR_;
+var _STAR_options_STAR__orig_val__51316 = honey.sql._STAR_options_STAR_;
+var _STAR_options_STAR__temp_val__51317 = (function (){var G__51319 = honey.sql._STAR_options_STAR_;
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(ident_l,"array")){
-return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(G__51290,new cljs.core.Keyword(null,"quoted","quoted",2117344952),null);
+return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(G__51319,new cljs.core.Keyword(null,"quoted","quoted",2117344952),null);
 } else {
-return G__51290;
+return G__51319;
 }
 })();
-(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__temp_val__51289);
+(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__temp_val__51317);
 
 try{return honey.sql.format_entity.cljs$core$IFn$_invoke$arity$1(cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(ident));
-}finally {(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__orig_val__51288);
+}finally {(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__orig_val__51316);
 }} else {
 return honey.sql.upper_case(honey.sql.dehyphen(n));
 }
@@ -389,14 +389,14 @@ return k;
 });
 honey.sql.inline_map = (function honey$sql$inline_map(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___52721 = arguments.length;
-var i__5750__auto___52722 = (0);
+var len__5749__auto___52723 = arguments.length;
+var i__5750__auto___52724 = (0);
 while(true){
-if((i__5750__auto___52722 < len__5749__auto___52721)){
-args__5755__auto__.push((arguments[i__5750__auto___52722]));
+if((i__5750__auto___52724 < len__5749__auto___52723)){
+args__5755__auto__.push((arguments[i__5750__auto___52724]));
 
-var G__52723 = (i__5750__auto___52722 + (1));
-i__5750__auto___52722 = G__52723;
+var G__52725 = (i__5750__auto___52724 + (1));
+i__5750__auto___52724 = G__52725;
 continue;
 } else {
 }
@@ -407,20 +407,20 @@ var argseq__5756__auto__ = ((((1) < args__5755__auto__.length))?(new cljs.core.I
 return honey.sql.inline_map.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),argseq__5756__auto__);
 });
 
-(honey.sql.inline_map.cljs$core$IFn$_invoke$arity$variadic = (function (x,p__51313){
-var vec__51314 = p__51313;
-var open = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51314,(0),null);
-var close = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51314,(1),null);
+(honey.sql.inline_map.cljs$core$IFn$_invoke$arity$variadic = (function (x,p__51339){
+var vec__51341 = p__51339;
+var open = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51341,(0),null);
+var close = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51341,(1),null);
 return honey.sql.util.str.cljs$core$IFn$_invoke$arity$3((function (){var or__5025__auto__ = open;
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
 } else {
 return "{";
 }
-})(),honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p__51319){
-var vec__51320 = p__51319;
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51320,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51320,(1),null);
+})(),honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p__51346){
+var vec__51347 = p__51346;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51347,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51347,(1),null);
 return honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(honey.sql.format_entity.cljs$core$IFn$_invoke$arity$1(k),": ",honey.sql.protocols.sqlize(v));
 })),x),(function (){var or__5025__auto__ = close;
 if(cljs.core.truth_(or__5025__auto__)){
@@ -434,11 +434,11 @@ return "}";
 (honey.sql.inline_map.cljs$lang$maxFixedArity = (1));
 
 /** @this {Function} */
-(honey.sql.inline_map.cljs$lang$applyTo = (function (seq51306){
-var G__51307 = cljs.core.first(seq51306);
-var seq51306__$1 = cljs.core.next(seq51306);
+(honey.sql.inline_map.cljs$lang$applyTo = (function (seq51333){
+var G__51334 = cljs.core.first(seq51333);
+var seq51333__$1 = cljs.core.next(seq51333);
 var self__5734__auto__ = this;
-return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__51307,seq51306__$1);
+return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__51334,seq51333__$1);
 }));
 
 (honey.sql.protocols.InlineValue["null"] = true);
@@ -501,9 +501,9 @@ honey.sql.sqlize_value = (function honey$sql$sqlize_value(x){
 return honey.sql.protocols.sqlize(x);
 });
 honey.sql.param_value = (function honey$sql$param_value(k){
-var map__51346 = honey.sql._STAR_options_STAR_;
-var map__51346__$1 = cljs.core.__destructure_map(map__51346);
-var params = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__51346__$1,new cljs.core.Keyword(null,"params","params",710516235));
+var map__51370 = honey.sql._STAR_options_STAR_;
+var map__51370__$1 = cljs.core.__destructure_map(map__51370);
+var params = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__51370__$1,new cljs.core.Keyword(null,"params","params",710516235));
 if(cljs.core.contains_QMARK_(params,k)){
 return cljs.core.get.cljs$core$IFn$_invoke$arity$2(params,k);
 } else {
@@ -516,18 +516,18 @@ return honey.sql.param_value((fk.cljs$core$IFn$_invoke$arity$0 ? fk.cljs$core$IF
 })], null));
 });
 honey.sql.__GT_numbered = (function honey$sql$__GT_numbered(v){
-var map__51352 = honey.sql._STAR_options_STAR_;
-var map__51352__$1 = cljs.core.__destructure_map(map__51352);
-var numbered = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__51352__$1,new cljs.core.Keyword(null,"numbered","numbered",-2119856269));
+var map__51375 = honey.sql._STAR_options_STAR_;
+var map__51375__$1 = cljs.core.__destructure_map(map__51375);
+var numbered = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__51375__$1,new cljs.core.Keyword(null,"numbered","numbered",-2119856269));
 var n = cljs.core.count(cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$3(numbered,cljs.core.conj,v));
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$2("$",n),cljs.core.with_meta(cljs.core.constantly((n - (1))),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword("honey.sql","wrapper","honey.sql/wrapper",465758343),(function (fk,_){
 return cljs.core.get.cljs$core$IFn$_invoke$arity$2(cljs.core.deref(numbered),(fk.cljs$core$IFn$_invoke$arity$0 ? fk.cljs$core$IFn$_invoke$arity$0() : fk.call(null)));
 })], null))], null);
 });
 honey.sql.__GT_numbered_param = (function honey$sql$__GT_numbered_param(k){
-var map__51358 = honey.sql._STAR_options_STAR_;
-var map__51358__$1 = cljs.core.__destructure_map(map__51358);
-var numbered = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__51358__$1,new cljs.core.Keyword(null,"numbered","numbered",-2119856269));
+var map__51377 = honey.sql._STAR_options_STAR_;
+var map__51377__$1 = cljs.core.__destructure_map(map__51377);
+var numbered = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__51377__$1,new cljs.core.Keyword(null,"numbered","numbered",-2119856269));
 var n = cljs.core.count(cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$3(numbered,cljs.core.conj,k));
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$2("$",n),cljs.core.with_meta(cljs.core.constantly((n - (1))),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword("honey.sql","wrapper","honey.sql/wrapper",465758343),(function (fk,_){
 return honey.sql.param_value(cljs.core.get.cljs$core$IFn$_invoke$arity$2(cljs.core.deref(numbered),(fk.cljs$core$IFn$_invoke$arity$0 ? fk.cljs$core$IFn$_invoke$arity$0() : fk.call(null))));
@@ -537,8 +537,8 @@ honey.sql.format_fn_name = (function honey$sql$format_fn_name(x){
 return honey.sql.upper_case(clojure.string.replace(cljs.core.name(x),"-","_"));
 });
 honey.sql.format_simple_var = (function honey$sql$format_simple_var(var_args){
-var G__51365 = arguments.length;
-switch (G__51365) {
+var G__51379 = arguments.length;
+switch (G__51379) {
 case 1:
 return honey.sql.format_simple_var.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -569,8 +569,8 @@ return honey.sql.format_entity.cljs$core$IFn$_invoke$arity$2(x,opts);
 (honey.sql.format_simple_var.cljs$lang$maxFixedArity = 3);
 
 honey.sql.format_var = (function honey$sql$format_var(var_args){
-var G__51372 = arguments.length;
-switch (G__51372) {
+var G__51382 = arguments.length;
+switch (G__51382) {
 case 1:
 return honey.sql.format_var.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -590,20 +590,20 @@ return honey.sql.format_var.cljs$core$IFn$_invoke$arity$2(x,cljs.core.Persistent
 }));
 
 (honey.sql.format_var.cljs$core$IFn$_invoke$arity$2 = (function (x,opts){
-var map__51376 = honey.sql._STAR_options_STAR_;
-var map__51376__$1 = cljs.core.__destructure_map(map__51376);
-var inline = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__51376__$1,new cljs.core.Keyword(null,"inline","inline",1399884222));
-var numbered = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__51376__$1,new cljs.core.Keyword(null,"numbered","numbered",-2119856269));
+var map__51383 = honey.sql._STAR_options_STAR_;
+var map__51383__$1 = cljs.core.__destructure_map(map__51383);
+var inline = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__51383__$1,new cljs.core.Keyword(null,"inline","inline",1399884222));
+var numbered = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__51383__$1,new cljs.core.Keyword(null,"numbered","numbered",-2119856269));
 var c = (((x instanceof cljs.core.Keyword))?cljs.core.subs.cljs$core$IFn$_invoke$arity$2(honey.sql.util.str.cljs$core$IFn$_invoke$arity$1(x),(1)):honey.sql.util.str.cljs$core$IFn$_invoke$arity$1(x));
 if(clojure.string.starts_with_QMARK_(c,"%")){
-var vec__51378 = honey.sql.util.split_by_separator(cljs.core.subs.cljs$core$IFn$_invoke$arity$2(c,(1)),".");
-var seq__51379 = cljs.core.seq(vec__51378);
-var first__51380 = cljs.core.first(seq__51379);
-var seq__51379__$1 = cljs.core.next(seq__51379);
-var f = first__51380;
-var args = seq__51379__$1;
-return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$4(honey.sql.format_fn_name(f),"(",honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__51369_SHARP_){
-return honey.sql.format_entity.cljs$core$IFn$_invoke$arity$2(cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(p1__51369_SHARP_),opts);
+var vec__51387 = honey.sql.util.split_by_separator(cljs.core.subs.cljs$core$IFn$_invoke$arity$2(c,(1)),".");
+var seq__51388 = cljs.core.seq(vec__51387);
+var first__51389 = cljs.core.first(seq__51388);
+var seq__51388__$1 = cljs.core.next(seq__51388);
+var f = first__51389;
+var args = seq__51388__$1;
+return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$4(honey.sql.format_fn_name(f),"(",honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__51380_SHARP_){
+return honey.sql.format_entity.cljs$core$IFn$_invoke$arity$2(cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(p1__51380_SHARP_),opts);
 })),args),")")], null);
 } else {
 if(clojure.string.starts_with_QMARK_(c,"?")){
@@ -636,17 +636,17 @@ throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2("selectable cannot be stat
 } else {
 }
 
-var vec__51381 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(s) : honey.sql.format_expr.call(null,s));
-var seq__51382 = cljs.core.seq(vec__51381);
-var first__51383 = cljs.core.first(seq__51382);
-var seq__51382__$1 = cljs.core.next(seq__51382);
-var sql = first__51383;
-var params = seq__51382__$1;
-return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [(function (){var G__51384 = sql;
+var vec__51393 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(s) : honey.sql.format_expr.call(null,s));
+var seq__51394 = cljs.core.seq(vec__51393);
+var first__51395 = cljs.core.first(seq__51394);
+var seq__51394__$1 = cljs.core.next(seq__51394);
+var sql = first__51395;
+var params = seq__51394__$1;
+return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [(function (){var G__51396 = sql;
 if(pair_QMARK_){
-return honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(G__51384,((((cljs.core.contains_QMARK_(honey.sql._STAR_dialect_STAR_,new cljs.core.Keyword(null,"as","as",1148689641))) && (cljs.core.not(new cljs.core.Keyword(null,"as","as",1148689641).cljs$core$IFn$_invoke$arity$1(honey.sql._STAR_dialect_STAR_)))))?" ":" AS "),honey.sql.format_entity.cljs$core$IFn$_invoke$arity$2(cljs.core.second(x),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"aliased","aliased",-125439273),true], null)));
+return honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(G__51396,((((cljs.core.contains_QMARK_(honey.sql._STAR_dialect_STAR_,new cljs.core.Keyword(null,"as","as",1148689641))) && (cljs.core.not(new cljs.core.Keyword(null,"as","as",1148689641).cljs$core$IFn$_invoke$arity$1(honey.sql._STAR_dialect_STAR_)))))?" ":" AS "),honey.sql.format_entity.cljs$core$IFn$_invoke$arity$2(cljs.core.second(x),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"aliased","aliased",-125439273),true], null)));
 } else {
-return G__51384;
+return G__51396;
 }
 })()], null),params);
 } else {
@@ -654,19 +654,19 @@ return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMP
 
 }
 });
-honey.sql.bigquery__STAR__except_replace_QMARK_ = (function honey$sql$bigquery__STAR__except_replace_QMARK_(p__51387){
-var vec__51388 = p__51387;
-var maybe__STAR_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51388,(0),null);
-var maybe_except_replace = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51388,(1),null);
+honey.sql.bigquery__STAR__except_replace_QMARK_ = (function honey$sql$bigquery__STAR__except_replace_QMARK_(p__51402){
+var vec__51405 = p__51402;
+var maybe__STAR_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51405,(0),null);
+var maybe_except_replace = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51405,(1),null);
 var and__5023__auto__ = cljs.core.ident_QMARK_(maybe__STAR_);
 if(and__5023__auto__){
 var and__5023__auto____$1 = ((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2("*",cljs.core.name(maybe__STAR_))) || (clojure.string.ends_with_QMARK_(cljs.core.name(maybe__STAR_),".*")));
 if(and__5023__auto____$1){
 var and__5023__auto____$2 = cljs.core.ident_QMARK_(maybe_except_replace);
 if(and__5023__auto____$2){
-var G__51393 = cljs.core.name(maybe_except_replace);
-var fexpr__51392 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, ["replace",null,"except",null], null), null);
-return (fexpr__51392.cljs$core$IFn$_invoke$arity$1 ? fexpr__51392.cljs$core$IFn$_invoke$arity$1(G__51393) : fexpr__51392.call(null,G__51393));
+var G__51412 = cljs.core.name(maybe_except_replace);
+var fexpr__51411 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, ["replace",null,"except",null], null), null);
+return (fexpr__51411.cljs$core$IFn$_invoke$arity$1 ? fexpr__51411.cljs$core$IFn$_invoke$arity$1(G__51412) : fexpr__51411.call(null,G__51412));
 } else {
 return and__5023__auto____$2;
 }
@@ -680,30 +680,30 @@ return and__5023__auto__;
 /**
  * Format BigQuery * except/replace phrases #281.
  */
-honey.sql.format_bigquery__STAR__except_replace = (function honey$sql$format_bigquery__STAR__except_replace(p__51394){
-var vec__51395 = p__51394;
-var seq__51396 = cljs.core.seq(vec__51395);
-var first__51397 = cljs.core.first(seq__51396);
-var seq__51396__$1 = cljs.core.next(seq__51396);
-var star_cols = first__51397;
-var x = seq__51396__$1;
-var vec__51398 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(star_cols) : honey.sql.format_expr.call(null,star_cols));
-var seq__51399 = cljs.core.seq(vec__51398);
-var first__51400 = cljs.core.first(seq__51399);
-var seq__51399__$1 = cljs.core.next(seq__51399);
-var sql = first__51400;
-var params = seq__51399__$1;
-var vec__51401 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (p__51404,p__51405){
-var vec__51406 = p__51404;
-var seq__51407 = cljs.core.seq(vec__51406);
-var first__51408 = cljs.core.first(seq__51407);
-var seq__51407__$1 = cljs.core.next(seq__51407);
-var sql__$1 = first__51408;
-var params__$1 = seq__51407__$1;
-var vec__51409 = p__51405;
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51409,(0),null);
-var arg = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51409,(1),null);
-var vec__51412 = (cljs.core.truth_((function (){var and__5023__auto__ = cljs.core.ident_QMARK_(k);
+honey.sql.format_bigquery__STAR__except_replace = (function honey$sql$format_bigquery__STAR__except_replace(p__51420){
+var vec__51422 = p__51420;
+var seq__51423 = cljs.core.seq(vec__51422);
+var first__51424 = cljs.core.first(seq__51423);
+var seq__51423__$1 = cljs.core.next(seq__51423);
+var star_cols = first__51424;
+var x = seq__51423__$1;
+var vec__51426 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(star_cols) : honey.sql.format_expr.call(null,star_cols));
+var seq__51427 = cljs.core.seq(vec__51426);
+var first__51428 = cljs.core.first(seq__51427);
+var seq__51427__$1 = cljs.core.next(seq__51427);
+var sql = first__51428;
+var params = seq__51427__$1;
+var vec__51429 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (p__51437,p__51438){
+var vec__51440 = p__51437;
+var seq__51441 = cljs.core.seq(vec__51440);
+var first__51442 = cljs.core.first(seq__51441);
+var seq__51441__$1 = cljs.core.next(seq__51441);
+var sql__$1 = first__51442;
+var params__$1 = seq__51441__$1;
+var vec__51443 = p__51438;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51443,(0),null);
+var arg = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51443,(1),null);
+var vec__51447 = (cljs.core.truth_((function (){var and__5023__auto__ = cljs.core.ident_QMARK_(k);
 if(and__5023__auto__){
 var and__5023__auto____$1 = cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2("except",cljs.core.name(k));
 if(and__5023__auto____$1){
@@ -714,12 +714,12 @@ return and__5023__auto____$1;
 } else {
 return and__5023__auto__;
 }
-})())?(function (){var vec__51415 = (function (){var G__51418 = arg;
-var G__51419 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"aliased","aliased",-125439273),true], null);
-return (honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$2(G__51418,G__51419) : honey.sql.format_expr_list.call(null,G__51418,G__51419));
+})())?(function (){var vec__51452 = (function (){var G__51455 = arg;
+var G__51456 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"aliased","aliased",-125439273),true], null);
+return (honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$2(G__51455,G__51456) : honey.sql.format_expr_list.call(null,G__51455,G__51456));
 })();
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51415,(0),null);
-var params__$2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51415,(1),null);
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51452,(0),null);
+var params__$2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51452,(1),null);
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$4(honey.sql.sql_kw(k)," (",honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(", ",sqls),")"),params__$2], null);
 })():(cljs.core.truth_((function (){var and__5023__auto__ = cljs.core.ident_QMARK_(k);
 if(and__5023__auto__){
@@ -732,49 +732,49 @@ return and__5023__auto____$1;
 } else {
 return and__5023__auto__;
 }
-})())?(function (){var vec__51421 = (honey.sql.format_selects_common.cljs$core$IFn$_invoke$arity$3 ? honey.sql.format_selects_common.cljs$core$IFn$_invoke$arity$3(null,true,arg) : honey.sql.format_selects_common.call(null,null,true,arg));
-var seq__51422 = cljs.core.seq(vec__51421);
-var first__51423 = cljs.core.first(seq__51422);
-var seq__51422__$1 = cljs.core.next(seq__51422);
-var sql__$2 = first__51423;
-var params__$2 = seq__51422__$1;
+})())?(function (){var vec__51459 = (honey.sql.format_selects_common.cljs$core$IFn$_invoke$arity$3 ? honey.sql.format_selects_common.cljs$core$IFn$_invoke$arity$3(null,true,arg) : honey.sql.format_selects_common.call(null,null,true,arg));
+var seq__51460 = cljs.core.seq(vec__51459);
+var first__51461 = cljs.core.first(seq__51460);
+var seq__51460__$1 = cljs.core.next(seq__51460);
+var sql__$2 = first__51461;
+var params__$2 = seq__51460__$1;
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$4(honey.sql.sql_kw(k)," (",sql__$2,")"),params__$2], null);
 })():(function(){throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2("bigquery * only supports except and replace",new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"clause","clause",1479668060),k,new cljs.core.Keyword(null,"arg","arg",-1747261837),arg], null))})()
 ));
-var sql_SINGLEQUOTE_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51412,(0),null);
-var params_SINGLEQUOTE_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51412,(1),null);
-return honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [(function (){var G__51426 = sql_SINGLEQUOTE_;
+var sql_SINGLEQUOTE_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51447,(0),null);
+var params_SINGLEQUOTE_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51447,(1),null);
+return honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [(function (){var G__51463 = sql_SINGLEQUOTE_;
 if(cljs.core.truth_(sql__$1)){
-return honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(sql__$1," ",G__51426);
+return honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(sql__$1," ",G__51463);
 } else {
-return G__51426;
+return G__51463;
 }
 })()], null),params__$1,params_SINGLEQUOTE_);
 }),cljs.core.PersistentVector.EMPTY,cljs.core.partition_all.cljs$core$IFn$_invoke$arity$2((2),x));
-var seq__51402 = cljs.core.seq(vec__51401);
-var first__51403 = cljs.core.first(seq__51402);
-var seq__51402__$1 = cljs.core.next(seq__51402);
-var sql_SINGLEQUOTE_ = first__51403;
-var params_SINGLEQUOTE_ = seq__51402__$1;
+var seq__51430 = cljs.core.seq(vec__51429);
+var first__51431 = cljs.core.first(seq__51430);
+var seq__51430__$1 = cljs.core.next(seq__51430);
+var sql_SINGLEQUOTE_ = first__51431;
+var params_SINGLEQUOTE_ = seq__51430__$1;
 return honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(sql," ",sql_SINGLEQUOTE_)], null),params,params_SINGLEQUOTE_);
 });
 /**
  * Given a general selectable item, split it into the subject selectable,
  * an optional alias, and any temporal clauses present.
  */
-honey.sql.split_alias_temporal = (function honey$sql$split_alias_temporal(p__51427){
-var vec__51428 = p__51427;
-var seq__51429 = cljs.core.seq(vec__51428);
-var first__51430 = cljs.core.first(seq__51429);
-var seq__51429__$1 = cljs.core.next(seq__51429);
-var selectable = first__51430;
-var first__51430__$1 = cljs.core.first(seq__51429__$1);
-var seq__51429__$2 = cljs.core.next(seq__51429__$1);
-var alias_for = first__51430__$1;
-var first__51430__$2 = cljs.core.first(seq__51429__$2);
-var seq__51429__$3 = cljs.core.next(seq__51429__$2);
-var for_part = first__51430__$2;
-var more = seq__51429__$3;
+honey.sql.split_alias_temporal = (function honey$sql$split_alias_temporal(p__51474){
+var vec__51477 = p__51474;
+var seq__51478 = cljs.core.seq(vec__51477);
+var first__51479 = cljs.core.first(seq__51478);
+var seq__51478__$1 = cljs.core.next(seq__51478);
+var selectable = first__51479;
+var first__51479__$1 = cljs.core.first(seq__51478__$1);
+var seq__51478__$2 = cljs.core.next(seq__51478__$1);
+var alias_for = first__51479__$1;
+var first__51479__$2 = cljs.core.first(seq__51478__$2);
+var seq__51478__$3 = cljs.core.next(seq__51478__$2);
+var for_part = first__51479__$2;
+var more = seq__51478__$3;
 var no_alias_QMARK_ = (function (){var and__5023__auto__ = cljs.core.contains_QMARK_(new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Symbol(null,"for","for",316745208,null),null,new cljs.core.Keyword(null,"for","for",-1323786319),null], null), null),alias_for);
 if(and__5023__auto__){
 return for_part;
@@ -802,16 +802,16 @@ return cljs.core.seq(more);
  * Then generic format here is to alternate between sql-kw and format-expr
  * as we walk the <period> sequence.
  */
-honey.sql.format_temporal = (function honey$sql$format_temporal(p__51435){
-var vec__51436 = p__51435;
-var seq__51437 = cljs.core.seq(vec__51436);
-var first__51438 = cljs.core.first(seq__51437);
-var seq__51437__$1 = cljs.core.next(seq__51437);
-var for_part = first__51438;
-var first__51438__$1 = cljs.core.first(seq__51437__$1);
-var seq__51437__$2 = cljs.core.next(seq__51437__$1);
-var the_time = first__51438__$1;
-var more = seq__51437__$2;
+honey.sql.format_temporal = (function honey$sql$format_temporal(p__51493){
+var vec__51495 = p__51493;
+var seq__51496 = cljs.core.seq(vec__51495);
+var first__51497 = cljs.core.first(seq__51496);
+var seq__51496__$1 = cljs.core.next(seq__51496);
+var for_part = first__51497;
+var first__51497__$1 = cljs.core.first(seq__51496__$1);
+var seq__51496__$2 = cljs.core.next(seq__51496__$1);
+var the_time = first__51497__$1;
+var more = seq__51496__$2;
 var control = new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"sql-kw","sql-kw",310316580),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [(function (x){
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.sql_kw(x)], null);
 }),new cljs.core.Keyword(null,"expr","expr",745722291)], null),new cljs.core.Keyword(null,"expr","expr",745722291),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Var(function(){return honey.sql.format_expr;},new cljs.core.Symbol("honey.sql","format-expr","honey.sql/format-expr",-761931772,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"declared","declared",92336021),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-expr","format-expr",-1508928093,null),"honey/sql.cljc",21,1,41,true,41,cljs.core.List.EMPTY,null,(cljs.core.truth_(honey.sql.format_expr)?honey.sql.format_expr.cljs$lang$test:null)])),new cljs.core.Keyword(null,"sql-kw","sql-kw",310316580)], null)], null);
@@ -821,29 +821,29 @@ var more__$1 = more;
 var fmt = new cljs.core.Keyword(null,"sql-kw","sql-kw",310316580);
 while(true){
 if(cljs.core.seq(more__$1)){
-var vec__51453 = more__$1;
-var seq__51454 = cljs.core.seq(vec__51453);
-var first__51455 = cljs.core.first(seq__51454);
-var seq__51454__$1 = cljs.core.next(seq__51454);
-var x = first__51455;
-var more__$2 = seq__51454__$1;
-var vec__51456 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(control,fmt);
-var f = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51456,(0),null);
-var fmt__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51456,(1),null);
-var vec__51459 = (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(x) : f.call(null,x));
-var seq__51460 = cljs.core.seq(vec__51459);
-var first__51461 = cljs.core.first(seq__51460);
-var seq__51460__$1 = cljs.core.next(seq__51460);
-var sql_SINGLEQUOTE_ = first__51461;
-var params_SINGLEQUOTE_ = seq__51460__$1;
-var G__52735 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(sqls,sql_SINGLEQUOTE_);
-var G__52736 = cljs.core.into.cljs$core$IFn$_invoke$arity$2(params,params_SINGLEQUOTE_);
-var G__52737 = more__$2;
-var G__52738 = fmt__$1;
-sqls = G__52735;
-params = G__52736;
-more__$1 = G__52737;
-fmt = G__52738;
+var vec__51520 = more__$1;
+var seq__51521 = cljs.core.seq(vec__51520);
+var first__51522 = cljs.core.first(seq__51521);
+var seq__51521__$1 = cljs.core.next(seq__51521);
+var x = first__51522;
+var more__$2 = seq__51521__$1;
+var vec__51523 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(control,fmt);
+var f = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51523,(0),null);
+var fmt__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51523,(1),null);
+var vec__51526 = (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(x) : f.call(null,x));
+var seq__51527 = cljs.core.seq(vec__51526);
+var first__51528 = cljs.core.first(seq__51527);
+var seq__51527__$1 = cljs.core.next(seq__51527);
+var sql_SINGLEQUOTE_ = first__51528;
+var params_SINGLEQUOTE_ = seq__51527__$1;
+var G__52736 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(sqls,sql_SINGLEQUOTE_);
+var G__52737 = cljs.core.into.cljs$core$IFn$_invoke$arity$2(params,params_SINGLEQUOTE_);
+var G__52738 = more__$2;
+var G__52739 = fmt__$1;
+sqls = G__52736;
+params = G__52737;
+more__$1 = G__52738;
+fmt = G__52739;
 continue;
 } else {
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(" ",sqls)], null),params);
@@ -857,8 +857,8 @@ break;
  * Return nil if there is no metadata.
  */
 honey.sql.format_meta = (function honey$sql$format_meta(var_args){
-var G__51504 = arguments.length;
-switch (G__51504) {
+var G__51539 = arguments.length;
+switch (G__51539) {
 case 1:
 return honey.sql.format_meta.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -924,52 +924,52 @@ return honey.sql.format_bigquery__STAR__except_replace(x);
 } else {
 var use_index = new cljs.core.Keyword(null,"use-index","use-index",-1316566248).cljs$core$IFn$_invoke$arity$1(cljs.core.meta(x));
 var hints = (cljs.core.truth_(use_index)?honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$2(honey.sql.format_simple_var,use_index)):honey.sql.format_meta.cljs$core$IFn$_invoke$arity$2(x,","));
-var vec__51519 = honey.sql.split_alias_temporal(x);
-var selectable = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51519,(0),null);
-var alias = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51519,(1),null);
-var temporal = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51519,(2),null);
+var vec__51570 = honey.sql.split_alias_temporal(x);
+var selectable = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51570,(0),null);
+var alias = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51570,(1),null);
+var temporal = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51570,(2),null);
 var _ = ((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("honey.sql","too-many!","honey.sql/too-many!",993345894),temporal))?(function(){throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2("illegal syntax in select expression",new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"symbol","symbol",-1038572696),selectable,new cljs.core.Keyword(null,"alias","alias",-2039751630),alias,new cljs.core.Keyword(null,"unexpected","unexpected",-1137752424),cljs.core.nnext(x)], null))})():null);
-var vec__51522 = ((cljs.core.map_QMARK_(selectable))?(function (){var G__51531 = selectable;
-var G__51532 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null);
-return (honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$2(G__51531,G__51532) : honey.sql.format_dsl.call(null,G__51531,G__51532));
+var vec__51573 = ((cljs.core.map_QMARK_(selectable))?(function (){var G__51591 = selectable;
+var G__51592 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null);
+return (honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$2(G__51591,G__51592) : honey.sql.format_dsl.call(null,G__51591,G__51592));
 })():(honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(selectable) : honey.sql.format_expr.call(null,selectable)));
-var seq__51523 = cljs.core.seq(vec__51522);
-var first__51524 = cljs.core.first(seq__51523);
-var seq__51523__$1 = cljs.core.next(seq__51523);
-var sql = first__51524;
-var params = seq__51523__$1;
+var seq__51574 = cljs.core.seq(vec__51573);
+var first__51575 = cljs.core.first(seq__51574);
+var seq__51574__$1 = cljs.core.next(seq__51574);
+var sql = first__51575;
+var params = seq__51574__$1;
 var _STAR__qualifier = (function (){var and__5023__auto__ = cljs.core.map_QMARK_(alias);
 if(and__5023__auto__){
-return cljs.core.some((function (p1__51515_SHARP_){
-return cljs.core.contains_QMARK_(alias,p1__51515_SHARP_);
+return cljs.core.some((function (p1__51558_SHARP_){
+return cljs.core.contains_QMARK_(alias,p1__51558_SHARP_);
 }),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"exclude","exclude",-1230250334),new cljs.core.Keyword(null,"rename","rename",1508157613),new cljs.core.Symbol(null,"exclude","exclude",410281193,null),new cljs.core.Symbol(null,"rename","rename",-1146278156,null)], null));
 } else {
 return and__5023__auto__;
 }
 })();
-var vec__51525 = (cljs.core.truth_(alias)?((cljs.core.sequential_QMARK_(alias))?(function (){var vec__51538 = (function (){var G__51541 = alias;
-var G__51542 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"aliased","aliased",-125439273),true], null);
-return (honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$2(G__51541,G__51542) : honey.sql.format_expr_list.call(null,G__51541,G__51542));
+var vec__51576 = (cljs.core.truth_(alias)?((cljs.core.sequential_QMARK_(alias))?(function (){var vec__51599 = (function (){var G__51602 = alias;
+var G__51603 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"aliased","aliased",-125439273),true], null);
+return (honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$2(G__51602,G__51603) : honey.sql.format_expr_list.call(null,G__51602,G__51603));
 })();
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51538,(0),null);
-var params__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51538,(1),null);
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51599,(0),null);
+var params__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51599,(1),null);
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(" ",sqls)], null),params__$1);
-})():(cljs.core.truth_(_STAR__qualifier)?(honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1(alias) : honey.sql.format_dsl.call(null,alias)):(function (){var G__51543 = alias;
-var G__51544 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"aliased","aliased",-125439273),true], null);
-return (honey.sql.format_selectable_dsl.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_selectable_dsl.cljs$core$IFn$_invoke$arity$2(G__51543,G__51544) : honey.sql.format_selectable_dsl.call(null,G__51543,G__51544));
+})():(cljs.core.truth_(_STAR__qualifier)?(honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1(alias) : honey.sql.format_dsl.call(null,alias)):(function (){var G__51608 = alias;
+var G__51609 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"aliased","aliased",-125439273),true], null);
+return (honey.sql.format_selectable_dsl.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_selectable_dsl.cljs$core$IFn$_invoke$arity$2(G__51608,G__51609) : honey.sql.format_selectable_dsl.call(null,G__51608,G__51609));
 })()
 )):null);
-var seq__51526 = cljs.core.seq(vec__51525);
-var first__51527 = cljs.core.first(seq__51526);
-var seq__51526__$1 = cljs.core.next(seq__51526);
-var sql_SINGLEQUOTE_ = first__51527;
-var params_SINGLEQUOTE_ = seq__51526__$1;
-var vec__51528 = (cljs.core.truth_(temporal)?honey.sql.format_temporal(temporal):null);
-var seq__51529 = cljs.core.seq(vec__51528);
-var first__51530 = cljs.core.first(seq__51529);
-var seq__51529__$1 = cljs.core.next(seq__51529);
-var sql_SINGLEQUOTE__SINGLEQUOTE_ = first__51530;
-var params_SINGLEQUOTE__SINGLEQUOTE_ = seq__51529__$1;
+var seq__51577 = cljs.core.seq(vec__51576);
+var first__51578 = cljs.core.first(seq__51577);
+var seq__51577__$1 = cljs.core.next(seq__51577);
+var sql_SINGLEQUOTE_ = first__51578;
+var params_SINGLEQUOTE_ = seq__51577__$1;
+var vec__51579 = (cljs.core.truth_(temporal)?honey.sql.format_temporal(temporal):null);
+var seq__51580 = cljs.core.seq(vec__51579);
+var first__51581 = cljs.core.first(seq__51580);
+var seq__51580__$1 = cljs.core.next(seq__51580);
+var sql_SINGLEQUOTE__SINGLEQUOTE_ = first__51581;
+var params_SINGLEQUOTE__SINGLEQUOTE_ = seq__51580__$1;
 return honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$4(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$4(sql,(cljs.core.truth_(sql_SINGLEQUOTE__SINGLEQUOTE_)?honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(" ",sql_SINGLEQUOTE__SINGLEQUOTE_):null),(cljs.core.truth_(sql_SINGLEQUOTE_)?honey.sql.util.str.cljs$core$IFn$_invoke$arity$2((cljs.core.truth_(as)?(cljs.core.truth_((function (){var or__5025__auto__ = _STAR__qualifier;
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
@@ -980,8 +980,8 @@ return ((cljs.core.contains_QMARK_(honey.sql._STAR_dialect_STAR_,new cljs.core.K
 }
 });
 honey.sql.format_selectable_dsl = (function honey$sql$format_selectable_dsl(var_args){
-var G__51569 = arguments.length;
-switch (G__51569) {
+var G__51632 = arguments.length;
+switch (G__51632) {
 case 1:
 return honey.sql.format_selectable_dsl.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -1000,16 +1000,16 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 return honey.sql.format_selectable_dsl.cljs$core$IFn$_invoke$arity$2(x,cljs.core.PersistentArrayMap.EMPTY);
 }));
 
-(honey.sql.format_selectable_dsl.cljs$core$IFn$_invoke$arity$2 = (function (x,p__51570){
-var map__51571 = p__51570;
-var map__51571__$1 = cljs.core.__destructure_map(map__51571);
-var opts = map__51571__$1;
-var as = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__51571__$1,new cljs.core.Keyword(null,"as","as",1148689641));
-var aliased = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__51571__$1,new cljs.core.Keyword(null,"aliased","aliased",-125439273));
+(honey.sql.format_selectable_dsl.cljs$core$IFn$_invoke$arity$2 = (function (x,p__51642){
+var map__51644 = p__51642;
+var map__51644__$1 = cljs.core.__destructure_map(map__51644);
+var opts = map__51644__$1;
+var as = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__51644__$1,new cljs.core.Keyword(null,"as","as",1148689641));
+var aliased = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__51644__$1,new cljs.core.Keyword(null,"aliased","aliased",-125439273));
 if(cljs.core.map_QMARK_(x)){
-var G__51572 = x;
-var G__51573 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null);
-return (honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$2(G__51572,G__51573) : honey.sql.format_dsl.call(null,G__51572,G__51573));
+var G__51645 = x;
+var G__51646 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null);
+return (honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$2(G__51645,G__51646) : honey.sql.format_dsl.call(null,G__51645,G__51646));
 } else {
 if(cljs.core.sequential_QMARK_(x)){
 return honey.sql.format_item_selection(x,as);
@@ -1041,8 +1041,8 @@ return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_e
 (honey.sql.format_selectable_dsl.cljs$lang$maxFixedArity = 2);
 
 honey.sql.reduce_sql = (function honey$sql$reduce_sql(var_args){
-var G__51604 = arguments.length;
-switch (G__51604) {
+var G__51658 = arguments.length;
+switch (G__51658) {
 case 1:
 return honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -1063,34 +1063,34 @@ return honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$2(cljs.core.identity,xs)
 
 (honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$2 = (function (xform,xs){
 return cljs.core.transduce.cljs$core$IFn$_invoke$arity$4(xform,(function() {
-var G__52743 = null;
-var G__52743__1 = (function (res){
+var G__52747 = null;
+var G__52747__1 = (function (res){
 return res;
 });
-var G__52743__2 = (function (p__51608,p__51609){
-var vec__51610 = p__51608;
-var sql = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51610,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51610,(1),null);
-var vec__51613 = p__51609;
-var seq__51614 = cljs.core.seq(vec__51613);
-var first__51615 = cljs.core.first(seq__51614);
-var seq__51614__$1 = cljs.core.next(seq__51614);
-var sql_SINGLEQUOTE_ = first__51615;
-var params_SINGLEQUOTE_ = seq__51614__$1;
+var G__52747__2 = (function (p__51669,p__51670){
+var vec__51673 = p__51669;
+var sql = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51673,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51673,(1),null);
+var vec__51676 = p__51670;
+var seq__51677 = cljs.core.seq(vec__51676);
+var first__51678 = cljs.core.first(seq__51677);
+var seq__51677__$1 = cljs.core.next(seq__51677);
+var sql_SINGLEQUOTE_ = first__51678;
+var params_SINGLEQUOTE_ = seq__51677__$1;
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.conj.cljs$core$IFn$_invoke$arity$2(sql,sql_SINGLEQUOTE_),((params_SINGLEQUOTE_)?cljs.core.into.cljs$core$IFn$_invoke$arity$2(params,params_SINGLEQUOTE_):params)], null);
 });
-G__52743 = function(p__51608,p__51609){
+G__52747 = function(p__51669,p__51670){
 switch(arguments.length){
 case 1:
-return G__52743__1.call(this,p__51608);
+return G__52747__1.call(this,p__51669);
 case 2:
-return G__52743__2.call(this,p__51608,p__51609);
+return G__52747__2.call(this,p__51669,p__51670);
 }
 throw(new Error('Invalid arity: ' + arguments.length));
 };
-G__52743.cljs$core$IFn$_invoke$arity$1 = G__52743__1;
-G__52743.cljs$core$IFn$_invoke$arity$2 = G__52743__2;
-return G__52743;
+G__52747.cljs$core$IFn$_invoke$arity$1 = G__52747__1;
+G__52747.cljs$core$IFn$_invoke$arity$2 = G__52747__2;
+return G__52747;
 })()
 ,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.PersistentVector.EMPTY,cljs.core.PersistentVector.EMPTY], null),xs);
 }));
@@ -1098,11 +1098,11 @@ return G__52743;
 (honey.sql.reduce_sql.cljs$lang$maxFixedArity = 2);
 
 honey.sql.format_on_set_op = (function honey$sql$format_on_set_op(k,xs){
-var vec__51634 = honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$1(cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__51633_SHARP_){
-return (honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1(p1__51633_SHARP_) : honey.sql.format_dsl.call(null,p1__51633_SHARP_));
+var vec__51684 = honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$1(cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__51682_SHARP_){
+return (honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1(p1__51682_SHARP_) : honey.sql.format_dsl.call(null,p1__51682_SHARP_));
 }),xs));
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51634,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51634,(1),null);
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51684,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51684,(1),null);
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(" ",honey.sql.sql_kw(k)," "),sqls)], null),params);
 });
 /**
@@ -1130,8 +1130,8 @@ return and__5023__auto__;
  *   * [:trim :*leading-from :bar]
  */
 honey.sql.format_interspersed_expr_list = (function honey$sql$format_interspersed_expr_list(var_args){
-var G__51649 = arguments.length;
-switch (G__51649) {
+var G__51708 = arguments.length;
+switch (G__51708) {
 case 1:
 return honey.sql.format_interspersed_expr_list.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -1151,11 +1151,11 @@ return honey.sql.format_interspersed_expr_list.cljs$core$IFn$_invoke$arity$2(arg
 }));
 
 (honey.sql.format_interspersed_expr_list.cljs$core$IFn$_invoke$arity$2 = (function (args,opts){
-var exprs = cljs.core.keep.cljs$core$IFn$_invoke$arity$2((function (p1__51637_SHARP_){
-if(cljs.core.truth_(honey.sql.inline_kw_QMARK_(p1__51637_SHARP_))){
+var exprs = cljs.core.keep.cljs$core$IFn$_invoke$arity$2((function (p1__51701_SHARP_){
+if(cljs.core.truth_(honey.sql.inline_kw_QMARK_(p1__51701_SHARP_))){
 return null;
 } else {
-return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(p1__51637_SHARP_,opts) : honey.sql.format_expr.call(null,p1__51637_SHARP_,opts));
+return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(p1__51701_SHARP_,opts) : honey.sql.format_expr.call(null,p1__51701_SHARP_,opts));
 }
 }),args);
 var args__$1 = args;
@@ -1163,73 +1163,73 @@ var prev_in = false;
 var result = cljs.core.PersistentVector.EMPTY;
 while(true){
 if(cljs.core.seq(args__$1)){
-var vec__51674 = args__$1;
-var seq__51675 = cljs.core.seq(vec__51674);
-var first__51676 = cljs.core.first(seq__51675);
-var seq__51675__$1 = cljs.core.next(seq__51675);
-var arg = first__51676;
-var args_SINGLEQUOTE_ = seq__51675__$1;
+var vec__51733 = args__$1;
+var seq__51734 = cljs.core.seq(vec__51733);
+var first__51735 = cljs.core.first(seq__51734);
+var seq__51734__$1 = cljs.core.next(seq__51734);
+var arg = first__51735;
+var args_SINGLEQUOTE_ = seq__51734__$1;
 if(cljs.core.truth_(honey.sql.inline_kw_QMARK_(arg))){
 var sql = honey.sql.sql_kw(cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(cljs.core.subs.cljs$core$IFn$_invoke$arity$2(cljs.core.name(arg),(1))));
 if(cljs.core.seq(result)){
-var vec__51677 = cljs.core.peek(result);
-var seq__51678 = cljs.core.seq(vec__51677);
-var first__51679 = cljs.core.first(seq__51678);
-var seq__51678__$1 = cljs.core.next(seq__51678);
-var cur = first__51679;
-var params = seq__51678__$1;
-var G__52752 = exprs;
-var G__52753 = args_SINGLEQUOTE_;
-var G__52754 = true;
-var G__52755 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(cljs.core.pop(result),cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(cur," ",sql)], null),params));
-exprs = G__52752;
-args__$1 = G__52753;
-prev_in = G__52754;
-result = G__52755;
+var vec__51736 = cljs.core.peek(result);
+var seq__51737 = cljs.core.seq(vec__51736);
+var first__51738 = cljs.core.first(seq__51737);
+var seq__51737__$1 = cljs.core.next(seq__51737);
+var cur = first__51738;
+var params = seq__51737__$1;
+var G__52749 = exprs;
+var G__52750 = args_SINGLEQUOTE_;
+var G__52751 = true;
+var G__52752 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(cljs.core.pop(result),cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(cur," ",sql)], null),params));
+exprs = G__52749;
+args__$1 = G__52750;
+prev_in = G__52751;
+result = G__52752;
 continue;
 } else {
-var G__52756 = exprs;
-var G__52757 = args_SINGLEQUOTE_;
-var G__52758 = true;
-var G__52759 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(result,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [sql], null));
-exprs = G__52756;
-args__$1 = G__52757;
-prev_in = G__52758;
-result = G__52759;
+var G__52753 = exprs;
+var G__52754 = args_SINGLEQUOTE_;
+var G__52755 = true;
+var G__52756 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(result,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [sql], null));
+exprs = G__52753;
+args__$1 = G__52754;
+prev_in = G__52755;
+result = G__52756;
 continue;
 }
 } else {
 if(prev_in){
-var vec__51682 = cljs.core.peek(result);
-var seq__51683 = cljs.core.seq(vec__51682);
-var first__51684 = cljs.core.first(seq__51683);
-var seq__51683__$1 = cljs.core.next(seq__51683);
-var cur = first__51684;
-var params = seq__51683__$1;
-var vec__51685 = cljs.core.first(exprs);
-var seq__51686 = cljs.core.seq(vec__51685);
-var first__51687 = cljs.core.first(seq__51686);
-var seq__51686__$1 = cljs.core.next(seq__51686);
-var sql = first__51687;
-var params_SINGLEQUOTE_ = seq__51686__$1;
-var G__52760 = cljs.core.rest(exprs);
-var G__52761 = args_SINGLEQUOTE_;
-var G__52762 = false;
-var G__52763 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(cljs.core.pop(result),honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(cur," ",sql)], null),params,params_SINGLEQUOTE_));
-exprs = G__52760;
-args__$1 = G__52761;
-prev_in = G__52762;
-result = G__52763;
+var vec__51739 = cljs.core.peek(result);
+var seq__51740 = cljs.core.seq(vec__51739);
+var first__51741 = cljs.core.first(seq__51740);
+var seq__51740__$1 = cljs.core.next(seq__51740);
+var cur = first__51741;
+var params = seq__51740__$1;
+var vec__51742 = cljs.core.first(exprs);
+var seq__51743 = cljs.core.seq(vec__51742);
+var first__51744 = cljs.core.first(seq__51743);
+var seq__51743__$1 = cljs.core.next(seq__51743);
+var sql = first__51744;
+var params_SINGLEQUOTE_ = seq__51743__$1;
+var G__52757 = cljs.core.rest(exprs);
+var G__52758 = args_SINGLEQUOTE_;
+var G__52759 = false;
+var G__52760 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(cljs.core.pop(result),honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(cur," ",sql)], null),params,params_SINGLEQUOTE_));
+exprs = G__52757;
+args__$1 = G__52758;
+prev_in = G__52759;
+result = G__52760;
 continue;
 } else {
-var G__52764 = cljs.core.rest(exprs);
-var G__52765 = args_SINGLEQUOTE_;
-var G__52766 = false;
-var G__52767 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(result,cljs.core.first(exprs));
-exprs = G__52764;
-args__$1 = G__52765;
-prev_in = G__52766;
-result = G__52767;
+var G__52761 = cljs.core.rest(exprs);
+var G__52762 = args_SINGLEQUOTE_;
+var G__52763 = false;
+var G__52764 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(result,cljs.core.first(exprs));
+exprs = G__52761;
+args__$1 = G__52762;
+prev_in = G__52763;
+result = G__52764;
 continue;
 }
 }
@@ -1257,8 +1257,8 @@ break;
  *   extend the DSL supported by HoneySQL.
  */
 honey.sql.format_expr_list = (function honey$sql$format_expr_list(var_args){
-var G__51704 = arguments.length;
-switch (G__51704) {
+var G__51758 = arguments.length;
+switch (G__51758) {
 case 1:
 return honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -1283,8 +1283,8 @@ if(cljs.core.sequential_QMARK_(exprs)){
 throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(honey.sql.util.str.cljs$core$IFn$_invoke$arity$2("format-expr-list expects a sequence of expressions, found: ",cljs.core.type(exprs)),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"exprs","exprs",1795829094),exprs], null));
 }
 
-return honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$2(cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__51702_SHARP_){
-return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(p1__51702_SHARP_,opts) : honey.sql.format_expr.call(null,p1__51702_SHARP_,opts));
+return honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$2(cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__51753_SHARP_){
+return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(p1__51753_SHARP_,opts) : honey.sql.format_expr.call(null,p1__51753_SHARP_,opts));
 })),exprs);
 }));
 
@@ -1294,15 +1294,15 @@ honey.sql.format_columns = (function honey$sql$format_columns(k,xs){
 if(((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"columns","columns",1998437288),k)) && (((honey.sql.contains_clause_QMARK_(new cljs.core.Keyword(null,"insert-into","insert-into",382212789))) || (((honey.sql.contains_clause_QMARK_(new cljs.core.Keyword(null,"patch-into","patch-into",-245698135))) || (honey.sql.contains_clause_QMARK_(new cljs.core.Keyword(null,"replace-into","replace-into",139321349))))))))){
 return cljs.core.PersistentVector.EMPTY;
 } else {
-var vec__51713 = honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$2(xs,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"drop-ns","drop-ns",-1721308319),true], null));
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51713,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51713,(1),null);
+var vec__51775 = honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$2(xs,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"drop-ns","drop-ns",-1721308319),true], null));
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51775,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51775,(1),null);
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("(",honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(", ",sqls),")")], null),params);
 }
 });
 honey.sql.format_selects_common = (function honey$sql$format_selects_common(var_args){
-var G__51725 = arguments.length;
-switch (G__51725) {
+var G__51780 = arguments.length;
+switch (G__51780) {
 case 3:
 return honey.sql.format_selects_common.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -1323,28 +1323,28 @@ return honey.sql.format_selects_common.cljs$core$IFn$_invoke$arity$4(prefix,as,x
 
 (honey.sql.format_selects_common.cljs$core$IFn$_invoke$arity$4 = (function (prefix,as,xs,wrap){
 var qualifier = honey.sql.format_meta.cljs$core$IFn$_invoke$arity$1(xs);
-var prefix__$1 = (cljs.core.truth_(prefix)?(function (){var G__51735 = prefix;
+var prefix__$1 = (cljs.core.truth_(prefix)?(function (){var G__51784 = prefix;
 if(cljs.core.truth_(qualifier)){
-return honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(G__51735," ",qualifier);
+return honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(G__51784," ",qualifier);
 } else {
-return G__51735;
+return G__51784;
 }
 })():qualifier);
-var vec__51731 = (cljs.core.truth_((function (){var and__5023__auto__ = wrap;
+var vec__51781 = (cljs.core.truth_((function (){var and__5023__auto__ = wrap;
 if(cljs.core.truth_(and__5023__auto__)){
 return ((cljs.core.sequential_QMARK_(xs)) && (((1) < cljs.core.count(xs))));
 } else {
 return and__5023__auto__;
 }
 })())?new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["(",")"], null):null);
-var pre = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51731,(0),null);
-var post = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51731,(1),null);
+var pre = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51781,(0),null);
+var post = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51781,(1),null);
 if(cljs.core.sequential_QMARK_(xs)){
-var vec__51739 = honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$2(cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__51718_SHARP_){
-return honey.sql.format_selectable_dsl.cljs$core$IFn$_invoke$arity$2(p1__51718_SHARP_,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"as","as",1148689641),as], null));
+var vec__51787 = honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$2(cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__51778_SHARP_){
+return honey.sql.format_selectable_dsl.cljs$core$IFn$_invoke$arity$2(p1__51778_SHARP_,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"as","as",1148689641),as], null));
 })),xs);
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51739,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51739,(1),null);
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51787,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51787,(1),null);
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"none","none",1333468478),new cljs.core.Keyword(null,"checking","checking",1748720818).cljs$core$IFn$_invoke$arity$1(honey.sql._STAR_options_STAR_))){
 } else {
 if(cljs.core.empty_QMARK_(xs)){
@@ -1355,12 +1355,12 @@ throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(honey.sql.util.str.cljs$co
 
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$4((cljs.core.truth_(prefix__$1)?honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(prefix__$1," "):null),pre,honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(", ",sqls),post)], null),params);
 } else {
-var vec__51745 = honey.sql.format_selectable_dsl.cljs$core$IFn$_invoke$arity$2(xs,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"as","as",1148689641),as], null));
-var seq__51746 = cljs.core.seq(vec__51745);
-var first__51747 = cljs.core.first(seq__51746);
-var seq__51746__$1 = cljs.core.next(seq__51746);
-var sql = first__51747;
-var params = seq__51746__$1;
+var vec__51792 = honey.sql.format_selectable_dsl.cljs$core$IFn$_invoke$arity$2(xs,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"as","as",1148689641),as], null));
+var seq__51793 = cljs.core.seq(vec__51792);
+var first__51794 = cljs.core.first(seq__51793);
+var seq__51793__$1 = cljs.core.next(seq__51793);
+var sql = first__51794;
+var params = seq__51793__$1;
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$2((cljs.core.truth_(prefix__$1)?honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(prefix__$1," "):null),sql)], null),params);
 }
 }));
@@ -1368,48 +1368,48 @@ return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVect
 (honey.sql.format_selects_common.cljs$lang$maxFixedArity = 4);
 
 honey.sql.format_selects = (function honey$sql$format_selects(k,xs){
-return honey.sql.format_selects_common.cljs$core$IFn$_invoke$arity$4(honey.sql.sql_kw(k),(function (){var fexpr__51754 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 14, [new cljs.core.Symbol(null,"select","select",-1506602266,null),null,new cljs.core.Keyword(null,"facet","facet",-801327574),null,new cljs.core.Keyword(null,"rename","rename",1508157613),null,new cljs.core.Keyword(null,"select-distinct","select-distinct",-412636114),null,new cljs.core.Keyword(null,"window","window",724519534),null,new cljs.core.Symbol(null,"rename","rename",-1146278156,null),null,new cljs.core.Symbol(null,"select-distinct","select-distinct",1227895413,null),null,new cljs.core.Keyword(null,"from","from",1815293044),null,new cljs.core.Symbol(null,"from","from",-839142725,null),null,new cljs.core.Symbol(null,"window","window",-1929916235,null),null,new cljs.core.Symbol(null,"facet","facet",839203953,null),null,new cljs.core.Symbol(null,"delete-from","delete-from",-1983671803,null),null,new cljs.core.Keyword(null,"delete-from","delete-from",670763966),null,new cljs.core.Keyword(null,"select","select",1147833503),null], null), null);
-return (fexpr__51754.cljs$core$IFn$_invoke$arity$1 ? fexpr__51754.cljs$core$IFn$_invoke$arity$1(k) : fexpr__51754.call(null,k));
-})(),xs,(function (){var fexpr__51757 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"exclude","exclude",-1230250334),null,new cljs.core.Keyword(null,"rename","rename",1508157613),null,new cljs.core.Symbol(null,"exclude","exclude",410281193,null),null,new cljs.core.Symbol(null,"rename","rename",-1146278156,null),null], null), null);
-return (fexpr__51757.cljs$core$IFn$_invoke$arity$1 ? fexpr__51757.cljs$core$IFn$_invoke$arity$1(k) : fexpr__51757.call(null,k));
+return honey.sql.format_selects_common.cljs$core$IFn$_invoke$arity$4(honey.sql.sql_kw(k),(function (){var fexpr__51799 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 14, [new cljs.core.Symbol(null,"select","select",-1506602266,null),null,new cljs.core.Keyword(null,"facet","facet",-801327574),null,new cljs.core.Keyword(null,"rename","rename",1508157613),null,new cljs.core.Keyword(null,"select-distinct","select-distinct",-412636114),null,new cljs.core.Keyword(null,"window","window",724519534),null,new cljs.core.Symbol(null,"rename","rename",-1146278156,null),null,new cljs.core.Symbol(null,"select-distinct","select-distinct",1227895413,null),null,new cljs.core.Keyword(null,"from","from",1815293044),null,new cljs.core.Symbol(null,"from","from",-839142725,null),null,new cljs.core.Symbol(null,"window","window",-1929916235,null),null,new cljs.core.Symbol(null,"facet","facet",839203953,null),null,new cljs.core.Symbol(null,"delete-from","delete-from",-1983671803,null),null,new cljs.core.Keyword(null,"delete-from","delete-from",670763966),null,new cljs.core.Keyword(null,"select","select",1147833503),null], null), null);
+return (fexpr__51799.cljs$core$IFn$_invoke$arity$1 ? fexpr__51799.cljs$core$IFn$_invoke$arity$1(k) : fexpr__51799.call(null,k));
+})(),xs,(function (){var fexpr__51800 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"exclude","exclude",-1230250334),null,new cljs.core.Keyword(null,"rename","rename",1508157613),null,new cljs.core.Symbol(null,"exclude","exclude",410281193,null),null,new cljs.core.Symbol(null,"rename","rename",-1146278156,null),null], null), null);
+return (fexpr__51800.cljs$core$IFn$_invoke$arity$1 ? fexpr__51800.cljs$core$IFn$_invoke$arity$1(k) : fexpr__51800.call(null,k));
 })());
 });
 honey.sql.format_selects_on = (function honey$sql$format_selects_on(_,xs){
-var vec__51763 = xs;
-var seq__51764 = cljs.core.seq(vec__51763);
-var first__51765 = cljs.core.first(seq__51764);
-var seq__51764__$1 = cljs.core.next(seq__51764);
-var on = first__51765;
-var cols = seq__51764__$1;
-var vec__51766 = (function (){var G__51773 = cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"distinct-on","distinct-on",341946250)], null),on);
-return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(G__51773) : honey.sql.format_expr.call(null,G__51773));
+var vec__51801 = xs;
+var seq__51802 = cljs.core.seq(vec__51801);
+var first__51803 = cljs.core.first(seq__51802);
+var seq__51802__$1 = cljs.core.next(seq__51802);
+var on = first__51803;
+var cols = seq__51802__$1;
+var vec__51804 = (function (){var G__51810 = cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"distinct-on","distinct-on",341946250)], null),on);
+return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(G__51810) : honey.sql.format_expr.call(null,G__51810));
 })();
-var seq__51767 = cljs.core.seq(vec__51766);
-var first__51768 = cljs.core.first(seq__51767);
-var seq__51767__$1 = cljs.core.next(seq__51767);
-var sql = first__51768;
-var params = seq__51767__$1;
-var vec__51769 = honey.sql.format_selects_common.cljs$core$IFn$_invoke$arity$3(honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(honey.sql.sql_kw(new cljs.core.Keyword(null,"select","select",1147833503))," ",sql),true,cols);
-var seq__51770 = cljs.core.seq(vec__51769);
-var first__51771 = cljs.core.first(seq__51770);
-var seq__51770__$1 = cljs.core.next(seq__51770);
-var sql_SINGLEQUOTE_ = first__51771;
-var params_SINGLEQUOTE_ = seq__51770__$1;
+var seq__51805 = cljs.core.seq(vec__51804);
+var first__51806 = cljs.core.first(seq__51805);
+var seq__51805__$1 = cljs.core.next(seq__51805);
+var sql = first__51806;
+var params = seq__51805__$1;
+var vec__51807 = honey.sql.format_selects_common.cljs$core$IFn$_invoke$arity$3(honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(honey.sql.sql_kw(new cljs.core.Keyword(null,"select","select",1147833503))," ",sql),true,cols);
+var seq__51808 = cljs.core.seq(vec__51807);
+var first__51809 = cljs.core.first(seq__51808);
+var seq__51808__$1 = cljs.core.next(seq__51808);
+var sql_SINGLEQUOTE_ = first__51809;
+var params_SINGLEQUOTE_ = seq__51808__$1;
 return honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [sql_SINGLEQUOTE_], null),params,params_SINGLEQUOTE_);
 });
 honey.sql.format_select_top = (function honey$sql$format_select_top(k,xs){
-var vec__51780 = xs;
-var seq__51781 = cljs.core.seq(vec__51780);
-var first__51782 = cljs.core.first(seq__51781);
-var seq__51781__$1 = cljs.core.next(seq__51781);
-var top = first__51782;
-var cols = seq__51781__$1;
-var vec__51783 = ((cljs.core.sequential_QMARK_(top))?(function (){var top_q_QMARK_ = (function (p1__51774_SHARP_){
-var and__5023__auto__ = cljs.core.ident_QMARK_(p1__51774_SHARP_);
+var vec__51812 = xs;
+var seq__51813 = cljs.core.seq(vec__51812);
+var first__51814 = cljs.core.first(seq__51813);
+var seq__51813__$1 = cljs.core.next(seq__51813);
+var top = first__51814;
+var cols = seq__51813__$1;
+var vec__51815 = ((cljs.core.sequential_QMARK_(top))?(function (){var top_q_QMARK_ = (function (p1__51811_SHARP_){
+var and__5023__auto__ = cljs.core.ident_QMARK_(p1__51811_SHARP_);
 if(and__5023__auto__){
-var G__51796 = honey.sql.sym__GT_kw(p1__51774_SHARP_);
-var fexpr__51795 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"with-ties","with-ties",-1030545914),null,new cljs.core.Keyword(null,"percent","percent",2031453817),null], null), null);
-return (fexpr__51795.cljs$core$IFn$_invoke$arity$1 ? fexpr__51795.cljs$core$IFn$_invoke$arity$1(G__51796) : fexpr__51795.call(null,G__51796));
+var G__51825 = honey.sql.sym__GT_kw(p1__51811_SHARP_);
+var fexpr__51824 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"with-ties","with-ties",-1030545914),null,new cljs.core.Keyword(null,"percent","percent",2031453817),null], null), null);
+return (fexpr__51824.cljs$core$IFn$_invoke$arity$1 ? fexpr__51824.cljs$core$IFn$_invoke$arity$1(G__51825) : fexpr__51824.call(null,G__51825));
 } else {
 return and__5023__auto__;
 }
@@ -1427,47 +1427,47 @@ throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2("unparseable TOP expressio
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [top], null);
 }
 })():new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [top], null));
-var seq__51784 = cljs.core.seq(vec__51783);
-var first__51785 = cljs.core.first(seq__51784);
-var seq__51784__$1 = cljs.core.next(seq__51784);
-var top__$1 = first__51785;
-var parts = seq__51784__$1;
-var vec__51786 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(top__$1) : honey.sql.format_expr.call(null,top__$1));
-var seq__51787 = cljs.core.seq(vec__51786);
-var first__51788 = cljs.core.first(seq__51787);
-var seq__51787__$1 = cljs.core.next(seq__51787);
-var sql = first__51788;
-var params = seq__51787__$1;
-var vec__51789 = honey.sql.format_selects_common.cljs$core$IFn$_invoke$arity$3(honey.sql.util.str.cljs$core$IFn$_invoke$arity$variadic(honey.sql.sql_kw(k),"(",sql,")",((cljs.core.seq(parts))?" ":null),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(" ",cljs.core.map.cljs$core$IFn$_invoke$arity$1(honey.sql.sql_kw),parts)], 0)),true,cols);
-var seq__51790 = cljs.core.seq(vec__51789);
-var first__51791 = cljs.core.first(seq__51790);
-var seq__51790__$1 = cljs.core.next(seq__51790);
-var sql_SINGLEQUOTE_ = first__51791;
-var params_SINGLEQUOTE_ = seq__51790__$1;
+var seq__51816 = cljs.core.seq(vec__51815);
+var first__51817 = cljs.core.first(seq__51816);
+var seq__51816__$1 = cljs.core.next(seq__51816);
+var top__$1 = first__51817;
+var parts = seq__51816__$1;
+var vec__51818 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(top__$1) : honey.sql.format_expr.call(null,top__$1));
+var seq__51819 = cljs.core.seq(vec__51818);
+var first__51820 = cljs.core.first(seq__51819);
+var seq__51819__$1 = cljs.core.next(seq__51819);
+var sql = first__51820;
+var params = seq__51819__$1;
+var vec__51821 = honey.sql.format_selects_common.cljs$core$IFn$_invoke$arity$3(honey.sql.util.str.cljs$core$IFn$_invoke$arity$variadic(honey.sql.sql_kw(k),"(",sql,")",((cljs.core.seq(parts))?" ":null),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(" ",cljs.core.map.cljs$core$IFn$_invoke$arity$1(honey.sql.sql_kw),parts)], 0)),true,cols);
+var seq__51822 = cljs.core.seq(vec__51821);
+var first__51823 = cljs.core.first(seq__51822);
+var seq__51822__$1 = cljs.core.next(seq__51822);
+var sql_SINGLEQUOTE_ = first__51823;
+var params_SINGLEQUOTE_ = seq__51822__$1;
 return honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [sql_SINGLEQUOTE_], null),params,params_SINGLEQUOTE_);
 });
 honey.sql.format_select_into = (function honey$sql$format_select_into(k,xs){
-var vec__51809 = honey.sql.ensure_sequential(xs);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51809,(0),null);
-var e = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51809,(1),null);
-var vec__51812 = (cljs.core.truth_(e)?(honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(e) : honey.sql.format_expr.call(null,e)):null);
-var seq__51813 = cljs.core.seq(vec__51812);
-var first__51814 = cljs.core.first(seq__51813);
-var seq__51813__$1 = cljs.core.next(seq__51813);
-var sql = first__51814;
-var params = seq__51813__$1;
+var vec__51836 = honey.sql.ensure_sequential(xs);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51836,(0),null);
+var e = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51836,(1),null);
+var vec__51839 = (cljs.core.truth_(e)?(honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(e) : honey.sql.format_expr.call(null,e)):null);
+var seq__51840 = cljs.core.seq(vec__51839);
+var first__51841 = cljs.core.first(seq__51840);
+var seq__51840__$1 = cljs.core.next(seq__51840);
+var sql = first__51841;
+var params = seq__51840__$1;
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$4(honey.sql.sql_kw(k)," ",honey.sql.format_entity.cljs$core$IFn$_invoke$arity$1(v),(cljs.core.truth_(sql)?honey.sql.util.str.cljs$core$IFn$_invoke$arity$4(" ",honey.sql.sql_kw(((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"into","into",-150836029),k))?new cljs.core.Keyword(null,"in","in",-1531184865):new cljs.core.Keyword(null,"limit","limit",-1355822363)))," ",sql):null))], null),params);
 });
 honey.sql.format_with_part = (function honey$sql$format_with_part(x){
 if(cljs.core.sequential_QMARK_(x)){
-var vec__51822 = (function (){var G__51826 = cljs.core.second(x);
-return (honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1(G__51826) : honey.sql.format_dsl.call(null,G__51826));
+var vec__51845 = (function (){var G__51848 = cljs.core.second(x);
+return (honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1(G__51848) : honey.sql.format_dsl.call(null,G__51848));
 })();
-var seq__51823 = cljs.core.seq(vec__51822);
-var first__51824 = cljs.core.first(seq__51823);
-var seq__51823__$1 = cljs.core.next(seq__51823);
-var sql = first__51824;
-var params = seq__51823__$1;
+var seq__51846 = cljs.core.seq(vec__51845);
+var first__51847 = cljs.core.first(seq__51846);
+var seq__51846__$1 = cljs.core.next(seq__51846);
+var sql = first__51847;
+var params = seq__51846__$1;
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(honey.sql.format_entity.cljs$core$IFn$_invoke$arity$1(cljs.core.first(x))," ",sql)], null),params);
 } else {
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.format_entity.cljs$core$IFn$_invoke$arity$1(x)], null);
@@ -1478,31 +1478,31 @@ return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMP
  * entities or comma-separated entities (or, if following TO, an expression).
  */
 honey.sql.format_with_query_tail_STAR_ = (function honey$sql$format_with_query_tail_STAR_(pairs){
-return honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$2(cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p__51834){
-var vec__51835 = p__51834;
-var kw = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51835,(0),null);
-var entities = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51835,(1),null);
+return honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$2(cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p__51849){
+var vec__51850 = p__51849;
+var kw = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51850,(0),null);
+var entities = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51850,(1),null);
 if(cljs.core.contains_QMARK_(new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Symbol(null,"default","default",-347290801,null),null,new cljs.core.Keyword(null,"default","default",-1987822328),null,new cljs.core.Symbol(null,"to","to",1832630534,null),null,new cljs.core.Keyword(null,"to","to",192099007),null], null), null),kw)){
-var vec__51839 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(entities) : honey.sql.format_expr.call(null,entities));
-var seq__51840 = cljs.core.seq(vec__51839);
-var first__51841 = cljs.core.first(seq__51840);
-var seq__51840__$1 = cljs.core.next(seq__51840);
-var sql = first__51841;
-var params = seq__51840__$1;
+var vec__51855 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(entities) : honey.sql.format_expr.call(null,entities));
+var seq__51856 = cljs.core.seq(vec__51855);
+var first__51857 = cljs.core.first(seq__51856);
+var seq__51856__$1 = cljs.core.next(seq__51856);
+var sql = first__51857;
+var params = seq__51856__$1;
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(honey.sql.sql_kw(kw)," ",sql)], null),params);
 } else {
 if(cljs.core.sequential_QMARK_(entities)){
-var vec__51845 = honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$1(entities);
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51845,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51845,(1),null);
+var vec__51859 = honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$1(entities);
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51859,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51859,(1),null);
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(honey.sql.sql_kw(kw)," ",honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(", ",sqls))], null),params);
 } else {
-var vec__51850 = honey.sql.format_var.cljs$core$IFn$_invoke$arity$1(entities);
-var seq__51851 = cljs.core.seq(vec__51850);
-var first__51852 = cljs.core.first(seq__51851);
-var seq__51851__$1 = cljs.core.next(seq__51851);
-var sql = first__51852;
-var params = seq__51851__$1;
+var vec__51865 = honey.sql.format_var.cljs$core$IFn$_invoke$arity$1(entities);
+var seq__51866 = cljs.core.seq(vec__51865);
+var first__51867 = cljs.core.first(seq__51866);
+var seq__51866__$1 = cljs.core.next(seq__51866);
+var sql = first__51867;
+var params = seq__51866__$1;
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(honey.sql.sql_kw(kw)," ",sql)], null),params);
 
 }
@@ -1516,34 +1516,34 @@ return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVect
  */
 honey.sql.format_with_query_tail = (function honey$sql$format_with_query_tail(xs){
 var xs__$1 = ((cljs.core.contains_QMARK_(new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Symbol(null,"not-materialized","not-materialized",1249775419,null),null,new cljs.core.Keyword(null,"not-materialized","not-materialized",-390756108),null,new cljs.core.Symbol(null,"materialized","materialized",-175037468,null),null,new cljs.core.Keyword(null,"materialized","materialized",-1815568995),null], null), null),cljs.core.first(xs)))?cljs.core.rest(xs):xs);
-var vec__51856 = honey.sql.format_with_query_tail_STAR_(cljs.core.partition_all.cljs$core$IFn$_invoke$arity$2((2),xs__$1));
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51856,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51856,(1),null);
+var vec__51876 = honey.sql.format_with_query_tail_STAR_(cljs.core.partition_all.cljs$core$IFn$_invoke$arity$2((2),xs__$1));
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51876,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51876,(1),null);
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(" ",sqls)], null),params);
 });
 honey.sql.format_with = (function honey$sql$format_with(k,xs){
-var as_fn = (function (p__51867){
-var vec__51868 = p__51867;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51868,(0),null);
-var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51868,(1),null);
-var materialization = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51868,(2),null);
-var pred__51871 = cljs.core._EQ_;
-var expr__51872 = materialization;
-if(cljs.core.truth_((pred__51871.cljs$core$IFn$_invoke$arity$2 ? pred__51871.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"materialized","materialized",-1815568995),expr__51872) : pred__51871.call(null,new cljs.core.Keyword(null,"materialized","materialized",-1815568995),expr__51872)))){
+var as_fn = (function (p__51888){
+var vec__51889 = p__51888;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51889,(0),null);
+var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51889,(1),null);
+var materialization = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51889,(2),null);
+var pred__51892 = cljs.core._EQ_;
+var expr__51893 = materialization;
+if(cljs.core.truth_((pred__51892.cljs$core$IFn$_invoke$arity$2 ? pred__51892.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"materialized","materialized",-1815568995),expr__51893) : pred__51892.call(null,new cljs.core.Keyword(null,"materialized","materialized",-1815568995),expr__51893)))){
 return "AS MATERIALIZED";
 } else {
-if(cljs.core.truth_((function (){var G__51874 = new cljs.core.Symbol(null,"materialized","materialized",-175037468,null);
-var G__51875 = expr__51872;
-return (pred__51871.cljs$core$IFn$_invoke$arity$2 ? pred__51871.cljs$core$IFn$_invoke$arity$2(G__51874,G__51875) : pred__51871.call(null,G__51874,G__51875));
+if(cljs.core.truth_((function (){var G__51896 = new cljs.core.Symbol(null,"materialized","materialized",-175037468,null);
+var G__51897 = expr__51893;
+return (pred__51892.cljs$core$IFn$_invoke$arity$2 ? pred__51892.cljs$core$IFn$_invoke$arity$2(G__51896,G__51897) : pred__51892.call(null,G__51896,G__51897));
 })())){
 return "AS MATERIALIZED";
 } else {
-if(cljs.core.truth_((pred__51871.cljs$core$IFn$_invoke$arity$2 ? pred__51871.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"not-materialized","not-materialized",-390756108),expr__51872) : pred__51871.call(null,new cljs.core.Keyword(null,"not-materialized","not-materialized",-390756108),expr__51872)))){
+if(cljs.core.truth_((pred__51892.cljs$core$IFn$_invoke$arity$2 ? pred__51892.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"not-materialized","not-materialized",-390756108),expr__51893) : pred__51892.call(null,new cljs.core.Keyword(null,"not-materialized","not-materialized",-390756108),expr__51893)))){
 return "AS NOT MATERIALIZED";
 } else {
-if(cljs.core.truth_((function (){var G__51877 = new cljs.core.Symbol(null,"not-materialized","not-materialized",1249775419,null);
-var G__51878 = expr__51872;
-return (pred__51871.cljs$core$IFn$_invoke$arity$2 ? pred__51871.cljs$core$IFn$_invoke$arity$2(G__51877,G__51878) : pred__51871.call(null,G__51877,G__51878));
+if(cljs.core.truth_((function (){var G__51899 = new cljs.core.Symbol(null,"not-materialized","not-materialized",1249775419,null);
+var G__51900 = expr__51893;
+return (pred__51892.cljs$core$IFn$_invoke$arity$2 ? pred__51892.cljs$core$IFn$_invoke$arity$2(G__51899,G__51900) : pred__51892.call(null,G__51899,G__51900));
 })())){
 return "AS NOT MATERIALIZED";
 } else {
@@ -1553,51 +1553,51 @@ return "AS";
 }
 }
 });
-var vec__51864 = honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$2(cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p__51882){
-var vec__51883 = p__51882;
-var seq__51884 = cljs.core.seq(vec__51883);
-var first__51885 = cljs.core.first(seq__51884);
-var seq__51884__$1 = cljs.core.next(seq__51884);
-var x = first__51885;
-var first__51885__$1 = cljs.core.first(seq__51884__$1);
-var seq__51884__$2 = cljs.core.next(seq__51884__$1);
-var expr = first__51885__$1;
-var tail = seq__51884__$2;
-var with$ = vec__51883;
-var vec__51889 = honey.sql.format_with_part(x);
-var seq__51890 = cljs.core.seq(vec__51889);
-var first__51891 = cljs.core.first(seq__51890);
-var seq__51890__$1 = cljs.core.next(seq__51890);
-var sql = first__51891;
-var params = seq__51890__$1;
+var vec__51885 = honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$2(cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p__51902){
+var vec__51905 = p__51902;
+var seq__51906 = cljs.core.seq(vec__51905);
+var first__51907 = cljs.core.first(seq__51906);
+var seq__51906__$1 = cljs.core.next(seq__51906);
+var x = first__51907;
+var first__51907__$1 = cljs.core.first(seq__51906__$1);
+var seq__51906__$2 = cljs.core.next(seq__51906__$1);
+var expr = first__51907__$1;
+var tail = seq__51906__$2;
+var with$ = vec__51905;
+var vec__51910 = honey.sql.format_with_part(x);
+var seq__51911 = cljs.core.seq(vec__51910);
+var first__51912 = cljs.core.first(seq__51911);
+var seq__51911__$1 = cljs.core.next(seq__51911);
+var sql = first__51912;
+var params = seq__51911__$1;
 var non_query_expr_QMARK_ = (!(cljs.core.map_QMARK_(expr)));
-var vec__51892 = ((non_query_expr_QMARK_)?(honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(expr) : honey.sql.format_expr.call(null,expr)):(honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1(expr) : honey.sql.format_dsl.call(null,expr)));
-var seq__51893 = cljs.core.seq(vec__51892);
-var first__51894 = cljs.core.first(seq__51893);
-var seq__51893__$1 = cljs.core.next(seq__51893);
-var sql_SINGLEQUOTE_ = first__51894;
-var params_SINGLEQUOTE_ = seq__51893__$1;
-var vec__51895 = ((non_query_expr_QMARK_)?honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(sql_SINGLEQUOTE_," AS ",sql)], null),params_SINGLEQUOTE_,params):honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$5(sql," ",as_fn(with$)," ",honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("(",sql_SINGLEQUOTE_,")"))], null),params,params_SINGLEQUOTE_));
-var seq__51896 = cljs.core.seq(vec__51895);
-var first__51897 = cljs.core.first(seq__51896);
-var seq__51896__$1 = cljs.core.next(seq__51896);
-var sql_SINGLEQUOTE__SINGLEQUOTE_ = first__51897;
-var params_SINGLEQUOTE__SINGLEQUOTE_ = seq__51896__$1;
-var sql_params_SINGLEQUOTE__SINGLEQUOTE_ = vec__51895;
-var vec__51898 = honey.sql.format_with_query_tail(tail);
-var seq__51899 = cljs.core.seq(vec__51898);
-var first__51900 = cljs.core.first(seq__51899);
-var seq__51899__$1 = cljs.core.next(seq__51899);
-var tail_sql = first__51900;
-var tail_params = seq__51899__$1;
+var vec__51913 = ((non_query_expr_QMARK_)?(honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(expr) : honey.sql.format_expr.call(null,expr)):(honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1(expr) : honey.sql.format_dsl.call(null,expr)));
+var seq__51914 = cljs.core.seq(vec__51913);
+var first__51915 = cljs.core.first(seq__51914);
+var seq__51914__$1 = cljs.core.next(seq__51914);
+var sql_SINGLEQUOTE_ = first__51915;
+var params_SINGLEQUOTE_ = seq__51914__$1;
+var vec__51916 = ((non_query_expr_QMARK_)?honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(sql_SINGLEQUOTE_," AS ",sql)], null),params_SINGLEQUOTE_,params):honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$5(sql," ",as_fn(with$)," ",honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("(",sql_SINGLEQUOTE_,")"))], null),params,params_SINGLEQUOTE_));
+var seq__51917 = cljs.core.seq(vec__51916);
+var first__51918 = cljs.core.first(seq__51917);
+var seq__51917__$1 = cljs.core.next(seq__51917);
+var sql_SINGLEQUOTE__SINGLEQUOTE_ = first__51918;
+var params_SINGLEQUOTE__SINGLEQUOTE_ = seq__51917__$1;
+var sql_params_SINGLEQUOTE__SINGLEQUOTE_ = vec__51916;
+var vec__51919 = honey.sql.format_with_query_tail(tail);
+var seq__51920 = cljs.core.seq(vec__51919);
+var first__51921 = cljs.core.first(seq__51920);
+var seq__51920__$1 = cljs.core.next(seq__51920);
+var tail_sql = first__51921;
+var tail_params = seq__51920__$1;
 if(cljs.core.seq(tail_sql)){
 return honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(sql_SINGLEQUOTE__SINGLEQUOTE_," ",tail_sql)], null),params_SINGLEQUOTE__SINGLEQUOTE_,tail_params);
 } else {
 return sql_params_SINGLEQUOTE__SINGLEQUOTE_;
 }
 })),xs);
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51864,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51864,(1),null);
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51885,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51885,(1),null);
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(honey.sql.sql_kw(k)," ",honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(", ",sqls))], null),params);
 });
 honey.sql.format_selector = (function honey$sql$format_selector(k,xs){
@@ -1607,7 +1607,7 @@ honey.sql.format_window = (function honey$sql$format_window(k,xs){
 return honey.sql.format_selects(k,cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentVector.EMPTY,cljs.core.partition_all.cljs$core$IFn$_invoke$arity$2((2),xs)));
 });
 honey.sql.format_insert = (function honey$sql$format_insert(k,table){
-var vec__51925 = (function (){var temp__5823__auto__ = honey.sql.clause_body(new cljs.core.Keyword(null,"columns","columns",1998437288));
+var vec__51929 = (function (){var temp__5823__auto__ = honey.sql.clause_body(new cljs.core.Keyword(null,"columns","columns",1998437288));
 if(cljs.core.truth_(temp__5823__auto__)){
 var columns = temp__5823__auto__;
 return cljs.core.cons(columns,honey.sql.format_columns(new cljs.core.Keyword(null,"force-columns","force-columns",779933315),columns));
@@ -1621,12 +1621,12 @@ return null;
 }
 }
 })();
-var cols_SINGLEQUOTE_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51925,(0),null);
-var cols_sql_SINGLEQUOTE_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51925,(1),null);
-var cols_params_SINGLEQUOTE_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51925,(2),null);
-var vec__51928 = ((((cljs.core.sequential_QMARK_(table)) && (cljs.core.map_QMARK_(cljs.core.first(table)))))?cljs.core.juxt.cljs$core$IFn$_invoke$arity$2(cljs.core.first,cljs.core.rest)(table):new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.PersistentArrayMap.EMPTY,table], null));
-var opts = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51928,(0),null);
-var table__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51928,(1),null);
+var cols_SINGLEQUOTE_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51929,(0),null);
+var cols_sql_SINGLEQUOTE_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51929,(1),null);
+var cols_params_SINGLEQUOTE_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51929,(2),null);
+var vec__51932 = ((((cljs.core.sequential_QMARK_(table)) && (cljs.core.map_QMARK_(cljs.core.first(table)))))?cljs.core.juxt.cljs$core$IFn$_invoke$arity$2(cljs.core.first,cljs.core.rest)(table):new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.PersistentArrayMap.EMPTY,table], null));
+var opts = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51932,(0),null);
+var table__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51932,(1),null);
 var overriding = (function (){var temp__5825__auto__ = new cljs.core.Keyword(null,"overriding-value","overriding-value",945614086).cljs$core$IFn$_invoke$arity$1(opts);
 if(cljs.core.truth_(temp__5825__auto__)){
 var type = temp__5825__auto__;
@@ -1637,121 +1637,121 @@ return null;
 })();
 if(cljs.core.sequential_QMARK_(table__$1)){
 if(cljs.core.map_QMARK_(cljs.core.second(table__$1))){
-var vec__51937 = table__$1;
-var table__$2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51937,(0),null);
-var statement = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51937,(1),null);
-var vec__51940 = ((((cljs.core.sequential_QMARK_(table__$2)) && (cljs.core.sequential_QMARK_(cljs.core.second(table__$2)))))?table__$2:new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [table__$2], null));
-var table__$3 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51940,(0),null);
-var cols = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51940,(1),null);
-var vec__51943 = (honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1(statement) : honey.sql.format_dsl.call(null,statement));
-var seq__51944 = cljs.core.seq(vec__51943);
-var first__51945 = cljs.core.first(seq__51944);
-var seq__51944__$1 = cljs.core.next(seq__51944);
-var sql = first__51945;
-var params = seq__51944__$1;
-var vec__51946 = honey.sql.format_entity_alias(table__$3);
-var seq__51947 = cljs.core.seq(vec__51946);
-var first__51948 = cljs.core.first(seq__51947);
-var seq__51947__$1 = cljs.core.next(seq__51947);
-var t_sql = first__51948;
-var t_params = seq__51947__$1;
-var vec__51949 = honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$2(cljs.core.map.cljs$core$IFn$_invoke$arity$1(new cljs.core.Var(function(){return honey.sql.format_entity_alias;},new cljs.core.Symbol("honey.sql","format-entity-alias","honey.sql/format-entity-alias",-793484786,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-entity-alias","format-entity-alias",457072549,null),"honey/sql.cljc",27,1,499,499,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"x","x",-555367584,null)], null)),null,(cljs.core.truth_(honey.sql.format_entity_alias)?honey.sql.format_entity_alias.cljs$lang$test:null)]))),cols);
-var c_sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51949,(0),null);
-var c_params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51949,(1),null);
+var vec__51938 = table__$1;
+var table__$2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51938,(0),null);
+var statement = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51938,(1),null);
+var vec__51941 = ((((cljs.core.sequential_QMARK_(table__$2)) && (cljs.core.sequential_QMARK_(cljs.core.second(table__$2)))))?table__$2:new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [table__$2], null));
+var table__$3 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51941,(0),null);
+var cols = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51941,(1),null);
+var vec__51944 = (honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1(statement) : honey.sql.format_dsl.call(null,statement));
+var seq__51945 = cljs.core.seq(vec__51944);
+var first__51946 = cljs.core.first(seq__51945);
+var seq__51945__$1 = cljs.core.next(seq__51945);
+var sql = first__51946;
+var params = seq__51945__$1;
+var vec__51947 = honey.sql.format_entity_alias(table__$3);
+var seq__51948 = cljs.core.seq(vec__51947);
+var first__51949 = cljs.core.first(seq__51948);
+var seq__51948__$1 = cljs.core.next(seq__51948);
+var t_sql = first__51949;
+var t_params = seq__51948__$1;
+var vec__51950 = honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$2(cljs.core.map.cljs$core$IFn$_invoke$arity$1(new cljs.core.Var(function(){return honey.sql.format_entity_alias;},new cljs.core.Symbol("honey.sql","format-entity-alias","honey.sql/format-entity-alias",-793484786,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-entity-alias","format-entity-alias",457072549,null),"honey/sql.cljc",27,1,499,499,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"x","x",-555367584,null)], null)),null,(cljs.core.truth_(honey.sql.format_entity_alias)?honey.sql.format_entity_alias.cljs$lang$test:null)]))),cols);
+var c_sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51950,(0),null);
+var c_params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51950,(1),null);
 return honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$5(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$variadic(honey.sql.sql_kw(k)," ",t_sql," ",((cljs.core.seq(cols))?honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("(",honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(", ",c_sqls),") "):((cljs.core.seq(cols_SINGLEQUOTE_))?honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(cols_sql_SINGLEQUOTE_," "):null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([overriding,sql], 0))], null),t_params,c_params,cols_params_SINGLEQUOTE_,params);
 } else {
 if(cljs.core.sequential_QMARK_(cljs.core.second(table__$1))){
-var vec__51959 = table__$1;
-var table__$2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51959,(0),null);
-var cols = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51959,(1),null);
-var vec__51962 = honey.sql.format_entity_alias(table__$2);
-var seq__51963 = cljs.core.seq(vec__51962);
-var first__51964 = cljs.core.first(seq__51963);
-var seq__51963__$1 = cljs.core.next(seq__51963);
-var t_sql = first__51964;
-var t_params = seq__51963__$1;
-var vec__51965 = honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$2(cljs.core.map.cljs$core$IFn$_invoke$arity$1(new cljs.core.Var(function(){return honey.sql.format_entity_alias;},new cljs.core.Symbol("honey.sql","format-entity-alias","honey.sql/format-entity-alias",-793484786,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-entity-alias","format-entity-alias",457072549,null),"honey/sql.cljc",27,1,499,499,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"x","x",-555367584,null)], null)),null,(cljs.core.truth_(honey.sql.format_entity_alias)?honey.sql.format_entity_alias.cljs$lang$test:null)]))),cols);
-var c_sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51965,(0),null);
-var c_params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51965,(1),null);
+var vec__51964 = table__$1;
+var table__$2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51964,(0),null);
+var cols = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51964,(1),null);
+var vec__51967 = honey.sql.format_entity_alias(table__$2);
+var seq__51968 = cljs.core.seq(vec__51967);
+var first__51969 = cljs.core.first(seq__51968);
+var seq__51968__$1 = cljs.core.next(seq__51968);
+var t_sql = first__51969;
+var t_params = seq__51968__$1;
+var vec__51970 = honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$2(cljs.core.map.cljs$core$IFn$_invoke$arity$1(new cljs.core.Var(function(){return honey.sql.format_entity_alias;},new cljs.core.Symbol("honey.sql","format-entity-alias","honey.sql/format-entity-alias",-793484786,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-entity-alias","format-entity-alias",457072549,null),"honey/sql.cljc",27,1,499,499,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"x","x",-555367584,null)], null)),null,(cljs.core.truth_(honey.sql.format_entity_alias)?honey.sql.format_entity_alias.cljs$lang$test:null)]))),cols);
+var c_sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51970,(0),null);
+var c_params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51970,(1),null);
 return honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$variadic(honey.sql.sql_kw(k)," ",t_sql," (",honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(", ",c_sqls),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([")",overriding], 0))], null),t_params,c_params);
 } else {
-var vec__51974 = honey.sql.format_entity_alias(table__$1);
-var seq__51975 = cljs.core.seq(vec__51974);
-var first__51976 = cljs.core.first(seq__51975);
-var seq__51975__$1 = cljs.core.next(seq__51975);
-var sql = first__51976;
-var params = seq__51975__$1;
+var vec__51979 = honey.sql.format_entity_alias(table__$1);
+var seq__51980 = cljs.core.seq(vec__51979);
+var first__51981 = cljs.core.first(seq__51980);
+var seq__51980__$1 = cljs.core.next(seq__51980);
+var sql = first__51981;
+var params = seq__51980__$1;
 return honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$5(honey.sql.sql_kw(k)," ",sql,((cljs.core.seq(cols_SINGLEQUOTE_))?honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(" ",cols_sql_SINGLEQUOTE_):null),overriding)], null),cols_params_SINGLEQUOTE_,params);
 
 }
 }
 } else {
-var vec__51981 = honey.sql.format_entity_alias(table__$1);
-var seq__51982 = cljs.core.seq(vec__51981);
-var first__51983 = cljs.core.first(seq__51982);
-var seq__51982__$1 = cljs.core.next(seq__51982);
-var sql = first__51983;
-var params = seq__51982__$1;
+var vec__51985 = honey.sql.format_entity_alias(table__$1);
+var seq__51986 = cljs.core.seq(vec__51985);
+var first__51987 = cljs.core.first(seq__51986);
+var seq__51986__$1 = cljs.core.next(seq__51986);
+var sql = first__51987;
+var params = seq__51986__$1;
 return honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$5(honey.sql.sql_kw(k)," ",sql,((cljs.core.seq(cols_SINGLEQUOTE_))?honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(" ",cols_sql_SINGLEQUOTE_):null),overriding)], null),cols_params_SINGLEQUOTE_,params);
 }
 });
 honey.sql.format_join = (function honey$sql$format_join(k,clauses){
-var vec__51993 = cljs.core.transduce.cljs$core$IFn$_invoke$arity$4(cljs.core.partition_all.cljs$core$IFn$_invoke$arity$1((2)),(function() {
-var G__52770 = null;
-var G__52770__1 = (function (res){
+var vec__51997 = cljs.core.transduce.cljs$core$IFn$_invoke$arity$4(cljs.core.partition_all.cljs$core$IFn$_invoke$arity$1((2)),(function() {
+var G__52776 = null;
+var G__52776__1 = (function (res){
 return res;
 });
-var G__52770__2 = (function (p__51997,p__51998){
-var vec__52000 = p__51997;
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52000,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52000,(1),null);
-var vec__52003 = p__51998;
-var j = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52003,(0),null);
-var e = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52003,(1),null);
-var vec__52008 = honey.sql.format_selects_common.cljs$core$IFn$_invoke$arity$3(honey.sql.sql_kw(((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"join","join",-758861890),k))?new cljs.core.Keyword(null,"inner-join","inner-join",659431740):k)),true,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [j], null));
-var seq__52009 = cljs.core.seq(vec__52008);
-var first__52010 = cljs.core.first(seq__52009);
-var seq__52009__$1 = cljs.core.next(seq__52009);
-var sql_j = first__52010;
-var params_j = seq__52009__$1;
+var G__52776__2 = (function (p__52000,p__52001){
+var vec__52002 = p__52000;
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52002,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52002,(1),null);
+var vec__52005 = p__52001;
+var j = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52005,(0),null);
+var e = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52005,(1),null);
+var vec__52011 = honey.sql.format_selects_common.cljs$core$IFn$_invoke$arity$3(honey.sql.sql_kw(((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"join","join",-758861890),k))?new cljs.core.Keyword(null,"inner-join","inner-join",659431740):k)),true,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [j], null));
+var seq__52012 = cljs.core.seq(vec__52011);
+var first__52013 = cljs.core.first(seq__52012);
+var seq__52012__$1 = cljs.core.next(seq__52012);
+var sql_j = first__52013;
+var params_j = seq__52012__$1;
 var sqls__$1 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(sqls,sql_j);
 if(((cljs.core.sequential_QMARK_(e)) && (cljs.core.contains_QMARK_(new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Symbol(null,"using","using",-705812733,null),null,new cljs.core.Keyword(null,"using","using",1948623036),null], null), null),cljs.core.first(e))))){
-var vec__52016 = honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$2(cljs.core.map.cljs$core$IFn$_invoke$arity$1(new cljs.core.Var(function(){return honey.sql.format_entity_alias;},new cljs.core.Symbol("honey.sql","format-entity-alias","honey.sql/format-entity-alias",-793484786,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-entity-alias","format-entity-alias",457072549,null),"honey/sql.cljc",27,1,499,499,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"x","x",-555367584,null)], null)),null,(cljs.core.truth_(honey.sql.format_entity_alias)?honey.sql.format_entity_alias.cljs$lang$test:null)]))),cljs.core.rest(e));
-var u_sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52016,(0),null);
-var u_params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52016,(1),null);
+var vec__52018 = honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$2(cljs.core.map.cljs$core$IFn$_invoke$arity$1(new cljs.core.Var(function(){return honey.sql.format_entity_alias;},new cljs.core.Symbol("honey.sql","format-entity-alias","honey.sql/format-entity-alias",-793484786,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-entity-alias","format-entity-alias",457072549,null),"honey/sql.cljc",27,1,499,499,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"x","x",-555367584,null)], null)),null,(cljs.core.truth_(honey.sql.format_entity_alias)?honey.sql.format_entity_alias.cljs$lang$test:null)]))),cljs.core.rest(e));
+var u_sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52018,(0),null);
+var u_params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52018,(1),null);
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.conj.cljs$core$IFn$_invoke$arity$variadic(sqls__$1,"USING",cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("(",honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(", ",u_sqls),")")], 0)),honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(params,params_j,u_params)], null);
 } else {
-var vec__52023 = (cljs.core.truth_(e)?(honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(e) : honey.sql.format_expr.call(null,e)):null);
-var seq__52024 = cljs.core.seq(vec__52023);
-var first__52025 = cljs.core.first(seq__52024);
-var seq__52024__$1 = cljs.core.next(seq__52024);
-var sql = first__52025;
-var params_SINGLEQUOTE_ = seq__52024__$1;
-return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [(function (){var G__52027 = sqls__$1;
+var vec__52026 = (cljs.core.truth_(e)?(honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(e) : honey.sql.format_expr.call(null,e)):null);
+var seq__52027 = cljs.core.seq(vec__52026);
+var first__52028 = cljs.core.first(seq__52027);
+var seq__52027__$1 = cljs.core.next(seq__52027);
+var sql = first__52028;
+var params_SINGLEQUOTE_ = seq__52027__$1;
+return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [(function (){var G__52030 = sqls__$1;
 if(cljs.core.truth_(e)){
-return cljs.core.conj.cljs$core$IFn$_invoke$arity$variadic(G__52027,"ON",cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([sql], 0));
+return cljs.core.conj.cljs$core$IFn$_invoke$arity$variadic(G__52030,"ON",cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([sql], 0));
 } else {
-return G__52027;
+return G__52030;
 }
 })(),honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(params,params_j,params_SINGLEQUOTE_)], null);
 }
 });
-G__52770 = function(p__51997,p__51998){
+G__52776 = function(p__52000,p__52001){
 switch(arguments.length){
 case 1:
-return G__52770__1.call(this,p__51997);
+return G__52776__1.call(this,p__52000);
 case 2:
-return G__52770__2.call(this,p__51997,p__51998);
+return G__52776__2.call(this,p__52000,p__52001);
 }
 throw(new Error('Invalid arity: ' + arguments.length));
 };
-G__52770.cljs$core$IFn$_invoke$arity$1 = G__52770__1;
-G__52770.cljs$core$IFn$_invoke$arity$2 = G__52770__2;
-return G__52770;
+G__52776.cljs$core$IFn$_invoke$arity$1 = G__52776__1;
+G__52776.cljs$core$IFn$_invoke$arity$2 = G__52776__2;
+return G__52776;
 })()
 ,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.PersistentVector.EMPTY,cljs.core.PersistentVector.EMPTY], null),clauses);
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51993,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51993,(1),null);
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51997,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51997,(1),null);
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(" ",sqls)], null),params);
 });
 /**
@@ -1766,19 +1766,19 @@ honey.sql.valid_joins = cljs.core.set(cljs.core.vals(honey.sql.join_by_aliases))
  *   in a specific order.
  */
 honey.sql.format_join_by = (function honey$sql$format_join_by(_,clauses){
-var joins = ((cljs.core.every_QMARK_(cljs.core.map_QMARK_,clauses))?cljs.core.into.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentVector.EMPTY,cljs.core.comp.cljs$core$IFn$_invoke$arity$2(cljs.core.mapcat.cljs$core$IFn$_invoke$arity$1((function (p1__52033_SHARP_){
-return cljs.core.mapcat.cljs$core$IFn$_invoke$arity$variadic(cljs.core.juxt.cljs$core$IFn$_invoke$arity$2(cljs.core.key,cljs.core.val),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([p1__52033_SHARP_], 0));
+var joins = ((cljs.core.every_QMARK_(cljs.core.map_QMARK_,clauses))?cljs.core.into.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentVector.EMPTY,cljs.core.comp.cljs$core$IFn$_invoke$arity$2(cljs.core.mapcat.cljs$core$IFn$_invoke$arity$1((function (p1__52034_SHARP_){
+return cljs.core.mapcat.cljs$core$IFn$_invoke$arity$variadic(cljs.core.juxt.cljs$core$IFn$_invoke$arity$2(cljs.core.key,cljs.core.val),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([p1__52034_SHARP_], 0));
 })),cljs.core.map.cljs$core$IFn$_invoke$arity$1(cljs.core.vector)),clauses):cljs.core.partition_by.cljs$core$IFn$_invoke$arity$2(cljs.core.ident_QMARK_,clauses));
 if(cljs.core.even_QMARK_(cljs.core.count(joins))){
 } else {
 throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(":join-by expects a sequence of join clauses",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"clauses","clauses",1454841241),clauses], null));
 }
 
-var vec__52037 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (p__52040,p__52041){
-var vec__52043 = p__52040;
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52043,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52043,(1),null);
-var vec__52047 = p__52041;
+var vec__52035 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (p__52040,p__52042){
+var vec__52044 = p__52040;
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52044,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52044,(1),null);
+var vec__52047 = p__52042;
 var vec__52050 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52047,(0),null);
 var j = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52050,(0),null);
 var vec__52053 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52047,(1),null);
@@ -1800,47 +1800,47 @@ var sql_SINGLEQUOTE_ = first__52059;
 var params_SINGLEQUOTE_ = seq__52058__$1;
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.conj.cljs$core$IFn$_invoke$arity$2(sqls,sql_SINGLEQUOTE_),cljs.core.into.cljs$core$IFn$_invoke$arity$2(params,params_SINGLEQUOTE_)], null);
 }),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.PersistentVector.EMPTY,cljs.core.PersistentVector.EMPTY], null),cljs.core.partition.cljs$core$IFn$_invoke$arity$2((2),joins));
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52037,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52037,(1),null);
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52035,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52035,(1),null);
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(" ",sqls)], null),params);
 });
 honey.sql.format_on_expr = (function honey$sql$format_on_expr(k,e){
 if((((!(cljs.core.sequential_QMARK_(e)))) || (cljs.core.seq(e)))){
-var vec__52061 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(e) : honey.sql.format_expr.call(null,e));
-var seq__52062 = cljs.core.seq(vec__52061);
-var first__52063 = cljs.core.first(seq__52062);
-var seq__52062__$1 = cljs.core.next(seq__52062);
-var sql = first__52063;
-var params = seq__52062__$1;
+var vec__52066 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(e) : honey.sql.format_expr.call(null,e));
+var seq__52067 = cljs.core.seq(vec__52066);
+var first__52068 = cljs.core.first(seq__52067);
+var seq__52067__$1 = cljs.core.next(seq__52067);
+var sql = first__52068;
+var params = seq__52067__$1;
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(honey.sql.sql_kw(k)," ",sql)], null),params);
 } else {
 return cljs.core.PersistentVector.EMPTY;
 }
 });
 honey.sql.format_group_by = (function honey$sql$format_group_by(k,xs){
-var vec__52064 = honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$1(honey.sql.ensure_sequential(xs));
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52064,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52064,(1),null);
+var vec__52070 = honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$1(honey.sql.ensure_sequential(xs));
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52070,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52070,(1),null);
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(honey.sql.sql_kw(k)," ",honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(", ",sqls))], null),params);
 });
 honey.sql.format_order_by = (function honey$sql$format_order_by(k,xs){
 var xs__$1 = honey.sql.ensure_sequential(xs);
-var dirs = cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__52067_SHARP_){
-if(cljs.core.sequential_QMARK_(p1__52067_SHARP_)){
-return cljs.core.second(p1__52067_SHARP_);
+var dirs = cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__52073_SHARP_){
+if(cljs.core.sequential_QMARK_(p1__52073_SHARP_)){
+return cljs.core.second(p1__52073_SHARP_);
 } else {
 return null;
 }
 }),xs__$1);
-var vec__52069 = honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$1(cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__52068_SHARP_){
-if(cljs.core.sequential_QMARK_(p1__52068_SHARP_)){
-return cljs.core.first(p1__52068_SHARP_);
+var vec__52075 = honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$1(cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__52074_SHARP_){
+if(cljs.core.sequential_QMARK_(p1__52074_SHARP_)){
+return cljs.core.first(p1__52074_SHARP_);
 } else {
-return p1__52068_SHARP_;
+return p1__52074_SHARP_;
 }
 }),xs__$1));
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52069,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52069,(1),null);
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52075,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52075,(1),null);
 if(cljs.core.seq(sqls)){
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$2((cljs.core.truth_(k)?honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(honey.sql.sql_kw(k)," "):null),honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$3((function (sql,dir){
 if(cljs.core.truth_((function (){var or__5025__auto__ = k;
@@ -1866,15 +1866,15 @@ return cljs.core.PersistentVector.EMPTY;
 }
 });
 honey.sql.format_lock_strength = (function honey$sql$format_lock_strength(k,xs){
-var vec__52072 = honey.sql.ensure_sequential(xs);
-var strength = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52072,(0),null);
-var tables = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52072,(1),null);
-var nowait = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52072,(2),null);
+var vec__52078 = honey.sql.ensure_sequential(xs);
+var strength = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52078,(0),null);
+var tables = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52078,(1),null);
+var nowait = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52078,(2),null);
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$4(honey.sql.sql_kw(k)," ",honey.sql.sql_kw(strength),(cljs.core.truth_(tables)?honey.sql.util.str.cljs$core$IFn$_invoke$arity$2((cljs.core.truth_((function (){var and__5023__auto__ = cljs.core.ident_QMARK_(tables);
 if(and__5023__auto__){
-var G__52076 = honey.sql.sym__GT_kw(tables);
-var fexpr__52075 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"skip-locked","skip-locked",-202896094),null,new cljs.core.Keyword(null,"nowait","nowait",-1298090166),null,new cljs.core.Keyword(null,"wait","wait",-260664777),null], null), null);
-return (fexpr__52075.cljs$core$IFn$_invoke$arity$1 ? fexpr__52075.cljs$core$IFn$_invoke$arity$1(G__52076) : fexpr__52075.call(null,G__52076));
+var G__52082 = honey.sql.sym__GT_kw(tables);
+var fexpr__52081 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"skip-locked","skip-locked",-202896094),null,new cljs.core.Keyword(null,"nowait","nowait",-1298090166),null,new cljs.core.Keyword(null,"wait","wait",-260664777),null], null), null);
+return (fexpr__52081.cljs$core$IFn$_invoke$arity$1 ? fexpr__52081.cljs$core$IFn$_invoke$arity$1(G__52082) : fexpr__52081.call(null,G__52082));
 } else {
 return and__5023__auto__;
 }
@@ -1887,17 +1887,17 @@ if(cljs.core.map_QMARK_(first_xs)){
 var cols_1 = cljs.core.keys(cljs.core.first(xs));
 var cols_n = cljs.core.into.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentHashSet.EMPTY,cljs.core.comp.cljs$core$IFn$_invoke$arity$2(cljs.core.filter.cljs$core$IFn$_invoke$arity$1(cljs.core.map_QMARK_),cljs.core.mapcat.cljs$core$IFn$_invoke$arity$1(cljs.core.keys)),xs);
 var cols = ((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentHashSet.EMPTY,cols_1),cols_n))?cols_1:cols_n);
-return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cols,(cljs.core.truth_(skip_cols_sql)?null:honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("(",honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__52077_SHARP_){
-return honey.sql.format_entity.cljs$core$IFn$_invoke$arity$2(p1__52077_SHARP_,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"drop-ns","drop-ns",-1721308319),true], null));
+return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cols,(cljs.core.truth_(skip_cols_sql)?null:honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("(",honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__52083_SHARP_){
+return honey.sql.format_entity.cljs$core$IFn$_invoke$arity$2(p1__52083_SHARP_,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"drop-ns","drop-ns",-1721308319),true], null));
 })),cols),")"))], null);
 } else {
 return null;
 }
 });
 honey.sql.format_values = (function honey$sql$format_values(k,xs){
-var map__52080 = honey.sql._STAR_options_STAR_;
-var map__52080__$1 = cljs.core.__destructure_map(map__52080);
-var values_default_columns = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52080__$1,new cljs.core.Keyword(null,"values-default-columns","values-default-columns",1352539997));
+var map__52086 = honey.sql._STAR_options_STAR_;
+var map__52086__$1 = cljs.core.__destructure_map(map__52086);
+var values_default_columns = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52086__$1,new cljs.core.Keyword(null,"values-default-columns","values-default-columns",1352539997));
 var first_xs = ((cljs.core.sequential_QMARK_(xs))?cljs.core.first(cljs.core.drop_while.cljs$core$IFn$_invoke$arity$2(cljs.core.ident_QMARK_,xs)):null);
 var row_ctr = ((cljs.core.sequential_QMARK_(xs)) && (((cljs.core.ident_QMARK_(cljs.core.first(xs))) && (cljs.core.contains_QMARK_(new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Symbol(null,"row","row",1070392006,null),null,new cljs.core.Keyword(null,"row","row",-570139521),null], null), null),cljs.core.first(xs))))));
 var xs__$1 = ((cljs.core.sequential_QMARK_(xs))?cljs.core.vec(xs):xs);
@@ -1919,48 +1919,48 @@ return x;
 }
 }),xs__$2);
 })());
-var vec__52081 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (p__52084,x){
-var vec__52085 = p__52084;
-var sql = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52085,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52085,(1),null);
+var vec__52087 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (p__52090,x){
+var vec__52091 = p__52090;
+var sql = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52091,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52091,(1),null);
 if(cljs.core.sequential_QMARK_(x)){
-var vec__52088 = honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$1(x);
-var sqls_SINGLEQUOTE_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52088,(0),null);
-var params_SINGLEQUOTE_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52088,(1),null);
+var vec__52094 = honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$1(x);
+var sqls_SINGLEQUOTE_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52094,(0),null);
+var params_SINGLEQUOTE_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52094,(1),null);
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.conj.cljs$core$IFn$_invoke$arity$2(sql,((cljs.core.sequential_QMARK_(sqls_SINGLEQUOTE_))?honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("(",honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(", ",sqls_SINGLEQUOTE_),")"):sqls_SINGLEQUOTE_)),honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$2(params,params_SINGLEQUOTE_)], null);
 } else {
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.conj.cljs$core$IFn$_invoke$arity$2(sql,honey.sql.sql_kw(x)),params], null);
 }
 }),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.PersistentVector.EMPTY,cljs.core.PersistentVector.EMPTY], null),xs_SINGLEQUOTE_);
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52081,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52081,(1),null);
-var sqls__$1 = ((row_ctr)?cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__52078_SHARP_){
-return honey.sql.util.str.cljs$core$IFn$_invoke$arity$2("ROW",p1__52078_SHARP_);
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52087,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52087,(1),null);
+var sqls__$1 = ((row_ctr)?cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__52084_SHARP_){
+return honey.sql.util.str.cljs$core$IFn$_invoke$arity$2("ROW",p1__52084_SHARP_);
 }),sqls):sqls);
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(honey.sql.sql_kw(k)," ",honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(", ",sqls__$1))], null),params);
 } else {
 if(cljs.core.map_QMARK_(first_xs)){
-var vec__52091 = honey.sql.columns_from_values(xs__$2,((honey.sql.contains_clause_QMARK_(new cljs.core.Keyword(null,"insert-into","insert-into",382212789))) || (((honey.sql.contains_clause_QMARK_(new cljs.core.Keyword(null,"patch-into","patch-into",-245698135))) || (((honey.sql.contains_clause_QMARK_(new cljs.core.Keyword(null,"replace-into","replace-into",139321349))) || (honey.sql.contains_clause_QMARK_(new cljs.core.Keyword(null,"columns","columns",1998437288)))))))));
-var cols = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52091,(0),null);
-var cols_sql = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52091,(1),null);
-var vec__52094 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (p__52097,x){
-var vec__52098 = p__52097;
-var sql = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52098,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52098,(1),null);
+var vec__52097 = honey.sql.columns_from_values(xs__$2,((honey.sql.contains_clause_QMARK_(new cljs.core.Keyword(null,"insert-into","insert-into",382212789))) || (((honey.sql.contains_clause_QMARK_(new cljs.core.Keyword(null,"patch-into","patch-into",-245698135))) || (((honey.sql.contains_clause_QMARK_(new cljs.core.Keyword(null,"replace-into","replace-into",139321349))) || (honey.sql.contains_clause_QMARK_(new cljs.core.Keyword(null,"columns","columns",1998437288)))))))));
+var cols = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52097,(0),null);
+var cols_sql = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52097,(1),null);
+var vec__52100 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (p__52103,x){
+var vec__52104 = p__52103;
+var sql = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52104,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52104,(1),null);
 if(cljs.core.map_QMARK_(x)){
-var vec__52101 = honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$2(cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__52079_SHARP_){
-var G__52104 = cljs.core.get.cljs$core$IFn$_invoke$arity$3(x,p1__52079_SHARP_,((cljs.core.contains_QMARK_(values_default_columns,p1__52079_SHARP_))?new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"default","default",-1987822328)], null):null));
-return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(G__52104) : honey.sql.format_expr.call(null,G__52104));
+var vec__52107 = honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$2(cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__52085_SHARP_){
+var G__52110 = cljs.core.get.cljs$core$IFn$_invoke$arity$3(x,p1__52085_SHARP_,((cljs.core.contains_QMARK_(values_default_columns,p1__52085_SHARP_))?new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"default","default",-1987822328)], null):null));
+return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(G__52110) : honey.sql.format_expr.call(null,G__52110));
 })),cols);
-var sqls_SINGLEQUOTE_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52101,(0),null);
-var params_SINGLEQUOTE_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52101,(1),null);
+var sqls_SINGLEQUOTE_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52107,(0),null);
+var params_SINGLEQUOTE_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52107,(1),null);
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.conj.cljs$core$IFn$_invoke$arity$2(sql,((cljs.core.sequential_QMARK_(sqls_SINGLEQUOTE_))?honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("(",honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(", ",sqls_SINGLEQUOTE_),")"):sqls_SINGLEQUOTE_)),honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$2(params,params_SINGLEQUOTE_)], null);
 } else {
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.conj.cljs$core$IFn$_invoke$arity$2(sql,honey.sql.sql_kw(x)),params], null);
 }
 }),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.PersistentVector.EMPTY,cljs.core.PersistentVector.EMPTY], null),xs__$2);
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52094,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52094,(1),null);
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52100,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52100,(1),null);
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$4((cljs.core.truth_(cols_sql)?honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(cols_sql," "):null),honey.sql.sql_kw(k)," ",honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(", ",sqls))], null),params);
 } else {
 throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(":values expects a sequence of rows (maps) or column values (sequences)",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"first","first",-644103046),cljs.core.first(xs__$2)], null));
@@ -1971,53 +1971,53 @@ throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(":values expects a sequenc
 }
 });
 honey.sql.format_set_exprs = (function honey$sql$format_set_exprs(k,xs){
-var vec__52105 = cljs.core.reduce_kv((function (p__52108,v,e){
-var vec__52109 = p__52108;
-var sql = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52109,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52109,(1),null);
-var vec__52112 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(e) : honey.sql.format_expr.call(null,e));
-var seq__52113 = cljs.core.seq(vec__52112);
-var first__52114 = cljs.core.first(seq__52113);
-var seq__52113__$1 = cljs.core.next(seq__52113);
-var sql_SINGLEQUOTE_ = first__52114;
-var params_SINGLEQUOTE_ = seq__52113__$1;
+var vec__52111 = cljs.core.reduce_kv((function (p__52114,v,e){
+var vec__52115 = p__52114;
+var sql = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52115,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52115,(1),null);
+var vec__52118 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(e) : honey.sql.format_expr.call(null,e));
+var seq__52119 = cljs.core.seq(vec__52118);
+var first__52120 = cljs.core.first(seq__52119);
+var seq__52119__$1 = cljs.core.next(seq__52119);
+var sql_SINGLEQUOTE_ = first__52120;
+var params_SINGLEQUOTE_ = seq__52119__$1;
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.conj.cljs$core$IFn$_invoke$arity$2(sql,honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(honey.sql.format_entity.cljs$core$IFn$_invoke$arity$2(v,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"drop-ns","drop-ns",-1721308319),(!(honey.sql.mysql_QMARK_()))], null))," = ",sql_SINGLEQUOTE_)),((params_SINGLEQUOTE_)?cljs.core.into.cljs$core$IFn$_invoke$arity$2(params,params_SINGLEQUOTE_):params)], null);
 }),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.PersistentVector.EMPTY,cljs.core.PersistentVector.EMPTY], null),xs);
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52105,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52105,(1),null);
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52111,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52111,(1),null);
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(honey.sql.sql_kw(k)," ",honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(", ",sqls))], null),params);
 });
 honey.sql.format_on_conflict = (function honey$sql$format_on_conflict(k,x){
 if(cljs.core.sequential_QMARK_(x)){
 var exprs = cljs.core.take_while.cljs$core$IFn$_invoke$arity$2(cljs.core.complement(cljs.core.map_QMARK_),x);
 var n = cljs.core.count(exprs);
-var vec__52115 = cljs.core.drop.cljs$core$IFn$_invoke$arity$2(n,x);
-var seq__52116 = cljs.core.seq(vec__52115);
-var first__52117 = cljs.core.first(seq__52116);
-var seq__52116__$1 = cljs.core.next(seq__52116);
-var clause = first__52117;
-var more = seq__52116__$1;
+var vec__52121 = cljs.core.drop.cljs$core$IFn$_invoke$arity$2(n,x);
+var seq__52122 = cljs.core.seq(vec__52121);
+var first__52123 = cljs.core.first(seq__52122);
+var seq__52122__$1 = cljs.core.next(seq__52122);
+var clause = first__52123;
+var more = seq__52122__$1;
 var _ = ((cljs.core.seq(more))?(function(){throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2("unsupported :on-conflict format",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"clause","clause",1479668060),x], null))})():null);
-var vec__52118 = ((cljs.core.seq(exprs))?honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$1(cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (e){
+var vec__52124 = ((cljs.core.seq(exprs))?honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$1(cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (e){
 if(cljs.core.sequential_QMARK_(e)){
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"nest","nest",-314993663),e], null);
 } else {
 return e;
 }
 }),exprs)):null);
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52118,(0),null);
-var expr_params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52118,(1),null);
-var vec__52121 = (cljs.core.truth_(clause)?(honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1(clause) : honey.sql.format_dsl.call(null,clause)):null);
-var seq__52122 = cljs.core.seq(vec__52121);
-var first__52123 = cljs.core.first(seq__52122);
-var seq__52122__$1 = cljs.core.next(seq__52122);
-var sql = first__52123;
-var clause_params = seq__52122__$1;
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52124,(0),null);
+var expr_params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52124,(1),null);
+var vec__52127 = (cljs.core.truth_(clause)?(honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1(clause) : honey.sql.format_dsl.call(null,clause)):null);
+var seq__52128 = cljs.core.seq(vec__52127);
+var first__52129 = cljs.core.first(seq__52128);
+var seq__52128__$1 = cljs.core.next(seq__52128);
+var sql = first__52129;
+var clause_params = seq__52128__$1;
 return honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(honey.sql.sql_kw(k),(((n > (0)))?honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(" (",honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(", ",sqls),")"):null),(cljs.core.truth_(sql)?honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(" ",sql):null))], null),expr_params,clause_params);
 } else {
-var G__52124 = k;
-var G__52125 = new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [x], null);
-return (honey.sql.format_on_conflict.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_on_conflict.cljs$core$IFn$_invoke$arity$2(G__52124,G__52125) : honey.sql.format_on_conflict.call(null,G__52124,G__52125));
+var G__52130 = k;
+var G__52131 = new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [x], null);
+return (honey.sql.format_on_conflict.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_on_conflict.cljs$core$IFn$_invoke$arity$2(G__52130,G__52131) : honey.sql.format_on_conflict.call(null,G__52130,G__52131));
 }
 });
 honey.sql.format_do_update_set = (function honey$sql$format_do_update_set(k,x){
@@ -2028,57 +2028,57 @@ var fields = (function (){var or__5025__auto__ = new cljs.core.Keyword(null,"fie
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
 } else {
-var fexpr__52132 = new cljs.core.Symbol(null,"fields","fields",-291534703,null);
-return (fexpr__52132.cljs$core$IFn$_invoke$arity$1 ? fexpr__52132.cljs$core$IFn$_invoke$arity$1(x) : fexpr__52132.call(null,x));
+var fexpr__52138 = new cljs.core.Symbol(null,"fields","fields",-291534703,null);
+return (fexpr__52138.cljs$core$IFn$_invoke$arity$1 ? fexpr__52138.cljs$core$IFn$_invoke$arity$1(x) : fexpr__52138.call(null,x));
 }
 })();
-var vec__52126 = ((cljs.core.map_QMARK_(fields))?honey.sql.format_set_exprs(k,fields):new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(honey.sql.sql_kw(k)," ",honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$1(((function (k,x,fields){
+var vec__52132 = ((cljs.core.map_QMARK_(fields))?honey.sql.format_set_exprs(k,fields):new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(honey.sql.sql_kw(k)," ",honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$1(((function (k,x,fields){
 return (function (e){
 var e__$1 = honey.sql.format_entity.cljs$core$IFn$_invoke$arity$2(e,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"drop-ns","drop-ns",-1721308319),true], null));
 return honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(e__$1," = EXCLUDED.",e__$1);
 });})(k,x,fields))
 ),fields))], null));
-var seq__52127 = cljs.core.seq(vec__52126);
-var first__52128 = cljs.core.first(seq__52127);
-var seq__52127__$1 = cljs.core.next(seq__52127);
-var sets = first__52128;
-var set_params = seq__52127__$1;
+var seq__52133 = cljs.core.seq(vec__52132);
+var first__52134 = cljs.core.first(seq__52133);
+var seq__52133__$1 = cljs.core.next(seq__52133);
+var sets = first__52134;
+var set_params = seq__52133__$1;
 var where = (function (){var or__5025__auto__ = new cljs.core.Keyword(null,"where","where",-2044795965).cljs$core$IFn$_invoke$arity$1(x);
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
 } else {
-var fexpr__52133 = new cljs.core.Symbol(null,"where","where",-404264438,null);
-return (fexpr__52133.cljs$core$IFn$_invoke$arity$1 ? fexpr__52133.cljs$core$IFn$_invoke$arity$1(x) : fexpr__52133.call(null,x));
+var fexpr__52139 = new cljs.core.Symbol(null,"where","where",-404264438,null);
+return (fexpr__52139.cljs$core$IFn$_invoke$arity$1 ? fexpr__52139.cljs$core$IFn$_invoke$arity$1(x) : fexpr__52139.call(null,x));
 }
 })();
-var vec__52129 = (cljs.core.truth_(where)?(function (){var G__52134 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"where","where",-2044795965),where], null);
-return (honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1(G__52134) : honey.sql.format_dsl.call(null,G__52134));
+var vec__52135 = (cljs.core.truth_(where)?(function (){var G__52140 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"where","where",-2044795965),where], null);
+return (honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1(G__52140) : honey.sql.format_dsl.call(null,G__52140));
 })():null);
-var seq__52130 = cljs.core.seq(vec__52129);
-var first__52131 = cljs.core.first(seq__52130);
-var seq__52130__$1 = cljs.core.next(seq__52130);
-var sql = first__52131;
-var params = seq__52130__$1;
+var seq__52136 = cljs.core.seq(vec__52135);
+var first__52137 = cljs.core.first(seq__52136);
+var seq__52136__$1 = cljs.core.next(seq__52136);
+var sql = first__52137;
+var params = seq__52136__$1;
 return honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(sets,(cljs.core.truth_(sql)?honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(" ",sql):null))], null),set_params,params);
 } else {
 return honey.sql.format_set_exprs(k,x);
 }
 } else {
 if(cljs.core.sequential_QMARK_(x)){
-var vec__52135 = cljs.core.split_with(cljs.core.complement(cljs.core.map_QMARK_),x);
-var cols = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52135,(0),null);
-var clauses = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52135,(1),null);
+var vec__52141 = cljs.core.split_with(cljs.core.complement(cljs.core.map_QMARK_),x);
+var cols = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52141,(0),null);
+var clauses = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52141,(1),null);
 if(cljs.core.seq(cols)){
-var G__52787 = k;
-var G__52788 = new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"fields","fields",-1932066230),cols,new cljs.core.Keyword(null,"where","where",-2044795965),new cljs.core.Keyword(null,"where","where",-2044795965).cljs$core$IFn$_invoke$arity$1(cljs.core.first(clauses))], null);
-k = G__52787;
-x = G__52788;
+var G__52780 = k;
+var G__52781 = new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"fields","fields",-1932066230),cols,new cljs.core.Keyword(null,"where","where",-2044795965),new cljs.core.Keyword(null,"where","where",-2044795965).cljs$core$IFn$_invoke$arity$1(cljs.core.first(clauses))], null);
+k = G__52780;
+x = G__52781;
 continue;
 } else {
-var G__52789 = k;
-var G__52790 = cljs.core.first(clauses);
-k = G__52789;
-x = G__52790;
+var G__52782 = k;
+var G__52783 = cljs.core.first(clauses);
+k = G__52782;
+x = G__52783;
 continue;
 }
 } else {
@@ -2091,50 +2091,50 @@ break;
 }
 });
 honey.sql.format_simple_clause = (function honey$sql$format_simple_clause(c,context){
-var _STAR_options_STAR__orig_val__52138 = honey.sql._STAR_options_STAR_;
-var _STAR_options_STAR__temp_val__52139 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(honey.sql._STAR_options_STAR_,new cljs.core.Keyword(null,"inline","inline",1399884222),true);
-(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__temp_val__52139);
+var _STAR_options_STAR__orig_val__52144 = honey.sql._STAR_options_STAR_;
+var _STAR_options_STAR__temp_val__52145 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(honey.sql._STAR_options_STAR_,new cljs.core.Keyword(null,"inline","inline",1399884222),true);
+(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__temp_val__52145);
 
-try{var vec__52140 = (honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1(c) : honey.sql.format_dsl.call(null,c));
-var seq__52141 = cljs.core.seq(vec__52140);
-var first__52142 = cljs.core.first(seq__52141);
-var seq__52141__$1 = cljs.core.next(seq__52141);
-var sql = first__52142;
-var params = seq__52141__$1;
+try{var vec__52146 = (honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1(c) : honey.sql.format_dsl.call(null,c));
+var seq__52147 = cljs.core.seq(vec__52146);
+var first__52148 = cljs.core.first(seq__52147);
+var seq__52147__$1 = cljs.core.next(seq__52147);
+var sql = first__52148;
+var params = seq__52147__$1;
 if(cljs.core.seq(params)){
 throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(honey.sql.util.str.cljs$core$IFn$_invoke$arity$2("parameters are not accepted in ",context),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"clause","clause",1479668060),c,new cljs.core.Keyword(null,"params","params",710516235),params], null));
 } else {
 }
 
 return sql;
-}finally {(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__orig_val__52138);
+}finally {(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__orig_val__52144);
 }});
 honey.sql.format_simple_expr = (function honey$sql$format_simple_expr(e,context){
-var _STAR_options_STAR__orig_val__52143 = honey.sql._STAR_options_STAR_;
-var _STAR_options_STAR__temp_val__52144 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(honey.sql._STAR_options_STAR_,new cljs.core.Keyword(null,"inline","inline",1399884222),true);
-(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__temp_val__52144);
+var _STAR_options_STAR__orig_val__52149 = honey.sql._STAR_options_STAR_;
+var _STAR_options_STAR__temp_val__52150 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(honey.sql._STAR_options_STAR_,new cljs.core.Keyword(null,"inline","inline",1399884222),true);
+(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__temp_val__52150);
 
-try{var vec__52145 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(e) : honey.sql.format_expr.call(null,e));
-var seq__52146 = cljs.core.seq(vec__52145);
-var first__52147 = cljs.core.first(seq__52146);
-var seq__52146__$1 = cljs.core.next(seq__52146);
-var sql = first__52147;
-var params = seq__52146__$1;
+try{var vec__52151 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(e) : honey.sql.format_expr.call(null,e));
+var seq__52152 = cljs.core.seq(vec__52151);
+var first__52153 = cljs.core.first(seq__52152);
+var seq__52152__$1 = cljs.core.next(seq__52152);
+var sql = first__52153;
+var params = seq__52152__$1;
 if(cljs.core.seq(params)){
 throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(honey.sql.util.str.cljs$core$IFn$_invoke$arity$2("parameters are not accepted in ",context),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"expr","expr",745722291),e,new cljs.core.Keyword(null,"params","params",710516235),params], null));
 } else {
 }
 
 return sql;
-}finally {(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__orig_val__52143);
+}finally {(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__orig_val__52149);
 }});
 honey.sql.format_alter_table = (function honey$sql$format_alter_table(k,x){
 if(cljs.core.sequential_QMARK_(x)){
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$4(honey.sql.sql_kw(k)," ",honey.sql.format_entity.cljs$core$IFn$_invoke$arity$1(cljs.core.first(x)),(function (){var temp__5825__auto__ = cljs.core.next(x);
 if(temp__5825__auto__){
 var clauses = temp__5825__auto__;
-return honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(" ",honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__52148_SHARP_){
-return honey.sql.format_simple_clause(p1__52148_SHARP_,"column/index operations");
+return honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(" ",honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__52154_SHARP_){
+return honey.sql.format_simple_clause(p1__52154_SHARP_,"column/index operations");
 })),clauses));
 } else {
 return null;
@@ -2167,34 +2167,34 @@ return honey.sql.sql_kw(id);
  *   of keywords and entity names. Returns a sequence of SQL strings.
  */
 honey.sql.format_ddl_options = (function honey$sql$format_ddl_options(opts,context){
-var iter__5503__auto__ = (function honey$sql$format_ddl_options_$_iter__52149(s__52150){
+var iter__5503__auto__ = (function honey$sql$format_ddl_options_$_iter__52155(s__52156){
 return (new cljs.core.LazySeq(null,(function (){
-var s__52150__$1 = s__52150;
+var s__52156__$1 = s__52156;
 while(true){
-var temp__5825__auto__ = cljs.core.seq(s__52150__$1);
+var temp__5825__auto__ = cljs.core.seq(s__52156__$1);
 if(temp__5825__auto__){
-var s__52150__$2 = temp__5825__auto__;
-if(cljs.core.chunked_seq_QMARK_(s__52150__$2)){
-var c__5501__auto__ = cljs.core.chunk_first(s__52150__$2);
+var s__52156__$2 = temp__5825__auto__;
+if(cljs.core.chunked_seq_QMARK_(s__52156__$2)){
+var c__5501__auto__ = cljs.core.chunk_first(s__52156__$2);
 var size__5502__auto__ = cljs.core.count(c__5501__auto__);
-var b__52152 = cljs.core.chunk_buffer(size__5502__auto__);
-if((function (){var i__52151 = (0);
+var b__52158 = cljs.core.chunk_buffer(size__5502__auto__);
+if((function (){var i__52157 = (0);
 while(true){
-if((i__52151 < size__5502__auto__)){
-var opt = cljs.core._nth(c__5501__auto__,i__52151);
-cljs.core.chunk_append(b__52152,((cljs.core.map_QMARK_(opt))?honey.sql.format_simple_clause(opt,context):((cljs.core.sequential_QMARK_(opt))?honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(" ",cljs.core.map.cljs$core$IFn$_invoke$arity$1(((function (i__52151,opt,c__5501__auto__,size__5502__auto__,b__52152,s__52150__$2,temp__5825__auto__){
+if((i__52157 < size__5502__auto__)){
+var opt = cljs.core._nth(c__5501__auto__,i__52157);
+cljs.core.chunk_append(b__52158,((cljs.core.map_QMARK_(opt))?honey.sql.format_simple_clause(opt,context):((cljs.core.sequential_QMARK_(opt))?honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(" ",cljs.core.map.cljs$core$IFn$_invoke$arity$1(((function (i__52157,opt,c__5501__auto__,size__5502__auto__,b__52158,s__52156__$2,temp__5825__auto__){
 return (function (e){
 if(cljs.core.ident_QMARK_(e)){
 return honey.sql.sql_kw_ddl(e);
 } else {
 return honey.sql.format_simple_expr(e,context);
 }
-});})(i__52151,opt,c__5501__auto__,size__5502__auto__,b__52152,s__52150__$2,temp__5825__auto__))
+});})(i__52157,opt,c__5501__auto__,size__5502__auto__,b__52158,s__52156__$2,temp__5825__auto__))
 ),opt):((cljs.core.ident_QMARK_(opt))?honey.sql.sql_kw_ddl(opt):(function(){throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2("expected symbol or keyword",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"unexpected","unexpected",-1137752424),opt], null))})()
 ))));
 
-var G__52791 = (i__52151 + (1));
-i__52151 = G__52791;
+var G__52797 = (i__52157 + (1));
+i__52157 = G__52797;
 continue;
 } else {
 return true;
@@ -2202,22 +2202,22 @@ return true;
 break;
 }
 })()){
-return cljs.core.chunk_cons(cljs.core.chunk(b__52152),honey$sql$format_ddl_options_$_iter__52149(cljs.core.chunk_rest(s__52150__$2)));
+return cljs.core.chunk_cons(cljs.core.chunk(b__52158),honey$sql$format_ddl_options_$_iter__52155(cljs.core.chunk_rest(s__52156__$2)));
 } else {
-return cljs.core.chunk_cons(cljs.core.chunk(b__52152),null);
+return cljs.core.chunk_cons(cljs.core.chunk(b__52158),null);
 }
 } else {
-var opt = cljs.core.first(s__52150__$2);
-return cljs.core.cons(((cljs.core.map_QMARK_(opt))?honey.sql.format_simple_clause(opt,context):((cljs.core.sequential_QMARK_(opt))?honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(" ",cljs.core.map.cljs$core$IFn$_invoke$arity$1(((function (opt,s__52150__$2,temp__5825__auto__){
+var opt = cljs.core.first(s__52156__$2);
+return cljs.core.cons(((cljs.core.map_QMARK_(opt))?honey.sql.format_simple_clause(opt,context):((cljs.core.sequential_QMARK_(opt))?honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(" ",cljs.core.map.cljs$core$IFn$_invoke$arity$1(((function (opt,s__52156__$2,temp__5825__auto__){
 return (function (e){
 if(cljs.core.ident_QMARK_(e)){
 return honey.sql.sql_kw_ddl(e);
 } else {
 return honey.sql.format_simple_expr(e,context);
 }
-});})(opt,s__52150__$2,temp__5825__auto__))
+});})(opt,s__52156__$2,temp__5825__auto__))
 ),opt):((cljs.core.ident_QMARK_(opt))?honey.sql.sql_kw_ddl(opt):(function(){throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2("expected symbol or keyword",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"unexpected","unexpected",-1137752424),opt], null))})()
-))),honey$sql$format_ddl_options_$_iter__52149(cljs.core.rest(s__52150__$2)));
+))),honey$sql$format_ddl_options_$_iter__52155(cljs.core.rest(s__52156__$2)));
 }
 } else {
 return null;
@@ -2230,13 +2230,13 @@ return iter__5503__auto__(opts);
 });
 honey.sql.destructure_ddl_item = (function honey$sql$destructure_ddl_item(table,context){
 var params = ((cljs.core.sequential_QMARK_(table))?table:new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [table], null));
-var tab_QMARK_ = (function (p1__52153_SHARP_){
-return ((cljs.core.ident_QMARK_(p1__52153_SHARP_)) || (typeof p1__52153_SHARP_ === 'string'));
+var tab_QMARK_ = (function (p1__52159_SHARP_){
+return ((cljs.core.ident_QMARK_(p1__52159_SHARP_)) || (typeof p1__52159_SHARP_ === 'string'));
 });
 var coll = cljs.core.take_while.cljs$core$IFn$_invoke$arity$2(tab_QMARK_,params);
 var opts = cljs.core.filter.cljs$core$IFn$_invoke$arity$2(cljs.core.some_QMARK_,cljs.core.drop_while.cljs$core$IFn$_invoke$arity$2(tab_QMARK_,params));
 var ine = cljs.core.last(coll);
-var vec__52154 = (function (){var ine_kw = honey.sql.sym__GT_kw(ine);
+var vec__52160 = (function (){var ine_kw = honey.sql.sym__GT_kw(ine);
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"if-not-exists","if-not-exists",739006925),ine_kw)){
 return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.butlast(cljs.core.butlast(coll)),cljs.core.last(cljs.core.butlast(coll)),ine], null);
 } else {
@@ -2248,24 +2248,24 @@ return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMP
 }
 }
 })();
-var prequel = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52154,(0),null);
-var table__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52154,(1),null);
-var ine__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52154,(2),null);
+var prequel = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52160,(0),null);
+var table__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52160,(1),null);
+var ine__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52160,(2),null);
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(" ",cljs.core.map.cljs$core$IFn$_invoke$arity$1(honey.sql.sql_kw),prequel),(cljs.core.truth_(table__$1)?honey.sql.format_simple_var.cljs$core$IFn$_invoke$arity$1(table__$1):null),(cljs.core.truth_(ine__$1)?honey.sql.sql_kw(ine__$1):null)], null),(cljs.core.truth_(opts)?honey.sql.format_ddl_options(opts,context):null));
 });
 honey.sql.format_truncate = (function honey$sql$format_truncate(_,xs){
-var vec__52157 = honey.sql.ensure_sequential(xs);
-var seq__52158 = cljs.core.seq(vec__52157);
-var first__52159 = cljs.core.first(seq__52158);
-var seq__52158__$1 = cljs.core.next(seq__52158);
-var table = first__52159;
-var options = seq__52158__$1;
+var vec__52163 = honey.sql.ensure_sequential(xs);
+var seq__52164 = cljs.core.seq(vec__52163);
+var first__52165 = cljs.core.first(seq__52164);
+var seq__52164__$1 = cljs.core.next(seq__52164);
+var table = first__52165;
+var options = seq__52164__$1;
 var table__$1 = ((((cljs.core.ident_QMARK_(table)) || (typeof table === 'string')))?honey.sql.format_simple_var.cljs$core$IFn$_invoke$arity$1(table):honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$2(honey.sql.format_simple_var,table)));
-var vec__52160 = honey.sql.destructure_ddl_item(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [null,options], null),"truncate");
-var pre = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52160,(0),null);
-var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52160,(1),null);
-var ine = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52160,(2),null);
-var options__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52160,(3),null);
+var vec__52166 = honey.sql.destructure_ddl_item(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [null,options], null),"truncate");
+var pre = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52166,(0),null);
+var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52166,(1),null);
+var ine = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52166,(2),null);
+var options__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52166,(3),null);
 if(cljs.core.seq(pre)){
 throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2("TRUNCATE syntax error",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"unexpected","unexpected",-1137752424),pre], null));
 } else {
@@ -2276,68 +2276,68 @@ throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2("TRUNCATE syntax error",ne
 } else {
 }
 
-return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(" ",(function (){var G__52163 = new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["TRUNCATE TABLE",table__$1], null);
+return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(" ",(function (){var G__52169 = new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["TRUNCATE TABLE",table__$1], null);
 if(cljs.core.seq(options__$1)){
-return cljs.core.conj.cljs$core$IFn$_invoke$arity$2(G__52163,options__$1);
+return cljs.core.conj.cljs$core$IFn$_invoke$arity$2(G__52169,options__$1);
 } else {
-return G__52163;
+return G__52169;
 }
 })())], null);
 });
 honey.sql.format_create = (function honey$sql$format_create(q,k,item,as){
-var vec__52164 = honey.sql.destructure_ddl_item(item,honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(honey.sql.sql_kw(q)," options"));
-var seq__52165 = cljs.core.seq(vec__52164);
-var first__52166 = cljs.core.first(seq__52165);
-var seq__52165__$1 = cljs.core.next(seq__52165);
-var pre = first__52166;
-var first__52166__$1 = cljs.core.first(seq__52165__$1);
-var seq__52165__$2 = cljs.core.next(seq__52165__$1);
-var entity = first__52166__$1;
-var first__52166__$2 = cljs.core.first(seq__52165__$2);
-var seq__52165__$3 = cljs.core.next(seq__52165__$2);
-var ine = first__52166__$2;
-var more = seq__52165__$3;
-return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(" ",cljs.core.remove.cljs$core$IFn$_invoke$arity$1(cljs.core.nil_QMARK_),cljs.core.conj.cljs$core$IFn$_invoke$arity$2(cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 6, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.sql_kw(q),((((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"create","create",-1301499256),q)) && (cljs.core.seq(pre))))?pre:null),honey.sql.sql_kw(k),ine,((((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"refresh","refresh",1947415525),q)) && (cljs.core.seq(pre))))?pre:null),entity], null),more),(cljs.core.truth_(as)?honey.sql.sql_kw(as):null)))], null);
-});
-honey.sql.format_create_index = (function honey$sql$format_create_index(k,clauses){
-var vec__52167 = clauses;
-var index_spec = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52167,(0),null);
-var vec__52170 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52167,(1),null);
+var vec__52170 = honey.sql.destructure_ddl_item(item,honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(honey.sql.sql_kw(q)," options"));
 var seq__52171 = cljs.core.seq(vec__52170);
 var first__52172 = cljs.core.first(seq__52171);
 var seq__52171__$1 = cljs.core.next(seq__52171);
-var table = first__52172;
-var exprs = seq__52171__$1;
-var vec__52173 = honey.sql.destructure_ddl_item(index_spec,honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(honey.sql.sql_kw(k)," options"));
-var seq__52174 = cljs.core.seq(vec__52173);
-var first__52175 = cljs.core.first(seq__52174);
-var seq__52174__$1 = cljs.core.next(seq__52174);
-var pre = first__52175;
-var first__52175__$1 = cljs.core.first(seq__52174__$1);
-var seq__52174__$2 = cljs.core.next(seq__52174__$1);
-var entity = first__52175__$1;
-var first__52175__$2 = cljs.core.first(seq__52174__$2);
-var seq__52174__$3 = cljs.core.next(seq__52174__$2);
-var ine = first__52175__$2;
-var more = seq__52174__$3;
-var vec__52176 = (function (){var item = cljs.core.first(exprs);
+var pre = first__52172;
+var first__52172__$1 = cljs.core.first(seq__52171__$1);
+var seq__52171__$2 = cljs.core.next(seq__52171__$1);
+var entity = first__52172__$1;
+var first__52172__$2 = cljs.core.first(seq__52171__$2);
+var seq__52171__$3 = cljs.core.next(seq__52171__$2);
+var ine = first__52172__$2;
+var more = seq__52171__$3;
+return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(" ",cljs.core.remove.cljs$core$IFn$_invoke$arity$1(cljs.core.nil_QMARK_),cljs.core.conj.cljs$core$IFn$_invoke$arity$2(cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 6, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.sql_kw(q),((((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"create","create",-1301499256),q)) && (cljs.core.seq(pre))))?pre:null),honey.sql.sql_kw(k),ine,((((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"refresh","refresh",1947415525),q)) && (cljs.core.seq(pre))))?pre:null),entity], null),more),(cljs.core.truth_(as)?honey.sql.sql_kw(as):null)))], null);
+});
+honey.sql.format_create_index = (function honey$sql$format_create_index(k,clauses){
+var vec__52173 = clauses;
+var index_spec = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52173,(0),null);
+var vec__52176 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52173,(1),null);
+var seq__52177 = cljs.core.seq(vec__52176);
+var first__52178 = cljs.core.first(seq__52177);
+var seq__52177__$1 = cljs.core.next(seq__52177);
+var table = first__52178;
+var exprs = seq__52177__$1;
+var vec__52179 = honey.sql.destructure_ddl_item(index_spec,honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(honey.sql.sql_kw(k)," options"));
+var seq__52180 = cljs.core.seq(vec__52179);
+var first__52181 = cljs.core.first(seq__52180);
+var seq__52180__$1 = cljs.core.next(seq__52180);
+var pre = first__52181;
+var first__52181__$1 = cljs.core.first(seq__52180__$1);
+var seq__52180__$2 = cljs.core.next(seq__52180__$1);
+var entity = first__52181__$1;
+var first__52181__$2 = cljs.core.first(seq__52180__$2);
+var seq__52180__$3 = cljs.core.next(seq__52180__$2);
+var ine = first__52181__$2;
+var more = seq__52180__$3;
+var vec__52182 = (function (){var item = cljs.core.first(exprs);
 if(((cljs.core.ident_QMARK_(item)) && (clojure.string.starts_with_QMARK_(honey.sql.util.str.cljs$core$IFn$_invoke$arity$1(honey.sql.kw__GT_sym(item)),"using-")))){
 return exprs;
 } else {
 return cljs.core.cons(null,exprs);
 }
 })();
-var seq__52177 = cljs.core.seq(vec__52176);
-var first__52178 = cljs.core.first(seq__52177);
-var seq__52177__$1 = cljs.core.next(seq__52177);
-var using = first__52178;
-var exprs__$1 = seq__52177__$1;
-var vec__52179 = honey.sql.format_order_by(null,exprs__$1);
-var seq__52180 = cljs.core.seq(vec__52179);
-var first__52181 = cljs.core.first(seq__52180);
-var seq__52180__$1 = cljs.core.next(seq__52180);
-var sql = first__52181;
-var params = seq__52180__$1;
+var seq__52183 = cljs.core.seq(vec__52182);
+var first__52184 = cljs.core.first(seq__52183);
+var seq__52183__$1 = cljs.core.next(seq__52183);
+var using = first__52184;
+var exprs__$1 = seq__52183__$1;
+var vec__52185 = honey.sql.format_order_by(null,exprs__$1);
+var seq__52186 = cljs.core.seq(vec__52185);
+var first__52187 = cljs.core.first(seq__52186);
+var seq__52186__$1 = cljs.core.next(seq__52186);
+var sql = first__52187;
+var params = seq__52186__$1;
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(" ",cljs.core.remove.cljs$core$IFn$_invoke$arity$1(cljs.core.empty_QMARK_),cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 9, 5, cljs.core.PersistentVector.EMPTY_NODE, ["CREATE",pre,"INDEX",ine,entity,"ON",honey.sql.format_entity.cljs$core$IFn$_invoke$arity$1(table),(cljs.core.truth_(using)?honey.sql.sql_kw(using):null),honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("(",sql,")")], null),more))], null),params);
 });
 honey.sql.format_with_data = (function honey$sql$format_with_data(_,data){
@@ -2348,48 +2348,48 @@ honey.sql.destructure_drop_items = (function honey$sql$destructure_drop_items(ta
 var params = ((cljs.core.sequential_QMARK_(tables))?tables:new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [tables], null));
 var coll = cljs.core.take_while.cljs$core$IFn$_invoke$arity$2(cljs.core.ident_QMARK_,params);
 var opts = cljs.core.drop_while.cljs$core$IFn$_invoke$arity$2(cljs.core.ident_QMARK_,params);
-var vec__52182 = (cljs.core.truth_((function (){var G__52186 = cljs.core.first(coll);
-var fexpr__52185 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"if-exists","if-exists",-1964107033),null,new cljs.core.Symbol(null,"if-exists","if-exists",-323575506,null),null], null), null);
-return (fexpr__52185.cljs$core$IFn$_invoke$arity$1 ? fexpr__52185.cljs$core$IFn$_invoke$arity$1(G__52186) : fexpr__52185.call(null,G__52186));
+var vec__52188 = (cljs.core.truth_((function (){var G__52192 = cljs.core.first(coll);
+var fexpr__52191 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"if-exists","if-exists",-1964107033),null,new cljs.core.Symbol(null,"if-exists","if-exists",-323575506,null),null], null), null);
+return (fexpr__52191.cljs$core$IFn$_invoke$arity$1 ? fexpr__52191.cljs$core$IFn$_invoke$arity$1(G__52192) : fexpr__52191.call(null,G__52192));
 })())?coll:cljs.core.cons(null,coll));
-var seq__52183 = cljs.core.seq(vec__52182);
-var first__52184 = cljs.core.first(seq__52183);
-var seq__52183__$1 = cljs.core.next(seq__52183);
-var if_exists = first__52184;
-var tables__$1 = seq__52183__$1;
+var seq__52189 = cljs.core.seq(vec__52188);
+var first__52190 = cljs.core.first(seq__52189);
+var seq__52189__$1 = cljs.core.next(seq__52189);
+var if_exists = first__52190;
+var tables__$1 = seq__52189__$1;
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [(cljs.core.truth_(if_exists)?honey.sql.sql_kw(new cljs.core.Keyword(null,"if-exists","if-exists",-1964107033)):null),honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$1(new cljs.core.Var(function(){return honey.sql.format_entity;},new cljs.core.Symbol("honey.sql","format-entity","honey.sql/format-entity",-1824420277,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"top-fn","top-fn",-2056129173),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-entity","format-entity",618285344,null),"honey/sql.cljc",20,new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword(null,"variadic?","variadic?",584179762),false,new cljs.core.Keyword(null,"fixed-arity","fixed-arity",1586445869),2,new cljs.core.Keyword(null,"max-fixed-arity","max-fixed-arity",-690205543),2,new cljs.core.Keyword(null,"method-params","method-params",-980792179),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"e","e",-1273166571,null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"e","e",-1273166571,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"keys","keys",1068423698),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"aliased","aliased",1515092254,null),new cljs.core.Symbol(null,"drop-ns","drop-ns",-80776792,null)], null)], null)], null)], null),new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"e","e",-1273166571,null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"e","e",-1273166571,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"keys","keys",1068423698),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"aliased","aliased",1515092254,null),new cljs.core.Symbol(null,"drop-ns","drop-ns",-80776792,null)], null)], null)], null)),new cljs.core.Keyword(null,"arglists-meta","arglists-meta",1944829838),cljs.core.list(null,null)], null),1,284,284,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"e","e",-1273166571,null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"e","e",-1273166571,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"keys","keys",1068423698),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"aliased","aliased",1515092254,null),new cljs.core.Symbol(null,"drop-ns","drop-ns",-80776792,null)], null)], null)], null)),"Given a simple SQL entity (a keyword or symbol -- or string),\n  return the equivalent SQL fragment (as a string -- no parameters).\n\n  Handles quoting, splitting at / or ., replacing - with _ etc.",(cljs.core.truth_(honey.sql.format_entity)?honey.sql.format_entity.cljs$lang$test:null)]))),tables__$1)], null),honey.sql.format_ddl_options(opts,context));
 });
 honey.sql.format_drop_items = (function honey$sql$format_drop_items(k,params){
-var vec__52187 = honey.sql.destructure_drop_items(params,"DROP options");
-var seq__52188 = cljs.core.seq(vec__52187);
-var first__52189 = cljs.core.first(seq__52188);
-var seq__52188__$1 = cljs.core.next(seq__52188);
-var if_exists = first__52189;
-var first__52189__$1 = cljs.core.first(seq__52188__$1);
-var seq__52188__$2 = cljs.core.next(seq__52188__$1);
-var tables = first__52189__$1;
-var more = seq__52188__$2;
-return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(" ",cljs.core.remove.cljs$core$IFn$_invoke$arity$1(cljs.core.nil_QMARK_),cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.sql_kw(k),if_exists,tables], null),more))], null);
-});
-honey.sql.format_single_column = (function honey$sql$format_single_column(xs){
-var vec__52190 = ((cljs.core.ident_QMARK_(cljs.core.first(xs)))?xs:cljs.core.cons(null,xs));
-var seq__52191 = cljs.core.seq(vec__52190);
-var first__52192 = cljs.core.first(seq__52191);
-var seq__52191__$1 = cljs.core.next(seq__52191);
-var col = first__52192;
-var options = seq__52191__$1;
-var vec__52193 = honey.sql.destructure_ddl_item(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [col,options], null),"column operation");
+var vec__52193 = honey.sql.destructure_drop_items(params,"DROP options");
 var seq__52194 = cljs.core.seq(vec__52193);
 var first__52195 = cljs.core.first(seq__52194);
 var seq__52194__$1 = cljs.core.next(seq__52194);
-var pre = first__52195;
+var if_exists = first__52195;
 var first__52195__$1 = cljs.core.first(seq__52194__$1);
 var seq__52194__$2 = cljs.core.next(seq__52194__$1);
-var col__$1 = first__52195__$1;
-var first__52195__$2 = cljs.core.first(seq__52194__$2);
-var seq__52194__$3 = cljs.core.next(seq__52194__$2);
-var ine = first__52195__$2;
-var options__$1 = seq__52194__$3;
+var tables = first__52195__$1;
+var more = seq__52194__$2;
+return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(" ",cljs.core.remove.cljs$core$IFn$_invoke$arity$1(cljs.core.nil_QMARK_),cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.sql_kw(k),if_exists,tables], null),more))], null);
+});
+honey.sql.format_single_column = (function honey$sql$format_single_column(xs){
+var vec__52196 = ((cljs.core.ident_QMARK_(cljs.core.first(xs)))?xs:cljs.core.cons(null,xs));
+var seq__52197 = cljs.core.seq(vec__52196);
+var first__52198 = cljs.core.first(seq__52197);
+var seq__52197__$1 = cljs.core.next(seq__52197);
+var col = first__52198;
+var options = seq__52197__$1;
+var vec__52199 = honey.sql.destructure_ddl_item(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [col,options], null),"column operation");
+var seq__52200 = cljs.core.seq(vec__52199);
+var first__52201 = cljs.core.first(seq__52200);
+var seq__52200__$1 = cljs.core.next(seq__52200);
+var pre = first__52201;
+var first__52201__$1 = cljs.core.first(seq__52200__$1);
+var seq__52200__$2 = cljs.core.next(seq__52200__$1);
+var col__$1 = first__52201__$1;
+var first__52201__$2 = cljs.core.first(seq__52200__$2);
+var seq__52200__$3 = cljs.core.next(seq__52200__$2);
+var ine = first__52201__$2;
+var options__$1 = seq__52200__$3;
 if(cljs.core.seq(pre)){
 throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2("column syntax error",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"unexpected","unexpected",-1137752424),pre], null));
 } else {
@@ -2414,36 +2414,36 @@ return honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(honey.sql.sql_kw(k)," ",
 });
 honey.sql.format_add_item = (function honey$sql$format_add_item(k,spec){
 var items = ((((cljs.core.sequential_QMARK_(spec)) && (cljs.core.sequential_QMARK_(cljs.core.first(spec)))))?spec:new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [spec], null));
-return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__52196_SHARP_){
-return honey.sql.format_add_single_item(k,p1__52196_SHARP_);
+return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__52202_SHARP_){
+return honey.sql.format_add_single_item(k,p1__52202_SHARP_);
 })),items)], null);
 });
-honey.sql.format_rename_item = (function honey$sql$format_rename_item(k,p__52197){
-var vec__52198 = p__52197;
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52198,(0),null);
-var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52198,(1),null);
+honey.sql.format_rename_item = (function honey$sql$format_rename_item(k,p__52203){
+var vec__52204 = p__52203;
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52204,(0),null);
+var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52204,(1),null);
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$5(honey.sql.sql_kw(k)," ",honey.sql.format_entity.cljs$core$IFn$_invoke$arity$1(x)," TO ",honey.sql.format_entity.cljs$core$IFn$_invoke$arity$1(y))], null);
 });
 honey.sql.raw_render = (function honey$sql$raw_render(s){
 if(cljs.core.sequential_QMARK_(s)){
-var vec__52201 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (p__52204,s__$1){
-var vec__52205 = p__52204;
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52205,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52205,(1),null);
+var vec__52207 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (p__52210,s__$1){
+var vec__52211 = p__52210;
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52211,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52211,(1),null);
 if(cljs.core.sequential_QMARK_(s__$1)){
-var vec__52208 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(s__$1) : honey.sql.format_expr.call(null,s__$1));
-var seq__52209 = cljs.core.seq(vec__52208);
-var first__52210 = cljs.core.first(seq__52209);
-var seq__52209__$1 = cljs.core.next(seq__52209);
-var sql = first__52210;
-var params_SINGLEQUOTE_ = seq__52209__$1;
+var vec__52214 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(s__$1) : honey.sql.format_expr.call(null,s__$1));
+var seq__52215 = cljs.core.seq(vec__52214);
+var first__52216 = cljs.core.first(seq__52215);
+var seq__52215__$1 = cljs.core.next(seq__52215);
+var sql = first__52216;
+var params_SINGLEQUOTE_ = seq__52215__$1;
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.conj.cljs$core$IFn$_invoke$arity$2(sqls,sql),cljs.core.into.cljs$core$IFn$_invoke$arity$2(params,params_SINGLEQUOTE_)], null);
 } else {
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.conj.cljs$core$IFn$_invoke$arity$2(sqls,s__$1),params], null);
 }
 }),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.PersistentVector.EMPTY,cljs.core.PersistentVector.EMPTY], null),s);
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52201,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52201,(1),null);
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52207,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52207,(1),null);
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.join.cljs$core$IFn$_invoke$arity$2("",sqls)], null),params);
 } else {
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [s], null);
@@ -2457,30 +2457,30 @@ var coll = params;
 var sqls = cljs.core.PersistentVector.EMPTY;
 while(true){
 if(cljs.core.seq(coll)){
-if(cljs.core.truth_((function (){var G__52215 = cljs.core.first(coll);
-var fexpr__52214 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"if-exists","if-exists",-1964107033),null,new cljs.core.Symbol(null,"if-exists","if-exists",-323575506,null),null], null), null);
-return (fexpr__52214.cljs$core$IFn$_invoke$arity$1 ? fexpr__52214.cljs$core$IFn$_invoke$arity$1(G__52215) : fexpr__52214.call(null,G__52215));
+if(cljs.core.truth_((function (){var G__52221 = cljs.core.first(coll);
+var fexpr__52220 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"if-exists","if-exists",-1964107033),null,new cljs.core.Symbol(null,"if-exists","if-exists",-323575506,null),null], null), null);
+return (fexpr__52220.cljs$core$IFn$_invoke$arity$1 ? fexpr__52220.cljs$core$IFn$_invoke$arity$1(G__52221) : fexpr__52220.call(null,G__52221));
 })())){
-var G__52817 = true;
-var G__52818 = cljs.core.rest(coll);
-var G__52819 = sqls;
-if_exists = G__52817;
-coll = G__52818;
-sqls = G__52819;
+var G__52798 = true;
+var G__52799 = cljs.core.rest(coll);
+var G__52800 = sqls;
+if_exists = G__52798;
+coll = G__52799;
+sqls = G__52800;
 continue;
 } else {
-var G__52820 = false;
-var G__52821 = cljs.core.rest(coll);
-var G__52822 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(sqls,(function (){var G__52216 = honey.sql.format_entity.cljs$core$IFn$_invoke$arity$1(cljs.core.first(coll));
+var G__52801 = false;
+var G__52802 = cljs.core.rest(coll);
+var G__52803 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(sqls,(function (){var G__52222 = honey.sql.format_entity.cljs$core$IFn$_invoke$arity$1(cljs.core.first(coll));
 if(if_exists){
-return honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(honey.sql.sql_kw(new cljs.core.Keyword(null,"if-exists","if-exists",-1964107033))," ",G__52216);
+return honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(honey.sql.sql_kw(new cljs.core.Keyword(null,"if-exists","if-exists",-1964107033))," ",G__52222);
 } else {
-return G__52216;
+return G__52222;
 }
 })());
-if_exists = G__52820;
-coll = G__52821;
-sqls = G__52822;
+if_exists = G__52801;
+coll = G__52802;
+sqls = G__52803;
 continue;
 }
 } else {
@@ -2495,39 +2495,39 @@ break;
 });
 honey.sql.format_drop_columns = (function honey$sql$format_drop_columns(k,params){
 var tables = honey.sql.destructure_drop_columns(params);
-return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__52217_SHARP_){
-return honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(honey.sql.sql_kw(k)," ",p1__52217_SHARP_);
+return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__52223_SHARP_){
+return honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(honey.sql.sql_kw(k)," ",p1__52223_SHARP_);
 })),tables)], null);
 });
 honey.sql.format_interval = (function honey$sql$format_interval(k,args){
 if(cljs.core.sequential_QMARK_(args)){
-var vec__52218 = args;
-var seq__52219 = cljs.core.seq(vec__52218);
-var first__52220 = cljs.core.first(seq__52219);
-var seq__52219__$1 = cljs.core.next(seq__52219);
-var n = first__52220;
-var units = seq__52219__$1;
+var vec__52224 = args;
+var seq__52225 = cljs.core.seq(vec__52224);
+var first__52226 = cljs.core.first(seq__52225);
+var seq__52225__$1 = cljs.core.next(seq__52225);
+var n = first__52226;
+var units = seq__52225__$1;
 if(cljs.core.seq(units)){
-var vec__52221 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(n) : honey.sql.format_expr.call(null,n));
-var seq__52222 = cljs.core.seq(vec__52221);
-var first__52223 = cljs.core.first(seq__52222);
-var seq__52222__$1 = cljs.core.next(seq__52222);
-var sql = first__52223;
-var params = seq__52222__$1;
+var vec__52227 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(n) : honey.sql.format_expr.call(null,n));
+var seq__52228 = cljs.core.seq(vec__52227);
+var first__52229 = cljs.core.first(seq__52228);
+var seq__52228__$1 = cljs.core.next(seq__52228);
+var sql = first__52229;
+var params = seq__52228__$1;
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$5(honey.sql.sql_kw(k)," ",sql," ",honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(" ",cljs.core.map.cljs$core$IFn$_invoke$arity$1(honey.sql.sql_kw),units))], null),params);
 } else {
-var _STAR_options_STAR__orig_val__52224 = honey.sql._STAR_options_STAR_;
-var _STAR_options_STAR__temp_val__52225 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(honey.sql._STAR_options_STAR_,new cljs.core.Keyword(null,"inline","inline",1399884222),true);
-(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__temp_val__52225);
+var _STAR_options_STAR__orig_val__52230 = honey.sql._STAR_options_STAR_;
+var _STAR_options_STAR__temp_val__52231 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(honey.sql._STAR_options_STAR_,new cljs.core.Keyword(null,"inline","inline",1399884222),true);
+(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__temp_val__52231);
 
-try{var vec__52226 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(n) : honey.sql.format_expr.call(null,n));
-var seq__52227 = cljs.core.seq(vec__52226);
-var first__52228 = cljs.core.first(seq__52227);
-var seq__52227__$1 = cljs.core.next(seq__52227);
-var sql = first__52228;
-var params = seq__52227__$1;
+try{var vec__52232 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(n) : honey.sql.format_expr.call(null,n));
+var seq__52233 = cljs.core.seq(vec__52232);
+var first__52234 = cljs.core.first(seq__52233);
+var seq__52233__$1 = cljs.core.next(seq__52233);
+var sql = first__52234;
+var params = seq__52233__$1;
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(honey.sql.sql_kw(k)," ",sql)], null),params);
-}finally {(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__orig_val__52224);
+}finally {(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__orig_val__52230);
 }}
 } else {
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(honey.sql.sql_kw(k)," ",honey.sql.sql_kw(args))], null);
@@ -2541,39 +2541,39 @@ return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMP
  */
 honey.sql.format_records = (function honey$sql$format_records(k,args){
 if(cljs.core.sequential_QMARK_(args)){
-var args__$1 = ((cljs.core.every_QMARK_(cljs.core.map_QMARK_,args))?cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__52229_SHARP_){
-return (new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"lift","lift",903632035),p1__52229_SHARP_],null));
+var args__$1 = ((cljs.core.every_QMARK_(cljs.core.map_QMARK_,args))?cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__52235_SHARP_){
+return (new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"lift","lift",903632035),p1__52235_SHARP_],null));
 }),args):args);
-var vec__52230 = honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$1(args__$1);
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52230,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52230,(1),null);
+var vec__52236 = honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$1(args__$1);
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52236,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52236,(1),null);
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(honey.sql.sql_kw(k)," ",honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(", ",sqls))], null),params);
 } else {
-var G__52233 = k;
-var G__52234 = new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [args], null);
-return (honey.sql.format_records.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_records.cljs$core$IFn$_invoke$arity$2(G__52233,G__52234) : honey.sql.format_records.call(null,G__52233,G__52234));
+var G__52239 = k;
+var G__52240 = new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [args], null);
+return (honey.sql.format_records.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_records.cljs$core$IFn$_invoke$arity$2(G__52239,G__52240) : honey.sql.format_records.call(null,G__52239,G__52240));
 }
 });
 honey.sql.format_setting = (function honey$sql$format_setting(k,args){
 if(((cljs.core.sequential_QMARK_(args)) && (cljs.core.ident_QMARK_(cljs.core.first(args))))){
-var G__52235 = k;
-var G__52236 = new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [args], null);
-return (honey.sql.format_setting.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_setting.cljs$core$IFn$_invoke$arity$2(G__52235,G__52236) : honey.sql.format_setting.call(null,G__52235,G__52236));
+var G__52241 = k;
+var G__52242 = new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [args], null);
+return (honey.sql.format_setting.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_setting.cljs$core$IFn$_invoke$arity$2(G__52241,G__52242) : honey.sql.format_setting.call(null,G__52241,G__52242));
 } else {
-var vec__52237 = honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$1(cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (arg){
-var vec__52240 = honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$1(cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (x){
+var vec__52243 = honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$1(cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (arg){
+var vec__52246 = honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$1(cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (x){
 if(cljs.core.ident_QMARK_(x)){
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [((clojure.string.ends_with_QMARK_(cljs.core.name(x),"-time"))?honey.sql.format_fn_name(x):honey.sql.sql_kw(x))], null);
 } else {
 return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(x) : honey.sql.format_expr.call(null,x));
 }
 }),arg));
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52240,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52240,(1),null);
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52246,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52246,(1),null);
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(" ",sqls)], null),params);
 }),args));
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52237,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52237,(1),null);
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52243,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52243,(1),null);
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(honey.sql.sql_kw(k)," ",honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(", ",sqls))], null),params);
 }
 });
@@ -2583,16 +2583,16 @@ return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVect
  */
 honey.sql.check_where = (function honey$sql$check_where(formatter){
 return (function (k,xs){
-var map__52243_52823 = honey.sql._STAR_options_STAR_;
-var map__52243_52824__$1 = cljs.core.__destructure_map(map__52243_52823);
-var checking_52825 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52243_52824__$1,new cljs.core.Keyword(null,"checking","checking",1748720818));
-var dsl_52826 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52243_52824__$1,new cljs.core.Keyword(null,"dsl","dsl",397853177));
-if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"none","none",1333468478),checking_52825)){
+var map__52249_52804 = honey.sql._STAR_options_STAR_;
+var map__52249_52805__$1 = cljs.core.__destructure_map(map__52249_52804);
+var checking_52806 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52249_52805__$1,new cljs.core.Keyword(null,"checking","checking",1748720818));
+var dsl_52807 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52249_52805__$1,new cljs.core.Keyword(null,"dsl","dsl",397853177));
+if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"none","none",1333468478),checking_52806)){
 } else {
-if(((cljs.core.empty_QMARK_(new cljs.core.Keyword(null,"where","where",-2044795965).cljs$core$IFn$_invoke$arity$1(dsl_52826))) && (cljs.core.empty_QMARK_((function (){var fexpr__52244 = new cljs.core.Symbol(null,"where","where",-404264438,null);
-return (fexpr__52244.cljs$core$IFn$_invoke$arity$1 ? fexpr__52244.cljs$core$IFn$_invoke$arity$1(dsl_52826) : fexpr__52244.call(null,dsl_52826));
+if(((cljs.core.empty_QMARK_(new cljs.core.Keyword(null,"where","where",-2044795965).cljs$core$IFn$_invoke$arity$1(dsl_52807))) && (cljs.core.empty_QMARK_((function (){var fexpr__52250 = new cljs.core.Symbol(null,"where","where",-404264438,null);
+return (fexpr__52250.cljs$core$IFn$_invoke$arity$1 ? fexpr__52250.cljs$core$IFn$_invoke$arity$1(dsl_52807) : fexpr__52250.call(null,dsl_52807));
 })())))){
-throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(honey.sql.sql_kw(k)," without a non-empty WHERE clause is dangerous"),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"clause","clause",1479668060),k,new cljs.core.Keyword(null,"where","where",-2044795965),new cljs.core.Keyword(null,"where","where",-2044795965).cljs$core$IFn$_invoke$arity$1(dsl_52826)], null));
+throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(honey.sql.sql_kw(k)," without a non-empty WHERE clause is dangerous"),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"clause","clause",1479668060),k,new cljs.core.Keyword(null,"where","where",-2044795965),new cljs.core.Keyword(null,"where","where",-2044795965).cljs$core$IFn$_invoke$arity$1(dsl_52807)], null));
 } else {
 }
 }
@@ -2617,15 +2617,15 @@ honey.sql.current_clause_order = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(ho
  *   and removed.
  */
 honey.sql.clause_format = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"outer-join","outer-join",1845838048),new cljs.core.Keyword(null,"select-distinct-top","select-distinct-top",781185536),new cljs.core.Keyword(null,"qualify","qualify",1565609728),new cljs.core.Keyword(null,"nest","nest",-314993663),new cljs.core.Keyword(null,"full-join","full-join",1305476385),new cljs.core.Keyword(null,"since","since",315379842),new cljs.core.Keyword(null,"having","having",-399543166),new cljs.core.Keyword(null,"create-table","create-table",1297148194),new cljs.core.Keyword(null,"exclude","exclude",-1230250334),new cljs.core.Keyword(null,"add-column","add-column",141289410),new cljs.core.Keyword(null,"except","except",1116893347),new cljs.core.Keyword(null,"into","into",-150836029),new cljs.core.Keyword(null,"create-extension","create-extension",853957283),new cljs.core.Keyword(null,"select-distinct-on","select-distinct-on",1224000227),new cljs.core.Keyword(null,"where","where",-2044795965),new cljs.core.Keyword(null,"alter-column","alter-column",-254828732),new cljs.core.Keyword(null,"table","table",-564943036),new cljs.core.Keyword(null,"add-index","add-index",376820708),new cljs.core.Keyword(null,"replace-into","replace-into",139321349),new cljs.core.Keyword(null,"truncate","truncate",-1327322939),new cljs.core.Keyword(null,"erase-from","erase-from",565088869),new cljs.core.Keyword(null,"limit","limit",-1355822363),new cljs.core.Keyword(null,"group-by","group-by",-379139802),new cljs.core.Keyword(null,"alter-table","alter-table",1000463814),new cljs.core.Keyword(null,"select-top","select-top",-1243842074),new cljs.core.Keyword(null,"offset","offset",296498311),new cljs.core.Keyword(null,"create-materialized-view","create-materialized-view",-1173241),new cljs.core.Keyword(null,"drop-column","drop-column",-1898063225),new cljs.core.Keyword(null,"raw","raw",1604651272),new cljs.core.Keyword(null,"drop-materialized-view","drop-materialized-view",-1779110488),new cljs.core.Keyword(null,"columns","columns",1998437288),new cljs.core.Keyword(null,"create-table-as","create-table-as",209299497),new cljs.core.Keyword(null,"on-duplicate-key-update","on-duplicate-key-update",596044873),new cljs.core.Keyword(null,"do-update-set","do-update-set",-2028298967),new cljs.core.Keyword(null,"patch-into","patch-into",-245698135),new cljs.core.Keyword(null,"facet","facet",-801327574),new cljs.core.Keyword(null,"until","until",-1189166390),new cljs.core.Keyword(null,"timeseries","timeseries",958915787),new cljs.core.Keyword(null,"refresh-materialized-view","refresh-materialized-view",-121074453),new cljs.core.Keyword(null,"drop-view","drop-view",1167937644),new cljs.core.Keyword(null,"join-by","join-by",1125837996),new cljs.core.Keyword(null,"update","update",1045576396),new cljs.core.Keyword(null,"delete","delete",-1768633620),new cljs.core.Keyword(null,"rename","rename",1508157613),new cljs.core.Keyword(null,"select-distinct","select-distinct",-412636114),new cljs.core.Keyword(null,"with-columns","with-columns",-1220776498),new cljs.core.Keyword(null,"window","window",724519534),new cljs.core.Keyword(null,"assert","assert",-963103026),new cljs.core.Keyword(null,"setting","setting",928308078),new cljs.core.Keyword(null,"drop-table","drop-table",371446895),new cljs.core.Keyword(null,"distinct","distinct",-1788879121),new cljs.core.Keyword(null,"bulk-collect-into","bulk-collect-into",1601778032),new cljs.core.Keyword(null,"records","records",1326822832),new cljs.core.Keyword(null,"partition-by","partition-by",1324497520),new cljs.core.Keyword(null,"right-join","right-join",-56349359),new cljs.core.Keyword(null,"left-join","left-join",-672831855),new cljs.core.Keyword(null,"for","for",-1323786319),new cljs.core.Keyword(null,"returning","returning",-387623629),new cljs.core.Keyword(null,"expr","expr",745722291),new cljs.core.Keyword(null,"create-view","create-view",-485638509),new cljs.core.Keyword(null,"cross-join","cross-join",-1043003533),new cljs.core.Keyword(null,"on-constraint","on-constraint",1484874675),new cljs.core.Keyword(null,"with","with",-1536296876),new cljs.core.Keyword(null,"from","from",1815293044),new cljs.core.Keyword(null,"create-or-replace-view","create-or-replace-view",1887806804),new cljs.core.Keyword(null,"create-index","create-index",154861140),new cljs.core.Keyword(null,"with-data","with-data",-1106621804),new cljs.core.Keyword(null,"values","values",372645556),new cljs.core.Keyword(null,"modify-column","modify-column",-614135147),new cljs.core.Keyword(null,"insert-into","insert-into",382212789),new cljs.core.Keyword(null,"order-by","order-by",1527318070),new cljs.core.Keyword(null,"rename-table","rename-table",-651328682),new cljs.core.Keyword(null,"with-recursive","with-recursive",-331779146),new cljs.core.Keyword(null,"drop-extension","drop-extension",-1677190153),new cljs.core.Keyword(null,"intersect","intersect",-2039792392),new cljs.core.Keyword(null,"compare-with","compare-with",715346425),new cljs.core.Keyword(null,"drop-index","drop-index",-843154439),new cljs.core.Keyword(null,"set","set",304602554),new cljs.core.Keyword(null,"do-nothing","do-nothing",1030476282),new cljs.core.Keyword(null,"on-conflict","on-conflict",1595391642),new cljs.core.Keyword(null,"union","union",2142937499),new cljs.core.Keyword(null,"using","using",1948623036),new cljs.core.Keyword(null,"inner-join","inner-join",659431740),new cljs.core.Keyword(null,"fetch","fetch",-1081994244),new cljs.core.Keyword(null,"except-all","except-all",1562150045),new cljs.core.Keyword(null,"rename-column","rename-column",737487070),new cljs.core.Keyword(null,"lock","lock",-488188066),new cljs.core.Keyword(null,"delete-from","delete-from",670763966),new cljs.core.Keyword(null,"join","join",-758861890),new cljs.core.Keyword(null,"select","select",1147833503),new cljs.core.Keyword(null,"union-all","union-all",672741919)],[new cljs.core.Var(function(){return honey.sql.format_join;},new cljs.core.Symbol("honey.sql","format-join","honey.sql/format-join",1142939916,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-join","format-join",-242897439,null),"honey/sql.cljc",19,1,1061,1061,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"clauses","clauses",-1199594528,null)], null)),null,(cljs.core.truth_(honey.sql.format_join)?honey.sql.format_join.cljs$lang$test:null)])),new cljs.core.Var(function(){return honey.sql.format_select_top;},new cljs.core.Symbol("honey.sql","format-select-top","honey.sql/format-select-top",-1063564218,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-select-top","format-select-top",872583137,null),"honey/sql.cljc",25,1,863,863,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.format_select_top)?honey.sql.format_select_top.cljs$lang$test:null)])),new cljs.core.Var(function(){return honey.sql.format_on_expr;},new cljs.core.Symbol("honey.sql","format-on-expr","honey.sql/format-on-expr",-1077648278,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-on-expr","format-on-expr",-211932223,null),"honey/sql.cljc",22,1,1133,1133,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"e","e",-1273166571,null)], null)),null,(cljs.core.truth_(honey.sql.format_on_expr)?honey.sql.format_on_expr.cljs$lang$test:null)])),(function (_,x){
-var vec__52245 = (function (){var G__52248 = x;
-var G__52249 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null);
-return (honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$2(G__52248,G__52249) : honey.sql.format_dsl.call(null,G__52248,G__52249));
+var vec__52251 = (function (){var G__52254 = x;
+var G__52255 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null);
+return (honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$2(G__52254,G__52255) : honey.sql.format_dsl.call(null,G__52254,G__52255));
 })();
-var seq__52246 = cljs.core.seq(vec__52245);
-var first__52247 = cljs.core.first(seq__52246);
-var seq__52246__$1 = cljs.core.next(seq__52246);
-var sql = first__52247;
-var params = seq__52246__$1;
+var seq__52252 = cljs.core.seq(vec__52251);
+var first__52253 = cljs.core.first(seq__52252);
+var seq__52252__$1 = cljs.core.next(seq__52252);
+var sql = first__52253;
+var params = seq__52252__$1;
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [sql], null),params);
 }),new cljs.core.Var(function(){return honey.sql.format_join;},new cljs.core.Symbol("honey.sql","format-join","honey.sql/format-join",1142939916,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-join","format-join",-242897439,null),"honey/sql.cljc",19,1,1061,1061,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"clauses","clauses",-1199594528,null)], null)),null,(cljs.core.truth_(honey.sql.format_join)?honey.sql.format_join.cljs$lang$test:null)])),new cljs.core.Var(function(){return honey.sql.format_interval;},new cljs.core.Symbol("honey.sql","format-interval","honey.sql/format-interval",-1155608910,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-interval","format-interval",-257652183,null),"honey/sql.cljc",23,1,1579,1579,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"args","args",-1338879193,null)], null)),null,(cljs.core.truth_(honey.sql.format_interval)?honey.sql.format_interval.cljs$lang$test:null)])),new cljs.core.Var(function(){return honey.sql.format_on_expr;},new cljs.core.Symbol("honey.sql","format-on-expr","honey.sql/format-on-expr",-1077648278,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-on-expr","format-on-expr",-211932223,null),"honey/sql.cljc",22,1,1133,1133,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"e","e",-1273166571,null)], null)),null,(cljs.core.truth_(honey.sql.format_on_expr)?honey.sql.format_on_expr.cljs$lang$test:null)])),(function (_,x){
 return honey.sql.format_create(new cljs.core.Keyword(null,"create","create",-1301499256),new cljs.core.Keyword(null,"table","table",-564943036),x,null);
@@ -2637,12 +2637,12 @@ return honey.sql.format_add_item(((honey.sql.mysql_QMARK_())?new cljs.core.Keywo
 return honey.sql.format_on_expr(new cljs.core.Keyword(null,"add","add",235287739),x);
 }),new cljs.core.Var(function(){return honey.sql.format_insert;},new cljs.core.Symbol("honey.sql","format-insert","honey.sql/format-insert",-710305188,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-insert","format-insert",-1993090639,null),"honey/sql.cljc",21,1,1001,1001,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"table","table",1075588491,null)], null)),null,(cljs.core.truth_(honey.sql.format_insert)?honey.sql.format_insert.cljs$lang$test:null)])),new cljs.core.Var(function(){return honey.sql.format_truncate;},new cljs.core.Symbol("honey.sql","format-truncate","honey.sql/format-truncate",-1669872793,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-truncate","format-truncate",-771882982,null),"honey/sql.cljc",23,1,1411,1411,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"_","_",-1201019570,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.format_truncate)?honey.sql.format_truncate.cljs$lang$test:null)])),honey.sql.check_where(new cljs.core.Var(function(){return honey.sql.format_selector;},new cljs.core.Symbol("honey.sql","format-selector","honey.sql/format-selector",-2093502057,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-selector","format-selector",1319204090,null),"honey/sql.cljc",23,1,993,993,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.format_selector)?honey.sql.format_selector.cljs$lang$test:null)]))),new cljs.core.Var(function(){return honey.sql.format_on_expr;},new cljs.core.Symbol("honey.sql","format-on-expr","honey.sql/format-on-expr",-1077648278,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-on-expr","format-on-expr",-211932223,null),"honey/sql.cljc",22,1,1133,1133,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"e","e",-1273166571,null)], null)),null,(cljs.core.truth_(honey.sql.format_on_expr)?honey.sql.format_on_expr.cljs$lang$test:null)])),new cljs.core.Var(function(){return honey.sql.format_group_by;},new cljs.core.Symbol("honey.sql","format-group-by","honey.sql/format-group-by",508553260,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-group-by","format-group-by",1120249041,null),"honey/sql.cljc",23,1,1139,1139,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.format_group_by)?honey.sql.format_group_by.cljs$lang$test:null)])),new cljs.core.Var(function(){return honey.sql.format_alter_table;},new cljs.core.Symbol("honey.sql","format-alter-table","honey.sql/format-alter-table",-772015936,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-alter-table","format-alter-table",1715578287,null),"honey/sql.cljc",26,1,1345,1345,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"x","x",-555367584,null)], null)),null,(cljs.core.truth_(honey.sql.format_alter_table)?honey.sql.format_alter_table.cljs$lang$test:null)])),new cljs.core.Var(function(){return honey.sql.format_select_top;},new cljs.core.Symbol("honey.sql","format-select-top","honey.sql/format-select-top",-1063564218,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-select-top","format-select-top",872583137,null),"honey/sql.cljc",25,1,863,863,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.format_select_top)?honey.sql.format_select_top.cljs$lang$test:null)])),(function (_,x){
 if(((honey.sql.contains_clause_QMARK_(new cljs.core.Keyword(null,"fetch","fetch",-1081994244))) || (honey.sql.sql_server_QMARK_()))){
-var vec__52250 = honey.sql.format_on_expr(new cljs.core.Keyword(null,"offset","offset",296498311),x);
-var seq__52251 = cljs.core.seq(vec__52250);
-var first__52252 = cljs.core.first(seq__52251);
-var seq__52251__$1 = cljs.core.next(seq__52251);
-var sql = first__52252;
-var params = seq__52251__$1;
+var vec__52264 = honey.sql.format_on_expr(new cljs.core.Keyword(null,"offset","offset",296498311),x);
+var seq__52265 = cljs.core.seq(vec__52264);
+var first__52266 = cljs.core.first(seq__52265);
+var seq__52265__$1 = cljs.core.next(seq__52265);
+var sql = first__52266;
+var params = seq__52265__$1;
 var rows = ((((typeof x === 'number') && (((1) === x))))?new cljs.core.Keyword(null,"row","row",-570139521):new cljs.core.Keyword(null,"rows","rows",850049680));
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(sql," ",honey.sql.sql_kw(rows))], null),params);
 } else {
@@ -2657,12 +2657,12 @@ return honey.sql.format_create(new cljs.core.Keyword(null,"create","create",-130
 }),new cljs.core.Var(function(){return honey.sql.format_do_update_set;},new cljs.core.Symbol("honey.sql","format-do-update-set","honey.sql/format-do-update-set",566436710,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-do-update-set","format-do-update-set",-1807098341,null),"honey/sql.cljc",28,1,1302,1302,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"x","x",-555367584,null)], null)),null,(cljs.core.truth_(honey.sql.format_do_update_set)?honey.sql.format_do_update_set.cljs$lang$test:null)])),new cljs.core.Var(function(){return honey.sql.format_do_update_set;},new cljs.core.Symbol("honey.sql","format-do-update-set","honey.sql/format-do-update-set",566436710,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-do-update-set","format-do-update-set",-1807098341,null),"honey/sql.cljc",28,1,1302,1302,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"x","x",-555367584,null)], null)),null,(cljs.core.truth_(honey.sql.format_do_update_set)?honey.sql.format_do_update_set.cljs$lang$test:null)])),new cljs.core.Var(function(){return honey.sql.format_insert;},new cljs.core.Symbol("honey.sql","format-insert","honey.sql/format-insert",-710305188,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-insert","format-insert",-1993090639,null),"honey/sql.cljc",21,1,1001,1001,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"table","table",1075588491,null)], null)),null,(cljs.core.truth_(honey.sql.format_insert)?honey.sql.format_insert.cljs$lang$test:null)])),new cljs.core.Var(function(){return honey.sql.format_selects;},new cljs.core.Symbol("honey.sql","format-selects","honey.sql/format-selects",-1805335445,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-selects","format-selects",1626536724,null),"honey/sql.cljc",22,1,842,842,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.format_selects)?honey.sql.format_selects.cljs$lang$test:null)])),new cljs.core.Var(function(){return honey.sql.format_interval;},new cljs.core.Symbol("honey.sql","format-interval","honey.sql/format-interval",-1155608910,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-interval","format-interval",-257652183,null),"honey/sql.cljc",23,1,1579,1579,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"args","args",-1338879193,null)], null)),null,(cljs.core.truth_(honey.sql.format_interval)?honey.sql.format_interval.cljs$lang$test:null)])),new cljs.core.Var(function(){return honey.sql.format_interval;},new cljs.core.Symbol("honey.sql","format-interval","honey.sql/format-interval",-1155608910,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-interval","format-interval",-257652183,null),"honey/sql.cljc",23,1,1579,1579,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"args","args",-1338879193,null)], null)),null,(cljs.core.truth_(honey.sql.format_interval)?honey.sql.format_interval.cljs$lang$test:null)])),(function (_,x){
 return honey.sql.format_create(new cljs.core.Keyword(null,"refresh","refresh",1947415525),new cljs.core.Keyword(null,"materialized-view","materialized-view",-1218575593),x,null);
 }),new cljs.core.Var(function(){return honey.sql.format_drop_items;},new cljs.core.Symbol("honey.sql","format-drop-items","honey.sql/format-drop-items",-1127399848,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-drop-items","format-drop-items",-390921529,null),"honey/sql.cljc",25,1,1488,1488,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"params","params",-1943919534,null)], null)),null,(cljs.core.truth_(honey.sql.format_drop_items)?honey.sql.format_drop_items.cljs$lang$test:null)])),new cljs.core.Var(function(){return honey.sql.format_join_by;},new cljs.core.Symbol("honey.sql","format-join-by","honey.sql/format-join-by",-957187997,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-join-by","format-join-by",289946392,null),"honey/sql.cljc",22,1,1104,1104,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"_","_",-1201019570,null),new cljs.core.Symbol(null,"clauses","clauses",-1199594528,null)], null)),"Clauses should be a sequence of join types followed\n  by their table and condition, or a sequence of join\n  clauses, so that you can construct a series of joins\n  in a specific order.",(cljs.core.truth_(honey.sql.format_join_by)?honey.sql.format_join_by.cljs$lang$test:null)])),honey.sql.check_where(new cljs.core.Var(function(){return honey.sql.format_selector;},new cljs.core.Symbol("honey.sql","format-selector","honey.sql/format-selector",-2093502057,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-selector","format-selector",1319204090,null),"honey/sql.cljc",23,1,993,993,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.format_selector)?honey.sql.format_selector.cljs$lang$test:null)]))),honey.sql.check_where(new cljs.core.Var(function(){return honey.sql.format_selects;},new cljs.core.Symbol("honey.sql","format-selects","honey.sql/format-selects",-1805335445,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-selects","format-selects",1626536724,null),"honey/sql.cljc",22,1,842,842,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.format_selects)?honey.sql.format_selects.cljs$lang$test:null)]))),new cljs.core.Var(function(){return honey.sql.format_selects;},new cljs.core.Symbol("honey.sql","format-selects","honey.sql/format-selects",-1805335445,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-selects","format-selects",1626536724,null),"honey/sql.cljc",22,1,842,842,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.format_selects)?honey.sql.format_selects.cljs$lang$test:null)])),new cljs.core.Var(function(){return honey.sql.format_selects;},new cljs.core.Symbol("honey.sql","format-selects","honey.sql/format-selects",-1805335445,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-selects","format-selects",1626536724,null),"honey/sql.cljc",22,1,842,842,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.format_selects)?honey.sql.format_selects.cljs$lang$test:null)])),new cljs.core.Var(function(){return honey.sql.format_table_columns;},new cljs.core.Symbol("honey.sql","format-table-columns","honey.sql/format-table-columns",-1905715432,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-table-columns","format-table-columns",-218935107,null),"honey/sql.cljc",28,1,1516,1516,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"_","_",-1201019570,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.format_table_columns)?honey.sql.format_table_columns.cljs$lang$test:null)])),new cljs.core.Var(function(){return honey.sql.format_window;},new cljs.core.Symbol("honey.sql","format-window","honey.sql/format-window",-223652212,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-window","format-window",1027412459,null),"honey/sql.cljc",21,1,996,996,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.format_window)?honey.sql.format_window.cljs$lang$test:null)])),(function (k,xs){
-var vec__52253 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(xs) : honey.sql.format_expr.call(null,xs));
-var seq__52254 = cljs.core.seq(vec__52253);
-var first__52255 = cljs.core.first(seq__52254);
-var seq__52254__$1 = cljs.core.next(seq__52254);
-var sql = first__52255;
-var params = seq__52254__$1;
+var vec__52309 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(xs) : honey.sql.format_expr.call(null,xs));
+var seq__52310 = cljs.core.seq(vec__52309);
+var first__52311 = cljs.core.first(seq__52310);
+var seq__52310__$1 = cljs.core.next(seq__52310);
+var sql = first__52311;
+var params = seq__52310__$1;
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(honey.sql.sql_kw(k)," ",sql)], null),params);
 }),new cljs.core.Var(function(){return honey.sql.format_setting;},new cljs.core.Symbol("honey.sql","format-setting","honey.sql/format-setting",1540511570,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-setting","format-setting",-1890875203,null),"honey/sql.cljc",22,1,1607,1607,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"args","args",-1338879193,null)], null)),null,(cljs.core.truth_(honey.sql.format_setting)?honey.sql.format_setting.cljs$lang$test:null)])),new cljs.core.Var(function(){return honey.sql.format_drop_items;},new cljs.core.Symbol("honey.sql","format-drop-items","honey.sql/format-drop-items",-1127399848,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-drop-items","format-drop-items",-390921529,null),"honey/sql.cljc",25,1,1488,1488,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"params","params",-1943919534,null)], null)),null,(cljs.core.truth_(honey.sql.format_drop_items)?honey.sql.format_drop_items.cljs$lang$test:null)])),(function (k,xs){
 return honey.sql.format_selects(k,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [xs], null)], null));
@@ -2679,12 +2679,12 @@ return (new cljs.core.PersistentVector(null,1,(5),cljs.core.PersistentVector.EMP
 }),new cljs.core.Var(function(){return honey.sql.format_on_conflict;},new cljs.core.Symbol("honey.sql","format-on-conflict","honey.sql/format-on-conflict",1697823191,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-on-conflict","format-on-conflict",-1736149702,null),"honey/sql.cljc",26,1,1280,1280,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"x","x",-555367584,null)], null)),null,(cljs.core.truth_(honey.sql.format_on_conflict)?honey.sql.format_on_conflict.cljs$lang$test:null)])),new cljs.core.Var(function(){return honey.sql.format_on_set_op;},new cljs.core.Symbol("honey.sql","format-on-set-op","honey.sql/format-on-set-op",-1702673170,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-on-set-op","format-on-set-op",-700808827,null),"honey/sql.cljc",24,1,739,739,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.format_on_set_op)?honey.sql.format_on_set_op.cljs$lang$test:null)])),new cljs.core.Var(function(){return honey.sql.format_selects;},new cljs.core.Symbol("honey.sql","format-selects","honey.sql/format-selects",-1805335445,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-selects","format-selects",1626536724,null),"honey/sql.cljc",22,1,842,842,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.format_selects)?honey.sql.format_selects.cljs$lang$test:null)])),new cljs.core.Var(function(){return honey.sql.format_join;},new cljs.core.Symbol("honey.sql","format-join","honey.sql/format-join",1142939916,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-join","format-join",-242897439,null),"honey/sql.cljc",19,1,1061,1061,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"clauses","clauses",-1199594528,null)], null)),null,(cljs.core.truth_(honey.sql.format_join)?honey.sql.format_join.cljs$lang$test:null)])),(function (_,x){
 var which = ((honey.sql.contains_clause_QMARK_(new cljs.core.Keyword(null,"offset","offset",296498311)))?new cljs.core.Keyword(null,"fetch-next","fetch-next",-1540729894):new cljs.core.Keyword(null,"fetch-first","fetch-first",-2144229787));
 var rows = ((((typeof x === 'number') && (((1) === x))))?new cljs.core.Keyword(null,"row-only","row-only",-701331619):new cljs.core.Keyword(null,"rows-only","rows-only",1193970146));
-var vec__52256 = honey.sql.format_on_expr(which,x);
-var seq__52257 = cljs.core.seq(vec__52256);
-var first__52258 = cljs.core.first(seq__52257);
-var seq__52257__$1 = cljs.core.next(seq__52257);
-var sql = first__52258;
-var params = seq__52257__$1;
+var vec__52312 = honey.sql.format_on_expr(which,x);
+var seq__52313 = cljs.core.seq(vec__52312);
+var first__52314 = cljs.core.first(seq__52313);
+var seq__52313__$1 = cljs.core.next(seq__52313);
+var sql = first__52314;
+var params = seq__52313__$1;
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(sql," ",honey.sql.sql_kw(rows))], null),params);
 }),new cljs.core.Var(function(){return honey.sql.format_on_set_op;},new cljs.core.Symbol("honey.sql","format-on-set-op","honey.sql/format-on-set-op",-1702673170,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-on-set-op","format-on-set-op",-700808827,null),"honey/sql.cljc",24,1,739,739,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.format_on_set_op)?honey.sql.format_on_set_op.cljs$lang$test:null)])),new cljs.core.Var(function(){return honey.sql.format_rename_item;},new cljs.core.Symbol("honey.sql","format-rename-item","honey.sql/format-rename-item",853110413,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-rename-item","format-rename-item",1197681200,null),"honey/sql.cljc",26,1,1536,1536,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"x","x",-555367584,null),new cljs.core.Symbol(null,"y","y",-117328249,null)], null)], null)),null,(cljs.core.truth_(honey.sql.format_rename_item)?honey.sql.format_rename_item.cljs$lang$test:null)])),new cljs.core.Var(function(){return honey.sql.format_lock_strength;},new cljs.core.Symbol("honey.sql","format-lock-strength","honey.sql/format-lock-strength",1596503099,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-lock-strength","format-lock-strength",-476935778,null),"honey/sql.cljc",28,1,1158,1158,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.format_lock_strength)?honey.sql.format_lock_strength.cljs$lang$test:null)])),honey.sql.check_where(new cljs.core.Var(function(){return honey.sql.format_selector;},new cljs.core.Symbol("honey.sql","format-selector","honey.sql/format-selector",-2093502057,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-selector","format-selector",1319204090,null),"honey/sql.cljc",23,1,993,993,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.format_selector)?honey.sql.format_selector.cljs$lang$test:null)]))),new cljs.core.Var(function(){return honey.sql.format_join;},new cljs.core.Symbol("honey.sql","format-join","honey.sql/format-join",1142939916,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-join","format-join",-242897439,null),"honey/sql.cljc",19,1,1061,1061,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"clauses","clauses",-1199594528,null)], null)),null,(cljs.core.truth_(honey.sql.format_join)?honey.sql.format_join.cljs$lang$test:null)])),new cljs.core.Var(function(){return honey.sql.format_selects;},new cljs.core.Symbol("honey.sql","format-selects","honey.sql/format-selects",-1805335445,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-selects","format-selects",1626536724,null),"honey/sql.cljc",22,1,842,842,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.format_selects)?honey.sql.format_selects.cljs$lang$test:null)])),new cljs.core.Var(function(){return honey.sql.format_on_set_op;},new cljs.core.Symbol("honey.sql","format-on-set-op","honey.sql/format-on-set-op",-1702673170,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"format-on-set-op","format-on-set-op",-700808827,null),"honey/sql.cljc",24,1,739,739,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.format_on_set_op)?honey.sql.format_on_set_op.cljs$lang$test:null)]))]));
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$variadic(cljs.core.set(cljs.core.deref(honey.sql.base_clause_order)),cljs.core.set(cljs.core.deref(honey.sql.current_clause_order)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([cljs.core.set(cljs.core.keys(cljs.core.deref(honey.sql.clause_format)))], 0))){
@@ -2700,8 +2700,8 @@ throw (new Error("Assert failed: (= (set (clojure.core/deref base-clause-order))
  *   extend the DSL supported by HoneySQL.
  */
 honey.sql.format_dsl = (function honey$sql$format_dsl(var_args){
-var G__52266 = arguments.length;
-switch (G__52266) {
+var G__52316 = arguments.length;
+switch (G__52316) {
 case 1:
 return honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -2720,22 +2720,22 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 return honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$2(statement_map,cljs.core.PersistentArrayMap.EMPTY);
 }));
 
-(honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$2 = (function (statement_map,p__52267){
-var map__52268 = p__52267;
-var map__52268__$1 = cljs.core.__destructure_map(map__52268);
-var aliased = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52268__$1,new cljs.core.Keyword(null,"aliased","aliased",-125439273));
-var nested = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52268__$1,new cljs.core.Keyword(null,"nested","nested",18943849));
-var pretty = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52268__$1,new cljs.core.Keyword(null,"pretty","pretty",-1916372486));
-var _STAR_options_STAR__orig_val__52269 = honey.sql._STAR_options_STAR_;
-var _STAR_options_STAR__temp_val__52270 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(honey.sql._STAR_options_STAR_,new cljs.core.Keyword(null,"dsl","dsl",397853177),statement_map);
-(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__temp_val__52270);
+(honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$2 = (function (statement_map,p__52317){
+var map__52318 = p__52317;
+var map__52318__$1 = cljs.core.__destructure_map(map__52318);
+var aliased = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52318__$1,new cljs.core.Keyword(null,"aliased","aliased",-125439273));
+var nested = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52318__$1,new cljs.core.Keyword(null,"nested","nested",18943849));
+var pretty = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52318__$1,new cljs.core.Keyword(null,"pretty","pretty",-1916372486));
+var _STAR_options_STAR__orig_val__52319 = honey.sql._STAR_options_STAR_;
+var _STAR_options_STAR__temp_val__52320 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(honey.sql._STAR_options_STAR_,new cljs.core.Keyword(null,"dsl","dsl",397853177),statement_map);
+(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__temp_val__52320);
 
-try{var vec__52271 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (p__52274,k){
-var vec__52275 = p__52274;
-var sql = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52275,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52275,(1),null);
-var leftover = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52275,(2),null);
-var result = vec__52275;
+try{var vec__52321 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (p__52324,k){
+var vec__52325 = p__52324;
+var sql = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52325,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52325,(1),null);
+var leftover = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52325,(2),null);
+var result = vec__52325;
 var temp__5827__auto__ = (function (){var temp__5827__auto__ = (k.cljs$core$IFn$_invoke$arity$1 ? k.cljs$core$IFn$_invoke$arity$1(leftover) : k.call(null,leftover));
 if((temp__5827__auto__ == null)){
 var s = honey.sql.kw__GT_sym(k);
@@ -2749,28 +2749,28 @@ if((temp__5827__auto__ == null)){
 return result;
 } else {
 var xs = temp__5827__auto__;
-var formatter = (function (){var G__52281 = cljs.core.deref(honey.sql.clause_format);
-return (k.cljs$core$IFn$_invoke$arity$1 ? k.cljs$core$IFn$_invoke$arity$1(G__52281) : k.call(null,G__52281));
+var formatter = (function (){var G__52331 = cljs.core.deref(honey.sql.clause_format);
+return (k.cljs$core$IFn$_invoke$arity$1 ? k.cljs$core$IFn$_invoke$arity$1(G__52331) : k.call(null,G__52331));
 })();
-var vec__52278 = (formatter.cljs$core$IFn$_invoke$arity$2 ? formatter.cljs$core$IFn$_invoke$arity$2(k,xs) : formatter.call(null,k,xs));
-var seq__52279 = cljs.core.seq(vec__52278);
-var first__52280 = cljs.core.first(seq__52279);
-var seq__52279__$1 = cljs.core.next(seq__52279);
-var sql_SINGLEQUOTE_ = first__52280;
-var params_SINGLEQUOTE_ = seq__52279__$1;
+var vec__52328 = (formatter.cljs$core$IFn$_invoke$arity$2 ? formatter.cljs$core$IFn$_invoke$arity$2(k,xs) : formatter.call(null,k,xs));
+var seq__52329 = cljs.core.seq(vec__52328);
+var first__52330 = cljs.core.first(seq__52329);
+var seq__52329__$1 = cljs.core.next(seq__52329);
+var sql_SINGLEQUOTE_ = first__52330;
+var params_SINGLEQUOTE_ = seq__52329__$1;
 return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.conj.cljs$core$IFn$_invoke$arity$2(sql,sql_SINGLEQUOTE_),((params_SINGLEQUOTE_)?cljs.core.into.cljs$core$IFn$_invoke$arity$2(params,params_SINGLEQUOTE_):params),cljs.core.dissoc.cljs$core$IFn$_invoke$arity$variadic(leftover,k,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([honey.sql.kw__GT_sym(k)], 0))], null);
 }
 }),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.PersistentVector.EMPTY,cljs.core.PersistentVector.EMPTY,statement_map], null),new cljs.core.Keyword(null,"clause-order","clause-order",1290793904).cljs$core$IFn$_invoke$arity$1(honey.sql._STAR_options_STAR_));
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52271,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52271,(1),null);
-var leftover = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52271,(2),null);
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52321,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52321,(1),null);
+var leftover = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52321,(2),null);
 if(cljs.core.seq(leftover)){
 throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(honey.sql.util.str.cljs$core$IFn$_invoke$arity$5("These SQL clauses are unknown or have nil values: ",honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(", ",cljs.core.keys(leftover))," (perhaps you need [:lift {",cljs.core.first(cljs.core.keys(leftover))," ...}] here?)"),leftover);
 } else {
-return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [(function (){var G__52283 = honey.sql.util.join.cljs$core$IFn$_invoke$arity$3((cljs.core.truth_(pretty)?"\n":" "),cljs.core.remove.cljs$core$IFn$_invoke$arity$1(cljs.core.empty_QMARK_),sqls);
-var G__52283__$1 = (cljs.core.truth_(pretty)?(function (){var s = G__52283;
+return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [(function (){var G__52332 = honey.sql.util.join.cljs$core$IFn$_invoke$arity$3((cljs.core.truth_(pretty)?"\n":" "),cljs.core.remove.cljs$core$IFn$_invoke$arity$1(cljs.core.empty_QMARK_),sqls);
+var G__52332__$1 = (cljs.core.truth_(pretty)?(function (){var s = G__52332;
 return honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("\n",s,"\n");
-})():G__52283);
+})():G__52332);
 if(cljs.core.truth_((function (){var and__5023__auto__ = nested;
 if(cljs.core.truth_(and__5023__auto__)){
 return cljs.core.not(aliased);
@@ -2778,14 +2778,14 @@ return cljs.core.not(aliased);
 return and__5023__auto__;
 }
 })())){
-var s = G__52283__$1;
+var s = G__52332__$1;
 return honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("(",s,")");
 } else {
-return G__52283__$1;
+return G__52332__$1;
 }
 })()], null),params);
 }
-}finally {(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__orig_val__52269);
+}finally {(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__orig_val__52319);
 }}));
 
 (honey.sql.format_dsl.cljs$lang$maxFixedArity = 2);
@@ -2816,38 +2816,38 @@ return x;
 return x;
 }
 });
-honey.sql.format_in = (function honey$sql$format_in(in$,p__52306){
-var vec__52312 = p__52306;
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52312,(0),null);
-var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52312,(1),null);
-var map__52330 = honey.sql._STAR_options_STAR_;
-var map__52330__$1 = cljs.core.__destructure_map(map__52330);
-var caching = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52330__$1,new cljs.core.Keyword(null,"caching","caching",-858598686));
-var checking = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52330__$1,new cljs.core.Keyword(null,"checking","checking",1748720818));
-var numbered = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52330__$1,new cljs.core.Keyword(null,"numbered","numbered",-2119856269));
-var vec__52331 = (function (){var G__52340 = x;
-var G__52341 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null);
-return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(G__52340,G__52341) : honey.sql.format_expr.call(null,G__52340,G__52341));
+honey.sql.format_in = (function honey$sql$format_in(in$,p__52338){
+var vec__52339 = p__52338;
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52339,(0),null);
+var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52339,(1),null);
+var map__52343 = honey.sql._STAR_options_STAR_;
+var map__52343__$1 = cljs.core.__destructure_map(map__52343);
+var caching = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52343__$1,new cljs.core.Keyword(null,"caching","caching",-858598686));
+var checking = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52343__$1,new cljs.core.Keyword(null,"checking","checking",1748720818));
+var numbered = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52343__$1,new cljs.core.Keyword(null,"numbered","numbered",-2119856269));
+var vec__52344 = (function (){var G__52354 = x;
+var G__52355 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null);
+return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(G__52354,G__52355) : honey.sql.format_expr.call(null,G__52354,G__52355));
 })();
-var seq__52332 = cljs.core.seq(vec__52331);
-var first__52333 = cljs.core.first(seq__52332);
-var seq__52332__$1 = cljs.core.next(seq__52332);
-var sql_x = first__52333;
-var params_x = seq__52332__$1;
-var vec__52334 = (function (){var G__52342 = y;
-var G__52343 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null);
-return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(G__52342,G__52343) : honey.sql.format_expr.call(null,G__52342,G__52343));
+var seq__52345 = cljs.core.seq(vec__52344);
+var first__52346 = cljs.core.first(seq__52345);
+var seq__52345__$1 = cljs.core.next(seq__52345);
+var sql_x = first__52346;
+var params_x = seq__52345__$1;
+var vec__52347 = (function (){var G__52357 = y;
+var G__52358 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null);
+return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(G__52357,G__52358) : honey.sql.format_expr.call(null,G__52357,G__52358));
 })();
-var seq__52335 = cljs.core.seq(vec__52334);
-var first__52336 = cljs.core.first(seq__52335);
-var seq__52335__$1 = cljs.core.next(seq__52335);
-var sql_y = first__52336;
-var params_y = seq__52335__$1;
-var vec__52337 = cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__52285_SHARP_){
-return honey.sql.unwrap(p1__52285_SHARP_,cljs.core.PersistentArrayMap.EMPTY);
+var seq__52348 = cljs.core.seq(vec__52347);
+var first__52349 = cljs.core.first(seq__52348);
+var seq__52348__$1 = cljs.core.next(seq__52348);
+var sql_y = first__52349;
+var params_y = seq__52348__$1;
+var vec__52350 = cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__52337_SHARP_){
+return honey.sql.unwrap(p1__52337_SHARP_,cljs.core.PersistentArrayMap.EMPTY);
 }),params_y);
-var v1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52337,(0),null);
-var values = vec__52337;
+var v1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52350,(0),null);
+var values = vec__52350;
 if(cljs.core.truth_((function (){var and__5023__auto__ = cljs.core.meta(cljs.core.first(params_y));
 if(cljs.core.truth_(and__5023__auto__)){
 var and__5023__auto____$1 = new cljs.core.Keyword("honey.sql","wrapper","honey.sql/wrapper",465758343).cljs$core$IFn$_invoke$arity$1(cljs.core.meta(cljs.core.first(params_y)));
@@ -2910,25 +2910,25 @@ return ((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(honey.sql.util.str.cljs$co
 return and__5023__auto__;
 }
 })())){
-var vs = (function (){var iter__5503__auto__ = (function honey$sql$format_in_$_iter__52346(s__52347){
+var vs = (function (){var iter__5503__auto__ = (function honey$sql$format_in_$_iter__52360(s__52361){
 return (new cljs.core.LazySeq(null,(function (){
-var s__52347__$1 = s__52347;
+var s__52361__$1 = s__52361;
 while(true){
-var temp__5825__auto__ = cljs.core.seq(s__52347__$1);
+var temp__5825__auto__ = cljs.core.seq(s__52361__$1);
 if(temp__5825__auto__){
-var s__52347__$2 = temp__5825__auto__;
-if(cljs.core.chunked_seq_QMARK_(s__52347__$2)){
-var c__5501__auto__ = cljs.core.chunk_first(s__52347__$2);
+var s__52361__$2 = temp__5825__auto__;
+if(cljs.core.chunked_seq_QMARK_(s__52361__$2)){
+var c__5501__auto__ = cljs.core.chunk_first(s__52361__$2);
 var size__5502__auto__ = cljs.core.count(c__5501__auto__);
-var b__52349 = cljs.core.chunk_buffer(size__5502__auto__);
-if((function (){var i__52348 = (0);
+var b__52363 = cljs.core.chunk_buffer(size__5502__auto__);
+if((function (){var i__52362 = (0);
 while(true){
-if((i__52348 < size__5502__auto__)){
-var v = cljs.core._nth(c__5501__auto__,i__52348);
-cljs.core.chunk_append(b__52349,honey.sql.__GT_numbered(v));
+if((i__52362 < size__5502__auto__)){
+var v = cljs.core._nth(c__5501__auto__,i__52362);
+cljs.core.chunk_append(b__52363,honey.sql.__GT_numbered(v));
 
-var G__52938 = (i__52348 + (1));
-i__52348 = G__52938;
+var G__52897 = (i__52362 + (1));
+i__52362 = G__52897;
 continue;
 } else {
 return true;
@@ -2936,13 +2936,13 @@ return true;
 break;
 }
 })()){
-return cljs.core.chunk_cons(cljs.core.chunk(b__52349),honey$sql$format_in_$_iter__52346(cljs.core.chunk_rest(s__52347__$2)));
+return cljs.core.chunk_cons(cljs.core.chunk(b__52363),honey$sql$format_in_$_iter__52360(cljs.core.chunk_rest(s__52361__$2)));
 } else {
-return cljs.core.chunk_cons(cljs.core.chunk(b__52349),null);
+return cljs.core.chunk_cons(cljs.core.chunk(b__52363),null);
 }
 } else {
-var v = cljs.core.first(s__52347__$2);
-return cljs.core.cons(honey.sql.__GT_numbered(v),honey$sql$format_in_$_iter__52346(cljs.core.rest(s__52347__$2)));
+var v = cljs.core.first(s__52361__$2);
+return cljs.core.cons(honey.sql.__GT_numbered(v),honey$sql$format_in_$_iter__52360(cljs.core.rest(s__52361__$2)));
 }
 } else {
 return null;
@@ -2962,16 +2962,16 @@ return honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(new cljs.core.Per
 }
 });
 honey.sql.function_0 = (function honey$sql$function_0(k,xs){
-return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(honey.sql.sql_kw(k),((cljs.core.seq(xs))?honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("(",honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__52350_SHARP_){
-return honey.sql.format_simple_expr(p1__52350_SHARP_,"column/index operation");
+return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(honey.sql.sql_kw(k),((cljs.core.seq(xs))?honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("(",honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__52364_SHARP_){
+return honey.sql.format_simple_expr(p1__52364_SHARP_,"column/index operation");
 })),xs),")"):null))], null);
 });
 honey.sql.function_1 = (function honey$sql$function_1(k,xs){
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(honey.sql.sql_kw(k),((cljs.core.seq(xs))?honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(" ",honey.sql.format_simple_expr(cljs.core.first(xs),"column/index operation"),(function (){var temp__5825__auto__ = cljs.core.next(xs);
 if(temp__5825__auto__){
 var args = temp__5825__auto__;
-return honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("(",honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__52351_SHARP_){
-return honey.sql.format_simple_expr(p1__52351_SHARP_,"column/index operation");
+return honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("(",honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__52367_SHARP_){
+return honey.sql.format_simple_expr(p1__52367_SHARP_,"column/index operation");
 })),args),")");
 } else {
 return null;
@@ -2989,8 +2989,8 @@ return null;
 })(),(function (){var temp__5825__auto__ = cljs.core.next(xs);
 if(temp__5825__auto__){
 var args = temp__5825__auto__;
-return honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("(",honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__52352_SHARP_){
-return honey.sql.format_simple_expr(p1__52352_SHARP_,"column/index operation");
+return honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("(",honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__52368_SHARP_){
+return honey.sql.format_simple_expr(p1__52368_SHARP_,"column/index operation");
 })),args),")");
 } else {
 return null;
@@ -3002,29 +3002,29 @@ return null;
  *   followed by a SQL clause.
  */
 honey.sql.expr_clause_pairs = (function honey$sql$expr_clause_pairs(k,pairs){
-var vec__52353 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (p__52356,p__52357){
-var vec__52358 = p__52356;
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52358,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52358,(1),null);
-var vec__52361 = p__52357;
-var e = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52361,(0),null);
-var c = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52361,(1),null);
-var vec__52364 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(e) : honey.sql.format_expr.call(null,e));
-var seq__52365 = cljs.core.seq(vec__52364);
-var first__52366 = cljs.core.first(seq__52365);
-var seq__52365__$1 = cljs.core.next(seq__52365);
-var sql_e = first__52366;
-var params_e = seq__52365__$1;
-var vec__52367 = honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$2(c,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null));
-var seq__52368 = cljs.core.seq(vec__52367);
-var first__52369 = cljs.core.first(seq__52368);
-var seq__52368__$1 = cljs.core.next(seq__52368);
-var sql_c = first__52369;
-var params_c = seq__52368__$1;
+var vec__52371 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (p__52374,p__52375){
+var vec__52376 = p__52374;
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52376,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52376,(1),null);
+var vec__52379 = p__52375;
+var e = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52379,(0),null);
+var c = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52379,(1),null);
+var vec__52382 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(e) : honey.sql.format_expr.call(null,e));
+var seq__52383 = cljs.core.seq(vec__52382);
+var first__52384 = cljs.core.first(seq__52383);
+var seq__52383__$1 = cljs.core.next(seq__52383);
+var sql_e = first__52384;
+var params_e = seq__52383__$1;
+var vec__52385 = honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$2(c,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null));
+var seq__52386 = cljs.core.seq(vec__52385);
+var first__52387 = cljs.core.first(seq__52386);
+var seq__52386__$1 = cljs.core.next(seq__52386);
+var sql_c = first__52387;
+var params_c = seq__52386__$1;
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.conj.cljs$core$IFn$_invoke$arity$2(sqls,honey.sql.util.str.cljs$core$IFn$_invoke$arity$5(sql_e," ",honey.sql.sql_kw(k)," ",sql_c)),honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(params,params_e,params_c)], null);
 }),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.PersistentVector.EMPTY,cljs.core.PersistentVector.EMPTY], null),cljs.core.partition.cljs$core$IFn$_invoke$arity$2((2),pairs));
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52353,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52353,(1),null);
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52371,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52371,(1),null);
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(", ",sqls)], null),params);
 });
 /**
@@ -3032,197 +3032,197 @@ return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVect
  */
 honey.sql.case_clauses = (function honey$sql$case_clauses(k,clauses){
 var case_expr_QMARK_ = cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"case-expr","case-expr",-1006930349),k);
-var vec__52370 = ((case_expr_QMARK_)?(function (){var G__52376 = cljs.core.first(clauses);
-return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(G__52376) : honey.sql.format_expr.call(null,G__52376));
+var vec__52388 = ((case_expr_QMARK_)?(function (){var G__52394 = cljs.core.first(clauses);
+return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(G__52394) : honey.sql.format_expr.call(null,G__52394));
 })():null);
-var seq__52371 = cljs.core.seq(vec__52370);
-var first__52372 = cljs.core.first(seq__52371);
-var seq__52371__$1 = cljs.core.next(seq__52371);
-var sqlx = first__52372;
-var paramsx = seq__52371__$1;
-var vec__52373 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (p__52377,p__52378){
-var vec__52379 = p__52377;
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52379,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52379,(1),null);
-var vec__52382 = p__52378;
-var condition = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52382,(0),null);
-var value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52382,(1),null);
-var vec__52385 = ((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"else","else",-1508377146),condition))?null:(honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(condition) : honey.sql.format_expr.call(null,condition)));
-var seq__52386 = cljs.core.seq(vec__52385);
-var first__52387 = cljs.core.first(seq__52386);
-var seq__52386__$1 = cljs.core.next(seq__52386);
-var sqlc = first__52387;
-var paramsc = seq__52386__$1;
-var vec__52388 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(value) : honey.sql.format_expr.call(null,value));
 var seq__52389 = cljs.core.seq(vec__52388);
 var first__52390 = cljs.core.first(seq__52389);
 var seq__52389__$1 = cljs.core.next(seq__52389);
-var sqlv = first__52390;
-var paramsv = seq__52389__$1;
+var sqlx = first__52390;
+var paramsx = seq__52389__$1;
+var vec__52391 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (p__52395,p__52396){
+var vec__52397 = p__52395;
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52397,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52397,(1),null);
+var vec__52400 = p__52396;
+var condition = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52400,(0),null);
+var value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52400,(1),null);
+var vec__52403 = ((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"else","else",-1508377146),condition))?null:(honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(condition) : honey.sql.format_expr.call(null,condition)));
+var seq__52404 = cljs.core.seq(vec__52403);
+var first__52405 = cljs.core.first(seq__52404);
+var seq__52404__$1 = cljs.core.next(seq__52404);
+var sqlc = first__52405;
+var paramsc = seq__52404__$1;
+var vec__52406 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(value) : honey.sql.format_expr.call(null,value));
+var seq__52407 = cljs.core.seq(vec__52406);
+var first__52408 = cljs.core.first(seq__52407);
+var seq__52407__$1 = cljs.core.next(seq__52407);
+var sqlv = first__52408;
+var paramsv = seq__52407__$1;
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [((((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"else","else",-1508377146),condition)) || (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Symbol(null,"else","else",132154381,null),condition))))?cljs.core.conj.cljs$core$IFn$_invoke$arity$variadic(sqls,honey.sql.sql_kw(new cljs.core.Keyword(null,"else","else",-1508377146)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([sqlv], 0)):cljs.core.conj.cljs$core$IFn$_invoke$arity$variadic(sqls,honey.sql.sql_kw(new cljs.core.Keyword(null,"when","when",-576417306)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([sqlc,honey.sql.sql_kw(new cljs.core.Keyword(null,"then","then",460598070)),sqlv], 0))),honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(params,paramsc,paramsv)], null);
 }),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.PersistentVector.EMPTY,cljs.core.PersistentVector.EMPTY], null),cljs.core.partition.cljs$core$IFn$_invoke$arity$2((2),((case_expr_QMARK_)?cljs.core.rest(clauses):clauses)));
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52373,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52373,(1),null);
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52391,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52391,(1),null);
 return honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$variadic(honey.sql.sql_kw(new cljs.core.Keyword(null,"case","case",1143702196))," ",((case_expr_QMARK_)?honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(sqlx," "):null),honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(" ",sqls)," ",cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([honey.sql.sql_kw(new cljs.core.Keyword(null,"end","end",-268185958))], 0))], null),paramsx,params);
 });
 /**
  * For both :between and :not-between
  */
-honey.sql.between_fn = (function honey$sql$between_fn(k,p__52392){
-var vec__52393 = p__52392;
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52393,(0),null);
-var a = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52393,(1),null);
-var b = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52393,(2),null);
-var vec__52398 = (function (){var G__52407 = x;
-var G__52408 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null);
-return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(G__52407,G__52408) : honey.sql.format_expr.call(null,G__52407,G__52408));
+honey.sql.between_fn = (function honey$sql$between_fn(k,p__52409){
+var vec__52410 = p__52409;
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52410,(0),null);
+var a = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52410,(1),null);
+var b = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52410,(2),null);
+var vec__52413 = (function (){var G__52422 = x;
+var G__52423 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null);
+return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(G__52422,G__52423) : honey.sql.format_expr.call(null,G__52422,G__52423));
 })();
-var seq__52399 = cljs.core.seq(vec__52398);
-var first__52400 = cljs.core.first(seq__52399);
-var seq__52399__$1 = cljs.core.next(seq__52399);
-var sql_x = first__52400;
-var params_x = seq__52399__$1;
-var vec__52401 = (function (){var G__52409 = a;
-var G__52410 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null);
-return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(G__52409,G__52410) : honey.sql.format_expr.call(null,G__52409,G__52410));
+var seq__52414 = cljs.core.seq(vec__52413);
+var first__52415 = cljs.core.first(seq__52414);
+var seq__52414__$1 = cljs.core.next(seq__52414);
+var sql_x = first__52415;
+var params_x = seq__52414__$1;
+var vec__52416 = (function (){var G__52424 = a;
+var G__52425 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null);
+return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(G__52424,G__52425) : honey.sql.format_expr.call(null,G__52424,G__52425));
 })();
-var seq__52402 = cljs.core.seq(vec__52401);
-var first__52403 = cljs.core.first(seq__52402);
-var seq__52402__$1 = cljs.core.next(seq__52402);
-var sql_a = first__52403;
-var params_a = seq__52402__$1;
-var vec__52404 = (function (){var G__52411 = b;
-var G__52412 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null);
-return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(G__52411,G__52412) : honey.sql.format_expr.call(null,G__52411,G__52412));
+var seq__52417 = cljs.core.seq(vec__52416);
+var first__52418 = cljs.core.first(seq__52417);
+var seq__52417__$1 = cljs.core.next(seq__52417);
+var sql_a = first__52418;
+var params_a = seq__52417__$1;
+var vec__52419 = (function (){var G__52426 = b;
+var G__52427 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null);
+return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(G__52426,G__52427) : honey.sql.format_expr.call(null,G__52426,G__52427));
 })();
-var seq__52405 = cljs.core.seq(vec__52404);
-var first__52406 = cljs.core.first(seq__52405);
-var seq__52405__$1 = cljs.core.next(seq__52405);
-var sql_b = first__52406;
-var params_b = seq__52405__$1;
+var seq__52420 = cljs.core.seq(vec__52419);
+var first__52421 = cljs.core.first(seq__52420);
+var seq__52420__$1 = cljs.core.next(seq__52420);
+var sql_b = first__52421;
+var params_b = seq__52420__$1;
 return honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$4(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$variadic(sql_x," ",honey.sql.sql_kw(k)," ",sql_a,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([" AND ",sql_b], 0))], null),params_x,params_a,params_b);
 });
-honey.sql.object_record_literal = (function honey$sql$object_record_literal(k,p__52413){
-var vec__52414 = p__52413;
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52414,(0),null);
+honey.sql.object_record_literal = (function honey$sql$object_record_literal(k,p__52428){
+var vec__52429 = p__52428;
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52429,(0),null);
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(honey.sql.sql_kw(k)," ",honey.sql.inline_map.cljs$core$IFn$_invoke$arity$variadic(x,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2(["(",")"], 0)))], null);
 });
 /**
  * [:get-in expr key-or-index1 key-or-index2 ...]
  */
-honey.sql.get_in_navigation = (function honey$sql$get_in_navigation(wrap,p__52419){
-var vec__52420 = p__52419;
-var seq__52421 = cljs.core.seq(vec__52420);
-var first__52422 = cljs.core.first(seq__52421);
-var seq__52421__$1 = cljs.core.next(seq__52421);
-var expr = first__52422;
-var kix = seq__52421__$1;
-var vec__52423 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(expr) : honey.sql.format_expr.call(null,expr));
-var seq__52424 = cljs.core.seq(vec__52423);
-var first__52425 = cljs.core.first(seq__52424);
-var seq__52424__$1 = cljs.core.next(seq__52424);
-var sql = first__52425;
-var params = seq__52424__$1;
-var vec__52426 = honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$1(cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__52418_SHARP_){
-if(typeof p1__52418_SHARP_ === 'number'){
-return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("[",p1__52418_SHARP_,"]")], null);
+honey.sql.get_in_navigation = (function honey$sql$get_in_navigation(wrap,p__52433){
+var vec__52434 = p__52433;
+var seq__52435 = cljs.core.seq(vec__52434);
+var first__52436 = cljs.core.first(seq__52435);
+var seq__52435__$1 = cljs.core.next(seq__52435);
+var expr = first__52436;
+var kix = seq__52435__$1;
+var vec__52437 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(expr) : honey.sql.format_expr.call(null,expr));
+var seq__52438 = cljs.core.seq(vec__52437);
+var first__52439 = cljs.core.first(seq__52438);
+var seq__52438__$1 = cljs.core.next(seq__52438);
+var sql = first__52439;
+var params = seq__52438__$1;
+var vec__52440 = honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$1(cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__52432_SHARP_){
+if(typeof p1__52432_SHARP_ === 'number'){
+return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("[",p1__52432_SHARP_,"]")], null);
 } else {
-if(typeof p1__52418_SHARP_ === 'string'){
-return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("[",honey.sql.sqlize_value(p1__52418_SHARP_),"]")], null);
+if(typeof p1__52432_SHARP_ === 'string'){
+return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("[",honey.sql.sqlize_value(p1__52432_SHARP_),"]")], null);
 } else {
-if(cljs.core.ident_QMARK_(p1__52418_SHARP_)){
-return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(".",honey.sql.format_entity.cljs$core$IFn$_invoke$arity$1(p1__52418_SHARP_))], null);
+if(cljs.core.ident_QMARK_(p1__52432_SHARP_)){
+return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(".",honey.sql.format_entity.cljs$core$IFn$_invoke$arity$1(p1__52432_SHARP_))], null);
 } else {
-var vec__52429 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(p1__52418_SHARP_) : honey.sql.format_expr.call(null,p1__52418_SHARP_));
-var seq__52430 = cljs.core.seq(vec__52429);
-var first__52431 = cljs.core.first(seq__52430);
-var seq__52430__$1 = cljs.core.next(seq__52430);
-var sql_SINGLEQUOTE_ = first__52431;
-var params_SINGLEQUOTE_ = seq__52430__$1;
+var vec__52443 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(p1__52432_SHARP_) : honey.sql.format_expr.call(null,p1__52432_SHARP_));
+var seq__52444 = cljs.core.seq(vec__52443);
+var first__52445 = cljs.core.first(seq__52444);
+var seq__52444__$1 = cljs.core.next(seq__52444);
+var sql_SINGLEQUOTE_ = first__52445;
+var params_SINGLEQUOTE_ = seq__52444__$1;
 return cljs.core.cons(honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("[",sql_SINGLEQUOTE_,"]"),params_SINGLEQUOTE_);
 
 }
 }
 }
 }),kix));
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52426,(0),null);
-var params_SINGLEQUOTE_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52426,(1),null);
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52440,(0),null);
+var params_SINGLEQUOTE_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52440,(1),null);
 return honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$2((cljs.core.truth_(wrap)?honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("(",sql,")"):sql),honey.sql.util.join.cljs$core$IFn$_invoke$arity$2("",sqls))], null),params,params_SINGLEQUOTE_);
 });
-honey.sql.ignore_respect_nulls = (function honey$sql$ignore_respect_nulls(k,p__52435){
-var vec__52436 = p__52435;
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52436,(0),null);
-var vec__52439 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(x) : honey.sql.format_expr.call(null,x));
-var seq__52440 = cljs.core.seq(vec__52439);
-var first__52441 = cljs.core.first(seq__52440);
-var seq__52440__$1 = cljs.core.next(seq__52440);
-var sql = first__52441;
-var params = seq__52440__$1;
+honey.sql.ignore_respect_nulls = (function honey$sql$ignore_respect_nulls(k,p__52446){
+var vec__52447 = p__52446;
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52447,(0),null);
+var vec__52450 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(x) : honey.sql.format_expr.call(null,x));
+var seq__52451 = cljs.core.seq(vec__52450);
+var first__52452 = cljs.core.first(seq__52451);
+var seq__52451__$1 = cljs.core.next(seq__52451);
+var sql = first__52452;
+var params = seq__52451__$1;
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(sql," ",honey.sql.sql_kw(k))], null),params);
 });
-honey.sql.dot_navigation = (function honey$sql$dot_navigation(sep,p__52443){
-var vec__52444 = p__52443;
-var seq__52445 = cljs.core.seq(vec__52444);
-var first__52446 = cljs.core.first(seq__52445);
-var seq__52445__$1 = cljs.core.next(seq__52445);
-var expr = first__52446;
-var first__52446__$1 = cljs.core.first(seq__52445__$1);
-var seq__52445__$2 = cljs.core.next(seq__52445__$1);
-var col = first__52446__$1;
-var subcols = seq__52445__$2;
-var vec__52447 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(expr) : honey.sql.format_expr.call(null,expr));
-var seq__52448 = cljs.core.seq(vec__52447);
-var first__52449 = cljs.core.first(seq__52448);
-var seq__52448__$1 = cljs.core.next(seq__52448);
-var sql = first__52449;
-var params = seq__52448__$1;
-return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$4(sql,sep,honey.sql.format_simple_expr(col,"dot navigation"),((cljs.core.seq(subcols))?honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(".",honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(".",cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__52442_SHARP_){
-return honey.sql.format_simple_expr(p1__52442_SHARP_,"dot navigation");
+honey.sql.dot_navigation = (function honey$sql$dot_navigation(sep,p__52454){
+var vec__52455 = p__52454;
+var seq__52456 = cljs.core.seq(vec__52455);
+var first__52457 = cljs.core.first(seq__52456);
+var seq__52456__$1 = cljs.core.next(seq__52456);
+var expr = first__52457;
+var first__52457__$1 = cljs.core.first(seq__52456__$1);
+var seq__52456__$2 = cljs.core.next(seq__52456__$1);
+var col = first__52457__$1;
+var subcols = seq__52456__$2;
+var vec__52458 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(expr) : honey.sql.format_expr.call(null,expr));
+var seq__52459 = cljs.core.seq(vec__52458);
+var first__52460 = cljs.core.first(seq__52459);
+var seq__52459__$1 = cljs.core.next(seq__52459);
+var sql = first__52460;
+var params = seq__52459__$1;
+return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$4(sql,sep,honey.sql.format_simple_expr(col,"dot navigation"),((cljs.core.seq(subcols))?honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(".",honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(".",cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__52453_SHARP_){
+return honey.sql.format_simple_expr(p1__52453_SHARP_,"dot navigation");
 }),subcols))):null))], null),params);
 });
 honey.sql.format_fn_call_expr = (function honey$sql$format_fn_call_expr(f,expr){
 var args = cljs.core.rest(expr);
-var vec__52451 = ((cljs.core.sequential_QMARK_(f))?(honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(f) : honey.sql.format_expr.call(null,f)):new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.sql_kw(f)], null));
-var seq__52452 = cljs.core.seq(vec__52451);
-var first__52453 = cljs.core.first(seq__52452);
-var seq__52452__$1 = cljs.core.next(seq__52452);
-var f_sql = first__52453;
-var f_params = seq__52452__$1;
-var vec__52454 = honey.sql.format_interspersed_expr_list.cljs$core$IFn$_invoke$arity$1(args);
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52454,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52454,(1),null);
+var vec__52461 = ((cljs.core.sequential_QMARK_(f))?(honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(f) : honey.sql.format_expr.call(null,f)):new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.sql_kw(f)], null));
+var seq__52462 = cljs.core.seq(vec__52461);
+var first__52463 = cljs.core.first(seq__52462);
+var seq__52462__$1 = cljs.core.next(seq__52462);
+var f_sql = first__52463;
+var f_params = seq__52462__$1;
+var vec__52464 = honey.sql.format_interspersed_expr_list.cljs$core$IFn$_invoke$arity$1(args);
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52464,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52464,(1),null);
 return honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(f_sql,((((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2((1),cljs.core.count(args))) && (((cljs.core.map_QMARK_(cljs.core.first(args))) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2((1),cljs.core.count(sqls)))))))?honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(" ",cljs.core.first(sqls)):honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("(",honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(", ",sqls),")")))], null),f_params,params);
 });
-honey.sql.special_syntax = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"constraint","constraint",1725147424),new cljs.core.Keyword(null,"escape","escape",-991601952),new cljs.core.Keyword(null,"nest","nest",-314993663),new cljs.core.Keyword(null,"unique","unique",329397282),new cljs.core.Keyword(null,"lift","lift",903632035),new cljs.core.Keyword(null,"index","index",-1531685915),new cljs.core.Keyword(null,"composite","composite",-257118970),new cljs.core.Keyword(null,"call","call",-519999866),new cljs.core.Keyword("bigquery","array","bigquery/array",1718523718),new cljs.core.Keyword(null,"raw","raw",1604651272),new cljs.core.Keyword(null,"default","default",-1987822328),new cljs.core.Keyword(null,".:.",".:.",-872581656),new cljs.core.Keyword(null,"cast","cast",-1761029143),new cljs.core.Keyword(null,"between","between",1131099276),new cljs.core.Keyword(null,"not","not",-595976884),new cljs.core.Keyword(null,"references","references",882562509),new cljs.core.Keyword(null,"array","array",-2080713842),new cljs.core.Keyword(null,"param","param",2013631823),new cljs.core.Keyword(null,"distinct","distinct",-1788879121),new cljs.core.Keyword(null,"alias","alias",-2039751630),new cljs.core.Keyword(null,"filter","filter",-948537934),new cljs.core.Keyword(null,".",".",335144435),new cljs.core.Keyword(null,"case-expr","case-expr",-1006930349),new cljs.core.Keyword("bigquery","struct","bigquery/struct",-596080428),new cljs.core.Keyword(null,"case","case",1143702196),new cljs.core.Keyword(null,"respect-nulls","respect-nulls",1325870772),new cljs.core.Keyword(null,"at","at",1476951349),new cljs.core.Keyword(null,"record","record",-779106859),new cljs.core.Keyword(null,"order-by","order-by",1527318070),new cljs.core.Keyword(null,"foreign-key","foreign-key",124300407),new cljs.core.Keyword(null,"ignore-nulls","ignore-nulls",838890039),new cljs.core.Keyword(null,"get-in","get-in",688791704),new cljs.core.Keyword(null,"interval","interval",1708495417),new cljs.core.Keyword(null,"within-group","within-group",-1794793927),new cljs.core.Keyword(null,"over","over",192553051),new cljs.core.Keyword(null,"not-between","not-between",-979594021),new cljs.core.Keyword(null,"xtql","xtql",948290267),new cljs.core.Keyword(null,"entity","entity",-450970276),new cljs.core.Keyword(null,"primary-key","primary-key",1422512605),new cljs.core.Keyword(null,"object","object",1474613949),new cljs.core.Keyword(null,"at-time-zone","at-time-zone",1251199038),new cljs.core.Keyword(null,"inline","inline",1399884222),new cljs.core.Keyword(null,"join","join",-758861890),new cljs.core.Keyword(null,"lateral","lateral",2094286431)],[new cljs.core.Var(function(){return honey.sql.function_1;},new cljs.core.Symbol("honey.sql","function-1","honey.sql/function-1",-375233619,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"function-1","function-1",890872902,null),"honey/sql.cljc",18,1,1887,1887,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.function_1)?honey.sql.function_1.cljs$lang$test:null)])),(function (_,p__52460){
-var vec__52461 = p__52460;
-var pattern = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52461,(0),null);
-var escape_chars = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52461,(1),null);
-var vec__52464 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(pattern) : honey.sql.format_expr.call(null,pattern));
-var seq__52465 = cljs.core.seq(vec__52464);
-var first__52466 = cljs.core.first(seq__52465);
-var seq__52465__$1 = cljs.core.next(seq__52465);
-var sql_p = first__52466;
-var params_p = seq__52465__$1;
-var vec__52467 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(escape_chars) : honey.sql.format_expr.call(null,escape_chars));
-var seq__52468 = cljs.core.seq(vec__52467);
-var first__52469 = cljs.core.first(seq__52468);
-var seq__52468__$1 = cljs.core.next(seq__52468);
-var sql_e = first__52469;
-var params_e = seq__52468__$1;
+honey.sql.special_syntax = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"constraint","constraint",1725147424),new cljs.core.Keyword(null,"escape","escape",-991601952),new cljs.core.Keyword(null,"nest","nest",-314993663),new cljs.core.Keyword(null,"unique","unique",329397282),new cljs.core.Keyword(null,"lift","lift",903632035),new cljs.core.Keyword(null,"index","index",-1531685915),new cljs.core.Keyword(null,"composite","composite",-257118970),new cljs.core.Keyword(null,"call","call",-519999866),new cljs.core.Keyword("bigquery","array","bigquery/array",1718523718),new cljs.core.Keyword(null,"raw","raw",1604651272),new cljs.core.Keyword(null,"default","default",-1987822328),new cljs.core.Keyword(null,".:.",".:.",-872581656),new cljs.core.Keyword(null,"cast","cast",-1761029143),new cljs.core.Keyword(null,"between","between",1131099276),new cljs.core.Keyword(null,"not","not",-595976884),new cljs.core.Keyword(null,"references","references",882562509),new cljs.core.Keyword(null,"array","array",-2080713842),new cljs.core.Keyword(null,"param","param",2013631823),new cljs.core.Keyword(null,"distinct","distinct",-1788879121),new cljs.core.Keyword(null,"alias","alias",-2039751630),new cljs.core.Keyword(null,"filter","filter",-948537934),new cljs.core.Keyword(null,".",".",335144435),new cljs.core.Keyword(null,"case-expr","case-expr",-1006930349),new cljs.core.Keyword("bigquery","struct","bigquery/struct",-596080428),new cljs.core.Keyword(null,"case","case",1143702196),new cljs.core.Keyword(null,"respect-nulls","respect-nulls",1325870772),new cljs.core.Keyword(null,"at","at",1476951349),new cljs.core.Keyword(null,"record","record",-779106859),new cljs.core.Keyword(null,"order-by","order-by",1527318070),new cljs.core.Keyword(null,"foreign-key","foreign-key",124300407),new cljs.core.Keyword(null,"ignore-nulls","ignore-nulls",838890039),new cljs.core.Keyword(null,"get-in","get-in",688791704),new cljs.core.Keyword(null,"interval","interval",1708495417),new cljs.core.Keyword(null,"within-group","within-group",-1794793927),new cljs.core.Keyword(null,"over","over",192553051),new cljs.core.Keyword(null,"not-between","not-between",-979594021),new cljs.core.Keyword(null,"xtql","xtql",948290267),new cljs.core.Keyword(null,"entity","entity",-450970276),new cljs.core.Keyword(null,"primary-key","primary-key",1422512605),new cljs.core.Keyword(null,"object","object",1474613949),new cljs.core.Keyword(null,"at-time-zone","at-time-zone",1251199038),new cljs.core.Keyword(null,"inline","inline",1399884222),new cljs.core.Keyword(null,"join","join",-758861890),new cljs.core.Keyword(null,"lateral","lateral",2094286431)],[new cljs.core.Var(function(){return honey.sql.function_1;},new cljs.core.Symbol("honey.sql","function-1","honey.sql/function-1",-375233619,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"function-1","function-1",890872902,null),"honey/sql.cljc",18,1,1887,1887,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.function_1)?honey.sql.function_1.cljs$lang$test:null)])),(function (_,p__52468){
+var vec__52469 = p__52468;
+var pattern = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52469,(0),null);
+var escape_chars = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52469,(1),null);
+var vec__52472 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(pattern) : honey.sql.format_expr.call(null,pattern));
+var seq__52473 = cljs.core.seq(vec__52472);
+var first__52474 = cljs.core.first(seq__52473);
+var seq__52473__$1 = cljs.core.next(seq__52473);
+var sql_p = first__52474;
+var params_p = seq__52473__$1;
+var vec__52475 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(escape_chars) : honey.sql.format_expr.call(null,escape_chars));
+var seq__52476 = cljs.core.seq(vec__52475);
+var first__52477 = cljs.core.first(seq__52476);
+var seq__52476__$1 = cljs.core.next(seq__52476);
+var sql_e = first__52477;
+var params_e = seq__52476__$1;
 return honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$5(sql_p," ",honey.sql.sql_kw(new cljs.core.Keyword(null,"escape","escape",-991601952))," ",sql_e)], null),params_p,params_e);
-}),(function (_,p__52470){
-var vec__52471 = p__52470;
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52471,(0),null);
-var vec__52474 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(x) : honey.sql.format_expr.call(null,x));
-var seq__52475 = cljs.core.seq(vec__52474);
-var first__52476 = cljs.core.first(seq__52475);
-var seq__52475__$1 = cljs.core.next(seq__52475);
-var sql = first__52476;
-var params = seq__52475__$1;
+}),(function (_,p__52478){
+var vec__52479 = p__52478;
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52479,(0),null);
+var vec__52482 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(x) : honey.sql.format_expr.call(null,x));
+var seq__52483 = cljs.core.seq(vec__52482);
+var first__52484 = cljs.core.first(seq__52483);
+var seq__52483__$1 = cljs.core.next(seq__52483);
+var sql = first__52484;
+var params = seq__52483__$1;
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("(",sql,")")], null),params);
-}),new cljs.core.Var(function(){return honey.sql.function_1_opt;},new cljs.core.Symbol("honey.sql","function-1-opt","honey.sql/function-1-opt",1209651237,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"function-1-opt","function-1-opt",-1283255102,null),"honey/sql.cljc",22,1,1899,1899,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.function_1_opt)?honey.sql.function_1_opt.cljs$lang$test:null)])),(function (_,p__52479){
-var vec__52480 = p__52479;
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52480,(0),null);
+}),new cljs.core.Var(function(){return honey.sql.function_1_opt;},new cljs.core.Symbol("honey.sql","function-1-opt","honey.sql/function-1-opt",1209651237,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"function-1-opt","function-1-opt",-1283255102,null),"honey/sql.cljc",22,1,1899,1899,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.function_1_opt)?honey.sql.function_1_opt.cljs$lang$test:null)])),(function (_,p__52485){
+var vec__52486 = p__52485;
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52486,(0),null);
 if(cljs.core.truth_(new cljs.core.Keyword(null,"inline","inline",1399884222).cljs$core$IFn$_invoke$arity$1(honey.sql._STAR_options_STAR_))){
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.sqlize_value(x)], null);
 } else {
@@ -3235,25 +3235,25 @@ return (fx.cljs$core$IFn$_invoke$arity$0 ? fx.cljs$core$IFn$_invoke$arity$0() : 
 
 }
 }
-}),new cljs.core.Var(function(){return honey.sql.function_1_opt;},new cljs.core.Symbol("honey.sql","function-1-opt","honey.sql/function-1-opt",1209651237,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"function-1-opt","function-1-opt",-1283255102,null),"honey/sql.cljc",22,1,1899,1899,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.function_1_opt)?honey.sql.function_1_opt.cljs$lang$test:null)])),(function (_,p__52483){
-var vec__52484 = p__52483;
-var seq__52485 = cljs.core.seq(vec__52484);
-var args = seq__52485;
-var vec__52487 = honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$1(args);
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52487,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52487,(1),null);
+}),new cljs.core.Var(function(){return honey.sql.function_1_opt;},new cljs.core.Symbol("honey.sql","function-1-opt","honey.sql/function-1-opt",1209651237,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"function-1-opt","function-1-opt",-1283255102,null),"honey/sql.cljc",22,1,1899,1899,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.function_1_opt)?honey.sql.function_1_opt.cljs$lang$test:null)])),(function (_,p__52489){
+var vec__52490 = p__52489;
+var seq__52491 = cljs.core.seq(vec__52490);
+var args = seq__52491;
+var vec__52493 = honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$1(args);
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52493,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52493,(1),null);
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("(",honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(", ",sqls),")")], null),params);
-}),(function (_,p__52490){
-var vec__52491 = p__52490;
-var f = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52491,(0),null);
-var expr = vec__52491;
+}),(function (_,p__52496){
+var vec__52497 = p__52496;
+var f = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52497,(0),null);
+var expr = vec__52497;
 return honey.sql.format_fn_call_expr(f,expr);
 }),(function (_,spec){
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("ARRAY<",honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(" ",cljs.core.map.cljs$core$IFn$_invoke$arity$1(honey.sql.sql_kw),spec),">")], null);
-}),(function (_,p__52494){
-var vec__52495 = p__52494;
-var seq__52496 = cljs.core.seq(vec__52495);
-var xs = seq__52496;
+}),(function (_,p__52500){
+var vec__52501 = p__52500;
+var seq__52502 = cljs.core.seq(vec__52501);
+var xs = seq__52502;
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2((1),cljs.core.count(xs))){
 return honey.sql.raw_render(cljs.core.first(xs));
 } else {
@@ -3261,58 +3261,58 @@ return honey.sql.raw_render(xs);
 }
 }),new cljs.core.Var(function(){return honey.sql.function_1;},new cljs.core.Symbol("honey.sql","function-1","honey.sql/function-1",-375233619,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"function-1","function-1",890872902,null),"honey/sql.cljc",18,1,1887,1887,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.function_1)?honey.sql.function_1.cljs$lang$test:null)])),(function (_,data){
 return honey.sql.dot_navigation(":",data);
-}),(function (_,p__52498){
-var vec__52499 = p__52498;
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52499,(0),null);
-var type = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52499,(1),null);
-var vec__52502 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(x) : honey.sql.format_expr.call(null,x));
-var seq__52503 = cljs.core.seq(vec__52502);
-var first__52504 = cljs.core.first(seq__52503);
-var seq__52503__$1 = cljs.core.next(seq__52503);
-var sql = first__52504;
-var params = seq__52503__$1;
-var vec__52505 = ((cljs.core.ident_QMARK_(type))?new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.sql_kw(type)], null):(honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(type) : honey.sql.format_expr.call(null,type)));
-var seq__52506 = cljs.core.seq(vec__52505);
-var first__52507 = cljs.core.first(seq__52506);
-var seq__52506__$1 = cljs.core.next(seq__52506);
-var sql_SINGLEQUOTE_ = first__52507;
-var params_SINGLEQUOTE_ = seq__52506__$1;
+}),(function (_,p__52504){
+var vec__52505 = p__52504;
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52505,(0),null);
+var type = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52505,(1),null);
+var vec__52508 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(x) : honey.sql.format_expr.call(null,x));
+var seq__52509 = cljs.core.seq(vec__52508);
+var first__52510 = cljs.core.first(seq__52509);
+var seq__52509__$1 = cljs.core.next(seq__52509);
+var sql = first__52510;
+var params = seq__52509__$1;
+var vec__52511 = ((cljs.core.ident_QMARK_(type))?new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.sql_kw(type)], null):(honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(type) : honey.sql.format_expr.call(null,type)));
+var seq__52512 = cljs.core.seq(vec__52511);
+var first__52513 = cljs.core.first(seq__52512);
+var seq__52512__$1 = cljs.core.next(seq__52512);
+var sql_SINGLEQUOTE_ = first__52513;
+var params_SINGLEQUOTE_ = seq__52512__$1;
 return honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$5("CAST(",sql," AS ",sql_SINGLEQUOTE_,")")], null),params,params_SINGLEQUOTE_);
-}),new cljs.core.Var(function(){return honey.sql.between_fn;},new cljs.core.Symbol("honey.sql","between-fn","honey.sql/between-fn",1741524863,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"between-fn","between-fn",-763672350,null),"honey/sql.cljc",18,1,1949,1949,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"x","x",-555367584,null),new cljs.core.Symbol(null,"a","a",-482876059,null),new cljs.core.Symbol(null,"b","b",-1172211299,null)], null)], null)),"For both :between and :not-between",(cljs.core.truth_(honey.sql.between_fn)?honey.sql.between_fn.cljs$lang$test:null)])),(function (_,p__52508){
-var vec__52509 = p__52508;
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52509,(0),null);
-var vec__52512 = (function (){var G__52515 = x;
-var G__52516 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null);
-return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(G__52515,G__52516) : honey.sql.format_expr.call(null,G__52515,G__52516));
+}),new cljs.core.Var(function(){return honey.sql.between_fn;},new cljs.core.Symbol("honey.sql","between-fn","honey.sql/between-fn",1741524863,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"between-fn","between-fn",-763672350,null),"honey/sql.cljc",18,1,1949,1949,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"x","x",-555367584,null),new cljs.core.Symbol(null,"a","a",-482876059,null),new cljs.core.Symbol(null,"b","b",-1172211299,null)], null)], null)),"For both :between and :not-between",(cljs.core.truth_(honey.sql.between_fn)?honey.sql.between_fn.cljs$lang$test:null)])),(function (_,p__52514){
+var vec__52515 = p__52514;
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52515,(0),null);
+var vec__52518 = (function (){var G__52521 = x;
+var G__52522 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null);
+return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(G__52521,G__52522) : honey.sql.format_expr.call(null,G__52521,G__52522));
 })();
-var seq__52513 = cljs.core.seq(vec__52512);
-var first__52514 = cljs.core.first(seq__52513);
-var seq__52513__$1 = cljs.core.next(seq__52513);
-var sql = first__52514;
-var params = seq__52513__$1;
+var seq__52519 = cljs.core.seq(vec__52518);
+var first__52520 = cljs.core.first(seq__52519);
+var seq__52519__$1 = cljs.core.next(seq__52519);
+var sql = first__52520;
+var params = seq__52519__$1;
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$2("NOT ",sql)], null),params);
-}),new cljs.core.Var(function(){return honey.sql.function_1;},new cljs.core.Symbol("honey.sql","function-1","honey.sql/function-1",-375233619,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"function-1","function-1",890872902,null),"honey/sql.cljc",18,1,1887,1887,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.function_1)?honey.sql.function_1.cljs$lang$test:null)])),(function (_,p__52517){
-var vec__52518 = p__52517;
-var arr = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52518,(0),null);
-var type = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52518,(1),null);
+}),new cljs.core.Var(function(){return honey.sql.function_1;},new cljs.core.Symbol("honey.sql","function-1","honey.sql/function-1",-375233619,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"function-1","function-1",890872902,null),"honey/sql.cljc",18,1,1887,1887,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.function_1)?honey.sql.function_1.cljs$lang$test:null)])),(function (_,p__52523){
+var vec__52524 = p__52523;
+var arr = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52524,(0),null);
+var type = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52524,(1),null);
 if(cljs.core.map_QMARK_(arr)){
-var vec__52521 = honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1(arr);
-var seq__52522 = cljs.core.seq(vec__52521);
-var first__52523 = cljs.core.first(seq__52522);
-var seq__52522__$1 = cljs.core.next(seq__52522);
-var sql = first__52523;
-var params = seq__52522__$1;
+var vec__52527 = honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1(arr);
+var seq__52528 = cljs.core.seq(vec__52527);
+var first__52529 = cljs.core.first(seq__52528);
+var seq__52528__$1 = cljs.core.next(seq__52528);
+var sql = first__52529;
+var params = seq__52528__$1;
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("ARRAY(",sql,")")], null),params);
 } else {
-var vec__52524 = honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$1(arr);
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52524,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52524,(1),null);
+var vec__52530 = honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$1(arr);
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52530,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52530,(1),null);
 var type_str = (cljs.core.truth_(type)?honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("::",honey.sql.sql_kw(type),"[]"):null);
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$4("ARRAY[",honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(", ",sqls),"]",type_str)], null),params);
 }
-}),(function (_,p__52527){
-var vec__52528 = p__52527;
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52528,(0),null);
+}),(function (_,p__52533){
+var vec__52534 = p__52533;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52534,(0),null);
 var k__$1 = honey.sql.sym__GT_kw(k);
 if(cljs.core.truth_(new cljs.core.Keyword(null,"inline","inline",1399884222).cljs$core$IFn$_invoke$arity$1(honey.sql._STAR_options_STAR_))){
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.sqlize_value(honey.sql.param_value(k__$1))], null);
@@ -3324,22 +3324,22 @@ return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMP
 
 }
 }
-}),(function (_,p__52531){
-var vec__52532 = p__52531;
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52532,(0),null);
-var vec__52535 = (function (){var G__52538 = x;
-var G__52539 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null);
-return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(G__52538,G__52539) : honey.sql.format_expr.call(null,G__52538,G__52539));
+}),(function (_,p__52537){
+var vec__52538 = p__52537;
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52538,(0),null);
+var vec__52541 = (function (){var G__52544 = x;
+var G__52545 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null);
+return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(G__52544,G__52545) : honey.sql.format_expr.call(null,G__52544,G__52545));
 })();
-var seq__52536 = cljs.core.seq(vec__52535);
-var first__52537 = cljs.core.first(seq__52536);
-var seq__52536__$1 = cljs.core.next(seq__52536);
-var sql = first__52537;
-var params = seq__52536__$1;
+var seq__52542 = cljs.core.seq(vec__52541);
+var first__52543 = cljs.core.first(seq__52542);
+var seq__52542__$1 = cljs.core.next(seq__52542);
+var sql = first__52543;
+var params = seq__52542__$1;
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$2("DISTINCT ",sql)], null),params);
-}),(function (_,p__52540){
-var vec__52541 = p__52540;
-var e = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52541,(0),null);
+}),(function (_,p__52546){
+var vec__52547 = p__52546;
+var e = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52547,(0),null);
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.format_entity.cljs$core$IFn$_invoke$arity$2(e,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"aliased","aliased",-125439273),true], null))], null);
 }),honey.sql.expr_clause_pairs,(function (_,data){
 return honey.sql.dot_navigation(".",data);
@@ -3347,215 +3347,215 @@ return honey.sql.dot_navigation(".",data);
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("STRUCT<",honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$1(honey.sql.format_single_column),spec),">")], null);
 }),new cljs.core.Var(function(){return honey.sql.case_clauses;},new cljs.core.Symbol("honey.sql","case-clauses","honey.sql/case-clauses",-228279509,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"case-clauses","case-clauses",233734030,null),"honey/sql.cljc",20,1,1925,1925,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"clauses","clauses",-1199594528,null)], null)),"For both :case and :case-expr.",(cljs.core.truth_(honey.sql.case_clauses)?honey.sql.case_clauses.cljs$lang$test:null)])),honey.sql.ignore_respect_nulls,(function (_,data){
 return honey.sql.get_in_navigation(false,data);
-}),new cljs.core.Var(function(){return honey.sql.object_record_literal;},new cljs.core.Symbol("honey.sql","object-record-literal","honey.sql/object-record-literal",2085315930,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"object-record-literal","object-record-literal",-1044307713,null),"honey/sql.cljc",29,1,1958,1958,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"x","x",-555367584,null)], null)], null)),null,(cljs.core.truth_(honey.sql.object_record_literal)?honey.sql.object_record_literal.cljs$lang$test:null)])),(function (k,p__52544){
-var vec__52545 = p__52544;
-var seq__52546 = cljs.core.seq(vec__52545);
-var first__52547 = cljs.core.first(seq__52546);
-var seq__52546__$1 = cljs.core.next(seq__52546);
-var e = first__52547;
-var qs = seq__52546__$1;
-var vec__52548 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(e) : honey.sql.format_expr.call(null,e));
-var seq__52549 = cljs.core.seq(vec__52548);
-var first__52550 = cljs.core.first(seq__52549);
-var seq__52549__$1 = cljs.core.next(seq__52549);
-var sql_e = first__52550;
-var params_e = seq__52549__$1;
-var vec__52551 = honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.createAsIfByAssoc([k,qs]));
+}),new cljs.core.Var(function(){return honey.sql.object_record_literal;},new cljs.core.Symbol("honey.sql","object-record-literal","honey.sql/object-record-literal",2085315930,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"object-record-literal","object-record-literal",-1044307713,null),"honey/sql.cljc",29,1,1958,1958,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"x","x",-555367584,null)], null)], null)),null,(cljs.core.truth_(honey.sql.object_record_literal)?honey.sql.object_record_literal.cljs$lang$test:null)])),(function (k,p__52550){
+var vec__52551 = p__52550;
 var seq__52552 = cljs.core.seq(vec__52551);
 var first__52553 = cljs.core.first(seq__52552);
 var seq__52552__$1 = cljs.core.next(seq__52552);
-var sql_q = first__52553;
-var params_q = seq__52552__$1;
+var e = first__52553;
+var qs = seq__52552__$1;
+var vec__52554 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(e) : honey.sql.format_expr.call(null,e));
+var seq__52555 = cljs.core.seq(vec__52554);
+var first__52556 = cljs.core.first(seq__52555);
+var seq__52555__$1 = cljs.core.next(seq__52555);
+var sql_e = first__52556;
+var params_e = seq__52555__$1;
+var vec__52557 = honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.createAsIfByAssoc([k,qs]));
+var seq__52558 = cljs.core.seq(vec__52557);
+var first__52559 = cljs.core.first(seq__52558);
+var seq__52558__$1 = cljs.core.next(seq__52558);
+var sql_q = first__52559;
+var params_q = seq__52558__$1;
 return honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(sql_e," ",sql_q)], null),params_e,params_q);
 }),new cljs.core.Var(function(){return honey.sql.function_0;},new cljs.core.Symbol("honey.sql","function-0","honey.sql/function-0",1871273967,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"function-0","function-0",-617407678,null),"honey/sql.cljc",18,1,1878,1878,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.function_0)?honey.sql.function_0.cljs$lang$test:null)])),honey.sql.ignore_respect_nulls,(function (_,data){
 return honey.sql.get_in_navigation(true,data);
-}),honey.sql.format_interval,honey.sql.expr_clause_pairs,(function (_,p__52554){
-var vec__52555 = p__52554;
-var seq__52556 = cljs.core.seq(vec__52555);
-var args = seq__52556;
-var vec__52558 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (p__52561,p__52562){
-var vec__52563 = p__52561;
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52563,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52563,(1),null);
-var vec__52566 = p__52562;
-var e = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52566,(0),null);
-var p = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52566,(1),null);
-var a = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52566,(2),null);
-var vec__52569 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(e) : honey.sql.format_expr.call(null,e));
-var seq__52570 = cljs.core.seq(vec__52569);
-var first__52571 = cljs.core.first(seq__52570);
-var seq__52570__$1 = cljs.core.next(seq__52570);
-var sql_e = first__52571;
-var params_e = seq__52570__$1;
-var vec__52572 = (((((p == null)) || (cljs.core.map_QMARK_(p))))?honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$2(p,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null)):new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.format_entity.cljs$core$IFn$_invoke$arity$1(p)], null));
-var seq__52573 = cljs.core.seq(vec__52572);
-var first__52574 = cljs.core.first(seq__52573);
-var seq__52573__$1 = cljs.core.next(seq__52573);
-var sql_p = first__52574;
-var params_p = seq__52573__$1;
+}),honey.sql.format_interval,honey.sql.expr_clause_pairs,(function (_,p__52564){
+var vec__52565 = p__52564;
+var seq__52566 = cljs.core.seq(vec__52565);
+var args = seq__52566;
+var vec__52568 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (p__52571,p__52572){
+var vec__52573 = p__52571;
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52573,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52573,(1),null);
+var vec__52576 = p__52572;
+var e = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52576,(0),null);
+var p = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52576,(1),null);
+var a = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52576,(2),null);
+var vec__52579 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(e) : honey.sql.format_expr.call(null,e));
+var seq__52580 = cljs.core.seq(vec__52579);
+var first__52581 = cljs.core.first(seq__52580);
+var seq__52580__$1 = cljs.core.next(seq__52580);
+var sql_e = first__52581;
+var params_e = seq__52580__$1;
+var vec__52582 = (((((p == null)) || (cljs.core.map_QMARK_(p))))?honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$2(p,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null)):new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.format_entity.cljs$core$IFn$_invoke$arity$1(p)], null));
+var seq__52583 = cljs.core.seq(vec__52582);
+var first__52584 = cljs.core.first(seq__52583);
+var seq__52583__$1 = cljs.core.next(seq__52583);
+var sql_p = first__52584;
+var params_p = seq__52583__$1;
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.conj.cljs$core$IFn$_invoke$arity$2(sqls,honey.sql.util.str.cljs$core$IFn$_invoke$arity$4(sql_e," OVER ",sql_p,(cljs.core.truth_(a)?honey.sql.util.str.cljs$core$IFn$_invoke$arity$2(" AS ",honey.sql.format_entity.cljs$core$IFn$_invoke$arity$1(a)):null))),honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3(params,params_e,params_p)], null);
 }),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.PersistentVector.EMPTY,cljs.core.PersistentVector.EMPTY], null),args);
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52558,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52558,(1),null);
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52568,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52568,(1),null);
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(", ",sqls)], null),params);
-}),new cljs.core.Var(function(){return honey.sql.between_fn;},new cljs.core.Symbol("honey.sql","between-fn","honey.sql/between-fn",1741524863,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"between-fn","between-fn",-763672350,null),"honey/sql.cljc",18,1,1949,1949,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"x","x",-555367584,null),new cljs.core.Symbol(null,"a","a",-482876059,null),new cljs.core.Symbol(null,"b","b",-1172211299,null)], null)], null)),"For both :between and :not-between",(cljs.core.truth_(honey.sql.between_fn)?honey.sql.between_fn.cljs$lang$test:null)])),(function (_,p__52575){
-var vec__52576 = p__52575;
-var seq__52577 = cljs.core.seq(vec__52576);
-var first__52578 = cljs.core.first(seq__52577);
-var seq__52577__$1 = cljs.core.next(seq__52577);
-var x = first__52578;
-var args = seq__52577__$1;
+}),new cljs.core.Var(function(){return honey.sql.between_fn;},new cljs.core.Symbol("honey.sql","between-fn","honey.sql/between-fn",1741524863,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"between-fn","between-fn",-763672350,null),"honey/sql.cljc",18,1,1949,1949,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"x","x",-555367584,null),new cljs.core.Symbol(null,"a","a",-482876059,null),new cljs.core.Symbol(null,"b","b",-1172211299,null)], null)], null)),"For both :between and :not-between",(cljs.core.truth_(honey.sql.between_fn)?honey.sql.between_fn.cljs$lang$test:null)])),(function (_,p__52585){
+var vec__52586 = p__52585;
+var seq__52587 = cljs.core.seq(vec__52586);
+var first__52588 = cljs.core.first(seq__52587);
+var seq__52587__$1 = cljs.core.next(seq__52587);
+var x = first__52588;
+var args = seq__52587__$1;
 var arg_count = ((((cljs.core.sequential_QMARK_(x)) && (((cljs.core.contains_QMARK_(new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Symbol(null,"fn*","fn*",-752876845,null),null,new cljs.core.Symbol(null,"fn","fn",465265323,null),null], null), null),cljs.core.first(x))) && (cljs.core.sequential_QMARK_(cljs.core.second(x)))))))?cljs.core.count(cljs.core.second(x)):null);
 var base_xtql = honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("$$ ",cljs.core.pr_str.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([x], 0))," $$");
 var arg_tail = (cljs.core.truth_(arg_count)?honey.sql.util.join.cljs$core$IFn$_invoke$arity$2("",cljs.core.repeat.cljs$core$IFn$_invoke$arity$2(arg_count,", ?")):null);
 var xtql = honey.sql.util.str.cljs$core$IFn$_invoke$arity$2("XTQL ",(cljs.core.truth_(arg_tail)?honey.sql.util.str.cljs$core$IFn$_invoke$arity$4("(",base_xtql,arg_tail,")"):base_xtql));
 return honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [(cljs.core.truth_(new cljs.core.Keyword(null,"dsl","dsl",397853177).cljs$core$IFn$_invoke$arity$1(honey.sql._STAR_options_STAR_))?honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("(",xtql,")"):xtql)], null),args);
-}),(function (_,p__52579){
-var vec__52580 = p__52579;
-var e = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52580,(0),null);
+}),(function (_,p__52589){
+var vec__52590 = p__52589;
+var e = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52590,(0),null);
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.format_entity.cljs$core$IFn$_invoke$arity$1(e)], null);
-}),new cljs.core.Var(function(){return honey.sql.function_0;},new cljs.core.Symbol("honey.sql","function-0","honey.sql/function-0",1871273967,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"function-0","function-0",-617407678,null),"honey/sql.cljc",18,1,1878,1878,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.function_0)?honey.sql.function_0.cljs$lang$test:null)])),new cljs.core.Var(function(){return honey.sql.object_record_literal;},new cljs.core.Symbol("honey.sql","object-record-literal","honey.sql/object-record-literal",2085315930,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"object-record-literal","object-record-literal",-1044307713,null),"honey/sql.cljc",29,1,1958,1958,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"x","x",-555367584,null)], null)], null)),null,(cljs.core.truth_(honey.sql.object_record_literal)?honey.sql.object_record_literal.cljs$lang$test:null)])),(function (_,p__52583){
-var vec__52584 = p__52583;
-var expr = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52584,(0),null);
-var tz = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52584,(1),null);
-var vec__52587 = (function (){var G__52593 = expr;
-var G__52594 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null);
-return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(G__52593,G__52594) : honey.sql.format_expr.call(null,G__52593,G__52594));
+}),new cljs.core.Var(function(){return honey.sql.function_0;},new cljs.core.Symbol("honey.sql","function-0","honey.sql/function-0",1871273967,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"function-0","function-0",-617407678,null),"honey/sql.cljc",18,1,1878,1878,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.Symbol(null,"xs","xs",-2004992428,null)], null)),null,(cljs.core.truth_(honey.sql.function_0)?honey.sql.function_0.cljs$lang$test:null)])),new cljs.core.Var(function(){return honey.sql.object_record_literal;},new cljs.core.Symbol("honey.sql","object-record-literal","honey.sql/object-record-literal",2085315930,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,cljs.core.with_meta(new cljs.core.Symbol(null,"honey.sql","honey.sql",335271223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"doc","doc",1913296891),"Primary API for HoneySQL 2.x.\n\n  This includes the `format` function -- the primary entry point -- as well\n  as several public formatters that are intended to help users extend the\n  supported syntax.\n\n  In addition, functions to extend HoneySQL are also provided here:\n  * `clause-order` -- returns the current clause priority ordering;\n        intended as aid when registering new clauses.\n  * `format-dsl` -- intended to format SQL statements; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-entity` -- intended to format SQL entities; returns a string\n        representing the SQL entity.\n  * `format-expr` -- intended to format SQL expressions; returns a vector\n        containing a SQL string followed by parameter values.\n  * `format-expr-list` -- intended to format a list of SQL expressions;\n        returns a pair comprising: a sequence of SQL expressions (to be\n        join with a delimiter) and a sequence of parameter values.\n  * `register-clause!` -- register a new statement/clause formatter.\n  * `register-fn!` -- register a new function call (or special syntax)\n        formatter.\n  * `register-op!` -- register a new operator formatter.\n  * `set-dialect!` -- set the default dialect to be used for formatting,\n        and optionally set a global `:quoted` option.\n  * `sql-kw` -- turns a Clojure keyword (or symbol) into SQL code (makes\n        it uppercase and replaces - with space). "], null)),new cljs.core.Symbol(null,"object-record-literal","object-record-literal",-1044307713,null),"honey/sql.cljc",29,1,1958,1958,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"k","k",-505765866,null),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"x","x",-555367584,null)], null)], null)),null,(cljs.core.truth_(honey.sql.object_record_literal)?honey.sql.object_record_literal.cljs$lang$test:null)])),(function (_,p__52593){
+var vec__52594 = p__52593;
+var expr = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52594,(0),null);
+var tz = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52594,(1),null);
+var vec__52597 = (function (){var G__52603 = expr;
+var G__52604 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null);
+return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(G__52603,G__52604) : honey.sql.format_expr.call(null,G__52603,G__52604));
 })();
-var seq__52588 = cljs.core.seq(vec__52587);
-var first__52589 = cljs.core.first(seq__52588);
-var seq__52588__$1 = cljs.core.next(seq__52588);
-var sql = first__52589;
-var params = seq__52588__$1;
-var vec__52590 = (function (){var _STAR_options_STAR__orig_val__52595 = honey.sql._STAR_options_STAR_;
-var _STAR_options_STAR__temp_val__52596 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(honey.sql._STAR_options_STAR_,new cljs.core.Keyword(null,"inline","inline",1399884222),true);
-(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__temp_val__52596);
+var seq__52598 = cljs.core.seq(vec__52597);
+var first__52599 = cljs.core.first(seq__52598);
+var seq__52598__$1 = cljs.core.next(seq__52598);
+var sql = first__52599;
+var params = seq__52598__$1;
+var vec__52600 = (function (){var _STAR_options_STAR__orig_val__52605 = honey.sql._STAR_options_STAR_;
+var _STAR_options_STAR__temp_val__52606 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(honey.sql._STAR_options_STAR_,new cljs.core.Keyword(null,"inline","inline",1399884222),true);
+(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__temp_val__52606);
 
-try{var G__52597 = ((cljs.core.ident_QMARK_(tz))?cljs.core.name(tz):tz);
-return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(G__52597) : honey.sql.format_expr.call(null,G__52597));
-}finally {(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__orig_val__52595);
+try{var G__52607 = ((cljs.core.ident_QMARK_(tz))?cljs.core.name(tz):tz);
+return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(G__52607) : honey.sql.format_expr.call(null,G__52607));
+}finally {(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__orig_val__52605);
 }})();
-var seq__52591 = cljs.core.seq(vec__52590);
-var first__52592 = cljs.core.first(seq__52591);
-var seq__52591__$1 = cljs.core.next(seq__52591);
-var tz_sql = first__52592;
-var ___$1 = seq__52591__$1;
+var seq__52601 = cljs.core.seq(vec__52600);
+var first__52602 = cljs.core.first(seq__52601);
+var seq__52601__$1 = cljs.core.next(seq__52601);
+var tz_sql = first__52602;
+var ___$1 = seq__52601__$1;
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(sql," AT TIME ZONE ",tz_sql)], null),params);
 }),(function (_,xs){
-var _STAR_options_STAR__orig_val__52598 = honey.sql._STAR_options_STAR_;
-var _STAR_options_STAR__temp_val__52599 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(honey.sql._STAR_options_STAR_,new cljs.core.Keyword(null,"inline","inline",1399884222),true);
-(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__temp_val__52599);
+var _STAR_options_STAR__orig_val__52608 = honey.sql._STAR_options_STAR_;
+var _STAR_options_STAR__temp_val__52609 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(honey.sql._STAR_options_STAR_,new cljs.core.Keyword(null,"inline","inline",1399884222),true);
+(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__temp_val__52609);
 
-try{return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(" ",cljs.core.mapcat.cljs$core$IFn$_invoke$arity$1((function (p1__52457_SHARP_){
-var G__52600 = p1__52457_SHARP_;
-var G__52601 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"record","record",-779106859),true], null);
-return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(G__52600,G__52601) : honey.sql.format_expr.call(null,G__52600,G__52601));
+try{return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.join.cljs$core$IFn$_invoke$arity$3(" ",cljs.core.mapcat.cljs$core$IFn$_invoke$arity$1((function (p1__52467_SHARP_){
+var G__52610 = p1__52467_SHARP_;
+var G__52611 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"record","record",-779106859),true], null);
+return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(G__52610,G__52611) : honey.sql.format_expr.call(null,G__52610,G__52611));
 })),xs)], null);
-}finally {(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__orig_val__52598);
-}}),(function (_,p__52602){
-var vec__52603 = p__52602;
-var seq__52604 = cljs.core.seq(vec__52603);
-var first__52605 = cljs.core.first(seq__52604);
-var seq__52604__$1 = cljs.core.next(seq__52604);
-var e = first__52605;
-var js = seq__52604__$1;
-var vec__52606 = honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$1(cljs.core.cons(honey.sql.format_selectable_dsl.cljs$core$IFn$_invoke$arity$2(e,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"as","as",1148689641),true], null)),cljs.core.map.cljs$core$IFn$_invoke$arity$2(honey.sql.format_dsl,js)));
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52606,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52606,(1),null);
-return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("(",honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(" ",sqls),")")], null),params);
-}),(function (_,p__52609){
-var vec__52610 = p__52609;
-var clause_or_expr = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52610,(0),null);
-if(cljs.core.map_QMARK_(clause_or_expr)){
-var vec__52613 = honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1(clause_or_expr);
+}finally {(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__orig_val__52608);
+}}),(function (_,p__52612){
+var vec__52613 = p__52612;
 var seq__52614 = cljs.core.seq(vec__52613);
 var first__52615 = cljs.core.first(seq__52614);
 var seq__52614__$1 = cljs.core.next(seq__52614);
-var sql = first__52615;
-var params = seq__52614__$1;
+var e = first__52615;
+var js = seq__52614__$1;
+var vec__52616 = honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$1(cljs.core.cons(honey.sql.format_selectable_dsl.cljs$core$IFn$_invoke$arity$2(e,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"as","as",1148689641),true], null)),cljs.core.map.cljs$core$IFn$_invoke$arity$2(honey.sql.format_dsl,js)));
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52616,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52616,(1),null);
+return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("(",honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(" ",sqls),")")], null),params);
+}),(function (_,p__52619){
+var vec__52620 = p__52619;
+var clause_or_expr = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52620,(0),null);
+if(cljs.core.map_QMARK_(clause_or_expr)){
+var vec__52623 = honey.sql.format_dsl.cljs$core$IFn$_invoke$arity$1(clause_or_expr);
+var seq__52624 = cljs.core.seq(vec__52623);
+var first__52625 = cljs.core.first(seq__52624);
+var seq__52624__$1 = cljs.core.next(seq__52624);
+var sql = first__52625;
+var params = seq__52624__$1;
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("LATERAL (",sql,")")], null),params);
 } else {
-var vec__52616 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(clause_or_expr) : honey.sql.format_expr.call(null,clause_or_expr));
-var seq__52617 = cljs.core.seq(vec__52616);
-var first__52618 = cljs.core.first(seq__52617);
-var seq__52617__$1 = cljs.core.next(seq__52617);
-var sql = first__52618;
-var params = seq__52617__$1;
+var vec__52626 = (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1(clause_or_expr) : honey.sql.format_expr.call(null,clause_or_expr));
+var seq__52627 = cljs.core.seq(vec__52626);
+var first__52628 = cljs.core.first(seq__52627);
+var seq__52627__$1 = cljs.core.next(seq__52627);
+var sql = first__52628;
+var params = seq__52627__$1;
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$2("LATERAL ",sql)], null),params);
 }
 })]));
 honey.sql.format_equality_expr = (function honey$sql$format_equality_expr(op_SINGLEQUOTE_,op,expr,nested){
-var vec__52619 = expr;
-var seq__52620 = cljs.core.seq(vec__52619);
-var first__52621 = cljs.core.first(seq__52620);
-var seq__52620__$1 = cljs.core.next(seq__52620);
-var _ = first__52621;
-var first__52621__$1 = cljs.core.first(seq__52620__$1);
-var seq__52620__$2 = cljs.core.next(seq__52620__$1);
-var a = first__52621__$1;
-var first__52621__$2 = cljs.core.first(seq__52620__$2);
-var seq__52620__$3 = cljs.core.next(seq__52620__$2);
-var b = first__52621__$2;
-var y = seq__52620__$3;
+var vec__52629 = expr;
+var seq__52630 = cljs.core.seq(vec__52629);
+var first__52631 = cljs.core.first(seq__52630);
+var seq__52630__$1 = cljs.core.next(seq__52630);
+var _ = first__52631;
+var first__52631__$1 = cljs.core.first(seq__52630__$1);
+var seq__52630__$2 = cljs.core.next(seq__52630__$1);
+var a = first__52631__$1;
+var first__52631__$2 = cljs.core.first(seq__52630__$2);
+var seq__52630__$3 = cljs.core.next(seq__52630__$2);
+var b = first__52631__$2;
+var y = seq__52630__$3;
 var ___$1 = ((cljs.core.seq(y))?(function(){throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("only binary ",op_SINGLEQUOTE_," is supported"),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"expr","expr",745722291),expr], null))})():null);
-var vec__52622 = (function (){var G__52628 = a;
-var G__52629 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null);
-return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(G__52628,G__52629) : honey.sql.format_expr.call(null,G__52628,G__52629));
+var vec__52632 = (function (){var G__52638 = a;
+var G__52639 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null);
+return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(G__52638,G__52639) : honey.sql.format_expr.call(null,G__52638,G__52639));
 })();
-var seq__52623 = cljs.core.seq(vec__52622);
-var first__52624 = cljs.core.first(seq__52623);
-var seq__52623__$1 = cljs.core.next(seq__52623);
-var s1 = first__52624;
-var p1 = seq__52623__$1;
-var vec__52625 = (function (){var G__52630 = b;
-var G__52631 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null);
-return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(G__52630,G__52631) : honey.sql.format_expr.call(null,G__52630,G__52631));
+var seq__52633 = cljs.core.seq(vec__52632);
+var first__52634 = cljs.core.first(seq__52633);
+var seq__52633__$1 = cljs.core.next(seq__52633);
+var s1 = first__52634;
+var p1 = seq__52633__$1;
+var vec__52635 = (function (){var G__52640 = b;
+var G__52641 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),true], null);
+return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(G__52640,G__52641) : honey.sql.format_expr.call(null,G__52640,G__52641));
 })();
-var seq__52626 = cljs.core.seq(vec__52625);
-var first__52627 = cljs.core.first(seq__52626);
-var seq__52626__$1 = cljs.core.next(seq__52626);
-var s2 = first__52627;
-var p2 = seq__52626__$1;
-return honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3((new cljs.core.PersistentVector(null,1,(5),cljs.core.PersistentVector.EMPTY_NODE,[(function (){var G__52632 = (((((a == null)) || ((b == null))))?honey.sql.util.str.cljs$core$IFn$_invoke$arity$2((((a == null))?(((b == null))?"NULL":s2):s1),((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"=","=",1152933628),op))?" IS NULL":" IS NOT NULL")):honey.sql.util.str.cljs$core$IFn$_invoke$arity$5(s1," ",honey.sql.sql_kw(op)," ",s2));
+var seq__52636 = cljs.core.seq(vec__52635);
+var first__52637 = cljs.core.first(seq__52636);
+var seq__52636__$1 = cljs.core.next(seq__52636);
+var s2 = first__52637;
+var p2 = seq__52636__$1;
+return honey.sql.util.into_STAR_.cljs$core$IFn$_invoke$arity$3((new cljs.core.PersistentVector(null,1,(5),cljs.core.PersistentVector.EMPTY_NODE,[(function (){var G__52642 = (((((a == null)) || ((b == null))))?honey.sql.util.str.cljs$core$IFn$_invoke$arity$2((((a == null))?(((b == null))?"NULL":s2):s1),((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"=","=",1152933628),op))?" IS NULL":" IS NOT NULL")):honey.sql.util.str.cljs$core$IFn$_invoke$arity$5(s1," ",honey.sql.sql_kw(op)," ",s2));
 if(cljs.core.truth_(nested)){
-var s = G__52632;
+var s = G__52642;
 return honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("(",s,")");
 } else {
-return G__52632;
+return G__52642;
 }
 })()],null)),p1,p2);
 });
 honey.sql.format_infix_expr = (function honey$sql$format_infix_expr(op_SINGLEQUOTE_,op,expr,nested){
-var args = (function (){var G__52637 = cljs.core.rest(expr);
+var args = (function (){var G__52647 = cljs.core.rest(expr);
 if(cljs.core.contains_QMARK_(cljs.core.deref(honey.sql.op_ignore_nil),op)){
-return cljs.core.filterv(cljs.core.some_QMARK_,G__52637);
+return cljs.core.filterv(cljs.core.some_QMARK_,G__52647);
 } else {
-return G__52637;
+return G__52647;
 }
 })();
 var args__$1 = ((cljs.core.seq(args))?args:((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"and","and",-971899817),op))?new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [true], null):((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"or","or",235744169),op))?new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [false], null):cljs.core.PersistentVector.EMPTY
 )));
-var vec__52634 = honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$2(cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__52633_SHARP_){
-var G__52638 = p1__52633_SHARP_;
-var G__52639 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),honey.sql._STAR_nest_infix_STAR_], null);
-return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(G__52638,G__52639) : honey.sql.format_expr.call(null,G__52638,G__52639));
+var vec__52644 = honey.sql.reduce_sql.cljs$core$IFn$_invoke$arity$2(cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__52643_SHARP_){
+var G__52648 = p1__52643_SHARP_;
+var G__52649 = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"nested","nested",18943849),honey.sql._STAR_nest_infix_STAR_], null);
+return (honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 ? honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(G__52648,G__52649) : honey.sql.format_expr.call(null,G__52648,G__52649));
 })),args__$1);
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52634,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52634,(1),null);
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52644,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52644,(1),null);
 if((cljs.core.count(sqls) > (0))){
 } else {
 throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(honey.sql.util.str.cljs$core$IFn$_invoke$arity$2("no operands found for ",op_SINGLEQUOTE_),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"expr","expr",745722291),expr], null));
 }
 
-return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [(function (){var G__52640 = honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(" ",honey.sql.sql_kw(op)," "),sqls);
-var G__52640__$1 = ((((cljs.core.contains_QMARK_(cljs.core.deref(honey.sql.op_can_be_unary),op)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2((1),cljs.core.count(sqls)))))?(function (){var s = G__52640;
+return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [(function (){var G__52650 = honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(" ",honey.sql.sql_kw(op)," "),sqls);
+var G__52650__$1 = ((((cljs.core.contains_QMARK_(cljs.core.deref(honey.sql.op_can_be_unary),op)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2((1),cljs.core.count(sqls)))))?(function (){var s = G__52650;
 return honey.sql.util.str.cljs$core$IFn$_invoke$arity$3(honey.sql.sql_kw(op)," ",s);
-})():G__52640);
+})():G__52650);
 if(cljs.core.truth_(nested)){
-var s = G__52640__$1;
+var s = G__52650__$1;
 return honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("(",s,")");
 } else {
-return G__52640__$1;
+return G__52650__$1;
 }
 })()], null),params);
 });
@@ -3568,8 +3568,8 @@ return G__52640__$1;
  *   extend the DSL supported by HoneySQL.
  */
 honey.sql.format_expr = (function honey$sql$format_expr(var_args){
-var G__52646 = arguments.length;
-switch (G__52646) {
+var G__52652 = arguments.length;
+switch (G__52652) {
 case 1:
 return honey.sql.format_expr.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -3588,12 +3588,12 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 return honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2(expr,cljs.core.PersistentArrayMap.EMPTY);
 }));
 
-(honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 = (function (expr,p__52647){
-var map__52648 = p__52647;
-var map__52648__$1 = cljs.core.__destructure_map(map__52648);
-var opts = map__52648__$1;
-var nested = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52648__$1,new cljs.core.Keyword(null,"nested","nested",18943849));
-var record = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52648__$1,new cljs.core.Keyword(null,"record","record",-779106859));
+(honey.sql.format_expr.cljs$core$IFn$_invoke$arity$2 = (function (expr,p__52653){
+var map__52654 = p__52653;
+var map__52654__$1 = cljs.core.__destructure_map(map__52654);
+var opts = map__52654__$1;
+var nested = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52654__$1,new cljs.core.Keyword(null,"nested","nested",18943849));
+var record = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52654__$1,new cljs.core.Keyword(null,"record","record",-779106859));
 if(cljs.core.ident_QMARK_(expr)){
 return honey.sql.format_var.cljs$core$IFn$_invoke$arity$2(expr,opts);
 } else {
@@ -3612,19 +3612,19 @@ return honey.sql.format_infix_expr(op_SINGLEQUOTE_,op,expr,nested);
 }
 } else {
 if(cljs.core.contains_QMARK_(new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"not-in","not-in",1005390648),null,new cljs.core.Keyword(null,"in","in",-1531184865),null], null), null),op)){
-var vec__52649 = honey.sql.format_in(op,cljs.core.rest(expr));
-var seq__52650 = cljs.core.seq(vec__52649);
-var first__52651 = cljs.core.first(seq__52650);
-var seq__52650__$1 = cljs.core.next(seq__52650);
-var sql = first__52651;
-var params = seq__52650__$1;
+var vec__52655 = honey.sql.format_in(op,cljs.core.rest(expr));
+var seq__52656 = cljs.core.seq(vec__52655);
+var first__52657 = cljs.core.first(seq__52656);
+var seq__52656__$1 = cljs.core.next(seq__52656);
+var sql = first__52657;
+var params = seq__52656__$1;
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [(cljs.core.truth_(nested)?honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("(",sql,")"):sql)], null),params);
 } else {
 if(cljs.core.contains_QMARK_(cljs.core.deref(honey.sql.special_syntax),op)){
 var formatter = cljs.core.get.cljs$core$IFn$_invoke$arity$2(cljs.core.deref(honey.sql.special_syntax),op);
-var G__52652 = op;
-var G__52653 = cljs.core.rest(expr);
-return (formatter.cljs$core$IFn$_invoke$arity$2 ? formatter.cljs$core$IFn$_invoke$arity$2(G__52652,G__52653) : formatter.call(null,G__52652,G__52653));
+var G__52658 = op;
+var G__52659 = cljs.core.rest(expr);
+return (formatter.cljs$core$IFn$_invoke$arity$2 ? formatter.cljs$core$IFn$_invoke$arity$2(G__52658,G__52659) : formatter.call(null,G__52658,G__52659));
 } else {
 return honey.sql.format_fn_call_expr(op,expr);
 
@@ -3632,9 +3632,9 @@ return honey.sql.format_fn_call_expr(op,expr);
 }
 }
 } else {
-var vec__52654 = honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$1(expr);
-var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52654,(0),null);
-var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52654,(1),null);
+var vec__52660 = honey.sql.format_expr_list.cljs$core$IFn$_invoke$arity$1(expr);
+var sqls = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52660,(0),null);
+var params = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__52660,(1),null);
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [honey.sql.util.str.cljs$core$IFn$_invoke$arity$3("(",honey.sql.util.join.cljs$core$IFn$_invoke$arity$2(", ",sqls),")")], null),params);
 }
 } else {
@@ -3704,8 +3704,8 @@ throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2("cached queries are not su
  *   as named arguments followed by other options in a hash map.
  */
 honey.sql.format = (function honey$sql$format(var_args){
-var G__52664 = arguments.length;
-switch (G__52664) {
+var G__52670 = arguments.length;
+switch (G__52670) {
 case 1:
 return honey.sql.format.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -3751,56 +3751,56 @@ return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(m,honey.sql.sym__GT_kw(k),v
 }),cljs.core.PersistentArrayMap.EMPTY,new cljs.core.Keyword(null,"params","params",710516235).cljs$core$IFn$_invoke$arity$1(opts)),((dialect_QMARK_)?(function (){var temp__5823__auto__ = new cljs.core.Keyword(null,"clause-order-fn","clause-order-fn",-2005456179).cljs$core$IFn$_invoke$arity$1(dialect);
 if(cljs.core.truth_(temp__5823__auto__)){
 var f = temp__5823__auto__;
-var G__52665 = cljs.core.deref(honey.sql.base_clause_order);
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__52665) : f.call(null,G__52665));
+var G__52671 = cljs.core.deref(honey.sql.base_clause_order);
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__52671) : f.call(null,G__52671));
 } else {
 return cljs.core.deref(honey.sql.current_clause_order);
 }
 })():cljs.core.deref(honey.sql.current_clause_order)),new cljs.core.Keyword(null,"checking","checking",1748720818).cljs$core$IFn$_invoke$arity$2(opts,cljs.core.deref(honey.sql.default_checking)),new cljs.core.Keyword(null,"quoted-snake","quoted-snake",-1093133358).cljs$core$IFn$_invoke$arity$2(opts,cljs.core.deref(honey.sql.default_quoted_snake)),(cljs.core.truth_(numbered_QMARK_)?cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentVector.EMPTY):null),new cljs.core.Keyword(null,"quoted-always","quoted-always",365198806).cljs$core$IFn$_invoke$arity$2(opts,cljs.core.deref(honey.sql.default_quoted_always)),((cljs.core.contains_QMARK_(opts,new cljs.core.Keyword(null,"quoted","quoted",2117344952)))?new cljs.core.Keyword(null,"quoted","quoted",2117344952).cljs$core$IFn$_invoke$arity$1(opts):((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"nrql","nrql",-1120573919),new cljs.core.Keyword(null,"dialect","dialect",-1374251073).cljs$core$IFn$_invoke$arity$1(dialect)))?null:((dialect_QMARK_)?true:cljs.core.deref(honey.sql.default_quoted)
 ))),new cljs.core.Keyword(null,"ignored-metadata","ignored-metadata",1251384217).cljs$core$IFn$_invoke$arity$2(opts,cljs.core.PersistentVector.EMPTY),new cljs.core.Keyword(null,"values-default-columns","values-default-columns",1352539997).cljs$core$IFn$_invoke$arity$1(opts),new cljs.core.Keyword(null,"inline","inline",1399884222).cljs$core$IFn$_invoke$arity$2(opts,((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"nrql","nrql",-1120573919),new cljs.core.Keyword(null,"dialect","dialect",-1374251073).cljs$core$IFn$_invoke$arity$1(dialect)))?true:cljs.core.deref(honey.sql.default_inline)))]);
-var _STAR_dialect_STAR__orig_val__52666 = honey.sql._STAR_dialect_STAR_;
-var _STAR_options_STAR__orig_val__52667 = honey.sql._STAR_options_STAR_;
-var _STAR_dialect_STAR__temp_val__52668 = dialect;
-var _STAR_options_STAR__temp_val__52669 = options;
-(honey.sql._STAR_dialect_STAR_ = _STAR_dialect_STAR__temp_val__52668);
+var _STAR_dialect_STAR__orig_val__52672 = honey.sql._STAR_dialect_STAR_;
+var _STAR_options_STAR__orig_val__52673 = honey.sql._STAR_options_STAR_;
+var _STAR_dialect_STAR__temp_val__52674 = dialect;
+var _STAR_options_STAR__temp_val__52675 = options;
+(honey.sql._STAR_dialect_STAR_ = _STAR_dialect_STAR__temp_val__52674);
 
-(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__temp_val__52669);
+(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__temp_val__52675);
 
 try{if(cljs.core.truth_(cache)){
-return cljs.core.mapv.cljs$core$IFn$_invoke$arity$2((function (p1__52657_SHARP_){
-return honey.sql.unwrap(p1__52657_SHARP_,opts);
+return cljs.core.mapv.cljs$core$IFn$_invoke$arity$2((function (p1__52663_SHARP_){
+return honey.sql.unwrap(p1__52663_SHARP_,opts);
 }),honey.sql.through_opts(opts,cache,data,(function (_){
-var G__52670 = data;
-var G__52671 = cljs.core.dissoc.cljs$core$IFn$_invoke$arity$2(opts,new cljs.core.Keyword(null,"cache","cache",-1237023054));
-return (formatter.cljs$core$IFn$_invoke$arity$2 ? formatter.cljs$core$IFn$_invoke$arity$2(G__52670,G__52671) : formatter.call(null,G__52670,G__52671));
+var G__52676 = data;
+var G__52677 = cljs.core.dissoc.cljs$core$IFn$_invoke$arity$2(opts,new cljs.core.Keyword(null,"cache","cache",-1237023054));
+return (formatter.cljs$core$IFn$_invoke$arity$2 ? formatter.cljs$core$IFn$_invoke$arity$2(G__52676,G__52677) : formatter.call(null,G__52676,G__52677));
 })));
 } else {
-return cljs.core.mapv.cljs$core$IFn$_invoke$arity$2((function (p1__52658_SHARP_){
-return honey.sql.unwrap(p1__52658_SHARP_,opts);
+return cljs.core.mapv.cljs$core$IFn$_invoke$arity$2((function (p1__52664_SHARP_){
+return honey.sql.unwrap(p1__52664_SHARP_,opts);
 }),(formatter.cljs$core$IFn$_invoke$arity$2 ? formatter.cljs$core$IFn$_invoke$arity$2(data,opts) : formatter.call(null,data,opts)));
 }
-}finally {(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__orig_val__52667);
+}finally {(honey.sql._STAR_options_STAR_ = _STAR_options_STAR__orig_val__52673);
 
-(honey.sql._STAR_dialect_STAR_ = _STAR_dialect_STAR__orig_val__52666);
+(honey.sql._STAR_dialect_STAR_ = _STAR_dialect_STAR__orig_val__52672);
 }}));
 
-(honey.sql.format.cljs$core$IFn$_invoke$arity$variadic = (function (data,k,v,p__52672){
-var map__52673 = p__52672;
-var map__52673__$1 = cljs.core.__destructure_map(map__52673);
-var opts = map__52673__$1;
+(honey.sql.format.cljs$core$IFn$_invoke$arity$variadic = (function (data,k,v,p__52678){
+var map__52679 = p__52678;
+var map__52679__$1 = cljs.core.__destructure_map(map__52679);
+var opts = map__52679__$1;
 return honey.sql.format.cljs$core$IFn$_invoke$arity$2(data,cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(opts,k,v));
 }));
 
 /** @this {Function} */
-(honey.sql.format.cljs$lang$applyTo = (function (seq52660){
-var G__52661 = cljs.core.first(seq52660);
-var seq52660__$1 = cljs.core.next(seq52660);
-var G__52662 = cljs.core.first(seq52660__$1);
-var seq52660__$2 = cljs.core.next(seq52660__$1);
-var G__52663 = cljs.core.first(seq52660__$2);
-var seq52660__$3 = cljs.core.next(seq52660__$2);
+(honey.sql.format.cljs$lang$applyTo = (function (seq52666){
+var G__52667 = cljs.core.first(seq52666);
+var seq52666__$1 = cljs.core.next(seq52666);
+var G__52668 = cljs.core.first(seq52666__$1);
+var seq52666__$2 = cljs.core.next(seq52666__$1);
+var G__52669 = cljs.core.first(seq52666__$2);
+var seq52666__$3 = cljs.core.next(seq52666__$2);
 var self__5734__auto__ = this;
-return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__52661,G__52662,G__52663,seq52660__$3);
+return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__52667,G__52668,G__52669,seq52666__$3);
 }));
 
 (honey.sql.format.cljs$lang$maxFixedArity = (3));
@@ -3820,14 +3820,14 @@ return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__52661,G__52662
  */
 honey.sql.set_dialect_BANG_ = (function honey$sql$set_dialect_BANG_(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___52962 = arguments.length;
-var i__5750__auto___52963 = (0);
+var len__5749__auto___52957 = arguments.length;
+var i__5750__auto___52958 = (0);
 while(true){
-if((i__5750__auto___52963 < len__5749__auto___52962)){
-args__5755__auto__.push((arguments[i__5750__auto___52963]));
+if((i__5750__auto___52958 < len__5749__auto___52957)){
+args__5755__auto__.push((arguments[i__5750__auto___52958]));
 
-var G__52964 = (i__5750__auto___52963 + (1));
-i__5750__auto___52963 = G__52964;
+var G__52959 = (i__5750__auto___52958 + (1));
+i__5750__auto___52958 = G__52959;
 continue;
 } else {
 }
@@ -3838,15 +3838,15 @@ var argseq__5756__auto__ = ((((1) < args__5755__auto__.length))?(new cljs.core.I
 return honey.sql.set_dialect_BANG_.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),argseq__5756__auto__);
 });
 
-(honey.sql.set_dialect_BANG_.cljs$core$IFn$_invoke$arity$variadic = (function (dialect,p__52676){
-var map__52677 = p__52676;
-var map__52677__$1 = cljs.core.__destructure_map(map__52677);
-var quoted = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52677__$1,new cljs.core.Keyword(null,"quoted","quoted",2117344952));
+(honey.sql.set_dialect_BANG_.cljs$core$IFn$_invoke$arity$variadic = (function (dialect,p__52682){
+var map__52683 = p__52682;
+var map__52683__$1 = cljs.core.__destructure_map(map__52683);
+var quoted = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52683__$1,new cljs.core.Keyword(null,"quoted","quoted",2117344952));
 cljs.core.reset_BANG_(honey.sql.default_dialect,cljs.core.get.cljs$core$IFn$_invoke$arity$2(cljs.core.deref(honey.sql.dialects),honey.sql.check_dialect(dialect)));
 
-var f_52965 = new cljs.core.Keyword(null,"clause-order-fn","clause-order-fn",-2005456179).cljs$core$IFn$_invoke$arity$2(cljs.core.deref(honey.sql.default_dialect),cljs.core.identity);
-cljs.core.reset_BANG_(honey.sql.current_clause_order,(function (){var G__52678 = cljs.core.deref(honey.sql.base_clause_order);
-return (f_52965.cljs$core$IFn$_invoke$arity$1 ? f_52965.cljs$core$IFn$_invoke$arity$1(G__52678) : f_52965.call(null,G__52678));
+var f_52960 = new cljs.core.Keyword(null,"clause-order-fn","clause-order-fn",-2005456179).cljs$core$IFn$_invoke$arity$2(cljs.core.deref(honey.sql.default_dialect),cljs.core.identity);
+cljs.core.reset_BANG_(honey.sql.current_clause_order,(function (){var G__52684 = cljs.core.deref(honey.sql.base_clause_order);
+return (f_52960.cljs$core$IFn$_invoke$arity$1 ? f_52960.cljs$core$IFn$_invoke$arity$1(G__52684) : f_52960.call(null,G__52684));
 })());
 
 return cljs.core.reset_BANG_(honey.sql.default_quoted,quoted);
@@ -3855,11 +3855,11 @@ return cljs.core.reset_BANG_(honey.sql.default_quoted,quoted);
 (honey.sql.set_dialect_BANG_.cljs$lang$maxFixedArity = (1));
 
 /** @this {Function} */
-(honey.sql.set_dialect_BANG_.cljs$lang$applyTo = (function (seq52674){
-var G__52675 = cljs.core.first(seq52674);
-var seq52674__$1 = cljs.core.next(seq52674);
+(honey.sql.set_dialect_BANG_.cljs$lang$applyTo = (function (seq52680){
+var G__52681 = cljs.core.first(seq52680);
+var seq52680__$1 = cljs.core.next(seq52680);
 var self__5734__auto__ = this;
-return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__52675,seq52674__$1);
+return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__52681,seq52680__$1);
 }));
 
 /**
@@ -3995,21 +3995,21 @@ if(cljs.core.fn_QMARK_(new cljs.core.Keyword(null,"quote","quote",-262615245).cl
 throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2("Dialect spec is missing a :quote function",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"dialect-spec","dialect-spec",383903007),dialect_spec], null));
 }
 
-var temp__5825__auto___52968 = new cljs.core.Keyword(null,"clause-order-fn","clause-order-fn",-2005456179).cljs$core$IFn$_invoke$arity$1(dialect_spec);
-if(cljs.core.truth_(temp__5825__auto___52968)){
-var cof_52969 = temp__5825__auto___52968;
-if(cljs.core.fn_QMARK_(cof_52969)){
+var temp__5825__auto___52961 = new cljs.core.Keyword(null,"clause-order-fn","clause-order-fn",-2005456179).cljs$core$IFn$_invoke$arity$1(dialect_spec);
+if(cljs.core.truth_(temp__5825__auto___52961)){
+var cof_52962 = temp__5825__auto___52961;
+if(cljs.core.fn_QMARK_(cof_52962)){
 } else {
 throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2("Dialect spec contains :clause-order-fn but it is not a function",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"dialect-spec","dialect-spec",383903007),dialect_spec], null));
 }
 } else {
 }
 
-var temp__5829__auto___52970 = new cljs.core.Keyword(null,"as","as",1148689641).cljs$core$IFn$_invoke$arity$1(dialect_spec);
-if((temp__5829__auto___52970 == null)){
+var temp__5829__auto___52963 = new cljs.core.Keyword(null,"as","as",1148689641).cljs$core$IFn$_invoke$arity$1(dialect_spec);
+if((temp__5829__auto___52963 == null)){
 } else {
-var as_52971 = temp__5829__auto___52970;
-if(cljs.core.boolean_QMARK_(as_52971)){
+var as_52964 = temp__5829__auto___52963;
+if(cljs.core.boolean_QMARK_(as_52964)){
 } else {
 throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2("Dialect spec contains :as but it is not a boolean",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"dialect-spec","dialect-spec",383903007),dialect_spec], null));
 }
@@ -4073,14 +4073,14 @@ return cljs.core.contains_QMARK_(cljs.core.deref(honey.sql.special_syntax),honey
  */
 honey.sql.register_op_BANG_ = (function honey$sql$register_op_BANG_(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___52972 = arguments.length;
-var i__5750__auto___52973 = (0);
+var len__5749__auto___52965 = arguments.length;
+var i__5750__auto___52966 = (0);
 while(true){
-if((i__5750__auto___52973 < len__5749__auto___52972)){
-args__5755__auto__.push((arguments[i__5750__auto___52973]));
+if((i__5750__auto___52966 < len__5749__auto___52965)){
+args__5755__auto__.push((arguments[i__5750__auto___52966]));
 
-var G__52974 = (i__5750__auto___52973 + (1));
-i__5750__auto___52973 = G__52974;
+var G__52967 = (i__5750__auto___52966 + (1));
+i__5750__auto___52966 = G__52967;
 continue;
 } else {
 }
@@ -4091,10 +4091,10 @@ var argseq__5756__auto__ = ((((1) < args__5755__auto__.length))?(new cljs.core.I
 return honey.sql.register_op_BANG_.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),argseq__5756__auto__);
 });
 
-(honey.sql.register_op_BANG_.cljs$core$IFn$_invoke$arity$variadic = (function (op,p__52681){
-var map__52682 = p__52681;
-var map__52682__$1 = cljs.core.__destructure_map(map__52682);
-var ignore_nil = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52682__$1,new cljs.core.Keyword(null,"ignore-nil","ignore-nil",132231320));
+(honey.sql.register_op_BANG_.cljs$core$IFn$_invoke$arity$variadic = (function (op,p__52712){
+var map__52713 = p__52712;
+var map__52713__$1 = cljs.core.__destructure_map(map__52713);
+var ignore_nil = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__52713__$1,new cljs.core.Keyword(null,"ignore-nil","ignore-nil",132231320));
 var op__$1 = honey.sql.sym__GT_kw(op);
 if((op__$1 instanceof cljs.core.Keyword)){
 } else {
@@ -4113,11 +4113,11 @@ return null;
 (honey.sql.register_op_BANG_.cljs$lang$maxFixedArity = (1));
 
 /** @this {Function} */
-(honey.sql.register_op_BANG_.cljs$lang$applyTo = (function (seq52679){
-var G__52680 = cljs.core.first(seq52679);
-var seq52679__$1 = cljs.core.next(seq52679);
+(honey.sql.register_op_BANG_.cljs$lang$applyTo = (function (seq52710){
+var G__52711 = cljs.core.first(seq52710);
+var seq52710__$1 = cljs.core.next(seq52710);
 var self__5734__auto__ = this;
-return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__52680,seq52679__$1);
+return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__52711,seq52710__$1);
 }));
 
 /**
@@ -4150,22 +4150,22 @@ return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVect
  *   vector with the SQL strings separated by semicolons.
  */
 honey.sql.semicolon = (function honey$sql$semicolon(var_args){
-var G__52686 = arguments.length;
-switch (G__52686) {
+var G__52717 = arguments.length;
+switch (G__52717) {
 case 1:
 return honey.sql.semicolon.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
 break;
 default:
 var args_arr__5774__auto__ = [];
-var len__5749__auto___52976 = arguments.length;
-var i__5750__auto___52977 = (0);
+var len__5749__auto___52970 = arguments.length;
+var i__5750__auto___52971 = (0);
 while(true){
-if((i__5750__auto___52977 < len__5749__auto___52976)){
-args_arr__5774__auto__.push((arguments[i__5750__auto___52977]));
+if((i__5750__auto___52971 < len__5749__auto___52970)){
+args_arr__5774__auto__.push((arguments[i__5750__auto___52971]));
 
-var G__52978 = (i__5750__auto___52977 + (1));
-i__5750__auto___52977 = G__52978;
+var G__52972 = (i__5750__auto___52971 + (1));
+i__5750__auto___52971 = G__52972;
 continue;
 } else {
 }
@@ -4187,25 +4187,25 @@ return honey.sql.semicolon.cljs$core$IFn$_invoke$arity$1(cljs.core.cons(sql_PLUS
 }));
 
 /** @this {Function} */
-(honey.sql.semicolon.cljs$lang$applyTo = (function (seq52684){
-var G__52685 = cljs.core.first(seq52684);
-var seq52684__$1 = cljs.core.next(seq52684);
+(honey.sql.semicolon.cljs$lang$applyTo = (function (seq52715){
+var G__52716 = cljs.core.first(seq52715);
+var seq52715__$1 = cljs.core.next(seq52715);
 var self__5734__auto__ = this;
-return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__52685,seq52684__$1);
+return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__52716,seq52715__$1);
 }));
 
 (honey.sql.semicolon.cljs$lang$maxFixedArity = (1));
 
 honey.sql.call = (function honey$sql$call(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___52979 = arguments.length;
-var i__5750__auto___52980 = (0);
+var len__5749__auto___52974 = arguments.length;
+var i__5750__auto___52975 = (0);
 while(true){
-if((i__5750__auto___52980 < len__5749__auto___52979)){
-args__5755__auto__.push((arguments[i__5750__auto___52980]));
+if((i__5750__auto___52975 < len__5749__auto___52974)){
+args__5755__auto__.push((arguments[i__5750__auto___52975]));
 
-var G__52981 = (i__5750__auto___52980 + (1));
-i__5750__auto___52980 = G__52981;
+var G__52976 = (i__5750__auto___52975 + (1));
+i__5750__auto___52975 = G__52976;
 continue;
 } else {
 }
@@ -4223,11 +4223,11 @@ return cljs.core.apply.cljs$core$IFn$_invoke$arity$4(cljs.core.vector,new cljs.c
 (honey.sql.call.cljs$lang$maxFixedArity = (1));
 
 /** @this {Function} */
-(honey.sql.call.cljs$lang$applyTo = (function (seq52687){
-var G__52688 = cljs.core.first(seq52687);
-var seq52687__$1 = cljs.core.next(seq52687);
+(honey.sql.call.cljs$lang$applyTo = (function (seq52718){
+var G__52719 = cljs.core.first(seq52718);
+var seq52718__$1 = cljs.core.next(seq52718);
 var self__5734__auto__ = this;
-return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__52688,seq52687__$1);
+return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__52719,seq52718__$1);
 }));
 
 

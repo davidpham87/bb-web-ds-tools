@@ -20,6 +20,7 @@ var goog=$CLJS.goog || ($CLJS.goog = {});
 var reagent=$CLJS.reagent || ($CLJS.reagent = {});
 var module$shadow_js_shim_module$$js_joda$core=$CLJS.module$shadow_js_shim_module$$js_joda$core || ($CLJS.module$shadow_js_shim_module$$js_joda$core = {});
 var camel_snake_kebab=$CLJS.camel_snake_kebab || ($CLJS.camel_snake_kebab = {});
+var module$shadow_js_shim_module$js_yaml=$CLJS.module$shadow_js_shim_module$js_yaml || ($CLJS.module$shadow_js_shim_module$js_yaml = {});
 var portal=$CLJS.portal || ($CLJS.portal = {});
 var edamame=$CLJS.edamame || ($CLJS.edamame = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
@@ -27,7 +28,6 @@ var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contri
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution = {});
 var datascript=$CLJS.datascript || ($CLJS.datascript = {});
 var malli=$CLJS.malli || ($CLJS.malli = {});
-var fork=$CLJS.fork || ($CLJS.fork = {});
 var me=$CLJS.me || ($CLJS.me = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api = {});
 var com=$CLJS.com || ($CLJS.com = {});
@@ -49,18 +49,18 @@ bb_web_ds_tools.components.landing.animations.instant_charts.draw_data = (functi
 
 (ctx.textAlign = "left");
 
-var n__5616__auto___25145 = bb_web_ds_tools.components.landing.animations.instant_charts.total_cols;
-var i_25146 = (0);
+var n__5616__auto___25160 = bb_web_ds_tools.components.landing.animations.instant_charts.total_cols;
+var i_25161 = (0);
 while(true){
-if((i_25146 < n__5616__auto___25145)){
-var x_25147 = (start_data_x + (i_25146 * bb_web_ds_tools.components.landing.animations.instant_charts.col_w));
-var y_25148 = start_data_y;
+if((i_25161 < n__5616__auto___25160)){
+var x_25162 = (start_data_x + (i_25161 * bb_web_ds_tools.components.landing.animations.instant_charts.col_w));
+var y_25163 = start_data_y;
 (ctx.fillStyle = new cljs.core.Keyword("portal.colors","tag","portal.colors/tag",-1829243477).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn));
 
-ctx.fillText(cljs.core.nth.cljs$core$IFn$_invoke$arity$2(bb_web_ds_tools.components.landing.animations.instant_charts.col_names,i_25146),x_25147,y_25148);
+ctx.fillText(cljs.core.nth.cljs$core$IFn$_invoke$arity$2(bb_web_ds_tools.components.landing.animations.instant_charts.col_names,i_25161),x_25162,y_25163);
 
-var G__25153 = (i_25146 + (1));
-i_25146 = G__25153;
+var G__25164 = (i_25161 + (1));
+i_25161 = G__25164;
 continue;
 } else {
 }
@@ -71,28 +71,28 @@ var n__5616__auto__ = cljs.core.count(bb_web_ds_tools.components.landing.animati
 var j = (0);
 while(true){
 if((j < n__5616__auto__)){
-var row_25154 = cljs.core.nth.cljs$core$IFn$_invoke$arity$2(bb_web_ds_tools.components.landing.animations.instant_charts.data_rows,j);
-var n__5616__auto___25155__$1 = bb_web_ds_tools.components.landing.animations.instant_charts.total_cols;
-var i_25156 = (0);
+var row_25165 = cljs.core.nth.cljs$core$IFn$_invoke$arity$2(bb_web_ds_tools.components.landing.animations.instant_charts.data_rows,j);
+var n__5616__auto___25166__$1 = bb_web_ds_tools.components.landing.animations.instant_charts.total_cols;
+var i_25167 = (0);
 while(true){
-if((i_25156 < n__5616__auto___25155__$1)){
-var val_25157 = cljs.core.nth.cljs$core$IFn$_invoke$arity$2(row_25154,i_25156);
-var x_25158 = (start_data_x + (i_25156 * bb_web_ds_tools.components.landing.animations.instant_charts.col_w));
-var y_25159 = (start_data_y + (((j + (1)) * bb_web_ds_tools.components.landing.animations.instant_charts.row_h) * 1.2));
+if((i_25167 < n__5616__auto___25166__$1)){
+var val_25175 = cljs.core.nth.cljs$core$IFn$_invoke$arity$2(row_25165,i_25167);
+var x_25176 = (start_data_x + (i_25167 * bb_web_ds_tools.components.landing.animations.instant_charts.col_w));
+var y_25177 = (start_data_y + (((j + (1)) * bb_web_ds_tools.components.landing.animations.instant_charts.row_h) * 1.2));
 (ctx.fillStyle = new cljs.core.Keyword("portal.colors","text","portal.colors/text",1967472969).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn));
 
-ctx.fillText(cljs.core.str.cljs$core$IFn$_invoke$arity$1(val_25157),x_25158,y_25159);
+ctx.fillText(cljs.core.str.cljs$core$IFn$_invoke$arity$1(val_25175),x_25176,y_25177);
 
-var G__25160 = (i_25156 + (1));
-i_25156 = G__25160;
+var G__25178 = (i_25167 + (1));
+i_25167 = G__25178;
 continue;
 } else {
 }
 break;
 }
 
-var G__25161 = (j + (1));
-j = G__25161;
+var G__25179 = (j + (1));
+j = G__25179;
 continue;
 } else {
 return null;
@@ -107,17 +107,17 @@ ctx.beginPath();
 
 ctx.moveTo((bx - (bb_web_ds_tools.components.landing.animations.instant_charts.plot_w / (2))),(by + (bb_web_ds_tools.components.landing.animations.instant_charts.plot_h / (2))));
 
-var n__5616__auto___25162 = bb_web_ds_tools.components.landing.animations.instant_charts.plot_w;
-var i_25163 = (0);
+var n__5616__auto___25180 = bb_web_ds_tools.components.landing.animations.instant_charts.plot_w;
+var i_25181 = (0);
 while(true){
-if((i_25163 < n__5616__auto___25162)){
-var x_25164 = ((bx - (bb_web_ds_tools.components.landing.animations.instant_charts.plot_w / (2))) + i_25163);
-var norm_x_25165 = ((i_25163 - (bb_web_ds_tools.components.landing.animations.instant_charts.plot_w / (2))) / (10));
-var y_25166 = ((by + (bb_web_ds_tools.components.landing.animations.instant_charts.plot_h / (2))) - ((35) * Math.exp(((-0.5 * norm_x_25165) * norm_x_25165))));
-ctx.lineTo(x_25164,y_25166);
+if((i_25181 < n__5616__auto___25180)){
+var x_25182 = ((bx - (bb_web_ds_tools.components.landing.animations.instant_charts.plot_w / (2))) + i_25181);
+var norm_x_25183 = ((i_25181 - (bb_web_ds_tools.components.landing.animations.instant_charts.plot_w / (2))) / (10));
+var y_25184 = ((by + (bb_web_ds_tools.components.landing.animations.instant_charts.plot_h / (2))) - ((35) * Math.exp(((-0.5 * norm_x_25183) * norm_x_25183))));
+ctx.lineTo(x_25182,y_25184);
 
-var G__25170 = (i_25163 + (1));
-i_25163 = G__25170;
+var G__25185 = (i_25181 + (1));
+i_25181 = G__25185;
 continue;
 } else {
 }
@@ -158,19 +158,19 @@ var n__5616__auto__ = (15);
 var i = (0);
 while(true){
 if((i < n__5616__auto__)){
-var offset_25177 = cljs.core.mod(((i * (73)) + t),(1000));
-var angle_25178 = (i * 2.4);
-var dist_25179 = ((10) + ((15) * Math.sin((angle_25178 + (t * 0.002)))));
-var x_25180 = (bx + (dist_25179 * Math.cos(angle_25178)));
-var y_25181 = (by + (dist_25179 * Math.sin(angle_25178)));
+var offset_25189 = cljs.core.mod(((i * (73)) + t),(1000));
+var angle_25190 = (i * 2.4);
+var dist_25191 = ((10) + ((15) * Math.sin((angle_25190 + (t * 0.002)))));
+var x_25192 = (bx + (dist_25191 * Math.cos(angle_25190)));
+var y_25193 = (by + (dist_25191 * Math.sin(angle_25190)));
 ctx.beginPath();
 
-ctx.arc(x_25180,y_25181,(2),(0),(Math.PI * (2)));
+ctx.arc(x_25192,y_25193,(2),(0),(Math.PI * (2)));
 
 ctx.fill();
 
-var G__25182 = (i + (1));
-i = G__25182;
+var G__25194 = (i + (1));
+i = G__25194;
 continue;
 } else {
 return null;

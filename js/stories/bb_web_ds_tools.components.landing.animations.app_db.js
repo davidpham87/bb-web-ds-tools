@@ -20,6 +20,7 @@ var goog=$CLJS.goog || ($CLJS.goog = {});
 var reagent=$CLJS.reagent || ($CLJS.reagent = {});
 var module$shadow_js_shim_module$$js_joda$core=$CLJS.module$shadow_js_shim_module$$js_joda$core || ($CLJS.module$shadow_js_shim_module$$js_joda$core = {});
 var camel_snake_kebab=$CLJS.camel_snake_kebab || ($CLJS.camel_snake_kebab = {});
+var module$shadow_js_shim_module$js_yaml=$CLJS.module$shadow_js_shim_module$js_yaml || ($CLJS.module$shadow_js_shim_module$js_yaml = {});
 var portal=$CLJS.portal || ($CLJS.portal = {});
 var edamame=$CLJS.edamame || ($CLJS.edamame = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
@@ -27,7 +28,6 @@ var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contri
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution = {});
 var datascript=$CLJS.datascript || ($CLJS.datascript = {});
 var malli=$CLJS.malli || ($CLJS.malli = {});
-var fork=$CLJS.fork || ($CLJS.fork = {});
 var me=$CLJS.me || ($CLJS.me = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api = {});
 var com=$CLJS.com || ($CLJS.com = {});
@@ -76,20 +76,20 @@ var n__5616__auto__ = (5);
 var i = (0);
 while(true){
 if((i < n__5616__auto__)){
-var offset_25088 = (i * (1000));
-var y_pos_25089 = ((-50) + cljs.core.mod(((t + offset_25088) * 0.05),(100)));
-var x_pos_25090 = (cx + ((60) * Math.sin(((t + offset_25088) * 0.002))));
-if((((y_pos_25089 > (-50))) && ((y_pos_25089 < (50))))){
+var offset_25075 = (i * (1000));
+var y_pos_25076 = ((-50) + cljs.core.mod(((t + offset_25075) * 0.05),(100)));
+var x_pos_25077 = (cx + ((60) * Math.sin(((t + offset_25075) * 0.002))));
+if((((y_pos_25076 > (-50))) && ((y_pos_25076 < (50))))){
 ctx.beginPath();
 
-ctx.arc(x_pos_25090,(cy + y_pos_25089),(3),(0),(Math.PI * (2)));
+ctx.arc(x_pos_25077,(cy + y_pos_25076),(3),(0),(Math.PI * (2)));
 
 ctx.fill();
 } else {
 }
 
-var G__25091 = (i + (1));
-i = G__25091;
+var G__25078 = (i + (1));
+i = G__25078;
 continue;
 } else {
 return null;

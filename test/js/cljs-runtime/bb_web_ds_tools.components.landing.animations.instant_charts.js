@@ -13,18 +13,18 @@ bb_web_ds_tools.components.landing.animations.instant_charts.draw_data = (functi
 
 (ctx.textAlign = "left");
 
-var n__5616__auto___52792 = bb_web_ds_tools.components.landing.animations.instant_charts.total_cols;
-var i_52793 = (0);
+var n__5616__auto___52808 = bb_web_ds_tools.components.landing.animations.instant_charts.total_cols;
+var i_52809 = (0);
 while(true){
-if((i_52793 < n__5616__auto___52792)){
-var x_52794 = (start_data_x + (i_52793 * bb_web_ds_tools.components.landing.animations.instant_charts.col_w));
-var y_52795 = start_data_y;
+if((i_52809 < n__5616__auto___52808)){
+var x_52810 = (start_data_x + (i_52809 * bb_web_ds_tools.components.landing.animations.instant_charts.col_w));
+var y_52811 = start_data_y;
 (ctx.fillStyle = new cljs.core.Keyword("portal.colors","tag","portal.colors/tag",-1829243477).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn));
 
-ctx.fillText(cljs.core.nth.cljs$core$IFn$_invoke$arity$2(bb_web_ds_tools.components.landing.animations.instant_charts.col_names,i_52793),x_52794,y_52795);
+ctx.fillText(cljs.core.nth.cljs$core$IFn$_invoke$arity$2(bb_web_ds_tools.components.landing.animations.instant_charts.col_names,i_52809),x_52810,y_52811);
 
-var G__52796 = (i_52793 + (1));
-i_52793 = G__52796;
+var G__52812 = (i_52809 + (1));
+i_52809 = G__52812;
 continue;
 } else {
 }
@@ -35,28 +35,28 @@ var n__5616__auto__ = cljs.core.count(bb_web_ds_tools.components.landing.animati
 var j = (0);
 while(true){
 if((j < n__5616__auto__)){
-var row_52797 = cljs.core.nth.cljs$core$IFn$_invoke$arity$2(bb_web_ds_tools.components.landing.animations.instant_charts.data_rows,j);
-var n__5616__auto___52798__$1 = bb_web_ds_tools.components.landing.animations.instant_charts.total_cols;
-var i_52799 = (0);
+var row_52813 = cljs.core.nth.cljs$core$IFn$_invoke$arity$2(bb_web_ds_tools.components.landing.animations.instant_charts.data_rows,j);
+var n__5616__auto___52814__$1 = bb_web_ds_tools.components.landing.animations.instant_charts.total_cols;
+var i_52815 = (0);
 while(true){
-if((i_52799 < n__5616__auto___52798__$1)){
-var val_52800 = cljs.core.nth.cljs$core$IFn$_invoke$arity$2(row_52797,i_52799);
-var x_52801 = (start_data_x + (i_52799 * bb_web_ds_tools.components.landing.animations.instant_charts.col_w));
-var y_52802 = (start_data_y + (((j + (1)) * bb_web_ds_tools.components.landing.animations.instant_charts.row_h) * 1.2));
+if((i_52815 < n__5616__auto___52814__$1)){
+var val_52816 = cljs.core.nth.cljs$core$IFn$_invoke$arity$2(row_52813,i_52815);
+var x_52817 = (start_data_x + (i_52815 * bb_web_ds_tools.components.landing.animations.instant_charts.col_w));
+var y_52818 = (start_data_y + (((j + (1)) * bb_web_ds_tools.components.landing.animations.instant_charts.row_h) * 1.2));
 (ctx.fillStyle = new cljs.core.Keyword("portal.colors","text","portal.colors/text",1967472969).cljs$core$IFn$_invoke$arity$1(bb_web_ds_tools.components.landing.animations.common.zenburn));
 
-ctx.fillText(cljs.core.str.cljs$core$IFn$_invoke$arity$1(val_52800),x_52801,y_52802);
+ctx.fillText(cljs.core.str.cljs$core$IFn$_invoke$arity$1(val_52816),x_52817,y_52818);
 
-var G__52803 = (i_52799 + (1));
-i_52799 = G__52803;
+var G__52819 = (i_52815 + (1));
+i_52815 = G__52819;
 continue;
 } else {
 }
 break;
 }
 
-var G__52804 = (j + (1));
-j = G__52804;
+var G__52820 = (j + (1));
+j = G__52820;
 continue;
 } else {
 return null;
@@ -71,17 +71,17 @@ ctx.beginPath();
 
 ctx.moveTo((bx - (bb_web_ds_tools.components.landing.animations.instant_charts.plot_w / (2))),(by + (bb_web_ds_tools.components.landing.animations.instant_charts.plot_h / (2))));
 
-var n__5616__auto___52805 = bb_web_ds_tools.components.landing.animations.instant_charts.plot_w;
-var i_52806 = (0);
+var n__5616__auto___52821 = bb_web_ds_tools.components.landing.animations.instant_charts.plot_w;
+var i_52822 = (0);
 while(true){
-if((i_52806 < n__5616__auto___52805)){
-var x_52807 = ((bx - (bb_web_ds_tools.components.landing.animations.instant_charts.plot_w / (2))) + i_52806);
-var norm_x_52808 = ((i_52806 - (bb_web_ds_tools.components.landing.animations.instant_charts.plot_w / (2))) / (10));
-var y_52809 = ((by + (bb_web_ds_tools.components.landing.animations.instant_charts.plot_h / (2))) - ((35) * Math.exp(((-0.5 * norm_x_52808) * norm_x_52808))));
-ctx.lineTo(x_52807,y_52809);
+if((i_52822 < n__5616__auto___52821)){
+var x_52823 = ((bx - (bb_web_ds_tools.components.landing.animations.instant_charts.plot_w / (2))) + i_52822);
+var norm_x_52824 = ((i_52822 - (bb_web_ds_tools.components.landing.animations.instant_charts.plot_w / (2))) / (10));
+var y_52825 = ((by + (bb_web_ds_tools.components.landing.animations.instant_charts.plot_h / (2))) - ((35) * Math.exp(((-0.5 * norm_x_52824) * norm_x_52824))));
+ctx.lineTo(x_52823,y_52825);
 
-var G__52810 = (i_52806 + (1));
-i_52806 = G__52810;
+var G__52826 = (i_52822 + (1));
+i_52822 = G__52826;
 continue;
 } else {
 }
@@ -122,19 +122,19 @@ var n__5616__auto__ = (15);
 var i = (0);
 while(true){
 if((i < n__5616__auto__)){
-var offset_52811 = cljs.core.mod(((i * (73)) + t),(1000));
-var angle_52812 = (i * 2.4);
-var dist_52813 = ((10) + ((15) * Math.sin((angle_52812 + (t * 0.002)))));
-var x_52814 = (bx + (dist_52813 * Math.cos(angle_52812)));
-var y_52815 = (by + (dist_52813 * Math.sin(angle_52812)));
+var offset_52827 = cljs.core.mod(((i * (73)) + t),(1000));
+var angle_52828 = (i * 2.4);
+var dist_52829 = ((10) + ((15) * Math.sin((angle_52828 + (t * 0.002)))));
+var x_52830 = (bx + (dist_52829 * Math.cos(angle_52828)));
+var y_52831 = (by + (dist_52829 * Math.sin(angle_52828)));
 ctx.beginPath();
 
-ctx.arc(x_52814,y_52815,(2),(0),(Math.PI * (2)));
+ctx.arc(x_52830,y_52831,(2),(0),(Math.PI * (2)));
 
 ctx.fill();
 
-var G__52816 = (i + (1));
-i = G__52816;
+var G__52832 = (i + (1));
+i = G__52832;
 continue;
 } else {
 return null;

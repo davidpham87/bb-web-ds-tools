@@ -21,6 +21,7 @@ var goog=$CLJS.goog || ($CLJS.goog = {});
 var reagent=$CLJS.reagent || ($CLJS.reagent = {});
 var module$shadow_js_shim_module$$js_joda$core=$CLJS.module$shadow_js_shim_module$$js_joda$core || ($CLJS.module$shadow_js_shim_module$$js_joda$core = {});
 var camel_snake_kebab=$CLJS.camel_snake_kebab || ($CLJS.camel_snake_kebab = {});
+var module$shadow_js_shim_module$js_yaml=$CLJS.module$shadow_js_shim_module$js_yaml || ($CLJS.module$shadow_js_shim_module$js_yaml = {});
 var portal=$CLJS.portal || ($CLJS.portal = {});
 var edamame=$CLJS.edamame || ($CLJS.edamame = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
@@ -28,7 +29,6 @@ var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contri
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution = {});
 var datascript=$CLJS.datascript || ($CLJS.datascript = {});
 var malli=$CLJS.malli || ($CLJS.malli = {});
-var fork=$CLJS.fork || ($CLJS.fork = {});
 var me=$CLJS.me || ($CLJS.me = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api = {});
 var com=$CLJS.com || ($CLJS.com = {});
@@ -47,8 +47,8 @@ return x;
 }
 });
 sci.impl.hierarchies.derive_STAR_ = (function sci$impl$hierarchies$derive_STAR_(var_args){
-var G__39865 = arguments.length;
-switch (G__39865) {
+var G__39779 = arguments.length;
+switch (G__39779) {
 case 3:
 return sci.impl.hierarchies.derive_STAR_.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -64,9 +64,9 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 });
 
 (sci.impl.hierarchies.derive_STAR_.cljs$core$IFn$_invoke$arity$3 = (function (ctx,tag,parent){
-var tag_39889__$1 = sci.impl.hierarchies.__GT_tag(tag);
+var tag_39800__$1 = sci.impl.hierarchies.__GT_tag(tag);
 sci.impl.vars.alter_var_root.cljs$core$IFn$_invoke$arity$2(sci.impl.hierarchies.global_hierarchy(ctx),(function (h){
-return cljs.core.derive.cljs$core$IFn$_invoke$arity$3(h,tag_39889__$1,parent);
+return cljs.core.derive.cljs$core$IFn$_invoke$arity$3(h,tag_39800__$1,parent);
 }));
 
 return null;
@@ -80,8 +80,8 @@ return cljs.core.derive.cljs$core$IFn$_invoke$arity$3(h,tag__$1,parent);
 (sci.impl.hierarchies.derive_STAR_.cljs$lang$maxFixedArity = 4);
 
 sci.impl.hierarchies.underive_STAR_ = (function sci$impl$hierarchies$underive_STAR_(var_args){
-var G__39870 = arguments.length;
-switch (G__39870) {
+var G__39783 = arguments.length;
+switch (G__39783) {
 case 3:
 return sci.impl.hierarchies.underive_STAR_.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -97,9 +97,9 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 });
 
 (sci.impl.hierarchies.underive_STAR_.cljs$core$IFn$_invoke$arity$3 = (function (ctx,tag,parent){
-var tag_39892__$1 = sci.impl.hierarchies.__GT_tag(tag);
+var tag_39802__$1 = sci.impl.hierarchies.__GT_tag(tag);
 sci.impl.vars.alter_var_root.cljs$core$IFn$_invoke$arity$2(sci.impl.hierarchies.global_hierarchy(ctx),(function (h){
-return cljs.core.underive.cljs$core$IFn$_invoke$arity$3(h,tag_39892__$1,parent);
+return cljs.core.underive.cljs$core$IFn$_invoke$arity$3(h,tag_39802__$1,parent);
 }));
 
 return null;
@@ -113,8 +113,8 @@ return cljs.core.underive.cljs$core$IFn$_invoke$arity$3(h,tag__$1,parent);
 (sci.impl.hierarchies.underive_STAR_.cljs$lang$maxFixedArity = 4);
 
 sci.impl.hierarchies.isa_QMARK__STAR_ = (function sci$impl$hierarchies$isa_QMARK__STAR_(var_args){
-var G__39872 = arguments.length;
-switch (G__39872) {
+var G__39787 = arguments.length;
+switch (G__39787) {
 case 3:
 return sci.impl.hierarchies.isa_QMARK__STAR_.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -141,8 +141,8 @@ return cljs.core.isa_QMARK_.cljs$core$IFn$_invoke$arity$3(h,sci.impl.hierarchies
 (sci.impl.hierarchies.isa_QMARK__STAR_.cljs$lang$maxFixedArity = 4);
 
 sci.impl.hierarchies.ancestors_STAR_ = (function sci$impl$hierarchies$ancestors_STAR_(var_args){
-var G__39876 = arguments.length;
-switch (G__39876) {
+var G__39791 = arguments.length;
+switch (G__39791) {
 case 2:
 return sci.impl.hierarchies.ancestors_STAR_.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -169,8 +169,8 @@ return cljs.core.ancestors.cljs$core$IFn$_invoke$arity$2(h,tag);
 (sci.impl.hierarchies.ancestors_STAR_.cljs$lang$maxFixedArity = 3);
 
 sci.impl.hierarchies.descendants_STAR_ = (function sci$impl$hierarchies$descendants_STAR_(var_args){
-var G__39880 = arguments.length;
-switch (G__39880) {
+var G__39793 = arguments.length;
+switch (G__39793) {
 case 2:
 return sci.impl.hierarchies.descendants_STAR_.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -197,8 +197,8 @@ return cljs.core.descendants.cljs$core$IFn$_invoke$arity$2(h,tag);
 (sci.impl.hierarchies.descendants_STAR_.cljs$lang$maxFixedArity = 3);
 
 sci.impl.hierarchies.parents_STAR_ = (function sci$impl$hierarchies$parents_STAR_(var_args){
-var G__39884 = arguments.length;
-switch (G__39884) {
+var G__39795 = arguments.length;
+switch (G__39795) {
 case 2:
 return sci.impl.hierarchies.parents_STAR_.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 

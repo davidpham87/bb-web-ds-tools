@@ -23,8 +23,8 @@ while(true){
 if((i < n__5616__auto__)){
 ctx.fillText(cljs.core.nth.cljs$core$IFn$_invoke$arity$2(lines,i),start_x,(start_y + (i * bb_web_ds_tools.components.landing.animations.code.line_h)));
 
-var G__52741 = (i + (1));
-i = G__52741;
+var G__52728 = (i + (1));
+i = G__52728;
 continue;
 } else {
 return null;
@@ -59,12 +59,12 @@ ctx.fillRect((start_x + (show_len * 8.5)),(y - (8)),(2),(16));
 } else {
 }
 
-var G__52744 = cljs.core.rest(lines);
-var G__52745 = (line_idx + (1));
-var G__52746 = (chars_left - show_len);
-lines = G__52744;
-line_idx = G__52745;
-chars_left = G__52746;
+var G__52729 = cljs.core.rest(lines);
+var G__52730 = (line_idx + (1));
+var G__52731 = (chars_left - show_len);
+lines = G__52729;
+line_idx = G__52730;
+chars_left = G__52731;
 continue;
 } else {
 return null;
@@ -75,14 +75,14 @@ break;
 bb_web_ds_tools.components.landing.animations.code.draw_highlight = (function bb_web_ds_tools$components$landing$animations$code$draw_highlight(ctx,_w,_h,_t,_phase,start_x,start_y){
 (ctx.fillStyle = "rgba(255, 255, 255, 0.2)");
 
-var n__5616__auto___52747 = cljs.core.count(bb_web_ds_tools.components.landing.animations.code.code_lines);
-var i_52748 = (0);
+var n__5616__auto___52732 = cljs.core.count(bb_web_ds_tools.components.landing.animations.code.code_lines);
+var i_52733 = (0);
 while(true){
-if((i_52748 < n__5616__auto___52747)){
-ctx.fillRect((start_x - (2)),((start_y + (i_52748 * bb_web_ds_tools.components.landing.animations.code.line_h)) - (10)),(cljs.core.count(cljs.core.nth.cljs$core$IFn$_invoke$arity$2(bb_web_ds_tools.components.landing.animations.code.code_lines,i_52748)) * 8.5),(20));
+if((i_52733 < n__5616__auto___52732)){
+ctx.fillRect((start_x - (2)),((start_y + (i_52733 * bb_web_ds_tools.components.landing.animations.code.line_h)) - (10)),(cljs.core.count(cljs.core.nth.cljs$core$IFn$_invoke$arity$2(bb_web_ds_tools.components.landing.animations.code.code_lines,i_52733)) * 8.5),(20));
 
-var G__52749 = (i_52748 + (1));
-i_52748 = G__52749;
+var G__52734 = (i_52733 + (1));
+i_52733 = G__52734;
 continue;
 } else {
 }
@@ -127,8 +127,8 @@ while(true){
 if((i < n__5616__auto__)){
 ctx.fillText(cljs.core.nth.cljs$core$IFn$_invoke$arity$2(bb_web_ds_tools.components.landing.animations.code.result_lines,i),start_x,(start_y + (((cljs.core.count(bb_web_ds_tools.components.landing.animations.code.code_lines) + (1)) + i) * bb_web_ds_tools.components.landing.animations.code.line_h)));
 
-var G__52751 = (i + (1));
-i = G__52751;
+var G__52735 = (i + (1));
+i = G__52735;
 continue;
 } else {
 return null;

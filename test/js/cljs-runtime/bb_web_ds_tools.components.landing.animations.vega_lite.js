@@ -35,12 +35,12 @@ var n__5616__auto__ = (3);
 var i = (0);
 while(true){
 if((i < n__5616__auto__)){
-var h_52903 = ((50) + (i * (30)));
-var x_52904 = (start_x + (i * (bar_w + gap)));
-ctx.fillRect(x_52904,(cy - (h_52903 - (50))),bar_w,h_52903);
+var h_52911 = ((50) + (i * (30)));
+var x_52912 = (start_x + (i * (bar_w + gap)));
+ctx.fillRect(x_52912,(cy - (h_52911 - (50))),bar_w,h_52911);
 
-var G__52905 = (i + (1));
-i = G__52905;
+var G__52913 = (i + (1));
+i = G__52913;
 continue;
 } else {
 return null;
@@ -64,22 +64,22 @@ var alpha = (((local_t > (1500)))?(1.0 - ((local_t - (1500)) / (500))):1.0);
 
 ctx.beginPath();
 
-var points_52906 = (10);
-var step_52907 = (w / points_52906);
-var n__5616__auto___52908 = points_52906;
-var i_52909 = (0);
+var points_52914 = (10);
+var step_52915 = (w / points_52914);
+var n__5616__auto___52916 = points_52914;
+var i_52917 = (0);
 while(true){
-if((i_52909 < n__5616__auto___52908)){
-var x_52910 = (i_52909 * step_52907);
-var y_52911 = (cy + ((60) * Math.sin((i_52909 * 0.8))));
-if((i_52909 === (0))){
-ctx.moveTo(x_52910,y_52911);
+if((i_52917 < n__5616__auto___52916)){
+var x_52918 = (i_52917 * step_52915);
+var y_52919 = (cy + ((60) * Math.sin((i_52917 * 0.8))));
+if((i_52917 === (0))){
+ctx.moveTo(x_52918,y_52919);
 } else {
-ctx.lineTo(x_52910,y_52911);
+ctx.lineTo(x_52918,y_52919);
 }
 
-var G__52912 = (i_52909 + (1));
-i_52909 = G__52912;
+var G__52920 = (i_52917 + (1));
+i_52917 = G__52920;
 continue;
 } else {
 }
@@ -103,16 +103,16 @@ var n__5616__auto__ = (20);
 var i = (0);
 while(true){
 if((i < n__5616__auto__)){
-var x_52913 = ((cljs.core.mod((i * (123)),w)) + (- (w / (2))));
-var y_52914 = ((cljs.core.mod((i * (456)),h)) + (- (h / (2))));
+var x_52921 = ((cljs.core.mod((i * (123)),w)) + (- (w / (2))));
+var y_52922 = ((cljs.core.mod((i * (456)),h)) + (- (h / (2))));
 ctx.beginPath();
 
 ctx.arc((cx + (Math.cos(i) * (i * (5)))),(cy + (Math.sin(i) * (i * (3)))),(5),(0),(Math.PI * (2)));
 
 ctx.fill();
 
-var G__52915 = (i + (1));
-i = G__52915;
+var G__52923 = (i + (1));
+i = G__52923;
 continue;
 } else {
 return null;

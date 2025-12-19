@@ -21,6 +21,7 @@ var goog=$CLJS.goog || ($CLJS.goog = {});
 var reagent=$CLJS.reagent || ($CLJS.reagent = {});
 var module$shadow_js_shim_module$$js_joda$core=$CLJS.module$shadow_js_shim_module$$js_joda$core || ($CLJS.module$shadow_js_shim_module$$js_joda$core = {});
 var camel_snake_kebab=$CLJS.camel_snake_kebab || ($CLJS.camel_snake_kebab = {});
+var module$shadow_js_shim_module$js_yaml=$CLJS.module$shadow_js_shim_module$js_yaml || ($CLJS.module$shadow_js_shim_module$js_yaml = {});
 var portal=$CLJS.portal || ($CLJS.portal = {});
 var edamame=$CLJS.edamame || ($CLJS.edamame = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$python$python_contribution = {});
@@ -28,7 +29,6 @@ var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$r$r_contri
 var module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$basic_languages$clojure$clojure_contribution = {});
 var datascript=$CLJS.datascript || ($CLJS.datascript = {});
 var malli=$CLJS.malli || ($CLJS.malli = {});
-var fork=$CLJS.fork || ($CLJS.fork = {});
 var me=$CLJS.me || ($CLJS.me = {});
 var module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api=$CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api || ($CLJS.module$shadow_js_shim_module$monaco_editor$esm$vs$editor$editor_api = {});
 var com=$CLJS.com || ($CLJS.com = {});
@@ -60,8 +60,8 @@ while(true){
 if((i < n__5616__auto__)){
 ctx.fillText(cljs.core.nth.cljs$core$IFn$_invoke$arity$2(lines,i),start_x,(start_y + (i * bb_web_ds_tools.components.landing.animations.code.line_h)));
 
-var G__25121 = (i + (1));
-i = G__25121;
+var G__25112 = (i + (1));
+i = G__25112;
 continue;
 } else {
 return null;
@@ -96,12 +96,12 @@ ctx.fillRect((start_x + (show_len * 8.5)),(y - (8)),(2),(16));
 } else {
 }
 
-var G__25122 = cljs.core.rest(lines);
-var G__25123 = (line_idx + (1));
-var G__25124 = (chars_left - show_len);
-lines = G__25122;
-line_idx = G__25123;
-chars_left = G__25124;
+var G__25113 = cljs.core.rest(lines);
+var G__25114 = (line_idx + (1));
+var G__25115 = (chars_left - show_len);
+lines = G__25113;
+line_idx = G__25114;
+chars_left = G__25115;
 continue;
 } else {
 return null;
@@ -112,14 +112,14 @@ break;
 bb_web_ds_tools.components.landing.animations.code.draw_highlight = (function bb_web_ds_tools$components$landing$animations$code$draw_highlight(ctx,_w,_h,_t,_phase,start_x,start_y){
 (ctx.fillStyle = "rgba(255, 255, 255, 0.2)");
 
-var n__5616__auto___25125 = cljs.core.count(bb_web_ds_tools.components.landing.animations.code.code_lines);
-var i_25126 = (0);
+var n__5616__auto___25116 = cljs.core.count(bb_web_ds_tools.components.landing.animations.code.code_lines);
+var i_25117 = (0);
 while(true){
-if((i_25126 < n__5616__auto___25125)){
-ctx.fillRect((start_x - (2)),((start_y + (i_25126 * bb_web_ds_tools.components.landing.animations.code.line_h)) - (10)),(cljs.core.count(cljs.core.nth.cljs$core$IFn$_invoke$arity$2(bb_web_ds_tools.components.landing.animations.code.code_lines,i_25126)) * 8.5),(20));
+if((i_25117 < n__5616__auto___25116)){
+ctx.fillRect((start_x - (2)),((start_y + (i_25117 * bb_web_ds_tools.components.landing.animations.code.line_h)) - (10)),(cljs.core.count(cljs.core.nth.cljs$core$IFn$_invoke$arity$2(bb_web_ds_tools.components.landing.animations.code.code_lines,i_25117)) * 8.5),(20));
 
-var G__25127 = (i_25126 + (1));
-i_25126 = G__25127;
+var G__25118 = (i_25117 + (1));
+i_25117 = G__25118;
 continue;
 } else {
 }
@@ -164,8 +164,8 @@ while(true){
 if((i < n__5616__auto__)){
 ctx.fillText(cljs.core.nth.cljs$core$IFn$_invoke$arity$2(bb_web_ds_tools.components.landing.animations.code.result_lines,i),start_x,(start_y + (((cljs.core.count(bb_web_ds_tools.components.landing.animations.code.code_lines) + (1)) + i) * bb_web_ds_tools.components.landing.animations.code.line_h)));
 
-var G__25128 = (i + (1));
-i = G__25128;
+var G__25119 = (i + (1));
+i = G__25119;
 continue;
 } else {
 return null;

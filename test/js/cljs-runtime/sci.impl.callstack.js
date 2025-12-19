@@ -19,11 +19,11 @@ var fm = (function (){var or__5025__auto__ = new cljs.core.Keyword("sci.impl","f
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
 } else {
-var G__36028 = f;
-if((G__36028 == null)){
+var G__36027 = f;
+if((G__36027 == null)){
 return null;
 } else {
-return cljs.core.meta(G__36028);
+return cljs.core.meta(G__36027);
 }
 }
 })();
@@ -76,16 +76,16 @@ return [cljs.core.str.cljs$core$IFn$_invoke$arity$1(s),clojure.string.join.cljs$
 });
 sci.impl.callstack.format_stacktrace = (function sci$impl$callstack$format_stacktrace(st){
 var st__$1 = cljs.core.force(st);
-var data = cljs.core.keep.cljs$core$IFn$_invoke$arity$2((function (p__36050){
-var map__36051 = p__36050;
-var map__36051__$1 = cljs.core.__destructure_map(map__36051);
-var nom = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36051__$1,new cljs.core.Keyword(null,"name","name",1843675177));
-var file = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36051__$1,new cljs.core.Keyword(null,"file","file",-1269645878));
-var ns = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36051__$1,new cljs.core.Keyword(null,"ns","ns",441598760));
-var line = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36051__$1,new cljs.core.Keyword(null,"line","line",212345235));
-var column = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36051__$1,new cljs.core.Keyword(null,"column","column",2078222095));
-var built_in = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36051__$1,new cljs.core.Keyword("sci","built-in","sci/built-in",1244659599));
-var local = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36051__$1,new cljs.core.Keyword(null,"local","local",-1497766724));
+var data = cljs.core.keep.cljs$core$IFn$_invoke$arity$2((function (p__36040){
+var map__36041 = p__36040;
+var map__36041__$1 = cljs.core.__destructure_map(map__36041);
+var nom = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36041__$1,new cljs.core.Keyword(null,"name","name",1843675177));
+var file = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36041__$1,new cljs.core.Keyword(null,"file","file",-1269645878));
+var ns = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36041__$1,new cljs.core.Keyword(null,"ns","ns",441598760));
+var line = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36041__$1,new cljs.core.Keyword(null,"line","line",212345235));
+var column = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36041__$1,new cljs.core.Keyword(null,"column","column",2078222095));
+var built_in = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36041__$1,new cljs.core.Keyword("sci","built-in","sci/built-in",1244659599));
+var local = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36041__$1,new cljs.core.Keyword(null,"local","local",-1497766724));
 if(cljs.core.truth_((function (){var or__5025__auto__ = line;
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
@@ -109,11 +109,11 @@ return null;
 }
 }),st__$1);
 var max_name = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(cljs.core.max,(0),cljs.core.map.cljs$core$IFn$_invoke$arity$2(cljs.core.comp.cljs$core$IFn$_invoke$arity$2(cljs.core.count,new cljs.core.Keyword(null,"name","name",1843675177)),data));
-return cljs.core.mapv.cljs$core$IFn$_invoke$arity$2((function (p__36059){
-var map__36060 = p__36059;
-var map__36060__$1 = cljs.core.__destructure_map(map__36060);
-var name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36060__$1,new cljs.core.Keyword(null,"name","name",1843675177));
-var loc = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36060__$1,new cljs.core.Keyword(null,"loc","loc",-584284901));
+return cljs.core.mapv.cljs$core$IFn$_invoke$arity$2((function (p__36054){
+var map__36055 = p__36054;
+var map__36055__$1 = cljs.core.__destructure_map(map__36055);
+var name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36055__$1,new cljs.core.Keyword(null,"name","name",1843675177));
+var loc = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36055__$1,new cljs.core.Keyword(null,"loc","loc",-584284901));
 return [sci.impl.callstack.right_pad(name,max_name)," - ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(loc)].join('');
 }),data);
 });

@@ -1,0 +1,9 @@
+{
+"version":3,
+"file":"shadow.js.shim.module$lz_string.js",
+"lineCount":5,
+"mappings":"AAAAA,IAAKC,CAAAA,OAAL,CAAa,iCAAb,CAAA;AACAD,IAAKC,CAAAA,OAAL,CAAa,wCAAb,CAAA;AACAC,MAAOC,CAAAA,EAAGC,CAAAA,IAAKC,CAAAA,gBAAf,GAAkCH,MAAOC,CAAAA,EAAGG,CAAAA,cAAV,CAAyB,WAAzB,CAAlC,GAA0EC,aAAA,CAAc,WAAd,CAA1E;AACAC,sCAAuCC,CAAAA,OAAvC,GAAiDP,MAAOC,CAAAA,EAAGC,CAAAA,IAAKC,CAAAA,gBAAhE;;",
+"sources":["shadow.js.shim.module$lz_string.js"],
+"sourcesContent":["goog.provide(\"shadow.js.shim.module$lz_string\");\ngoog.provide(\"module$shadow_js_shim_module$lz_string\");\nshadow.js.shim.module$lz_string = shadow.js.nativeProvides[\"lz-string\"] = shadow$bridge(\"lz-string\");\nmodule$shadow_js_shim_module$lz_string.default = shadow.js.shim.module$lz_string;\n"],
+"names":["goog","provide","shadow","js","shim","module$lz_string","nativeProvides","shadow$bridge","module$shadow_js_shim_module$lz_string","default"]
+}
