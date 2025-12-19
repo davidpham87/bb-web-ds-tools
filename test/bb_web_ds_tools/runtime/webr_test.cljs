@@ -72,15 +72,8 @@
       (async done
              (a/take! (webr/eval-in-main "1 + 1")
                       (fn [_]
-                        (is (some #(and (= (first %) :bb-web-ds-tools.portal/submit)
-                                        (= (second %) "1 + 1")
-                                        (= (nth % 2) :portal.viewer/code))
+                        (is (some #(= % [:bb-web-ds-tools.portal/submit "1 + 1" :portal.viewer/code])
                                   @dispatched) "Code should be submitted")
-                        (let [res-event (last @dispatched)
-                              res-val (second res-event)
-                              res-viewer (nth res-event 2)]
-                          (is (= (first res-event) :bb-web-ds-tools.portal/submit))
-                          (is (= res-val 42))
-                          (is (= res-viewer :portal.viewer/edn)))
+                        (is (= (last @dispatched) [:bb-web-ds-tools.portal/submit 42 :portal.viewer/edn]))
                         (set! rf/dispatch orig-dispatch)
                         (done)))))))

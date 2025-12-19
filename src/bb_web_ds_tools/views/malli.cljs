@@ -1,16 +1,17 @@
 (ns bb-web-ds-tools.views.malli
-  (:require [reagent.core :as r]
-            [re-frame.core :as rf]
-            [fork.re-frame :as fork]
-            [bb-web-ds-tools.components.common :as c]
-            [bb-web-ds-tools.components.editor :as editor]
-            [bb-web-ds-tools.components.layout :as l]
-            [bb-web-ds-tools.components.malli :as c-malli]
-            [bb-web-ds-tools.components.navigation :as nav]
-            [bb-web-ds-tools.portal :as portal :refer [portal-frame portal-panel]]
-            [bb-web-ds-tools.theme :as t]
-            [bb-web-ds-tools.views.datasets :as datasets]
-            [bb-web-ds-tools.utils.dataset-processing :as dp]))
+  (:require
+   [reagent.core :as r]
+   [re-frame.core :as rf]
+   [bb-web-ds-tools.components.common :as c]
+   [bb-web-ds-tools.components.editor :as editor]
+   [bb-web-ds-tools.components.layout :as l]
+   [bb-web-ds-tools.components.layout.tool-view :refer [tool-view]]
+   [bb-web-ds-tools.components.malli :as c-malli]
+   [bb-web-ds-tools.components.navigation :as nav]
+   [bb-web-ds-tools.portal :as portal :refer [portal-panel]]
+   [bb-web-ds-tools.theme :as t]
+   [bb-web-ds-tools.views.datasets :as datasets]
+   [bb-web-ds-tools.utils.dataset-processing :as dp]))
 
 ;; Helper for state extraction
 (defn get-malli-state
@@ -323,197 +324,144 @@
 
 ;; UI components
 
-(defn unified-view
-  "A unified view component for Malli sub-views to prevent unmounting and ensure consistency.
-
-  Args:
-    props (map): Configuration props. Keys:
-      - :controls (vector): Hiccup for the top control bar.
-      - :editors (vector): List of editor configs (maps with :value, :language, :on-change, :height, :label).
-      - :output (any): Data to display in the portal panel.
-
-  Returns:
-    vector: A hiccup vector."
-  [{:keys [controls editors output]}]
-  (let [mobile-view-mode @(rf/subscribe [::mobile-view-mode])
-        is-md? (r/with-let [mql (js/window.matchMedia "(min-width: 768px)")
-                            match (r/atom (.-matches mql))
-                            handler (fn [e] (reset! match (.-matches e)))]
-                 (.addEventListener mql "change" handler)
-                 @match
-                 (finally (.removeEventListener mql "change" handler)))]
-    [l/flex-col {:class "h-full w-full"}
-     (when-not is-md?
-       [mobile-view-toggle mobile-view-mode #(rf/dispatch [:malli/set-mobile-view-mode %])])
-     [l/flex-row {:class "h-full w-full"}
-      ;; LEFT: Controls + Editors
-      (when (or is-md? (= mobile-view-mode :editor))
-        [l/flex-col {:class "space-y-2 w-full md:max-w-3xl flex-shrink-0"}
-         ;; Controls
-         [l/flex-row {:class "justify-between py-4 items-center flex-wrap gap-2"}
-          controls]
-         ;; Editors
-         (for [[i editor-config] (map-indexed vector editors)]
-           ^{:key i}
-           [:<>
-            (when (:label editor-config)
-              [c/label (:label editor-config)])
-            [:div {:class (str "rounded overflow-hidden border " t/border-default)
-                   :style {:height (or (:height editor-config) "85vh")}}
-             [editor/monaco-editor (dissoc editor-config :height :label)]]])])
-      ;; RIGHT: Output
-      (when (or is-md? (= mobile-view-mode :portal))
-        [:div {:class "w-full h-full flex-grow overflow-hidden"}
-         [portal-panel output]])]]))
-
 (defn get-inference-props
   "Generates props for the unified view in Inference mode."
   [{:keys [inference-input inferred-schema datasets input-format max-enum-values]}]
-  {:controls [:<>
-              [l/flex-row {:class "items-center gap-2"}
-               [c/label "Input Data"]
-               [c/help-button
-                {:href (nav/get-wiki-url :malli)
-                 :title "Help: Malli"
-                 :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100 mb-2"}]]
-              [l/flex-row {:class "space-x-2 items-center flex-wrap gap-y-2"}
-               [c/button {:size :sm
-                          :variant (if (= input-format :edn) :primary nil)
-                          :on-click #(rf/dispatch [:malli/set-input-format :edn])} "EDN"]
-               [c/button {:size :sm
-                          :variant (if (= input-format :csv) :primary nil)
-                          :on-click #(rf/dispatch [:malli/set-input-format :csv])} "CSV"]
-               [c/button {:size :sm
-                          :variant (if (= input-format :tsv) :primary nil)
-                          :on-click #(rf/dispatch [:malli/set-input-format :tsv])} "TSV"]
-               [c/button {:size :sm
-                          :variant (if (= input-format :json) :primary nil)
-                          :on-click #(rf/dispatch [:malli/set-input-format :json])} "JSON"]
-               (when (seq datasets)
-                 [:div {:class "flex items-center space-x-2"}
-                  [:span {:class (str "text-xs " t/text-secondary)} "Load:"]
-                  [c/select {:class "py-1 px-2 text-sm" ;; Standardized text size
-                             :on-change #(rf/dispatch [:malli/load-dataset (.. % -target -value)])
-                             :value ""}
-                   [:option {:value ""} "Select Dataset..."]
-                   (for [[id ds] datasets]
-                     [:option {:key id :value id} (:name ds)])]])
+  {:actions [:<>
+             [l/flex-row {:class "space-x-2 items-center flex-wrap gap-y-2"}
+              [c/button {:size :sm
+                         :variant (if (= input-format :edn) :primary nil)
+                         :on-click #(rf/dispatch [:malli/set-input-format :edn])} "EDN"]
+              [c/button {:size :sm
+                         :variant (if (= input-format :csv) :primary nil)
+                         :on-click #(rf/dispatch [:malli/set-input-format :csv])} "CSV"]
+              [c/button {:size :sm
+                         :variant (if (= input-format :tsv) :primary nil)
+                         :on-click #(rf/dispatch [:malli/set-input-format :tsv])} "TSV"]
+              [c/button {:size :sm
+                         :variant (if (= input-format :json) :primary nil)
+                         :on-click #(rf/dispatch [:malli/set-input-format :json])} "JSON"]
+              (when (seq datasets)
+                [:div {:class "flex items-center space-x-2"}
+                 [:span {:class (str "text-xs " t/text-secondary)} "Load:"]
+                 [c/select {:class "py-1 px-2 text-sm" ;; Standardized text size
+                            :on-change #(rf/dispatch [:malli/load-dataset (.. % -target -value)])
+                            :value ""}
+                  [:option {:value ""} "Select Dataset..."]
+                  (for [[id ds] datasets]
+                    [:option {:key id :value id} (:name ds)])]])
 
-               [:div {:class "flex items-center gap-1 ml-2"}
-                [:span {:class "text-xs"} "Max Enum:"]
-                [c/input {:type "number"
-                          :class "w-16 py-1 px-2 text-sm"
-                          :min "1"
-                          :max "100"
-                          :value max-enum-values
-                          :on-change #(rf/dispatch [:malli/set-max-enum-values (.. % -target -value)])}]]
+              [:div {:class "flex items-center gap-1 ml-2"}
+               [:span {:class "text-xs"} "Max Enum:"]
+               [c/input {:type "number"
+                         :class "w-16 py-1 px-2 text-sm"
+                         :min "1"
+                         :max "100"
+                         :value max-enum-values
+                         :on-change #(rf/dispatch [:malli/set-max-enum-values (.. % -target -value)])}]]
 
-               [c/button {:size :sm
-                          :variant :primary
-                          :on-click #(rf/dispatch [:malli/infer-schema])} "Infer Schema"]
+              [c/button {:size :sm
+                         :variant :primary
+                         :on-click #(rf/dispatch [:malli/infer-schema])} "Infer Schema"]
 
-               [:div {:class (str "ml-4 text-xs " t/text-secondary " hidden md:block")}
-                "CLI: " [:code {:class "bg-black/20 p-1 rounded"} "bb -x bb-web-ds-tools.cli.malli/infer"]]]]
-   :editors [{:value inference-input
-              :language (case input-format
-                          :edn "clojure"
-                          :json "json"
-                          "plaintext")
-              :options {:rulers [80] :lineNumbers "off"}
-              :on-change #(rf/dispatch [:malli/update-inference-input %])
-              :height "85vh"}]
-   :output inferred-schema})
+              [:div {:class (str "ml-4 text-xs " t/text-secondary " hidden md:block")}
+               "CLI: " [:code {:class "bg-black/20 p-1 rounded"} "bb -x bb-web-ds-tools.cli.malli/infer"]]]]
+   :title "Input Data"
+   :wiki-key :malli
+   :editor [editor/monaco-editor
+            {:value inference-input
+             :language (case input-format
+                         :edn "clojure"
+                         :json "json"
+                         "plaintext")
+             :options {:rulers [80] :lineNumbers "off"}
+             :on-change #(rf/dispatch [:malli/update-inference-input %])}]
+   :output [portal-panel inferred-schema]})
 
 (defn get-generation-props
   "Generates props for the unified view in Generation mode."
   [{:keys [schema-text generated-data samples gen-fmt]}]
-  {:controls [:<>
-              [l/flex-row {:class "items-center gap-2"}
-               [c/label "Schema (EDN)"]
-               [c/help-button
-                {:href (nav/get-wiki-url :malli)
-                 :title "Help: Malli Generation"
-                 :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100 mb-2"}]]
-              [l/flex-row {:class "items-center gap-2 flex-wrap"}
-               ;; Samples count
-               [:div {:class "flex items-center gap-1"}
-                [:span {:class "text-xs"} "Samples:"]
-                [c/input {:type "number"
-                          :class "w-16 py-1 px-2 text-sm" ;; Standardized
-                          :min "1"
-                          :max "100"
-                          :value samples
-                          :on-change #(rf/dispatch [:malli/set-generation-samples (.. % -target -value)])}]]
-               ;; Format selection
-               [:div {:class "flex items-center gap-1"}
-                [:span {:class "text-xs"} "Format:"]
-                [c/select {:class "py-1 px-2 text-sm" ;; Standardized
-                           :value gen-fmt
-                           :on-change #(rf/dispatch [:malli/set-generation-format (keyword (.. % -target -value))])}
-                 [:option {:value "edn"} "EDN"]
-                 [:option {:value "json"} "JSON"]]]
-               ;; Generate Button
-               [c/button {:size :sm
-                          :variant :primary
-                          :on-click #(rf/dispatch [:malli/parse-schema-and-generate])} "Generate"]
-               [c/button {:size :sm
-                          :on-click #(rf/dispatch [:malli/save-dataset])} "Save to Datasets"]
+  {:actions [:<>
+             [l/flex-row {:class "items-center gap-2 flex-wrap"}
+              ;; Samples count
+              [:div {:class "flex items-center gap-1"}
+               [:span {:class "text-xs"} "Samples:"]
+               [c/input {:type "number"
+                         :class "w-16 py-1 px-2 text-sm" ;; Standardized
+                         :min "1"
+                         :max "100"
+                         :value samples
+                         :on-change #(rf/dispatch [:malli/set-generation-samples (.. % -target -value)])}]]
+              ;; Format selection
+              [:div {:class "flex items-center gap-1"}
+               [:span {:class "text-xs"} "Format:"]
+               [c/select {:class "py-1 px-2 text-sm" ;; Standardized
+                          :value gen-fmt
+                          :on-change #(rf/dispatch [:malli/set-generation-format (keyword (.. % -target -value))])}
+                [:option {:value "edn"} "EDN"]
+                [:option {:value "json"} "JSON"]]]
+              ;; Generate Button
+              [c/button {:size :sm
+                         :variant :primary
+                         :on-click #(rf/dispatch [:malli/parse-schema-and-generate])} "Generate"]
+              [c/button {:size :sm
+                         :on-click #(rf/dispatch [:malli/save-dataset])} "Save to Datasets"]
 
-               [:div {:class (str "ml-4 text-xs " t/text-secondary " hidden md:block")}
-                "CLI: " [:code {:class "bg-black/20 p-1 rounded"} "bb -x bb-web-ds-tools.cli.malli/generate"]]]]
-   :editors [{:value schema-text
-              :language "clojure"
-              :options {:rulers [80]}
-              :on-change #(rf/dispatch [:malli/update-schema-text %])
-              :height "85vh"}]
-   :output generated-data})
+              [:div {:class (str "ml-4 text-xs " t/text-secondary " hidden md:block")}
+               "CLI: " [:code {:class "bg-black/20 p-1 rounded"} "bb -x bb-web-ds-tools.cli.malli/generate"]]]]
+   :title "Schema (EDN)"
+   :wiki-key :malli
+   :editor [editor/monaco-editor
+            {:value schema-text
+             :language "clojure"
+             :options {:rulers [80]}
+             :on-change #(rf/dispatch [:malli/update-schema-text %])}]
+   :output [portal-panel generated-data]})
 
 (defn get-validation-props
   "Generates props for the unified view in Validation mode."
   [{:keys [schema-text inference-input input-format validation-result]}]
-  {:controls [:<>
-              [l/flex-row {:class "items-center gap-2"}
-               [c/label "Schema (EDN)"]
-               [c/help-button
-                {:href (nav/get-wiki-url :malli)
-                 :title "Help: Malli Validation"}]]
-              [c/button {:size :sm
-                         :variant :primary
-                         :on-click #(rf/dispatch [:malli/validate])} "Validate"]
+  {:actions [:<>
+             [c/button {:size :sm
+                        :variant :primary
+                        :on-click #(rf/dispatch [:malli/validate])} "Validate"]
 
-              [:div {:class (str "ml-4 text-xs " t/text-secondary " hidden md:block")}
-               "CLI: " [:code {:class "bg-black/20 p-1 rounded"} "bb -x bb-web-ds-tools.cli.malli/validate"]]]
-   :editors [{:value schema-text
-              :language "clojure"
-              :options {:rulers [80]}
-              :on-change #(rf/dispatch [:malli/update-schema-text %])
-              :height "42vh"}
-             {:label "Data to Validate"
-              :value inference-input
-              :language (case input-format :edn "clojure" :json "json" "plaintext")
-              :options {:rulers [80]}
-              :on-change #(rf/dispatch [:malli/update-inference-input %])
-              :height "42vh"}]
-   :output validation-result})
+             [:div {:class (str "ml-4 text-xs " t/text-secondary " hidden md:block")}
+              "CLI: " [:code {:class "bg-black/20 p-1 rounded"} "bb -x bb-web-ds-tools.cli.malli/validate"]]]
+   :title "Schema (EDN)"
+   :wiki-key :malli
+   :editor [:div {:class "flex flex-col h-full"}
+            [:div {:class "flex-grow flex flex-col h-1/2 border-b border-[#3f3f3f]"}
+             [editor/monaco-editor
+              {:value schema-text
+               :language "clojure"
+               :options {:rulers [80]}
+               :on-change #(rf/dispatch [:malli/update-schema-text %])}]]
+            [:div {:class "flex-grow flex flex-col h-1/2"}
+             [c/label "Data to Validate"]
+             [:div {:class "flex-grow rounded overflow-hidden"}
+              [editor/monaco-editor
+               {:value inference-input
+                :language (case input-format :edn "clojure" :json "json" "plaintext")
+                :options {:rulers [80]}
+                :on-change #(rf/dispatch [:malli/update-inference-input %])}]]]]
+   :output [portal-panel validation-result]})
 
 (defn get-json-schema-props
   "Generates props for the unified view in JSON Schema mode."
   [{:keys [schema-text json-schema-result]}]
-  {:controls [:<>
-              [l/flex-row {:class "items-center gap-2"}
-               [c/label "Schema (EDN)"]
-               [c/help-button
-                {:href (nav/get-wiki-url :malli)
-                 :title "Help: JSON Schema"}]]
-              [c/button {:size :sm
-                         :variant :primary
-                         :on-click #(rf/dispatch [:malli/transform-json])} "Transform to JSON Schema"]]
-   :editors [{:value schema-text
-              :language "clojure"
-              :options {:rulers [80]}
-              :on-change #(rf/dispatch [:malli/update-schema-text %])
-              :height "85vh"}]
-   :output json-schema-result})
+  {:actions [:<>
+             [c/button {:size :sm
+                        :variant :primary
+                        :on-click #(rf/dispatch [:malli/transform-json])} "Transform to JSON Schema"]]
+   :title "Schema (EDN)"
+   :wiki-key :malli
+   :editor [editor/monaco-editor
+            {:value schema-text
+             :language "clojure"
+             :options {:rulers [80]}
+             :on-change #(rf/dispatch [:malli/update-schema-text %])}]
+   :output [portal-panel json-schema-result]})
 
 (defn panel-render
   "Renders the main malli panel content including tabs.
@@ -538,10 +486,10 @@
       [c/nav-tabs {:tabs tabs
                    :active-tab-id active-tab
                    :class "border-b-0 bg-transparent px-0 text-xs"
-                   :on-change #(rf/dispatch [:malli/set-active-tab %])}]]
+                   :on-change #(rf/dispatch [:bb-web-ds-tools.core/navigate :malli-tab {:tab (name %)} nil])}]]
 
      [:div {:class "flex-grow overflow-hidden"}
-      [unified-view view-props]]]))
+      [tool-view view-props]]]))
 
 (defn panel
   "Main component for the Malli Tools view. Initializes state on mount.

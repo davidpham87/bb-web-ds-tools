@@ -1,7 +1,7 @@
 (ns bb-web-ds-tools.views.app-db
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
-            [cljs.reader :as reader]
+            [clojure.edn :as edn]
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.layout :as l]
             [bb-web-ds-tools.components.navigation :as nav]
@@ -35,11 +35,16 @@
  ::path-value
  (fn [db [_ path-str]]
    (try
-     (let [path (reader/read-string path-str)]
+     (let [path (edn/read-string path-str)]
        (get-in db path :bb-web-ds-tools.views.app-db/not-found))
      (catch :default _ :bb-web-ds-tools.views.app-db/error))))
 
 ;; Events
+
+(rf/reg-event-db
+ ::initialize
+ (fn [db _]
+   (update-in db [:user-input :app-db] #(merge {:watched-paths [] :active-path nil} %))))
 
 (rf/reg-event-db
  ::set-active-path

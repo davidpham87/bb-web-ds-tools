@@ -4,6 +4,7 @@
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.editor :as editor]
             [bb-web-ds-tools.components.layout :as l]
+            [bb-web-ds-tools.components.layout.tool-view :refer [tool-view]]
             [bb-web-ds-tools.components.navigation :as nav]
             [bb-web-ds-tools.theme :as t]
             [bb-web-ds-tools.portal :as portal]
@@ -154,27 +155,18 @@
         error @(rf/subscribe [::error])
         code @(rf/subscribe [::code])
         mac-os? @(rf/subscribe [::mac-os?])]
-    [l/flex-col {:class "h-full w-full"}
-     [l/flex-col {:class "h-full p-2 space-y-2"}
-      [l/flex-row {:class "justify-between"}
-       [l/flex-row {:class "items-center gap-2"}
-        (or header-content
-            [:<>
-             [c/label "R Code"]
-             [c/help-button
-              {:href (nav/get-wiki-url :code)
-               :title "Help: R (WebR)"
-               :class "!p-1 !w-5 !h-5 opacity-50 hover:opacity-100 mb-2"}]])]
-       [l/flex-row {:class "space-x-4"}
-        (when loading? [:div {:class t/text-accent} "Loading WebR..."])
-        [c/button {:on-click #(rf/dispatch [::run-code code])} "Eval"]]]
-      [:div {:class (str "flex-grow rounded overflow-hidden border " t/border-default)}
-       [editor/monaco-editor
-        {:value code
-         :language "r"
-         :options {:rulers [80] :lineNumbers "off"}
-         :on-change #(rf/dispatch [::set-code %])
-         :on-mount #(editor/setup-editor-actions % mac-os? (fn [code] (rf/dispatch [::run-code code])))}]]]]))
+    [tool-view
+     {:title "R Code"
+      :wiki-key :code
+      :editor [editor/monaco-editor
+               {:value code
+                :language "r"
+                :options {:rulers [80] :lineNumbers "off"}
+                :on-change #(rf/dispatch [::set-code %])
+                :on-mount #(editor/setup-editor-actions % mac-os? (fn [code] (rf/dispatch [::run-code code]))) }]
+      :actions [:<>
+                (when loading? [:div {:class t/text-accent} "Loading WebR..."])
+                [c/button {:on-click #(rf/dispatch [::run-code code])} "Eval"]]}] ))
 
 (defn panel
   "Main component for the R REPL view. Initializes state on mount.

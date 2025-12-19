@@ -66,12 +66,14 @@
    {:component-did-mount
     (fn [this]
       (let [[_ value viewer] (r/argv this)]
-        (rf/dispatch [::submit value viewer])))
+        (when value
+          (rf/dispatch [::submit value viewer]))))
     :component-did-update
     (fn [this [_ old-value old-viewer]]
       (let [[_ value viewer] (r/argv this)]
-        (when (or (not= value old-value)
-                  (not= viewer old-viewer))
+        (when (and value
+                   (or (not= value old-value)
+                       (not= viewer old-viewer)))
           (rf/dispatch [::submit value viewer]))))
     :reagent-render
     (fn [value viewer]
