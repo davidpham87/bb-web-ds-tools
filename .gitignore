@@ -47,3 +47,4 @@ test/js/
 verification/**/*.png
 gemini/*
 .gemini/*
+test_output.txt

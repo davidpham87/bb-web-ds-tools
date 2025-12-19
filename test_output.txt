@@ -1,0 +1,347 @@
+
+> bb-web-ds-tools@0.6.0 test
+> npx shadow-cljs compile test && npx webpack --config-name test && karma start --single-run
+
+shadow-cljs - config: /app/shadow-cljs.edn
+shadow-cljs - starting via "clojure"
+==============================================================================
+WARNING: The configured :source-paths in shadow-cljs.edn were ignored!
+         When using :deps they must be configured in deps.edn
+==============================================================================
+[:test] Compiling ...
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+[:test] Build completed. (404 files, 3 compiled, 3 warnings, 15.80s)
+
+[1m------ WARNING #1 - :infer-warning ---------------------------------------------[0m
+ File: /app/test/bb_web_ds_tools/persistence_test.cljs:10:10
+--------------------------------------------------------------------------------
+[2m   7 | [0m
+[2m   8 | (deftest test-sqlite-wasm[0m
+[2m   9 |   (async done[0m
+[1m  10 |          (go[0m
+----------------^---------------------------------------------------------------
+ [33;1mCannot infer target type in expression (. inst_39471 -oo1)[0m
+--------------------------------------------------------------------------------
+[2m  11 |            (try[0m
+[2m  12 |              (let [config (clj->js {:print (fn [x] (js/console.log "SQLite:" x))[0m
+[2m  13 |                                     :printErr (fn [x] (js/console.error "SQLite Err:" x))})[0m
+[2m  14 |                    sqlite3 (<p! (sqlite3InitModule config))][0m
+--------------------------------------------------------------------------------
+
+[1m------ WARNING #2 - :infer-warning ---------------------------------------------[0m
+ File: /app/test/bb_web_ds_tools/persistence_test.cljs:10:10
+--------------------------------------------------------------------------------
+[2m   7 | [0m
+[2m   8 | (deftest test-sqlite-wasm[0m
+[2m   9 |   (async done[0m
+[1m  10 |          (go[0m
+----------------^---------------------------------------------------------------
+ [33;1mCannot infer target type in expression (. inst_39509 -DB)[0m
+--------------------------------------------------------------------------------
+[2m  11 |            (try[0m
+[2m  12 |              (let [config (clj->js {:print (fn [x] (js/console.log "SQLite:" x))[0m
+[2m  13 |                                     :printErr (fn [x] (js/console.error "SQLite Err:" x))})[0m
+[2m  14 |                    sqlite3 (<p! (sqlite3InitModule config))][0m
+--------------------------------------------------------------------------------
+
+[1m------ WARNING #1 - :fn-deprecated ---------------------------------------------[0m
+ Resource: spec_tools/openapi/core.cljc:180:4
+--------------------------------------------------------------------------------
+[2m 177 |   can have any qualified keywords which are expanded with the[0m
+[2m 178 |   `spec-tools.openapi.core/expand` multimethod."[0m
+[2m 179 |   ([x][0m
+[1m 180 |    (openapi-spec x nil))[0m
+----------^---------------------------------------------------------------------
+ [33;1mspec-tools.openapi.core/openapi-spec is deprecated[0m
+--------------------------------------------------------------------------------
+[2m 181 |   ([x options][0m
+[2m 182 |    (expand-qualified-keywords x options)))[0m
+[2m 183 | [0m
+--------------------------------------------------------------------------------
+test:
+  assets by status 119 KiB [cached] 1 asset
+  assets by path *.js 15.4 MiB
+    assets by chunk 47.6 KiB (id hint: vendors) 2 assets
+    asset libs.js 15.3 MiB [compared for emit] (name: main)
+    asset node_modules_monaco-editor_esm_vs_basic-languages_r_r_js.libs.js 6.75 KiB [compared for emit]
+    asset node_modules_sqlite_org_sqlite-wasm_sqlite-wasm_jswasm_sqlite3-worker1_js.libs.js 4.17 KiB [compared for emit]
+  assets by path pyodide/ 11.7 MiB
+    assets by path pyodide/*.json 115 KiB
+      asset pyodide/pyodide-lock.json 112 KiB [compared for emit] [from: node_modules/pyodide/pyodide-lock.json] [copied]
+      asset pyodide/package.json 2.94 KiB [compared for emit] [from: node_modules/pyodide/package.json] [copied]
+    asset pyodide/pyodide.asm.wasm 8.25 MiB [compared for emit] [from: node_modules/pyodide/pyodide.asm.wasm] [copied]
+    asset pyodide/python_stdlib.zip 2.31 MiB [compared for emit] [from: node_modules/pyodide/python_stdlib.zip] [copied]
+    asset pyodide/pyodide.asm.js 1.02 MiB [compared for emit] [from: node_modules/pyodide/pyodide.asm.js] [copied]
+  asset sqlite3.wasm 831 KiB [compared for emit] [from: node_modules/@sqlite.org/sqlite-wasm/sqlite-wasm/jswasm/sqlite3.wasm] (auxiliary name: main)
+  runtime modules 7.56 KiB 13 modules
+  modules by path ./node_modules/monaco-editor/esm/vs/editor/ 6.6 MiB 745 modules
+  modules by path ./node_modules/monaco-editor/esm/vs/base/ 1.92 MiB (javascript) 119 KiB (asset) 241 modules
+  modules by path ./node_modules/monaco-editor/esm/vs/platform/ 994 KiB 127 modules
+  modules by path ./node_modules/js-yaml/ 108 KiB 25 modules
+  modules by path ./node_modules/monaco-editor/esm/vs/basic-languages/ 36.7 KiB 7 modules
+  modules by path ./node_modules/@sqlite.org/sqlite-wasm/ 430 KiB (javascript) 831 KiB (asset) 6 modules
+  modules by path ./node_modules/style-loader/dist/runtime/*.js 5.84 KiB 6 modules
+  modules by path ./node_modules/react-dom/ 1010 KiB 3 modules
+  modules by path ./node_modules/css-loader/dist/runtime/*.js 2.89 KiB 3 modules
+  modules by path ./node_modules/react/ 85.7 KiB 2 modules
+  modules by path ./node_modules/scheduler/ 17.3 KiB 2 modules
+  modules by path ./node_modules/monaco-editor/esm/vs/*.js 3.47 KiB 2 modules
+  modules by mime type image/svg+xml 3.17 KiB 2 modules
+  + 6 modules
+  test (webpack 5.104.0) compiled successfully in 6648 ms
+[32m19 12 2025 07:36:35.385:INFO [karma-server]: [39mKarma v6.4.4 server started at http://localhost:9876/
+[32m19 12 2025 07:36:35.389:INFO [launcher]: [39mLaunching browsers ChromeHeadlessNoSandbox with concurrency unlimited
+[32m19 12 2025 07:36:35.399:INFO [launcher]: [39mStarting browser ChromeHeadless
+[32m19 12 2025 07:36:38.446:INFO [Chrome Headless 140.0.0.0 (Linux 0.0.0)]: [39mConnected on socket BZmTvuBO_myIP596AAAB with id 32336731
+Chrome Headless 140.0.0.0 (Linux 0.0.0) WARN: [36m're-frame: overwriting', ':fx', 'handler for:', {ns: 'bb-web-ds-tools.views.gemma', name: 'load-model-fx', fqn: 'bb-web-ds-tools.views.gemma/load-model-fx', _hash: 225161033, cljs$lang$protocol_mask$partition0$: 2153775105, cljs$lang$protocol_mask$partition1$: 4096}[39m
+
+Chrome Headless 140.0.0.0 (Linux 0.0.0) WARN: [36m're-frame: overwriting', ':fx', 'handler for:', {ns: 'bb-web-ds-tools.views.gemma', name: 'generate-response-fx', fqn: 'bb-web-ds-tools.views.gemma/generate-response-fx', _hash: -476111213, cljs$lang$protocol_mask$partition0$: 2153775105, cljs$lang$protocol_mask$partition1$: 4096}[39m
+
+Chrome Headless 140.0.0.0 (Linux 0.0.0) ERROR: [36mTypeError: Cannot read properties of undefined (reading 'init')
+TypeError: Cannot read properties of undefined (reading 'init')
+    at eval (http://localhost:9876/js/cljs-runtime/shadow.module.test.append.js:2:15)
+    at eval (<anonymous>)
+    at goog.globalEval (http://localhost:9876/base/target/test/js/test.js?a07917e229da5c6f831e478d55b17c4772272dfb:451:11)
+    at env.evalLoad (http://localhost:9876/base/target/test/js/test.js?a07917e229da5c6f831e478d55b17c4772272dfb:1408:12)
+    at http://localhost:9876/base/target/test/js/test.js?a07917e229da5c6f831e478d55b17c4772272dfb:1826:12[39m
+
+Chrome Headless 140.0.0.0 (Linux 0.0.0) WARN: [36m'The above error occurred when loading "shadow.module.test.append.js". Any additional errors after that one may be the result of that failure. In general your code cannot be trusted to execute properly after such a failure. Make sure to fix the first one before looking at others.'[39m
+
+
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 0 of 65[32m SUCCESS[39m (0 secs / 0 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.card-usage-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 0 of 65[32m SUCCESS[39m (0 secs / 0 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 1 of 65[32m SUCCESS[39m (0 secs / 0.003 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 2 of 65[32m SUCCESS[39m (0 secs / 0.006 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.components.async-buffer-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 2 of 65[32m SUCCESS[39m (0 secs / 0.006 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 3 of 65[32m SUCCESS[39m (0 secs / 0.07 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 4 of 65[32m SUCCESS[39m (0 secs / 0.374 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 5 of 65[32m SUCCESS[39m (0 secs / 0.395 secs)
+[33m19 12 2025 07:36:42.795:WARN [web-server]: [39m404: /base/target/test/vendors-node_modules_monaco-editor_esm_vs_basic-languages_clojure_clojure_js.libs.js
+[33m19 12 2025 07:36:42.856:WARN [web-server]: [39m404: /base/target/test/vendors-node_modules_monaco-editor_esm_vs_basic-languages_python_python_js.libs.js
+[33m19 12 2025 07:36:42.867:WARN [web-server]: [39m404: /js/compiled/pyodide-worker.js
+[33m19 12 2025 07:36:42.902:WARN [web-server]: [39m404: /base/target/test/node_modules_monaco-editor_esm_vs_basic-languages_r_r_js.libs.js
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.components.common-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 5 of 65[32m SUCCESS[39m (0 secs / 0.395 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 6 of 65[32m SUCCESS[39m (0 secs / 0.396 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.components.honeysql-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 6 of 65[32m SUCCESS[39m (0 secs / 0.396 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 7 of 65[32m SUCCESS[39m (0 secs / 0.407 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.components.malli-gen-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 7 of 65[32m SUCCESS[39m (0 secs / 0.407 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 8 of 65[32m SUCCESS[39m (0 secs / 1.065 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 9 of 65[32m SUCCESS[39m (0 secs / 1.552 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.components.malli-inference-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 9 of 65[32m SUCCESS[39m (0 secs / 1.552 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 10 of 65[32m SUCCESS[39m (0 secs / 1.741 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.components.malli-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 10 of 65[32m SUCCESS[39m (0 secs / 1.741 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 11 of 65[32m SUCCESS[39m (0 secs / 1.745 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 12 of 65[32m SUCCESS[39m (0 secs / 1.761 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 13 of 65[32m SUCCESS[39m (0 secs / 1.823 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 14 of 65[32m SUCCESS[39m (0 secs / 1.823 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 15 of 65[32m SUCCESS[39m (0 secs / 1.824 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 16 of 65[32m SUCCESS[39m (0 secs / 1.836 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 17 of 65[32m SUCCESS[39m (0 secs / 1.847 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 18 of 65[32m SUCCESS[39m (0 secs / 1.851 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.components.navigation-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 18 of 65[32m SUCCESS[39m (0 secs / 1.851 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 19 of 65[32m SUCCESS[39m (0 secs / 1.852 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.data-sharing-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 19 of 65[32m SUCCESS[39m (0 secs / 1.852 secs)
+[1A[2KERROR: [36m'Warning: ReactDOM.render is no longer supported in React 18. Use createRoot instead. Until you switch to the new API, your app will behave as if it's running React 17. Learn more: https://reactjs.org/link/switch-to-createroot'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 19 of 65[32m SUCCESS[39m (0 secs / 1.852 secs)
+[1A[2KERROR: [36m'Warning: findDOMNode is deprecated and will be removed in the next major release. Instead, add a ref directly to the element you want to reference. Learn more about using refs safely here: https://reactjs.org/link/strict-mode-find-node%s', '
+    at monaco-editor (http://localhost:9876/js/cljs-runtime/reagent.impl.component.js:529:39)
+    at bb_web_ds_tools.components.editor.monaco_editor (http://localhost:9876/js/cljs-runtime/reagent.impl.component.js:529:39)
+    at div
+    at div
+    at bb_web_ds_tools.components.layout.flex_col (http://localhost:9876/js/cljs-runtime/reagent.impl.component.js:529:39)
+    at bb_web_ds_tools.components.layout.tool_view.tool_view (http://localhost:9876/js/cljs-runtime/reagent.impl.component.js:529:39)
+    at bb_web_ds_tools.views.repl.repl_instance (http://localhost:9876/js/cljs-runtime/reagent.impl.component.js:529:39)
+    at div
+    at div
+    at G__32306 (http://localhost:9876/js/cljs-runtime/reagent.impl.component.js:529:39)
+    at bb_web_ds_tools.views.repl.panel (http://localhost:9876/js/cljs-runtime/reagent.impl.component.js:529:39)'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 19 of 65[32m SUCCESS[39m (0 secs / 1.852 secs)
+[1A[2KERROR: [36m'Warning: unmountComponentAtNode is deprecated and will be removed in the next major release. Switch to the createRoot API. Learn more: https://reactjs.org/link/switch-to-createroot'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 19 of 65[32m SUCCESS[39m (0 secs / 1.852 secs)
+[1A[2KERROR: [36m'Warning: ReactDOM.render is no longer supported in React 18. Use createRoot instead. Until you switch to the new API, your app will behave as if it's running React 17. Learn more: https://reactjs.org/link/switch-to-createroot'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 19 of 65[32m SUCCESS[39m (0 secs / 1.852 secs)
+[1A[2KERROR: [36m'Warning: ReactDOM.render is no longer supported in React 18. Use createRoot instead. Until you switch to the new API, your app will behave as if it's running React 17. Learn more: https://reactjs.org/link/switch-to-createroot'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 19 of 65[32m SUCCESS[39m (0 secs / 1.852 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 20 of 65[32m SUCCESS[39m (0 secs / 2.099 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.datasets-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 20 of 65[32m SUCCESS[39m (0 secs / 2.099 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 21 of 65[32m SUCCESS[39m (0 secs / 2.104 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.editor-bug-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 21 of 65[32m SUCCESS[39m (0 secs / 2.104 secs)
+[1A[2KERROR: [36m'Warning: ReactDOM.render is no longer supported in React 18. Use createRoot instead. Until you switch to the new API, your app will behave as if it's running React 17. Learn more: https://reactjs.org/link/switch-to-createroot'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 21 of 65[32m SUCCESS[39m (0 secs / 2.104 secs)
+[1A[2KWARN: [36m'Could not create web worker(s). Falling back to loading web worker code in main thread, which might cause UI freezes. Please see https://github.com/microsoft/monaco-editor#faq'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 21 of 65[32m SUCCESS[39m (0 secs / 2.104 secs)
+[1A[2KWARN: [36m'You must define a function MonacoEnvironment.getWorkerUrl or MonacoEnvironment.getWorker'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 21 of 65[32m SUCCESS[39m (0 secs / 2.104 secs)
+[1A[2KERROR: [36m'Worker Error', Event{isTrusted: true}[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 21 of 65[32m SUCCESS[39m (0 secs / 2.104 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 22 of 65[32m SUCCESS[39m (0 secs / 3.122 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.events.journeys-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 22 of 65[32m SUCCESS[39m (0 secs / 3.122 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 23 of 65[32m SUCCESS[39m (0 secs / 3.167 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 24 of 65[32m SUCCESS[39m (0 secs / 3.17 secs)
+[1A[2KERROR: [36m're-frame: no', ':event', 'handler registered for:', {ns: 'bb-web-ds-tools.views.vega-lite', name: 'initialize', fqn: 'bb-web-ds-tools.views.vega-lite/initialize', _hash: 1758779882, cljs$lang$protocol_mask$partition0$: 2153775105, cljs$lang$protocol_mask$partition1$: 4096}[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 24 of 65[32m SUCCESS[39m (0 secs / 3.17 secs)
+[1A[2KERROR: [36m're-frame: while handling', {meta: null, cnt: 1, shift: 5, root: {edit: null, arr: [..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ...]}, tail: [{ns: ..., name: ..., fqn: ..., _hash: ..., cljs$lang$protocol_mask$partition0$: ..., cljs$lang$protocol_mask$partition1$: ...}], __hash: null, cljs$lang$protocol_mask$partition0$: 167666463, cljs$lang$protocol_mask$partition1$: 401412}, ', dispatch-sync was called for', {meta: null, cnt: 1, shift: 5, root: {edit: null, arr: [..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ...]}, tail: [{ns: ..., name: ..., fqn: ..., _hash: ..., cljs$lang$protocol_mask$partition0$: ..., cljs$lang$protocol_mask$partition1$: ...}], __hash: null, cljs$lang$protocol_mask$partition0$: 167666463, cljs$lang$protocol_mask$partition1$: 401412}, '. You can't call dispatch-sync within an event handler.'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 24 of 65[32m SUCCESS[39m (0 secs / 3.17 secs)
+[1A[2KERROR: [36m're-frame: no', ':event', 'handler registered for:', {ns: 'bb-web-ds-tools.views.vega-lite', name: 'initialize', fqn: 'bb-web-ds-tools.views.vega-lite/initialize', _hash: 1758779882, cljs$lang$protocol_mask$partition0$: 2153775105, cljs$lang$protocol_mask$partition1$: 4096}[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 24 of 65[32m SUCCESS[39m (0 secs / 3.17 secs)
+[1A[2KERROR: [36m're-frame: while handling', {meta: null, cnt: 1, shift: 5, root: {edit: null, arr: [..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ...]}, tail: [{ns: ..., name: ..., fqn: ..., _hash: ..., cljs$lang$protocol_mask$partition0$: ..., cljs$lang$protocol_mask$partition1$: ...}], __hash: null, cljs$lang$protocol_mask$partition0$: 167666463, cljs$lang$protocol_mask$partition1$: 401412}, ', dispatch-sync was called for', {meta: null, cnt: 1, shift: 5, root: {edit: null, arr: [..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ...]}, tail: [{ns: ..., name: ..., fqn: ..., _hash: ..., cljs$lang$protocol_mask$partition0$: ..., cljs$lang$protocol_mask$partition1$: ...}], __hash: null, cljs$lang$protocol_mask$partition0$: 167666463, cljs$lang$protocol_mask$partition1$: 401412}, '. You can't call dispatch-sync within an event handler.'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 24 of 65[32m SUCCESS[39m (0 secs / 3.17 secs)
+[1A[2KERROR: [36m're-frame: no', ':event', 'handler registered for:', {ns: 'bb-web-ds-tools.views.vega-lite', name: 'initialize', fqn: 'bb-web-ds-tools.views.vega-lite/initialize', _hash: 1758779882, cljs$lang$protocol_mask$partition0$: 2153775105, cljs$lang$protocol_mask$partition1$: 4096}[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 24 of 65[32m SUCCESS[39m (0 secs / 3.17 secs)
+[1A[2KERROR: [36m're-frame: while handling', {meta: null, cnt: 1, shift: 5, root: {edit: null, arr: [..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ...]}, tail: [{ns: ..., name: ..., fqn: ..., _hash: ..., cljs$lang$protocol_mask$partition0$: ..., cljs$lang$protocol_mask$partition1$: ...}], __hash: null, cljs$lang$protocol_mask$partition0$: 167666463, cljs$lang$protocol_mask$partition1$: 401412}, ', dispatch-sync was called for', {meta: null, cnt: 1, shift: 5, root: {edit: null, arr: [..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ...]}, tail: [{ns: ..., name: ..., fqn: ..., _hash: ..., cljs$lang$protocol_mask$partition0$: ..., cljs$lang$protocol_mask$partition1$: ...}], __hash: null, cljs$lang$protocol_mask$partition0$: 167666463, cljs$lang$protocol_mask$partition1$: 401412}, '. You can't call dispatch-sync within an event handler.'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 24 of 65[32m SUCCESS[39m (0 secs / 3.17 secs)
+[1A[2KERROR: [36m're-frame: no', ':event', 'handler registered for:', {ns: 'bb-web-ds-tools.views.vega-lite', name: 'initialize', fqn: 'bb-web-ds-tools.views.vega-lite/initialize', _hash: 1758779882, cljs$lang$protocol_mask$partition0$: 2153775105, cljs$lang$protocol_mask$partition1$: 4096}[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 24 of 65[32m SUCCESS[39m (0 secs / 3.17 secs)
+[1A[2KERROR: [36m're-frame: while handling', {meta: null, cnt: 1, shift: 5, root: {edit: null, arr: [..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ...]}, tail: [{ns: ..., name: ..., fqn: ..., _hash: ..., cljs$lang$protocol_mask$partition0$: ..., cljs$lang$protocol_mask$partition1$: ...}], __hash: null, cljs$lang$protocol_mask$partition0$: 167666463, cljs$lang$protocol_mask$partition1$: 401412}, ', dispatch-sync was called for', {meta: null, cnt: 1, shift: 5, root: {edit: null, arr: [..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ...]}, tail: [{ns: ..., name: ..., fqn: ..., _hash: ..., cljs$lang$protocol_mask$partition0$: ..., cljs$lang$protocol_mask$partition1$: ...}], __hash: null, cljs$lang$protocol_mask$partition0$: 167666463, cljs$lang$protocol_mask$partition1$: 401412}, '. You can't call dispatch-sync within an event handler.'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 24 of 65[32m SUCCESS[39m (0 secs / 3.17 secs)
+[1A[2KERROR: [36m're-frame: no', ':event', 'handler registered for:', {ns: 'bb-web-ds-tools.views.vega-lite', name: 'initialize', fqn: 'bb-web-ds-tools.views.vega-lite/initialize', _hash: 1758779882, cljs$lang$protocol_mask$partition0$: 2153775105, cljs$lang$protocol_mask$partition1$: 4096}[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 24 of 65[32m SUCCESS[39m (0 secs / 3.17 secs)
+[1A[2KERROR: [36m're-frame: while handling', {meta: null, cnt: 1, shift: 5, root: {edit: null, arr: [..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ...]}, tail: [{ns: ..., name: ..., fqn: ..., _hash: ..., cljs$lang$protocol_mask$partition0$: ..., cljs$lang$protocol_mask$partition1$: ...}], __hash: null, cljs$lang$protocol_mask$partition0$: 167666463, cljs$lang$protocol_mask$partition1$: 401412}, ', dispatch-sync was called for', {meta: null, cnt: 1, shift: 5, root: {edit: null, arr: [..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ...]}, tail: [{ns: ..., name: ..., fqn: ..., _hash: ..., cljs$lang$protocol_mask$partition0$: ..., cljs$lang$protocol_mask$partition1$: ...}], __hash: null, cljs$lang$protocol_mask$partition0$: 167666463, cljs$lang$protocol_mask$partition1$: 401412}, '. You can't call dispatch-sync within an event handler.'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 24 of 65[32m SUCCESS[39m (0 secs / 3.17 secs)
+[1A[2KERROR: [36m're-frame: no', ':event', 'handler registered for:', {ns: 'bb-web-ds-tools.views.vega-lite', name: 'initialize', fqn: 'bb-web-ds-tools.views.vega-lite/initialize', _hash: 1758779882, cljs$lang$protocol_mask$partition0$: 2153775105, cljs$lang$protocol_mask$partition1$: 4096}[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 24 of 65[32m SUCCESS[39m (0 secs / 3.17 secs)
+[1A[2KERROR: [36m're-frame: while handling', {meta: null, cnt: 1, shift: 5, root: {edit: null, arr: [..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ...]}, tail: [{ns: ..., name: ..., fqn: ..., _hash: ..., cljs$lang$protocol_mask$partition0$: ..., cljs$lang$protocol_mask$partition1$: ...}], __hash: null, cljs$lang$protocol_mask$partition0$: 167666463, cljs$lang$protocol_mask$partition1$: 401412}, ', dispatch-sync was called for', {meta: null, cnt: 1, shift: 5, root: {edit: null, arr: [..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ...]}, tail: [{ns: ..., name: ..., fqn: ..., _hash: ..., cljs$lang$protocol_mask$partition0$: ..., cljs$lang$protocol_mask$partition1$: ...}], __hash: null, cljs$lang$protocol_mask$partition0$: 167666463, cljs$lang$protocol_mask$partition1$: 401412}, '. You can't call dispatch-sync within an event handler.'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 24 of 65[32m SUCCESS[39m (0 secs / 3.17 secs)
+[1A[2KERROR: [36m're-frame: no', ':event', 'handler registered for:', {ns: 'bb-web-ds-tools.views.vega-lite', name: 'initialize', fqn: 'bb-web-ds-tools.views.vega-lite/initialize', _hash: 1758779882, cljs$lang$protocol_mask$partition0$: 2153775105, cljs$lang$protocol_mask$partition1$: 4096}[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 24 of 65[32m SUCCESS[39m (0 secs / 3.17 secs)
+[1A[2KERROR: [36m're-frame: while handling', {meta: null, cnt: 1, shift: 5, root: {edit: null, arr: [..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ...]}, tail: [{ns: ..., name: ..., fqn: ..., _hash: ..., cljs$lang$protocol_mask$partition0$: ..., cljs$lang$protocol_mask$partition1$: ...}], __hash: null, cljs$lang$protocol_mask$partition0$: 167666463, cljs$lang$protocol_mask$partition1$: 401412}, ', dispatch-sync was called for', {meta: null, cnt: 1, shift: 5, root: {edit: null, arr: [..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ...]}, tail: [{ns: ..., name: ..., fqn: ..., _hash: ..., cljs$lang$protocol_mask$partition0$: ..., cljs$lang$protocol_mask$partition1$: ...}], __hash: null, cljs$lang$protocol_mask$partition0$: 167666463, cljs$lang$protocol_mask$partition1$: 401412}, '. You can't call dispatch-sync within an event handler.'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 24 of 65[32m SUCCESS[39m (0 secs / 3.17 secs)
+[1A[2KERROR: [36m're-frame: no subscription handler registered for: :bb-web-ds-tools.views.vega-lite/user-input-root. Returning a nil subscription.'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 24 of 65[32m SUCCESS[39m (0 secs / 3.17 secs)
+[1A[2KLOG: [36m'Failed journey execution:'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 24 of 65[32m SUCCESS[39m (0 secs / 3.17 secs)
+[1A[2KLOG: [36m'Last event: [:bb-web-ds-tools.views.vega-lite.events/set-data-input [8ycjM9Tsl56n]]'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 24 of 65[32m SUCCESS[39m (0 secs / 3.17 secs)
+[1A[2KLOG: [36m'Error: Error at step 1: :bb-web-ds-tools.core/navigate [:vega-lite {} nil]'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 24 of 65[32m SUCCESS[39m (0 secs / 3.17 secs)
+[1A[2KLOG: [36m'Journey: ([:bb-web-ds-tools.core/navigate [:settings nil {}]] [:bb-web-ds-tools.core/navigate [:vega-lite {} nil]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["bEX3Lzf7ZhIBNhQVAgB69o"]] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["0Xv9kzfKT"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["fZ4MDW3U1m057imvaLsB8L9lbPjk"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["ng6ss0uuru"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-mode [:edn]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["W4LrOGxVB3n3A5"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["4FqF9GqTidyJIW6J"]] [:bb-web-ds-tools.views.vega-lite.events/set-format [:edn]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["qg5ORNqfUthzfi94oy6hl7MZ2"]] [:bb-web-ds-tools.views.vega-lite.events/set-format [:edn]] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["4I6l5AKQw9841bA7MJ9t3zH4zBfWu"]] [:bb-web-ds-tools.core/navigate [:vega-lite {} nil]] [:bb-web-ds-tools.views.vega-lite.events/import-dataset []] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["9OUNh8cRxd8WM7x601dVXab"]] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["mkji3H08J0jW0w6h8h712P8ZG9504"]] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["OtrdU9rD2XXmmJCl"]] [:bb-web-ds-tools.views.vega-lite.events/set-active-config-name ["vzXS0vB66"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["IWvKomda359l0j7x5AeB89D"]] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["X"]] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["7hiud51BTmDOT6BTRlEal"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-mode [:edn]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["D"]] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["SKwOD32Hz"]] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["DDek8BxmrHcGg0359P3YPzyd8"]] [:bb-web-ds-tools.views.vega-lite.events/set-active-config-name ["87p1977sTU6"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["945vk4u7N16B"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["621xfN9Bj10409N33v"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["7Lnr6NqaHNAqN9oZ8Y4QbAOU"]] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["tsKQ03DBPk144BSr"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["Su5bD9aMLX8"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["x6UqTUY26"]] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["v77D2J"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["fQw5q5KzJdv303609zFcgHF0mfS"]] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["12M27DLN1jN8"]] [:bb-web-ds-tools.views.vega-lite.events/import-dataset []] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["Pk4o04433Zmq2Sk1MY6qp"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-mode [:json]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["2i8Vo5cUak2P"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["FSZY3nTfq5"]] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["8g9z7479i5NN3AzKP0MmYbD2"]] [:bb-web-ds-tools.views.vega-lite.events/set-active-config-name ["s4UCRlYZmYVO9y4lRPlaQtl63"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["9K8j3fxjZ3yI4"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["LC3wyio8oZIkV028cO68v37rB"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["SMqo7r4oCMUdDF6UMr4IX"]] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["wE3G2bM1uufkOr0H"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["h5LH"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["5F7kSz27e18yH3"]] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["8ycjM9Tsl56n"]])'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 24 of 65[32m SUCCESS[39m (0 secs / 3.17 secs)
+[1A[2K[31mChrome Headless 140.0.0.0 (Linux 0.0.0) bb-web-ds-tools.events.journeys-test journey-execution-test FAILED[39m
+	FAIL in   (journey-execution-test) (bb_web_ds_tools/events/journeys_test.cljs:184:11)
+	"Executes generated journeys against the app-db using test.check"
+	(:result result) failed with false
+	 message: Generative test failed: {:total-nodes-visited 0, :depth 0, :pass? false, :result false, :result-data nil, :time-shrinking-ms 0, :smallest [([:bb-web-ds-tools.core/navigate [:settings nil {}]] [:bb-web-ds-tools.core/navigate [:vega-lite {} nil]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["bEX3Lzf7ZhIBNhQVAgB69o"]] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["0Xv9kzfKT"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["fZ4MDW3U1m057imvaLsB8L9lbPjk"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["ng6ss0uuru"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-mode [:edn]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["W4LrOGxVB3n3A5"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["4FqF9GqTidyJIW6J"]] [:bb-web-ds-tools.views.vega-lite.events/set-format [:edn]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["qg5ORNqfUthzfi94oy6hl7MZ2"]] [:bb-web-ds-tools.views.vega-lite.events/set-format [:edn]] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["4I6l5AKQw9841bA7MJ9t3zH4zBfWu"]] [:bb-web-ds-tools.core/navigate [:vega-lite {} nil]] [:bb-web-ds-tools.views.vega-lite.events/import-dataset []] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["9OUNh8cRxd8WM7x601dVXab"]] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["mkji3H08J0jW0w6h8h712P8ZG9504"]] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["OtrdU9rD2XXmmJCl"]] [:bb-web-ds-tools.views.vega-lite.events/set-active-config-name ["vzXS0vB66"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["IWvKomda359l0j7x5AeB89D"]] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["X"]] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["7hiud51BTmDOT6BTRlEal"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-mode [:edn]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["D"]] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["SKwOD32Hz"]] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["DDek8BxmrHcGg0359P3YPzyd8"]] [:bb-web-ds-tools.views.vega-lite.events/set-active-config-name ["87p1977sTU6"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["945vk4u7N16B"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["621xfN9Bj10409N33v"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["7Lnr6NqaHNAqN9oZ8Y4QbAOU"]] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["tsKQ03DBPk144BSr"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["Su5bD9aMLX8"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["x6UqTUY26"]] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["v77D2J"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["fQw5q5KzJdv303609zFcgHF0mfS"]] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["12M27DLN1jN8"]] [:bb-web-ds-tools.views.vega-lite.events/import-dataset []] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["Pk4o04433Zmq2Sk1MY6qp"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-mode [:json]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["2i8Vo5cUak2P"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["FSZY3nTfq5"]] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["8g9z7479i5NN3AzKP0MmYbD2"]] [:bb-web-ds-tools.views.vega-lite.events/set-active-config-name ["s4UCRlYZmYVO9y4lRPlaQtl63"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["9K8j3fxjZ3yI4"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["LC3wyio8oZIkV028cO68v37rB"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["SMqo7r4oCMUdDF6UMr4IX"]] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["wE3G2bM1uufkOr0H"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["h5LH"]] [:bb-web-ds-tools.views.vega-lite.events/set-config-input ["5F7kSz27e18yH3"]] [:bb-web-ds-tools.views.vega-lite.events/set-data-input ["8ycjM9Tsl56n"]])]}
+
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 25 of 65[31m (1 FAILED)[39m (0 secs / 3.359 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.gemma-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 25 of 65[31m (1 FAILED)[39m (0 secs / 3.359 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 26 of 65[31m (1 FAILED)[39m (0 secs / 3.36 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.impl.datasets-gen-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 26 of 65[31m (1 FAILED)[39m (0 secs / 3.36 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 27 of 65[31m (1 FAILED)[39m (0 secs / 3.82 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 28 of 65[31m (1 FAILED)[39m (0 secs / 3.934 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.persistence-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 28 of 65[31m (1 FAILED)[39m (0 secs / 3.934 secs)
+[1A[2KERROR: [36m'Exception loading sqlite3 module:', Error: Cannot find module 'sqlite3.wasm'
+Error: Cannot find module 'sqlite3.wasm'
+    at webpackEmptyContext (webpack://libs/./node_modules/@sqlite.org/sqlite-wasm/sqlite-wasm/jswasm/_sync?:2:10)
+    at Object.eval (webpack://libs/./node_modules/@sqlite.org/sqlite-wasm/sqlite-wasm/jswasm/sqlite3.mjs?:67:109)
+    at Object.callee (webpack://libs/./node_modules/@sqlite.org/sqlite-wasm/sqlite-wasm/jswasm/sqlite3.mjs?:72:26)
+    at eval (webpack://libs/./node_modules/@sqlite.org/sqlite-wasm/sqlite-wasm/jswasm/sqlite3.mjs?:334:34)
+    at new Promise (<anonymous>)
+    at createWasm (webpack://libs/./node_modules/@sqlite.org/sqlite-wasm/sqlite-wasm/jswasm/sqlite3.mjs?:333:14)
+    at sqlite3InitModule (webpack://libs/./node_modules/@sqlite.org/sqlite-wasm/sqlite-wasm/jswasm/sqlite3.mjs?:4583:23)
+    at Module.ff (webpack://libs/./node_modules/@sqlite.org/sqlite-wasm/sqlite-wasm/jswasm/sqlite3.mjs?:13603:12)
+    at switch__23839__auto__ (http://localhost:9876/js/cljs-runtime/bb_web_ds_tools.persistence_test.js:1387:71)
+    at eval (http://localhost:9876/js/cljs-runtime/bb_web_ds_tools.persistence_test.js:2365:29)[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 28 of 65[31m (1 FAILED)[39m (0 secs / 3.934 secs)
+[1A[2KWARN: [36m'SQLite WASM initialization failed (expected if WASM assets are missing in test env):', 'Promise error'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 28 of 65[31m (1 FAILED)[39m (0 secs / 3.934 secs)
+[33m19 12 2025 07:36:44.782:WARN [web-server]: [39m404: /js/compiled/sci-worker.js
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 29 of 65[31m (1 FAILED)[39m (0 secs / 3.957 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.repl-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 29 of 65[31m (1 FAILED)[39m (0 secs / 3.957 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 30 of 65[31m (1 FAILED)[39m (0 secs / 3.959 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.repro-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 30 of 65[31m (1 FAILED)[39m (0 secs / 3.959 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 31 of 65[31m (1 FAILED)[39m (0 secs / 3.959 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.runtime-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 31 of 65[31m (1 FAILED)[39m (0 secs / 3.959 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 32 of 65[31m (1 FAILED)[39m (0 secs / 3.96 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.runtime.protocol-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 32 of 65[31m (1 FAILED)[39m (0 secs / 3.96 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 33 of 65[31m (1 FAILED)[39m (0 secs / 3.96 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.runtime.webr-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 33 of 65[31m (1 FAILED)[39m (0 secs / 3.96 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 34 of 65[31m (1 FAILED)[39m (0 secs / 3.961 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 35 of 65[31m (1 FAILED)[39m (0 secs / 3.962 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.theme-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 35 of 65[31m (1 FAILED)[39m (0 secs / 3.962 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 36 of 65[31m (1 FAILED)[39m (0 secs / 3.963 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 37 of 65[31m (1 FAILED)[39m (0 secs / 3.964 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.time-inference-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 37 of 65[31m (1 FAILED)[39m (0 secs / 3.964 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 38 of 65[31m (1 FAILED)[39m (0 secs / 3.972 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.utils.dataset-processing-comprehensive-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 38 of 65[31m (1 FAILED)[39m (0 secs / 3.972 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 39 of 65[31m (1 FAILED)[39m (0 secs / 3.972 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 40 of 65[31m (1 FAILED)[39m (0 secs / 3.972 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 41 of 65[31m (1 FAILED)[39m (0 secs / 3.973 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 42 of 65[31m (1 FAILED)[39m (0 secs / 3.974 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 43 of 65[31m (1 FAILED)[39m (0 secs / 3.975 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 44 of 65[31m (1 FAILED)[39m (0 secs / 3.975 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 45 of 65[31m (1 FAILED)[39m (0 secs / 3.978 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.utils.dataset-processing-gen-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 45 of 65[31m (1 FAILED)[39m (0 secs / 3.978 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 46 of 65[31m (1 FAILED)[39m (0 secs / 6.471 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 47 of 65[31m (1 FAILED)[39m (0 secs / 9.192 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 48 of 65[31m (1 FAILED)[39m (0 secs / 9.203 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 49 of 65[31m (1 FAILED)[39m (0 secs / 14.302 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.utils.dataset-processing-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 49 of 65[31m (1 FAILED)[39m (0 secs / 14.302 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 50 of 65[31m (1 FAILED)[39m (0 secs / 14.302 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.utils.example-data-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 50 of 65[31m (1 FAILED)[39m (0 secs / 14.302 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 51 of 65[31m (1 FAILED)[39m (0 secs / 14.33 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 52 of 65[31m (1 FAILED)[39m (0 secs / 14.331 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.utils.worker-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 52 of 65[31m (1 FAILED)[39m (0 secs / 14.331 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 53 of 65[31m (1 FAILED)[39m (0 secs / 14.333 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 54 of 65[31m (1 FAILED)[39m (0 secs / 14.336 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.views.datasets-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 54 of 65[31m (1 FAILED)[39m (0 secs / 14.336 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 55 of 65[31m (1 FAILED)[39m (0 secs / 14.343 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 56 of 65[31m (1 FAILED)[39m (0 secs / 14.344 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 57 of 65[31m (1 FAILED)[39m (0 secs / 14.344 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.views.editor-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 57 of 65[31m (1 FAILED)[39m (0 secs / 14.344 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 58 of 65[31m (1 FAILED)[39m (0 secs / 14.349 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 59 of 65[31m (1 FAILED)[39m (0 secs / 14.349 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.views.gemma-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 59 of 65[31m (1 FAILED)[39m (0 secs / 14.349 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 60 of 65[31m (1 FAILED)[39m (0 secs / 14.354 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.views.honeysql-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 60 of 65[31m (1 FAILED)[39m (0 secs / 14.354 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 61 of 65[31m (1 FAILED)[39m (0 secs / 14.362 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.views.malli-feature-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 61 of 65[31m (1 FAILED)[39m (0 secs / 14.362 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 62 of 65[31m (1 FAILED)[39m (0 secs / 14.365 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.views.repl-selection-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 62 of 65[31m (1 FAILED)[39m (0 secs / 14.365 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 63 of 65[31m (1 FAILED)[39m (0 secs / 14.365 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.views.vega-lite-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 63 of 65[31m (1 FAILED)[39m (0 secs / 14.365 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 64 of 65[31m (1 FAILED)[39m (0 secs / 14.366 secs)
+[1A[2KLOG: [36m'Testing bb-web-ds-tools.workspaces-test'[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 64 of 65[31m (1 FAILED)[39m (0 secs / 14.366 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 65 of 65[31m (1 FAILED)[39m (0 secs / 14.379 secs)
+[1A[2KChrome Headless 140.0.0.0 (Linux 0.0.0): Executed 65 of 65[31m (1 FAILED)[39m (14.418 secs / 14.379 secs)
+[31mTOTAL: 1 FAILED, 64 SUCCESS[39m
+[1A[2KERROR: [36m'Worker Error', Event{isTrusted: true}[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 65 of 65[31m (1 FAILED)[39m (14.418 secs / 14.379 secs)
+[1A[2KWARN: [36m'Unknown worker msg:', {meta: null, cnt: 2, arr: [{ns: ..., name: ..., fqn: ..., _hash: ..., cljs$lang$protocol_mask$partition0$: ..., cljs$lang$protocol_mask$partition1$: ...}, {ns: ..., name: ..., fqn: ..., _hash: ..., cljs$lang$protocol_mask$partition0$: ..., cljs$lang$protocol_mask$partition1$: ...}, {ns: ..., name: ..., fqn: ..., _hash: ..., cljs$lang$protocol_mask$partition0$: ..., cljs$lang$protocol_mask$partition1$: ...}, 'Worker Error: '], __hash: null, cljs$lang$protocol_mask$partition0$: 16647951, cljs$lang$protocol_mask$partition1$: 401412}[39m
+Chrome Headless 140.0.0.0 (Linux 0.0.0): Executed 65 of 65[31m (1 FAILED)[39m (14.418 secs / 14.379 secs)
