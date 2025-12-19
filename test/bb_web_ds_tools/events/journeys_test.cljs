@@ -41,10 +41,10 @@
               :honeysql/component-root
               :honeysql/input
               :honeysql/output]
-   :vega-lite [:bb-web-ds-tools.views.vega-lite/user-input-root
-               :bb-web-ds-tools.views.vega-lite/component-root
-               :bb-web-ds-tools.views.vega-lite/data-input
-               :bb-web-ds-tools.views.vega-lite/config-input]
+   :vega-lite [:bb-web-ds-tools.views.vega-lite.subs/user-input-root
+               :bb-web-ds-tools.views.vega-lite.subs/component-root
+               :bb-web-ds-tools.views.vega-lite.subs/data-input
+               :bb-web-ds-tools.views.vega-lite.subs/config-input]
    :gemma [:bb-web-ds-tools.views.gemma/user-input-root
            :bb-web-ds-tools.views.gemma/component-root
            :bb-web-ds-tools.views.gemma/messages]
@@ -99,7 +99,7 @@
                   ;; This prevents subscription failures due to missing state
                   (rf/dispatch-sync [:malli/initialize])
                   (rf/dispatch-sync [:honeysql/initialize])
-                  (rf/dispatch-sync [:bb-web-ds-tools.views.vega-lite/initialize])
+                  (rf/dispatch-sync [:bb-web-ds-tools.views.vega-lite.events/initialize])
                   (rf/dispatch-sync [:bb-web-ds-tools.views.gemma/initialize])
                   (rf/dispatch-sync [:bb-web-ds-tools.views.datasets/initialize])
                   (rf/dispatch-sync [:bb-web-ds-tools.views.code/initialize])
