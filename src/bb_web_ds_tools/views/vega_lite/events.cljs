@@ -12,63 +12,77 @@
 (defonce config-chan (chan))
 (defonce loop-running? (atom false))
 
-(defn start-debounce-loop []
-  (when (compare-and-set! loop-running? false true)
-    (go
-      (loop []
-        (when-let [val (<! config-chan)]
-          (loop [v val]
-            (let [debounce-ms @(rf/subscribe [::settings-events/vega-lite-debounce-ms])
-                  timeout-ch (timeout debounce-ms)
-                  [new-val p] (alts! [config-chan timeout-ch])]
-              (if (= p timeout-ch)
-                (do
-                  (rf/dispatch [::commit-config])
-                  (recur (<! config-chan))) ;; Correctly recur to outer loop waiting for fresh input
-                (if new-val
-                  (recur new-val)
-                  (recur v)))))))))) ;; Channel closed or nil? shouldn't happen with defonce
+;; --- Effects ---
 
-(rf/reg-event-db
+(rf/reg-fx
+ :start-debounce-loop
+ (fn [_]
+   (when (compare-and-set! loop-running? false true)
+     (go
+       (loop []
+         (when-let [val (<! config-chan)]
+           (loop [v val]
+             (let [debounce-ms @(rf/subscribe [::settings-events/vega-lite-debounce-ms])
+                   timeout-ch (timeout debounce-ms)
+                   [new-val p] (alts! [config-chan timeout-ch])]
+               (if (= p timeout-ch)
+                 (do
+                   (rf/dispatch [::commit-config])
+                   (recur (<! config-chan)))
+                 (if new-val
+                   (recur new-val)
+                   (recur v)))))))))))
+
+(rf/reg-fx
+ :core-async
+ (fn [{:keys [op chan val]}]
+   (case op
+     :put! (put! chan val)
+     nil)))
+
+;; --- Events ---
+
+(rf/reg-event-fx
  ::initialize
- (fn [db _]
-   (start-debounce-loop)
+ (fn [{:keys [db]} _]
    (let [user-input-exists? (get-in db [:user-input :vega-lite])
-         component-state-exists? (common/state-key db)]
-     (cond-> db
-       (not user-input-exists?)
-       (assoc-in [:user-input :vega-lite]
-                 {:saved-configs {}
-                  :default {:data-input ""
-                            :config-input common/default-config-json
-                            :config-mode :json
-                            :active-config-name nil}})
+         component-state-exists? (common/state-key db)
+         new-db (cond-> db
+                  (not user-input-exists?)
+                  (assoc-in [:user-input :vega-lite]
+                            {:saved-configs {}
+                             :default {:data-input ""
+                                       :config-input common/default-config-json
+                                       :config-mode :json
+                                       :active-config-name nil}})
 
-       (not component-state-exists?)
-       (assoc common/state-key
-              {:format :csv
-               :structure :columnar
-               :parsed-data nil
-               :inferred-schema nil
-               :active-left-tab :data
-               :active-right-tab :plot})
+                  (not component-state-exists?)
+                  (assoc common/state-key
+                         {:format :csv
+                          :structure :columnar
+                          :parsed-data nil
+                          :inferred-schema nil
+                          :active-left-tab :data
+                          :active-right-tab :plot})
 
-       (not (get-in db [:runtime :vega-lite :logs]))
-       (assoc-in [:runtime :vega-lite :logs] [])
+                  (not (get-in db [:runtime :vega-lite :logs]))
+                  (assoc-in [:runtime :vega-lite :logs] [])
 
-       (not (get-in db [:runtime :vega-lite :error]))
-       (assoc-in [:runtime :vega-lite :error] nil)))))
+                  (not (get-in db [:runtime :vega-lite :error]))
+                  (assoc-in [:runtime :vega-lite :error] nil))]
+     {:db new-db
+      :start-debounce-loop nil})))
 
 (rf/reg-event-db
  ::set-data-input
  (fn [db [_ val]]
    (assoc-in db [:user-input :vega-lite :default :data-input] val)))
 
-(rf/reg-event-db
+(rf/reg-event-fx
  ::set-config-input
- (fn [db [_ val]]
-   (put! config-chan val)
-   (assoc-in db [:user-input :vega-lite :default :config-input] val)))
+ (fn [{:keys [db]} [_ val]]
+   {:db (assoc-in db [:user-input :vega-lite :default :config-input] val)
+    :core-async {:op :put! :chan config-chan :val val}}))
 
 (rf/reg-event-db
  ::set-config-mode
