@@ -145,6 +145,22 @@
         {:success false :error (str "Generation failed: " (ex-message e))}))
     {:success false :error "Invalid schema or samples."}))
 
+(declare annotate-schema)
+
+(defn- annotate-map-entry [entry maps]
+  (if (vector? entry)
+    (let [has-props? (map? (second entry))
+          k (first entry)
+          [p v-schema] (if has-props?
+                         [(second entry) (nth entry 2)]
+                         [nil (second entry)])
+          vals (map #(get % k) maps)]
+      {:type :entry
+       :key k
+       :props p
+       :child (annotate-schema v-schema vals)})
+    {:type :entry-raw :original entry}))
+
 (defn- annotate-schema
   "Recursively builds a tree of {:type ... :data ...} to align data with schema."
   [schema data]
@@ -159,18 +175,7 @@
       {:type :map
        :schema-type type
        :props props
-       :children (mapv (fn [entry]
-                         (if (vector? entry)
-                           (let [has-props? (map? (second entry))
-                                 k (first entry)
-                                 [p v-schema] (if has-props?
-                                                [(second entry) (nth entry 2)]
-                                                [nil (second entry)])
-                                 vals (map #(get % k) maps)
-                                 child-node (annotate-schema v-schema vals)]
-                             {:type :entry :key k :props p :child child-node})
-                           {:type :entry-raw :original entry}))
-                       entries)})
+       :children (mapv #(annotate-map-entry % maps) entries)})
 
     ;; Collection
     (and (vector? schema) (#{:vector :sequential :set} (first schema)))
@@ -214,6 +219,63 @@
        node))
    tree))
 
+(defn- refine-enum [node max-values]
+  (let [d (:data node)
+        strings (filter string? d)
+        distinct-vals (distinct strings)
+        unique-count (count distinct-vals)
+        total-count (count d)
+        longest-string-len (reduce max 0 (map count distinct-vals))]
+    (if (and (pos? unique-count)
+             (<= unique-count max-values)
+             (or (< unique-count (* 0.1 total-count))
+                 (< longest-string-len 60)))
+      (assoc node :schema (into [:enum] (sort distinct-vals)))
+      node)))
+
+(defn- add-min-max [node min-val max-val]
+  (let [s (:schema node)
+        existing-props (if (and (vector? s) (map? (second s))) (second s) nil)
+        new-props (merge existing-props {:min min-val :max max-val})
+        new-schema (if (vector? s)
+                     (if (map? (second s))
+                       (assoc s 1 new-props)
+                       (into [(first s) new-props] (rest s)))
+                     [s new-props])]
+    (assoc node :schema new-schema)))
+
+(defn- refine-leaf [node max-values]
+  (let [s (:schema node)
+        d (:data node)
+        s-type (if (vector? s) (first s) s)]
+    (cond
+      ;; Enum Inference
+      (or (= s-type 'string?) (= s-type :string))
+      (refine-enum node max-values)
+
+      ;; Min/Max Inference (Numbers)
+      (#{:int :double :number 'int? 'double? 'number?} s-type)
+      (let [nums (filter number? d)]
+        (if (seq nums)
+          (add-min-max node (apply min nums) (apply max nums))
+          node))
+
+      ;; Min/Max Inference (Dates)
+      (or (= s-type 'inst?) (= s-type :inst))
+      (let [dates (sort (filter inst? d))]
+        (if (seq dates)
+          (add-min-max node (first dates) (last dates))
+          node))
+
+      ;; Min/Max Inference (Time Types)
+      (#{:time/instant :time/local-date :time/local-date-time} s-type)
+      (let [times (sort compare-time (filter #(not (nil? %)) d))]
+        (if (seq times)
+          (add-min-max node (first times) (last times))
+          node))
+
+      :else node)))
+
 (defn- refine-schema-with-data
   "Refines schema by replacing string types with enums and adding min/max to numbers and dates."
   [schema data max-values]
@@ -221,75 +283,7 @@
         refined (walk/postwalk
                  (fn [node]
                    (if (and (map? node) (= :leaf (:type node)))
-                     (let [s (:schema node)
-                           d (:data node)
-                           s-type (if (vector? s) (first s) s)]
-                       (cond
-                          ;; Enum Inference
-                         (or (= s-type 'string?) (= s-type :string))
-                         (let [strings (filter string? d)
-                               distinct-vals (distinct strings)
-                               unique-count (count distinct-vals)
-                               total-count (count d)
-                               longest-string-len (reduce max 0 (map count distinct-vals))]
-                           (if (and (pos? unique-count)
-                                    (<= unique-count max-values)
-                                    (or (< unique-count (* 0.1 total-count))
-                                        (< longest-string-len 60)))
-                             (assoc node :schema (into [:enum] (sort distinct-vals)))
-                             node))
-
-                          ;; Min/Max Inference (Numbers)
-                         (#{:int :double :number 'int? 'double? 'number?} s-type)
-                         (let [nums (filter number? d)]
-                           (if (seq nums)
-                             (let [min-val (apply min nums)
-                                   max-val (apply max nums)
-                                   existing-props (if (and (vector? s) (map? (second s))) (second s) nil)
-                                   new-props (merge existing-props {:min min-val :max max-val})
-                                   new-schema (if (vector? s)
-                                                (if (map? (second s))
-                                                  (assoc s 1 new-props)
-                                                  (into [(first s) new-props] (rest s)))
-                                                [s new-props])]
-                               (assoc node :schema new-schema))
-                             node))
-
-                          ;; Min/Max Inference (Dates)
-                         (or (= s-type 'inst?) (= s-type :inst))
-                         (let [dates (filter inst? d)]
-                           (if (seq dates)
-                             (let [sorted (sort dates)
-                                   min-val (first sorted)
-                                   max-val (last sorted)
-                                   existing-props (if (and (vector? s) (map? (second s))) (second s) nil)
-                                   new-props (merge existing-props {:min min-val :max max-val})
-                                   new-schema (if (vector? s)
-                                                (if (map? (second s))
-                                                  (assoc s 1 new-props)
-                                                  (into [(first s) new-props] (rest s)))
-                                                [s new-props])]
-                               (assoc node :schema new-schema))
-                             node))
-
-                          ;; Min/Max Inference (Time Types)
-                         (#{:time/instant :time/local-date :time/local-date-time} s-type)
-                         (let [times (filter #(not (nil? %)) d)]
-                           (if (seq times)
-                             (let [sorted (sort compare-time times)
-                                   min-val (first sorted)
-                                   max-val (last sorted)
-                                   existing-props (if (and (vector? s) (map? (second s))) (second s) nil)
-                                   new-props (merge existing-props {:min min-val :max max-val})
-                                   new-schema (if (vector? s)
-                                                (if (map? (second s))
-                                                  (assoc s 1 new-props)
-                                                  (into [(first s) new-props] (rest s)))
-                                                [s new-props])]
-                               (assoc node :schema new-schema))
-                             node))
-
-                         :else node))
+                     (refine-leaf node max-values)
                      node))
                  annotated)]
     (deannotate-schema refined)))

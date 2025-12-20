@@ -64,9 +64,11 @@
   Returns:
     vector: A vector of maps."
   [data]
-  (let [header (map keyword (first data))
-        rows (rest data)]
-    (mapv (fn [row] (zipmap header row)) rows)))
+  (let [header (map keyword (first data))]
+    (into []
+          (comp (drop 1)
+                (map #(zipmap header %)))
+          data)))
 
 ;; --- Parsing Logic ---
 
@@ -146,13 +148,15 @@
     (js->clj (.-data res) :keywordize-keys true)))
 
 (defn- parse-markdown-row [line]
-  (let [parts (into [] (map str/trim) (str/split line #"\|"))
-        n (count parts)
-        start (if (and (> n 0) (empty? (nth parts 0))) 1 0)
-        end (if (and (> n 0) (empty? (peek parts))) (dec n) n)]
-    (if (< start end)
-      (subvec parts start end)
-      [])))
+  (if (str/blank? line)
+    []
+    (let [parts (str/split line #"\|")
+          first-empty? (empty? (nth parts 0 ""))
+          last-empty? (empty? (peek parts))
+          trimmed (into [] (map str/trim) parts)]
+      (cond-> trimmed
+        (and first-empty? (> (count trimmed) 0)) (subvec 1)
+        (and last-empty? (> (count trimmed) 0)) (pop)))))
 
 (defmethod parse-dataset [:markdown :columnar] [_ _ text]
   (let [lines (into [] (comp (map str/trim) (remove empty?)) (str/split-lines text))
