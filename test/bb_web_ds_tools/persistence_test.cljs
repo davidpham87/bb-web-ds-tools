@@ -26,16 +26,13 @@
                  (testing "Insert and Query Manual"
                    (.exec db "INSERT INTO datasets VALUES ('1', 'test', 'content', 123)")
                    (let [rows (.exec db "SELECT * FROM datasets" (clj->js {:returnValue "resultRows"}))]
-                     (is (= 1 (count rows)) "One row inserted")
-                     (is (= "test" (nth (first rows) 1)) "Name matches")))
+                     (is (= [["1" "test" "content" 123]] (js->clj rows)) "Row matches")))
 
                  (testing "Persist Datasets"
                    (let [datasets {"d1" {:name "My Dataset" :data [{:a 1}]}}]
                      (pfx/persist-datasets! db datasets)
                      (let [loaded (pfx/load-datasets-from-db db)]
-                       (is (= 1 (count loaded)))
-                       (is (= "My Dataset" (get-in loaded ["d1" :name])))
-                       (is (= [{:a 1}] (get-in loaded ["d1" :data]))))))
+                       (is (= datasets loaded)))))
 
                  (testing "Export DB"
                    (let [blob (pfx/export-db db)]
