@@ -5,7 +5,7 @@
             [bb-web-ds-tools.components.common :as c]
             [bb-web-ds-tools.components.editor :as editor]
             [bb-web-ds-tools.components.layout :as l]
-   [bb-web-ds-tools.components.layout.tool-view :refer [tool-view]]
+            [bb-web-ds-tools.components.layout.tool-view :refer [tool-view]]
             [bb-web-ds-tools.components.navigation :as nav]
             [bb-web-ds-tools.portal :as portal :refer [portal-frame portal-panel]]
             [bb-web-ds-tools.events.settings :as settings-events]
@@ -394,7 +394,7 @@
                      [c/button-info {:on-click #(set-state :text (dp/example-data fmt structure))}
                       "Load Local Example"]
                      (when @loading-dataset?
-                      [:span {:class "text-xs animate-pulse text-yellow-500"} "Fetching..."])]
+                       [:span {:class "text-xs animate-pulse text-yellow-500"} "Fetching..."])]
 
                     [:div {:class "flex-grow"}]
 
@@ -623,7 +623,6 @@
                                   (:csv :tsv) "csv"
                                   "plaintext")
                       :readOnly true}]]]}]))))
-
 
 (defn dataset-view
   "Renders the main view for a single dataset (table or portal).

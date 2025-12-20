@@ -33,23 +33,23 @@
   (prop/for-all [rm row-maps-gen
                  col columnar-gen
                  rows rows-gen]
-    (and (or (empty? rm) (= :row-maps (sut/detect-structure rm)))
-         (= :columnar (sut/detect-structure col))
-         (= :rows (sut/detect-structure rows)))))
+                (and (or (empty? rm) (= :row-maps (sut/detect-structure rm)))
+                     (= :columnar (sut/detect-structure col))
+                     (= :rows (sut/detect-structure rows)))))
 
 (def consistent-row-maps-gen-2
-   (gen/let [keys (gen/vector gen/keyword 1 5)
-             val-vecs (gen/vector (gen/vector simple-value-gen (count keys)))]
-     (mapv (fn [vals] (zipmap keys vals)) val-vecs)))
+  (gen/let [keys (gen/vector gen/keyword 1 5)
+            val-vecs (gen/vector (gen/vector simple-value-gen (count keys)))]
+    (mapv (fn [vals] (zipmap keys vals)) val-vecs)))
 
 (def transform-cycle-prop
   (prop/for-all [data consistent-row-maps-gen-2]
-    (let [col (sut/transform data :row-maps :columnar)
-          rows (sut/transform data :row-maps :rows)
-          back-from-col (sut/transform col :columnar :row-maps)
-          back-from-rows (sut/transform rows :rows :row-maps)]
-      (and (= data back-from-col)
-           (= data back-from-rows)))))
+                (let [col (sut/transform data :row-maps :columnar)
+                      rows (sut/transform data :row-maps :rows)
+                      back-from-col (sut/transform col :columnar :row-maps)
+                      back-from-rows (sut/transform rows :rows :row-maps)]
+                  (and (= data back-from-col)
+                       (= data back-from-rows)))))
 
 ;; --- Tests ---
 
