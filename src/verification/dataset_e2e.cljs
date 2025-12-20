@@ -22,8 +22,8 @@
             (log "Browser launched.")
 
             (.on page "console" (fn [msg]
-               (when (= "error" (.type msg))
-                 (log (str "BROWSER ERROR: " (.text msg))))))
+                                  (when (= "error" (.type msg))
+                                    (log (str "BROWSER ERROR: " (.text msg))))))
 
             (try
               (log "Navigating to root...")
@@ -37,25 +37,25 @@
 
               (log "Waiting for + New Dataset button (Sidebar)...")
               (let [new-btn (.getByRole page "button" #js {:name "+ New Dataset"})]
-                 (<p! (.waitFor new-btn #js {:timeout 10000})))
+                (<p! (.waitFor new-btn #js {:timeout 10000})))
 
               (log "Clicking + New Dataset...")
               (<p! (.click (.getByRole page "button" #js {:name "+ New Dataset"})))
 
               (log "Waiting for Create button (Importer View)...")
               (let [create-btn (.getByRole page "button" #js {:name "Create"})]
-                 (<p! (.waitFor create-btn #js {:timeout 5000})))
+                (<p! (.waitFor create-btn #js {:timeout 5000})))
 
               (log "Filling Input (Monaco)...")
               ;; Target the editor container
               (let [editor (.locator page ".monaco-editor")]
-                 (<p! (.click editor))
+                (<p! (.click editor))
                  ;; Clear existing text (Ctrl+A, Backspace)
-                 (let [body (.locator page "body")]
-                   (<p! (.press body "Control+A"))
-                   (<p! (.press body "Backspace")))
+                (let [body (.locator page "body")]
+                  (<p! (.press body "Control+A"))
+                  (<p! (.press body "Backspace")))
                  ;; Insert text with valid JSON (comma separated array)
-                 (<p! (.insertText (.-keyboard page) "{\"a\": 1, \"b\": [1, 2]}")))
+                (<p! (.insertText (.-keyboard page) "{\"a\": 1, \"b\": [1, 2]}")))
 
               (log "Selecting JSON format...")
               (<p! (.click (.getByRole page "button" #js {:name "JSON"})))
@@ -74,8 +74,8 @@
 
               (log "Verifying Export View...")
               (let [export-btn (.getByRole page "button" #js {:name "Download"})]
-                 (<p! (.waitFor export-btn #js {:timeout 5000}))
-                 (log "Download button visible."))
+                (<p! (.waitFor export-btn #js {:timeout 5000}))
+                (log "Download button visible."))
 
               (log "SUCCESS: Dataset verification passed.")
 
