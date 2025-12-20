@@ -18,12 +18,12 @@
     keyword/string/symbol: The normalized column name."
   [col-name {:keys [case output]}]
   (let [s (name col-name)
-        s-case (condp = case
+        s-case (clojure.core/case case
                  :snake_case (csk/->snake_case s)
                  :CamelCase (csk/->PascalCase s)
                  :kebab-case (csk/->kebab-case s)
                  s)]
-    (condp = output
+    (clojure.core/case output
       :keyword (keyword s-case)
       :symbol (symbol s-case)
       s-case)))
@@ -49,8 +49,8 @@
     vector: A vector of maps e.g. [{:col1 v1 :col2 v3} ...]."
   [data]
   (let [cols (keys data)
-        col-vecs (mapv data cols)
-        cnt (if (seq col-vecs) (reduce max 0 (map count col-vecs)) 0)]
+        col-vecs (vals data)
+        cnt (transduce (map count) max 0 col-vecs)]
     (mapv (fn [i]
             (zipmap cols (map #(nth % i nil) col-vecs)))
           (range cnt))))
