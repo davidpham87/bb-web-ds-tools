@@ -39,6 +39,12 @@
                       normalized (sut/normalize-row-arrays row-arrays)]
                   (= rows normalized))))
 
+(defspec parse-markdown-row-robustness-spec
+  100
+  (prop/for-all [s gen/string]
+                (let [res (#'sut/parse-markdown-row s)]
+                  (vector? res))))
+
 (deftest normalize-column-name-test
   (testing "normalize-column-name handles various cases"
     (is (= "foo_bar" (sut/normalize-column-name :foo-bar {:case :snake_case :output :string})))

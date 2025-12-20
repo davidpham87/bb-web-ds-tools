@@ -1,8 +1,9 @@
 (ns bb-web-ds-tools.components.malli-gen-test
-  (:require [cljs.test :refer [deftest is testing]]
+  (:require [clojure.test :refer [deftest is testing]]
             [clojure.test.check :as tc]
             [clojure.test.check.generators :as gen]
             [clojure.test.check.properties :as prop]
+            [clojure.test.check.clojure-test :refer [defspec]]
             [malli.core :as m]
             [malli.generator :as mg]
             [bb-web-ds-tools.components.malli :as sut]))
@@ -50,3 +51,20 @@
   (testing "Generated data validates against schema"
     (let [result (tc/quick-check 20 generation-validation-prop)]
       (is (:pass? result) (str "Failed: " (pr-str (:shrunk result)))))))
+
+(defspec infer-enum-spec
+  100
+  (prop/for-all [vals (gen/vector (gen/elements ["A" "B" "C"]) 20 50)]
+                (let [data (mapv (fn [v] {:col v}) vals)
+                      res (sut/infer-schema data)
+                      schema (:schema res)]
+                  (and (:success res)
+                       (= :map (first schema))
+                       (let [col-schema (last (first (filter #(= :col (first %)) (rest schema))))]
+                         (or (= :enum (first col-schema))
+                             ;; Sometimes if cardinality is too high relative to total it might stay string,
+                             ;; but here 3 unique vs 20-50 total should always trigger enum logic
+                             ;; (3 < 200 max-values, 3 < 0.1 * 20 is FALSE... wait)
+                             ;; The logic is: (or (< unique-count (* 0.1 total-count)) (< longest-string-len 60))
+                             ;; "A" len is 1 < 60. So it should be enum.
+                             (= :enum (first col-schema))))))))
