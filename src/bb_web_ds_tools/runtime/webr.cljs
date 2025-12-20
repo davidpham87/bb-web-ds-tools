@@ -220,6 +220,76 @@
       (catch :default _
         nil))))
 
+(defn- create-shelter [^js webr]
+  (go
+    (try
+      (let [shelter-class (get-shelter-class webr)]
+        (when shelter-class
+          (let [s (new shelter-class)]
+            (if (instance? js/Promise s)
+              (<p! s)
+              (do
+                (when (exists? (.-init s))
+                  (<p! (init-obj s)))
+                s)))))
+      (catch :default e
+        (js/console.error "Error creating shelter" e)
+        nil))))
+
+(defn- handle-output [output]
+  (go
+    (let [msgs (<! (process-capture-msgs output))]
+      (doseq [msg msgs]
+        (when msg (portal-submit msg))))))
+
+(defn- handle-images [images opts]
+  (let [webr-settings (get opts :webr {:container-width 720
+                                       :container-height 800
+                                       :canvas-scale 0.72})
+        w (:container-width webr-settings)
+        h (:container-height webr-settings)
+        s (:canvas-scale webr-settings)]
+    (doseq [img (array-seq images)]
+      (let [data-url (image-bitmap->data-url img)
+            canvas-hiccup [:div {:style {:width w :height h}}
+                           [:canvas
+                            {:width (int (* (get-width img) s))
+                             :height (int (* (get-height img) s))
+                             :style {:background-image (str "url(" data-url ")")
+                                     :background-size "cover"}}]]]
+        (rf/dispatch [::portal/submit canvas-hiccup :portal.viewer/hiccup])))))
+
+(defn- is-dataframe? [^js shelter ^js obj]
+  (go
+    (try
+      (let [res (<p! (capture-r shelter "is.data.frame(x)" (clj->js {:env {:x obj}})))
+            result (.-result res)
+            val (<p! (to-js result))]
+        (true? val))
+      (catch :default _ false))))
+
+(defn- handle-result [^js shelter ^js result]
+  (go
+    (try
+      (let [is-df (<! (is-dataframe? shelter result))
+            js-val (if is-df
+                     (<p! (.toD3 result))
+                     (let [v (to-js result)]
+                       (if (instance? js/Promise v) (<p! v) v)))
+            clj-val (try (js->clj js-val :keywordize-keys true)
+                         (catch js/Error _ (str result)))]
+        (portal-submit {:type :result :value clj-val}))
+      (catch :default e
+        (portal-submit {:type :error :text (str "Error processing result: " e)})))))
+
+(defn- handle-error [^js webr ^js shelter e]
+  (go
+    (let [printed-error (if (and (object? e) (= (.-message e) "Promise error"))
+                          (<! (attempt-print-error webr shelter e))
+                          nil)]
+      (portal-submit {:type :error
+                      :text (or printed-error (get-error-details e))}))))
+
 (defn eval-in-main
   "Evaluates R code in the main thread using WebR.
 
@@ -233,65 +303,16 @@
   [code & [opts]]
   (if @webr-instance
     (go
-      (try
-        (portal-submit {:type :code :text code})
-        (let [webr @webr-instance
-              shelter-class (get-shelter-class webr)]
-          (if shelter-class
-            (let [s (new shelter-class)
-                  shelter (try
-                            (if (instance? js/Promise s)
-                              (<p! s)
-                              (do
-                                (when (exists? (.-init s))
-                                  (<p! (init-obj s)))
-                                s))
-                            (catch :default e (throw e)))]
-              (try
-                (let [res (<p! (capture-r shelter code (clj->js {:autoprint true})))
-                      [output images result] (get-result-props res)
-                      ;; Use shared output processing logic
-                      output-msgs (<! (process-capture-msgs output))
-
-                      ;; Default settings
-                      webr-settings (get opts :webr {:container-width 720
-                                                     :container-height 800
-                                                     :canvas-scale 0.72})
-                      container-width (:container-width webr-settings)
-                      container-height (:container-height webr-settings)
-                      canvas-scale (:canvas-scale webr-settings)]
-
-                  (doseq [res output-msgs]
-                    ;; Fix for null safety: explicitly check for non-nil results
-                    (when res
-                      (portal-submit res)))
-
-                  (doseq [img (array-seq images)]
-                    (let [data-url (image-bitmap->data-url img)
-                          canvas-hiccup [:div {:style {:width container-width :height container-height}}
-                                         [:canvas
-                                          {:width (int (* (get-width img) canvas-scale))
-                                           :height (int (* (get-height img) canvas-scale))
-                                           :style {:background-image (str "url(" data-url ")")
-                                                   :background-size "cover"}}]]]
-                      (rf/dispatch [::portal/submit canvas-hiccup :portal.viewer/hiccup])))
-
-                  (let [js-val (to-js result)
-                        val (if (instance? js/Promise js-val)
-                              (<p! js-val)
-                              js-val)
-                        clj-val (try (js->clj val :keywordize-keys true)
-                                     (catch js/Error _ (str result)))]
-                    (portal-submit {:type :result :value clj-val})))
-                (catch :default e
-                  (let [printed-error (if (and (object? e) (= (.-message e) "Promise error"))
-                                        (<! (attempt-print-error webr shelter e))
-                                        nil)]
-                    (portal-submit {:type :error
-                                    :text (or printed-error (get-error-details e))})))
-                (finally
-                  (purge-shelter shelter))))
-            (throw (js/Error. "Shelter not found on WebR instance"))))
-        (catch :default e
-          (portal-submit {:type :error :text (str e)}))))
+      (portal-submit {:type :code :text code})
+      (if-let [shelter (<! (create-shelter @webr-instance))]
+        (try
+          (let [res (<p! (capture-r shelter code (clj->js {:autoprint true})))
+                [output images result] (get-result-props res)]
+            (<! (handle-output output))
+            (handle-images images opts)
+            (<! (handle-result shelter result)))
+          (catch :default e
+            (<! (handle-error @webr-instance shelter e)))
+          (finally (purge-shelter shelter)))
+        (portal-submit {:type :error :text "Failed to create shelter"})))
     (portal-submit {:type :error :text "WebR not loaded"})))
