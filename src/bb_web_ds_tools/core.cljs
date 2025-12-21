@@ -91,8 +91,14 @@
                       (and tab (#{:malli :malli-tab} route-name))
                       (conj [:malli/set-active-tab (keyword tab)])
 
+                      (and (not tab) (#{:malli :malli-tab} route-name))
+                      (conj [:malli/set-active-tab :inference])
+
                       (and tab (#{:code :code-tab} route-name))
-                      (conj [:bb-web-ds-tools.views.code/set-active-tab (keyword tab)]))]
+                      (conj [:bb-web-ds-tools.views.code/set-active-tab (keyword tab)])
+
+                      (and (not tab) (#{:code :code-tab} route-name))
+                      (conj [:bb-web-ds-tools.views.code/set-active-tab :clojure-repl]))]
      {:db (assoc db :current-route match)
       :dispatch-n dispatches})))
 
