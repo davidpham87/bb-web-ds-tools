@@ -18,12 +18,12 @@
     keyword/string/symbol: The normalized column name."
   [col-name {:keys [case output]}]
   (let [s (name col-name)
-        s-case (condp = case
+        s-case (clojure.core/case case
                  :snake_case (csk/->snake_case s)
                  :CamelCase (csk/->PascalCase s)
                  :kebab-case (csk/->kebab-case s)
                  s)]
-    (condp = output
+    (clojure.core/case output
       :keyword (keyword s-case)
       :symbol (symbol s-case)
       s-case)))
@@ -49,8 +49,8 @@
     vector: A vector of maps e.g. [{:col1 v1 :col2 v3} ...]."
   [data]
   (let [cols (keys data)
-        col-vecs (mapv data cols)
-        cnt (if (seq col-vecs) (reduce max 0 (map count col-vecs)) 0)]
+        col-vecs (vals data)
+        cnt (transduce (map count) max 0 col-vecs)]
     (mapv (fn [i]
             (zipmap cols (map #(nth % i nil) col-vecs)))
           (range cnt))))
@@ -64,9 +64,11 @@
   Returns:
     vector: A vector of maps."
   [data]
-  (let [header (map keyword (first data))
-        rows (rest data)]
-    (mapv (fn [row] (zipmap header row)) rows)))
+  (let [header (map keyword (first data))]
+    (into []
+          (comp (drop 1)
+                (map #(zipmap header %)))
+          data)))
 
 ;; --- Parsing Logic ---
 
@@ -146,13 +148,15 @@
     (js->clj (.-data res) :keywordize-keys true)))
 
 (defn- parse-markdown-row [line]
-  (let [parts (into [] (map str/trim) (str/split line #"\|"))
-        n (count parts)
-        start (if (and (> n 0) (empty? (nth parts 0))) 1 0)
-        end (if (and (> n 0) (empty? (peek parts))) (dec n) n)]
-    (if (< start end)
-      (subvec parts start end)
-      [])))
+  (if (str/blank? line)
+    []
+    (let [parts (str/split line #"\|")
+          first-empty? (empty? (nth parts 0 ""))
+          last-empty? (empty? (peek parts))
+          trimmed (into [] (map str/trim) parts)]
+      (cond-> trimmed
+        (and first-empty? (> (count trimmed) 0)) (subvec 1)
+        (and last-empty? (> (count trimmed) 0)) (pop)))))
 
 (defmethod parse-dataset [:markdown :columnar] [_ _ text]
   (let [lines (into [] (comp (map str/trim) (remove empty?)) (str/split-lines text))

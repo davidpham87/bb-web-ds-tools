@@ -24,11 +24,11 @@
                                :active-tab-id :tab1
                                :on-change identity
                                :on-add identity})]
-         (is (vector? hiccup))
-         (is (= :div (first hiccup)))
-         (is (string? (:class (second hiccup))))
+        (is (vector? hiccup))
+        (is (= :div (first hiccup)))
+        (is (string? (:class (second hiccup))))
          ;; Check if it contains the tabs
-         (is (some #(= "Tab 1" %) (tree-seq coll? seq hiccup)))))))
+        (is (some #(= "Tab 1" %) (tree-seq coll? seq hiccup)))))))
 
 (deftest collapsible-card-test
   (testing "collapsible-card structure"

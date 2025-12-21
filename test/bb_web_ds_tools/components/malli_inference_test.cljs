@@ -64,6 +64,4 @@
             data (vec (mapcat (fn [v] (repeat 2 {:a v})) unique-vals))
             res (sut/infer-schema data)
             schema (:schema res)]
-        (is (= :string (get-field-schema schema :a)))))
-  )
-)
+        (is (= :string (get-field-schema schema :a)))))))

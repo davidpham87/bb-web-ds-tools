@@ -72,8 +72,8 @@
       (async done
              (a/take! (webr/eval-in-main "1 + 1")
                       (fn [_]
-                        (is (some #(= % [:bb-web-ds-tools.portal/submit "1 + 1" :portal.viewer/code])
-                                  @dispatched) "Code should be submitted")
-                        (is (= (last @dispatched) [:bb-web-ds-tools.portal/submit 42 :portal.viewer/edn]))
+                        (is (= [[:bb-web-ds-tools.portal/submit "1 + 1" :portal.viewer/code]
+                                [:bb-web-ds-tools.portal/submit 42 :portal.viewer/edn]]
+                               @dispatched) "Code and result should be submitted")
                         (set! rf/dispatch orig-dispatch)
                         (done)))))))

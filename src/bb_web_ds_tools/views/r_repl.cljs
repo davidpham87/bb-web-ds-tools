@@ -163,10 +163,10 @@
                 :language "r"
                 :options {:rulers [80] :lineNumbers "off"}
                 :on-change #(rf/dispatch [::set-code %])
-                :on-mount #(editor/setup-editor-actions % mac-os? (fn [code] (rf/dispatch [::run-code code]))) }]
+                :on-mount #(editor/setup-editor-actions % mac-os? (fn [code] (rf/dispatch [::run-code code])))}]
       :actions [:<>
                 (when loading? [:div {:class t/text-accent} "Loading WebR..."])
-                [c/button {:on-click #(rf/dispatch [::run-code code])} "Eval"]]}] ))
+                [c/button {:on-click #(rf/dispatch [::run-code code])} "Eval"]]}]))
 
 (defn panel
   "Main component for the R REPL view. Initializes state on mount.
