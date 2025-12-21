@@ -58,11 +58,11 @@ return [bb_web_ds_tools.components.navigation.wiki_base_url,cljs.core.str.cljs$c
  */
 bb_web_ds_tools.components.navigation.menu_button = (function bb_web_ds_tools$components$navigation$menu_button(){
 var with_let21911 = reagent.ratom.with_let_values(new cljs.core.Keyword(null,"with-let21911","with-let21911",1910669394));
-var temp__5829__auto___21925 = reagent.ratom._STAR_ratom_context_STAR_;
-if((temp__5829__auto___21925 == null)){
+var temp__5829__auto___21928 = reagent.ratom._STAR_ratom_context_STAR_;
+if((temp__5829__auto___21928 == null)){
 } else {
-var c__20234__auto___21926 = temp__5829__auto___21925;
-if((with_let21911.generation === c__20234__auto___21926.ratomGeneration)){
+var c__20234__auto___21929 = temp__5829__auto___21928;
+if((with_let21911.generation === c__20234__auto___21929.ratomGeneration)){
 if(reagent.debug.has_console){
 ((reagent.debug.tracking)?reagent.debug.track_console:console).error(["Warning: The same with-let is being used more ","than once in the same reactive context."].join(''));
 } else {
@@ -70,7 +70,7 @@ if(reagent.debug.has_console){
 } else {
 }
 
-(with_let21911.generation = c__20234__auto___21926.ratomGeneration);
+(with_let21911.generation = c__20234__auto___21929.ratomGeneration);
 }
 
 var init21912 = (with_let21911.length === (0));
@@ -145,14 +145,14 @@ return cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(db,new cljs.core.Persisten
  */
 bb_web_ds_tools.components.navigation.portal_to_top_bar = (function bb_web_ds_tools$components$navigation$portal_to_top_bar(var_args){
 var args__5755__auto__ = [];
-var len__5749__auto___21942 = arguments.length;
-var i__5750__auto___21943 = (0);
+var len__5749__auto___21938 = arguments.length;
+var i__5750__auto___21941 = (0);
 while(true){
-if((i__5750__auto___21943 < len__5749__auto___21942)){
-args__5755__auto__.push((arguments[i__5750__auto___21943]));
+if((i__5750__auto___21941 < len__5749__auto___21938)){
+args__5755__auto__.push((arguments[i__5750__auto___21941]));
 
-var G__21944 = (i__5750__auto___21943 + (1));
-i__5750__auto___21943 = G__21944;
+var G__21942 = (i__5750__auto___21941 + (1));
+i__5750__auto___21941 = G__21942;
 continue;
 } else {
 }

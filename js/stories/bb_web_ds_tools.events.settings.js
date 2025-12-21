@@ -55,10 +55,10 @@ var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20797,(0),null);
 var case_val = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20797,(1),null);
 return cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"settings","settings",1556144875),new cljs.core.Keyword(null,"column-normalizer","column-normalizer",-886999739),new cljs.core.Keyword(null,"case","case",1143702196)], null),case_val);
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.events.settings","set-column-normalizer-output","bb-web-ds-tools.events.settings/set-column-normalizer-output",-483881870),(function (db,p__20801){
-var vec__20802 = p__20801;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20802,(0),null);
-var output_val = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20802,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.events.settings","set-column-normalizer-output","bb-web-ds-tools.events.settings/set-column-normalizer-output",-483881870),(function (db,p__20800){
+var vec__20801 = p__20800;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20801,(0),null);
+var output_val = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20801,(1),null);
 return cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"settings","settings",1556144875),new cljs.core.Keyword(null,"column-normalizer","column-normalizer",-886999739),new cljs.core.Keyword(null,"output","output",-1105869043)], null),output_val);
 }));
 re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.events.settings","set-active-view","bb-web-ds-tools.events.settings/set-active-view",-39580680),(function (db,p__20805){
@@ -67,10 +67,10 @@ var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20806,(0),null);
 var view_id = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20806,(1),null);
 return cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"settings","settings",1556144875),new cljs.core.Keyword(null,"active-view","active-view",-1531689252)], null),view_id);
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.events.settings","toggle-expanded-view","bb-web-ds-tools.events.settings/toggle-expanded-view",1939359027),(function (db,p__20810){
-var vec__20811 = p__20810;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20811,(0),null);
-var view_id = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20811,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.events.settings","toggle-expanded-view","bb-web-ds-tools.events.settings/toggle-expanded-view",1939359027),(function (db,p__20811){
+var vec__20812 = p__20811;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20812,(0),null);
+var view_id = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20812,(1),null);
 return cljs.core.update_in.cljs$core$IFn$_invoke$arity$3(db,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"settings","settings",1556144875),new cljs.core.Keyword(null,"expanded-views","expanded-views",1479560519)], null),(function (p1__20809_SHARP_){
 if(cljs.core.contains_QMARK_(p1__20809_SHARP_,view_id)){
 return cljs.core.disj.cljs$core$IFn$_invoke$arity$2(p1__20809_SHARP_,view_id);

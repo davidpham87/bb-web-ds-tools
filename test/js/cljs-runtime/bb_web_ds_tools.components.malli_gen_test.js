@@ -2,10 +2,10 @@ goog.provide('bb_web_ds_tools.components.malli_gen_test');
 bb_web_ds_tools.components.malli_gen_test.simple_value_gen = clojure.test.check.generators.one_of(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [clojure.test.check.generators.string,clojure.test.check.generators.boolean$], null));
 bb_web_ds_tools.components.malli_gen_test.simple_schema_gen = clojure.test.check.generators.elements(new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"string","string",-1989541586),new cljs.core.Keyword(null,"boolean","boolean",-1919418404),new cljs.core.Keyword(null,"int","int",-1741416922),new cljs.core.Keyword(null,"double","double",884886883)], null));
 bb_web_ds_tools.components.malli_gen_test.map_schema_gen = clojure.test.check.generators.fmap((function (props){
-return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"map","map",1371690461)], null),cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p__40557){
-var vec__40558 = p__40557;
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__40558,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__40558,(1),null);
+return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"map","map",1371690461)], null),cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p__42390){
+var vec__42391 = p__42390;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__42391,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__42391,(1),null);
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [k,v], null);
 }),props));
 }),clojure.test.check.generators.map.cljs$core$IFn$_invoke$arity$2(clojure.test.check.generators.keyword,bb_web_ds_tools.components.malli_gen_test.simple_schema_gen));
@@ -17,8 +17,8 @@ var result = bb_web_ds_tools.components.malli.infer_schema.cljs$core$IFn$_invoke
 var schema = (cljs.core.truth_(new cljs.core.Keyword(null,"success","success",1890645906).cljs$core$IFn$_invoke$arity$1(result))?new cljs.core.Keyword(null,"schema","schema",-1582001791).cljs$core$IFn$_invoke$arity$1(result):null);
 var and__5023__auto__ = new cljs.core.Keyword(null,"success","success",1890645906).cljs$core$IFn$_invoke$arity$1(result);
 if(cljs.core.truth_(and__5023__auto__)){
-return cljs.core.every_QMARK_((function (p1__40561_SHARP_){
-return malli.core.validate.cljs$core$IFn$_invoke$arity$2(schema,p1__40561_SHARP_);
+return cljs.core.every_QMARK_((function (p1__42394_SHARP_){
+return malli.core.validate.cljs$core$IFn$_invoke$arity$2(schema,p1__42394_SHARP_);
 }),data);
 } else {
 return and__5023__auto__;
@@ -28,8 +28,8 @@ return and__5023__auto__;
 bb_web_ds_tools.components.malli_gen_test.generation_validation_prop = clojure.test.check.properties.for_all_STAR_(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [bb_web_ds_tools.components.malli_gen_test.map_schema_gen], null),(function (schema){
 var gen_result = bb_web_ds_tools.components.malli.generate_data(schema,(10),new cljs.core.Keyword(null,"edn","edn",1317840885));
 var generated_data = new cljs.core.Keyword(null,"data","data",-232669377).cljs$core$IFn$_invoke$arity$1(gen_result);
-var validation_results = cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__40562_SHARP_){
-return bb_web_ds_tools.components.malli.validate_data(schema,p1__40562_SHARP_);
+var validation_results = cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__42398_SHARP_){
+return bb_web_ds_tools.components.malli.validate_data(schema,p1__42398_SHARP_);
 }),generated_data);
 var and__5023__auto__ = new cljs.core.Keyword(null,"success","success",1890645906).cljs$core$IFn$_invoke$arity$1(gen_result);
 if(cljs.core.truth_(and__5023__auto__)){
@@ -47,18 +47,18 @@ cljs.test.update_current_env_BANG_.cljs$core$IFn$_invoke$arity$variadic(new cljs
 try{var result = clojure.test.check.quick_check((20),bb_web_ds_tools.components.malli_gen_test.inference_validation_prop);
 try{var value__11369__auto__ = new cljs.core.Keyword(null,"pass?","pass?",-424635753).cljs$core$IFn$_invoke$arity$1(result);
 if(cljs.core.truth_(value__11369__auto__)){
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/components/malli_gen_test.cljs",26,new cljs.core.Keyword(null,"pass","pass",1574159993),11,47,cljs.core.list(new cljs.core.Keyword(null,"pass?","pass?",-424635753),new cljs.core.Symbol(null,"result","result",-1239343558,null)),47,value__11369__auto__,["Failed: ",cljs.core.pr_str.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"shrunk","shrunk",-2041664412).cljs$core$IFn$_invoke$arity$1(result)], 0))].join('')]));
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/components/malli_gen_test.cljc",26,new cljs.core.Keyword(null,"pass","pass",1574159993),11,48,cljs.core.list(new cljs.core.Keyword(null,"pass?","pass?",-424635753),new cljs.core.Symbol(null,"result","result",-1239343558,null)),48,value__11369__auto__,["Failed: ",cljs.core.pr_str.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"shrunk","shrunk",-2041664412).cljs$core$IFn$_invoke$arity$1(result)], 0))].join('')]));
 } else {
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/components/malli_gen_test.cljs",26,new cljs.core.Keyword(null,"fail","fail",1706214930),11,47,cljs.core.list(new cljs.core.Keyword(null,"pass?","pass?",-424635753),new cljs.core.Symbol(null,"result","result",-1239343558,null)),47,value__11369__auto__,["Failed: ",cljs.core.pr_str.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"shrunk","shrunk",-2041664412).cljs$core$IFn$_invoke$arity$1(result)], 0))].join('')]));
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/components/malli_gen_test.cljc",26,new cljs.core.Keyword(null,"fail","fail",1706214930),11,48,cljs.core.list(new cljs.core.Keyword(null,"pass?","pass?",-424635753),new cljs.core.Symbol(null,"result","result",-1239343558,null)),48,value__11369__auto__,["Failed: ",cljs.core.pr_str.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"shrunk","shrunk",-2041664412).cljs$core$IFn$_invoke$arity$1(result)], 0))].join('')]));
 }
 
 return value__11369__auto__;
-}catch (e40571){var t__11416__auto__ = e40571;
-return cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/components/malli_gen_test.cljs",26,new cljs.core.Keyword(null,"error","error",-978969032),11,47,cljs.core.list(new cljs.core.Keyword(null,"pass?","pass?",-424635753),new cljs.core.Symbol(null,"result","result",-1239343558,null)),47,t__11416__auto__,["Failed: ",cljs.core.pr_str.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"shrunk","shrunk",-2041664412).cljs$core$IFn$_invoke$arity$1(result)], 0))].join('')]));
+}catch (e42399){var t__11416__auto__ = e42399;
+return cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/components/malli_gen_test.cljc",26,new cljs.core.Keyword(null,"error","error",-978969032),11,48,cljs.core.list(new cljs.core.Keyword(null,"pass?","pass?",-424635753),new cljs.core.Symbol(null,"result","result",-1239343558,null)),48,t__11416__auto__,["Failed: ",cljs.core.pr_str.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"shrunk","shrunk",-2041664412).cljs$core$IFn$_invoke$arity$1(result)], 0))].join('')]));
 }}finally {cljs.test.update_current_env_BANG_(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"testing-contexts","testing-contexts",-1485646523)], null),cljs.core.rest);
 }});
 
-(bb_web_ds_tools.components.malli_gen_test.inference_validation_test.cljs$lang$var = new cljs.core.Var(function(){return bb_web_ds_tools.components.malli_gen_test.inference_validation_test;},new cljs.core.Symbol("bb-web-ds-tools.components.malli-gen-test","inference-validation-test","bb-web-ds-tools.components.malli-gen-test/inference-validation-test",-1628682967,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"bb-web-ds-tools.components.malli-gen-test","bb-web-ds-tools.components.malli-gen-test",-138650642,null),new cljs.core.Symbol(null,"inference-validation-test","inference-validation-test",444177813,null),"bb_web_ds_tools/components/malli_gen_test.cljs",35,1,44,44,cljs.core.List.EMPTY,null,(cljs.core.truth_(bb_web_ds_tools.components.malli_gen_test.inference_validation_test)?bb_web_ds_tools.components.malli_gen_test.inference_validation_test.cljs$lang$test:null)])));
+(bb_web_ds_tools.components.malli_gen_test.inference_validation_test.cljs$lang$var = new cljs.core.Var(function(){return bb_web_ds_tools.components.malli_gen_test.inference_validation_test;},new cljs.core.Symbol("bb-web-ds-tools.components.malli-gen-test","inference-validation-test","bb-web-ds-tools.components.malli-gen-test/inference-validation-test",-1628682967,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"bb-web-ds-tools.components.malli-gen-test","bb-web-ds-tools.components.malli-gen-test",-138650642,null),new cljs.core.Symbol(null,"inference-validation-test","inference-validation-test",444177813,null),"bb_web_ds_tools/components/malli_gen_test.cljc",35,1,45,45,cljs.core.List.EMPTY,null,(cljs.core.truth_(bb_web_ds_tools.components.malli_gen_test.inference_validation_test)?bb_web_ds_tools.components.malli_gen_test.inference_validation_test.cljs$lang$test:null)])));
 bb_web_ds_tools.components.malli_gen_test.generation_validation_test = (function bb_web_ds_tools$components$malli_gen_test$generation_validation_test(){
 return cljs.test.test_var(bb_web_ds_tools.components.malli_gen_test.generation_validation_test.cljs$lang$var);
 });
@@ -68,17 +68,92 @@ cljs.test.update_current_env_BANG_.cljs$core$IFn$_invoke$arity$variadic(new cljs
 try{var result = clojure.test.check.quick_check((20),bb_web_ds_tools.components.malli_gen_test.generation_validation_prop);
 try{var value__11369__auto__ = new cljs.core.Keyword(null,"pass?","pass?",-424635753).cljs$core$IFn$_invoke$arity$1(result);
 if(cljs.core.truth_(value__11369__auto__)){
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/components/malli_gen_test.cljs",26,new cljs.core.Keyword(null,"pass","pass",1574159993),11,52,cljs.core.list(new cljs.core.Keyword(null,"pass?","pass?",-424635753),new cljs.core.Symbol(null,"result","result",-1239343558,null)),52,value__11369__auto__,["Failed: ",cljs.core.pr_str.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"shrunk","shrunk",-2041664412).cljs$core$IFn$_invoke$arity$1(result)], 0))].join('')]));
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/components/malli_gen_test.cljc",26,new cljs.core.Keyword(null,"pass","pass",1574159993),11,53,cljs.core.list(new cljs.core.Keyword(null,"pass?","pass?",-424635753),new cljs.core.Symbol(null,"result","result",-1239343558,null)),53,value__11369__auto__,["Failed: ",cljs.core.pr_str.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"shrunk","shrunk",-2041664412).cljs$core$IFn$_invoke$arity$1(result)], 0))].join('')]));
 } else {
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/components/malli_gen_test.cljs",26,new cljs.core.Keyword(null,"fail","fail",1706214930),11,52,cljs.core.list(new cljs.core.Keyword(null,"pass?","pass?",-424635753),new cljs.core.Symbol(null,"result","result",-1239343558,null)),52,value__11369__auto__,["Failed: ",cljs.core.pr_str.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"shrunk","shrunk",-2041664412).cljs$core$IFn$_invoke$arity$1(result)], 0))].join('')]));
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/components/malli_gen_test.cljc",26,new cljs.core.Keyword(null,"fail","fail",1706214930),11,53,cljs.core.list(new cljs.core.Keyword(null,"pass?","pass?",-424635753),new cljs.core.Symbol(null,"result","result",-1239343558,null)),53,value__11369__auto__,["Failed: ",cljs.core.pr_str.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"shrunk","shrunk",-2041664412).cljs$core$IFn$_invoke$arity$1(result)], 0))].join('')]));
 }
 
 return value__11369__auto__;
-}catch (e40573){var t__11416__auto__ = e40573;
-return cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/components/malli_gen_test.cljs",26,new cljs.core.Keyword(null,"error","error",-978969032),11,52,cljs.core.list(new cljs.core.Keyword(null,"pass?","pass?",-424635753),new cljs.core.Symbol(null,"result","result",-1239343558,null)),52,t__11416__auto__,["Failed: ",cljs.core.pr_str.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"shrunk","shrunk",-2041664412).cljs$core$IFn$_invoke$arity$1(result)], 0))].join('')]));
+}catch (e42409){var t__11416__auto__ = e42409;
+return cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/components/malli_gen_test.cljc",26,new cljs.core.Keyword(null,"error","error",-978969032),11,53,cljs.core.list(new cljs.core.Keyword(null,"pass?","pass?",-424635753),new cljs.core.Symbol(null,"result","result",-1239343558,null)),53,t__11416__auto__,["Failed: ",cljs.core.pr_str.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"shrunk","shrunk",-2041664412).cljs$core$IFn$_invoke$arity$1(result)], 0))].join('')]));
 }}finally {cljs.test.update_current_env_BANG_(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"testing-contexts","testing-contexts",-1485646523)], null),cljs.core.rest);
 }});
 
-(bb_web_ds_tools.components.malli_gen_test.generation_validation_test.cljs$lang$var = new cljs.core.Var(function(){return bb_web_ds_tools.components.malli_gen_test.generation_validation_test;},new cljs.core.Symbol("bb-web-ds-tools.components.malli-gen-test","generation-validation-test","bb-web-ds-tools.components.malli-gen-test/generation-validation-test",-1024213253,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"bb-web-ds-tools.components.malli-gen-test","bb-web-ds-tools.components.malli-gen-test",-138650642,null),new cljs.core.Symbol(null,"generation-validation-test","generation-validation-test",1231619599,null),"bb_web_ds_tools/components/malli_gen_test.cljs",36,1,49,49,cljs.core.List.EMPTY,null,(cljs.core.truth_(bb_web_ds_tools.components.malli_gen_test.generation_validation_test)?bb_web_ds_tools.components.malli_gen_test.generation_validation_test.cljs$lang$test:null)])));
+(bb_web_ds_tools.components.malli_gen_test.generation_validation_test.cljs$lang$var = new cljs.core.Var(function(){return bb_web_ds_tools.components.malli_gen_test.generation_validation_test;},new cljs.core.Symbol("bb-web-ds-tools.components.malli-gen-test","generation-validation-test","bb-web-ds-tools.components.malli-gen-test/generation-validation-test",-1024213253,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"bb-web-ds-tools.components.malli-gen-test","bb-web-ds-tools.components.malli-gen-test",-138650642,null),new cljs.core.Symbol(null,"generation-validation-test","generation-validation-test",1231619599,null),"bb_web_ds_tools/components/malli_gen_test.cljc",36,1,50,50,cljs.core.List.EMPTY,null,(cljs.core.truth_(bb_web_ds_tools.components.malli_gen_test.generation_validation_test)?bb_web_ds_tools.components.malli_gen_test.generation_validation_test.cljs$lang$test:null)])));
+bb_web_ds_tools.components.malli_gen_test.infer_enum_spec = (function bb_web_ds_tools$components$malli_gen_test$infer_enum_spec(var_args){
+var G__42427 = arguments.length;
+switch (G__42427) {
+case 0:
+return bb_web_ds_tools.components.malli_gen_test.infer_enum_spec.cljs$core$IFn$_invoke$arity$0();
+
+break;
+default:
+var args_arr__5774__auto__ = [];
+var len__5749__auto___42480 = arguments.length;
+var i__5750__auto___42481 = (0);
+while(true){
+if((i__5750__auto___42481 < len__5749__auto___42480)){
+args_arr__5774__auto__.push((arguments[i__5750__auto___42481]));
+
+var G__42482 = (i__5750__auto___42481 + (1));
+i__5750__auto___42481 = G__42482;
+continue;
+} else {
+}
+break;
+}
+
+var argseq__5775__auto__ = ((((1) < args_arr__5774__auto__.length))?(new cljs.core.IndexedSeq(args_arr__5774__auto__.slice((1)),(0),null)):null);
+return bb_web_ds_tools.components.malli_gen_test.infer_enum_spec.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),argseq__5775__auto__);
+
+}
+});
+bb_web_ds_tools.components.malli_gen_test.infer_enum_spec.cljs$lang$test = (function (){
+return clojure.test.check.clojure_test.assert_check(cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(bb_web_ds_tools.components.malli_gen_test.infer_enum_spec.cljs$core$IFn$_invoke$arity$0(),new cljs.core.Keyword(null,"test-var","test-var",-1105918373),cljs.core.str.cljs$core$IFn$_invoke$arity$1(new cljs.core.Symbol(null,"infer-enum-spec","infer-enum-spec",-1565310350,null))));
+});
+
+(bb_web_ds_tools.components.malli_gen_test.infer_enum_spec.cljs$core$IFn$_invoke$arity$0 = (function (){
+var options__42346__auto__ = clojure.test.check.clojure_test.process_options((100));
+return cljs.core.apply.cljs$core$IFn$_invoke$arity$3(bb_web_ds_tools.components.malli_gen_test.infer_enum_spec,new cljs.core.Keyword(null,"num-tests","num-tests",2050041354).cljs$core$IFn$_invoke$arity$1(options__42346__auto__),cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.concat,options__42346__auto__));
+}));
+
+(bb_web_ds_tools.components.malli_gen_test.infer_enum_spec.cljs$core$IFn$_invoke$arity$variadic = (function (times__42347__auto__,p__42429){
+var map__42434 = p__42429;
+var map__42434__$1 = cljs.core.__destructure_map(map__42434);
+var quick_check_opts__42348__auto__ = map__42434__$1;
+var options__42346__auto__ = cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([clojure.test.check.clojure_test.process_options((100)),quick_check_opts__42348__auto__], 0));
+return cljs.core.apply.cljs$core$IFn$_invoke$arity$4(clojure.test.check.quick_check,times__42347__auto__,cljs.core.vary_meta.cljs$core$IFn$_invoke$arity$4(clojure.test.check.properties.for_all_STAR_(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [clojure.test.check.generators.vector.cljs$core$IFn$_invoke$arity$3(clojure.test.check.generators.elements(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, ["A","B","C"], null)),(20),(50))], null),(function (vals){
+var data = cljs.core.mapv.cljs$core$IFn$_invoke$arity$2((function (v){
+return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"col","col",-1959363084),v], null);
+}),vals);
+var res = bb_web_ds_tools.components.malli.infer_schema.cljs$core$IFn$_invoke$arity$1(data);
+var schema = new cljs.core.Keyword(null,"schema","schema",-1582001791).cljs$core$IFn$_invoke$arity$1(res);
+var and__5023__auto__ = new cljs.core.Keyword(null,"success","success",1890645906).cljs$core$IFn$_invoke$arity$1(res);
+if(cljs.core.truth_(and__5023__auto__)){
+var and__5023__auto____$1 = cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"map","map",1371690461),cljs.core.first(schema));
+if(and__5023__auto____$1){
+var col_schema = cljs.core.last(cljs.core.first(cljs.core.filter.cljs$core$IFn$_invoke$arity$2((function (p1__42423_SHARP_){
+return cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"col","col",-1959363084),cljs.core.first(p1__42423_SHARP_));
+}),cljs.core.rest(schema))));
+return ((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"enum","enum",1679018432),cljs.core.first(col_schema))) || (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"enum","enum",1679018432),cljs.core.first(col_schema))));
+} else {
+return and__5023__auto____$1;
+}
+} else {
+return and__5023__auto__;
+}
+})),cljs.core.assoc,new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol(null,"infer-enum-spec","infer-enum-spec",-1565310350,null)),cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.concat,options__42346__auto__));
+}));
+
+/** @this {Function} */
+(bb_web_ds_tools.components.malli_gen_test.infer_enum_spec.cljs$lang$applyTo = (function (seq42425){
+var G__42426 = cljs.core.first(seq42425);
+var seq42425__$1 = cljs.core.next(seq42425);
+var self__5734__auto__ = this;
+return self__5734__auto__.cljs$core$IFn$_invoke$arity$variadic(G__42426,seq42425__$1);
+}));
+
+(bb_web_ds_tools.components.malli_gen_test.infer_enum_spec.cljs$lang$maxFixedArity = (1));
+
 
 //# sourceMappingURL=bb_web_ds_tools.components.malli_gen_test.js.map

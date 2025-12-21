@@ -33,23 +33,23 @@ var ignore_change_QMARK_ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(false);
 var current_theme = re_frame.core.subscribe.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.events.theme","current-theme","bb-web-ds-tools.events.theme/current-theme",-1882747906)], null));
 var global_settings = re_frame.core.subscribe.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.events.settings","editor-settings","bb-web-ds-tools.events.settings/editor-settings",74758155)], null));
 return reagent.core.create_class.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null,"displayName","displayName",-809144601),"monaco-editor",new cljs.core.Keyword(null,"component-did-mount","component-did-mount",-1126910518),(function (this$){
-try{var map__22676 = reagent.core.props(this$);
-var map__22676__$1 = cljs.core.__destructure_map(map__22676);
-var value = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22676__$1,new cljs.core.Keyword(null,"value","value",305978217));
-var mode = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22676__$1,new cljs.core.Keyword(null,"mode","mode",654403691));
-var language = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22676__$1,new cljs.core.Keyword(null,"language","language",-1591107564));
-var options = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22676__$1,new cljs.core.Keyword(null,"options","options",99638489));
-var on_focus = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22676__$1,new cljs.core.Keyword(null,"on-focus","on-focus",-13737624));
-var on_blur = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22676__$1,new cljs.core.Keyword(null,"on-blur","on-blur",814300747));
-var on_mount = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22676__$1,new cljs.core.Keyword(null,"on-mount","on-mount",-1236735840));
-var on_change = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22676__$1,new cljs.core.Keyword(null,"on-change","on-change",-732046149));
+try{var map__22681 = reagent.core.props(this$);
+var map__22681__$1 = cljs.core.__destructure_map(map__22681);
+var value = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22681__$1,new cljs.core.Keyword(null,"value","value",305978217));
+var mode = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22681__$1,new cljs.core.Keyword(null,"mode","mode",654403691));
+var language = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22681__$1,new cljs.core.Keyword(null,"language","language",-1591107564));
+var options = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22681__$1,new cljs.core.Keyword(null,"options","options",99638489));
+var on_focus = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22681__$1,new cljs.core.Keyword(null,"on-focus","on-focus",-13737624));
+var on_blur = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22681__$1,new cljs.core.Keyword(null,"on-blur","on-blur",814300747));
+var on_mount = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22681__$1,new cljs.core.Keyword(null,"on-mount","on-mount",-1236735840));
+var on_change = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22681__$1,new cljs.core.Keyword(null,"on-change","on-change",-732046149));
 var node = shadow.js.shim.module$react_dom.findDOMNode(this$);
 var lang = (function (){var or__5025__auto__ = language;
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
 } else {
-var G__22678 = mode;
-switch (G__22678) {
+var G__22682 = mode;
+switch (G__22682) {
 case "application/json":
 return "json";
 
@@ -86,24 +86,24 @@ if(cljs.core.truth_(on_mount)){
 } else {
 }
 
-var sub_22706 = editor.onDidChangeModelContent((function (){
+var sub_22700 = editor.onDidChangeModelContent((function (){
 cljs.core.reset_BANG_(ignore_change_QMARK_,true);
 
-var new_val_22707 = editor.getValue();
-var temp__5825__auto___22708 = cljs.core.deref(on_change_ref);
-if(cljs.core.truth_(temp__5825__auto___22708)){
-var handler_22709 = temp__5825__auto___22708;
-if(cljs.core.vector_QMARK_(handler_22709)){
-re_frame.core.dispatch(cljs.core.conj.cljs$core$IFn$_invoke$arity$2(handler_22709,new_val_22707));
+var new_val_22701 = editor.getValue();
+var temp__5825__auto___22702 = cljs.core.deref(on_change_ref);
+if(cljs.core.truth_(temp__5825__auto___22702)){
+var handler_22703 = temp__5825__auto___22702;
+if(cljs.core.vector_QMARK_(handler_22703)){
+re_frame.core.dispatch(cljs.core.conj.cljs$core$IFn$_invoke$arity$2(handler_22703,new_val_22701));
 } else {
-(handler_22709.cljs$core$IFn$_invoke$arity$1 ? handler_22709.cljs$core$IFn$_invoke$arity$1(new_val_22707) : handler_22709.call(null,new_val_22707));
+(handler_22703.cljs$core$IFn$_invoke$arity$1 ? handler_22703.cljs$core$IFn$_invoke$arity$1(new_val_22701) : handler_22703.call(null,new_val_22701));
 }
 } else {
 }
 
 return cljs.core.reset_BANG_(ignore_change_QMARK_,false);
 }));
-cljs.core.reset_BANG_(subscription,sub_22706);
+cljs.core.reset_BANG_(subscription,sub_22700);
 
 if(cljs.core.truth_(on_focus)){
 editor.onDidFocusEditorText(on_focus);
@@ -115,33 +115,33 @@ return editor.onDidBlurEditorText(on_blur);
 } else {
 return null;
 }
-}catch (e22675){if((e22675 instanceof Error)){
-var e = e22675;
+}catch (e22678){if((e22678 instanceof Error)){
+var e = e22678;
 return console.error("Monaco initialization failed:",e);
 } else {
-throw e22675;
+throw e22678;
 
 }
-}}),new cljs.core.Keyword(null,"component-did-update","component-did-update",-1468549173),(function (this$,p__22681){
-var vec__22682 = p__22681;
-var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22682,(0),null);
-var old_props = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22682,(1),null);
-var map__22685 = reagent.core.props(this$);
-var map__22685__$1 = cljs.core.__destructure_map(map__22685);
-var value = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22685__$1,new cljs.core.Keyword(null,"value","value",305978217));
-var language = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22685__$1,new cljs.core.Keyword(null,"language","language",-1591107564));
-var mode = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22685__$1,new cljs.core.Keyword(null,"mode","mode",654403691));
-var options = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22685__$1,new cljs.core.Keyword(null,"options","options",99638489));
-var on_change = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22685__$1,new cljs.core.Keyword(null,"on-change","on-change",-732046149));
+}}),new cljs.core.Keyword(null,"component-did-update","component-did-update",-1468549173),(function (this$,p__22683){
+var vec__22684 = p__22683;
+var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22684,(0),null);
+var old_props = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22684,(1),null);
+var map__22687 = reagent.core.props(this$);
+var map__22687__$1 = cljs.core.__destructure_map(map__22687);
+var value = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22687__$1,new cljs.core.Keyword(null,"value","value",305978217));
+var language = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22687__$1,new cljs.core.Keyword(null,"language","language",-1591107564));
+var mode = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22687__$1,new cljs.core.Keyword(null,"mode","mode",654403691));
+var options = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22687__$1,new cljs.core.Keyword(null,"options","options",99638489));
+var on_change = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22687__$1,new cljs.core.Keyword(null,"on-change","on-change",-732046149));
 var editor = cljs.core.deref(editor_instance);
 var settings = cljs.core.deref(global_settings);
 cljs.core.reset_BANG_(on_change_ref,on_change);
 
 if(cljs.core.truth_(editor)){
 if(((cljs.core.not(cljs.core.deref(ignore_change_QMARK_))) && (cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(bb_web_ds_tools.components.editor.normalize_value(editor.getValue()),bb_web_ds_tools.components.editor.normalize_value(value))))){
-var model_22717 = editor.getModel();
-var full_range_22718 = model_22717.getFullModelRange();
-editor.executeEdits("update-value",cljs.core.clj__GT_js(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"range","range",1639692286),full_range_22718,new cljs.core.Keyword(null,"text","text",-1790561697),(function (){var or__5025__auto__ = value;
+var model_22704 = editor.getModel();
+var full_range_22705 = model_22704.getFullModelRange();
+editor.executeEdits("update-value",cljs.core.clj__GT_js(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"range","range",1639692286),full_range_22705,new cljs.core.Keyword(null,"text","text",-1790561697),(function (){var or__5025__auto__ = value;
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
 } else {
@@ -153,12 +153,12 @@ editor.pushUndoStop();
 } else {
 }
 
-var lang_22719 = (function (){var or__5025__auto__ = language;
+var lang_22706 = (function (){var or__5025__auto__ = language;
 if(cljs.core.truth_(or__5025__auto__)){
 return or__5025__auto__;
 } else {
-var G__22686 = mode;
-switch (G__22686) {
+var G__22688 = mode;
+switch (G__22688) {
 case "application/json":
 return "json";
 
@@ -173,13 +173,13 @@ return "clojure";
 }
 }
 })();
-var model_22720 = editor.getModel();
-var current_lang_22721 = (cljs.core.truth_(model_22720)?model_22720.getLanguageId():null);
-if(cljs.core.truth_((function (){var and__5023__auto__ = model_22720;
+var model_22707 = editor.getModel();
+var current_lang_22708 = (cljs.core.truth_(model_22707)?model_22707.getLanguageId():null);
+if(cljs.core.truth_((function (){var and__5023__auto__ = model_22707;
 if(cljs.core.truth_(and__5023__auto__)){
-var and__5023__auto____$1 = lang_22719;
+var and__5023__auto____$1 = lang_22706;
 if(cljs.core.truth_(and__5023__auto____$1)){
-return cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(current_lang_22721,lang_22719);
+return cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(current_lang_22708,lang_22706);
 } else {
 return and__5023__auto____$1;
 }
@@ -187,7 +187,7 @@ return and__5023__auto____$1;
 return and__5023__auto__;
 }
 })())){
-shadow.js.shim.module$monaco_editor$esm$vs$editor$editor_api.editor.setModelLanguage(model_22720,lang_22719);
+shadow.js.shim.module$monaco_editor$esm$vs$editor$editor_api.editor.setModelLanguage(model_22707,lang_22706);
 } else {
 }
 
@@ -197,10 +197,10 @@ return editor.updateOptions(cljs.core.clj__GT_js(new_options));
 return null;
 }
 }),new cljs.core.Keyword(null,"component-will-unmount","component-will-unmount",-2058314698),(function (this$){
-var temp__5825__auto___22734 = cljs.core.deref(subscription);
-if(cljs.core.truth_(temp__5825__auto___22734)){
-var sub_22735 = temp__5825__auto___22734;
-sub_22735.dispose();
+var temp__5825__auto___22710 = cljs.core.deref(subscription);
+if(cljs.core.truth_(temp__5825__auto___22710)){
+var sub_22711 = temp__5825__auto___22710;
+sub_22711.dispose();
 } else {
 }
 
@@ -331,8 +331,8 @@ throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$ari
 }
 })()], null),text], null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"key","key",-1516042587),cljs.core.random_uuid()], null)));
 
-var G__22778 = (i__22693 + (1));
-i__22693 = G__22778;
+var G__22713 = (i__22693 + (1));
+i__22693 = G__22713;
 continue;
 } else {
 return true;
