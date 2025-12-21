@@ -65,7 +65,7 @@
 
   :test
   {:target :browser-test
-   :ns-regexp "bb-web-ds-tools.runtime.webr-test$"
+   :ns-regexp "bb-web-ds-tools.*-test$"
    :runner-ns shadow.test.karma
    :output-to "target/test/core.js"
    :test-dir "target/test"
