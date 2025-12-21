@@ -49,54 +49,54 @@ return cljs.core.assoc_in(G__20794__$5,new cljs.core.PersistentVector(null, 2, 5
 return G__20794__$5;
 }
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.events.settings","set-column-normalizer-case","bb-web-ds-tools.events.settings/set-column-normalizer-case",1047395541),(function (db,p__20796){
-var vec__20797 = p__20796;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20797,(0),null);
-var case_val = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20797,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.events.settings","set-column-normalizer-case","bb-web-ds-tools.events.settings/set-column-normalizer-case",1047395541),(function (db,p__20797){
+var vec__20800 = p__20797;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20800,(0),null);
+var case_val = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20800,(1),null);
 return cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"settings","settings",1556144875),new cljs.core.Keyword(null,"column-normalizer","column-normalizer",-886999739),new cljs.core.Keyword(null,"case","case",1143702196)], null),case_val);
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.events.settings","set-column-normalizer-output","bb-web-ds-tools.events.settings/set-column-normalizer-output",-483881870),(function (db,p__20800){
-var vec__20801 = p__20800;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20801,(0),null);
-var output_val = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20801,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.events.settings","set-column-normalizer-output","bb-web-ds-tools.events.settings/set-column-normalizer-output",-483881870),(function (db,p__20803){
+var vec__20804 = p__20803;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20804,(0),null);
+var output_val = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20804,(1),null);
 return cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"settings","settings",1556144875),new cljs.core.Keyword(null,"column-normalizer","column-normalizer",-886999739),new cljs.core.Keyword(null,"output","output",-1105869043)], null),output_val);
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.events.settings","set-active-view","bb-web-ds-tools.events.settings/set-active-view",-39580680),(function (db,p__20805){
-var vec__20806 = p__20805;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20806,(0),null);
-var view_id = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20806,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.events.settings","set-active-view","bb-web-ds-tools.events.settings/set-active-view",-39580680),(function (db,p__20807){
+var vec__20808 = p__20807;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20808,(0),null);
+var view_id = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20808,(1),null);
 return cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"settings","settings",1556144875),new cljs.core.Keyword(null,"active-view","active-view",-1531689252)], null),view_id);
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.events.settings","toggle-expanded-view","bb-web-ds-tools.events.settings/toggle-expanded-view",1939359027),(function (db,p__20811){
-var vec__20812 = p__20811;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20812,(0),null);
-var view_id = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20812,(1),null);
-return cljs.core.update_in.cljs$core$IFn$_invoke$arity$3(db,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"settings","settings",1556144875),new cljs.core.Keyword(null,"expanded-views","expanded-views",1479560519)], null),(function (p1__20809_SHARP_){
-if(cljs.core.contains_QMARK_(p1__20809_SHARP_,view_id)){
-return cljs.core.disj.cljs$core$IFn$_invoke$arity$2(p1__20809_SHARP_,view_id);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.events.settings","toggle-expanded-view","bb-web-ds-tools.events.settings/toggle-expanded-view",1939359027),(function (db,p__20813){
+var vec__20814 = p__20813;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20814,(0),null);
+var view_id = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20814,(1),null);
+return cljs.core.update_in.cljs$core$IFn$_invoke$arity$3(db,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"settings","settings",1556144875),new cljs.core.Keyword(null,"expanded-views","expanded-views",1479560519)], null),(function (p1__20812_SHARP_){
+if(cljs.core.contains_QMARK_(p1__20812_SHARP_,view_id)){
+return cljs.core.disj.cljs$core$IFn$_invoke$arity$2(p1__20812_SHARP_,view_id);
 } else {
-return cljs.core.conj.cljs$core$IFn$_invoke$arity$2(p1__20809_SHARP_,view_id);
+return cljs.core.conj.cljs$core$IFn$_invoke$arity$2(p1__20812_SHARP_,view_id);
 }
 }));
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.events.settings","set-webr-setting","bb-web-ds-tools.events.settings/set-webr-setting",522713442),(function (db,p__20816){
-var vec__20817 = p__20816;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20817,(0),null);
-var key = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20817,(1),null);
-var val = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20817,(2),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.events.settings","set-webr-setting","bb-web-ds-tools.events.settings/set-webr-setting",522713442),(function (db,p__20819){
+var vec__20820 = p__20819;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20820,(0),null);
+var key = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20820,(1),null);
+var val = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20820,(2),null);
 return cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"settings","settings",1556144875),new cljs.core.Keyword(null,"webr","webr",-966893065),key], null),val);
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.events.settings","set-editor-setting","bb-web-ds-tools.events.settings/set-editor-setting",-1016283821),(function (db,p__20820){
-var vec__20821 = p__20820;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20821,(0),null);
-var key = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20821,(1),null);
-var val = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20821,(2),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.events.settings","set-editor-setting","bb-web-ds-tools.events.settings/set-editor-setting",-1016283821),(function (db,p__20824){
+var vec__20826 = p__20824;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20826,(0),null);
+var key = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20826,(1),null);
+var val = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20826,(2),null);
 return cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"settings","settings",1556144875),new cljs.core.Keyword(null,"editor","editor",-989377770),key], null),val);
 }));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.events.settings","set-vega-lite-debounce-ms","bb-web-ds-tools.events.settings/set-vega-lite-debounce-ms",-495917023),(function (db,p__20824){
-var vec__20825 = p__20824;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20825,(0),null);
-var val = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20825,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("bb-web-ds-tools.events.settings","set-vega-lite-debounce-ms","bb-web-ds-tools.events.settings/set-vega-lite-debounce-ms",-495917023),(function (db,p__20829){
+var vec__20830 = p__20829;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20830,(0),null);
+var val = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20830,(1),null);
 return cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"settings","settings",1556144875),new cljs.core.Keyword(null,"vega-lite-debounce-ms","vega-lite-debounce-ms",32674187)], null),parseInt(val));
 }));
 re_frame.core.reg_sub.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword("bb-web-ds-tools.events.settings","column-normalizer","bb-web-ds-tools.events.settings/column-normalizer",-462853964),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (db){

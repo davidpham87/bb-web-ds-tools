@@ -12,110 +12,110 @@ bb_web_ds_tools.events.journeys_test.generate_journey_test.cljs$lang$test = (fun
 cljs.test.update_current_env_BANG_.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"testing-contexts","testing-contexts",-1485646523)], null),cljs.core.conj,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2(["Generates a valid sequence of events"], 0));
 
 try{var journey = cljs.core.take.cljs$core$IFn$_invoke$arity$2((50),bb_web_ds_tools.events.journeys.generate_journey.cljs$core$IFn$_invoke$arity$3(bb_web_ds_tools.events.journeys.fsm,bb_web_ds_tools.events.journeys.events,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"max-steps","max-steps",1553604741),(100)], null)));
-try{var values__11365__auto___43437 = (new cljs.core.List(null,journey,null,(1),null));
-var result__11366__auto___43438 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.seq,values__11365__auto___43437);
-if(cljs.core.truth_(result__11366__auto___43438)){
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",24,new cljs.core.Keyword(null,"pass","pass",1574159993),11,72,cljs.core.list(new cljs.core.Symbol(null,"seq","seq",-177272256,null),new cljs.core.Symbol(null,"journey","journey",1837693097,null)),72,cljs.core.cons(new cljs.core.Symbol(null,"seq","seq",-177272256,null),values__11365__auto___43437),"Journey should not be empty"]));
+try{var values__11365__auto___43459 = (new cljs.core.List(null,journey,null,(1),null));
+var result__11366__auto___43460 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.seq,values__11365__auto___43459);
+if(cljs.core.truth_(result__11366__auto___43460)){
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",24,new cljs.core.Keyword(null,"pass","pass",1574159993),11,72,cljs.core.list(new cljs.core.Symbol(null,"seq","seq",-177272256,null),new cljs.core.Symbol(null,"journey","journey",1837693097,null)),72,cljs.core.cons(new cljs.core.Symbol(null,"seq","seq",-177272256,null),values__11365__auto___43459),"Journey should not be empty"]));
 } else {
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",24,new cljs.core.Keyword(null,"fail","fail",1706214930),11,72,cljs.core.list(new cljs.core.Symbol(null,"seq","seq",-177272256,null),new cljs.core.Symbol(null,"journey","journey",1837693097,null)),72,(new cljs.core.List(null,new cljs.core.Symbol(null,"not","not",1044554643,null),(new cljs.core.List(null,cljs.core.cons(new cljs.core.Symbol(null,"seq","seq",-177272256,null),values__11365__auto___43437),null,(1),null)),(2),null)),"Journey should not be empty"]));
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",24,new cljs.core.Keyword(null,"fail","fail",1706214930),11,72,cljs.core.list(new cljs.core.Symbol(null,"seq","seq",-177272256,null),new cljs.core.Symbol(null,"journey","journey",1837693097,null)),72,(new cljs.core.List(null,new cljs.core.Symbol(null,"not","not",1044554643,null),(new cljs.core.List(null,cljs.core.cons(new cljs.core.Symbol(null,"seq","seq",-177272256,null),values__11365__auto___43459),null,(1),null)),(2),null)),"Journey should not be empty"]));
 }
 
-}catch (e42733){var t__11416__auto___43439 = e42733;
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",24,new cljs.core.Keyword(null,"error","error",-978969032),11,72,cljs.core.list(new cljs.core.Symbol(null,"seq","seq",-177272256,null),new cljs.core.Symbol(null,"journey","journey",1837693097,null)),72,t__11416__auto___43439,"Journey should not be empty"]));
+}catch (e42730){var t__11416__auto___43464 = e42730;
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",24,new cljs.core.Keyword(null,"error","error",-978969032),11,72,cljs.core.list(new cljs.core.Symbol(null,"seq","seq",-177272256,null),new cljs.core.Symbol(null,"journey","journey",1837693097,null)),72,t__11416__auto___43464,"Journey should not be empty"]));
 }
-var seq__42734 = cljs.core.seq(journey);
-var chunk__42735 = null;
-var count__42736 = (0);
-var i__42737 = (0);
+var seq__42732 = cljs.core.seq(journey);
+var chunk__42733 = null;
+var count__42734 = (0);
+var i__42735 = (0);
 while(true){
-if((i__42737 < count__42736)){
-var vec__42749 = chunk__42735.cljs$core$IIndexed$_nth$arity$2(null,i__42737);
-var event = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__42749,(0),null);
-var args = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__42749,(1),null);
-var event_def_43440 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(bb_web_ds_tools.events.journeys.events,event);
-var args_schema_43449 = new cljs.core.Keyword(null,"args-gen","args-gen",305577864).cljs$core$IFn$_invoke$arity$1(event_def_43440);
-try{var value__11369__auto___43450 = event_def_43440;
-if(cljs.core.truth_(value__11369__auto___43450)){
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",24,new cljs.core.Keyword(null,"pass","pass",1574159993),15,76,new cljs.core.Symbol(null,"event-def","event-def",758693980,null),76,value__11369__auto___43450,["Event ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should exist in definitions"].join('')]));
-} else {
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",24,new cljs.core.Keyword(null,"fail","fail",1706214930),15,76,new cljs.core.Symbol(null,"event-def","event-def",758693980,null),76,value__11369__auto___43450,["Event ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should exist in definitions"].join('')]));
-}
-
-}catch (e42752){var t__11416__auto___43451 = e42752;
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",24,new cljs.core.Keyword(null,"error","error",-978969032),15,76,new cljs.core.Symbol(null,"event-def","event-def",758693980,null),76,t__11416__auto___43451,["Event ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should exist in definitions"].join('')]));
-}
-try{var values__11365__auto___43452 = (new cljs.core.List(null,args_schema_43449,(new cljs.core.List(null,args,null,(1),null)),(2),null));
-var result__11366__auto___43453 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(malli.core.validate,values__11365__auto___43452);
-if(cljs.core.truth_(result__11366__auto___43453)){
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",44,new cljs.core.Keyword(null,"pass","pass",1574159993),15,77,cljs.core.list(new cljs.core.Symbol("m","validate","m/validate",1439230545,null),new cljs.core.Symbol(null,"args-schema","args-schema",-549939071,null),new cljs.core.Symbol(null,"args","args",-1338879193,null)),77,cljs.core.cons(new cljs.core.Symbol("m","validate","m/validate",1439230545,null),values__11365__auto___43452),["Args for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should match schema"].join('')]));
-} else {
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",44,new cljs.core.Keyword(null,"fail","fail",1706214930),15,77,cljs.core.list(new cljs.core.Symbol("m","validate","m/validate",1439230545,null),new cljs.core.Symbol(null,"args-schema","args-schema",-549939071,null),new cljs.core.Symbol(null,"args","args",-1338879193,null)),77,(new cljs.core.List(null,new cljs.core.Symbol(null,"not","not",1044554643,null),(new cljs.core.List(null,cljs.core.cons(new cljs.core.Symbol("m","validate","m/validate",1439230545,null),values__11365__auto___43452),null,(1),null)),(2),null)),["Args for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should match schema"].join('')]));
-}
-
-}catch (e42755){var t__11416__auto___43454 = e42755;
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",44,new cljs.core.Keyword(null,"error","error",-978969032),15,77,cljs.core.list(new cljs.core.Symbol("m","validate","m/validate",1439230545,null),new cljs.core.Symbol(null,"args-schema","args-schema",-549939071,null),new cljs.core.Symbol(null,"args","args",-1338879193,null)),77,t__11416__auto___43454,["Args for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should match schema"].join('')]));
-}
-
-var G__43455 = seq__42734;
-var G__43456 = chunk__42735;
-var G__43457 = count__42736;
-var G__43458 = (i__42737 + (1));
-seq__42734 = G__43455;
-chunk__42735 = G__43456;
-count__42736 = G__43457;
-i__42737 = G__43458;
-continue;
-} else {
-var temp__5825__auto__ = cljs.core.seq(seq__42734);
-if(temp__5825__auto__){
-var seq__42734__$1 = temp__5825__auto__;
-if(cljs.core.chunked_seq_QMARK_(seq__42734__$1)){
-var c__5548__auto__ = cljs.core.chunk_first(seq__42734__$1);
-var G__43459 = cljs.core.chunk_rest(seq__42734__$1);
-var G__43460 = c__5548__auto__;
-var G__43461 = cljs.core.count(c__5548__auto__);
-var G__43462 = (0);
-seq__42734 = G__43459;
-chunk__42735 = G__43460;
-count__42736 = G__43461;
-i__42737 = G__43462;
-continue;
-} else {
-var vec__42757 = cljs.core.first(seq__42734__$1);
+if((i__42735 < count__42734)){
+var vec__42757 = chunk__42733.cljs$core$IIndexed$_nth$arity$2(null,i__42735);
 var event = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__42757,(0),null);
 var args = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__42757,(1),null);
-var event_def_43463 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(bb_web_ds_tools.events.journeys.events,event);
-var args_schema_43464 = new cljs.core.Keyword(null,"args-gen","args-gen",305577864).cljs$core$IFn$_invoke$arity$1(event_def_43463);
-try{var value__11369__auto___43465 = event_def_43463;
-if(cljs.core.truth_(value__11369__auto___43465)){
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",24,new cljs.core.Keyword(null,"pass","pass",1574159993),15,76,new cljs.core.Symbol(null,"event-def","event-def",758693980,null),76,value__11369__auto___43465,["Event ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should exist in definitions"].join('')]));
+var event_def_43466 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(bb_web_ds_tools.events.journeys.events,event);
+var args_schema_43467 = new cljs.core.Keyword(null,"args-gen","args-gen",305577864).cljs$core$IFn$_invoke$arity$1(event_def_43466);
+try{var value__11369__auto___43469 = event_def_43466;
+if(cljs.core.truth_(value__11369__auto___43469)){
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",24,new cljs.core.Keyword(null,"pass","pass",1574159993),15,76,new cljs.core.Symbol(null,"event-def","event-def",758693980,null),76,value__11369__auto___43469,["Event ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should exist in definitions"].join('')]));
 } else {
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",24,new cljs.core.Keyword(null,"fail","fail",1706214930),15,76,new cljs.core.Symbol(null,"event-def","event-def",758693980,null),76,value__11369__auto___43465,["Event ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should exist in definitions"].join('')]));
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",24,new cljs.core.Keyword(null,"fail","fail",1706214930),15,76,new cljs.core.Symbol(null,"event-def","event-def",758693980,null),76,value__11369__auto___43469,["Event ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should exist in definitions"].join('')]));
 }
 
-}catch (e42760){var t__11416__auto___43474 = e42760;
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",24,new cljs.core.Keyword(null,"error","error",-978969032),15,76,new cljs.core.Symbol(null,"event-def","event-def",758693980,null),76,t__11416__auto___43474,["Event ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should exist in definitions"].join('')]));
+}catch (e42760){var t__11416__auto___43471 = e42760;
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",24,new cljs.core.Keyword(null,"error","error",-978969032),15,76,new cljs.core.Symbol(null,"event-def","event-def",758693980,null),76,t__11416__auto___43471,["Event ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should exist in definitions"].join('')]));
 }
-try{var values__11365__auto___43475 = (new cljs.core.List(null,args_schema_43464,(new cljs.core.List(null,args,null,(1),null)),(2),null));
-var result__11366__auto___43476 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(malli.core.validate,values__11365__auto___43475);
-if(cljs.core.truth_(result__11366__auto___43476)){
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",44,new cljs.core.Keyword(null,"pass","pass",1574159993),15,77,cljs.core.list(new cljs.core.Symbol("m","validate","m/validate",1439230545,null),new cljs.core.Symbol(null,"args-schema","args-schema",-549939071,null),new cljs.core.Symbol(null,"args","args",-1338879193,null)),77,cljs.core.cons(new cljs.core.Symbol("m","validate","m/validate",1439230545,null),values__11365__auto___43475),["Args for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should match schema"].join('')]));
+try{var values__11365__auto___43473 = (new cljs.core.List(null,args_schema_43467,(new cljs.core.List(null,args,null,(1),null)),(2),null));
+var result__11366__auto___43474 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(malli.core.validate,values__11365__auto___43473);
+if(cljs.core.truth_(result__11366__auto___43474)){
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",44,new cljs.core.Keyword(null,"pass","pass",1574159993),15,77,cljs.core.list(new cljs.core.Symbol("m","validate","m/validate",1439230545,null),new cljs.core.Symbol(null,"args-schema","args-schema",-549939071,null),new cljs.core.Symbol(null,"args","args",-1338879193,null)),77,cljs.core.cons(new cljs.core.Symbol("m","validate","m/validate",1439230545,null),values__11365__auto___43473),["Args for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should match schema"].join('')]));
 } else {
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",44,new cljs.core.Keyword(null,"fail","fail",1706214930),15,77,cljs.core.list(new cljs.core.Symbol("m","validate","m/validate",1439230545,null),new cljs.core.Symbol(null,"args-schema","args-schema",-549939071,null),new cljs.core.Symbol(null,"args","args",-1338879193,null)),77,(new cljs.core.List(null,new cljs.core.Symbol(null,"not","not",1044554643,null),(new cljs.core.List(null,cljs.core.cons(new cljs.core.Symbol("m","validate","m/validate",1439230545,null),values__11365__auto___43475),null,(1),null)),(2),null)),["Args for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should match schema"].join('')]));
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",44,new cljs.core.Keyword(null,"fail","fail",1706214930),15,77,cljs.core.list(new cljs.core.Symbol("m","validate","m/validate",1439230545,null),new cljs.core.Symbol(null,"args-schema","args-schema",-549939071,null),new cljs.core.Symbol(null,"args","args",-1338879193,null)),77,(new cljs.core.List(null,new cljs.core.Symbol(null,"not","not",1044554643,null),(new cljs.core.List(null,cljs.core.cons(new cljs.core.Symbol("m","validate","m/validate",1439230545,null),values__11365__auto___43473),null,(1),null)),(2),null)),["Args for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should match schema"].join('')]));
 }
 
-}catch (e42761){var t__11416__auto___43477 = e42761;
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",44,new cljs.core.Keyword(null,"error","error",-978969032),15,77,cljs.core.list(new cljs.core.Symbol("m","validate","m/validate",1439230545,null),new cljs.core.Symbol(null,"args-schema","args-schema",-549939071,null),new cljs.core.Symbol(null,"args","args",-1338879193,null)),77,t__11416__auto___43477,["Args for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should match schema"].join('')]));
+}catch (e42761){var t__11416__auto___43476 = e42761;
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",44,new cljs.core.Keyword(null,"error","error",-978969032),15,77,cljs.core.list(new cljs.core.Symbol("m","validate","m/validate",1439230545,null),new cljs.core.Symbol(null,"args-schema","args-schema",-549939071,null),new cljs.core.Symbol(null,"args","args",-1338879193,null)),77,t__11416__auto___43476,["Args for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should match schema"].join('')]));
 }
 
-var G__43478 = cljs.core.next(seq__42734__$1);
-var G__43479 = null;
-var G__43480 = (0);
-var G__43481 = (0);
-seq__42734 = G__43478;
-chunk__42735 = G__43479;
-count__42736 = G__43480;
-i__42737 = G__43481;
+var G__43479 = seq__42732;
+var G__43480 = chunk__42733;
+var G__43481 = count__42734;
+var G__43482 = (i__42735 + (1));
+seq__42732 = G__43479;
+chunk__42733 = G__43480;
+count__42734 = G__43481;
+i__42735 = G__43482;
+continue;
+} else {
+var temp__5825__auto__ = cljs.core.seq(seq__42732);
+if(temp__5825__auto__){
+var seq__42732__$1 = temp__5825__auto__;
+if(cljs.core.chunked_seq_QMARK_(seq__42732__$1)){
+var c__5548__auto__ = cljs.core.chunk_first(seq__42732__$1);
+var G__43483 = cljs.core.chunk_rest(seq__42732__$1);
+var G__43484 = c__5548__auto__;
+var G__43485 = cljs.core.count(c__5548__auto__);
+var G__43486 = (0);
+seq__42732 = G__43483;
+chunk__42733 = G__43484;
+count__42734 = G__43485;
+i__42735 = G__43486;
+continue;
+} else {
+var vec__42763 = cljs.core.first(seq__42732__$1);
+var event = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__42763,(0),null);
+var args = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__42763,(1),null);
+var event_def_43487 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(bb_web_ds_tools.events.journeys.events,event);
+var args_schema_43488 = new cljs.core.Keyword(null,"args-gen","args-gen",305577864).cljs$core$IFn$_invoke$arity$1(event_def_43487);
+try{var value__11369__auto___43489 = event_def_43487;
+if(cljs.core.truth_(value__11369__auto___43489)){
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",24,new cljs.core.Keyword(null,"pass","pass",1574159993),15,76,new cljs.core.Symbol(null,"event-def","event-def",758693980,null),76,value__11369__auto___43489,["Event ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should exist in definitions"].join('')]));
+} else {
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",24,new cljs.core.Keyword(null,"fail","fail",1706214930),15,76,new cljs.core.Symbol(null,"event-def","event-def",758693980,null),76,value__11369__auto___43489,["Event ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should exist in definitions"].join('')]));
+}
+
+}catch (e42766){var t__11416__auto___43492 = e42766;
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",24,new cljs.core.Keyword(null,"error","error",-978969032),15,76,new cljs.core.Symbol(null,"event-def","event-def",758693980,null),76,t__11416__auto___43492,["Event ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should exist in definitions"].join('')]));
+}
+try{var values__11365__auto___43493 = (new cljs.core.List(null,args_schema_43488,(new cljs.core.List(null,args,null,(1),null)),(2),null));
+var result__11366__auto___43494 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(malli.core.validate,values__11365__auto___43493);
+if(cljs.core.truth_(result__11366__auto___43494)){
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",44,new cljs.core.Keyword(null,"pass","pass",1574159993),15,77,cljs.core.list(new cljs.core.Symbol("m","validate","m/validate",1439230545,null),new cljs.core.Symbol(null,"args-schema","args-schema",-549939071,null),new cljs.core.Symbol(null,"args","args",-1338879193,null)),77,cljs.core.cons(new cljs.core.Symbol("m","validate","m/validate",1439230545,null),values__11365__auto___43493),["Args for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should match schema"].join('')]));
+} else {
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",44,new cljs.core.Keyword(null,"fail","fail",1706214930),15,77,cljs.core.list(new cljs.core.Symbol("m","validate","m/validate",1439230545,null),new cljs.core.Symbol(null,"args-schema","args-schema",-549939071,null),new cljs.core.Symbol(null,"args","args",-1338879193,null)),77,(new cljs.core.List(null,new cljs.core.Symbol(null,"not","not",1044554643,null),(new cljs.core.List(null,cljs.core.cons(new cljs.core.Symbol("m","validate","m/validate",1439230545,null),values__11365__auto___43493),null,(1),null)),(2),null)),["Args for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should match schema"].join('')]));
+}
+
+}catch (e42767){var t__11416__auto___43496 = e42767;
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",44,new cljs.core.Keyword(null,"error","error",-978969032),15,77,cljs.core.list(new cljs.core.Symbol("m","validate","m/validate",1439230545,null),new cljs.core.Symbol(null,"args-schema","args-schema",-549939071,null),new cljs.core.Symbol(null,"args","args",-1338879193,null)),77,t__11416__auto___43496,["Args for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should match schema"].join('')]));
+}
+
+var G__43498 = cljs.core.next(seq__42732__$1);
+var G__43499 = null;
+var G__43507 = (0);
+var G__43508 = (0);
+seq__42732 = G__43498;
+chunk__42733 = G__43499;
+count__42734 = G__43507;
+i__42735 = G__43508;
 continue;
 }
 } else {
@@ -134,154 +134,154 @@ return cljs.test.test_var(bb_web_ds_tools.events.journeys_test.fsm_structure_tes
 bb_web_ds_tools.events.journeys_test.fsm_structure_test.cljs$lang$test = (function (){
 cljs.test.update_current_env_BANG_.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"testing-contexts","testing-contexts",-1485646523)], null),cljs.core.conj,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2(["FSM is fully connected and normalized"], 0));
 
-try{try{var values__11365__auto___43482 = (new cljs.core.List(null,bb_web_ds_tools.events.journeys.fsm,null,(1),null));
-var result__11366__auto___43483 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.map_QMARK_,values__11365__auto___43482);
-if(cljs.core.truth_(result__11366__auto___43483)){
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",23,new cljs.core.Keyword(null,"pass","pass",1574159993),9,81,cljs.core.list(new cljs.core.Symbol(null,"map?","map?",-1780568534,null),new cljs.core.Symbol("sut","fsm","sut/fsm",-1716365273,null)),81,cljs.core.cons(new cljs.core.Symbol(null,"map?","map?",-1780568534,null),values__11365__auto___43482),null]));
+try{try{var values__11365__auto___43513 = (new cljs.core.List(null,bb_web_ds_tools.events.journeys.fsm,null,(1),null));
+var result__11366__auto___43514 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.map_QMARK_,values__11365__auto___43513);
+if(cljs.core.truth_(result__11366__auto___43514)){
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",23,new cljs.core.Keyword(null,"pass","pass",1574159993),9,81,cljs.core.list(new cljs.core.Symbol(null,"map?","map?",-1780568534,null),new cljs.core.Symbol("sut","fsm","sut/fsm",-1716365273,null)),81,cljs.core.cons(new cljs.core.Symbol(null,"map?","map?",-1780568534,null),values__11365__auto___43513),null]));
 } else {
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",23,new cljs.core.Keyword(null,"fail","fail",1706214930),9,81,cljs.core.list(new cljs.core.Symbol(null,"map?","map?",-1780568534,null),new cljs.core.Symbol("sut","fsm","sut/fsm",-1716365273,null)),81,(new cljs.core.List(null,new cljs.core.Symbol(null,"not","not",1044554643,null),(new cljs.core.List(null,cljs.core.cons(new cljs.core.Symbol(null,"map?","map?",-1780568534,null),values__11365__auto___43482),null,(1),null)),(2),null)),null]));
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",23,new cljs.core.Keyword(null,"fail","fail",1706214930),9,81,cljs.core.list(new cljs.core.Symbol(null,"map?","map?",-1780568534,null),new cljs.core.Symbol("sut","fsm","sut/fsm",-1716365273,null)),81,(new cljs.core.List(null,new cljs.core.Symbol(null,"not","not",1044554643,null),(new cljs.core.List(null,cljs.core.cons(new cljs.core.Symbol(null,"map?","map?",-1780568534,null),values__11365__auto___43513),null,(1),null)),(2),null)),null]));
 }
 
-}catch (e42763){var t__11416__auto___43484 = e42763;
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",23,new cljs.core.Keyword(null,"error","error",-978969032),9,81,cljs.core.list(new cljs.core.Symbol(null,"map?","map?",-1780568534,null),new cljs.core.Symbol("sut","fsm","sut/fsm",-1716365273,null)),81,t__11416__auto___43484,null]));
+}catch (e42774){var t__11416__auto___43517 = e42774;
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",23,new cljs.core.Keyword(null,"error","error",-978969032),9,81,cljs.core.list(new cljs.core.Symbol(null,"map?","map?",-1780568534,null),new cljs.core.Symbol("sut","fsm","sut/fsm",-1716365273,null)),81,t__11416__auto___43517,null]));
 }
-var seq__42772 = cljs.core.seq(bb_web_ds_tools.events.journeys.fsm);
-var chunk__42773 = null;
-var count__42774 = (0);
-var i__42775 = (0);
+var seq__42777 = cljs.core.seq(bb_web_ds_tools.events.journeys.fsm);
+var chunk__42778 = null;
+var count__42779 = (0);
+var i__42780 = (0);
 while(true){
-if((i__42775 < count__42774)){
-var vec__42796 = chunk__42773.cljs$core$IIndexed$_nth$arity$2(null,i__42775);
+if((i__42780 < count__42779)){
+var vec__42796 = chunk__42778.cljs$core$IIndexed$_nth$arity$2(null,i__42780);
 var event = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__42796,(0),null);
 var transitions = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__42796,(1),null);
-try{var values__11365__auto___43485 = (new cljs.core.List(null,bb_web_ds_tools.events.journeys.events,(new cljs.core.List(null,event,null,(1),null)),(2),null));
-var result__11366__auto___43486 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.contains_QMARK_,values__11365__auto___43485);
-if(cljs.core.truth_(result__11366__auto___43486)){
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",39,new cljs.core.Keyword(null,"pass","pass",1574159993),11,83,cljs.core.list(new cljs.core.Symbol(null,"contains?","contains?",-1676812576,null),new cljs.core.Symbol("sut","events","sut/events",-860949874,null),new cljs.core.Symbol(null,"event","event",1941966969,null)),83,cljs.core.cons(new cljs.core.Symbol(null,"contains?","contains?",-1676812576,null),values__11365__auto___43485),["FSM node ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should be a valid event"].join('')]));
+try{var values__11365__auto___43520 = (new cljs.core.List(null,bb_web_ds_tools.events.journeys.events,(new cljs.core.List(null,event,null,(1),null)),(2),null));
+var result__11366__auto___43521 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.contains_QMARK_,values__11365__auto___43520);
+if(cljs.core.truth_(result__11366__auto___43521)){
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",39,new cljs.core.Keyword(null,"pass","pass",1574159993),11,83,cljs.core.list(new cljs.core.Symbol(null,"contains?","contains?",-1676812576,null),new cljs.core.Symbol("sut","events","sut/events",-860949874,null),new cljs.core.Symbol(null,"event","event",1941966969,null)),83,cljs.core.cons(new cljs.core.Symbol(null,"contains?","contains?",-1676812576,null),values__11365__auto___43520),["FSM node ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should be a valid event"].join('')]));
 } else {
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",39,new cljs.core.Keyword(null,"fail","fail",1706214930),11,83,cljs.core.list(new cljs.core.Symbol(null,"contains?","contains?",-1676812576,null),new cljs.core.Symbol("sut","events","sut/events",-860949874,null),new cljs.core.Symbol(null,"event","event",1941966969,null)),83,(new cljs.core.List(null,new cljs.core.Symbol(null,"not","not",1044554643,null),(new cljs.core.List(null,cljs.core.cons(new cljs.core.Symbol(null,"contains?","contains?",-1676812576,null),values__11365__auto___43485),null,(1),null)),(2),null)),["FSM node ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should be a valid event"].join('')]));
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",39,new cljs.core.Keyword(null,"fail","fail",1706214930),11,83,cljs.core.list(new cljs.core.Symbol(null,"contains?","contains?",-1676812576,null),new cljs.core.Symbol("sut","events","sut/events",-860949874,null),new cljs.core.Symbol(null,"event","event",1941966969,null)),83,(new cljs.core.List(null,new cljs.core.Symbol(null,"not","not",1044554643,null),(new cljs.core.List(null,cljs.core.cons(new cljs.core.Symbol(null,"contains?","contains?",-1676812576,null),values__11365__auto___43520),null,(1),null)),(2),null)),["FSM node ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should be a valid event"].join('')]));
 }
 
-}catch (e42799){var t__11416__auto___43487 = e42799;
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",39,new cljs.core.Keyword(null,"error","error",-978969032),11,83,cljs.core.list(new cljs.core.Symbol(null,"contains?","contains?",-1676812576,null),new cljs.core.Symbol("sut","events","sut/events",-860949874,null),new cljs.core.Symbol(null,"event","event",1941966969,null)),83,t__11416__auto___43487,["FSM node ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should be a valid event"].join('')]));
+}catch (e42799){var t__11416__auto___43527 = e42799;
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",39,new cljs.core.Keyword(null,"error","error",-978969032),11,83,cljs.core.list(new cljs.core.Symbol(null,"contains?","contains?",-1676812576,null),new cljs.core.Symbol("sut","events","sut/events",-860949874,null),new cljs.core.Symbol(null,"event","event",1941966969,null)),83,t__11416__auto___43527,["FSM node ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should be a valid event"].join('')]));
 }
-try{var values__11365__auto___43489 = (new cljs.core.List(null,cljs.core.empty_QMARK_(transitions),null,(1),null));
-var result__11366__auto___43490 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.not,values__11365__auto___43489);
-if(cljs.core.truth_(result__11366__auto___43490)){
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",37,new cljs.core.Keyword(null,"pass","pass",1574159993),11,84,cljs.core.list(new cljs.core.Symbol(null,"not","not",1044554643,null),cljs.core.list(new cljs.core.Symbol(null,"empty?","empty?",76408555,null),new cljs.core.Symbol(null,"transitions","transitions",-405684594,null))),84,cljs.core.cons(new cljs.core.Symbol(null,"not","not",1044554643,null),values__11365__auto___43489),["Event ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should have transitions"].join('')]));
+try{var values__11365__auto___43529 = (new cljs.core.List(null,cljs.core.empty_QMARK_(transitions),null,(1),null));
+var result__11366__auto___43530 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.not,values__11365__auto___43529);
+if(cljs.core.truth_(result__11366__auto___43530)){
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",37,new cljs.core.Keyword(null,"pass","pass",1574159993),11,84,cljs.core.list(new cljs.core.Symbol(null,"not","not",1044554643,null),cljs.core.list(new cljs.core.Symbol(null,"empty?","empty?",76408555,null),new cljs.core.Symbol(null,"transitions","transitions",-405684594,null))),84,cljs.core.cons(new cljs.core.Symbol(null,"not","not",1044554643,null),values__11365__auto___43529),["Event ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should have transitions"].join('')]));
 } else {
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",37,new cljs.core.Keyword(null,"fail","fail",1706214930),11,84,cljs.core.list(new cljs.core.Symbol(null,"not","not",1044554643,null),cljs.core.list(new cljs.core.Symbol(null,"empty?","empty?",76408555,null),new cljs.core.Symbol(null,"transitions","transitions",-405684594,null))),84,(new cljs.core.List(null,new cljs.core.Symbol(null,"not","not",1044554643,null),(new cljs.core.List(null,cljs.core.cons(new cljs.core.Symbol(null,"not","not",1044554643,null),values__11365__auto___43489),null,(1),null)),(2),null)),["Event ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should have transitions"].join('')]));
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",37,new cljs.core.Keyword(null,"fail","fail",1706214930),11,84,cljs.core.list(new cljs.core.Symbol(null,"not","not",1044554643,null),cljs.core.list(new cljs.core.Symbol(null,"empty?","empty?",76408555,null),new cljs.core.Symbol(null,"transitions","transitions",-405684594,null))),84,(new cljs.core.List(null,new cljs.core.Symbol(null,"not","not",1044554643,null),(new cljs.core.List(null,cljs.core.cons(new cljs.core.Symbol(null,"not","not",1044554643,null),values__11365__auto___43529),null,(1),null)),(2),null)),["Event ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should have transitions"].join('')]));
 }
 
-}catch (e42800){var t__11416__auto___43492 = e42800;
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",37,new cljs.core.Keyword(null,"error","error",-978969032),11,84,cljs.core.list(new cljs.core.Symbol(null,"not","not",1044554643,null),cljs.core.list(new cljs.core.Symbol(null,"empty?","empty?",76408555,null),new cljs.core.Symbol(null,"transitions","transitions",-405684594,null))),84,t__11416__auto___43492,["Event ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should have transitions"].join('')]));
+}catch (e42800){var t__11416__auto___43534 = e42800;
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",37,new cljs.core.Keyword(null,"error","error",-978969032),11,84,cljs.core.list(new cljs.core.Symbol(null,"not","not",1044554643,null),cljs.core.list(new cljs.core.Symbol(null,"empty?","empty?",76408555,null),new cljs.core.Symbol(null,"transitions","transitions",-405684594,null))),84,t__11416__auto___43534,["Event ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should have transitions"].join('')]));
 }
-var total_prob_43493 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$2(cljs.core._PLUS_,cljs.core.vals(transitions));
-try{var values__11365__auto___43494 = (new cljs.core.List(null,total_prob_43493,(new cljs.core.List(null,0.9,null,(1),null)),(2),null));
-var result__11366__auto___43495 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core._GT_,values__11365__auto___43494);
-if(cljs.core.truth_(result__11366__auto___43495)){
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",32,new cljs.core.Keyword(null,"pass","pass",1574159993),13,87,cljs.core.list(new cljs.core.Symbol(null,">",">",1085014381,null),new cljs.core.Symbol(null,"total-prob","total-prob",1947777906,null),0.9),87,cljs.core.cons(new cljs.core.Symbol(null,">",">",1085014381,null),values__11365__auto___43494),["Probabilities for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should sum to ~1.0"].join('')]));
+var total_prob_43535 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$2(cljs.core._PLUS_,cljs.core.vals(transitions));
+try{var values__11365__auto___43537 = (new cljs.core.List(null,total_prob_43535,(new cljs.core.List(null,0.9,null,(1),null)),(2),null));
+var result__11366__auto___43538 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core._GT_,values__11365__auto___43537);
+if(cljs.core.truth_(result__11366__auto___43538)){
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",32,new cljs.core.Keyword(null,"pass","pass",1574159993),13,87,cljs.core.list(new cljs.core.Symbol(null,">",">",1085014381,null),new cljs.core.Symbol(null,"total-prob","total-prob",1947777906,null),0.9),87,cljs.core.cons(new cljs.core.Symbol(null,">",">",1085014381,null),values__11365__auto___43537),["Probabilities for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should sum to ~1.0"].join('')]));
 } else {
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",32,new cljs.core.Keyword(null,"fail","fail",1706214930),13,87,cljs.core.list(new cljs.core.Symbol(null,">",">",1085014381,null),new cljs.core.Symbol(null,"total-prob","total-prob",1947777906,null),0.9),87,(new cljs.core.List(null,new cljs.core.Symbol(null,"not","not",1044554643,null),(new cljs.core.List(null,cljs.core.cons(new cljs.core.Symbol(null,">",">",1085014381,null),values__11365__auto___43494),null,(1),null)),(2),null)),["Probabilities for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should sum to ~1.0"].join('')]));
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",32,new cljs.core.Keyword(null,"fail","fail",1706214930),13,87,cljs.core.list(new cljs.core.Symbol(null,">",">",1085014381,null),new cljs.core.Symbol(null,"total-prob","total-prob",1947777906,null),0.9),87,(new cljs.core.List(null,new cljs.core.Symbol(null,"not","not",1044554643,null),(new cljs.core.List(null,cljs.core.cons(new cljs.core.Symbol(null,">",">",1085014381,null),values__11365__auto___43537),null,(1),null)),(2),null)),["Probabilities for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should sum to ~1.0"].join('')]));
 }
 
-}catch (e42801){var t__11416__auto___43500 = e42801;
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",32,new cljs.core.Keyword(null,"error","error",-978969032),13,87,cljs.core.list(new cljs.core.Symbol(null,">",">",1085014381,null),new cljs.core.Symbol(null,"total-prob","total-prob",1947777906,null),0.9),87,t__11416__auto___43500,["Probabilities for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should sum to ~1.0"].join('')]));
+}catch (e42801){var t__11416__auto___43540 = e42801;
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",32,new cljs.core.Keyword(null,"error","error",-978969032),13,87,cljs.core.list(new cljs.core.Symbol(null,">",">",1085014381,null),new cljs.core.Symbol(null,"total-prob","total-prob",1947777906,null),0.9),87,t__11416__auto___43540,["Probabilities for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should sum to ~1.0"].join('')]));
 }
-try{var values__11365__auto___43503 = (new cljs.core.List(null,total_prob_43493,(new cljs.core.List(null,1.1,null,(1),null)),(2),null));
-var result__11366__auto___43504 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core._LT_,values__11365__auto___43503);
-if(cljs.core.truth_(result__11366__auto___43504)){
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",32,new cljs.core.Keyword(null,"pass","pass",1574159993),13,88,cljs.core.list(new cljs.core.Symbol(null,"<","<",993667236,null),new cljs.core.Symbol(null,"total-prob","total-prob",1947777906,null),1.1),88,cljs.core.cons(new cljs.core.Symbol(null,"<","<",993667236,null),values__11365__auto___43503),["Probabilities for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should sum to ~1.0"].join('')]));
+try{var values__11365__auto___43546 = (new cljs.core.List(null,total_prob_43535,(new cljs.core.List(null,1.1,null,(1),null)),(2),null));
+var result__11366__auto___43547 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core._LT_,values__11365__auto___43546);
+if(cljs.core.truth_(result__11366__auto___43547)){
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",32,new cljs.core.Keyword(null,"pass","pass",1574159993),13,88,cljs.core.list(new cljs.core.Symbol(null,"<","<",993667236,null),new cljs.core.Symbol(null,"total-prob","total-prob",1947777906,null),1.1),88,cljs.core.cons(new cljs.core.Symbol(null,"<","<",993667236,null),values__11365__auto___43546),["Probabilities for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should sum to ~1.0"].join('')]));
 } else {
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",32,new cljs.core.Keyword(null,"fail","fail",1706214930),13,88,cljs.core.list(new cljs.core.Symbol(null,"<","<",993667236,null),new cljs.core.Symbol(null,"total-prob","total-prob",1947777906,null),1.1),88,(new cljs.core.List(null,new cljs.core.Symbol(null,"not","not",1044554643,null),(new cljs.core.List(null,cljs.core.cons(new cljs.core.Symbol(null,"<","<",993667236,null),values__11365__auto___43503),null,(1),null)),(2),null)),["Probabilities for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should sum to ~1.0"].join('')]));
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",32,new cljs.core.Keyword(null,"fail","fail",1706214930),13,88,cljs.core.list(new cljs.core.Symbol(null,"<","<",993667236,null),new cljs.core.Symbol(null,"total-prob","total-prob",1947777906,null),1.1),88,(new cljs.core.List(null,new cljs.core.Symbol(null,"not","not",1044554643,null),(new cljs.core.List(null,cljs.core.cons(new cljs.core.Symbol(null,"<","<",993667236,null),values__11365__auto___43546),null,(1),null)),(2),null)),["Probabilities for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should sum to ~1.0"].join('')]));
 }
 
-}catch (e42802){var t__11416__auto___43505 = e42802;
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",32,new cljs.core.Keyword(null,"error","error",-978969032),13,88,cljs.core.list(new cljs.core.Symbol(null,"<","<",993667236,null),new cljs.core.Symbol(null,"total-prob","total-prob",1947777906,null),1.1),88,t__11416__auto___43505,["Probabilities for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should sum to ~1.0"].join('')]));
+}catch (e42802){var t__11416__auto___43549 = e42802;
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",32,new cljs.core.Keyword(null,"error","error",-978969032),13,88,cljs.core.list(new cljs.core.Symbol(null,"<","<",993667236,null),new cljs.core.Symbol(null,"total-prob","total-prob",1947777906,null),1.1),88,t__11416__auto___43549,["Probabilities for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should sum to ~1.0"].join('')]));
 }
 
-var G__43506 = seq__42772;
-var G__43507 = chunk__42773;
-var G__43508 = count__42774;
-var G__43509 = (i__42775 + (1));
-seq__42772 = G__43506;
-chunk__42773 = G__43507;
-count__42774 = G__43508;
-i__42775 = G__43509;
+var G__43550 = seq__42777;
+var G__43551 = chunk__42778;
+var G__43552 = count__42779;
+var G__43553 = (i__42780 + (1));
+seq__42777 = G__43550;
+chunk__42778 = G__43551;
+count__42779 = G__43552;
+i__42780 = G__43553;
 continue;
 } else {
-var temp__5825__auto__ = cljs.core.seq(seq__42772);
+var temp__5825__auto__ = cljs.core.seq(seq__42777);
 if(temp__5825__auto__){
-var seq__42772__$1 = temp__5825__auto__;
-if(cljs.core.chunked_seq_QMARK_(seq__42772__$1)){
-var c__5548__auto__ = cljs.core.chunk_first(seq__42772__$1);
-var G__43510 = cljs.core.chunk_rest(seq__42772__$1);
-var G__43511 = c__5548__auto__;
-var G__43512 = cljs.core.count(c__5548__auto__);
-var G__43513 = (0);
-seq__42772 = G__43510;
-chunk__42773 = G__43511;
-count__42774 = G__43512;
-i__42775 = G__43513;
+var seq__42777__$1 = temp__5825__auto__;
+if(cljs.core.chunked_seq_QMARK_(seq__42777__$1)){
+var c__5548__auto__ = cljs.core.chunk_first(seq__42777__$1);
+var G__43554 = cljs.core.chunk_rest(seq__42777__$1);
+var G__43555 = c__5548__auto__;
+var G__43556 = cljs.core.count(c__5548__auto__);
+var G__43557 = (0);
+seq__42777 = G__43554;
+chunk__42778 = G__43555;
+count__42779 = G__43556;
+i__42780 = G__43557;
 continue;
 } else {
-var vec__42803 = cljs.core.first(seq__42772__$1);
+var vec__42803 = cljs.core.first(seq__42777__$1);
 var event = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__42803,(0),null);
 var transitions = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__42803,(1),null);
-try{var values__11365__auto___43514 = (new cljs.core.List(null,bb_web_ds_tools.events.journeys.events,(new cljs.core.List(null,event,null,(1),null)),(2),null));
-var result__11366__auto___43515 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.contains_QMARK_,values__11365__auto___43514);
-if(cljs.core.truth_(result__11366__auto___43515)){
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",39,new cljs.core.Keyword(null,"pass","pass",1574159993),11,83,cljs.core.list(new cljs.core.Symbol(null,"contains?","contains?",-1676812576,null),new cljs.core.Symbol("sut","events","sut/events",-860949874,null),new cljs.core.Symbol(null,"event","event",1941966969,null)),83,cljs.core.cons(new cljs.core.Symbol(null,"contains?","contains?",-1676812576,null),values__11365__auto___43514),["FSM node ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should be a valid event"].join('')]));
+try{var values__11365__auto___43559 = (new cljs.core.List(null,bb_web_ds_tools.events.journeys.events,(new cljs.core.List(null,event,null,(1),null)),(2),null));
+var result__11366__auto___43560 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.contains_QMARK_,values__11365__auto___43559);
+if(cljs.core.truth_(result__11366__auto___43560)){
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",39,new cljs.core.Keyword(null,"pass","pass",1574159993),11,83,cljs.core.list(new cljs.core.Symbol(null,"contains?","contains?",-1676812576,null),new cljs.core.Symbol("sut","events","sut/events",-860949874,null),new cljs.core.Symbol(null,"event","event",1941966969,null)),83,cljs.core.cons(new cljs.core.Symbol(null,"contains?","contains?",-1676812576,null),values__11365__auto___43559),["FSM node ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should be a valid event"].join('')]));
 } else {
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",39,new cljs.core.Keyword(null,"fail","fail",1706214930),11,83,cljs.core.list(new cljs.core.Symbol(null,"contains?","contains?",-1676812576,null),new cljs.core.Symbol("sut","events","sut/events",-860949874,null),new cljs.core.Symbol(null,"event","event",1941966969,null)),83,(new cljs.core.List(null,new cljs.core.Symbol(null,"not","not",1044554643,null),(new cljs.core.List(null,cljs.core.cons(new cljs.core.Symbol(null,"contains?","contains?",-1676812576,null),values__11365__auto___43514),null,(1),null)),(2),null)),["FSM node ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should be a valid event"].join('')]));
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",39,new cljs.core.Keyword(null,"fail","fail",1706214930),11,83,cljs.core.list(new cljs.core.Symbol(null,"contains?","contains?",-1676812576,null),new cljs.core.Symbol("sut","events","sut/events",-860949874,null),new cljs.core.Symbol(null,"event","event",1941966969,null)),83,(new cljs.core.List(null,new cljs.core.Symbol(null,"not","not",1044554643,null),(new cljs.core.List(null,cljs.core.cons(new cljs.core.Symbol(null,"contains?","contains?",-1676812576,null),values__11365__auto___43559),null,(1),null)),(2),null)),["FSM node ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should be a valid event"].join('')]));
 }
 
-}catch (e42806){var t__11416__auto___43516 = e42806;
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",39,new cljs.core.Keyword(null,"error","error",-978969032),11,83,cljs.core.list(new cljs.core.Symbol(null,"contains?","contains?",-1676812576,null),new cljs.core.Symbol("sut","events","sut/events",-860949874,null),new cljs.core.Symbol(null,"event","event",1941966969,null)),83,t__11416__auto___43516,["FSM node ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should be a valid event"].join('')]));
+}catch (e42806){var t__11416__auto___43574 = e42806;
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",39,new cljs.core.Keyword(null,"error","error",-978969032),11,83,cljs.core.list(new cljs.core.Symbol(null,"contains?","contains?",-1676812576,null),new cljs.core.Symbol("sut","events","sut/events",-860949874,null),new cljs.core.Symbol(null,"event","event",1941966969,null)),83,t__11416__auto___43574,["FSM node ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should be a valid event"].join('')]));
 }
-try{var values__11365__auto___43517 = (new cljs.core.List(null,cljs.core.empty_QMARK_(transitions),null,(1),null));
-var result__11366__auto___43518 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.not,values__11365__auto___43517);
-if(cljs.core.truth_(result__11366__auto___43518)){
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",37,new cljs.core.Keyword(null,"pass","pass",1574159993),11,84,cljs.core.list(new cljs.core.Symbol(null,"not","not",1044554643,null),cljs.core.list(new cljs.core.Symbol(null,"empty?","empty?",76408555,null),new cljs.core.Symbol(null,"transitions","transitions",-405684594,null))),84,cljs.core.cons(new cljs.core.Symbol(null,"not","not",1044554643,null),values__11365__auto___43517),["Event ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should have transitions"].join('')]));
+try{var values__11365__auto___43575 = (new cljs.core.List(null,cljs.core.empty_QMARK_(transitions),null,(1),null));
+var result__11366__auto___43576 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.not,values__11365__auto___43575);
+if(cljs.core.truth_(result__11366__auto___43576)){
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",37,new cljs.core.Keyword(null,"pass","pass",1574159993),11,84,cljs.core.list(new cljs.core.Symbol(null,"not","not",1044554643,null),cljs.core.list(new cljs.core.Symbol(null,"empty?","empty?",76408555,null),new cljs.core.Symbol(null,"transitions","transitions",-405684594,null))),84,cljs.core.cons(new cljs.core.Symbol(null,"not","not",1044554643,null),values__11365__auto___43575),["Event ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should have transitions"].join('')]));
 } else {
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",37,new cljs.core.Keyword(null,"fail","fail",1706214930),11,84,cljs.core.list(new cljs.core.Symbol(null,"not","not",1044554643,null),cljs.core.list(new cljs.core.Symbol(null,"empty?","empty?",76408555,null),new cljs.core.Symbol(null,"transitions","transitions",-405684594,null))),84,(new cljs.core.List(null,new cljs.core.Symbol(null,"not","not",1044554643,null),(new cljs.core.List(null,cljs.core.cons(new cljs.core.Symbol(null,"not","not",1044554643,null),values__11365__auto___43517),null,(1),null)),(2),null)),["Event ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should have transitions"].join('')]));
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",37,new cljs.core.Keyword(null,"fail","fail",1706214930),11,84,cljs.core.list(new cljs.core.Symbol(null,"not","not",1044554643,null),cljs.core.list(new cljs.core.Symbol(null,"empty?","empty?",76408555,null),new cljs.core.Symbol(null,"transitions","transitions",-405684594,null))),84,(new cljs.core.List(null,new cljs.core.Symbol(null,"not","not",1044554643,null),(new cljs.core.List(null,cljs.core.cons(new cljs.core.Symbol(null,"not","not",1044554643,null),values__11365__auto___43575),null,(1),null)),(2),null)),["Event ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should have transitions"].join('')]));
 }
 
-}catch (e42807){var t__11416__auto___43519 = e42807;
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",37,new cljs.core.Keyword(null,"error","error",-978969032),11,84,cljs.core.list(new cljs.core.Symbol(null,"not","not",1044554643,null),cljs.core.list(new cljs.core.Symbol(null,"empty?","empty?",76408555,null),new cljs.core.Symbol(null,"transitions","transitions",-405684594,null))),84,t__11416__auto___43519,["Event ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should have transitions"].join('')]));
+}catch (e42807){var t__11416__auto___43578 = e42807;
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",37,new cljs.core.Keyword(null,"error","error",-978969032),11,84,cljs.core.list(new cljs.core.Symbol(null,"not","not",1044554643,null),cljs.core.list(new cljs.core.Symbol(null,"empty?","empty?",76408555,null),new cljs.core.Symbol(null,"transitions","transitions",-405684594,null))),84,t__11416__auto___43578,["Event ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should have transitions"].join('')]));
 }
-var total_prob_43520 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$2(cljs.core._PLUS_,cljs.core.vals(transitions));
-try{var values__11365__auto___43521 = (new cljs.core.List(null,total_prob_43520,(new cljs.core.List(null,0.9,null,(1),null)),(2),null));
-var result__11366__auto___43522 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core._GT_,values__11365__auto___43521);
-if(cljs.core.truth_(result__11366__auto___43522)){
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",32,new cljs.core.Keyword(null,"pass","pass",1574159993),13,87,cljs.core.list(new cljs.core.Symbol(null,">",">",1085014381,null),new cljs.core.Symbol(null,"total-prob","total-prob",1947777906,null),0.9),87,cljs.core.cons(new cljs.core.Symbol(null,">",">",1085014381,null),values__11365__auto___43521),["Probabilities for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should sum to ~1.0"].join('')]));
+var total_prob_43579 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$2(cljs.core._PLUS_,cljs.core.vals(transitions));
+try{var values__11365__auto___43580 = (new cljs.core.List(null,total_prob_43579,(new cljs.core.List(null,0.9,null,(1),null)),(2),null));
+var result__11366__auto___43581 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core._GT_,values__11365__auto___43580);
+if(cljs.core.truth_(result__11366__auto___43581)){
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",32,new cljs.core.Keyword(null,"pass","pass",1574159993),13,87,cljs.core.list(new cljs.core.Symbol(null,">",">",1085014381,null),new cljs.core.Symbol(null,"total-prob","total-prob",1947777906,null),0.9),87,cljs.core.cons(new cljs.core.Symbol(null,">",">",1085014381,null),values__11365__auto___43580),["Probabilities for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should sum to ~1.0"].join('')]));
 } else {
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",32,new cljs.core.Keyword(null,"fail","fail",1706214930),13,87,cljs.core.list(new cljs.core.Symbol(null,">",">",1085014381,null),new cljs.core.Symbol(null,"total-prob","total-prob",1947777906,null),0.9),87,(new cljs.core.List(null,new cljs.core.Symbol(null,"not","not",1044554643,null),(new cljs.core.List(null,cljs.core.cons(new cljs.core.Symbol(null,">",">",1085014381,null),values__11365__auto___43521),null,(1),null)),(2),null)),["Probabilities for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should sum to ~1.0"].join('')]));
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",32,new cljs.core.Keyword(null,"fail","fail",1706214930),13,87,cljs.core.list(new cljs.core.Symbol(null,">",">",1085014381,null),new cljs.core.Symbol(null,"total-prob","total-prob",1947777906,null),0.9),87,(new cljs.core.List(null,new cljs.core.Symbol(null,"not","not",1044554643,null),(new cljs.core.List(null,cljs.core.cons(new cljs.core.Symbol(null,">",">",1085014381,null),values__11365__auto___43580),null,(1),null)),(2),null)),["Probabilities for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should sum to ~1.0"].join('')]));
 }
 
-}catch (e42808){var t__11416__auto___43525 = e42808;
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",32,new cljs.core.Keyword(null,"error","error",-978969032),13,87,cljs.core.list(new cljs.core.Symbol(null,">",">",1085014381,null),new cljs.core.Symbol(null,"total-prob","total-prob",1947777906,null),0.9),87,t__11416__auto___43525,["Probabilities for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should sum to ~1.0"].join('')]));
+}catch (e42808){var t__11416__auto___43589 = e42808;
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",32,new cljs.core.Keyword(null,"error","error",-978969032),13,87,cljs.core.list(new cljs.core.Symbol(null,">",">",1085014381,null),new cljs.core.Symbol(null,"total-prob","total-prob",1947777906,null),0.9),87,t__11416__auto___43589,["Probabilities for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should sum to ~1.0"].join('')]));
 }
-try{var values__11365__auto___43528 = (new cljs.core.List(null,total_prob_43520,(new cljs.core.List(null,1.1,null,(1),null)),(2),null));
-var result__11366__auto___43529 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core._LT_,values__11365__auto___43528);
-if(cljs.core.truth_(result__11366__auto___43529)){
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",32,new cljs.core.Keyword(null,"pass","pass",1574159993),13,88,cljs.core.list(new cljs.core.Symbol(null,"<","<",993667236,null),new cljs.core.Symbol(null,"total-prob","total-prob",1947777906,null),1.1),88,cljs.core.cons(new cljs.core.Symbol(null,"<","<",993667236,null),values__11365__auto___43528),["Probabilities for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should sum to ~1.0"].join('')]));
+try{var values__11365__auto___43591 = (new cljs.core.List(null,total_prob_43579,(new cljs.core.List(null,1.1,null,(1),null)),(2),null));
+var result__11366__auto___43592 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core._LT_,values__11365__auto___43591);
+if(cljs.core.truth_(result__11366__auto___43592)){
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",32,new cljs.core.Keyword(null,"pass","pass",1574159993),13,88,cljs.core.list(new cljs.core.Symbol(null,"<","<",993667236,null),new cljs.core.Symbol(null,"total-prob","total-prob",1947777906,null),1.1),88,cljs.core.cons(new cljs.core.Symbol(null,"<","<",993667236,null),values__11365__auto___43591),["Probabilities for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should sum to ~1.0"].join('')]));
 } else {
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",32,new cljs.core.Keyword(null,"fail","fail",1706214930),13,88,cljs.core.list(new cljs.core.Symbol(null,"<","<",993667236,null),new cljs.core.Symbol(null,"total-prob","total-prob",1947777906,null),1.1),88,(new cljs.core.List(null,new cljs.core.Symbol(null,"not","not",1044554643,null),(new cljs.core.List(null,cljs.core.cons(new cljs.core.Symbol(null,"<","<",993667236,null),values__11365__auto___43528),null,(1),null)),(2),null)),["Probabilities for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should sum to ~1.0"].join('')]));
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",32,new cljs.core.Keyword(null,"fail","fail",1706214930),13,88,cljs.core.list(new cljs.core.Symbol(null,"<","<",993667236,null),new cljs.core.Symbol(null,"total-prob","total-prob",1947777906,null),1.1),88,(new cljs.core.List(null,new cljs.core.Symbol(null,"not","not",1044554643,null),(new cljs.core.List(null,cljs.core.cons(new cljs.core.Symbol(null,"<","<",993667236,null),values__11365__auto___43591),null,(1),null)),(2),null)),["Probabilities for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should sum to ~1.0"].join('')]));
 }
 
-}catch (e42809){var t__11416__auto___43530 = e42809;
-cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",32,new cljs.core.Keyword(null,"error","error",-978969032),13,88,cljs.core.list(new cljs.core.Symbol(null,"<","<",993667236,null),new cljs.core.Symbol(null,"total-prob","total-prob",1947777906,null),1.1),88,t__11416__auto___43530,["Probabilities for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should sum to ~1.0"].join('')]));
+}catch (e42813){var t__11416__auto___43593 = e42813;
+cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",32,new cljs.core.Keyword(null,"error","error",-978969032),13,88,cljs.core.list(new cljs.core.Symbol(null,"<","<",993667236,null),new cljs.core.Symbol(null,"total-prob","total-prob",1947777906,null),1.1),88,t__11416__auto___43593,["Probabilities for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event)," should sum to ~1.0"].join('')]));
 }
 
-var G__43531 = cljs.core.next(seq__42772__$1);
-var G__43532 = null;
-var G__43533 = (0);
-var G__43534 = (0);
-seq__42772 = G__43531;
-chunk__42773 = G__43532;
-count__42774 = G__43533;
-i__42775 = G__43534;
+var G__43594 = cljs.core.next(seq__42777__$1);
+var G__43595 = null;
+var G__43596 = (0);
+var G__43597 = (0);
+seq__42777 = G__43594;
+chunk__42778 = G__43595;
+count__42779 = G__43596;
+i__42780 = G__43597;
 continue;
 }
 } else {
@@ -373,108 +373,108 @@ re_frame.core.reg_fx(new cljs.core.Keyword("bb-web-ds-tools.views.datasets","fet
 return null;
 }));
 
-try{var seq__42881_43535 = cljs.core.seq(cljs.core.map_indexed.cljs$core$IFn$_invoke$arity$2(cljs.core.vector,journey));
-var chunk__42882_43536 = null;
-var count__42883_43537 = (0);
-var i__42884_43538 = (0);
+try{var seq__43033_43613 = cljs.core.seq(cljs.core.map_indexed.cljs$core$IFn$_invoke$arity$2(cljs.core.vector,journey));
+var chunk__43034_43614 = null;
+var count__43035_43615 = (0);
+var i__43036_43616 = (0);
 while(true){
-if((i__42884_43538 < count__42883_43537)){
-var vec__43324_43539 = chunk__42882_43536.cljs$core$IIndexed$_nth$arity$2(null,i__42884_43538);
-var i_43540 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43324_43539,(0),null);
-var vec__43327_43541 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43324_43539,(1),null);
-var event_43542 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43327_43541,(0),null);
-var args_43543 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43327_43541,(1),null);
-try{re_frame.core.dispatch(cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [event_43542], null),args_43543));
+if((i__43036_43616 < count__43035_43615)){
+var vec__43319_43617 = chunk__43034_43614.cljs$core$IIndexed$_nth$arity$2(null,i__43036_43616);
+var i_43618 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43319_43617,(0),null);
+var vec__43322_43619 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43319_43617,(1),null);
+var event_43620 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43322_43619,(0),null);
+var args_43621 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43322_43619,(1),null);
+try{re_frame.core.dispatch(cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [event_43620], null),args_43621));
 
-if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(event_43542,new cljs.core.Keyword("bb-web-ds-tools.core","navigate","bb-web-ds-tools.core/navigate",-787989557))){
-var vec__43332_43544 = args_43543;
-var route_name_43545 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43332_43544,(0),null);
-var params_43546 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43332_43544,(1),null);
-var query_43547 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43332_43544,(2),null);
-re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.core","navigated","bb-web-ds-tools.core/navigated",386373854),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"data","data",-232669377),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"name","name",1843675177),route_name_43545], null),new cljs.core.Keyword(null,"path-params","path-params",-48130597),params_43546,new cljs.core.Keyword(null,"query-params","query-params",900640534),query_43547], null)], null));
+if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(event_43620,new cljs.core.Keyword("bb-web-ds-tools.core","navigate","bb-web-ds-tools.core/navigate",-787989557))){
+var vec__43332_43622 = args_43621;
+var route_name_43623 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43332_43622,(0),null);
+var params_43624 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43332_43622,(1),null);
+var query_43625 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43332_43622,(2),null);
+re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.core","navigated","bb-web-ds-tools.core/navigated",386373854),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"data","data",-232669377),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"name","name",1843675177),route_name_43623], null),new cljs.core.Keyword(null,"path-params","path-params",-48130597),params_43624,new cljs.core.Keyword(null,"query-params","query-params",900640534),query_43625], null)], null));
 } else {
 }
 
-var current_route_match_43549 = cljs.core.deref(re_frame.core.subscribe.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.core","current-route","bb-web-ds-tools.core/current-route",-183395378)], null)));
-var current_route_name_43550 = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(current_route_match_43549,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"data","data",-232669377),new cljs.core.Keyword(null,"name","name",1843675177)], null));
-var event_def_43551 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(bb_web_ds_tools.events.journeys.events,event_43542);
-var expected_route_43552 = new cljs.core.Keyword(null,"route","route",329891309).cljs$core$IFn$_invoke$arity$1(event_def_43551);
-if(cljs.core.truth_((function (){var and__5023__auto__ = expected_route_43552;
+var current_route_match_43635 = cljs.core.deref(re_frame.core.subscribe.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.core","current-route","bb-web-ds-tools.core/current-route",-183395378)], null)));
+var current_route_name_43636 = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(current_route_match_43635,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"data","data",-232669377),new cljs.core.Keyword(null,"name","name",1843675177)], null));
+var event_def_43637 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(bb_web_ds_tools.events.journeys.events,event_43620);
+var expected_route_43638 = new cljs.core.Keyword(null,"route","route",329891309).cljs$core$IFn$_invoke$arity$1(event_def_43637);
+if(cljs.core.truth_((function (){var and__5023__auto__ = expected_route_43638;
 if(cljs.core.truth_(and__5023__auto__)){
-return cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(expected_route_43552,new cljs.core.Keyword(null,"global","global",93595047));
+return cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(expected_route_43638,new cljs.core.Keyword(null,"global","global",93595047));
 } else {
 return and__5023__auto__;
 }
 })())){
-if(cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(expected_route_43552,current_route_name_43550)){
-throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(["Event ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event_43542)," expects route ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(expected_route_43552)," but got ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(current_route_name_43550)].join(''),cljs.core.PersistentArrayMap.EMPTY);
+if(cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(expected_route_43638,current_route_name_43636)){
+throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(["Event ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event_43620)," expects route ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(expected_route_43638)," but got ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(current_route_name_43636)].join(''),cljs.core.PersistentArrayMap.EMPTY);
 } else {
 }
 } else {
 }
 
-var temp__5825__auto___43553 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(bb_web_ds_tools.events.journeys_test.view_subscriptions,current_route_name_43550);
-if(cljs.core.truth_(temp__5825__auto___43553)){
-var subs_43554 = temp__5825__auto___43553;
-var seq__43344_43555 = cljs.core.seq(subs_43554);
-var chunk__43345_43556 = null;
-var count__43346_43557 = (0);
-var i__43347_43558 = (0);
+var temp__5825__auto___43639 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(bb_web_ds_tools.events.journeys_test.view_subscriptions,current_route_name_43636);
+if(cljs.core.truth_(temp__5825__auto___43639)){
+var subs_43640 = temp__5825__auto___43639;
+var seq__43335_43641 = cljs.core.seq(subs_43640);
+var chunk__43336_43642 = null;
+var count__43337_43643 = (0);
+var i__43338_43644 = (0);
 while(true){
-if((i__43347_43558 < count__43346_43557)){
-var sub_43559 = chunk__43345_43556.cljs$core$IIndexed$_nth$arity$2(null,i__43347_43558);
-try{var val_43560 = cljs.core.deref(re_frame.core.subscribe.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [sub_43559], null)));
-if((val_43560 == null)){
-throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(["Subscription ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(sub_43559)," should return a value for route ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(current_route_name_43550)].join(''),cljs.core.PersistentArrayMap.EMPTY);
+if((i__43338_43644 < count__43337_43643)){
+var sub_43645 = chunk__43336_43642.cljs$core$IIndexed$_nth$arity$2(null,i__43338_43644);
+try{var val_43646 = cljs.core.deref(re_frame.core.subscribe.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [sub_43645], null)));
+if((val_43646 == null)){
+throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(["Subscription ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(sub_43645)," should return a value for route ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(current_route_name_43636)].join(''),cljs.core.PersistentArrayMap.EMPTY);
 } else {
 }
-}catch (e43371){var e_43561 = e43371;
-throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$3(["Error checking subscription ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(sub_43559)," at route ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(current_route_name_43550)].join(''),cljs.core.PersistentArrayMap.EMPTY,e_43561);
-}
-
-var G__43562 = seq__43344_43555;
-var G__43563 = chunk__43345_43556;
-var G__43564 = count__43346_43557;
-var G__43565 = (i__43347_43558 + (1));
-seq__43344_43555 = G__43562;
-chunk__43345_43556 = G__43563;
-count__43346_43557 = G__43564;
-i__43347_43558 = G__43565;
-continue;
-} else {
-var temp__5825__auto___43566__$1 = cljs.core.seq(seq__43344_43555);
-if(temp__5825__auto___43566__$1){
-var seq__43344_43567__$1 = temp__5825__auto___43566__$1;
-if(cljs.core.chunked_seq_QMARK_(seq__43344_43567__$1)){
-var c__5548__auto___43568 = cljs.core.chunk_first(seq__43344_43567__$1);
-var G__43569 = cljs.core.chunk_rest(seq__43344_43567__$1);
-var G__43570 = c__5548__auto___43568;
-var G__43571 = cljs.core.count(c__5548__auto___43568);
-var G__43572 = (0);
-seq__43344_43555 = G__43569;
-chunk__43345_43556 = G__43570;
-count__43346_43557 = G__43571;
-i__43347_43558 = G__43572;
-continue;
-} else {
-var sub_43573 = cljs.core.first(seq__43344_43567__$1);
-try{var val_43574 = cljs.core.deref(re_frame.core.subscribe.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [sub_43573], null)));
-if((val_43574 == null)){
-throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(["Subscription ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(sub_43573)," should return a value for route ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(current_route_name_43550)].join(''),cljs.core.PersistentArrayMap.EMPTY);
-} else {
-}
-}catch (e43373){var e_43575 = e43373;
-throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$3(["Error checking subscription ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(sub_43573)," at route ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(current_route_name_43550)].join(''),cljs.core.PersistentArrayMap.EMPTY,e_43575);
+}catch (e43353){var e_43647 = e43353;
+throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$3(["Error checking subscription ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(sub_43645)," at route ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(current_route_name_43636)].join(''),cljs.core.PersistentArrayMap.EMPTY,e_43647);
 }
 
-var G__43576 = cljs.core.next(seq__43344_43567__$1);
-var G__43577 = null;
-var G__43578 = (0);
-var G__43579 = (0);
-seq__43344_43555 = G__43576;
-chunk__43345_43556 = G__43577;
-count__43346_43557 = G__43578;
-i__43347_43558 = G__43579;
+var G__43648 = seq__43335_43641;
+var G__43649 = chunk__43336_43642;
+var G__43650 = count__43337_43643;
+var G__43651 = (i__43338_43644 + (1));
+seq__43335_43641 = G__43648;
+chunk__43336_43642 = G__43649;
+count__43337_43643 = G__43650;
+i__43338_43644 = G__43651;
+continue;
+} else {
+var temp__5825__auto___43652__$1 = cljs.core.seq(seq__43335_43641);
+if(temp__5825__auto___43652__$1){
+var seq__43335_43653__$1 = temp__5825__auto___43652__$1;
+if(cljs.core.chunked_seq_QMARK_(seq__43335_43653__$1)){
+var c__5548__auto___43654 = cljs.core.chunk_first(seq__43335_43653__$1);
+var G__43655 = cljs.core.chunk_rest(seq__43335_43653__$1);
+var G__43656 = c__5548__auto___43654;
+var G__43657 = cljs.core.count(c__5548__auto___43654);
+var G__43658 = (0);
+seq__43335_43641 = G__43655;
+chunk__43336_43642 = G__43656;
+count__43337_43643 = G__43657;
+i__43338_43644 = G__43658;
+continue;
+} else {
+var sub_43659 = cljs.core.first(seq__43335_43653__$1);
+try{var val_43660 = cljs.core.deref(re_frame.core.subscribe.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [sub_43659], null)));
+if((val_43660 == null)){
+throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(["Subscription ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(sub_43659)," should return a value for route ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(current_route_name_43636)].join(''),cljs.core.PersistentArrayMap.EMPTY);
+} else {
+}
+}catch (e43367){var e_43661 = e43367;
+throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$3(["Error checking subscription ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(sub_43659)," at route ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(current_route_name_43636)].join(''),cljs.core.PersistentArrayMap.EMPTY,e_43661);
+}
+
+var G__43662 = cljs.core.next(seq__43335_43653__$1);
+var G__43663 = null;
+var G__43664 = (0);
+var G__43665 = (0);
+seq__43335_43641 = G__43662;
+chunk__43336_43642 = G__43663;
+count__43337_43643 = G__43664;
+i__43338_43644 = G__43665;
 continue;
 }
 } else {
@@ -484,131 +484,131 @@ break;
 }
 } else {
 }
-}catch (e43330){var e_43580 = e43330;
-throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$3(["Error at step ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(i_43540),": ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event_43542)," ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(args_43543)].join(''),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"step","step",1288888124),i_43540,new cljs.core.Keyword(null,"event","event",301435442),event_43542,new cljs.core.Keyword(null,"args","args",1315556576),args_43543], null),e_43580);
+}catch (e43325){var e_43666 = e43325;
+throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$3(["Error at step ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(i_43618),": ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event_43620)," ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(args_43621)].join(''),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"step","step",1288888124),i_43618,new cljs.core.Keyword(null,"event","event",301435442),event_43620,new cljs.core.Keyword(null,"args","args",1315556576),args_43621], null),e_43666);
 }
 
-var G__43581 = seq__42881_43535;
-var G__43582 = chunk__42882_43536;
-var G__43583 = count__42883_43537;
-var G__43584 = (i__42884_43538 + (1));
-seq__42881_43535 = G__43581;
-chunk__42882_43536 = G__43582;
-count__42883_43537 = G__43583;
-i__42884_43538 = G__43584;
+var G__43669 = seq__43033_43613;
+var G__43670 = chunk__43034_43614;
+var G__43671 = count__43035_43615;
+var G__43672 = (i__43036_43616 + (1));
+seq__43033_43613 = G__43669;
+chunk__43034_43614 = G__43670;
+count__43035_43615 = G__43671;
+i__43036_43616 = G__43672;
 continue;
 } else {
-var temp__5825__auto___43585 = cljs.core.seq(seq__42881_43535);
-if(temp__5825__auto___43585){
-var seq__42881_43586__$1 = temp__5825__auto___43585;
-if(cljs.core.chunked_seq_QMARK_(seq__42881_43586__$1)){
-var c__5548__auto___43587 = cljs.core.chunk_first(seq__42881_43586__$1);
-var G__43588 = cljs.core.chunk_rest(seq__42881_43586__$1);
-var G__43589 = c__5548__auto___43587;
-var G__43590 = cljs.core.count(c__5548__auto___43587);
-var G__43591 = (0);
-seq__42881_43535 = G__43588;
-chunk__42882_43536 = G__43589;
-count__42883_43537 = G__43590;
-i__42884_43538 = G__43591;
+var temp__5825__auto___43673 = cljs.core.seq(seq__43033_43613);
+if(temp__5825__auto___43673){
+var seq__43033_43674__$1 = temp__5825__auto___43673;
+if(cljs.core.chunked_seq_QMARK_(seq__43033_43674__$1)){
+var c__5548__auto___43675 = cljs.core.chunk_first(seq__43033_43674__$1);
+var G__43676 = cljs.core.chunk_rest(seq__43033_43674__$1);
+var G__43677 = c__5548__auto___43675;
+var G__43678 = cljs.core.count(c__5548__auto___43675);
+var G__43679 = (0);
+seq__43033_43613 = G__43676;
+chunk__43034_43614 = G__43677;
+count__43035_43615 = G__43678;
+i__43036_43616 = G__43679;
 continue;
 } else {
-var vec__43384_43592 = cljs.core.first(seq__42881_43586__$1);
-var i_43593 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43384_43592,(0),null);
-var vec__43387_43594 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43384_43592,(1),null);
-var event_43595 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43387_43594,(0),null);
-var args_43596 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43387_43594,(1),null);
-try{re_frame.core.dispatch(cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [event_43595], null),args_43596));
+var vec__43368_43680 = cljs.core.first(seq__43033_43674__$1);
+var i_43681 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43368_43680,(0),null);
+var vec__43371_43682 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43368_43680,(1),null);
+var event_43683 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43371_43682,(0),null);
+var args_43684 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43371_43682,(1),null);
+try{re_frame.core.dispatch(cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [event_43683], null),args_43684));
 
-if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(event_43595,new cljs.core.Keyword("bb-web-ds-tools.core","navigate","bb-web-ds-tools.core/navigate",-787989557))){
-var vec__43391_43598 = args_43596;
-var route_name_43599 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43391_43598,(0),null);
-var params_43600 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43391_43598,(1),null);
-var query_43601 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43391_43598,(2),null);
-re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.core","navigated","bb-web-ds-tools.core/navigated",386373854),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"data","data",-232669377),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"name","name",1843675177),route_name_43599], null),new cljs.core.Keyword(null,"path-params","path-params",-48130597),params_43600,new cljs.core.Keyword(null,"query-params","query-params",900640534),query_43601], null)], null));
+if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(event_43683,new cljs.core.Keyword("bb-web-ds-tools.core","navigate","bb-web-ds-tools.core/navigate",-787989557))){
+var vec__43383_43685 = args_43684;
+var route_name_43686 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43383_43685,(0),null);
+var params_43687 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43383_43685,(1),null);
+var query_43688 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43383_43685,(2),null);
+re_frame.core.dispatch(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.core","navigated","bb-web-ds-tools.core/navigated",386373854),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"data","data",-232669377),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"name","name",1843675177),route_name_43686], null),new cljs.core.Keyword(null,"path-params","path-params",-48130597),params_43687,new cljs.core.Keyword(null,"query-params","query-params",900640534),query_43688], null)], null));
 } else {
 }
 
-var current_route_match_43602 = cljs.core.deref(re_frame.core.subscribe.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.core","current-route","bb-web-ds-tools.core/current-route",-183395378)], null)));
-var current_route_name_43603 = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(current_route_match_43602,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"data","data",-232669377),new cljs.core.Keyword(null,"name","name",1843675177)], null));
-var event_def_43604 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(bb_web_ds_tools.events.journeys.events,event_43595);
-var expected_route_43605 = new cljs.core.Keyword(null,"route","route",329891309).cljs$core$IFn$_invoke$arity$1(event_def_43604);
-if(cljs.core.truth_((function (){var and__5023__auto__ = expected_route_43605;
+var current_route_match_43689 = cljs.core.deref(re_frame.core.subscribe.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("bb-web-ds-tools.core","current-route","bb-web-ds-tools.core/current-route",-183395378)], null)));
+var current_route_name_43690 = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(current_route_match_43689,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"data","data",-232669377),new cljs.core.Keyword(null,"name","name",1843675177)], null));
+var event_def_43691 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(bb_web_ds_tools.events.journeys.events,event_43683);
+var expected_route_43692 = new cljs.core.Keyword(null,"route","route",329891309).cljs$core$IFn$_invoke$arity$1(event_def_43691);
+if(cljs.core.truth_((function (){var and__5023__auto__ = expected_route_43692;
 if(cljs.core.truth_(and__5023__auto__)){
-return cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(expected_route_43605,new cljs.core.Keyword(null,"global","global",93595047));
+return cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(expected_route_43692,new cljs.core.Keyword(null,"global","global",93595047));
 } else {
 return and__5023__auto__;
 }
 })())){
-if(cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(expected_route_43605,current_route_name_43603)){
-throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(["Event ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event_43595)," expects route ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(expected_route_43605)," but got ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(current_route_name_43603)].join(''),cljs.core.PersistentArrayMap.EMPTY);
+if(cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(expected_route_43692,current_route_name_43690)){
+throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(["Event ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event_43683)," expects route ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(expected_route_43692)," but got ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(current_route_name_43690)].join(''),cljs.core.PersistentArrayMap.EMPTY);
 } else {
 }
 } else {
 }
 
-var temp__5825__auto___43608__$1 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(bb_web_ds_tools.events.journeys_test.view_subscriptions,current_route_name_43603);
-if(cljs.core.truth_(temp__5825__auto___43608__$1)){
-var subs_43609 = temp__5825__auto___43608__$1;
-var seq__43404_43610 = cljs.core.seq(subs_43609);
-var chunk__43405_43611 = null;
-var count__43406_43612 = (0);
-var i__43407_43613 = (0);
+var temp__5825__auto___43693__$1 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(bb_web_ds_tools.events.journeys_test.view_subscriptions,current_route_name_43690);
+if(cljs.core.truth_(temp__5825__auto___43693__$1)){
+var subs_43707 = temp__5825__auto___43693__$1;
+var seq__43387_43708 = cljs.core.seq(subs_43707);
+var chunk__43388_43709 = null;
+var count__43389_43710 = (0);
+var i__43390_43711 = (0);
 while(true){
-if((i__43407_43613 < count__43406_43612)){
-var sub_43614 = chunk__43405_43611.cljs$core$IIndexed$_nth$arity$2(null,i__43407_43613);
-try{var val_43615 = cljs.core.deref(re_frame.core.subscribe.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [sub_43614], null)));
-if((val_43615 == null)){
-throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(["Subscription ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(sub_43614)," should return a value for route ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(current_route_name_43603)].join(''),cljs.core.PersistentArrayMap.EMPTY);
+if((i__43390_43711 < count__43389_43710)){
+var sub_43712 = chunk__43388_43709.cljs$core$IIndexed$_nth$arity$2(null,i__43390_43711);
+try{var val_43713 = cljs.core.deref(re_frame.core.subscribe.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [sub_43712], null)));
+if((val_43713 == null)){
+throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(["Subscription ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(sub_43712)," should return a value for route ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(current_route_name_43690)].join(''),cljs.core.PersistentArrayMap.EMPTY);
 } else {
 }
-}catch (e43419){var e_43616 = e43419;
-throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$3(["Error checking subscription ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(sub_43614)," at route ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(current_route_name_43603)].join(''),cljs.core.PersistentArrayMap.EMPTY,e_43616);
-}
-
-var G__43618 = seq__43404_43610;
-var G__43619 = chunk__43405_43611;
-var G__43620 = count__43406_43612;
-var G__43621 = (i__43407_43613 + (1));
-seq__43404_43610 = G__43618;
-chunk__43405_43611 = G__43619;
-count__43406_43612 = G__43620;
-i__43407_43613 = G__43621;
-continue;
-} else {
-var temp__5825__auto___43622__$2 = cljs.core.seq(seq__43404_43610);
-if(temp__5825__auto___43622__$2){
-var seq__43404_43623__$1 = temp__5825__auto___43622__$2;
-if(cljs.core.chunked_seq_QMARK_(seq__43404_43623__$1)){
-var c__5548__auto___43624 = cljs.core.chunk_first(seq__43404_43623__$1);
-var G__43625 = cljs.core.chunk_rest(seq__43404_43623__$1);
-var G__43626 = c__5548__auto___43624;
-var G__43627 = cljs.core.count(c__5548__auto___43624);
-var G__43628 = (0);
-seq__43404_43610 = G__43625;
-chunk__43405_43611 = G__43626;
-count__43406_43612 = G__43627;
-i__43407_43613 = G__43628;
-continue;
-} else {
-var sub_43629 = cljs.core.first(seq__43404_43623__$1);
-try{var val_43630 = cljs.core.deref(re_frame.core.subscribe.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [sub_43629], null)));
-if((val_43630 == null)){
-throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(["Subscription ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(sub_43629)," should return a value for route ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(current_route_name_43603)].join(''),cljs.core.PersistentArrayMap.EMPTY);
-} else {
-}
-}catch (e43420){var e_43631 = e43420;
-throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$3(["Error checking subscription ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(sub_43629)," at route ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(current_route_name_43603)].join(''),cljs.core.PersistentArrayMap.EMPTY,e_43631);
+}catch (e43418){var e_43714 = e43418;
+throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$3(["Error checking subscription ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(sub_43712)," at route ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(current_route_name_43690)].join(''),cljs.core.PersistentArrayMap.EMPTY,e_43714);
 }
 
-var G__43633 = cljs.core.next(seq__43404_43623__$1);
-var G__43634 = null;
-var G__43635 = (0);
-var G__43636 = (0);
-seq__43404_43610 = G__43633;
-chunk__43405_43611 = G__43634;
-count__43406_43612 = G__43635;
-i__43407_43613 = G__43636;
+var G__43715 = seq__43387_43708;
+var G__43716 = chunk__43388_43709;
+var G__43717 = count__43389_43710;
+var G__43718 = (i__43390_43711 + (1));
+seq__43387_43708 = G__43715;
+chunk__43388_43709 = G__43716;
+count__43389_43710 = G__43717;
+i__43390_43711 = G__43718;
+continue;
+} else {
+var temp__5825__auto___43720__$2 = cljs.core.seq(seq__43387_43708);
+if(temp__5825__auto___43720__$2){
+var seq__43387_43721__$1 = temp__5825__auto___43720__$2;
+if(cljs.core.chunked_seq_QMARK_(seq__43387_43721__$1)){
+var c__5548__auto___43722 = cljs.core.chunk_first(seq__43387_43721__$1);
+var G__43723 = cljs.core.chunk_rest(seq__43387_43721__$1);
+var G__43724 = c__5548__auto___43722;
+var G__43725 = cljs.core.count(c__5548__auto___43722);
+var G__43726 = (0);
+seq__43387_43708 = G__43723;
+chunk__43388_43709 = G__43724;
+count__43389_43710 = G__43725;
+i__43390_43711 = G__43726;
+continue;
+} else {
+var sub_43727 = cljs.core.first(seq__43387_43721__$1);
+try{var val_43729 = cljs.core.deref(re_frame.core.subscribe.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [sub_43727], null)));
+if((val_43729 == null)){
+throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2(["Subscription ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(sub_43727)," should return a value for route ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(current_route_name_43690)].join(''),cljs.core.PersistentArrayMap.EMPTY);
+} else {
+}
+}catch (e43423){var e_43731 = e43423;
+throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$3(["Error checking subscription ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(sub_43727)," at route ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(current_route_name_43690)].join(''),cljs.core.PersistentArrayMap.EMPTY,e_43731);
+}
+
+var G__43732 = cljs.core.next(seq__43387_43721__$1);
+var G__43733 = null;
+var G__43734 = (0);
+var G__43735 = (0);
+seq__43387_43708 = G__43732;
+chunk__43388_43709 = G__43733;
+count__43389_43710 = G__43734;
+i__43390_43711 = G__43735;
 continue;
 }
 } else {
@@ -618,18 +618,18 @@ break;
 }
 } else {
 }
-}catch (e43390){var e_43637 = e43390;
-throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$3(["Error at step ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(i_43593),": ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event_43595)," ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(args_43596)].join(''),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"step","step",1288888124),i_43593,new cljs.core.Keyword(null,"event","event",301435442),event_43595,new cljs.core.Keyword(null,"args","args",1315556576),args_43596], null),e_43637);
+}catch (e43382){var e_43736 = e43382;
+throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$3(["Error at step ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(i_43681),": ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(event_43683)," ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(args_43684)].join(''),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"step","step",1288888124),i_43681,new cljs.core.Keyword(null,"event","event",301435442),event_43683,new cljs.core.Keyword(null,"args","args",1315556576),args_43684], null),e_43736);
 }
 
-var G__43638 = cljs.core.next(seq__42881_43586__$1);
-var G__43639 = null;
-var G__43640 = (0);
-var G__43641 = (0);
-seq__42881_43535 = G__43638;
-chunk__42882_43536 = G__43639;
-count__42883_43537 = G__43640;
-i__42884_43538 = G__43641;
+var G__43737 = cljs.core.next(seq__43033_43674__$1);
+var G__43738 = null;
+var G__43739 = (0);
+var G__43740 = (0);
+seq__43033_43613 = G__43737;
+chunk__43034_43614 = G__43738;
+count__43035_43615 = G__43739;
+i__43036_43616 = G__43740;
 continue;
 }
 } else {
@@ -639,7 +639,7 @@ break;
 }
 
 return true;
-}catch (e42880){var e = e42880;
+}catch (e43032){var e = e43032;
 cljs.core.println.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2(["Failed journey execution:"], 0));
 
 cljs.core.println.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2(["Last event:",cljs.core.last(journey)], 0));
@@ -660,7 +660,7 @@ cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core
 }
 
 return value__11369__auto__;
-}catch (e43430){var t__11416__auto__ = e43430;
+}catch (e43428){var t__11416__auto__ = e43428;
 return cljs.test.report.call(null,cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"expected","expected",1583670997),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"actual","actual",107306363),new cljs.core.Keyword(null,"message","message",-406056002)],["bb_web_ds_tools/events/journeys_test.cljs",27,new cljs.core.Keyword(null,"error","error",-978969032),11,186,cljs.core.list(new cljs.core.Keyword(null,"result","result",1415092211),new cljs.core.Symbol(null,"result","result",-1239343558,null)),186,t__11416__auto__,["Generative test failed: ",cljs.core.pr_str.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"shrunk","shrunk",-2041664412).cljs$core$IFn$_invoke$arity$1(result)], 0))].join('')]));
 }}finally {cljs.test.update_current_env_BANG_(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"testing-contexts","testing-contexts",-1485646523)], null),cljs.core.rest);
 }});
