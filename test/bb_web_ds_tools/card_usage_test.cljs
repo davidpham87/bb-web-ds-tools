@@ -31,5 +31,6 @@
   (let [hiccup (get-render honeysql/panel)
         rows (find-component-usages tool-view hiccup)]
     (is (seq rows) "Should find tool-view in honeysql (replacing split-view)")
-    (doseq [row rows]
-      (is (map? (nth row 1)) (str "Tool-view props should be a map, found: " (pr-str (nth row 1)))))))
+    (let [[_ props] (first rows)]
+      (is (= "Convert to SQL" (:title props)))
+      (is (= :honeysql (:wiki-key props))))))

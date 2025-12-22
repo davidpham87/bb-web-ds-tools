@@ -78,13 +78,21 @@
 
 (deftest receive-vega-content-test
   (rf-test/run-test-sync
+   (rf/dispatch [::sut/initialize])
    (rf/dispatch [::sut/receive-vega-dataset-content "test.json" "{\"a\": 1}"])
    (let [state @(rf/subscribe [::sut/new-dataset-state])]
-     (is (= "test.json" (:name state)))
-     (is (= :json (:format state)))
-     (is (= "{\"a\": 1}" (:text state))))
+     (is (= {:name "test.json"
+             :text "{\"a\": 1}"
+             :format :json
+             :structure :row-maps
+             :override-norm? false}
+            state)))
 
    (rf/dispatch [::sut/receive-vega-dataset-content "data.csv" "a,b\n1,2"])
    (let [state @(rf/subscribe [::sut/new-dataset-state])]
-     (is (= "data.csv" (:name state)))
-     (is (= :csv (:format state))))))
+     (is (= {:name "data.csv"
+             :text "a,b\n1,2"
+             :format :csv
+             :structure :columnar
+             :override-norm? false}
+            state)))))
