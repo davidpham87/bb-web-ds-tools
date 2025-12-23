@@ -69,26 +69,19 @@
     ;; Needs unique < 10% of total. 3 unique ("x", "y", "z"). Need > 30 rows.
     (let [data (vec (mapcat (fn [v] (repeat 11 {:a v})) ["x" "y" "z"])) ;; 33 rows. 3 unique. 9%.
           result (sut/infer-schema data)]
-      (is (:success result))
-      (let [schema (:schema result)]
-        (is (= :map (first schema)))
-        (let [entries (rest schema)
-              entry-a (first (filter #(= :a (first %)) entries))
-              val-schema (last entry-a)]
-          (is (= :enum (first val-schema)))
-          (is (= #{"x" "y" "z"} (set (rest val-schema))))))))
+      (is (= {:success true
+              :schema [:map [:a [:enum "x" "y" "z"]]]}
+             result))))
 
   (testing "infer-schema respects max-enum-values limit"
     ;; Needs unique < 10% (to qualify) BUT unique > max-values (to fail limit).
     ;; 3 unique. Max values 2. Need > 30 rows.
     (let [data (vec (mapcat (fn [v] (repeat 11 {:a v})) ["1" "2" "3"])) ;; 33 rows. 3 unique.
-          result (sut/infer-schema data 2)
-          schema (:schema result)]
-      (is (:success result))
-      (let [entries (rest schema)
-            entry-a (first (filter #(= :a (first %)) entries))
-            val-schema (last entry-a)]
-        (is (or (= :string val-schema) (= 'string? val-schema)))))))
+          result (sut/infer-schema data 2)]
+      ;; :string or string? depending on malli.provider version and config
+      ;; Assuming :string for now based on standard provider behavior with keywords
+      (is (or (= {:success true :schema [:map [:a :string]]} result)
+              (= {:success true :schema [:map [:a 'string?]]} result))))))
 
 (deftest infer-schema-min-max-test
   (testing "infer-schema adds min/max to integers"
