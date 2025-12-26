@@ -316,14 +316,36 @@ Line 3: 123-456-7890")
     (into [] (map #(dissoc % :_uuid)) data)
     data))
 
+;; Security: CSV Injection Sanitization
+
+(defn sanitize-value
+  "Sanitizes a value to prevent CSV/Formula injection.
+   Prepends a single quote to strings starting with =, +, -, or @."
+  [v]
+  (if (and (string? v) (re-find #"^[=\+\-@]" v))
+    (str "'" v)
+    v))
+
+(defn sanitize-row
+  "Sanitizes all values in a row map."
+  [row]
+  (reduce-kv (fn [m k v] (assoc m k (sanitize-value v))) {} row))
+
+(defn sanitize-dataset
+  "Sanitizes a dataset (sequence of maps) for CSV export."
+  [data]
+  (mapv sanitize-row data))
+
 (defn- format-data
   [clean-data structured-data format structure]
   (case format
     :csv (if (= structure :columnar)
-           (.unparse Papa (clj->js clean-data) #js {:header true})
+           ;; Sanitize data before CSV export
+           (.unparse Papa (clj->js (sanitize-dataset clean-data)) #js {:header true})
            "CSV only supports columnar structure.")
     :tsv (if (= structure :columnar)
-           (.unparse Papa (clj->js clean-data) #js {:delimiter "\t" :header true})
+           ;; Sanitize data before TSV export
+           (.unparse Papa (clj->js (sanitize-dataset clean-data)) #js {:delimiter "\t" :header true})
            "TSV only supports columnar structure.")
     :markdown (if (= structure :columnar)
                 (to-markdown-table clean-data)
