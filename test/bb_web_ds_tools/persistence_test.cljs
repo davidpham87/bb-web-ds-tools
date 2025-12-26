@@ -13,8 +13,8 @@
                                     :printErr (fn [x] (js/console.error "SQLite Err:" x))})
                    sqlite3 (<p! (sqlite3InitModule config))]
                (is (some? sqlite3) "SQLite module loaded")
-               (let [oo1 (.. ^js sqlite3 -oo1)
-                     DB (.. ^js oo1 -DB)
+               (let [oo1 (.-oo1 ^js sqlite3)
+                     DB (.-DB ^js oo1)
                      db (new DB ":memory:" "ct")]
                  (is (some? db) "DB created")
 
