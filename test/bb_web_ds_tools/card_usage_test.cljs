@@ -32,5 +32,6 @@
         rows (find-component-usages tool-view hiccup)]
     (is (seq rows) "Should find tool-view in honeysql (replacing split-view)")
     (let [[_ props] (first rows)]
-      (is (= "Convert to SQL" (:title props)))
-      (is (= :honeysql (:wiki-key props))))))
+      (is (= {:title "Convert to SQL"
+              :wiki-key :honeysql}
+             (select-keys props [:title :wiki-key]))))))
