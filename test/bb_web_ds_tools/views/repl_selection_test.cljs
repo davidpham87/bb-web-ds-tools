@@ -1,6 +1,9 @@
 (ns bb-web-ds-tools.views.repl-selection-test
-  (:require [cljs.test :refer [deftest is testing]]
-            [bb-web-ds-tools.components.editor :as sut]))
+  (:require [cljs.test :refer [deftest is testing use-fixtures]]
+            [bb-web-ds-tools.components.editor :as sut]
+            [bb-web-ds-tools.test-setup :as setup]))
+
+(use-fixtures :each setup/suppress-re-frame-warnings)
 
 (deftest get-code-to-eval-test
   (testing "returns full buffer when no selection"

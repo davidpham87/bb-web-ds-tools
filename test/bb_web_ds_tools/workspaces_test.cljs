@@ -6,7 +6,9 @@
             [day8.re-frame.test :as rf-test]
             [bb-web-ds-tools.test-setup :as setup]))
 
-(use-fixtures :each setup/suppress-re-frame-warnings)
+(use-fixtures :each
+  setup/suppress-re-frame-warnings
+  {:after (fn [] (d/unlisten! ws/conn :listener))})
 
 (deftest workspace-logic-test
   (rf-test/run-test-sync

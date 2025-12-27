@@ -1,7 +1,10 @@
 (ns bb-web-ds-tools.components.common-test
-  (:require [cljs.test :refer [deftest is testing]]
+  (:require [cljs.test :refer [deftest is testing use-fixtures]]
             [bb-web-ds-tools.components.common :as c]
-            [bb-web-ds-tools.components.tabs :as tabs]))
+            [bb-web-ds-tools.components.tabs :as tabs]
+            [bb-web-ds-tools.test-setup :as setup]))
+
+(use-fixtures :each setup/suppress-re-frame-warnings)
 
 (deftest tabs-component-test
   (testing "tabs component structure"

@@ -11,8 +11,10 @@
                (loggers/set-loggers!
                 {:warn (fn [& args]
                          (let [msg (first args)]
-                           (when-not (and (string? msg)
-                                          (str/includes? msg "Subscribe was called outside of a reactive context"))
+                           (if (and (string? msg)
+                                    (or (str/includes? msg "Subscribe was called outside of a reactive context")
+                                        (str/includes? msg "re-frame: Subscribe was called outside of a reactive context")))
+                             nil ;; Suppress
                              (if orig-warn
                                (apply orig-warn args)
                                (js/console.warn (apply str args))))))})))

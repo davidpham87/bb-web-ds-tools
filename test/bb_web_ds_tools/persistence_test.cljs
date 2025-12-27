@@ -1,9 +1,12 @@
 (ns bb-web-ds-tools.persistence-test
-  (:require [cljs.test :refer [deftest is testing async]]
+  (:require [cljs.test :refer [deftest is testing async use-fixtures]]
             [bb-web-ds-tools.workspaces.persistence-fx :as pfx]
+            [bb-web-ds-tools.test-setup :as setup]
             [cljs.core.async :refer [go]]
             [cljs.core.async.interop :refer-macros [<p!]]
             ["@sqlite.org/sqlite-wasm" :default sqlite3InitModule]))
+
+(use-fixtures :each setup/suppress-re-frame-warnings)
 
 (deftest test-sqlite-wasm
   (async done
@@ -13,8 +16,8 @@
                                     :printErr (fn [x] (js/console.error "SQLite Err:" x))})
                    sqlite3 (<p! (sqlite3InitModule config))]
                (is (some? sqlite3) "SQLite module loaded")
-               (let [oo1 (.. ^js sqlite3 -oo1)
-                     DB (.. ^js oo1 -DB)
+               (let [oo1 (.-oo1 ^js sqlite3)
+                     DB (.-DB ^js oo1)
                      db (new DB ":memory:" "ct")]
                  (is (some? db) "DB created")
 
