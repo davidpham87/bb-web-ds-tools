@@ -19,7 +19,8 @@
      (let [active-id @(rf/subscribe [::ws/active-workspace-id])
            workspace @(rf/subscribe [::ws/active-workspace])]
        (is (some? active-id) "Active workspace ID should be set")
-       (is (= "Test Workspace" (:workspace/name workspace)))))
+       (is (= {:workspace/name "Test Workspace"}
+              (dissoc workspace :db/id :workspace/id :workspace/created-at :workspace/updated-at)))))
 
    (testing "Save Input"
      (rf/dispatch [::ws/save-input {:type :dataset
@@ -34,6 +35,8 @@
       ;; Let's rely on the fact that `ws/current-inputs` derefs `ds-version`.
 
      (let [inputs @(rf/subscribe [::ws/current-inputs])]
-       (is (= 1 (count inputs)) "Should have 1 input")
-       (is (= "test.csv" (:input/name (first inputs))))
-       (is (= :dataset (:input/type (first inputs))))))))
+       (is (= [{:input/content "a,b\n1,2"
+                :input/metadata {:format :csv}
+                :input/name "test.csv"
+                :input/type :dataset}]
+              (map #(dissoc % :db/id :input/id :input/updated-at :input/workspace) inputs)))))))
