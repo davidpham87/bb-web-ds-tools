@@ -54,9 +54,6 @@
 
 (deftest to-markdown-table-test
   (testing "to-markdown-table formats correctly"
-    (let [rows [{:a 1 :b 2} {:a 3 :b 4}]
-          table (#'sut/to-markdown-table rows)]
-      (is (str/includes? table "| a | b |"))
-      (is (str/includes? table "| --- | --- |"))
-      (is (str/includes? table "| 1 | 2 |"))
-      (is (str/includes? table "| 3 | 4 |")))))
+    (let [rows [{:a 1 :b 2} {:a 3 :b 4}]]
+      (is (= "| a | b |\n| --- | --- |\n| 1 | 2 |\n| 3 | 4 |"
+             (#'sut/to-markdown-table rows))))))
