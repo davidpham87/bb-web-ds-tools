@@ -13,11 +13,15 @@
          (go
            (try
              (let [config (clj->js {:print (fn [x] (js/console.log "SQLite:" x))
-                                    :printErr (fn [x] (js/console.error "SQLite Err:" x))})
+                                    :printErr (fn [x] (js/console.error "SQLite Err:" x))
+                                    :locateFile (fn [file script-dir]
+                                                  (if (= file "sqlite3.wasm")
+                                                    "/base/target/test/sqlite3.wasm"
+                                                    (str script-dir file)))})
                    sqlite3 (<p! (sqlite3InitModule config))]
                (is (some? sqlite3) "SQLite module loaded")
-               (let [oo1 (.-oo1 ^js sqlite3)
-                     DB (.-DB ^js oo1)
+               (let [^js oo1 (.-oo1 ^js sqlite3)
+                     ^js DB (.-DB oo1)
                      db (new DB ":memory:" "ct")]
                  (is (some? db) "DB created")
 
