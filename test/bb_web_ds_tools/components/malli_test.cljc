@@ -2,6 +2,7 @@
   (:require [clojure.test :refer [deftest is testing]]
             [bb-web-ds-tools.components.malli :as sut]
             [malli.core :as m]
+            [malli.error :as me]
             [clojure.test.check.generators :as gen]
             [clojure.test.check.properties :as prop]
             [clojure.test.check.clojure-test :refer [defspec]]))
@@ -36,42 +37,41 @@
 
 (deftest validate-data-test
   (testing "Valid data"
-    (let [schema [:map [:a int?]]
-          data {:a 1}
-          result (sut/validate-data schema data)]
-      (is (= {:success true :result "✅ Data is valid."} result))))
+    (is (= {:success true :result "✅ Data is valid."}
+           (sut/validate-data [:map [:a int?]] {:a 1}))))
 
   (testing "Invalid data"
     (let [schema [:map [:a int?]]
           data {:a "string"}
           result (sut/validate-data schema data)]
-      (is (not (:success result)))
-      (is (map? (:result result))))) ;; Returns explanation map
+      (is (= false (:success result)))
+      ;; We expect a malli explanation map in :result
+      (is (= {:a ["should be an int"]}
+             (me/humanize (:result result))))))
 
   (testing "Missing schema/data"
-    (is (not (:success (sut/validate-data nil {:a 1}))))
-    (is (not (:success (sut/validate-data [:map [:a int?]] nil))))))
+    (is (= false (:success (sut/validate-data nil {:a 1}))))
+    (is (= false (:success (sut/validate-data [:map [:a int?]] nil))))))
 
 (deftest transform-to-json-schema-test
   (testing "Valid schema"
     (let [schema [:map [:a int?]]
-          result (sut/transform-to-json-schema schema)]
+          result (sut/transform-to-json-schema schema)
+          expected-json "{\n  \"type\" : \"object\",\n  \"properties\" : {\n    \"a\" : {\n      \"type\" : \"integer\"\n    }\n  },\n  \"required\" : [ \"a\" ]\n}"]
       (is (:success result))
-      (is (string? (:json-schema result)))
-      ;; Check if it's valid JSON
-      (is (sut/parse-json (:json-schema result)))))
+      (is (= (sut/parse-json expected-json)
+             (sut/parse-json (:json-schema result))))))
 
   (testing "Invalid schema"
-    (is (not (:success (sut/transform-to-json-schema nil))))))
+    (is (= false (:success (sut/transform-to-json-schema nil))))))
 
 (deftest infer-schema-enum-test
   (testing "infer-schema uses max-enum-values to refine strings to enums"
     ;; Needs unique < 10% of total. 3 unique ("x", "y", "z"). Need > 30 rows.
-    (let [data (vec (mapcat (fn [v] (repeat 11 {:a v})) ["x" "y" "z"])) ;; 33 rows. 3 unique. 9%.
-          result (sut/infer-schema data)]
+    (let [data (vec (mapcat (fn [v] (repeat 11 {:a v})) ["x" "y" "z"]))] ;; 33 rows. 3 unique. 9%.
       (is (= {:success true
               :schema [:map [:a [:enum "x" "y" "z"]]]}
-             result))))
+             (sut/infer-schema data)))))
 
   (testing "infer-schema respects max-enum-values limit"
     ;; Needs unique < 10% (to qualify) BUT unique > max-values (to fail limit).
@@ -80,38 +80,33 @@
           result (sut/infer-schema data 2)]
       ;; :string or string? depending on malli.provider version and config
       ;; Assuming :string for now based on standard provider behavior with keywords
-      (is (or (= {:success true :schema [:map [:a :string]]} result)
-              (= {:success true :schema [:map [:a 'string?]]} result))))))
+      (is (contains? #{[:map [:a :string]] [:map [:a 'string?]]} (:schema result))))))
 
 (deftest infer-schema-min-max-test
   (testing "infer-schema adds min/max to integers"
-    (let [data [{:a 1} {:a 5} {:a 10}]]
-      (is (= {:success true
-              :schema [:map [:a [:int {:min 1, :max 10}]]]}
-             (sut/infer-schema data)))))
+    (is (= {:success true
+            :schema [:map [:a [:int {:min 1, :max 10}]]]}
+           (sut/infer-schema [{:a 1} {:a 5} {:a 10}]))))
 
   (testing "infer-schema adds min/max to doubles"
-    (let [data [{:a 1.5} {:a 5.5}]]
-      (is (= {:success true
-              :schema [:map [:a [:double {:min 1.5, :max 5.5}]]]}
-             (sut/infer-schema data)))))
+    (is (= {:success true
+            :schema [:map [:a [:double {:min 1.5, :max 5.5}]]]}
+           (sut/infer-schema [{:a 1.5} {:a 5.5}]))))
 
   (testing "infer-schema handles nullable numbers"
-    (let [data [{:a 1} {:a nil} {:a 10}]]
-      (is (= {:success true
-              :schema [:map [:a [:maybe [:int {:min 1, :max 10}]]]]}
-             (sut/infer-schema data))))))
+    (is (= {:success true
+            :schema [:map [:a [:maybe [:int {:min 1, :max 10}]]]]}
+           (sut/infer-schema [{:a 1} {:a nil} {:a 10}])))))
 
 (deftest infer-schema-date-min-max-test
   (testing "infer-schema adds min/max to dates"
     (let [d1 #inst "2023-01-01"
           d2 #inst "2023-01-05"
-          d3 #inst "2023-01-10"
-          data [{:a d1} {:a d2} {:a d3}]]
+          d3 #inst "2023-01-10"]
       (is (= {:success true
               :schema [:map
                        [:a
                         ['inst?
                          {:min d1
                           :max d3}]]]}
-             (sut/infer-schema data))))))
+             (sut/infer-schema [{:a d1} {:a d2} {:a d3}]))))))
