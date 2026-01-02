@@ -28,9 +28,10 @@
       (let [data (vec (repeat 10 {:a "Cat"}))
             data (assoc-in data [1 :a] "Dog")
             data (assoc-in data [2 :a] "Fish")
-            res (sut/infer-schema data)
-            schema (:schema res)]
-        (is (= [:enum "Cat" "Dog" "Fish"] (get-field-schema schema :a)))))
+            res (sut/infer-schema data)]
+        (is (= {:success true
+                :schema [:map [:a [:enum "Cat" "Dog" "Fish"]]]}
+               res))))
 
     (testing "Scenario 3: Large Dataset, ID Column (High Cardinality)"
       ;; Unique=1000. Fails 200 limit. -> String.
