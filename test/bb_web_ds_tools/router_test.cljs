@@ -15,11 +15,13 @@
           match-code (r/match-by-path router "/code/pyodide")
           match-malli (r/match-by-path router "/malli/inference")]
 
-      (is (= :code-tab (get-in match-code [:data :name])))
-      (is (= "pyodide" (get-in match-code [:path-params :tab])))
+      (is (= [:code-tab "pyodide"]
+             [(get-in match-code [:data :name])
+              (get-in match-code [:path-params :tab])]))
 
-      (is (= :malli-tab (get-in match-malli [:data :name])))
-      (is (= "inference" (get-in match-malli [:path-params :tab]))))))
+      (is (= [:malli-tab "inference"]
+             [(get-in match-malli [:data :name])
+              (get-in match-malli [:path-params :tab])])))))
 
 (deftest state-sharing-test
   (testing "Encoding and decoding state"
