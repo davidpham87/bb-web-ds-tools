@@ -18,7 +18,7 @@
           d2 (LocalDate.parse "2023-01-10")
           d3 (LocalDate.parse "2023-01-05")
           data [d1 d2 d3]
-          result (m-comp/infer-schema data)
-          schema (:schema result)]
-      (is (:success result) "Inference should succeed")
-      (is (= [:time/local-date {:min d1 :max d2}] schema) "Should infer correct schema with min/max"))))
+          result (m-comp/infer-schema data)]
+      (is (= {:success true
+              :schema [:time/local-date {:min d1 :max d2}]}
+             result) "Should infer correct schema with min/max"))))
