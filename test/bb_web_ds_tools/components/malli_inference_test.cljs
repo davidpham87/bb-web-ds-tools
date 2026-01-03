@@ -28,16 +28,14 @@
       (let [data (vec (repeat 10 {:a "Cat"}))
             data (assoc-in data [1 :a] "Dog")
             data (assoc-in data [2 :a] "Fish")
-            res (sut/infer-schema data)
-            schema (:schema res)]
-        (is (= [:enum "Cat" "Dog" "Fish"] (get-field-schema schema :a)))))
+            res (sut/infer-schema data)]
+        (is (= {:success true, :schema [:map [:a [:enum "Cat" "Dog" "Fish"]]]} res))))
 
     (testing "Scenario 3: Large Dataset, ID Column (High Cardinality)"
       ;; Unique=1000. Fails 200 limit. -> String.
       (let [data (mapv (fn [i] {:a (str "ID" i)}) (range 1000))
-            res (sut/infer-schema data)
-            schema (:schema res)]
-        (is (= :string (get-field-schema schema :a)))))
+            res (sut/infer-schema data)]
+        (is (= {:success true, :schema [:map [:a :string]]} res))))
 
     (testing "Scenario 4: Medium Dataset, Unique < 200, but > 10%, Short Strings"
       ;; Unique=50. Total=100. (50%). Length < 60.
@@ -62,6 +60,5 @@
       ;; Fails OR condition (Neither < 10% nor < 60). -> String.
       (let [unique-vals (map #(str (apply str (repeat 70 "X")) %) (range 10))
             data (vec (mapcat (fn [v] (repeat 2 {:a v})) unique-vals))
-            res (sut/infer-schema data)
-            schema (:schema res)]
-        (is (= :string (get-field-schema schema :a)))))))
+            res (sut/infer-schema data)]
+        (is (= {:success true, :schema [:map [:a :string]]} res))))))
