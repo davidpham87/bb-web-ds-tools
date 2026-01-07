@@ -9,17 +9,21 @@
 
 (use-fixtures :each setup/suppress-re-frame-warnings)
 
+(defn relevant-route-data [match]
+  {:name (get-in match [:data :name])
+   :tab (get-in match [:path-params :tab])})
+
 (deftest route-matching-test
   (testing "Nested tab routes"
     (let [router core/router
           match-code (r/match-by-path router "/code/pyodide")
           match-malli (r/match-by-path router "/malli/inference")]
 
-      (is (= :code-tab (get-in match-code [:data :name])))
-      (is (= "pyodide" (get-in match-code [:path-params :tab])))
+      (is (= {:name :code-tab :tab "pyodide"}
+             (relevant-route-data match-code)))
 
-      (is (= :malli-tab (get-in match-malli [:data :name])))
-      (is (= "inference" (get-in match-malli [:path-params :tab]))))))
+      (is (= {:name :malli-tab :tab "inference"}
+             (relevant-route-data match-malli))))))
 
 (deftest state-sharing-test
   (testing "Encoding and decoding state"
