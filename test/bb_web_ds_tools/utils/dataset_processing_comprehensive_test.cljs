@@ -35,9 +35,10 @@
 
 (deftest normalize-column-name-test
   (testing "Output format"
-    (is (= :foo-bar (sut/normalize-column-name :fooBar {:case :kebab-case :output :keyword})))
-    (is (= "foo_bar" (sut/normalize-column-name "FooBar" {:case :snake_case :output :string})))
-    (is (= 'FooBar (sut/normalize-column-name :foo_bar {:case :CamelCase :output :symbol})))))
+    (is (= [(sut/normalize-column-name :fooBar {:case :kebab-case :output :keyword})
+            (sut/normalize-column-name "FooBar" {:case :snake_case :output :string})
+            (sut/normalize-column-name :foo_bar {:case :CamelCase :output :symbol})]
+           [:foo-bar "foo_bar" 'FooBar]))))
 
 ;; --- Parsing Tests ---
 
