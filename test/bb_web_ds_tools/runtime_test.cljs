@@ -11,4 +11,4 @@
     (let [results (atom [])]
       (with-redefs [p/submit (fn [res] (swap! results conj res))]
         (sci/eval-in-main "(+ 1 2)")
-        (is (= "3" (:value (last @results))))))))
+        (is (= [{:value "3"}] @results))))))
