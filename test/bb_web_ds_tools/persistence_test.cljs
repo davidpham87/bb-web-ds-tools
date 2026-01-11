@@ -13,10 +13,11 @@
          (go
            (try
              (let [config (clj->js {:print (fn [x] (js/console.log "SQLite:" x))
-                                    :printErr (fn [x] (js/console.error "SQLite Err:" x))})
+                                    :printErr (fn [x] (js/console.error "SQLite Err:" x))
+                                    :locateFile (fn [file _] (str "/base/target/test/" file))})
                    sqlite3 (<p! (sqlite3InitModule config))]
                (is (some? sqlite3) "SQLite module loaded")
-               (let [sqlite3 ^js sqlite3
+               (let [^js sqlite3 sqlite3
                      oo1 (.-oo1 sqlite3)
                      DB (.-DB ^js oo1)
                      db (new DB ":memory:" "ct")]
@@ -24,12 +25,12 @@
 
                  (testing "Create Tables"
                    (pfx/create-tables! db)
-                   (let [res (.exec db "SELECT name FROM sqlite_master WHERE type='table' AND name='datasets'" (clj->js {:returnValue "resultRows"}))]
-                     (is (= 1 (.-length res)) "datasets table exists")))
+                   (let [res (.exec ^js db "SELECT name FROM sqlite_master WHERE type='table' AND name='datasets'" (clj->js {:returnValue "resultRows"}))]
+                     (is (= 1 (.-length ^js res)) "datasets table exists")))
 
                  (testing "Insert and Query Manual"
-                   (.exec db "INSERT INTO datasets VALUES ('1', 'test', 'content', 123)")
-                   (let [rows (.exec db "SELECT * FROM datasets" (clj->js {:returnValue "resultRows"}))]
+                   (.exec ^js db "INSERT INTO datasets VALUES ('1', 'test', 'content', 123)")
+                   (let [rows (.exec ^js db "SELECT * FROM datasets" (clj->js {:returnValue "resultRows"}))]
                      (is (= [["1" "test" "content" 123]] (js->clj rows)) "Row matches")))
 
                  (testing "Persist Datasets"
@@ -41,7 +42,7 @@
                  (testing "Export DB"
                    (let [blob (pfx/export-db db)]
                      (is (instance? js/Blob blob) "Export returns a Blob")
-                     (is (> (.-size blob) 0) "Blob is not empty")))))
+                     (is (> (.-size ^js blob) 0) "Blob is not empty")))))
              (catch :default e
           ;; In some CI/Test environments, loading WASM assets might fail due to path issues.
           ;; We catch this to prevent build failure, but log it.
