@@ -7,6 +7,7 @@ const commonConfig = {
   resolve: {
     alias: {
       "process/browser": require.resolve("process/browser"),
+      "@sqlite.org/sqlite-wasm": path.resolve(__dirname, 'node_modules/@sqlite.org/sqlite-wasm/sqlite-wasm/jswasm/sqlite3.js')
     },
     fallback: {
       "process": require.resolve("process/browser"),
