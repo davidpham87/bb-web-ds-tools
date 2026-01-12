@@ -392,16 +392,39 @@ Line 3: 123-456-7890")
                                            'starts-with? str/starts-with?
                                            'ends-with? str/ends-with?}}}))
 
+(defn- contains-recursion?
+  "Checks if the form contains recursion symbols."
+  [form]
+  (let [forbidden '#{loop recur while doseq dotimes}]
+    (some forbidden (tree-seq coll? seq form))))
+
+(defn- safe-filter?
+  "Checks if the filter expression is safe (no recursion)."
+  [expression-str]
+  (try
+    (let [form (sci/parse-string expression-str)]
+      (not (contains-recursion? form)))
+    (catch :default _
+      ;; If parsing fails, we assume it's not a valid expression anyway,
+      ;; but we'll let sci/eval handle it later if it's safe-ish,
+      ;; or better, treat unparseable as potentially unsafe if we strictly require code.
+      ;; However, the original logic allowed simple strings to fall back to string equality.
+      ;; So we return true here and let compile-filter handle it.
+      true)))
+
 (defn compile-filter
-  "Compiles a filter string into a predicate function using SCI."
+  "Compiles a filter string into a predicate function using SCI.
+   Blocks recursion to prevent DoS."
   [expression-str]
   (try
     (if (str/blank? expression-str)
       nil
-      (let [res (sci/eval-string expression-str filter-ctx)]
-        (if (fn? res)
-          res
-          (fn [val] (= val res)))))
+      (if (safe-filter? expression-str)
+        (let [res (sci/eval-string expression-str filter-ctx)]
+          (if (fn? res)
+            res
+            (fn [val] (= val res))))
+        (fn [_] false))) ;; Unsafe filter -> matches nothing
     (catch :default _
       (fn [val]
         (let [val-str (str val)
