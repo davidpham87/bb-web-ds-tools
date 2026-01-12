@@ -4,7 +4,7 @@
             [bb-web-ds-tools.test-setup :as setup]
             [cljs.core.async :refer [go]]
             [cljs.core.async.interop :refer-macros [<p!]]
-            ["@sqlite.org/sqlite-wasm" :default sqlite3InitModule]))
+            ["@sqlite.org/sqlite-wasm" :as sqlite3-lib]))
 
 (use-fixtures :each setup/suppress-re-frame-warnings)
 
@@ -12,8 +12,15 @@
   (async done
          (go
            (try
+             ;; Hack to bypass Webpack dynamic require issue by providing the path explicitly via urlParams
+             (when (exists? js/sqlite3InitModuleState)
+               (let [params (new js/URLSearchParams)]
+                 (.set params "sqlite3.wasm" "/base/target/test/sqlite3.wasm")
+                 (set! (.-urlParams js/sqlite3InitModuleState) params)))
+
              (let [config (clj->js {:print (fn [x] (js/console.log "SQLite:" x))
                                     :printErr (fn [x] (js/console.error "SQLite Err:" x))})
+                   sqlite3InitModule (if (fn? sqlite3-lib) sqlite3-lib (or (.-default sqlite3-lib) sqlite3-lib))
                    sqlite3 (<p! (sqlite3InitModule config))]
                (is (some? sqlite3) "SQLite module loaded")
                (let [sqlite3 ^js sqlite3
