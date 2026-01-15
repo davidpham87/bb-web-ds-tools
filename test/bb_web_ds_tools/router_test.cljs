@@ -13,13 +13,23 @@
   (testing "Nested tab routes"
     (let [router core/router
           match-code (r/match-by-path router "/code/pyodide")
-          match-malli (r/match-by-path router "/malli/inference")]
+          match-malli (r/match-by-path router "/malli/inference")
+          clean-match (fn [m]
+                        (-> m
+                            (select-keys [:template :path-params :path :data])
+                            (update :data select-keys [:name])))]
 
-      (is (= :code-tab (get-in match-code [:data :name])))
-      (is (= "pyodide" (get-in match-code [:path-params :tab])))
+      (is (= {:template "/code/:tab"
+              :data {:name :code-tab}
+              :path-params {:tab "pyodide"}
+              :path "/code/pyodide"}
+             (clean-match match-code)))
 
-      (is (= :malli-tab (get-in match-malli [:data :name])))
-      (is (= "inference" (get-in match-malli [:path-params :tab]))))))
+      (is (= {:template "/malli/:tab"
+              :data {:name :malli-tab}
+              :path-params {:tab "inference"}
+              :path "/malli/inference"}
+             (clean-match match-malli))))))
 
 (deftest state-sharing-test
   (testing "Encoding and decoding state"
