@@ -38,3 +38,8 @@
 **Vulnerability:** User-controlled data exported to CSV/TSV could contain formulas (starting with =, +, -, @) that execute when opened in Excel/Google Sheets.
 **Learning:** Standard regex matching (`re-matches .*`) in ClojureScript/JS does not match newlines by default, allowing bypass via multiline strings.
 **Prevention:** Use `re-find` with start-of-string anchor (`^...`) instead of `re-matches` with `.*`, or enable dot-all mode if full matching is required.
+
+## 2026-01-16 - [CSV Injection Bypass via Whitespace]
+**Vulnerability:** Previous CSV injection protection (`^[=\+\-@]`) could be bypassed by prepending whitespace (Tab, CR, LF) which Excel strips before executing formulas.
+**Learning:** Regex anchors like `^` only match the start of the string; they do not account for leading "invisible" characters that parsers might ignore.
+**Prevention:** Updated regex to `^[\t\r\n]*[=\+\-@]` to catch formula triggers preceded by dangerous whitespace.
