@@ -2,6 +2,7 @@
   (:require [cljs.test :refer-macros [deftest is testing use-fixtures]]
             [re-frame.core :as rf]
             [day8.re-frame.test :as rf-test]
+            [bb-web-ds-tools.core :as core]
             [bb-web-ds-tools.views.gemma :as sut]
             [malli.generator :as mg]
             [bb-web-ds-tools.test-setup :as setup]))
@@ -49,9 +50,8 @@
 
              ::sut/send-message
              (if was-loaded?
-               (do
-                 (is (= (+ 2 (count prev-msgs)) (count now-msgs))
-                     "Should add user and model message when loaded")
-                 (is (= :user (:role (peek (pop now-msgs)))))
-                 (is (= :model (:role (peek now-msgs)))))
+               (is (= (into prev-msgs [{:role :user :content arg}
+                                       {:role :model :content (str "Echo: " arg)}])
+                      now-msgs)
+                   "Should add user and model message when loaded")
                (is (= prev-msgs now-msgs) "Should ignore message if not loaded")))))))))
