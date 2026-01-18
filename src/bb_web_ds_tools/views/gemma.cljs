@@ -4,6 +4,7 @@
             [fork.reagent :as fork]
             ["@mediapipe/tasks-genai" :as genai]
             [bb-web-ds-tools.components.common :as c]
+            [bb-web-ds-tools.components.layout :as l]
             [bb-web-ds-tools.components.navigation :as nav]))
 
 ;; State for the LLM instance
@@ -208,13 +209,12 @@
                           :class "h-20 px-8"}
                 "Send"]]]]])]))))
 
-(defn panel
-  "Renders the main Gemma view panel.
+(defn panel-render
+  "Renders the main Gemma view panel content.
 
   Returns:
     vector: A hiccup vector."
   []
-  (rf/dispatch-sync [::initialize])
   (let [loaded?-sub (rf/subscribe [::model-loaded?])]
     (fn []
       (let [loaded? @loaded?-sub]
@@ -223,3 +223,13 @@
           (if loaded?
             [chat-interface]
             [model-loader])]]))))
+
+(defn panel
+  "Renders the main Gemma view panel.
+
+  Returns:
+    vector: A hiccup vector."
+  []
+  [l/create-panel {:display-name "gemma-panel"
+                   :init-event [::initialize]
+                   :render-fn panel-render}])
