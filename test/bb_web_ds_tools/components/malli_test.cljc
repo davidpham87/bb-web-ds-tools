@@ -16,8 +16,9 @@
     (is (= [1 2 3] (sut/detect-and-parse "[1, 2, 3]"))))
 
   (testing "Invalid input"
-    (is (nil? (sut/detect-and-parse "{:a")))
-    (is (nil? (sut/detect-and-parse "{a: 1}")))))
+    (is (= [nil nil]
+           [(sut/detect-and-parse "{:a")
+            (sut/detect-and-parse "{a: 1}")]))))
 
 (defspec generate-data-test 10
   (prop/for-all [schema (gen/elements [[:map [:a int?]] [:vector string?]])]
@@ -49,17 +50,17 @@
       (is (map? (:result result))))) ;; Returns explanation map
 
   (testing "Missing schema/data"
-    (is (not (:success (sut/validate-data nil {:a 1}))))
-    (is (not (:success (sut/validate-data [:map [:a int?]] nil))))))
+    (is (= [false false]
+           [(:success (sut/validate-data nil {:a 1}))
+            (:success (sut/validate-data [:map [:a int?]] nil))]))))
 
 (deftest transform-to-json-schema-test
   (testing "Valid schema"
     (let [schema [:map [:a int?]]
           result (sut/transform-to-json-schema schema)]
-      (is (:success result))
-      (is (string? (:json-schema result)))
-      ;; Check if it's valid JSON
-      (is (sut/parse-json (:json-schema result)))))
+      (is (= {:success true
+              :json-schema "{\n  \"type\" : \"object\",\n  \"properties\" : {\n    \"a\" : {\n      \"type\" : \"integer\"\n    }\n  },\n  \"required\" : [ \"a\" ]\n}"}
+             result))))
 
   (testing "Invalid schema"
     (is (not (:success (sut/transform-to-json-schema nil))))))
