@@ -10,9 +10,10 @@
 (deftest test-gemma-handlers
   (testing "initial state"
     (rf/dispatch-sync [::gemma/initialize])
-    (is (= [] @(rf/subscribe [::gemma/messages])))
-    (is (= false @(rf/subscribe [::gemma/loading?])))
-    (is (= nil @(rf/subscribe [::gemma/error]))))
+    (is (= [[] false nil]
+           [@(rf/subscribe [::gemma/messages])
+            @(rf/subscribe [::gemma/loading?])
+            @(rf/subscribe [::gemma/error])])))
 
   (testing "add message"
     (rf/dispatch-sync [::gemma/add-message :user "Hello"])
