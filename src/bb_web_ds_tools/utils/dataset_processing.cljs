@@ -320,7 +320,7 @@ Line 3: 123-456-7890")
   "Sanitizes a value for CSV/TSV export to prevent formula injection.
    Prepends a single quote if the string starts with =, +, -, or @."
   [v]
-  (if (and (string? v) (re-find #"^[=\+\-@]" v))
+  (if (and (string? v) (re-find #"^[\t\r\n]*[=\+\-@]" v))
     (str "'" v)
     v))
 
