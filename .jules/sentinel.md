@@ -38,3 +38,8 @@
 **Vulnerability:** User-controlled data exported to CSV/TSV could contain formulas (starting with =, +, -, @) that execute when opened in Excel/Google Sheets.
 **Learning:** Standard regex matching (`re-matches .*`) in ClojureScript/JS does not match newlines by default, allowing bypass via multiline strings.
 **Prevention:** Use `re-find` with start-of-string anchor (`^...`) instead of `re-matches` with `.*`, or enable dot-all mode if full matching is required.
+
+## 2026-01-19 - CSV Injection Whitespace Bypass
+**Vulnerability:** The regex used for sanitizing CSV values (`^[=\+\-@]`) missed cases where injection characters are preceded by whitespace (Tab, CR, LF), which some spreadsheet software might strip before execution.
+**Learning:** When validating start-of-string patterns for security, always consider potential whitespace or control characters that might be ignored by the consumer.
+**Prevention:** Include optional whitespace `^[\t\r\n]*` in the regex anchor.
