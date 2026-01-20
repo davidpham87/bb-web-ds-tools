@@ -4,7 +4,8 @@
             [bb-web-ds-tools.test-setup :as setup]
             [cljs.core.async :refer [go]]
             [cljs.core.async.interop :refer-macros [<p!]]
-            ["@sqlite.org/sqlite-wasm" :default sqlite3InitModule]))
+            ["@sqlite.org/sqlite-wasm" :default sqlite3InitModule]
+            [goog.object :as gobj]))
 
 (use-fixtures :each setup/suppress-re-frame-warnings)
 
@@ -14,11 +15,11 @@
            (try
              (let [config (clj->js {:print (fn [x] (js/console.log "SQLite:" x))
                                     :printErr (fn [x] (js/console.error "SQLite Err:" x))})
-                   sqlite3 (<p! (sqlite3InitModule config))]
-               (is (some? sqlite3) "SQLite module loaded")
-               (let [sqlite3 ^js sqlite3
-                     oo1 (.-oo1 sqlite3)
-                     DB (.-DB ^js oo1)
+                   raw-sqlite3 (<p! (sqlite3InitModule config))]
+               (is (some? raw-sqlite3) "SQLite module loaded")
+               (let [sqlite3 raw-sqlite3
+                     oo1 (gobj/get sqlite3 "oo1")
+                     DB (gobj/get oo1 "DB")
                      db (new DB ":memory:" "ct")]
                  (is (some? db) "DB created")
 
