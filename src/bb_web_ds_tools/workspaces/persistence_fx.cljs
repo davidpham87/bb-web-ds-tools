@@ -62,6 +62,10 @@
     nil: Side effect."
   [db]
   (create-tables! db)
+  (.exec db "BEGIN TRANSACTION;")
+  (.exec db "DELETE FROM workspaces;")
+  (.exec db "DELETE FROM inputs;")
+
   (let [workspaces (d/q '[:find ?id ?name ?created ?updated
                           :where
                           [?e :workspace/id ?id]
@@ -79,36 +83,18 @@
                       [?e :input/content ?content]
                       [?e :input/metadata ?meta]
                       [?e :input/updated-at ?updated]]
-                    @ws/conn)
+                    @ws/conn)]
 
-        ;; Prepare SQL statements
-        ws-inserts (map (fn [[id name ^js created ^js updated]]
-                          (str "INSERT INTO workspaces VALUES ("
-                               "'" id "', "
-                               "'" (str/replace name "'" "''") "', "
-                               (.getTime created) ", "
-                               (.getTime updated) ");"))
-                        workspaces)
-        input-inserts (map (fn [[id ws-id type name content meta ^js updated]]
-                             (str "INSERT INTO inputs VALUES ("
-                                  "'" id "', "
-                                  "'" ws-id "', "
-                                  "'" (name type) "', "
-                                  "'" (str/replace name "'" "''") "', "
-                                  "'" (str/replace content "'" "''") "', "
-                                  "'" (str/replace (pr-str meta) "'" "''") "', "
-                                  (.getTime updated) ");"))
-                           inputs)
+    (doseq [[id name ^js created ^js updated] workspaces]
+      (.exec db (clj->js {:sql "INSERT INTO workspaces VALUES (?, ?, ?, ?)"
+                          :bind [id name (.getTime created) (.getTime updated)]})))
 
-        all-sql (str/join "\n"
-                          (concat ["BEGIN TRANSACTION;"
-                                   "DELETE FROM workspaces;"
-                                   "DELETE FROM inputs;"]
-                                  ws-inserts
-                                  input-inserts
-                                  ["COMMIT;"]))]
-    (.exec db all-sql)
-    (println "Persisted to in-memory SQL DB.")))
+    (doseq [[id ws-id type name content meta ^js updated] inputs]
+      (.exec db (clj->js {:sql "INSERT INTO inputs VALUES (?, ?, ?, ?, ?, ?, ?)"
+                          :bind [id ws-id (name type) name content (pr-str meta) (.getTime updated)]}))))
+
+  (.exec db "COMMIT;")
+  (println "Persisted to in-memory SQL DB."))
 
 (defn persist-datasets!
   "Persists user datasets to the SQLite DB using Transit encoding.
@@ -121,22 +107,15 @@
     nil: Side effect."
   [db datasets-map]
   (create-tables! db)
-  (let [ds-inserts (map (fn [[id dataset]]
-                          (let [encoded (transit-encode dataset)
-                                created-at (js/Date.now)]
-                            (str "INSERT INTO datasets VALUES ("
-                                 "'" id "', "
-                                 "'" (str/replace (:name dataset) "'" "''") "', "
-                                 "'" (str/replace encoded "'" "''") "', "
-                                 created-at ");")))
-                        datasets-map)
-        all-sql (str/join "\n"
-                          (concat ["BEGIN TRANSACTION;"
-                                   "DELETE FROM datasets;"]
-                                  ds-inserts
-                                  ["COMMIT;"]))]
-    (.exec db all-sql)
-    (println "Datasets persisted to DB.")))
+  (.exec db "BEGIN TRANSACTION;")
+  (.exec db "DELETE FROM datasets;")
+  (doseq [[id dataset] datasets-map]
+    (let [encoded (transit-encode dataset)
+          created-at (js/Date.now)]
+      (.exec db (clj->js {:sql "INSERT INTO datasets VALUES (?, ?, ?, ?)"
+                          :bind [id (:name dataset) encoded created-at]}))))
+  (.exec db "COMMIT;")
+  (println "Datasets persisted to DB."))
 
 (defn load-datasets-from-db
   "Loads datasets from the SQLite DB.
