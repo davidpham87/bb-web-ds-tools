@@ -56,8 +56,9 @@
   (testing "Valid schema"
     (let [schema [:map [:a int?]]
           result (sut/transform-to-json-schema schema)]
-      (is (:success result))
-      (is (string? (:json-schema result)))
+      (is (= {:success true
+              :json-schema "{\n  \"type\" : \"object\",\n  \"properties\" : {\n    \"a\" : {\n      \"type\" : \"integer\"\n    }\n  },\n  \"required\" : [ \"a\" ]\n}"}
+             result))
       ;; Check if it's valid JSON
       (is (sut/parse-json (:json-schema result)))))
 
