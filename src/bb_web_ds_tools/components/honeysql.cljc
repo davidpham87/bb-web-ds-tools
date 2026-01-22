@@ -1,8 +1,6 @@
 (ns bb-web-ds-tools.components.honeysql
   (:require [honey.sql :as h]
-            [sci.core :as sci]))
-
-(def sci-ctx (sci/init {}))
+            [clojure.edn :as edn]))
 
 (defn convert-to-sql
   "Converts a HoneySQL map (as a string or data) to a SQL string.
@@ -14,7 +12,7 @@
     map: {:success true/false :output string :error string}."
   [input-text]
   (try
-    (let [input-data (sci/eval-string input-text sci-ctx)]
+    (let [input-data (edn/read-string input-text)]
       (if (map? input-data)
         (try
           {:success true
@@ -23,7 +21,7 @@
             {:success false
              :error (str "Error formatting SQL: " (ex-message e))}))
         {:success false
-         :error (str "Error: Last evaluated value must be a map. Got: " (pr-str input-data))}))
+         :error (str "Error: Input must be a map. Got: " (pr-str input-data))}))
     (catch #?(:cljs :default :clj Exception) e
       {:success false
-       :error (str "Error evaluating code: " (ex-message e))})))
+       :error (str "Error reading EDN: " (ex-message e))})))

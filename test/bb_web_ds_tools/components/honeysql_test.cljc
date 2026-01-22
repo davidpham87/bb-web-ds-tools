@@ -8,10 +8,11 @@
            (sut/convert-to-sql "{:select [:*] :from [:users]}"))))
 
   (testing "Handles invalid EDN"
-    (is (= {:success false, :error "Error evaluating code: EOF while reading, expected } to match { at [1,1]"}
-           (sut/convert-to-sql "{:select"))))
+    (let [result (sut/convert-to-sql "{:select")]
+      (is (= false (:success result)))
+      (is (re-find #"Error reading EDN" (:error result)))))
 
   (testing "Handles valid EDN but not a map"
     (is (= {:success false
-            :error "Error: Last evaluated value must be a map. Got: [:select :*]"}
+            :error "Error: Input must be a map. Got: [:select :*]"}
            (sut/convert-to-sql "[:select :*]")))))
