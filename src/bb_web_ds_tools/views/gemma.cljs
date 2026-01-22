@@ -214,12 +214,13 @@
   Returns:
     vector: A hiccup vector."
   []
-  (rf/dispatch-sync [::initialize])
-  (let [loaded?-sub (rf/subscribe [::model-loaded?])]
+  (r/create-class
+   {:component-did-mount (fn [] (rf/dispatch [::initialize]))
+    :reagent-render
     (fn []
-      (let [loaded? @loaded?-sub]
+      (let [loaded? @(rf/subscribe [::model-loaded?])]
         [:div.gemma-page {:class "h-full w-full overflow-y-auto"}
          [:div {:class "container mx-auto px-4 py-6"}
           (if loaded?
             [chat-interface]
-            [model-loader])]]))))
+            [model-loader])]]))}))
