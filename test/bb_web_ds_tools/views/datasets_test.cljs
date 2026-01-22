@@ -3,6 +3,7 @@
             [re-frame.core :as rf]
             [day8.re-frame.test :as rf-test]
             [bb-web-ds-tools.views.datasets :as sut]
+            [bb-web-ds-tools.core]
             [malli.generator :as mg]
             [clojure.set :as set]
             [bb-web-ds-tools.test-setup :as setup]))
@@ -61,7 +62,7 @@
                    (rf/dispatch [::sut/update-cell ds-id (:_uuid row) col new-val])
                    (let [updated-ds (get @(rf/subscribe [::sut/items]) ds-id)
                          updated-row (first (filter #(= (:_uuid %) (:_uuid row)) (:data updated-ds)))]
-                     (is (= new-val (get updated-row col)) "Should update cell value"))))))))))))
+                     (is (= (assoc row col new-val) updated-row) "Should update cell value"))))))))))))
 
 (deftest vega-datasets-parsing-test
   (rf-test/run-test-sync
