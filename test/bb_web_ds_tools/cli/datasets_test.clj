@@ -2,7 +2,9 @@
   (:require [clojure.test :refer [deftest is testing]]
             [bb-web-ds-tools.cli.datasets :as sut]
             [clojure.string :as str]
-            [babashka.fs :as fs]))
+            [babashka.fs :as fs]
+            [clojure.data.json :as json]
+            [clojure.edn :as edn]))
 
 (deftest infer-format-test
   (testing "Format inference from filename"
@@ -21,12 +23,11 @@
       (spit input-file "a,b\n1,2")
       (sut/convert {:opts {:file input-file :out output-file}})
       (let [content (slurp output-file)]
-        (is (str/includes? content "\"a\": \"1\""))
-        (is (str/includes? content "\"b\": \"2\"")))))
+        (is (= [{"a" "1" "b" "2"}] (json/read-str content))))))
 
   (testing "Convert JSON to EDN (stdin/stdout)"
     (let [input-str "[{\"a\":1}]"]
       (with-in-str input-str
         (let [output (with-out-str
                        (sut/convert {:opts {:format "json" :to "edn"}}))]
-          (is (str/includes? output "[{:a 1}]")))))))
+          (is (= [{:a 1}] (edn/read-string output))))))))
