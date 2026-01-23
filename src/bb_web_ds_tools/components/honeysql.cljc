@@ -14,7 +14,7 @@
     map: {:success true/false :output string :error string}."
   [input-text]
   (try
-    (let [input-data (sci/eval-string input-text sci-ctx)]
+    (let [input-data (sci/eval-string input-text (sci/fork sci-ctx))]
       (if (map? input-data)
         (try
           {:success true
