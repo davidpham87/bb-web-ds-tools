@@ -38,3 +38,8 @@
 **Vulnerability:** User-controlled data exported to CSV/TSV could contain formulas (starting with =, +, -, @) that execute when opened in Excel/Google Sheets.
 **Learning:** Standard regex matching (`re-matches .*`) in ClojureScript/JS does not match newlines by default, allowing bypass via multiline strings.
 **Prevention:** Use `re-find` with start-of-string anchor (`^...`) instead of `re-matches` with `.*`, or enable dot-all mode if full matching is required.
+
+## 2026-01-24 - [HoneySQL SCI Sandbox Isolation]
+**Vulnerability:** The HoneySQL converter used a shared global SCI context (`sci/init`), allowing state persistence and variable pollution across executions. A user could define global vars (DoS or interference) that persisted to subsequent queries.
+**Learning:** Even "stateless" functions using script interpreters must ensure environment isolation. Default `sci/init` allows `def` and state mutation.
+**Prevention:** Removed global context; initialized a fresh `sci/init {}` context for each conversion request to ensure strict isolation.

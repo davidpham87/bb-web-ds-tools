@@ -2,8 +2,6 @@
   (:require [honey.sql :as h]
             [sci.core :as sci]))
 
-(def sci-ctx (sci/init {}))
-
 (defn convert-to-sql
   "Converts a HoneySQL map (as a string or data) to a SQL string.
 
@@ -14,7 +12,8 @@
     map: {:success true/false :output string :error string}."
   [input-text]
   (try
-    (let [input-data (sci/eval-string input-text sci-ctx)]
+    ;; Use a fresh context for each evaluation to prevent state pollution
+    (let [input-data (sci/eval-string input-text (sci/init {}))]
       (if (map? input-data)
         (try
           {:success true
