@@ -71,7 +71,6 @@
    :test-dir "target/test"
    :js-options {:js-provider :external
                 :external-index "target/test/npm-index.js"}
-   :module-loader true
    :compiler-options {:pretty-print true}
    :devtools {:autotest true}}
 
