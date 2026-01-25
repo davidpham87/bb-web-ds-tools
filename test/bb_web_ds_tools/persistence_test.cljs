@@ -17,7 +17,7 @@
                    sqlite3 (<p! (sqlite3InitModule config))]
                (is (some? sqlite3) "SQLite module loaded")
                (let [sqlite3 ^js sqlite3
-                     oo1 (.-oo1 sqlite3)
+                     oo1 (.-oo1 ^js sqlite3)
                      DB (.-DB ^js oo1)
                      db (new DB ":memory:" "ct")]
                  (is (some? db) "DB created")
