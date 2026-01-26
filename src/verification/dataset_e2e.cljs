@@ -14,10 +14,15 @@
   (go
     (try
       (log "Launching browser...")
-      (let [chromium (.-chromium pw)]
+      (let [chromium (.-chromium pw)
+            executable-path (or (.. js/process -env -CHROME_BIN)
+                                (.. js/process -env -PUPPETEER_EXECUTABLE_PATH))
+            launch-options (if executable-path
+                             #js {:headless true :executablePath executable-path :args #js ["--no-sandbox"]}
+                             #js {:headless true :args #js ["--no-sandbox"]})]
         (if-not chromium
           (fail "Chromium not found in playwright module")
-          (let [browser (<p! (.launch chromium))
+          (let [browser (<p! (.launch chromium launch-options))
                 page (<p! (.newPage browser))]
             (log "Browser launched.")
 
