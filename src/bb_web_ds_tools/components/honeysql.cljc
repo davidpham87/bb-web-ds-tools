@@ -13,17 +13,20 @@
   Returns:
     map: {:success true/false :output string :error string}."
   [input-text]
-  (try
-    (let [input-data (sci/eval-string input-text sci-ctx)]
-      (if (map? input-data)
-        (try
-          {:success true
-           :output (first (h/format input-data {:inline true}))}
-          (catch #?(:cljs :default :clj Exception) e
-            {:success false
-             :error (str "Error formatting SQL: " (ex-message e))}))
+  (if (> (count input-text) 10000)
+    {:success false
+     :error "Error: Input text too long (max 10000 characters)."}
+    (try
+      (let [input-data (sci/eval-string input-text sci-ctx)]
+        (if (map? input-data)
+          (try
+            {:success true
+             :output (first (h/format input-data {:inline true}))}
+            (catch #?(:cljs :default :clj Exception) e
+              {:success false
+               :error (str "Error formatting SQL: " (ex-message e))}))
+          {:success false
+           :error (str "Error: Last evaluated value must be a map. Got: " (pr-str input-data))}))
+      (catch #?(:cljs :default :clj Exception) e
         {:success false
-         :error (str "Error: Last evaluated value must be a map. Got: " (pr-str input-data))}))
-    (catch #?(:cljs :default :clj Exception) e
-      {:success false
-       :error (str "Error evaluating code: " (ex-message e))})))
+         :error (str "Error evaluating code: " (ex-message e))}))))
