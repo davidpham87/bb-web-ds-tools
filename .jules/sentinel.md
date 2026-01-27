@@ -38,3 +38,8 @@
 **Vulnerability:** User-controlled data exported to CSV/TSV could contain formulas (starting with =, +, -, @) that execute when opened in Excel/Google Sheets.
 **Learning:** Standard regex matching (`re-matches .*`) in ClojureScript/JS does not match newlines by default, allowing bypass via multiline strings.
 **Prevention:** Use `re-find` with start-of-string anchor (`^...`) instead of `re-matches` with `.*`, or enable dot-all mode if full matching is required.
+
+## 2026-01-27 - [SRI for External Scripts]
+**Vulnerability:** External scripts loaded from CDNs (Vega, WebR) lacked Subresource Integrity (SRI) hashes, allowing potential execution of malicious code if CDNs are compromised.
+**Learning:** `webr.mjs` is loaded as an ES module via `import`. Securing it requires a `<link rel="modulepreload" ... integrity="...">` tag, as `integrity` attributes are not supported on `import` statements.
+**Prevention:** Pinned library versions and added SRI hashes with `crossorigin="anonymous"` for all external scripts.
