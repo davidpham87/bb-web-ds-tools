@@ -2,25 +2,15 @@
   (:require [cljs.test :refer-macros [deftest is testing]]
             [bb-web-ds-tools.components.malli :as sut]))
 
-(defn get-field-schema [schema field]
-  (let [schema-def (if (vector? schema) schema schema)
-        entries (if (= :map (first schema-def))
-                  (rest schema-def)
-                  [])
-        entry (first (filter #(= field (first %)) entries))]
-    (if entry
-      (second entry)
-      nil)))
-
 (deftest test-refine-schema-with-data
   (testing "New Logic: Enum if Unique <= 200 AND (Unique < 10% OR MaxLen < 60)"
 
     (testing "Scenario 1: Large Dataset, Low Cardinality (Standard Enum)"
-      (let [unique-vals (map #(str "Val" %) (range 50))
+      (let [unique-vals (map #(str "Val" %) (range 5))
             data (vec (mapcat (fn [v] (repeat 20 {:a v})) unique-vals))
             res (sut/infer-schema data)
             schema (:schema res)]
-        (is (= :enum (first (get-field-schema schema :a))))))
+        (is (= [:map [:a [:enum "Val0" "Val1" "Val2" "Val3" "Val4"]]] schema))))
 
     (testing "Scenario 2: Small Dataset (10 rows), 3 unique values"
       ;; Unique=3. (30%). Length < 60.
@@ -30,23 +20,23 @@
             data (assoc-in data [2 :a] "Fish")
             res (sut/infer-schema data)
             schema (:schema res)]
-        (is (= [:enum "Cat" "Dog" "Fish"] (get-field-schema schema :a)))))
+        (is (= [:map [:a [:enum "Cat" "Dog" "Fish"]]] schema))))
 
     (testing "Scenario 3: Large Dataset, ID Column (High Cardinality)"
       ;; Unique=1000. Fails 200 limit. -> String.
       (let [data (mapv (fn [i] {:a (str "ID" i)}) (range 1000))
             res (sut/infer-schema data)
             schema (:schema res)]
-        (is (= :string (get-field-schema schema :a)))))
+        (is (= [:map [:a :string]] schema))))
 
     (testing "Scenario 4: Medium Dataset, Unique < 200, but > 10%, Short Strings"
-      ;; Unique=50. Total=100. (50%). Length < 60.
+      ;; Unique=5. Total=10. (50%). Length < 60.
       ;; OR condition satisfies logic (Length < 60). -> Enum.
-      (let [unique-vals (map #(str "V" %) (range 50))
+      (let [unique-vals (map #(str "V" %) (range 5))
             data (vec (mapcat (fn [v] (repeat 2 {:a v})) unique-vals))
             res (sut/infer-schema data)
             schema (:schema res)]
-        (is (= :enum (first (get-field-schema schema :a))))))
+        (is (= [:map [:a [:enum "V0" "V1" "V2" "V3" "V4"]]] schema))))
 
     (testing "Scenario 5: Long Strings (Description)"
       ;; MaxLen=70. Total=100. Unique=1. (1%).
@@ -55,7 +45,7 @@
             data (vec (repeat 100 {:a long-str}))
             res (sut/infer-schema data)
             schema (:schema res)]
-        (is (= :enum (first (get-field-schema schema :a))))))
+        (is (= [:map [:a [:enum "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"]]] schema))))
 
     (testing "Scenario 6: Long Strings, High Percentage"
       ;; MaxLen=70. Unique=10. Total=20. (50%).
@@ -64,4 +54,4 @@
             data (vec (mapcat (fn [v] (repeat 2 {:a v})) unique-vals))
             res (sut/infer-schema data)
             schema (:schema res)]
-        (is (= :string (get-field-schema schema :a)))))))
+        (is (= [:map [:a :string]] schema))))))
