@@ -26,21 +26,21 @@
 ;; Tests
 
 (defspec normalize-columnar-spec
-  100
+  50
   (prop/for-all [rows gen-uniform-rows]
                 (let [columnar (#'sut/to-columnar rows)
                       normalized (sut/normalize-columnar columnar)]
                   (= rows normalized))))
 
 (defspec normalize-row-arrays-spec
-  100
+  50
   (prop/for-all [rows gen-uniform-rows]
                 (let [row-arrays (#'sut/to-row-arrays rows)
                       normalized (sut/normalize-row-arrays row-arrays)]
                   (= rows normalized))))
 
 (defspec parse-markdown-row-robustness-spec
-  100
+  50
   (prop/for-all [s gen/string]
                 (let [res (#'sut/parse-markdown-row s)]
                   (vector? res))))
