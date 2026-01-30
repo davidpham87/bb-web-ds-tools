@@ -2,6 +2,22 @@
   (:require [cognitect.transit :as t]
             ["lz-string" :as lz]))
 
+(def allowed-keys
+  "Set of keys allowed in the shared state to prevent mass assignment vulnerabilities."
+  #{:user-input
+    :bb-web-ds-tools.views.malli/malli
+    :bb-web-ds-tools.views.malli/mobile-view-mode
+    :bb-web-ds-tools.views.honeysql/honeysql
+    :bb-web-ds-tools.views.datasets/datasets
+    :bb-web-ds-tools.views.vega-lite/state
+    :bb-web-ds-tools.views.code/active-tab
+    :bb-web-ds-tools.views.code/mobile-view-mode})
+
+(defn sanitize-state
+  "Filters the state map to only include allowed keys."
+  [state]
+  (select-keys state allowed-keys))
+
 (defn encode-state
   "Encodes a state map using transit and lz-string compression.
 
@@ -21,18 +37,20 @@
 
 (defn decode-state
   "Decodes a compressed string back into a state map.
+   Sanitizes the output to prevent overwriting protected state keys.
 
    Args:
      s (string): The compressed encoded string.
 
    Returns:
-     map: The decoded state, or nil if invalid."
+     map: The decoded and sanitized state, or nil if invalid."
   [s]
   (try
     (let [json-str (lz/decompressFromEncodedURIComponent s)
           reader (t/reader :json)]
       (when json-str
-        (t/read reader json-str)))
+        (some-> (t/read reader json-str)
+                sanitize-state)))
     (catch :default e
       (js/console.error "Error decoding state:" e)
       nil)))

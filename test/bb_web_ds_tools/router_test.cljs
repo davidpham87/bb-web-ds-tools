@@ -23,7 +23,7 @@
 
 (deftest state-sharing-test
   (testing "Encoding and decoding state"
-    (let [state {:a 1 :b "test" :c [1 2 3]}
+    (let [state {:user-input {:a 1 :b "test"}}
           encoded (share/encode-state state)
           decoded (share/decode-state encoded)]
       (is (string? encoded))
@@ -47,24 +47,24 @@
 
    (testing "Navigation restores shared state"
      ;; load-shared-state merges the decoded map into the DB root.
-     ;; We will verify this by checking a custom key in the DB.
-     (let [shared-state {:custom-key "restored"}
+     ;; We will verify this by checking a custom key in the DB, wrapped in :user-input to pass validation.
+     (let [shared-state {:user-input {:custom-key "restored"}}
            encoded (share/encode-state shared-state)
            match {:data {:name :landing-page}
                   :query-params {:state encoded}}]
        (rf/dispatch [:bb-web-ds-tools.core/navigated match])
        ;; We subscribe to the full DB to check the root key
-       (is (= "restored" (:custom-key @(rf/subscribe [:bb-web-ds-tools.router-test/test-db]))))))
+       (is (= "restored" (get-in @(rf/subscribe [:bb-web-ds-tools.router-test/test-db]) [:user-input :custom-key])))))
 
    (testing "Navigation with both tab and state works simultaneously"
-     (let [shared-state {:custom-key "combined"}
+     (let [shared-state {:user-input {:custom-key "combined"}}
            encoded (share/encode-state shared-state)
            match {:data {:name :code-tab}
                   :parameters {:path {:tab "pyodide"}}
                   :query-params {:state encoded}}]
        (rf/dispatch [:bb-web-ds-tools.core/navigated match])
        (is (= :pyodide @(rf/subscribe [:bb-web-ds-tools.views.code/active-tab])))
-       (is (= "combined" (:custom-key @(rf/subscribe [:bb-web-ds-tools.router-test/test-db]))))))))
+       (is (= "combined" (get-in @(rf/subscribe [:bb-web-ds-tools.router-test/test-db]) [:user-input :custom-key])))))))
 
 ;; Helper subscription for testing
 (rf/reg-sub ::test-db (fn [db _] db))
