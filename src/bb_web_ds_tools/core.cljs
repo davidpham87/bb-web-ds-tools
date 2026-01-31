@@ -73,7 +73,7 @@
  ::load-shared-state
  (fn [db [_ encoded-state]]
    (if-let [decoded (share/decode-state encoded-state)]
-     (merge db decoded)
+     (merge db (select-keys decoded [:user-input]))
      db)))
 
 (rf/reg-event-fx
