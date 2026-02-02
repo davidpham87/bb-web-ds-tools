@@ -13,9 +13,11 @@
          (go
            (try
              (let [config (clj->js {:print (fn [x] (js/console.log "SQLite:" x))
-                                    :printErr (fn [x] (js/console.error "SQLite Err:" x))})
+                                    :printErr (fn [x] (js/console.error "SQLite Err:" x))
+                                    :locateFile (fn [file _] (str "/base/target/test/" file))})
                    sqlite3 (<p! (sqlite3InitModule config))]
                (is (some? sqlite3) "SQLite module loaded")
+               (reset! pfx/sqlite-lib sqlite3)
                (let [sqlite3 ^js sqlite3
                      oo1 (.-oo1 sqlite3)
                      DB (.-DB ^js oo1)
