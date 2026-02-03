@@ -16,6 +16,7 @@
                                     :printErr (fn [x] (js/console.error "SQLite Err:" x))})
                    sqlite3 (<p! (sqlite3InitModule config))]
                (is (some? sqlite3) "SQLite module loaded")
+               (reset! pfx/sqlite-lib sqlite3)
                (let [sqlite3 ^js sqlite3
                      oo1 (.-oo1 sqlite3)
                      DB (.-DB ^js oo1)
