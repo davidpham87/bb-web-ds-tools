@@ -120,6 +120,8 @@
     (catch #?(:cljs :default :clj Exception) e
       {:success false :error (str "Invalid schema EDN: " (ex-message e))})))
 
+(def max-samples 10000)
+
 (defn generate-data
   "Generates random data from a Malli schema.
 
@@ -132,17 +134,19 @@
     map: {:success true :output string :data any}."
   [schema samples format]
   (if (and schema (pos? samples))
-    (try
-      (let [data (if (> samples 1)
-                   (vec (repeatedly samples #(mg/generate schema)))
-                   (mg/generate schema))
-            output (case format
-                     :edn (pretty-print-str data)
-                     :json (generate-json data)
-                     (pr-str data))]
-        {:success true :output output :data data})
-      (catch #?(:cljs :default :clj Exception) e
-        {:success false :error (str "Generation failed: " (ex-message e))}))
+    (if (> samples max-samples)
+      {:success false :error (str "Sample count exceeds maximum limit of " max-samples ".")}
+      (try
+        (let [data (if (> samples 1)
+                     (vec (repeatedly samples #(mg/generate schema)))
+                     (mg/generate schema))
+              output (case format
+                       :edn (pretty-print-str data)
+                       :json (generate-json data)
+                       (pr-str data))]
+          {:success true :output output :data data})
+        (catch #?(:cljs :default :clj Exception) e
+          {:success false :error (str "Generation failed: " (ex-message e))})))
     {:success false :error "Invalid schema or samples."}))
 
 (declare annotate-schema)

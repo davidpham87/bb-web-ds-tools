@@ -115,3 +115,16 @@
                          {:min d1
                           :max d3}]]]}
              (sut/infer-schema data))))))
+
+(deftest generate-data-limit-test
+  (testing "generate-data respects max sample limit"
+    (let [schema [:map [:a int?]]
+          result (sut/generate-data schema 10001 :edn)]
+      (is (not (:success result)))
+      (is (= "Sample count exceeds maximum limit of 10000." (:error result)))))
+
+  (testing "generate-data works within limit"
+    (let [schema [:map [:a int?]]
+          result (sut/generate-data schema 10 :edn)]
+      (is (:success result))
+      (is (= 10 (count (:data result)))))))
