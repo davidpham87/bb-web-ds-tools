@@ -57,6 +57,15 @@ const commonConfig = {
         }
       },
       {
+        test: /sqlite-wasm\/jswasm\/sqlite3\.mjs$/,
+        type: 'javascript/auto',
+        parser: {
+          javascript: {
+            url: false
+          }
+        }
+      },
+      {
         test: /\.css$/i,
         oneOf: [
           {
@@ -119,7 +128,7 @@ const commonConfig = {
 module.exports = [
   Object.assign({}, commonConfig, {
     name: 'app',
-    entry: './target/index.js',
+    entry: ['./target/index.js', './node_modules/@sqlite.org/sqlite-wasm/sqlite-wasm/jswasm/sqlite3.wasm'],
     output: {
       path: path.resolve(__dirname, 'docs/js'),
       filename: 'libs.js',
@@ -129,7 +138,7 @@ module.exports = [
   }),
   Object.assign({}, commonConfig, {
     name: 'test',
-    entry: './target/test/npm-index.js',
+    entry: ['./target/test/npm-index.js', './node_modules/@sqlite.org/sqlite-wasm/sqlite-wasm/jswasm/sqlite3.wasm'],
     output: {
       path: path.resolve(__dirname, 'target/test'),
       filename: 'libs.js',
