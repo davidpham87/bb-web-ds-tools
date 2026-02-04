@@ -24,6 +24,19 @@
 
 (defmulti write-string (fn [format _] (keyword format)))
 
+(defn- sanitize-value
+  "Sanitizes a value for CSV/TSV export to prevent formula injection.
+   Prepends a single quote if the string starts with =, +, -, or @."
+  [v]
+  (if (and (string? v) (re-find #"^[=\+\-@]" v))
+    (str "'" v)
+    v))
+
+(defn- sanitize-row
+  "Sanitizes all values in a row (vector)."
+  [row]
+  (mapv sanitize-value row))
+
 (defmethod write-string :csv
   [_ data]
   (let [sw (java.io.StringWriter.)]
@@ -33,16 +46,16 @@
                         header (keys (first row-maps))
                         rows (map (fn [row] (map #(get row %) header))
                                   row-maps)]
-                    (csv/write-csv sw (cons header rows)))
+                    (csv/write-csv sw (map sanitize-row (cons header rows))))
       ;; If vector of vectors (rows), use directly
       (and (sequential? data) (sequential? (first data))) (csv/write-csv sw
-                                                                         data)
+                                                                         (map sanitize-row data))
       ;; Default: Assume row-maps
       :else (if (empty? data)
               ""
               (let [header (keys (first data))
                     rows (map (fn [row] (map #(get row %) header)) data)]
-                (csv/write-csv sw (cons header rows)))))
+                (csv/write-csv sw (map sanitize-row (cons header rows))))))
     (.toString sw)))
 
 (defmethod write-string :json [_ data] (json/write-str data {:indent true}))
