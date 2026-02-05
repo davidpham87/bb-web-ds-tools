@@ -1,17 +1,12 @@
 (ns bb-web-ds-tools.cli.datasets-test
   (:require [clojure.test :refer [deftest is testing]]
             [bb-web-ds-tools.cli.datasets :as sut]
-            [clojure.string :as str]
             [babashka.fs :as fs]))
 
 (deftest infer-format-test
   (testing "Format inference from filename"
-    (is (= "csv" (#'sut/infer-format "test.csv")))
-    (is (= "json" (#'sut/infer-format "test.json")))
-    (is (= "edn" (#'sut/infer-format "test.edn")))
-    (is (= "yaml" (#'sut/infer-format "test.yaml")))
-    (is (= "yaml" (#'sut/infer-format "test.yml")))
-    (is (nil? (#'sut/infer-format "test.txt")))))
+    (is (= ["csv" "json" "edn" "yaml" "yaml" nil]
+           (map #'sut/infer-format ["test.csv" "test.json" "test.edn" "test.yaml" "test.yml" "test.txt"])))))
 
 (deftest convert-integration-test
   (testing "Convert CSV to JSON with real files"
@@ -21,12 +16,11 @@
       (spit input-file "a,b\n1,2")
       (sut/convert {:opts {:file input-file :out output-file}})
       (let [content (slurp output-file)]
-        (is (str/includes? content "\"a\": \"1\""))
-        (is (str/includes? content "\"b\": \"2\"")))))
+        (is (= "[\n  {\n    \"a\": \"1\",\n    \"b\": \"2\"\n  }\n]" content)))))
 
   (testing "Convert JSON to EDN (stdin/stdout)"
     (let [input-str "[{\"a\":1}]"]
       (with-in-str input-str
         (let [output (with-out-str
                        (sut/convert {:opts {:format "json" :to "edn"}}))]
-          (is (str/includes? output "[{:a 1}]")))))))
+          (is (= "[{:a 1}]\n\n" output)))))))
