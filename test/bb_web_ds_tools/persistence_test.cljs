@@ -38,6 +38,15 @@
                      (let [loaded (pfx/load-datasets-from-db db)]
                        (is (= datasets loaded)))))
 
+                 (testing "SQL Injection Resilience"
+                   (let [evil-id "evil' OR 1=1 --"
+                         datasets {evil-id {:name "Evil Dataset" :data []}}]
+                     ;; With vulnerable code, this might fail or create weird rows
+                     ;; With fixed code, it should store ID literally
+                     (pfx/persist-datasets! db datasets)
+                     (let [rows (.exec db "SELECT id FROM datasets WHERE id=?" (clj->js {:bind [evil-id] :returnValue "resultRows"}))]
+                       (is (= [[evil-id]] (js->clj rows)) "Malicious ID stored correctly"))))
+
                  (testing "Export DB"
                    (let [blob (pfx/export-db db)]
                      (is (instance? js/Blob blob) "Export returns a Blob")
