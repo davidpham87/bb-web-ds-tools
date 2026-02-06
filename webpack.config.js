@@ -111,6 +111,14 @@ const commonConfig = {
         generator: {
           filename: '[name][ext]'
         }
+      },
+      {
+        test: /sqlite3\.mjs$/,
+        use: [
+          {
+            loader: path.resolve('scripts/sqlite-patch-loader.js')
+          }
+        ]
       }
     ],
   },

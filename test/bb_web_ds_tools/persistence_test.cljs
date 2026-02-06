@@ -13,10 +13,15 @@
          (go
            (try
              (let [config (clj->js {:print (fn [x] (js/console.log "SQLite:" x))
-                                    :printErr (fn [x] (js/console.error "SQLite Err:" x))})
+                                    :printErr (fn [x] (js/console.error "SQLite Err:" x))
+                                    :locateFile (fn [file _script-dir]
+                                                  (if (= file "sqlite3.wasm")
+                                                    "/base/target/test/sqlite3.wasm"
+                                                    file))})
                    sqlite3 (<p! (sqlite3InitModule config))]
                (is (some? sqlite3) "SQLite module loaded")
                (let [sqlite3 ^js sqlite3
+                     _ (reset! pfx/sqlite-lib sqlite3)
                      oo1 (.-oo1 sqlite3)
                      DB (.-DB ^js oo1)
                      db (new DB ":memory:" "ct")]
@@ -42,10 +47,5 @@
                    (let [blob (pfx/export-db db)]
                      (is (instance? js/Blob blob) "Export returns a Blob")
                      (is (> (.-size blob) 0) "Blob is not empty")))))
-             (catch :default e
-          ;; In some CI/Test environments, loading WASM assets might fail due to path issues.
-          ;; We catch this to prevent build failure, but log it.
-               (js/console.warn "SQLite WASM initialization failed (expected if WASM assets are missing in test env):" (.-message e))
-               (is true "Skipping SQLite tests due to environment limitations"))
              (finally
                (done))))))
